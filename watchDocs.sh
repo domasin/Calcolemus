@@ -1,0 +1,1 @@
+fsdocs watch --eval --clean --sourcerepo https://github.com/domasin/FolAutomReas/tree/main --parameters fsdocs-repository-link https://github.com/domasin/FolAutomReas fsdocs-license-link https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt

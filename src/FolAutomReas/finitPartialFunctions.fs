@@ -17,9 +17,8 @@ module FolAutomReas.lib.FPF
 //                                                                           //
 // Idea due to Diego Olivier Fernandez Pons (OCaml list, 2003/11/10).        //
 // ------------------------------------------------------------------------- //
-//
 
-// pg. 621
+/// Type of functions represented as a patritia tree (pg. 621).
 type func<'a,'b> =
     | Empty
     | Leaf of int * ('a * 'b) list
@@ -53,27 +52,18 @@ let sprint_patricia_tree pt =
 let print_patricia_tree pt =
     printfn "%O" (sprint_patricia_tree pt) |> ignore
 
-// ------------------------------------------------------------------------- //
-// Undefined function.                                                       //
-// ------------------------------------------------------------------------- //
-
-// pg. 621
+/// The undefined function (pg. 621).
 let undefined = Empty
 
-// ------------------------------------------------------------------------- //
-// In case of equality comparison worries, better use this.                  //
-// ------------------------------------------------------------------------- //
-
-// pg. 621
+/// Checks if the function is completely undefined.
+/// In case of equality comparison worries, better use this. 
+/// (pg. 621).
 let is_undefined = function
     | Empty -> true
     | _     -> false
 
-// ------------------------------------------------------------------------- //
-// Operation analogous to "map" for lists.                                   //
-// ------------------------------------------------------------------------- //
-
-// pg. 621
+/// Operation for `func` analogous to `map` for lists.
+/// (pg. 621)
 let mapf =
     let rec map_list f l =
         match l with
@@ -89,12 +79,7 @@ let mapf =
             Branch (p, b, mapf f l, mapf f r)
     mapf
 
-// ------------------------------------------------------------------------- //
-// Operations analogous to "fold" for lists.                                 //
-// ------------------------------------------------------------------------- //
-
-// Not in book
-// Support function for use with graph, dom, and ran.
+/// Operation for `func` analogous to `foldl` for lists.
 let foldl =
     let rec foldl_list f a l =
         match l with
@@ -110,9 +95,7 @@ let foldl =
             foldl f (foldl f a l) r
     foldl
         
-// Not in book
-// Support fucntion for end user use if needed. 
-// Not used in handbook code.
+/// Operation for `func` analogous to `foldr` for lists.
 let foldr =
     let rec foldr_list f l a =
         match l with
@@ -128,21 +111,17 @@ let foldr =
             foldr f l (foldr f r a)
     foldr
 
-// ------------------------------------------------------------------------- //
-// Mapping to sorted-list representation of the graph, domain and range.     //
-// ------------------------------------------------------------------------- //
-
-// pg. 621
+/// Graph of function `f` (pg. 621).
 let graph f =
     foldl (fun a x y -> (x, y) :: a) [] f
     |> setify
     
-// pg. 621
+/// Domain of function `f` (pg. 621).
 let dom f =
     foldl (fun a x y -> x :: a) [] f
     |> setify
     
-// pg. 621
+/// Range of function `f` (pg. 621)
 let ran f =
     foldl (fun a x y -> y :: a) [] f
     |> setify
@@ -151,7 +130,6 @@ let ran f =
 // Application.                                                              //
 // ------------------------------------------------------------------------- //
 
-// Not in book
 // Support function for use with apply, tryapplyd, and tryapplyl.
 let applyd =
     let rec apply_listd l d x =
@@ -187,7 +165,7 @@ let tryapplyd f a d =
 let tryapplyl f x =
     tryapplyd f x []
     
-// pg. 621
+/// Checks if the function `f` is defined for the argument `x` (pg. 621).
 let defined f x =
     try
         apply f x |> ignore
@@ -199,7 +177,7 @@ let defined f x =
 // Undefinition.                                                             //
 // ------------------------------------------------------------------------- //
 
-// pg. 621
+/// Undefines the function for the given argument (pg. 621).
 let undefine =
     let rec undefine_list x l =
         match l with
@@ -247,9 +225,7 @@ let undefine =
 
 // Finite Partial Functions (FPF)
 
-// To update the FPF with a new mapping from x to y.
-// Not in book
-// Support function for use with FPF
+/// Updates the function with a new mapping.
 let (|->),combine =
     let newbranch p1 t1 p2 t2 =
         let zp = p1 ^^^ p2
@@ -373,8 +349,9 @@ let (|->),combine =
 // ------------------------------------------------------------------------- //
 
 // Finite Partial Functions (FPF)
-// To create a new funtion in the FPF defined only for the value x and mapping it to y.
-// pg. 621
+
+/// Creates a new FPF defined only for the value `x` and maps it to `y` 
+/// (pg. 621).
 let (|=>) x y = 
     (x |-> y) undefined
 
@@ -382,7 +359,9 @@ let (|=>) x y =
 // Idiom for a mapping zipping domain and range lists.                       //
 // ------------------------------------------------------------------------- //
 
-// pg. 621
+/// Creates a new FPF from lists `xs` and `ys` representing its domain 
+/// and range. It associates argument to value based on the order of items 
+/// in the two lists (pg. 621).
 let fpf xs ys =
     List.foldBack2 (|->) xs ys undefined
 
@@ -390,9 +369,6 @@ let fpf xs ys =
 // Grab an arbitrary element.                                                //
 // ------------------------------------------------------------------------- //
 
-// Not in book
-// Support fucntion for end user use if needed. 
-// Not used in handbook code.
 let rec choose t =
     match t with
     | Empty ->
@@ -419,19 +395,20 @@ let valmod a y f x =
     if x = a then y
     else f x
     
-// pg. 618
-// In a non-functional world you can create a list of values and
-// initialize the list signifiying nothing. e.g. []
-// Then when you process the list it could return without exception
-// or if you wanted the processing of the list to return with
-// exception when there is nothing in the list, you would check
-// the list for nothing and return an exception.
-//
-// In a functinal world you can create a list of functions and
-// initialize the list with a function causing an exception given that
-// the items is the list are evaluated as functions.
-// 
-// undef is that function which is used to initialize a list to
-// cause an exception if the list is empty when evaluated.
+/// In a non-functional world you can create a list of values and
+/// initialize the list signifiying nothing. e.g. []
+/// Then when you process the list it could return without exception
+/// or if you wanted the processing of the list to return with
+/// exception when there is nothing in the list, you would check
+/// the list for nothing and return an exception.
+///
+/// In a functinal world you can create a list of functions and
+/// initialize the list with a function causing an exception given that
+/// the items is the list are evaluated as functions.
+/// 
+/// undef is that function which is used to initialize a list to
+/// cause an exception if the list is empty when evaluated.
+/// 
+/// (pg 618).
 let undef x =
     failwith "undefined function"
