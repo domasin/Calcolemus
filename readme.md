@@ -2,7 +2,7 @@
 
 This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-examples, which in turn is the porting in F# of the code from **John Harrison's "[Handbook of Practical Logic and Automated Reasoning](https://www.cl.cam.ac.uk/~jrh13/atp/index.html)"**.
 
-![nuget package workflow](https://github.com/domasin/FolAutomReas/blob/master/.github/workflows/publish.yml/badge.svg)
+![nuget package workflow](https://github.com/domasin/FolAutomReas/actions/workflows/publish.yml/badge.svg)
 
 ## Fork main purposes
 
