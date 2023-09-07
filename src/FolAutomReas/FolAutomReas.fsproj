@@ -2,10 +2,20 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <Authors>Domenico Masini</Authors>
+    <Description>Code from John Harrison's "Handbook of Practical Logic and Automated Reasoning" ported in F#</Description>
+    <PackageTags>logic, automated reasoning, interactive theorem proving</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="MathNet.Numerics.FSharp" Version="5.0.0" />
     <PackageReference Include="MinVer" Version="4.3.0">
@@ -14,6 +24,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath=""/>
+    <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
     <Compile Include="num.fs" />
     <Compile Include="predAndFun.fs" />
     <Compile Include="listFunctions.fs" />
