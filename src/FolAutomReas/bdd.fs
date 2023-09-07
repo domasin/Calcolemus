@@ -4,6 +4,14 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Binary decision diagrams (BDDs) using complement edges.
+/// 
+/// In practice one would use hash tables, but we use abstract finite
+/// partial functions here. They might also look nicer imperatively.
+/// </summary>
+/// 
+/// <remarks>pg. 101</remarks>
 module FolAutomReas.bdd
 
 open FolAutomReas.lib
@@ -12,31 +20,38 @@ open formulas
 open prop
 open defcnf
 
-// pg. 101
-// ========================================================================= //
-// Binary decision diagrams (BDDs) using complement edges.                   //
-//                                                                           //
-// In practice one would use hash tables, but we use abstract finite         //
-// partial functions here. They might also look nicer imperatively.          //
-// ========================================================================= //
+// Binary descision diagrame node.
+// 
+// propositional variable, left node, right node
+type bddnode = 
+    prop * int * int
 
-type bddnode = prop * int * int
-
-// pg. 102
-// ------------------------------------------------------------------------- //
-// A BDD contains a variable order, unique and computed table.               //
-// ------------------------------------------------------------------------- //
-
-type bdd = Bdd of (func<bddnode, int> * func<int, bddnode> * int) * (prop -> prop -> bool)
+/// Binary Decision Diagram
+/// 
+/// bdd omponents:
+/// * Unique tanle
+/// * Exapnsion table
+/// * Smallest positive unused node index
+/// * Variable order
+/// 
+/// bddnode components
+/// * propositional variable
+/// * left node
+/// * right node
+type bdd = 
+    Bdd of 
+        (
+            func<bddnode, int>        // unique table
+            * func<int, bddnode>      // expansion table
+            * int                     // smallest positive unused node index
+        )   
+        *  (prop -> prop -> bool) // variable order
 
 let print_bdd (Bdd ((unique, uback, n), ord)) =
     printf "<BDD with %i nodes>" n
       
-// pg. 102
-// ------------------------------------------------------------------------- //
-// Map a BDD node back to its components.                                    //
-// ------------------------------------------------------------------------- //
-
+/// Returns the bddnode corresponding to the index `n` of the bdd
+/// If a negative index is used the complement of the node is returned.
 let expand_node (Bdd ((_, expand, _), _)) n =
     if n >= 0 then
         tryapplyd expand n (P"", 1, 1)
@@ -44,21 +59,13 @@ let expand_node (Bdd ((_, expand, _), _)) n =
         let p, l, r = tryapplyd expand -n (P"", 1, 1)
         p, -l, -r
 
-// pg. 102
-// ------------------------------------------------------------------------- //
-// Lookup or insertion if not there in unique table.                         //
-// ------------------------------------------------------------------------- //
-
+/// Lookup or insertion if not there in unique table. 
 let lookup_unique (Bdd ((unique, expand, n), ord) as bdd) node =
     try bdd, apply unique node
     with _ ->
         Bdd (((node |-> n) unique, (n |-> node) expand, n + 1), ord), n
 
-// pg. 102
-// ------------------------------------------------------------------------- //
-// Produce a BDD node (old or new).                                          //
-// ------------------------------------------------------------------------- //
-
+/// Produce a BDD node (old or new).
 let mk_node bdd (s, l, r) =
     if l = r then bdd, l
     elif l >= 0 then
@@ -67,37 +74,21 @@ let mk_node bdd (s, l, r) =
         let bdd', n = lookup_unique bdd (s, -l, -r) 
         bdd', -n
 
-// pg. 103
-// ------------------------------------------------------------------------- //
-// Create a new BDD with a given ordering.                                   //
-// ------------------------------------------------------------------------- //
-
+/// Create a new BDD with a given ordering. 
 let mk_bdd ord = Bdd ((undefined, undefined, 2), ord)
 
-// pg. 103
-// ------------------------------------------------------------------------- //
-// Extract the ordering field of a BDD.                                      //
-// ------------------------------------------------------------------------- //
-
+/// Extract the ordering field of a BDD. 
 let order (Bdd (_, ord)) p1 p2 =
     (p2 = P"" && p1 <> P"")
     || ord p1 p2
 
-// pg. 103
-// ------------------------------------------------------------------------- //
-// Threading state through.                                                  //
-// ------------------------------------------------------------------------- //
-
+/// Threading state through.  
 let thread s g (f1, x1) (f2, x2) =
     let s', y1 = f1 s x1
     let s'', y2 = f2 s' x2
     g s'' (y1, y2)
 
-// pg. 104
-// ------------------------------------------------------------------------- //
-// Perform an AND operation on BDDs, maintaining canonicity.                 //
-// ------------------------------------------------------------------------- //
-
+/// Perform an AND operation on BDDs, maintaining canonicity.
 let rec bdd_and (bdd,comp as bddcomp) (m1, m2) =
     if m1 = -1 || m2 = -1 then bddcomp, -1
     elif m1 = 1 then bddcomp, m2 
@@ -118,26 +109,20 @@ let rec bdd_and (bdd,comp as bddcomp) (m1, m2) =
                 let bdd'', n = mk_node bdd' (p, lnew, rnew)
                 (bdd'', ((m1, m2) |-> n) comp'), n
 
-// pg. 104
-// ------------------------------------------------------------------------- //
-// The other binary connectives.                                             //
-// ------------------------------------------------------------------------- //
-
+/// Perform an OR operation on BDDs, maintaining canonicity.
 let bdd_or bdc (m1, m2) = 
     let bdc1, n = bdd_and bdc (-m1, -m2)
     bdc1, -n
 
+/// Perform an IMP operation on BDDs, maintaining canonicity.
 let bdd_imp bdc (m1, m2) = 
     bdd_or bdc (-m1, m2)
 
+/// Perform an IFF operation on BDDs, maintaining canonicity.
 let bdd_iff bdc (m1, m2) =
     thread bdc bdd_or (bdd_and, (m1, m2)) (bdd_and, (-m1, -m2))
 
-// pg. 104
-// ------------------------------------------------------------------------- //
-// Formula to BDD conversion.                                                //
-// ------------------------------------------------------------------------- //
-
+/// Formula to BDD conversion.
 let rec mkbdd (bdd,comp as bddcomp) fm =
     match fm with
     | False ->
@@ -160,11 +145,7 @@ let rec mkbdd (bdd,comp as bddcomp) fm =
         thread bddcomp bdd_iff (mkbdd, p) (mkbdd, q)
     | _ -> failwith "mkbdd"
 
-// pg. 104
-// ------------------------------------------------------------------------- //
-// Tautology checking using BDDs.                                            //
-// ------------------------------------------------------------------------- //
-
+/// Tautology checking using BDDs.  
 let bddtaut fm = 
     snd (mkbdd (mk_bdd (<), undefined) fm) = 1
 
@@ -211,6 +192,7 @@ let rec sort_defs acc defs fm =
 // Improved setup.                                                           //
 // ------------------------------------------------------------------------- //
 
+/// Formula to BDD conversion with improved setup
 let rec mkbdde sfn (bdd,comp as bddcomp) fm =
     match fm with
     | False ->
@@ -242,6 +224,7 @@ let rec mkbdds sfn bdd defs fm =
         let bdd', b = mkbdde sfn bdd e
         mkbdds ((p |-> b) sfn) bdd' odefs fm
 
+/// Tautology checking using BDDs with an improved setup
 let ebddtaut fm =
     let l, r =
         try dest_nimp fm
