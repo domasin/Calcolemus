@@ -147,9 +147,9 @@ and fprint_infix_term tw isleft oldprec newprec sym p q =
         fprintf tw ")"
 
 let fprintert tw tm =
-    // fprintf tw "<<|"
+    fprintf tw "<<|"
     fprint_term tw 0 tm
-    // fprintf tw "|>>"
+    fprintf tw "|>>"
 
 let inline print_term t = fprintert stdout t
 let inline sprint_term t = writeToString (fun sw -> fprintert sw t)

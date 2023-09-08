@@ -181,9 +181,9 @@ let fprint_formula tw pfn =
 // NOTE: No use of OCaml format module. i.e. print_box removed during conversion
 // pg. 28
 let fprint_qformula tw pfn fm =
-    // fprintf tw "<<"
+    fprintf tw "<<" // it renders better in notebooks
     fprint_formula tw pfn fm
-    // fprintf tw ">>"
+    fprintf tw ">>" // it renders better in notebooks
 
 // Actuals functions to call from other modules
 let inline print_formula pfn fm = fprint_formula stdout pfn fm
