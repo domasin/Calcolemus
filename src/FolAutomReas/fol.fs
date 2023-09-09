@@ -4,6 +4,7 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Basic stuff for first order logic. 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module FolAutomReas.fol
  
@@ -11,10 +12,6 @@ open FolAutomReas.lib
 
 open intro
 open formulas
-
-// ========================================================================= //
-// Basic stuff for first order logic.                                        //
-// ========================================================================= //
 
 /// type for terms
 type term = 
@@ -179,17 +176,18 @@ let inline sprint_fol_formula f = writeToString (fun sw -> fprint_fol_formula sw
 // Semantics, implemented of course for finite domains only.                 //
 // ------------------------------------------------------------------------- //
 
-/// Returns the value of a FOL term in a particular 
-/// interpretation M and valuation v
-let rec termval (domain, func, pred as m) v tm =
+/// Returns the value of a FOL term `tm` in a particular 
+/// interpretation M (`domain`, `func`, `pred`) and valuation `v`.
+let rec termval (domain, func, pred) v tm =
+    let m = domain, func, pred
     match tm with
     | Var x ->
         apply v x
     | Fn (f, args) ->
         func f (List.map (termval m v) args)
 
-/// Evaluates a fol formula in the intepretation specified
-/// by the triplet domain, func, pred and the variables valuation v.
+/// Evaluates a fol formula `fm` in the interpretation specified
+/// by the triplet `domain`, `func`, `pred` and the variables valuation `v`.
 let rec holds (domain, func, pred) v fm =
     let m = domain, func, pred
     match fm with
@@ -280,6 +278,7 @@ let rec var fm =
     | Exists (x, p) ->
         insert x (var p)
 
+/// Returns the free variables in the FOL formula `fm`
 let rec fv fm =
     match fm with
     | False
@@ -297,19 +296,14 @@ let rec fv fm =
     | Exists (x, p) ->
         subtract (fv p) [x]
 
-// pg. 131
-// ------------------------------------------------------------------------- //
-// Universal closure of a formula.                                           //
-// ------------------------------------------------------------------------- //
-
+/// Universal closure of a formula.
+/// pg. 131
 let generalize fm =
     List.foldBack mk_forall (fv fm) fm
 
-// pg. 131
-// ------------------------------------------------------------------------- //
-// Substitution within terms.                                                //
-// ------------------------------------------------------------------------- //
 
+/// Substitution within terms.                                                //
+/// pg. 131
 let rec tsubst sfn tm =
     match tm with
     | Var x ->
@@ -317,21 +311,24 @@ let rec tsubst sfn tm =
     | Fn (f, args) ->
         Fn (f, List.map (tsubst sfn) args)
 
-// pg. 133
-// ------------------------------------------------------------------------- //
-// Variant function and examples.                                            //
-// ------------------------------------------------------------------------- //
-
+/// Creates a ‘variant’ of a variable name by adding prime characters to it 
+/// until it is distinct from some given list of variables to avoid.
+/// 
+/// `variant "x" ["x"; "y"]` returns `"x'"`.
+/// 
+/// (pg. 133).
 let rec variant x vars =
     if mem x vars then
         variant (x + "'") vars 
     else x
 
-// pg. 134
-// ------------------------------------------------------------------------- //
-// Substitution in formulas, with variable renaming.                         //
-// ------------------------------------------------------------------------- //
-
+/// Given a substitution function `sbfn` applies it to the input formula `fm`.
+/// Bound variables will be renamed if necessary to avoid capture.
+/// 
+/// `subst ("y" |=> Var "x") ("forall x. x = y" |> parse)` returns 
+/// `<<forall x'. x' = x>>`.
+/// 
+/// (pg.134)
 let rec subst subfn fm =
     match fm with
     | False -> False
@@ -352,7 +349,8 @@ let rec subst subfn fm =
         substq subfn mk_forall x p
     | Exists (x, p) ->
         substq subfn mk_exists x p
-
+/// Checks whether there would be variable capture if the bound variable 
+/// `x` is not renamed.
 and substq subfn quant x p =
     let x' =
         if List.exists (fun y -> mem x (fvt (tryapplyd subfn y (Var y)))) (subtract (fv p) [x]) then
