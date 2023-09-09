@@ -10,6 +10,25 @@ open FolAutomReas.formulas
 open FolAutomReas.prop
 open FolAutomReas.fol
 
+// let v1 = function 
+//     | 0 -> true
+//     | 1 -> false
+
+// let v2 = function 
+//     | 0 -> true
+//     | 1 -> true
+
+// let v3 = function 
+//     | 0 -> false
+//     | 1 -> true
+
+// let subfn (v:int -> bool) = 
+//     if v 0 = false then 
+//         true
+//     else
+//         false
+// [3]
+// |> onallvaluations subfn v3
 
 module FormulasAndTermsFormatter =
 

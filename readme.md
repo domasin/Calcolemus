@@ -8,10 +8,11 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * to have a .Net Core version of the solution
 * to have a [nuget package](https://www.nuget.org/packages/FolAutomReas)
+* to create an [api documentation](https://domasin.github.io/FolAutomReas/reference/index.html)
 
 ## Fork main changes
 
-* The conversion to .NET Core itself
+* The conversion to .NET Core itself.
 
 * The `thm` type has been changed from a simple type abbreviation of `formula<fol>` to a discriminated union with a single private case `Theorem of formula<fol>` to ensure that it is impossible to create new theorems without going through the inference rules defined and thus introduce theorems inconsistent with expressions of the type
 

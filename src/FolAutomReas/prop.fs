@@ -4,6 +4,7 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Basic stuff for propositional logic: datatype, parsing and printing. 
 module FolAutomReas.prop
 
 open FolAutomReas.lib
@@ -18,6 +19,7 @@ open formulas
 
 type prop = P of string
 
+/// Returns constant or variable name of a propositional formula.
 let inline pname (P s) = s
 
 // pg. 29
@@ -25,6 +27,7 @@ let inline pname (P s) = s
 // Parsing of propositional formulas.                                        //
 // ------------------------------------------------------------------------- //
 
+/// Parses atomic propositions.
 let parse_propvar vs inp =
     match inp with
     | p :: oinp when p <> "(" ->
@@ -32,6 +35,7 @@ let parse_propvar vs inp =
     | _ ->
         failwith "parse_propvar"
         
+/// Parses a string in a propositional formula.
 let parse_prop_formula =
     parse_formula ((fun _ _ -> failwith ""), parse_propvar) []
     |> make_parser
@@ -41,16 +45,25 @@ let parse_prop_formula =
 // Printer.                                                                  //
 // ------------------------------------------------------------------------- //
 
+/// Prints a prop variable using a TextWriter.
 let fprint_propvar sw prec p =
     fprintf sw "%O" (pname p)
 
+/// Prints a prop variable
 let inline print_propvar prec p = fprint_propvar stdout prec p
+
+/// Returns a string representation of a prop variable.
 let inline sprint_propvar prec p = writeToString (fun sw -> fprint_propvar sw prec p)
         
+/// Prints a prop formula using a TextWriter.
 let fprint_prop_formula sw = 
     fprint_qformula sw (fprint_propvar sw)
 
+/// Prints a prop formula
 let inline print_prop_formula f = fprint_prop_formula stdout f
+
+/// Returns a string representation of a propositional formula instead of 
+/// its abstract syntax tree..
 let inline sprint_prop_formula f = writeToString (fun sw -> fprint_prop_formula sw f)
 
 // pg. 32
@@ -58,7 +71,7 @@ let inline sprint_prop_formula f = writeToString (fun sw -> fprint_prop_formula 
 // Interpretation of formulas.                                               //
 // ------------------------------------------------------------------------- //
 
-// NOTE: added cases for Exists and Forall to avoid compiler warning
+/// Interpretation of formulas. 
 let rec eval fm v =
     match fm with
     | False -> false
@@ -83,6 +96,7 @@ let rec eval fm v =
 // Return the set of propositional variables in a formula.                   //
 // ------------------------------------------------------------------------- //
 
+/// Return the set of propositional variables in a formula.
 let atoms fm = 
     atom_union (fun a -> [a]) fm
 
@@ -91,6 +105,8 @@ let atoms fm =
 // Code to print out truth tables.                                           //
 // ------------------------------------------------------------------------- //
 
+/// Tests whether a function `subfn` returns `true` on all possible valuations 
+/// of the atoms `ats`, using an existing valuation `v` for all other atoms.
 let rec onallvaluations subfn v ats =
     match ats with
     | [] -> subfn v
@@ -101,6 +117,7 @@ let rec onallvaluations subfn v ats =
         onallvaluations subfn (v' false) ps
         && onallvaluations subfn (v' true) ps
 
+/// Prints the truth table of a formula `fm` using a TextWriter.
 let fprint_truthtable sw fm =
     // [P "p"; P "q"; P "r"]
     let ats = atoms fm
@@ -121,8 +138,11 @@ let fprint_truthtable sw fm =
     fprintfn sw "%s" seperator
     fprintfn sw ""
 
-// Actuals functions to call from other modules
+/// Prints the truth table of the propositional formula `f`.
 let inline print_truthtable f = fprint_truthtable stdout f
+
+/// Returns a string representation of the truth table of the propositional 
+/// formula `f`.
 let inline sprint_truthtable f = writeToString (fun sw -> fprint_truthtable sw f)
 
 // pg. 41
@@ -130,6 +150,7 @@ let inline sprint_truthtable f = writeToString (fun sw -> fprint_truthtable sw f
 // Recognizing tautologies.                                                  //
 // ------------------------------------------------------------------------- //
 
+/// Checks if a propositional formula is a tautology.
 let tautology fm =
     onallvaluations (eval fm) (fun s -> false) (atoms fm)
 
@@ -138,9 +159,11 @@ let tautology fm =
 // Related concepts.                                                         //
 // ------------------------------------------------------------------------- //
 
+/// Checks if a propositional formula is unsatisfiable.
 let unsatisfiable fm = 
     tautology <| Not fm
         
+/// Checks if a propositional formula is satisfiable.
 let satisfiable fm = 
     not <| unsatisfiable fm
 
@@ -149,6 +172,8 @@ let satisfiable fm =
 // Substitution operation.                                                   //
 // ------------------------------------------------------------------------- //
 
+/// Returns the formula resulting from applying the substitution `sbfn` 
+/// to the input formula.
 let psubst subfn =
     onatoms <| fun p ->
         tryapplyd subfn p (Atom p)
@@ -158,6 +183,9 @@ let psubst subfn =
 // Dualization.                                                              //
 // ------------------------------------------------------------------------- //
 
+/// Returns the dual of the input formula `fm`: i.e. the result of 
+/// systematically exchanging `/\`s with `\/`s and also `True` with 
+/// `False`.
 let rec dual fm =
     match fm with
     | False -> True
@@ -178,6 +206,14 @@ let rec dual fm =
 // Routine simplification.                                                   //
 // ------------------------------------------------------------------------- //
 
+/// Performs a simplification routine but just at the first level of the input 
+/// formula `fm`. It eliminates the basic propositional constants `False` and 
+/// `True`. 
+/// 
+/// Whenever `False` and `True` occur in combination, there is always a a 
+/// tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
+/// p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
+/// also eliminates double negations `~~p`.
 let psimplify1 fm =
     match fm with
     | Not True ->
@@ -211,6 +247,17 @@ let psimplify1 fm =
 
     | fm -> fm
         
+/// Performs a simplification routine on the input formula 
+/// `fm` eliminating the basic propositional constants `False` and `True`. 
+/// 
+/// Whenever `False` and `True` occur in combination, there is always a a 
+/// tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
+/// p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
+/// also eliminates double negations `~~p`.
+/// 
+/// While `psimplify1` performs the transformation just at the first level, 
+/// `psimplify` performs it at every levels in a recursive bottom-up sweep.
+
 let rec psimplify fm =
     match fm with
     | Not p ->
@@ -230,12 +277,15 @@ let rec psimplify fm =
 // Some operations on literals.                                              //
 // ------------------------------------------------------------------------- //
 
+/// Checks if a literal is negative.
 let negative = function
     | Not p -> true
     | _ -> false
     
+/// Checks if a literal is positive.
 let positive lit = not <| negative lit
-    
+
+/// Changes a literal into its contrary.
 let negate = function
     | Not p -> p
     | p -> Not p
@@ -245,29 +295,29 @@ let negate = function
 // Negation normal form.                                                     //
 // ------------------------------------------------------------------------- //
 
-// NOTE: Changed name from nnf to nnfOrig to avoid F# compiler error.
-let rec nnfOrig fm =
+/// Changes a formula into its negation normal form without simplifying it.
+let rec nnf_naive fm =
     match fm with
     | And (p, q) ->
-        And (nnfOrig p, nnfOrig q)
+        And (nnf_naive p, nnf_naive q)
     | Or (p, q) ->
-        Or (nnfOrig p, nnfOrig q)
+        Or (nnf_naive p, nnf_naive q)
     | Imp (p, q) ->
-        Or (nnfOrig (Not p), nnfOrig q)
+        Or (nnf_naive (Not p), nnf_naive q)
     | Iff (p, q) ->
-        Or (And (nnfOrig p, nnfOrig q),
-            And (nnfOrig (Not p), nnfOrig (Not q)))
+        Or (And (nnf_naive p, nnf_naive q),
+            And (nnf_naive (Not p), nnf_naive (Not q)))
     | Not (Not p) ->
-        nnfOrig p
+        nnf_naive p
     | Not (And (p, q)) ->
-        Or (nnfOrig (Not p), nnfOrig (Not q))
+        Or (nnf_naive (Not p), nnf_naive (Not q))
     | Not (Or (p, q)) ->
-        And (nnfOrig (Not p), nnfOrig (Not q))
+        And (nnf_naive (Not p), nnf_naive (Not q))
     | Not (Imp (p, q)) ->
-        And (nnfOrig p, nnfOrig (Not q))
+        And (nnf_naive p, nnf_naive (Not q))
     | Not (Iff (p, q)) ->
-        Or (And (nnfOrig p, nnfOrig (Not q)),
-            And (nnfOrig (Not p), nnfOrig q))
+        Or (And (nnf_naive p, nnf_naive (Not q)),
+            And (nnf_naive (Not p), nnf_naive q))
     | fm -> fm
 
 // pg. 52
@@ -275,56 +325,66 @@ let rec nnfOrig fm =
 // Roll in simplification.                                                   //
 // ------------------------------------------------------------------------- //
 
+/// Changes a formula into its negation normal and applies it the routine 
+/// simplification `psimplify`.
 let nnf fm =
-    nnfOrig <| psimplify fm
+    nnf_naive <| psimplify fm
 
 // pg. 53
 // ------------------------------------------------------------------------- //
 // Simple negation-pushing when we don't care to distinguish occurrences.    //
 // ------------------------------------------------------------------------- //
 
-// NOTE: Changed name from nenf to nenfOrig to avoid F# compiler error.
-let rec nenfOrig fm =
+/// Simply pushes negations in the input formula `fm` down to the level of atoms without simplifying it.
+let rec nenf_naive fm =
     match fm with
     | Not (Not p) ->
-        nenfOrig p
+        nenf_naive p
     | Not (And (p, q)) ->
-        Or (nenfOrig (Not p), nenfOrig (Not q))
+        Or (nenf_naive (Not p), nenf_naive (Not q))
     | Not (Or (p, q)) ->
-        And (nenfOrig (Not p), nenfOrig (Not q))
+        And (nenf_naive (Not p), nenf_naive (Not q))
     | Not (Imp (p, q)) ->
-        And (nenfOrig p, nenfOrig (Not q))
+        And (nenf_naive p, nenf_naive (Not q))
     | Not (Iff (p, q)) ->
-        Iff (nenfOrig p, nenfOrig (Not q))
+        Iff (nenf_naive p, nenf_naive (Not q))
     | And (p, q) ->
-        And (nenfOrig p, nenfOrig q)
+        And (nenf_naive p, nenf_naive q)
     | Or (p, q) ->
-        Or (nenfOrig p, nenfOrig q)
+        Or (nenf_naive p, nenf_naive q)
     | Imp (p, q) ->
-        Or (nenfOrig (Not p), nenfOrig q)
+        Or (nenf_naive (Not p), nenf_naive q)
     | Iff (p, q) ->
-        Iff (nenfOrig p, nenfOrig q)
+        Iff (nenf_naive p, nenf_naive q)
     | fm -> fm
         
+/// Simply pushes negations in the input formula `fm` down to the level of 
+/// atoms and applies it the routine simplification `psimplify`.
 let nenf fm =
-    nenfOrig <| psimplify fm
+    nenf_naive <| psimplify fm
 
 // pg. 55
 // ------------------------------------------------------------------------- //
 // Disjunctive normal form (DNF) via truth tables.                           //
 // ------------------------------------------------------------------------- //
 
+/// Creates a conjunction of all the formulas in the input list `l`.
 let list_conj l =
     if l = [] then True
     else List.reduceBack mk_and l
 
+/// Creates a disjunction of all the formulas in the input list `l`.
 let list_disj l = 
     if l = [] then False 
     else List.reduceBack mk_or l
    
+/// Given a list of formulas `pvs`, makes a conjunction of these formulas and 
+/// their negations according to whether each is satisﬁed by the valuation `v`.
 let mk_lits pvs v =
     list_conj (List.map (fun p -> if eval p v then p else Not p) pvs)
         
+/// A close analogue of `onallvaluations` that collects the valuations for 
+/// which `subfn` holds into a list.
 let rec allsatvaluations subfn v pvs =
     match pvs with
     | [] ->
@@ -336,8 +396,8 @@ let rec allsatvaluations subfn v pvs =
         allsatvaluations subfn (v' false) ps @
         allsatvaluations subfn (v' true) ps
             
-// NOTE: Changed name from distrib to distribOrig to avoid F# compiler error.
-let dnfOrig fm =
+/// Transforms a formula `fm` in disjunctive normal form using truth tables.
+let dnf_by_truth_tables fm =
     let pvs = atoms fm
     let satvals = allsatvaluations (eval fm) (fun s -> false) pvs
     list_disj (List.map (mk_lits (List.map (fun p -> Atom p) pvs)) satvals)
@@ -347,19 +407,20 @@ let dnfOrig fm =
 // DNF via distribution.                                                     //
 // ------------------------------------------------------------------------- //
 
-// NOTE: Changed name from distrib to distribOrig to avoid F# compiler error.
-let rec distribOrig fm =
+/// Applies the distributive laws to the input formula `fm`.
+let rec distrib_naive fm =
     match fm with
     | And (p, Or (q, r)) ->
-        Or (distribOrig (And (p, q)), distribOrig (And (p, r)))
+        Or (distrib_naive (And (p, q)), distrib_naive (And (p, r)))
     | And (Or (p, q), r) ->
-        Or (distribOrig (And (p, r)), distribOrig (And (q, r)))
+        Or (distrib_naive (And (p, r)), distrib_naive (And (q, r)))
     | _ -> fm
- 
+
+/// Transforms the input formula `fm` in disjunctive normal form.
 let rec rawdnf fm =
     match fm with
     | And (p, q) ->
-        distribOrig <| And (rawdnf p, rawdnf q)
+        distrib_naive <| And (rawdnf p, rawdnf q)
     | Or (p, q) ->
         Or (rawdnf p, rawdnf q)
     | _ -> fm
@@ -369,9 +430,15 @@ let rec rawdnf fm =
 // A version using a list representation.                                    //
 // ------------------------------------------------------------------------- //
 
+/// Applies the distributive laws of propositional connectives `/\` and `\/` 
+/// using a list representation of the formulas `s1` and `s2` on which 
+/// to operate.
 let distrib s1 s2 =
     setify <| allpairs union s1 s2
     
+/// Transforms the input formula `fm` in disjunctive normal form using 
+/// (internally) a list representation of the formula as a set of sets. 
+/// `p /\ q \/ ~ p /\ r` as `[[p; q]; [~ p; r]]`
 let rec purednf fm =
     match fm with
     | And (p, q) ->
@@ -385,6 +452,8 @@ let rec purednf fm =
 // Filtering out trivial disjuncts (in this guise, contradictory).           //
 // ------------------------------------------------------------------------- //
 
+/// Check if there are complementary literals of the form p and ~ p 
+/// in the same list.
 let trivial lits =
     let pos, neg = List.partition positive lits
     intersect pos (image negate neg) <> []
@@ -394,6 +463,9 @@ let trivial lits =
 // With subsumption checking, done very naively (quadratic).                 //
 // ------------------------------------------------------------------------- //
 
+/// Transforms the input formula `fm` in a list of list representation of  
+/// disjunctive normal form. It exploits the list of list representation 
+/// filtering out trivial complementary literals and subsumed ones.
 let simpdnf fm =
     if fm = False then [] 
     elif fm = True then [[]] 
@@ -406,6 +478,7 @@ let simpdnf fm =
 // Mapping back to a formula.                                                //
 // ------------------------------------------------------------------------- //
 
+/// Transforms the input formula `fm` in disjunctive normal form.
 let dnf fm =
     List.map list_conj (simpdnf fm)
     |> list_disj
@@ -415,15 +488,21 @@ let dnf fm =
 // Conjunctive normal form (CNF) by essentially the same code.               //
 // ------------------------------------------------------------------------- //
 
+/// Transforms the input formula `fm` in conjunctive normal form 
+/// by using `purednf`.
 let purecnf fm = image (image negate) (purednf (nnf (Not fm)))
     
+/// Transforms the input formula `fm` in a list of list representation of  
+/// conjunctive normal form. It exploits the list of list representation 
+/// filtering out trivial complementary literals and subsumed ones.
 let simpcnf fm =
     if fm = False then [[]]
     elif fm = True then []
     else
         let cjs = List.filter (non trivial) (purecnf fm)
         List.filter (fun c -> not (List.exists (fun c' -> psubset c' c) cjs)) cjs
-            
+
+/// Transforms the input formula `fm` in conjunctive normal form.
 let cnf fm =
     List.map list_disj (simpcnf fm)
     |> list_conj

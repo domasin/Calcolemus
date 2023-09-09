@@ -4,6 +4,7 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Prenex and Skolem normal forms.  
 module FolAutomReas.skolem
 
 open FolAutomReas.lib
