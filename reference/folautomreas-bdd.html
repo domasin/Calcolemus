@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>bdd (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="FolAutomReas">
+    <meta name="author" content="Domenico Masini">
     <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -88,8 +88,16 @@
     <div>
       <p class="fsdocs-summary">
         
+ Binary decision diagrams (BDDs) using complement edges.
+ 
+ In practice one would use hash tables, but we use abstract finite
+ partial functions here. They might also look nicer imperatively.
+ 
       </p>
     </div>
+    <p class="fsdocs-remarks">
+      pg. 101
+    </p>
   </div>
   <div>
     <h3>
@@ -127,12 +135,25 @@
                 <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/domasin/FolAutomReas/tree/main/src/FolAutomReas/bdd.fs#L30-30" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Binary Decision Diagram
+ 
+ bdd omponents:
+ * Unique tanle
+ * Exapnsion table
+ * Smallest positive unused node index
+ * Variable order
+ 
+ bddnode components
+ * propositional variable
+ * left node
+ * right node
+
               </p>
             </div>
           </td>
@@ -157,7 +178,7 @@
                 <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/domasin/FolAutomReas/tree/main/src/FolAutomReas/bdd.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
@@ -250,49 +271,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m1
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.bdd_and`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.bdd_and\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L92-92" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Perform an AND operation on BDDs, maintaining canonicity.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -359,49 +403,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m1
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.bdd_iff`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.bdd_iff\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L122-122" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Perform an IFF operation on BDDs, maintaining canonicity.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -468,49 +535,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m1
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.bdd_imp`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.bdd_imp\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Perform an IMP operation on BDDs, maintaining canonicity.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -577,49 +667,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m1
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.bdd_or`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.bdd_or\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Perform an OR operation on BDDs, maintaining canonicity.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -662,25 +775,48 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.bddtaut`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.bddtaut\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tautology checking using BDDs.  
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -845,25 +981,48 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.ebddtaut`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.ebddtaut\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L228-228" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tautology checking using BDDs with an improved setup
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -914,33 +1073,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bddnode.html">bddnode</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.expand_node`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.expand_node\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the bddnode corresponding to the index `n` of the bdd
+ If a negative index is used the complement of the node is returned.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bddnode.html">bddnode</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1007,49 +1190,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  bdd
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg3
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.lookup_unique`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.lookup_unique\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Lookup or insertion if not there in unique table. 
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    bdd
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg3
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1092,25 +1298,48 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ord
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&#32;->&#32;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&#32;->&#32;bool</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.mk_bdd`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.mk_bdd\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Create a new BDD with a given ordering. 
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ord
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&#32;->&#32;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&#32;->&#32;bool</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1177,49 +1406,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  bdd
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  l
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  r
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.mk_node`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.mk_node\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Produce a BDD node (old or new).
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    bdd
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    l
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    r
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1278,41 +1530,64 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.mkbdd`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.mkbdd\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L126-126" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula to BDD conversion.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1379,49 +1654,72 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  sfn
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.mkbdde`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.mkbdde\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L196-196" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula to BDD conversion with improved setup
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    sfn
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span>(<span>int&#32;*&#32;int</span>)</span>,&#32;int</span>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1605,41 +1903,64 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  p1
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  p2
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.bdd.order`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.order\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Extract the ordering field of a BDD. 
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p1
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p2
+                  </span>
+                  :
+                  <code><a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -2048,65 +2369,88 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  g
-                </span>
-                :
-                <code><span>'b&#32;->&#32;<span>'c&#32;*&#32;'d</span>&#32;->&#32;'e</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f1
-                </span>
-                :
-                <code><span>'a&#32;->&#32;'f&#32;->&#32;<span>'g&#32;*&#32;'c</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x1
-                </span>
-                :
-                <code>'f</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f2
-                </span>
-                :
-                <code><span>'g&#32;->&#32;'h&#32;->&#32;<span>'b&#32;*&#32;'d</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x2
-                </span>
-                :
-                <code>'h</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>'e</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.bdd.thread``8```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.bdd.thread``8\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/bdd.fs#L86-86" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Threading state through.  
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    g
+                  </span>
+                  :
+                  <code><span>'b&#32;->&#32;<span>'c&#32;*&#32;'d</span>&#32;->&#32;'e</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f1
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;'f&#32;->&#32;<span>'g&#32;*&#32;'c</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x1
+                  </span>
+                  :
+                  <code>'f</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f2
+                  </span>
+                  :
+                  <code><span>'g&#32;->&#32;'h&#32;->&#32;<span>'b&#32;*&#32;'d</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x2
+                  </span>
+                  :
+                  <code>'h</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>'e</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

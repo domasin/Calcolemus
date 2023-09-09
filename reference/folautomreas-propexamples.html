@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>propexamples (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="FolAutomReas">
+    <meta name="author" content="Domenico Masini">
     <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -88,6 +88,8 @@
     <div>
       <p class="fsdocs-summary">
         
+ Some propositional formulas to test, and functions to generate classes.
+
       </p>
     </div>
   </div>
@@ -155,33 +157,56 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.propexamples.bit`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.bit\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L300-300" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Extract the `n`th bit (as a boolean value) of a nonnegative integer `x`.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -224,25 +249,48 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.propexamples.bitlength`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.bitlength\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L297-297" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the nuber of bit needed to represent x in binary notation.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -301,41 +349,68 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  z
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.carry``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.carry``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L99-99" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generates the propositional formula whose truth value correponds to the 
+ carry of a full adder, given the `x`, `y` and `z` digits to be summed also 
+ represented as formulas: false for 0 true for 1. 
+ 
+ (x /\ y) \/ ((x \/ y) /\ z)
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    z
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -599,41 +674,65 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.congruent_to``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.congruent_to``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L304-304" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Produces a propositional formula asserting that the atoms `x`(i) encode 
+ the bits of a value `m`, at least modulo 2^`n`.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -684,33 +783,59 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code><span>'a&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  l
-                </span>
-                :
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.conjoin``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.conjoin``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L125-125" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ An auxiliary function to define ripplecarry.
+ 
+ Given a function that creates a prop formula from an index and a list of 
+ indexes, it puts multiple full-adders together into an n-bit adder.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    l
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -785,57 +910,84 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  z
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.fa``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.fa``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Full adder function.
+ 
+ Generates a propositional formula that is true if the input terms represent 
+ respectively two digits `x` and `y` to be summed, the `z` carry from a 
+ previous sum, the resulting sum `s` and the carry `c`.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    z
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -902,49 +1054,76 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.ha``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.ha``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Half adder function.
+ 
+ Generates a propositional formula that is true if the input formulas 
+ represent respectively two digits `x` and `y` to be summed, the resulting 
+ sum `s` and the carry `c`.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -995,33 +1174,60 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.halfcarry``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.halfcarry``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generates the propositional formulas whose truth value correponds to the 
+ sum of an half adder, given the `x` and `y` digits to be summed also 
+ represented as prop formulas: false for 0 true for 1. 
+ 
+ x <=> ~ y.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1072,33 +1278,60 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.halfsum``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.halfsum``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generates the propositional formula whose truth value correponds to the 
+ carry of an half adder, given the `x` and `y` digits to be summed also 
+ represented as prop formulas: false for 0 true for 1.
+ 
+ x /\ y
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1149,33 +1382,61 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  k
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.propexamples.mk_adder_test`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.mk_adder_test\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L231-231" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generates propositions that state the equivalence of various ripplecarry 
+ and carryselect circuits based on the input `n` (number of bit to be added) 
+ and `k` (number of blocks in the carryselect circuit).
+ 
+ If the proposition generated is a tautology, the equivalence between the 
+ two circuit is proved.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1226,33 +1487,63 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  i
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.propexamples.mk_index`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.mk_index\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L164-164" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ An auxiliary function to generate input for ripplecarry.
+ 
+ Given a prpo formula `x` and an index `i`, it generates a propositional 
+ variable `P "x_i"`.
+ 
+ `let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]` 
+ generates the x, y, out and c functions that can be given 
+ as input to ripplecarry
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    i
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1311,41 +1602,67 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  i
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  j
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.mk_index2``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.mk_index2``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L170-170" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Similar to `mk_index`. 
+ 
+ Given a prop formula `x` and an indexes `i` and `j`, it generates a 
+ propositional variable `P "x_i_j"`.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    i
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    j
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1420,57 +1737,80 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span>int&#32;->&#32;int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  u
-                </span>
-                :
-                <code><span>int&#32;->&#32;int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  v
-                </span>
-                :
-                <code><span>int&#32;->&#32;int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  out
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.multiplier``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.multiplier``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L277-277" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Naive multiplier based on repeated ripple carry. 
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    u
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    v
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    out
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1529,41 +1869,66 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  sel
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  in0
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  in1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.mux``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.mux``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Multiplexer used to define the carry-select adder. We will use it to 
+ select between the two alternatives (carry-in of 0 or 1) when we do 
+ carry propagation.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    sel
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    in0
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    in1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1622,41 +1987,65 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span>int&#32;->&#32;'a</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  i
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.offset``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.offset``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L205-205" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ An auxiliary function to oﬀset the indices in an array of bits. 
+ It is used to define the carry-select adder.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    i
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1699,25 +2088,49 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  p
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.propexamples.prime`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.prime\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L310-310" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Applied to a positive integer `p` generates a propositional formula 
+ that is a tautology precisely if `p` is prime.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1776,41 +2189,64 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  t
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.propexamples.ramsey`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.ramsey\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generate assertion equivalent to R(s,t) <= n for the Ramsey number R(s,t) 
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    t
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1885,57 +2321,94 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  out
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.ripplecarry``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.ripplecarry``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L147-147" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ n-bit ripple carry adder with carry c(0) propagated in and c(n) out.  
+ 
+ Generates a propsitional formula that represent a riple-carry adder circuit.
+ Filtering the true rows of its truth table gives the sum and carry values 
+ for each digits.
+ 
+ It expects the user to supply functions `x`, `y`, `out` and `c` that, when 
+ given an index, generates an appropriate new variable. Use `mk_index` 
+ to generate such functions.
+ 
+ For example, 
+ 
+ `let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]`
+ 
+ `ripplecarry x y c out 2`
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    out
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -2010,57 +2483,82 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  out
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.ripplecarry0``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.ripplecarry0``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L181-181" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ n-bit ripple carry adder with carry c(0) forced to 0.
+ 
+ It can be used when we are not interested in a carry in at the low end.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    out
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -2135,57 +2633,85 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  out
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.ripplecarry1``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.ripplecarry1``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L195-195" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ n-bit ripple carry adder with carry c(0) forced at 1.
+ 
+ It is used to define the carry-select adder. In a carry-select adder the 
+ n-bit inputs are split into several blocks of k, and corresponding k-bit 
+ blocks are added twice, once assuming a carry-in of 0 and once assuming a 
+ carry-in of 1.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    out
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -2268,65 +2794,88 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  u
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  v
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  z
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  w
-                </span>
-                :
-                <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.rippleshift``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.rippleshift``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L272-272" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Ripple carry stage that separates off the final result of a multiplication.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    u
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    v
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    z
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    w
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -2385,41 +2934,68 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  y
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  z
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.propexamples.sum``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.propexamples.sum``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/propexamples.fs#L106-106" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generates the propositional formula whose truth value correponds to the sum 
+ of a full adder, given the `x`, `y` and `z` digits to be summed also 
+ represented as formulas: false for 0 true for 1. 
+ 
+ (x <=> ~ y) <=> ~ z
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    z
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
