@@ -4,11 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.unif
+module FolAutomReas.Unif
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open fol
+open Fol
 
 // pg. 167
 // ========================================================================= //

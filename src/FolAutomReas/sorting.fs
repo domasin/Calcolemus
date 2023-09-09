@@ -7,7 +7,7 @@
 
 /// Functions for sorting
 [<AutoOpen>]
-module FolAutomReas.lib.sorting
+module FolAutomReas.Lib.Sorting
 
 // ------------------------------------------------------------------------- //
 // Merging of sorted lists (maintaining repetitions).                        //

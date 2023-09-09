@@ -8,15 +8,15 @@
 // First-order derived rules in the LCF setup.                               //
 // ========================================================================= //
 
-module FolAutomReas.folderived
+module FolAutomReas.Folderived
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open equal
-open lcf
-open lcfprop
+open Formulas
+open Fol
+open Equal
+open Lcf
+open Lcfprop
 
 // pg. 489
 // ------------------------------------------------------------------------- //

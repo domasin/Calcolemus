@@ -6,12 +6,12 @@
 
 /// Basic stuff for first order logic. 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module FolAutomReas.fol
+module FolAutomReas.Fol
  
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open intro
-open formulas
+open Intro
+open Formulas
 
 /// type for terms
 type term = 

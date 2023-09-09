@@ -4,17 +4,17 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.cooper
+module FolAutomReas.Cooper
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 open LanguagePrimitives
 
-open formulas
-open prop
-open fol
-open skolem
-open qelim
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Qelim
 
 // pg. 337
 // ========================================================================= //

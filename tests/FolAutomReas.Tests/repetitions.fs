@@ -3,7 +3,7 @@ module Tests.Repetitions
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib.repetitions
+open FolAutomReas.Lib.Repetitions
 
 [<Fact>]
 let ``uniq [1;1;3;2;2] returns [1;3;2].``() = 

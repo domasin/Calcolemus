@@ -7,7 +7,7 @@
 
 /// Functions to handle repetitions
 [<AutoOpen>]
-module FolAutomReas.lib.repetitions
+module FolAutomReas.Lib.Repetitions
 
 // ------------------------------------------------------------------------- //
 // Eliminate repetitions of adjacent elements, with and without counting.    //

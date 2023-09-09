@@ -12,7 +12,7 @@
 ///                                                                     
 /// This is based on Tarski's trick for avoiding use of a substitution  
 /// primitive. It seems about the simplest possible system we could use.
-module FolAutomReas.lcf
+module FolAutomReas.Lcf
 
 //  if |- p ==> q and |- p then |- q                                   
 //  if |- p then |- forall x. p                                        
@@ -35,11 +35,11 @@ module FolAutomReas.lcf
 //  |- p \/ q <=> -(-p /\ -q)                                          
 //  |- (exists x. p) <=> -(forall x. -p)                               
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open equal
+open Formulas
+open Fol
+open Equal
     
 // ------------------------------------------------------------------------- //
 // Auxiliary functions.                                                      //

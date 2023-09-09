@@ -8,19 +8,19 @@
 // Nelson-Oppen combined decision procedure.                                 //
 // ========================================================================= //
 
-module FolAutomReas.combining
+module FolAutomReas.Combining
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open defcnf
-open fol
-open skolem
-open equal
-open cong
-open cooper
-open real
+open Formulas
+open Prop
+open Defcnf
+open Fol
+open Skolem
+open Equal
+open Cong
+open Cooper
+open Real
 
 // pg. 436
 // ------------------------------------------------------------------------- //

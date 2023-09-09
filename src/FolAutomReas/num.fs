@@ -4,7 +4,7 @@
 // ==========================================================================//
 
 [<AutoOpen>]
-module FolAutomReas.lib.num
+module FolAutomReas.Lib.Num
 
 open System
 open System.Numerics

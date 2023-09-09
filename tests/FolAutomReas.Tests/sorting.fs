@@ -3,7 +3,7 @@ module Tests.Sorting
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib.sorting
+open FolAutomReas.Lib.Sorting
 
 [<Fact>]
 let ``merge (<) [1;3;7] [2;4;5;6] returns [1;2;3;4;5;6;7].``() = 

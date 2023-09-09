@@ -5,18 +5,19 @@
 // ========================================================================= //
 
 /// Basic stuff for propositional logic: datatype, parsing and printing. 
-module FolAutomReas.prop
+module FolAutomReas.Prop
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open intro
-open formulas
+open Intro
+open Formulas
 
 // pg. 28
 // ========================================================================= //
 // Basic stuff for propositional logic: datatype, parsing and printing.      //
 // ========================================================================= //
 
+/// Type of primitive propositions indexed by names.
 type prop = P of string
 
 /// Returns constant or variable name of a propositional formula.

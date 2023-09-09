@@ -3,8 +3,8 @@ module Tests.Search
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib.search
-open FolAutomReas.lib.listFunctions
+open FolAutomReas.Lib.Search
+open FolAutomReas.Lib.ListFunctions
 
 [<Fact>]
 let ``tryfind butlast [[];[1;2;3];[4;3;5]] returns [1;2].``() = 

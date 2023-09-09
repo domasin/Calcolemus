@@ -5,9 +5,9 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-/// Functions over predicates adn functions
+/// Functions over predicates and functions.
 [<AutoOpen>]
-module FolAutomReas.lib.predAndFun
+module FolAutomReas.Lib.PredAndFun
 
 /// Revereses a predicate
 /// 

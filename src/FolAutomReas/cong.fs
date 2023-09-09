@@ -4,15 +4,15 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.cong
+module FolAutomReas.Cong
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open skolem
-open equal
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Equal
 
 // pg. 249
 // ========================================================================= //

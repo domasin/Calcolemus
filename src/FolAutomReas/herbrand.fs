@@ -4,15 +4,15 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.herbrand
+module FolAutomReas.Herbrand
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open dp
-open fol
-open skolem
+open Formulas
+open Prop
+open Dp
+open Fol
+open Skolem
 
 // ========================================================================= //
 // Relation between FOL and propositonal logic; Herbrand theorem.            //

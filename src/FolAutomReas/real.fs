@@ -8,17 +8,17 @@
 // Real quantifier elimination (using Cohen-Hormander algorithm).            //
 // ========================================================================= //
 
-module FolAutomReas.real
+module FolAutomReas.Real
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open skolem
-open qelim
-open cooper
-open complex
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Qelim
+open Cooper
+open Complex
 
 // pg. 368
 // ------------------------------------------------------------------------- //

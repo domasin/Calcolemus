@@ -8,16 +8,16 @@
 // Grobner basis algorithm.                                                  //
 // ========================================================================= //
 
-module FolAutomReas.grobner
+module FolAutomReas.Grobner
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open skolem
-open order
-open cooper
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Order
+open Cooper
 
 // pg. 384
 // ------------------------------------------------------------------------- //

@@ -4,9 +4,9 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.formulas
+module FolAutomReas.Formulas
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 // pg. 26
 // ========================================================================= //

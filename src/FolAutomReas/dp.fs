@@ -4,13 +4,13 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.dp
+module FolAutomReas.Dp
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open defcnf 
+open Formulas
+open Prop
+open Defcnf 
 
 // ========================================================================= //
 // The Davis-Putnam and Davis-Putnam-Loveland-Logemann procedures.           //

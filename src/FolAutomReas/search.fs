@@ -7,7 +7,7 @@
 
 /// Functions to handle searching
 [<AutoOpen>]
-module FolAutomReas.lib.search
+module FolAutomReas.Lib.Search
 
 /// Returns the result of the first successful application of a function to the 
 /// elements of a list.

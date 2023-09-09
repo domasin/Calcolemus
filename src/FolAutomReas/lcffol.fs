@@ -8,21 +8,21 @@
 //  First order tableau procedure using LCF setup.                        //
 // ====================================================================== // 
 
-module FolAutomReas.lcffol
+module FolAutomReas.Lcffol
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open skolem
-open unif
-open tableaux
-open resolution
-open order
-open eqelim
-open lcf
-open lcfprop
-open folderived
+open Formulas
+open Fol
+open Skolem
+open Unif
+open Tableaux
+open Resolution
+open Order
+open Eqelim
+open Lcf
+open Lcfprop
+open Folderived
 
 // pg. 494
 //  ------------------------------------------------------------------------- // 

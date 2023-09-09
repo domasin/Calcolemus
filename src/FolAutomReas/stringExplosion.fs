@@ -7,7 +7,7 @@
 
 /// Explosion and implosion of strings
 [<AutoOpen>]
-module FolAutomReas.lib.StringExplosion
+module FolAutomReas.Lib.StringExplosion
 
 // ------------------------------------------------------------------------- //
 // Explosion and implosion of strings.                                       //

@@ -3,7 +3,7 @@ module Tests.SetOperations
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib.setOperations
+open FolAutomReas.Lib.SetOperations
 
 [<Fact>]
 let ``setify [1;2;3;1;4;3] returns [1;2;3;4].``() = 

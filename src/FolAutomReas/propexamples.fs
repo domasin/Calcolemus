@@ -6,12 +6,12 @@
 
 
 /// Some propositional formulas to test, and functions to generate classes.
-module FolAutomReas.propexamples
+module FolAutomReas.Propexamples
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
+open Formulas
+open Prop
 
 // ========================================================================= //
 // Ramsey Therorem                                                           //

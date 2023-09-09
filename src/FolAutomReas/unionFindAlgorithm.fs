@@ -7,7 +7,7 @@
 
 /// Union-find algorithm.
 [<AutoOpen>]
-module FolAutomReas.lib.UnionFindAlgorithm
+module FolAutomReas.Lib.UnionFindAlgorithm
 
 // ------------------------------------------------------------------------- //
 // Union-find algorithm.                                                     //

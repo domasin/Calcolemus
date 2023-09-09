@@ -4,19 +4,19 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.complex
+module FolAutomReas.Complex
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 open LanguagePrimitives
 
-open formulas
-open prop
-open fol
-open skolem
-open equal
-open qelim
-open cooper
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Equal
+open Qelim
+open Cooper
 
 // ========================================================================= //
 // Complex quantifier elimination (by simple divisibility a la Tarski).      //

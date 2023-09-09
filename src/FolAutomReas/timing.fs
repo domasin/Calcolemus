@@ -7,7 +7,7 @@
 
 /// Timing; useful for documentation but not logically necessary. 
 [<AutoOpen>]
-module FolAutomReas.lib.Timing
+module FolAutomReas.Lib.Timing
 
 // ------------------------------------------------------------------------- //
 // Timing; useful for documentation but not logically necessary.             //

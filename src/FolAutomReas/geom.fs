@@ -7,15 +7,15 @@
 //  ========================================================================= // 
 //  Geometry theorem proving.                                             // ========================================================================= // 
 
-module FolAutomReas.geom
+module FolAutomReas.Geom
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open equal
-open cooper
-open complex
+open Formulas
+open Fol
+open Equal
+open Cooper
+open Complex
 
 // pg. 415
 //  ------------------------------------------------------------------------- // 

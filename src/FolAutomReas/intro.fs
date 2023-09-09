@@ -4,10 +4,10 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.intro
+module FolAutomReas.Intro
 
 open System
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 // pg.14
 // ========================================================================= //

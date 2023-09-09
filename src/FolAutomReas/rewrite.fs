@@ -4,13 +4,13 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.rewrite
+module FolAutomReas.Rewrite
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open resolution
+open Formulas
+open Fol
+open Resolution
 
 //
 // ========================================================================= //

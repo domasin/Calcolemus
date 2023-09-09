@@ -3,7 +3,7 @@ module Tests.AssociationLists
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib.associationLists
+open FolAutomReas.Lib.AssociationLists
 
 [<Fact>]
 let ``assoc 2 [(1,2);(2,3)] returns 3.``() = 

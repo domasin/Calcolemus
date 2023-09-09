@@ -7,7 +7,7 @@
 
 /// Association Lists
 [<AutoOpen>]
-module FolAutomReas.lib.associationLists
+module FolAutomReas.Lib.AssociationLists
 
 // ------------------------------------------------------------------------- //
 // Association lists.                                                        //

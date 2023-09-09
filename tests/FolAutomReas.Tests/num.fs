@@ -3,7 +3,7 @@ module Tests.Num
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib.num
+open FolAutomReas.Lib.Num
 
 [<Fact>]
 let ``gcd of 35 and -77 is -7``() = 

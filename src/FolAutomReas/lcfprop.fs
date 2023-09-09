@@ -8,13 +8,13 @@
 // Propositional reasoning by derived rules atop the LCF core.               //
 // ========================================================================= //
 
-module FolAutomReas.lcfprop
+module FolAutomReas.Lcfprop
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open lcf
+open Formulas
+open Fol
+open Lcf
 
 // pg. 478
 // ------------------------------------------------------------------------- //

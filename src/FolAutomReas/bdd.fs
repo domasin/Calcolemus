@@ -12,13 +12,13 @@
 /// </summary>
 /// 
 /// <remarks>pg. 101</remarks>
-module FolAutomReas.bdd
+module FolAutomReas.Bdd
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open defcnf
+open Formulas
+open Prop
+open Defcnf
 
 // Binary descision diagrame node.
 // 

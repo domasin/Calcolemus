@@ -4,16 +4,16 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.tableaux
+module FolAutomReas.Tableaux
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open skolem
-open herbrand
-open unif
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Herbrand
+open Unif
 
 // ========================================================================= //
 // Tableaux, seen as an optimized version of a Prawitz-like procedure.       //

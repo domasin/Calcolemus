@@ -4,16 +4,16 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.meson
+module FolAutomReas.Meson
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open skolem
-open tableaux
-open prolog
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Tableaux
+open Prolog
 
 // ========================================================================= //
 // Model elimination procedure (MESON version, based on Stickel's PTTP).     //

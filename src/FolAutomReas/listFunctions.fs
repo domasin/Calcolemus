@@ -7,7 +7,7 @@
 
 /// Handy functions for list manipulation
 [<AutoOpen>]
-module FolAutomReas.lib.listFunctions
+module FolAutomReas.Lib.ListFunctions
 
 // --------------------------------------------------------------------//
 // List operations.                                                    //

@@ -8,17 +8,17 @@
 // Goals, LCF-like tactics and Mizar-like proofs.                            //
 // ========================================================================= //
 
-module FolAutomReas.tactics
+module FolAutomReas.Tactics
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open lcf
-open lcfprop
-open folderived
-open lcffol
+open Formulas
+open Prop
+open Fol
+open Lcf
+open Lcfprop
+open Folderived
+open Lcffol
     
 // pg. 507
 type goals = Goals of ((string * formula<fol>) list * formula<fol>)list * (thm list -> thm)

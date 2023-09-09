@@ -4,17 +4,17 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.prolog
+module FolAutomReas.Prolog
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open intro
-open formulas
-open prop
-open fol
-open skolem
-open unif
-open tableaux
+open Intro
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Unif
+open Tableaux
 
 // ========================================================================= //
 // Backchaining procedure for Horn clauses, and toy Prolog implementation.   //

@@ -7,7 +7,7 @@
 
 /// Set operations on ordered lists.
 [<AutoOpen>]
-module FolAutomReas.lib.setOperations
+module FolAutomReas.Lib.SetOperations
 
 // ------------------------------------------------------------------------- //
 // Set operations on ordered lists                                           //

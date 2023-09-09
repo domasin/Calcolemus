@@ -3,7 +3,7 @@ module Tests.PredAndFun
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 [<Fact>]
 let ``non revereses a predicate``() = 

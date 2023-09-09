@@ -11,19 +11,19 @@
 // in our context.                                                           //
 // ========================================================================= //
 
-module FolAutomReas.interpolation
+module FolAutomReas.Interpolation
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open defcnf
-open fol
-open skolem
-open herbrand
-open equal
-open order
-open eqelim
+open Formulas
+open Prop
+open Defcnf
+open Fol
+open Skolem
+open Herbrand
+open Equal
+open Order
+open Eqelim
 
 // pg. 428
 // ------------------------------------------------------------------------- //

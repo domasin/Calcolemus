@@ -4,30 +4,30 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.completion
+module FolAutomReas.Completion
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open intro
-open formulas
-open prop
-open defcnf
-open dp
-open stal
-open bdd
-open fol
-open skolem
-open herbrand
-open unif
-open tableaux
-open resolution
-open prolog
-open meson
-open skolems
-open equal
-open cong
-open rewrite
-open order
+open Intro
+open Formulas
+open Prop
+open Defcnf
+open Dp
+open Stal
+open Bdd
+open Fol
+open Skolem
+open Herbrand
+open Unif
+open Tableaux
+open Resolution
+open Prolog
+open Meson
+open Skolems
+open Equal
+open Cong
+open Rewrite
+open Order
 
 // pg. 276
 // ========================================================================= //

@@ -4,10 +4,10 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.skolems
+module FolAutomReas.Skolems
 
-open fol
-open skolem
+open Fol
+open Skolem
 
 // ========================================================================= //
 // Illustration of Skolemizing a set of formulas                             //

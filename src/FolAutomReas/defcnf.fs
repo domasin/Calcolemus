@@ -4,16 +4,16 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.defcnf
+module FolAutomReas.Defcnf
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 open LanguagePrimitives
 // open FSharp.Compatibility.OCaml.Num
 
-open intro
-open formulas
-open prop
+open Intro
+open Formulas
+open Prop
 
 // ========================================================================= //
 // Definitional CNF.                                                         //

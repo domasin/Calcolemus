@@ -4,17 +4,17 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.resolution
+module FolAutomReas.Resolution
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open prop
-open fol
-open skolem
-open herbrand
-open unif
-open tableaux
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Herbrand
+open Unif
+open Tableaux
 
 // pg. 180
 // ========================================================================= //

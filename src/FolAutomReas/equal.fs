@@ -4,13 +4,13 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.equal
+module FolAutomReas.Equal
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open formulas
-open fol
-open skolem
+open Formulas
+open Fol
+open Skolem
 
 //
 // pg. 235

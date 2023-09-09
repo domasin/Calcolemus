@@ -4,20 +4,20 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-module FolAutomReas.limitations
+module FolAutomReas.Limitations
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 open LanguagePrimitives
 
-open formulas
-open fol
-open equal
-open cooper
-open lcf
-open lcfprop
-open folderived
-open tactics
+open Formulas
+open Fol
+open Equal
+open Cooper
+open Lcf
+open Lcfprop
+open Folderived
+open Tactics
 
 // ========================================================================= //
 // Goedel's theorem and relatives.                                           //

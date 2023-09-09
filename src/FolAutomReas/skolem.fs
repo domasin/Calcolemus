@@ -5,14 +5,14 @@
 // ========================================================================= //
 
 /// Prenex and Skolem normal forms.  
-module FolAutomReas.skolem
+module FolAutomReas.Skolem
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
-open intro
-open formulas
-open prop
-open fol
+open Intro
+open Formulas
+open Prop
+open Fol
 
 // ========================================================================= //
 // Prenex and Skolem normal forms.                                           //

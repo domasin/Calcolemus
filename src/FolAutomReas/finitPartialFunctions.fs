@@ -7,7 +7,7 @@
 
 /// Polymorphic finite partial functions via Patricia trees. 
 [<AutoOpen>]
-module FolAutomReas.lib.FPF
+module FolAutomReas.Lib.FPF
 
 // ------------------------------------------------------------------------- //
 // Polymorphic finite partial functions via Patricia trees.                  //

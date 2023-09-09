@@ -3,7 +3,7 @@ module Tests.ListFunctions
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.lib
+open FolAutomReas.Lib
 
 [<Fact>]
 let ``last fails for empty list``() = 
