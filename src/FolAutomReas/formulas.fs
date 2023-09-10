@@ -4,17 +4,12 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Polymorphic type of formulas with parser and printer. 
 module FolAutomReas.Formulas
 
 open FolAutomReas.Lib
 
-// pg. 26
-// ========================================================================= //
-// Polymorphic type of formulas with parser and printer.                     //
-// ========================================================================= //
-
-
-/// Polymorphic type of formulas
+/// Abstract syntax tree of polymorphic type of formulas.
 type formula<'a> =
     | False
     | True
@@ -27,11 +22,11 @@ type formula<'a> =
     | Forall of string * formula<'a>
     | Exists of string * formula<'a>
 
-// pg. 623
 // ------------------------------------------------------------------------- //
-// General parsing of iterated infixes.                                      //
+// General parsing of infixes.                                               //
 // ------------------------------------------------------------------------- //
 
+/// General parsing of iterated infixes. 
 let rec parse_ginfix opsym opupdate sof subparser inp =
     let e1, inp1 = subparser inp
     match inp1 with
@@ -40,39 +35,53 @@ let rec parse_ginfix opsym opupdate sof subparser inp =
     | _ ->
         sof e1, inp1
 
+/// Parses left infix.
 let parse_left_infix opsym opcon =
     parse_ginfix opsym (fun f e1 e2 -> opcon (f e1, e2)) id
 
+/// Parses right infix.
 let parse_right_infix opsym opcon =
     parse_ginfix opsym (fun f e1 e2 -> f <| opcon (e1, e2)) id
 
+/// Parses a list: used to parse the list of arguments to a function.
 let parse_list opsym =
     parse_ginfix opsym (fun f e1 e2 -> (f e1) @ [e2]) (fun x -> [x])
 
-// pg. 624
 // ------------------------------------------------------------------------- //
 // Other general parsing combinators.                                        //
 // ------------------------------------------------------------------------- //
 
+/// Applies a function to the ﬁrst element of a pair, the idea being to modify 
+/// the returned abstract syntax tree while leaving the ‘unparsed input’ alone.
 let inline papply f (ast, rest) =
     f ast, rest
 
+/// Checks if the head of a list (typically the list of unparsed input) is some 
+/// particular item, but also ﬁrst checks that the list is nonempty before 
+/// looking at its head.
 let nextin inp tok =
     match inp with
     | hd :: _ when hd = tok -> true
     | _ -> false
 
+/// Deals with the common situation of syntactic items enclosed in brackets. It 
+/// simply calls the subparser and then checks and eliminates the closing 
+/// bracket. In principle, the terminating character can be anything, so this 
+/// function could equally be used for other purposes, but we will always use 
+/// ')' for the cbra (‘closing bracket’) argument.
 let parse_bracketed subparser cbra inp =
     let ast, rest = subparser inp
     if nextin rest cbra then
         ast, List.tail rest
     else failwith "Closing bracket expected"
 
-// pg. 625
 // ------------------------------------------------------------------------- //
-// Parsing of formulas, parametrized by atom parser "pfn".                   //
+// Parsing of formulas.                                                      //
 // ------------------------------------------------------------------------- //
 
+/// Attempts to parse an atomic formula as a term followed by an inﬁx predicate 
+/// symbol and only if that fails proceed to considering other kinds of 
+/// formulas.
 let rec parse_atomic_formula (ifn, afn) vs inp =
     match inp with
     | [] ->
@@ -92,7 +101,7 @@ let rec parse_atomic_formula (ifn, afn) vs inp =
     | "exists" :: x :: rest ->
         parse_quant (ifn, afn) (x :: vs) Exists x rest
     | _ -> afn vs inp
-
+/// Parses quantifiers.
 and parse_quant (ifn, afn) vs qcon x inp =
     match inp with
     | [] ->
@@ -104,7 +113,17 @@ and parse_quant (ifn, afn) vs qcon x inp =
             parse_quant (ifn, afn) (y :: vs) qcon y rest
         |> papply (fun fm ->
             qcon (x, fm))
-
+/// Recursive descent parser of polymorphic formulas built up from an 
+/// atomic formula parser by cascading instances of parse infix in order of 
+/// precedence, following the conventions with '/\' coming highest and '<=>' 
+/// lowest.
+/// 
+/// It takes a list of string tokens `inp` and In order to check whether a name 
+/// is within the scope of a quantiﬁer, it takes an additional argument `vs` 
+/// which is the set of bound variables in the current scope.
+/// 
+/// It returns a pair consisting of the parsed formula tree together with 
+/// any unparsed input. 
 and parse_formula (ifn, afn) vs inp =
     parse_right_infix "<=>" Iff
         (parse_right_infix "==>" Imp
@@ -112,17 +131,17 @@ and parse_formula (ifn, afn) vs inp =
                 (parse_right_infix "/\\" And
                     (parse_atomic_formula (ifn, afn) vs)))) inp
 
-// pg. 626
 // ------------------------------------------------------------------------- //
-// Printing of formulas, parametrized by atom printer.                       //
+// Printing of formulas.                                                     //
 // ------------------------------------------------------------------------- //
 
-// NOTE: No use of OCaml format module. i.e. print_box removed during conversion
+/// Modiﬁes a basic printer to have a kind of boxing 'wrapped' around it.
 let fbracket tw p n f x y =
     if p then fprintf tw "("
     f x y
     if p then fprintf tw ")"
-
+    
+/// Breaks up a quantiﬁed term into its quantiﬁed variables and body.
 let rec strip_quant fm =
     match fm with
     | Forall (x, (Forall (y, p) as yp))
@@ -135,8 +154,7 @@ let rec strip_quant fm =
     | _ ->
         [], fm
 
-
-// NOTE: No use of OCaml format module. i.e. print_box removed during conversion
+/// Printing parametrized by a function `pfn` to print atoms.
 let fprint_formula tw pfn =
     let rec print_formula pr fm =
         match fm with
@@ -160,17 +178,17 @@ let fprint_formula tw pfn =
             fbracket tw (pr > 0) 2 print_qnt "forall" (strip_quant fm)
         | Exists (x, p) ->
             fbracket tw (pr > 0) 2 print_qnt "exists" (strip_quant fm)
-
+    /// Prints quantifiers.
     and print_qnt qname (bvs, bod) =
         fprintf tw "%s" qname
         List.iter (fprintf tw " %s") bvs
         fprintf tw ". "
         print_formula 0 bod
-
+    /// Prints iterated preﬁx operations without multiple brackets.
     and print_prefix newpr sym p =
         fprintf tw "%s" sym
         print_formula (newpr + 1) p
-
+    /// Prints instances of inﬁx operators.
     and print_infix newpr sym p q =
         print_formula (newpr + 1) p
         fprintf tw " %s " sym
@@ -178,87 +196,104 @@ let fprint_formula tw pfn =
 
     print_formula 0
 
-// NOTE: No use of OCaml format module. i.e. print_box removed during conversion
-// pg. 28
+/// Main toplevel printer. It just adds the guillemot-style quotations round 
+/// the formula so that it looks like the quoted formulas we parse.
 let fprint_qformula tw pfn fm =
     fprintf tw "<<" // it renders better in notebooks
     fprint_formula tw pfn fm
     fprintf tw ">>" // it renders better in notebooks
 
-// Actuals functions to call from other modules
+/// Prints a formula `fm` using a function `pfn` to print atoms.
 let inline print_formula pfn fm = fprint_formula stdout pfn fm
+
+/// Returns a string representation of a formula `fm` using a function `pfn` to 
+/// print atoms.
 let inline sprint_formula pfn fm = writeToString (fun sw -> fprint_formula sw pfn fm)
     
+/// Prints a formula `fm` using a function `pfn` to print atoms.
 let inline print_qformula pfn fm = fprint_qformula stdout pfn fm
+
+/// Returns a string representation of a formula `fm` using a function `pfn` to 
+/// print atoms.
 let inline sprint_qformula pfn fm = writeToString (fun sw -> fprint_qformula sw pfn fm)
 
-// pg.30
 // ------------------------------------------------------------------------- //
-// OCaml won't let us use the constructors.                                  //
+// Formula Constructors.                                                     //
 // ------------------------------------------------------------------------- //
 
+/// Constructs a conjunction.
 let inline mk_and p q = And (p, q)
 
+/// Constructs a disjunction.
 let inline mk_or p q = Or (p, q)
 
+/// Constructs an implication.
 let inline mk_imp p q = Imp (p, q)
 
+/// Constructs a logical equivalence.
 let inline mk_iff p q = Iff (p, q)
 
+/// Constructs a universal quantification.
 let inline mk_forall x p = Forall (x, p)
 
+/// Constructs an existential quantification.
 let inline mk_exists x p = Exists (x, p)
 
-// pg. 30
 // ------------------------------------------------------------------------- //
-// Destructors.                                                              //
+// Formula Destructors.                                                      //
 // ------------------------------------------------------------------------- //
 
+/// Formula destructor for logical equivalence.
 let dest_iff = function
     | Iff (p, q) ->
         p, q
     | _ ->
         failwith "dest_iff"
 
+/// Formula destructor for conjunction into the two conjuncts.
 let dest_and = function
     | And (p, q) ->
         p, q
     | _ ->
         failwith "dest_and"
 
+/// Iteratively breaks apart a conjunction.
 let rec conjuncts = function
     | And (p, q) ->
         conjuncts p @ conjuncts q 
     | fm -> [fm]
 
+/// Breaks apart a disjunction into the two disjuncts.
 let dest_or = function
     | Or (p, q) ->
         p, q
     | _ ->
         failwith "dest_or"
 
+/// Iteratively breaks apart a disjunction.
 let rec disjuncts = function
     | Or (p, q) ->
         disjuncts p @ disjuncts q 
     | fm -> [fm]
 
+/// Breaks apart an implication into antecedent and consequent.
 let dest_imp = function
     | Imp (p, q) ->
         p, q
     | _ ->
         failwith "dest_imp"
 
+/// Returns the antecedent of an implication.
 let inline antecedent fm =
     fst <| dest_imp fm
 
+/// Returns the consequent of an implication.
 let inline consequent fm =
     snd <| dest_imp fm
 
-// pg. 31
-// ------------------------------------------------------------------------- //
-// Apply a function to the atoms, otherwise keeping structure.               //
-// ------------------------------------------------------------------------- //
-
+/// Applies a function to all the atoms in a formula, but otherwise leaves 
+/// the structure unchanged. It can be used, for example, to perform systematic 
+/// replacement of one particular atomic proposition by another formula.
 let rec onatoms f fm =
     match fm with
     | Atom a ->
@@ -279,11 +314,9 @@ let rec onatoms f fm =
         Exists (x, onatoms f p)
     | _ -> fm
 
-// pg. 31
-// ------------------------------------------------------------------------- //
-// Formula analog of list iterator "List.foldBack".                          //
-// ------------------------------------------------------------------------- //
-
+/// Formula analog of list iterator `List.foldBack`. It iterates a binary 
+/// function `f` over all the atoms of a formula (as the first argument) using 
+/// the input `b` as the second argument.
 let rec overatoms f fm b =
     match fm with
     | Atom a ->
@@ -300,11 +333,10 @@ let rec overatoms f fm b =
         overatoms f p b
     | _ -> b
 
-// pg. 32
-// ------------------------------------------------------------------------- //
-// Special case of a union of the results of a function over the atoms.      //
-// ------------------------------------------------------------------------- //
-
+/// Collects together some set of attributes associated with the atoms; in the 
+/// simplest case just returning the set of all atoms. It does this by 
+/// iterating a function `f` together with an ‘append’ over all the atoms, and 
+/// ﬁnally converting the result to a set to remove duplicates.
 let atom_union f fm =
     (fm, [])
     ||> overatoms (fun h t ->

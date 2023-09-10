@@ -4,7 +4,8 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-/// Basic stuff for first order logic. 
+/// Basic stuff for first order logic: datatype, parsing and printing, 
+/// semantics, syntax operations and substitution.
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module FolAutomReas.Fol
  
@@ -13,15 +14,16 @@ open FolAutomReas.Lib
 open Intro
 open Formulas
 
-/// type for terms
+/// Type for first order terms.
 type term = 
     | Var of string
     | Fn of string * term list
 
-/// type for atomic first order formulas
-type fol = R of string * term list
+/// Type for atomic first order formulas.
+type fol = 
+    R of string * term list
 
-/// Special case of applying a subfunction to the top *terms*.
+/// Applies a subfunction `f` to the top *terms*.
 let onformula f =
     onatoms <| fun (R (p, a)) ->
         Atom (R (p, List.map f a))
@@ -30,10 +32,12 @@ let onformula f =
 // Parsing of terms.                                                         //
 // ------------------------------------------------------------------------- //
 
+/// Checks if a string is a constant term. Only numerals and the empty list constant "nil" are considered as constants.
 let is_const_name s =
     s = "nil"
     || List.forall numeric (explode s)
 
+/// Parses an atomic term.
 let rec parse_atomic_term vs inp =
     match inp with
     | [] -> failwith "term expected"
@@ -49,7 +53,16 @@ let rec parse_atomic_term vs inp =
         |> papply (fun args -> Fn (f, args))
     | a :: rest ->
         (if is_const_name a && not (mem a vs) then Fn (a, []) else Var a), rest
-
+/// Recursive descent parser of terms built up from an atomic term parser 
+/// by cascading instances of parse infix in order of precedence, following the 
+/// conventions with '^' coming highest and '::' lowest.
+/// 
+/// It takes a list of string tokens `inp` and returns a pair consisting of the 
+/// parsed term tree together with any unparsed input. 
+/// 
+/// In order to check whether a name is within the scope of a quantiﬁer, it 
+/// takes an additional argument `vs` which is the set of bound variables in 
+/// the current scope.
 and parse_term vs inp =
     parse_right_infix "::" (fun (e1,e2) -> Fn ("::",[e1;e2]))
         (parse_right_infix "+" (fun (e1,e2) -> Fn ("+",[e1;e2]))
@@ -59,13 +72,15 @@ and parse_term vs inp =
                         (parse_left_infix "^" (fun (e1,e2) -> Fn ("^",[e1;e2]))
                             (parse_atomic_term vs)))))) inp
 
-let parset = make_parser (parse_term [])
+/// Parses a string into a term.
+let parset = 
+    make_parser (parse_term [])
 
-// pg. 628
 // ------------------------------------------------------------------------- //
-// Parsing of formulas.                                                      //
+// Parsing of fol formulas.                                                  //
 // ------------------------------------------------------------------------- //
 
+/// A special recognizer for 'inﬁx' atomic formulas like s < t.
 let parse_infix_atom vs inp =
     let tm, rest = parse_term vs inp
     if List.exists (nextin rest) ["="; "<"; "<="; ">"; ">="] then
@@ -73,6 +88,7 @@ let parse_infix_atom vs inp =
                 (parse_term vs (List.tail rest))
     else failwith ""
 
+/// Parses atomic fol formulas.
 let parse_atom vs inp =
     try parse_infix_atom vs inp
     with _ ->
@@ -91,18 +107,11 @@ let parse =
     parse_formula (parse_infix_atom, parse_atom) []
     |> make_parser
 
-// pg. 629
-// ------------------------------------------------------------------------- //
-// Set up parsing of quotations.                                             //
-// ------------------------------------------------------------------------- //
-
-let secondary_parser = parset
-
-// pg. 629
 // ------------------------------------------------------------------------- //
 // Printing of terms.                                                        //
 // ------------------------------------------------------------------------- //
 
+/// Prints terms.
 let rec fprint_term tw prec fm =
     match fm with
     | Var x ->
@@ -121,7 +130,7 @@ let rec fprint_term tw prec fm =
         fprint_infix_term tw false prec 14 "::" tm1 tm2
     | Fn (f, args) ->
         fprint_fargs tw f args
-
+/// Prints a function and its arguments.
 and fprint_fargs tw f args =
     fprintf tw "%s" f
     if args <> [] then
@@ -133,7 +142,7 @@ and fprint_fargs tw f args =
                     fprint_term tw 0 t)
             (List.tail args)
         fprintf tw ")"
-
+/// Prints an infix operation.
 and fprint_infix_term tw isleft oldprec newprec sym p q =
     if oldprec > newprec then 
         fprintf tw "("
@@ -143,40 +152,51 @@ and fprint_infix_term tw isleft oldprec newprec sym p q =
     if oldprec > newprec then
         fprintf tw ")"
 
+/// Term printer with TextWriter.
 let fprintert tw tm =
     fprintf tw "<<|"
     fprint_term tw 0 tm
     fprintf tw "|>>"
 
+/// Term printer.
 let inline print_term t = fprintert stdout t
+
+/// Return the string of the concrete syntax representation of a term.
 let inline sprint_term t = writeToString (fun sw -> fprintert sw t)
 
-// pg. 630
 // ------------------------------------------------------------------------- //
-// Printing of formulas.                                                     //
+// Printing of fol formulas.                                                 //
 // ------------------------------------------------------------------------- //
 
+/// Printer of atomic fol formulas with TextWriter.
 let fprint_atom tw prec (R (p, args)) : unit =
     if mem p ["="; "<"; "<="; ">"; ">="] && List.length args = 2 then
         fprint_infix_term tw false 12 12 (" " + p) (List.nth args 0) (List.nth args 1)
     else
         fprint_fargs tw p args
 
+
+/// Printer of atomic fol formulas.
 let inline print_atom prec arg = fprint_atom stdout prec arg
+
+/// Returns the concrete syntax representation of an atom.
 let inline sprint_atom prec arg = writeToString (fun sw -> fprint_atom sw prec arg)
 
+/// Printer of fol formulas with TextWriter.
 let fprint_fol_formula tw =
     fprint_qformula tw (fprint_atom tw)
   
+/// Printer of fol formulas.
 let inline print_fol_formula f = fprint_fol_formula stdout f
+
+/// Returns the string of the concrete syntax representation of fol formulas.
 let inline sprint_fol_formula f = writeToString (fun sw -> fprint_fol_formula sw f)
 
-// pg. 125
 // ------------------------------------------------------------------------- //
 // Semantics, implemented of course for finite domains only.                 //
 // ------------------------------------------------------------------------- //
 
-/// Returns the value of a FOL term `tm` in a particular 
+/// Returns the value of a term `tm` in a particular 
 /// interpretation M (`domain`, `func`, `pred`) and valuation `v`.
 let rec termval (domain, func, pred) v tm =
     let m = domain, func, pred
@@ -210,12 +230,11 @@ let rec holds (domain, func, pred) v fm =
     | Exists (x, p) ->
         List.exists (fun a -> holds m ((x |-> a) v) p) domain
 
-// pg. 125
 // ------------------------------------------------------------------------- //
 // Examples of particular interpretations.                                   //
 // ------------------------------------------------------------------------- //
 
-/// An interpretation à la Boole
+/// An interpretation à la Boole.
 let bool_interp =
     let func f args =
         match f, args with
@@ -232,7 +251,7 @@ let bool_interp =
 
     [false; true], func, pred
 
-/// An arithmetic modulo n interpretation
+/// An arithmetic modulo `n` interpretation.
 let mod_interp n =
     let func f args =
         match f, args with
@@ -253,14 +272,14 @@ let mod_interp n =
 // Free variables in terms and formulas.                                     //
 // ------------------------------------------------------------------------- //
 
-/// Returns the free variables in the FOL term `tm`
+/// Returns the free variables in the term `tm`.
 let rec fvt tm =
     match tm with
     | Var x -> [x]
     | Fn (f, args) ->
         unions <| List.map fvt args
 
-/// Returns all the variables in the FOL formula `fm`
+/// Returns all the variables in the FOL formula `fm`.
 let rec var fm =
     match fm with
     | False
@@ -278,7 +297,7 @@ let rec var fm =
     | Exists (x, p) ->
         insert x (var p)
 
-/// Returns the free variables in the FOL formula `fm`
+/// Returns the free variables in the FOL formula `fm`.
 let rec fv fm =
     match fm with
     | False
@@ -297,13 +316,10 @@ let rec fv fm =
         subtract (fv p) [x]
 
 /// Universal closure of a formula.
-/// pg. 131
 let generalize fm =
     List.foldBack mk_forall (fv fm) fm
 
-
 /// Substitution within terms.                                                //
-/// pg. 131
 let rec tsubst sfn tm =
     match tm with
     | Var x ->
@@ -315,8 +331,6 @@ let rec tsubst sfn tm =
 /// until it is distinct from some given list of variables to avoid.
 /// 
 /// `variant "x" ["x"; "y"]` returns `"x'"`.
-/// 
-/// (pg. 133).
 let rec variant x vars =
     if mem x vars then
         variant (x + "'") vars 
@@ -327,8 +341,6 @@ let rec variant x vars =
 /// 
 /// `subst ("y" |=> Var "x") ("forall x. x = y" |> parse)` returns 
 /// `<<forall x'. x' = x>>`.
-/// 
-/// (pg.134)
 let rec subst subfn fm =
     match fm with
     | False -> False

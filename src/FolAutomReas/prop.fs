@@ -12,18 +12,12 @@ open FolAutomReas.Lib
 open Intro
 open Formulas
 
-// pg. 28
-// ========================================================================= //
-// Basic stuff for propositional logic: datatype, parsing and printing.      //
-// ========================================================================= //
-
 /// Type of primitive propositions indexed by names.
 type prop = P of string
 
 /// Returns constant or variable name of a propositional formula.
 let inline pname (P s) = s
 
-// pg. 29
 // ------------------------------------------------------------------------- //
 // Parsing of propositional formulas.                                        //
 // ------------------------------------------------------------------------- //
@@ -41,9 +35,8 @@ let parse_prop_formula =
     parse_formula ((fun _ _ -> failwith ""), parse_propvar) []
     |> make_parser
                 
-// pg. 29
 // ------------------------------------------------------------------------- //
-// Printer.                                                                  //
+// Printing of propositional formulas.                                       //
 // ------------------------------------------------------------------------- //
 
 /// Prints a prop variable using a TextWriter.
@@ -67,7 +60,6 @@ let inline print_prop_formula f = fprint_prop_formula stdout f
 /// its abstract syntax tree..
 let inline sprint_prop_formula f = writeToString (fun sw -> fprint_prop_formula sw f)
 
-// pg. 32
 // ------------------------------------------------------------------------- //
 // Interpretation of formulas.                                               //
 // ------------------------------------------------------------------------- //
@@ -92,18 +84,12 @@ let rec eval fm v =
     | Forall _ ->
         failwith "Not part of propositional logic."
 
-// pg. 35
-// ------------------------------------------------------------------------- //
-// Return the set of propositional variables in a formula.                   //
-// ------------------------------------------------------------------------- //
-
 /// Return the set of propositional variables in a formula.
 let atoms fm = 
     atom_union (fun a -> [a]) fm
 
-// pg. 35
 // ------------------------------------------------------------------------- //
-// Code to print out truth tables.                                           //
+// Truth tables.                                                             //
 // ------------------------------------------------------------------------- //
 
 /// Tests whether a function `subfn` returns `true` on all possible valuations 
@@ -146,7 +132,6 @@ let inline print_truthtable f = fprint_truthtable stdout f
 /// formula `f`.
 let inline sprint_truthtable f = writeToString (fun sw -> fprint_truthtable sw f)
 
-// pg. 41
 // ------------------------------------------------------------------------- //
 // Recognizing tautologies.                                                  //
 // ------------------------------------------------------------------------- //
@@ -155,7 +140,6 @@ let inline sprint_truthtable f = writeToString (fun sw -> fprint_truthtable sw f
 let tautology fm =
     onallvaluations (eval fm) (fun s -> false) (atoms fm)
 
-// pg. 41
 // ------------------------------------------------------------------------- //
 // Related concepts.                                                         //
 // ------------------------------------------------------------------------- //
@@ -168,7 +152,6 @@ let unsatisfiable fm =
 let satisfiable fm = 
     not <| unsatisfiable fm
 
-// pg. 41
 // ------------------------------------------------------------------------- //
 // Substitution operation.                                                   //
 // ------------------------------------------------------------------------- //
@@ -179,7 +162,6 @@ let psubst subfn =
     onatoms <| fun p ->
         tryapplyd subfn p (Atom p)
 
-// pg. 48
 // ------------------------------------------------------------------------- //
 // Dualization.                                                              //
 // ------------------------------------------------------------------------- //
@@ -201,8 +183,6 @@ let rec dual fm =
     | _ ->
         failwith "Formula involves connectives ==> or <=>"
 
-
-// pg. 50
 // ------------------------------------------------------------------------- //
 // Routine simplification.                                                   //
 // ------------------------------------------------------------------------- //
@@ -273,7 +253,6 @@ let rec psimplify fm =
         psimplify1 (Iff (psimplify p, psimplify q))
     | fm -> fm
 
-// pg. 51
 // ------------------------------------------------------------------------- //
 // Some operations on literals.                                              //
 // ------------------------------------------------------------------------- //
@@ -291,7 +270,6 @@ let negate = function
     | Not p -> p
     | p -> Not p
 
-// pg. 52
 // ------------------------------------------------------------------------- //
 // Negation normal form.                                                     //
 // ------------------------------------------------------------------------- //
@@ -321,7 +299,6 @@ let rec nnf_naive fm =
             And (nnf_naive (Not p), nnf_naive q))
     | fm -> fm
 
-// pg. 52
 // ------------------------------------------------------------------------- //
 // Roll in simplification.                                                   //
 // ------------------------------------------------------------------------- //
@@ -331,7 +308,6 @@ let rec nnf_naive fm =
 let nnf fm =
     nnf_naive <| psimplify fm
 
-// pg. 53
 // ------------------------------------------------------------------------- //
 // Simple negation-pushing when we don't care to distinguish occurrences.    //
 // ------------------------------------------------------------------------- //
@@ -364,7 +340,6 @@ let rec nenf_naive fm =
 let nenf fm =
     nenf_naive <| psimplify fm
 
-// pg. 55
 // ------------------------------------------------------------------------- //
 // Disjunctive normal form (DNF) via truth tables.                           //
 // ------------------------------------------------------------------------- //
@@ -403,7 +378,6 @@ let dnf_by_truth_tables fm =
     let satvals = allsatvaluations (eval fm) (fun s -> false) pvs
     list_disj (List.map (mk_lits (List.map (fun p -> Atom p) pvs)) satvals)
 
-// pg. 57
 // ------------------------------------------------------------------------- //
 // DNF via distribution.                                                     //
 // ------------------------------------------------------------------------- //
@@ -426,9 +400,8 @@ let rec rawdnf fm =
         Or (rawdnf p, rawdnf q)
     | _ -> fm
 
-// pg. 58
 // ------------------------------------------------------------------------- //
-// A version using a list representation.                                    //
+// A DNF version using a list representation.                                //
 // ------------------------------------------------------------------------- //
 
 /// Applies the distributive laws of propositional connectives `/\` and `\/` 
@@ -448,7 +421,6 @@ let rec purednf fm =
         union (purednf p) (purednf q)
     | _ -> [[fm]]
 
-// pg. 59
 // ------------------------------------------------------------------------- //
 // Filtering out trivial disjuncts (in this guise, contradictory).           //
 // ------------------------------------------------------------------------- //
@@ -459,7 +431,6 @@ let trivial lits =
     let pos, neg = List.partition positive lits
     intersect pos (image negate neg) <> []
 
-// pg. 59
 // ------------------------------------------------------------------------- //
 // With subsumption checking, done very naively (quadratic).                 //
 // ------------------------------------------------------------------------- //
@@ -474,7 +445,6 @@ let simpdnf fm =
         let djs = List.filter (non trivial) (purednf (nnf fm))
         List.filter (fun d -> not (List.exists (fun d' -> psubset d' d) djs)) djs
 
-// pg. 59
 // ------------------------------------------------------------------------- //
 // Mapping back to a formula.                                                //
 // ------------------------------------------------------------------------- //
@@ -484,7 +454,6 @@ let dnf fm =
     List.map list_conj (simpdnf fm)
     |> list_disj
 
-// pg. 60
 // ------------------------------------------------------------------------- //
 // Conjunctive normal form (CNF) by essentially the same code.               //
 // ------------------------------------------------------------------------- //

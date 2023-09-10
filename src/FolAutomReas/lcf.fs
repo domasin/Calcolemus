@@ -178,7 +178,7 @@ module ProofSystem =
 // A printer for theorems.                                                   //
 // ------------------------------------------------------------------------- //
 
-
+/// Prints a theorem using a TextWriter.
 let fprint_thm sw th =
     fprintf sw "|- " // write on the same line
     fprint_formula sw (fprint_atom sw) (concl th)

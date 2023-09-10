@@ -2,5 +2,9 @@
     "cSpell.enabled": true,
     "cSpell.words": [
         "satisﬁed"
+    ],
+    "cSpell.language": "en,it,en-GB,en-US",
+    "cSpell.enableFiletypes": [
+        "fsharp"
     ]
 }
