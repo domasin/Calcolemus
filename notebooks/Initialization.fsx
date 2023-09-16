@@ -4,11 +4,11 @@
 open MathNet.Numerics
 
 open FolAutomReas
-open FolAutomReas.lib
-open FolAutomReas.intro
-open FolAutomReas.formulas
-open FolAutomReas.prop
-open FolAutomReas.fol
+open FolAutomReas.Lib
+open FolAutomReas.Intro
+open FolAutomReas.Formulas
+open FolAutomReas.Prop
+open FolAutomReas.Fol
 
 // let v1 = function 
 //     | 0 -> true

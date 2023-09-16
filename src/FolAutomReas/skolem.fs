@@ -14,15 +14,22 @@ open Formulas
 open Prop
 open Fol
 
-// ========================================================================= //
-// Prenex and Skolem normal forms.                                           //
-// ========================================================================= //
-//
-// pg. 140
 // ------------------------------------------------------------------------- //
-// Routine simplification. Like "psimplify" but with quantifier clauses.     //
+// Routine simplification.                                                   //
 // ------------------------------------------------------------------------- //
 
+/// Performs a simplification routine but just at the first level of the input 
+/// formula `fm`. It eliminates the basic propositional constants `False` and 
+/// `True` and also the vacuous universal and existential quantiﬁers (those 
+/// applied to variables that does not occur free in the body).
+/// 
+/// Whenever `False` and `True` occur in combination, there is always a a 
+/// tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
+/// p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
+/// also eliminates double negations `~~p`.
+/// 
+/// If x not in FV(p) then forall x. p and exists x. p are logically 
+/// equivalent to p.
 let simplify1 fm =
     match fm with
     | Forall (x, p) ->
@@ -32,6 +39,21 @@ let simplify1 fm =
     | _ ->
         psimplify1 fm
 
+/// Performs a simplification routine on the input formula 
+/// `fm` eliminating the basic propositional constants `False` and `True`
+/// and also the vacuous universal and existential quantiﬁers (those 
+/// applied to variables that does not occur free in the body).
+/// 
+/// Whenever `False` and `True` occur in combination, there is always a a 
+/// tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
+/// p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
+/// also eliminates double negations `~~p`.
+/// 
+/// If x not in FV(p) then forall x. p and exists x. p are logically 
+/// equivalent to p.
+/// 
+/// While `simplify1` performs the transformation just at the first level, 
+/// `simplify` performs it at every levels in a recursive bottom-up sweep.
 let rec simplify fm =
     match fm with
     | Not p ->
@@ -50,11 +72,12 @@ let rec simplify fm =
         simplify1 (Exists (x, simplify p))
     | _ -> fm
 
-// pg. 141
 // ------------------------------------------------------------------------- //
 // Negation normal form.                                                     //
 // ------------------------------------------------------------------------- //
 
+/// Transforms the input formula `fm` in negation normal form, that is 
+/// it eliminates implication and equivalence, and pushes down negations.
 let rec nnf fm =
     match fm with
     | And (p, q) ->
@@ -85,11 +108,11 @@ let rec nnf fm =
         Forall (x, nnf (Not p))
     | _ -> fm
 
-// pg. 143
 // ------------------------------------------------------------------------- //
 // Prenex normal form.                                                       //
 // ------------------------------------------------------------------------- //
 
+/// It pulls out quantifiers.
 let rec pullquants fm =
     match fm with
     | And (Forall (x, p), Forall (y, q)) ->
@@ -120,6 +143,11 @@ and pullq(l,r) fm quant op x y p q =
     let q' = if r then subst (y |=> Var z) q else q
     quant z (pullquants(op p' q'))
 
+/// Transforms the input formula `fm` in prenex normal form and simplifies it.
+/// 
+/// * simplifies away False, True, vacuous quantiﬁcation, etc.;
+/// * eliminates implication and equivalence, push down negations;
+/// * pulls out quantiﬁers.
 let rec prenex fm =
     match fm with
     | Forall (x, p) ->
