@@ -1,4 +1,5 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+// #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "nuget: FolAutomReas, 1.0.3"
 #r "nuget: MathNet.Numerics.FSharp"
 
 open MathNet.Numerics
