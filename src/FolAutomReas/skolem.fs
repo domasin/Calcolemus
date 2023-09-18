@@ -136,18 +136,16 @@ let rec pullquants fm =
     | Or (p, Exists (y, q)) ->
         pullq (false, true) fm mk_exists mk_or y y p q
     | _ -> fm
-
+/// calls the main `pullquants` functions again on the body to pull up 
+/// further quantiﬁers
 and pullq(l,r) fm quant op x y p q =
     let z = variant x (fv fm)
     let p' = if l then subst (x |=> Var z) p else p
     let q' = if r then subst (y |=> Var z) q else q
     quant z (pullquants(op p' q'))
 
-/// Transforms the input formula `fm` in prenex normal form and simplifies it.
-/// 
-/// * simplifies away False, True, vacuous quantiﬁcation, etc.;
-/// * eliminates implication and equivalence, push down negations;
-/// * pulls out quantiﬁers.
+/// leaves quantiﬁed formulas alone, and for conjunctions and disjunctions 
+/// recursively prenexes the immediate subformulas and then uses pullquants
 let rec prenex fm =
     match fm with
     | Forall (x, p) ->
@@ -160,28 +158,39 @@ let rec prenex fm =
         pullquants (Or (prenex p, prenex q))
     | _ -> fm
 
+/// Transforms the input formula `fm` in prenex normal form and simplifies it.
+/// 
+/// * simplifies away False, True, vacuous quantiﬁcation, etc.;
+/// * eliminates implication and equivalence, push down negations;
+/// * pulls out quantiﬁers.
 let pnf fm =
     prenex (nnf (simplify fm))
 
-// pg. 146
 // ------------------------------------------------------------------------- //
 // Get the functions in a term and formula.                                  //
 // ------------------------------------------------------------------------- //
 
+/// Returns the functions present in the term `tm`
 let rec funcs tm =
     match tm with
     | Var x -> []
     | Fn (f, args) ->
         List.foldBack (union << funcs) args [f,List.length args]
 
+/// Returns the functions present in the formula `fm`
 let functions fm =
     atom_union (fun (R (p, a)) -> List.foldBack (union << funcs) a []) fm
 
-// pg. 149
 // ------------------------------------------------------------------------- //
 // Core Skolemization function.                                              //
 // ------------------------------------------------------------------------- //
 
+/// Core Skolemization function specifically intended to be used on NNF 
+/// formulas. 
+/// 
+/// It simply recursively descends the formula, Skolemizing any existential 
+/// formulas and then proceeding to subformulas using `skolem2` for binary 
+/// connectives.
 let rec skolem fm fns =
     match fm with
     | Exists (y, p) ->
@@ -195,20 +204,26 @@ let rec skolem fm fns =
     | And (p, q) -> skolem2 (fun (p, q) -> And (p, q)) (p, q) fns
     | Or (p, q) -> skolem2 (fun (p, q) -> Or (p, q)) (p, q) fns
     | _ -> fm, fns
-
+/// Auxiliary to `skolem` when dealing with binary connectives. 
+/// It updates the set of functions to avoid with new Skolem functions 
+/// introduced into one formula before tackling the other.
 and skolem2 cons (p, q) fns =
     let p', fns' = skolem p fns
     let q', fns'' = skolem q fns'
     cons (p', q'), fns''
 
-// pg. 149
 // ------------------------------------------------------------------------- //
 // Overall Skolemization function.                                           //
 // ------------------------------------------------------------------------- //
 
+/// Overall Skolemization function, intended to be used with any type of 
+/// initial fol formula.
 let askolemize fm =
     fst (skolem (nnf (simplify fm)) (List.map fst (functions fm)))
 
+/// Removes all universale quantifiers from the input formula `p`.
+/// 
+/// `specialize <<forall x y. P(x) /\ P(y)>>` returns `<<P(x) /\ P(y)>>`
 let rec specialize fm =
     match fm with
     | Forall (x, p) ->
