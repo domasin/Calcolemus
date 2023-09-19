@@ -4,14 +4,16 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="num.fs" />
-    <Compile Include="predAndFun.fs" />
-    <Compile Include="listFunctions.fs" />
-    <Compile Include="associationLists.fs" />
-    <Compile Include="sorting.fs" />
-    <Compile Include="repetitions.fs" />
-    <Compile Include="search.fs" />
-    <Compile Include="setOperatinos.fs" />
+    <Compile Include="Num.fs" />
+    <Compile Include="PredAndFun.fs" />
+    <Compile Include="ListFunctions.fs" />
+    <Compile Include="AssociationLists.fs" />
+    <Compile Include="Sorting.fs" />
+    <Compile Include="Repetitions.fs" />
+    <Compile Include="Search.fs" />
+    <Compile Include="SetOperations.fs" />
+    <Compile Include="Skolem.fs" />
+    <Compile Include="Herbrand.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0">

@@ -4,6 +4,7 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Relation between FOL and propositional logic; Herbrand theorem.
 module FolAutomReas.Herbrand
 
 open FolAutomReas.Lib
@@ -14,15 +15,19 @@ open Dp
 open Fol
 open Skolem
 
-// ========================================================================= //
-// Relation between FOL and propositonal logic; Herbrand theorem.            //
-// ========================================================================= //
-//
-// pg. 151
 // ------------------------------------------------------------------------- //
 // Propositional valuation.                                                  //
 // ------------------------------------------------------------------------- //
 
+/// A variant of the notion of propositional evaluation `eval` where the 
+/// input propositional valuation `d` maps atomic formulas themselves to 
+/// truth values.
+/// 
+/// It determines if the input formula `fm` holds in the sense of propositional 
+/// logic for this notion of valuation.
+/// 
+/// `pholds (function Atom (R ("P", [Var "x"])) -> true) (parse "P(x)")`
+/// returns `true`
 let pholds d fm = eval fm (fun p -> d (Atom p))
 
 // pg. 156

@@ -30,6 +30,10 @@ open Fol
 /// 
 /// If x not in FV(p) then forall x. p and exists x. p are logically 
 /// equivalent to p.
+/// 
+/// `simplify1 (parse @"exists x. P(y)")` returns `<<P(y)>>`
+/// 
+/// `simplify1 (parse @"true ==> exists x. P(x)")` returns `<<exists x. P(x)>>`
 let simplify1 fm =
     match fm with
     | Forall (x, p) ->
@@ -54,6 +58,12 @@ let simplify1 fm =
 /// 
 /// While `simplify1` performs the transformation just at the first level, 
 /// `simplify` performs it at every levels in a recursive bottom-up sweep.
+/// 
+/// `simplify (parse @"true ==> (p <=> (p <=> false))")` returns 
+/// `<<p <=> ~p>>`
+/// 
+/// `simplify (parse @"exists x y z. P(x) ==> Q(z) ==> false")` 
+/// returns `<<exists x z. P(x) ==> ~Q(z)>>`
 let rec simplify fm =
     match fm with
     | Not p ->
@@ -76,8 +86,13 @@ let rec simplify fm =
 // Negation normal form.                                                     //
 // ------------------------------------------------------------------------- //
 
-/// Transforms the input formula `fm` in negation normal form, that is 
-/// it eliminates implication and equivalence, and pushes down negations.
+/// Transforms the input formula `fm` in negation normal form.
+/// 
+/// It eliminates implication and equivalence, and pushes down negations 
+/// through quantiﬁers.
+/// 
+/// `nnf (parse @"~ exists x. P(x) <=> Q(x)")` returns 
+/// `<<forall x. P(x) /\ ~Q(x) \/ ~P(x) /\ Q(x)>>`
 let rec nnf fm =
     match fm with
     | And (p, q) ->
@@ -163,6 +178,10 @@ let rec prenex fm =
 /// * simplifies away False, True, vacuous quantiﬁcation, etc.;
 /// * eliminates implication and equivalence, push down negations;
 /// * pulls out quantiﬁers.
+/// 
+/// `pnf (parse @"(forall x. P(x) \/ R(y)) ==> exists y z. Q(y) \/ ~(exists z. P
+/// (z) /\ Q(z))")` 
+/// returns `<<exists x. forall z. ~P(x) /\ ~R(y) \/ Q(x) \/ ~P(z) \/ ~Q(z)>>`
 let pnf fm =
     prenex (nnf (simplify fm))
 
@@ -170,14 +189,20 @@ let pnf fm =
 // Get the functions in a term and formula.                                  //
 // ------------------------------------------------------------------------- //
 
-/// Returns the functions present in the term `tm`
+/// Returns the functions present in the input term `tm`
+/// 
+/// `funcs (parset @"x + 1")` returns `[("+", 2); ("1", 0)]`
 let rec funcs tm =
     match tm with
     | Var x -> []
     | Fn (f, args) ->
         List.foldBack (union << funcs) args [f,List.length args]
 
-/// Returns the functions present in the formula `fm`
+/// Returns the functions present in the input formula `fm`
+/// 
+/// `functions (parse @"x + 1 > 0 /\ f(z) > g(z,i)")`
+/// returns `[("+", 2); ("0", 0); ("1", 0); ("f", 1); ("g", 2)]`
+/// `
 let functions fm =
     atom_union (fun (R (p, a)) -> List.foldBack (union << funcs) a []) fm
 
@@ -230,5 +255,14 @@ let rec specialize fm =
         specialize p
     | _ -> fm
 
+/// Puts the input formula `fm` into skolem normal form 
+/// while also removing all universal quantifiers.
+/// 
+/// It puts the formula in prenex normal form, substitutes existential 
+/// quantifiers with skolem functions and also removes all universal 
+/// quantifiers.
+/// 
+/// `skolemize (parse @"forall x. exists y. R(x,y)")`
+/// returns `<<R(x,f_y(x))>>`
 let skolemize fm =
     specialize (pnf (askolemize fm))
