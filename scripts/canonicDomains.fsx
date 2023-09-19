@@ -27,6 +27,14 @@ let VarId =
     ("y" |=> Var "y")
     |> ("x" |-> Var "x")
 
+// Lemma 3:14
+["0";"2";"x";"y"]
+|> List.map (fun x -> 
+    let t = x |> parset
+    let tInterp = termval M_d VarId t
+    t, tInterp)
+|> List.forall (fun (t, tInterp) -> t = tInterp)
+
 // Theorem 3.15
 ["P(0)"; "P(2)"; "P(x)"; "P(y)"; "Q(x)"; "Q(y)";"P(0) ==> P(2)"]
 |> List.map (fun s -> 
@@ -36,3 +44,4 @@ let VarId =
     s, propInterp, folCanoniInterp
     )
 |> List.forall (fun (s,p,f) -> p = f)
+
