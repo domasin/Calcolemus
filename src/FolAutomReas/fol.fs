@@ -76,6 +76,9 @@ and parse_term vs inp =
 let parset = 
     make_parser (parse_term [])
 
+/// A convenient operator to call `parset`.
+let (!|) = parset
+
 // ------------------------------------------------------------------------- //
 // Parsing of fol formulas.                                                  //
 // ------------------------------------------------------------------------- //
@@ -106,6 +109,9 @@ let parse_atom vs inp =
 let parse =
     parse_formula (parse_infix_atom, parse_atom) []
     |> make_parser
+
+/// A convenient operator to call `parse`.
+let (!!) = parse
 
 // ------------------------------------------------------------------------- //
 // Printing of terms.                                                        //

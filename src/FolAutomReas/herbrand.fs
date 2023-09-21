@@ -30,20 +30,29 @@ open Skolem
 /// returns `true`
 let pholds d fm = eval fm (fun p -> d (Atom p))
 
-// pg. 156
 // ------------------------------------------------------------------------- //
-// Get the constants for Herbrand base, adding nullary one if necessary.     //
+// Herbrand models.                                                          //
 // ------------------------------------------------------------------------- //
 
+/// Gets the constants for Herbrand base, adding nullary one if necessary. 
 let herbfuns fm =
     let cns, fns = List.partition (fun (_, ar) -> ar = 0) (functions fm)
     if cns = [] then ["c", 0], fns else cns, fns
 
-// pg. 159
 // ------------------------------------------------------------------------- //
 // Enumeration of ground terms and m-tuples, ordered by total fns.           //
 // ------------------------------------------------------------------------- //
 
+/// Enumerates all ground terms involving `n` functions.
+/// 
+/// If `n` = 0, it returns the constant terms, otherwise tries all possible 
+/// functions.
+/// 
+/// `groundterms [!|"0";!|"1"] ["f",1;"g",1] 0`
+/// returns `[<<|0|>>; <<|1|>>]`.
+/// 
+/// `groundterms [!|"0";!|"1"] ["f",1;"g",1] 1`
+/// returns `[<<|f(0)|>>; <<|f(1)|>>; <<|g(0)|>>; <<|g(1)|>>]`
 let rec groundterms cntms funcs n =
     if n = 0 then cntms else
     List.foldBack (fun (f, m) l -> 
@@ -51,7 +60,12 @@ let rec groundterms cntms funcs n =
             Fn (f, args))
             (groundtuples cntms funcs (n - 1) m) @ l)
         funcs []
-
+/// generates all `m`-tuples of ground terms involving (in total) `n` functions.
+/// 
+/// `groundtuples [!|"0";] ["f",1] 1 1` returns `[[<<|f(0)|>>]]`
+/// 
+/// `groundtuples [!|"0";] ["f",1] 1 2` returns 
+/// `[[<<|0|>>; <<|f(0)|>>]; [<<|f(0)|>>; <<|0|>>]]`
 and groundtuples cntms funcs n m =
     if m = 0 then 
         if n = 0 then [[]] 
@@ -63,11 +77,9 @@ and groundtuples cntms funcs n m =
                 (groundtuples cntms funcs (n - k) (m - 1)) @ l)
                 (0 -- n) []
 
-// pg. 160
-// ------------------------------------------------------------------------- //
-// Iterate modifier "mfn" over ground terms till "tfn" fails.                //
-// ------------------------------------------------------------------------- //
-
+/// A generic function to be used with different sat procedures.
+/// 
+/// It iterates modifier "mfn" over ground terms till "tfn" fails. 
 let rec herbloop mfn tfn fl0 cntms funcs fvs n fl tried tuples =
     printfn "%i ground instances tried; %i items in list."
         (List.length tried) (List.length fl)
