@@ -105,17 +105,19 @@ let posneg_count cls l =
     let n = List.length (List.filter (mem (negate l)) cls)
     m + n                                  
 
-let rec dpll clauses =  
-  if clauses = [] then true 
-  elif mem [] clauses then false 
-  else 
-      try dpll (one_literal_rule clauses) 
-      with Failure _ ->
-          try dpll (affirmative_negative_rule clauses) 
-          with Failure _ ->  
-              let pvs = List.filter positive (unions clauses)
-              let p = maximize (posneg_count clauses) pvs
-              dpll (insert [p] clauses) || dpll (insert [negate p] clauses)
+let rec dpll clauses =
+    if clauses = [] then 
+        true 
+    else if mem [] clauses then 
+        false 
+    else if clauses |> containOneLitterals then 
+        dpll (one_literal_rule clauses)
+    else if clauses |> containPureLitterals then
+        dpll (affirmative_negative_rule clauses)
+    else
+        let pvs = List.filter positive (unions clauses)
+        let p = maximize (posneg_count clauses) pvs
+        dpll (insert [p] clauses) || dpll (insert [negate p] clauses)
                                                      
 let dpllsat fm = dpll (defcnfs fm)
 

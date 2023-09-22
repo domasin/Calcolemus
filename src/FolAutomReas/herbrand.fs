@@ -77,32 +77,68 @@ and groundtuples cntms funcs n m =
                 (groundtuples cntms funcs (n - k) (m - 1)) @ l)
                 (0 -- n) []
 
-/// A generic function to be used with different sat procedures.
+/// <summary>
+/// A generic function to be used with different 'herbrand procedures'.
 /// 
-/// It iterates modifier "mfn" over ground terms till "tfn" fails. 
+/// It tests larger and larger conjunctions of ground instances for 
+/// unsatisfiability, iterating modifier `mfn` over ground terms 
+/// till `tfn` fails. 
+/// </summary>
+/// <param name="mfn">The modification function that augments the ground 
+/// instances with a new instance.</param>
+/// <param name="tfn">The satisfiability test to be done.</param>
+/// <param name="fl0">The initial formula in some transformed list 
+/// representation.</param>
+/// <param name="cntms">The constant terms of the formula.</param>
+/// <param name="funcs">The functions (name, arity) of the formula.</param>
+/// <param name="fvs">The free variables of the formula.</param>
+/// <param name="n">The next level of the enumeration to generate.</param>
+/// <param name="fl">The set of ground instances so far.</param>
+/// <param name="tried">The instances tried.</param>
+/// <param name="tuples">The remaining ground instances in the current level.
+/// </param>
 let rec herbloop mfn tfn fl0 cntms funcs fvs n fl tried tuples =
     printfn "%i ground instances tried; %i items in list."
-        (List.length tried) (List.length fl)
-
+        (List.length tried) (List.length fl) 
+        // (fl |> List.map (fun xs -> xs |> List.map sprint_fol_formula)) 
+        // de-comment to add log of fl list and add %A to printfn
     match tuples with
+    // when tuples is empty, we simply generate the next level 
+    // and step n up to n + 1
     | [] ->
         let newtups = groundtuples cntms funcs n (List.length fvs)
         herbloop mfn tfn fl0 cntms funcs fvs (n + 1) fl tried newtups
     | tup :: tups ->
+        // we use the modification function to update fl with another instance
         let fl' = mfn fl0 (subst (fpf fvs tup)) fl
+        // If this is unsatisfiable, then we return the successful set of 
+        // instances tried
         if not (tfn fl') then tup :: tried
+        // otherwise, we continue
         else herbloop mfn tfn fl0 cntms funcs fvs n fl' (tup :: tried) tups
 
-// pg. 160
 // ------------------------------------------------------------------------- //
-// Hence a simple Gilmore-type procedure.                                    //
+// A gilmore-like procedure                                                  //
 // ------------------------------------------------------------------------- //
 
+/// In the specific case of the gilmore procedure, the generic herbrand loop 
+/// `herbloop` is called with the initial formula `fl0` and the ground 
+/// instances so far `fl` are maintained in a DNF list representation and the 
+/// modification function applies the instantiation to the starting formula 
+/// and combines the DNFs by distribution.
 let gilmore_loop =
     let mfn djs0 ifn djs =
         List.filter (non trivial) (distrib (image (image ifn) djs0) djs)
     herbloop mfn (fun djs -> djs <> [])
 
+/// Tests an input fol formula `fm` for validity based on a gilmore-like 
+/// procedure.
+/// 
+/// The initial formula is generalized, negated and Skolemized, then the 
+/// specific herbrand loop for the gilmore procedure is called to test for 
+/// the unsatisfiability of the transformed formula.
+/// 
+/// If the test terminates, it reports how many ground instances where tried.
 let gilmore fm =
     let sfm = skolemize (Not (generalize fm))
     let fvs = fv sfm
@@ -110,15 +146,27 @@ let gilmore fm =
     let cntms = image (fun (c, _) -> Fn (c, [])) consts
     List.length (gilmore_loop (simpdnf sfm) cntms funcs fvs 0 [[]] [] [])
 
-// pg. 163
 // ------------------------------------------------------------------------- //
 // The Davis-Putnam procedure for first order logic.                         //
 // ------------------------------------------------------------------------- //
 
 let dp_mfn cjs0 ifn cjs = union (image (image ifn) cjs0) cjs
 
+/// In the specific case of the davis-putnam procedure, the generic 
+/// herbrand loop `herbloop` is called with the initial formula `fl0` 
+/// and the ground instances so far `fl` are maintained in a CNF list 
+/// representation and each time we incorporate a new instance, we check for 
+/// unsatisfiability using `dpll`.
 let dp_loop = herbloop dp_mfn dpll
 
+/// Tests an input fol formula `fm` for validity based on the Davis-Putnam 
+/// procedure.
+/// 
+/// The initial formula is generalized, negated and Skolemized, then the 
+/// specific herbrand loop for the davis-putnam procedure is called to test for 
+/// the unsatisfiability of the transformed formula.
+/// 
+/// If the test terminates, it reports how many ground instances where tried.
 let davisputnam fm =
     let sfm = skolemize (Not (generalize fm))
     let fvs = fv sfm 
@@ -126,11 +174,13 @@ let davisputnam fm =
     let cntms = image (fun (c, _) -> Fn (c, [])) consts
     List.length (dp_loop (simpcnf sfm) cntms funcs fvs 0 [] [] [])
 
-// pg. 163
 // ------------------------------------------------------------------------- //
 // Try to cut out useless instantiations in final result.                    //
 // ------------------------------------------------------------------------- //
 
+/// Auxiliary function to redefine the Davis-Putnam procedure to run through 
+/// the list of possibly-needed instances `dunno`, putting them onto the list 
+/// of needed ones `need` only if the other instances are satisfiable.
 let rec dp_refine cjs0 fvs dunno need =
     match dunno with
     | [] -> need
@@ -145,11 +195,14 @@ let dp_refine_loop cjs0 cntms funcs fvs n cjs tried tuples =
     let tups = dp_loop cjs0 cntms funcs fvs n cjs tried tuples
     dp_refine cjs0 fvs tups []
 
-// pg. 163
 // ------------------------------------------------------------------------- //
 // Show how few of the instances we really need. Hence unification!          //
 // ------------------------------------------------------------------------- //
 
+/// Tests an input fol formula `fm` for validity based on the Davis-Putnam 
+/// procedure redefined to run through the list of possibly-needed 
+/// instances, putting them onto the list of needed ones only if 
+/// the other instances are satisfiable.
 let davisputnam002 fm =
     let sfm = skolemize (Not (generalize fm))
     let fvs = fv sfm 

@@ -351,7 +351,6 @@ let (|->),combine =
 // Finite Partial Functions (FPF)
 
 /// Creates a new FPF defined only for the value `x` and maps it to `y` 
-/// (pg. 621).
 let (|=>) x y = 
     (x |-> y) undefined
 
@@ -361,7 +360,7 @@ let (|=>) x y =
 
 /// Creates a new FPF from lists `xs` and `ys` representing its domain 
 /// and range. It associates argument to value based on the order of items 
-/// in the two lists (pg. 621).
+/// in the two lists.
 let fpf xs ys =
     List.foldBack2 (|->) xs ys undefined
 

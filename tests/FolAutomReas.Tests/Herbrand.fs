@@ -22,13 +22,66 @@ let ``pholds (function Atom (R ("P", [Var "x"])) -> true | Atom (R ("Q", [Var "x
     |> should equal true
 
 [<Fact>]
-let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 0 returns [<<|0|>>; <<|1|>>].``() = 
+let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 0 returns [!|"0";!|"1"].``() = 
     groundterms [!|"0";!|"1"] ["f",1;"g",1] 0
-    |> List.map sprint_term
-    |> should equal ["<<|0|>>"; "<<|1|>>"]
+    |> should equal [!|"0";!|"1"]
 
 [<Fact>]
-let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 1 returns [<<|f(0)|>>; <<|f(1)|>>; <<|g(0)|>>; <<|g(1)|>>].``() = 
+let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 1 returns [!|"f(0)"; !|"f(1)"; !|"g(0)"; !|"|g(1)"].``() = 
     groundterms [!|"0";!|"1"] ["f",1;"g",1] 1
-    |> List.map sprint_term
-    |> should equal ["<<|f(0)|>>"; "<<|f(1)|>>"; "<<|g(0)|>>"; "<<|g(1)|>>"]
+    |> should equal [!|"f(0)"; !|"f(1)"; !|"g(0)"; !|"g(1)"]
+
+let p20 = 
+    !!"(forall x y. exists z. forall w. P(x) /\ Q(y) ==> R(z) /\ U(w))
+    ==> (exists x y. P(x) /\ Q(y)) ==> (exists z. R(z))"
+
+let p24 = 
+    !! @"~(exists x. U(x) /\ Q(x)) /\
+    (forall x. P(x) ==> Q(x) \/ R(x)) /\
+    ~(exists x. P(x) ==> (exists x. Q(x))) /\
+    (forall x. Q(x) /\ R(x) ==> U(x))
+    ==> (exists x. P(x) /\ R(x))"
+
+let p36 = 
+    !! @"(forall x. exists y. J(x,y)) /\
+        (forall x. exists y. G(x,y)) /\
+        (forall x y. J(x,y) \/ G(x,y) ==> (forall z. J(y,z) \/ G(y,z) ==> H(x, z)))
+    ==> (forall x. exists y. H(x,y))"
+
+let p45 = 
+    !! @"(forall x. P(x) /\ (forall y. G(y) /\ H(x,y) ==> J(x,y))
+    ==> (forall y. G(y) /\ H(x,y) ==> R(y))) /\
+    ~(exists y. L(y) /\ R(y)) /\
+    (exists x. P(x) /\ (forall y. H(x,y) ==> L(y)) /\
+    (forall y. G(y) /\ H(x,y) ==> J(x,y)))
+    ==> (exists x. P(x) /\ ~(exists y. G(y) /\ H(x,y)))"
+
+[<Fact>]
+let ``gilmore should succeed on p24 after trying 1 ground instance.``() = 
+    gilmore p24
+    |> should equal 1
+
+[<Fact>]
+let ``gilmore should succeed on p45 after trying 5 ground instances.``() = 
+    gilmore p45
+    |> should equal 5
+
+[<Fact>]
+let ``davisputnam should succeed on p20 after trying 19 ground instances.``() = 
+    davisputnam p20
+    |> should equal 19
+
+[<Fact>]
+let ``davisputnam002 should succeed on p20 after trying 2 ground instances.``() = 
+    davisputnam002 p20
+    |> should equal 2
+
+[<Fact>]
+let ``davisputnam should succeed on p36 after trying 40 ground instances.``() = 
+    davisputnam p36
+    |> should equal 40
+
+[<Fact>]
+let ``davisputnam002 should succeed on p36 after trying 3 ground instances.``() = 
+    davisputnam002 p36
+    |> should equal 3
