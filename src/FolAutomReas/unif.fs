@@ -4,17 +4,16 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Unification for first order terms. 
 module FolAutomReas.Unif
 
 open FolAutomReas.Lib
 
 open Fol
 
-// pg. 167
-// ========================================================================= //
-// Unification for first order terms.                                        //
-// ========================================================================= //
-
+/// Checks if the assignment `x |-> t` is cyclic and in this case fails 
+/// unless `x` = `t` in which case it returns true, indicating that the 
+/// assignment is 'trivial' 
 let rec istriv env x t =
     match t with
     | Var y -> 
@@ -25,10 +24,17 @@ let rec istriv env x t =
         List.exists (istriv env x) args 
         && failwith "cyclic"
         
-// ------------------------------------------------------------------------- //
-// Main unification procedure                                                //
-// ------------------------------------------------------------------------- //
-
+/// Main unification procedure.
+/// 
+/// It applies some transformations to `eqs` (a list of term–term pairs 
+/// to be unified) and incorporates the resulting variable–term mappings 
+/// into `env` (a finite partial function from variables to terms).
+/// 
+/// `env` might contain mappings that could map a variable to a term 
+/// containing other variables that are themselves assigned: for example 
+/// `x |-> y` and `y |-> z` instead of just `x |-> z` directly. The call 
+/// to `istriv` guarantees that there is no cycle or detects it and stops 
+/// immediately the unification process with a failure.
 let rec unify (env : func<string, term>) eqs =
     match eqs with
     | [] -> env
@@ -39,12 +45,24 @@ let rec unify (env : func<string, term>) eqs =
             failwith "impossible unification"
     | (Var x, t) :: oth
     | (t, Var x) :: oth ->
+        // If there is already a definition (say x |-> s) in env, then 
+        // the pair is expanded into (s, t) and the recursion proceeds.
         if defined env x then
             unify env ((apply env x,t) :: oth)
+        // Otherwise we know that condition x |-> s is in env,
+        // so x |-> t is a candidate for incorporation into env.
         else
-            unify (if istriv env x t then env else (x |-> t) env) oth
+            unify 
+                (
+                    // If there is a benign cycle in env, env is unchanged; 
+                    // while if there is a malicious one, the unification 
+                    // will fail.
+                    if istriv env x t then env
+                    // Otherwise, x |-> t is incorporated into env for the 
+                    // next recursive call.
+                    else (x |-> t) env
+                ) oth
 
-// pg. 169
 // ------------------------------------------------------------------------- //
 // Solve to obtain a single instantiation.                                   //
 // ------------------------------------------------------------------------- //

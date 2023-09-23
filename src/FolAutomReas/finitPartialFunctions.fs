@@ -18,7 +18,7 @@ module FolAutomReas.Lib.FPF
 // Idea due to Diego Olivier Fernandez Pons (OCaml list, 2003/11/10).        //
 // ------------------------------------------------------------------------- //
 
-/// Type of functions represented as a patritia tree (pg. 621).
+/// Type of functions represented as a patritia tree.
 type func<'a,'b> =
     | Empty
     | Leaf of int * ('a * 'b) list
@@ -52,18 +52,16 @@ let sprint_patricia_tree pt =
 let print_patricia_tree pt =
     printfn "%O" (sprint_patricia_tree pt) |> ignore
 
-/// The undefined function (pg. 621).
+/// The undefined function.
 let undefined = Empty
 
 /// Checks if the function is completely undefined.
 /// In case of equality comparison worries, better use this. 
-/// (pg. 621).
 let is_undefined = function
     | Empty -> true
     | _     -> false
 
 /// Operation for `func` analogous to `map` for lists.
-/// (pg. 621)
 let mapf =
     let rec map_list f l =
         match l with
@@ -111,17 +109,17 @@ let foldr =
             foldr f l (foldr f r a)
     foldr
 
-/// Graph of function `f` (pg. 621).
+/// Graph of function `f`.
 let graph f =
     foldl (fun a x y -> (x, y) :: a) [] f
     |> setify
     
-/// Domain of function `f` (pg. 621).
+/// Domain of function `f`.
 let dom f =
     foldl (fun a x y -> x :: a) [] f
     |> setify
     
-/// Range of function `f` (pg. 621)
+/// Range of function `f`.
 let ran f =
     foldl (fun a x y -> y :: a) [] f
     |> setify
@@ -153,19 +151,16 @@ let applyd =
             | _ -> d x
         look f
 
-// pg. 621
 let apply f =
     applyd f (fun _ -> failwith "apply")
 
-// pg. 621
 let tryapplyd f a d =
     applyd f (fun _ -> d) a
 
-// pg. 621
 let tryapplyl f x =
     tryapplyd f x []
     
-/// Checks if the function `f` is defined for the argument `x` (pg. 621).
+/// Checks if the function `f` is defined for the argument `x`.
 let defined f x =
     try
         apply f x |> ignore
@@ -177,7 +172,7 @@ let defined f x =
 // Undefinition.                                                             //
 // ------------------------------------------------------------------------- //
 
-/// Undefines the function for the given argument (pg. 621).
+/// Undefines the function for the given argument.
 let undefine =
     let rec undefine_list x l =
         match l with
@@ -350,7 +345,7 @@ let (|->),combine =
 
 // Finite Partial Functions (FPF)
 
-/// Creates a new FPF defined only for the value `x` and maps it to `y` 
+/// Creates a new FPF defined only for the value `x` and maps it to `y`.
 let (|=>) x y = 
     (x |-> y) undefined
 
@@ -382,32 +377,28 @@ let rec choose t =
 // Install a (trivial) printer for finite partial functions.                 //
 // ------------------------------------------------------------------------- //
 
-// Not in book
 //let print_fpf (f : func<'a,'b>) = printf "<func>"
 
 // ------------------------------------------------------------------------- //
 // Related stuff for standard functions.                                     //
 // ------------------------------------------------------------------------- //
 
-// pg. 618
 let valmod a y f x =
     if x = a then y
     else f x
     
 /// In a non-functional world you can create a list of values and
-/// initialize the list signifiying nothing. e.g. []
+/// initialize the list signifying nothing. e.g. []
 /// Then when you process the list it could return without exception
 /// or if you wanted the processing of the list to return with
 /// exception when there is nothing in the list, you would check
 /// the list for nothing and return an exception.
 ///
-/// In a functinal world you can create a list of functions and
+/// In a functional world you can create a list of functions and
 /// initialize the list with a function causing an exception given that
 /// the items is the list are evaluated as functions.
 /// 
 /// undef is that function which is used to initialize a list to
 /// cause an exception if the list is empty when evaluated.
-/// 
-/// (pg 618).
 let undef x =
     failwith "undefined function"
