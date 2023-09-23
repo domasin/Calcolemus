@@ -35,6 +35,8 @@ let rec istriv env x t =
 /// `x |-> y` and `y |-> z` instead of just `x |-> z` directly. The call 
 /// to `istriv` guarantees that there is no cycle or detects it and stops 
 /// immediately the unification process with a failure.
+/// 
+/// It returns the final resulting variable–term mappings.
 let rec unify (env : func<string, term>) eqs =
     match eqs with
     | [] -> env
@@ -63,27 +65,20 @@ let rec unify (env : func<string, term>) eqs =
                     else (x |-> t) env
                 ) oth
 
-// ------------------------------------------------------------------------- //
-// Solve to obtain a single instantiation.                                   //
-// ------------------------------------------------------------------------- //
-
+/// Returns one Most General Unifier (MGU) of an `env` result from `unify` 
+/// to reach a 'fully solved form.
 let rec solve env =
     let env' = mapf (tsubst env) env
     if env' = env then env 
     else solve env'
 
-// pg. 171
-// ------------------------------------------------------------------------- //
-// Unification reaching a final solved form (often this isn't needed).       //
-// ------------------------------------------------------------------------- //
-
+/// Unification reaching a final solved form (often this isn't needed).
+/// 
+/// If the input list of term pairs `eqs` is unifiable, it returns
+/// one instantiation that is an MGU for it. Otherwise, it fails.
 let fullunify eqs = solve (unify undefined eqs)
 
-// pg. 171
-// ------------------------------------------------------------------------- //
-// Examples.                                                                 //
-// ------------------------------------------------------------------------- //
-
+/// Unifier for a pair of terms
 let unify_and_apply eqs =
     let i = fullunify eqs
     let apply (t1, t2) =

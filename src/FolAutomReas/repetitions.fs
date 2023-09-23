@@ -42,3 +42,13 @@ let repetitions =
     fun l -> 
         if l = [] then [] 
         else repcount 1 l
+
+/// Returns the result of the first successful application of a function `f` 
+/// to the elements of a list `l`.
+/// 
+/// `tryfind f [x1;...;xn]` returns `f xi` for the first `xi` in the list for 
+/// which application of `f` succeeds.
+let rec tryfind f l =
+    match l with
+    | [] -> failwith "tryfind"
+    | (h::t) -> try f h with _ -> tryfind f t

@@ -4,6 +4,7 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// Tableaux, seen as an optimized version of a Prawitz-like procedure.
 module FolAutomReas.Tableaux
 
 open FolAutomReas.Lib
@@ -15,17 +16,18 @@ open Skolem
 open Herbrand
 open Unif
 
-// ========================================================================= //
-// Tableaux, seen as an optimized version of a Prawitz-like procedure.       //
-// ========================================================================= //
-//
-// pg. 174
-// ------------------------------------------------------------------------- //
-// Unify literals (just pretend the toplevel relation is a function).        //
-// ------------------------------------------------------------------------- //
-
+/// Unifies an input pair of litterals.
+/// 
+/// It uses `env` as an accumulator of the environment of the variable 
+/// assignments, maintained globally and represented as a cycle-free finite 
+/// partial function just as in `unify`.
+/// 
+/// It also handles the degenerated case `False,False` because it will 
+/// be used later.
 let rec unify_literals env tmp =
     match tmp with
+    // To unify atomic formulas, predicates are treated 
+    // as if they were functions.
     | Atom (R (p1, a1)), Atom (R (p2, a2)) ->
         unify env [Fn (p1, a1), Fn (p2, a2)]
     | Not p, Not q ->
@@ -33,42 +35,23 @@ let rec unify_literals env tmp =
     | False, False -> env
     | _ -> failwith "Can't unify literals"
 
-// pg. 174
-// ------------------------------------------------------------------------- //
-// Unify complementary literals.                                             //
-// ------------------------------------------------------------------------- //
-
+/// Unifies complementary literals `(p, q)`.   
 let unify_complements env (p, q) =
     unify_literals env (p, negate q)
 
-// pg. 174
-// ------------------------------------------------------------------------- //
-// Unify and refute a set of disjuncts.                                      //
-// ------------------------------------------------------------------------- //
-
-// Note: Used book tryfind instead of F# List.tryFind
+/// Unifies and refutes a list of disjuncts `dsj`, each member of which 
+/// being a list of implicitly conjoined litterals.
 let rec unify_refute djs (acc : func<string, term>) : func<string, term> =
-    let rec tryfind f l =
-        match l with
-        | [] ->
-            failwith "tryfind"
-        | h::t -> 
-            try f h
-            with _ ->
-                tryfind f t
-
     match djs with
     | [] -> acc
-    | head :: tail -> 
-        let pos, neg = List.partition positive head
-        let unifyResult = unify_complements acc
-        tryfind (unify_refute tail << unify_complements acc) (allpairs (fun p q -> (p, q)) pos neg)
-
-
-// pg. 175
-// ------------------------------------------------------------------------- //
-// Hence a Prawitz-like procedure (using unification on DNF).                //
-// ------------------------------------------------------------------------- //
+    | d::odjs -> 
+        // separate d into positive and negative literals.
+        let pos, neg = List.partition positive d
+        // try to unify them as complementary literals and solve 
+        // the remaining problem with the resulting instantiation
+        tryfind 
+            (unify_refute odjs << unify_complements acc) 
+            (allpairs (fun p q -> (p, q)) pos neg)
 
 let rec prawitz_loop djs0 fvs djs n =
     let l = List.length fvs
@@ -78,6 +61,8 @@ let rec prawitz_loop djs0 fvs djs n =
     try unify_refute djs1 undefined,(n + 1) with 
     | Failure _ -> prawitz_loop djs0 fvs djs1 (n + 1)
 
+/// Tests an input fol formula `fm` for validity based on a Prawitz-like 
+/// procedure.
 let prawitz fm =
     let fm0 = skolemize (Not (generalize fm))
     snd <| prawitz_loop (simpdnf fm0) (fv fm0) [[]] 0
@@ -108,13 +93,6 @@ let rec tableau (fms, lits, n) cont (env, k) =
             let p' = subst (x |=> y) p
             tableau (p' :: unexp @ [Forall (x, p)], lits, n - 1) cont (env, k + 1)
         | fm :: unexp ->
-            let rec tryfind f l =
-                match l with
-                | [] -> failwith "tryfind"
-                | h :: t ->
-                    try f h
-                    with _ ->
-                        tryfind f t
             try
                 lits
                 |> tryfind (fun l ->

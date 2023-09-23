@@ -11,7 +11,7 @@ let ``last fails for empty list``() =
     |> should (throwWithMessage "last") typeof<System.Exception>
 
 [<Fact>]
-let ``last gves the last element for a non empty list``() = 
+let ``last gives the last element for a non empty list``() = 
     last [1;2;3;4;5]
     |> should equal 5
 

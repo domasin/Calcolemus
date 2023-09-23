@@ -6,6 +6,7 @@ open FolAutomReas.Skolem
 open FolAutomReas.Herbrand
 open FolAutomReas.Lib
 open FolAutomReas.Prop
+open FolAutomReas.Pelletier
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
@@ -43,28 +44,9 @@ mfn (simpdnf sfm) (subst (fpf fvs [!|"f_y(c)"; ])) [[]]
 let fl'' = mfn (simpdnf sfm) (subst (fpf fvs [!|"f_y(c)"; ])) [[!!"P(c)"; !!"~P(f_y(c))"]]
 not ((fun djs -> djs <> []) fl'') 
 
-let p24 = 
-    !! @"~(exists x. U(x) /\ Q(x)) /\
-    (forall x. P(x) ==> Q(x) \/ R(x)) /\
-    ~(exists x. P(x) ==> (exists x. Q(x))) /\
-    (forall x. Q(x) /\ R(x) ==> U(x))
-    ==> (exists x. P(x) /\ R(x))"
-
 gilmore p24
 
-let p45 = 
-    !! @"(forall x. P(x) /\ (forall y. G(y) /\ H(x,y) ==> J(x,y))
-    ==> (forall y. G(y) /\ H(x,y) ==> R(y))) /\
-    ~(exists y. L(y) /\ R(y)) /\
-    (exists x. P(x) /\ (forall y. H(x,y) ==> L(y)) /\
-    (forall y. G(y) /\ H(x,y) ==> J(x,y)))
-    ==> (exists x. P(x) /\ ~(exists y. G(y) /\ H(x,y)))"
-
 gilmore p45
-
-let p20 = 
-    !!"(forall x y. exists z. forall w. P(x) /\ Q(y) ==> R(z) /\ U(w))
-    ==> (exists x y. P(x) /\ Q(y)) ==> (exists z. R(z))"
 
 //fails with out of memory
 // gilmore p20
@@ -79,12 +61,6 @@ davisputnam002 p20
 // there is something unclear
 #time
 // Real: 00:00:00.013, CPU: 00:00:00.010, GC gen0: 0, gen1: 0, gen2: 0
-
-let p36 = 
-    !! @"(forall x. exists y. J(x,y)) /\
-        (forall x. exists y. G(x,y)) /\
-        (forall x y. J(x,y) \/ G(x,y) ==> (forall z. J(y,z) \/ G(y,z) ==> H(x, z)))
-    ==> (forall x. exists y. H(x,y))"
 
 #time
 davisputnam p36

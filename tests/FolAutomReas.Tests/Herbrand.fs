@@ -6,6 +6,7 @@ open FsUnit.Xunit
 open FolAutomReas.Formulas
 open FolAutomReas.Fol
 open FolAutomReas.Herbrand
+open FolAutomReas.Pelletier
 
 [<Fact>]
 let ``pholds (function Atom (R ("P", [Var "x"])) -> true) (parse "P(x)") returns true.``() = 
@@ -30,31 +31,6 @@ let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 0 returns [!|"0";!|"1"].``() =
 let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 1 returns [!|"f(0)"; !|"f(1)"; !|"g(0)"; !|"|g(1)"].``() = 
     groundterms [!|"0";!|"1"] ["f",1;"g",1] 1
     |> should equal [!|"f(0)"; !|"f(1)"; !|"g(0)"; !|"g(1)"]
-
-let p20 = 
-    !!"(forall x y. exists z. forall w. P(x) /\ Q(y) ==> R(z) /\ U(w))
-    ==> (exists x y. P(x) /\ Q(y)) ==> (exists z. R(z))"
-
-let p24 = 
-    !! @"~(exists x. U(x) /\ Q(x)) /\
-    (forall x. P(x) ==> Q(x) \/ R(x)) /\
-    ~(exists x. P(x) ==> (exists x. Q(x))) /\
-    (forall x. Q(x) /\ R(x) ==> U(x))
-    ==> (exists x. P(x) /\ R(x))"
-
-let p36 = 
-    !! @"(forall x. exists y. J(x,y)) /\
-        (forall x. exists y. G(x,y)) /\
-        (forall x y. J(x,y) \/ G(x,y) ==> (forall z. J(y,z) \/ G(y,z) ==> H(x, z)))
-    ==> (forall x. exists y. H(x,y))"
-
-let p45 = 
-    !! @"(forall x. P(x) /\ (forall y. G(y) /\ H(x,y) ==> J(x,y))
-    ==> (forall y. G(y) /\ H(x,y) ==> R(y))) /\
-    ~(exists y. L(y) /\ R(y)) /\
-    (exists x. P(x) /\ (forall y. H(x,y) ==> L(y)) /\
-    (forall y. G(y) /\ H(x,y) ==> J(x,y)))
-    ==> (exists x. P(x) /\ ~(exists y. G(y) /\ H(x,y)))"
 
 [<Fact>]
 let ``gilmore should succeed on p24 after trying 1 ground instance.``() = 
