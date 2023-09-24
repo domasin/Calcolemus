@@ -71,6 +71,25 @@ module FormulasAndTermsFormatter =
                                     |> Seq.map (sprint_fol_formula)
                                     |> fun x -> sprintf "[%s]" (x |> String.concat "; ")),"text/plain")
 
+    Formatter.SetPreferredMimeTypesFor(typeof<(formula<fol> list) list> ,"text/plain")
+
+    let printFun = 
+        (fun ys -> 
+                ys 
+                |> Seq.map (fun xs -> 
+                    xs 
+                    |> Seq.map (sprint_fol_formula) 
+                    |> Seq.fold (fun acc x -> 
+                        if acc = "" then "[" + x else acc + ";" + x) ""
+                    |> fun x -> x + "]"
+                )
+                |> Seq.fold (fun acc x -> 
+                    if acc = "" then "[" + x else acc + ";" + x) ""
+                    |> fun x -> x + "]"
+    )
+
+    Formatter.Register<(formula<fol> list) list>((printFun),"text/plain")
+
     Formatter.SetPreferredMimeTypesFor(typeof<formula<fol> * formula<fol>> ,"text/plain")
     Formatter.Register<formula<fol> * formula<fol>>((fun (x,y) -> 
                                     sprintf "(%s, %s)" (x |> sprint_fol_formula) (y |> sprint_fol_formula)),"text/plain")
