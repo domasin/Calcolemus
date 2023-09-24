@@ -53,12 +53,27 @@ let rec unify_refute djs (acc : func<string, term>) : func<string, term> =
             (unify_refute odjs << unify_complements acc) 
             (allpairs (fun p q -> (p, q)) pos neg)
 
+/// <summary>
+/// Main loop for prawitz procedure.
+/// </summary>
+/// <param name="djs0">The initial formula in DNF uninstantiated.</param>
+/// <param name="fvs">The set of free variables in the initial formula.</param>
+/// <param name="djs">Accumulator for the substitution instances.</param>
+/// <param name="n">A counter to generate fresh variable names.</param>
+/// <returns>
+/// The final instantiation together with the number of instances tried.
+/// </returns>
 let rec prawitz_loop djs0 fvs djs n =
     let l = List.length fvs
+    // create new variables.
     let newvars = List.map (fun k -> "_" + string (n * l + k)) (1--l)
+    // create the new instantiation.
     let inst = fpf fvs (List.map (fun x -> Var x) newvars)
+    // incorporate the new instantiation in the previous substitution instances.
     let djs1 = distrib (image (image (subst inst)) djs0) djs
+    // try to refute the new DNF accumulated and return if succeeds.
     try unify_refute djs1 undefined,(n + 1) with 
+    // otherwise try with a larger conjunction.
     | Failure _ -> prawitz_loop djs0 fvs djs1 (n + 1)
 
 /// Tests an input fol formula `fm` for validity based on a Prawitz-like 
@@ -66,13 +81,6 @@ let rec prawitz_loop djs0 fvs djs n =
 let prawitz fm =
     let fm0 = skolemize (Not (generalize fm))
     snd <| prawitz_loop (simpdnf fm0) (fv fm0) [[]] 0
-
-// ------------------------------------------------------------------------- //
-// Comparison of number of ground instances.                                 //
-// ------------------------------------------------------------------------- //
-
-let compare fm =
-    prawitz fm, davisputnam fm
 
 // pg. 177
 // ------------------------------------------------------------------------- //

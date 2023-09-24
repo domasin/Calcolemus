@@ -23,14 +23,14 @@ let ``pholds (function Atom (R ("P", [Var "x"])) -> true | Atom (R ("Q", [Var "x
     |> should equal true
 
 [<Fact>]
-let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 0 returns [!|"0";!|"1"].``() = 
-    groundterms [!|"0";!|"1"] ["f",1;"g",1] 0
-    |> should equal [!|"0";!|"1"]
+let ``groundterms [!!!"0";!!!"1"] ["f",1;"g",1] 0 returns [!!!"0";!!!"1"].``() = 
+    groundterms [!!!"0";!!!"1"] ["f",1;"g",1] 0
+    |> should equal [!!!"0";!!!"1"]
 
 [<Fact>]
-let ``groundterms [!|"0";!|"1"] ["f",1;"g",1] 1 returns [!|"f(0)"; !|"f(1)"; !|"g(0)"; !|"|g(1)"].``() = 
-    groundterms [!|"0";!|"1"] ["f",1;"g",1] 1
-    |> should equal [!|"f(0)"; !|"f(1)"; !|"g(0)"; !|"g(1)"]
+let ``groundterms [!!!"0";!!!"1"] ["f",1;"g",1] 1 returns [!!!"f(0)"; !!!"f(1)"; !!!"g(0)"; !!!"|g(1)"].``() = 
+    groundterms [!!!"0";!!!"1"] ["f",1;"g",1] 1
+    |> should equal [!!!"f(0)"; !!!"f(1)"; !!!"g(0)"; !!!"g(1)"]
 
 [<Fact>]
 let ``gilmore should succeed on p24 after trying 1 ground instance.``() = 

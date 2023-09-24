@@ -77,7 +77,7 @@ let parset =
     make_parser (parse_term [])
 
 /// A convenient operator to call `parset`.
-let (!|) = parset
+let (!!!) = parset
 
 // ------------------------------------------------------------------------- //
 // Parsing of fol formulas.                                                  //

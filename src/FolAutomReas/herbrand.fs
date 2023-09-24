@@ -48,11 +48,9 @@ let herbfuns fm =
 /// If `n` = 0, it returns the constant terms, otherwise tries all possible 
 /// functions.
 /// 
-/// `groundterms [!|"0";!|"1"] ["f",1;"g",1] 0`
-/// returns `[<<|0|>>; <<|1|>>]`.
+/// `groundterms [0;1] [(f,1);(g,1)] 0` returns `[0,1]`.
 /// 
-/// `groundterms [!|"0";!|"1"] ["f",1;"g",1] 1`
-/// returns `[<<|f(0)|>>; <<|f(1)|>>; <<|g(0)|>>; <<|g(1)|>>]`
+/// `groundterms [0;1] [(f,1);(g,1)] 1` returns `[f(0);f(1);g(0);g(1)]`
 let rec groundterms cntms funcs n =
     if n = 0 then cntms else
     List.foldBack (fun (f, m) l -> 
@@ -60,12 +58,12 @@ let rec groundterms cntms funcs n =
             Fn (f, args))
             (groundtuples cntms funcs (n - 1) m) @ l)
         funcs []
+
 /// generates all `m`-tuples of ground terms involving (in total) `n` functions.
 /// 
-/// `groundtuples [!|"0";] ["f",1] 1 1` returns `[[<<|f(0)|>>]]`
+/// `groundtuples [0] [(f,1)] 1 1` returns `[[f(0)]]`
 /// 
-/// `groundtuples [!|"0";] ["f",1] 1 2` returns 
-/// `[[<<|0|>>; <<|f(0)|>>]; [<<|f(0)|>>; <<|0|>>]]`
+/// `groundtuples [0] [(f,1)] 1 2` returns `[[0;f(0)]; [f(0);0]]`
 and groundtuples cntms funcs n m =
     if m = 0 then 
         if n = 0 then [[]] 

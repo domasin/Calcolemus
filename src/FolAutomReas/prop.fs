@@ -118,11 +118,11 @@ let fprint_truthtable sw fm =
         fprintf sw "%s" (List.foldBack (+) lis ("| " + ans))
         fprintfn sw ""
         true
-    let seperator = String.replicate (width * (List.length ats) + 9) "-"
+    let separator = String.replicate (width * (List.length ats) + 9) "-"
     fprintfn sw "%s" (List.foldBack (fun s t -> fixw(pname s) + t) ats "| formula")
-    fprintfn sw "%s" seperator
+    fprintfn sw "%s" separator
     let _ = onallvaluations mk_row (fun x -> false) ats
-    fprintfn sw "%s" seperator
+    fprintfn sw "%s" separator
     fprintfn sw ""
 
 /// Prints the truth table of the propositional formula `f`.

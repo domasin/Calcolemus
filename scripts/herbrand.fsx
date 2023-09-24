@@ -11,6 +11,17 @@ open FolAutomReas.Pelletier
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
+let fm = 
+    !!"exists x. forall y. P(x) ==> P(y)"
+    |> Not
+    |> skolemize
+
+let fm' = 
+    !!"~ (exists x. forall y. P(x) ==> P(y))"
+    |> skolemize
+
+fm = fm'
+
 !!"exists x. forall y. P(x) ==> P(y)"
 |> gilmore
 
@@ -33,15 +44,15 @@ let newtups = groundtuples cntms funcs 0 (List.length fvs)
 
 // herbloop mfn tfn fl0 cntms funcs fvs (n + 1) fl tried newtups
 
-let fl' = mfn (simpdnf sfm) (subst (fpf fvs [!|"c"])) [[]]
+let fl' = mfn (simpdnf sfm) (subst (fpf fvs (newtups |> List.head))) [[]]
 not ((fun djs -> djs <> []) fl') 
 
 let newtups' = groundtuples cntms funcs 1 (List.length fvs)
 
-mfn (simpdnf sfm) (subst (fpf fvs [!|"f_y(c)"; ])) [[]]
+mfn (simpdnf sfm) (subst (fpf fvs [!!!"f_y(c)"; ])) [[]]
 // [[<<P(f_y(c))>>; <<~P(f_y(f_y(c)))>>]]
 
-let fl'' = mfn (simpdnf sfm) (subst (fpf fvs [!|"f_y(c)"; ])) [[!!"P(c)"; !!"~P(f_y(c))"]]
+let fl'' = mfn (simpdnf sfm) (subst (fpf fvs [!!!"f_y(c)"; ])) [[!!"P(c)"; !!"~P(f_y(c))"]]
 not ((fun djs -> djs <> []) fl'') 
 
 gilmore p24

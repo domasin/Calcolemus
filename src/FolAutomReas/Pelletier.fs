@@ -12,6 +12,10 @@ let p20 =
     !!"(forall x y. exists z. forall w. P(x) /\ Q(y) ==> R(z) /\ U(w))
     ==> (exists x y. P(x) /\ Q(y)) ==> (exists z. R(z))"
 
+
+/// ~(∃ x. U(x) ∧ Q(x)) ∧ (∀ x. P(x) ⟶ Q(x) \/ R(x)) ∧ 
+/// ~(∃ x. P(x) ⟶ (∃ x. Q(x))) ∧ (∀ x. Q(x) ∧ R(x) ⟶ U(x)) 
+/// ⟶ (∃ x. P(x) ∧ R(x))
 let p24 = 
     !! @"~(exists x. U(x) /\ Q(x)) /\
     (forall x. P(x) ==> Q(x) \/ R(x)) /\
@@ -19,6 +23,8 @@ let p24 =
     (forall x. Q(x) /\ R(x) ==> U(x))
     ==> (exists x. P(x) /\ R(x))"
 
+/// (∀x. ∃y. J(x,y)) ∧ (∀x. ∃y. G(x,y)) ∧ 
+/// (∀x y. J(x,y) ∨ G(x,y) ⟶ (∀z. J(y,z) ∨ G(y,z) ⟶ H(x,z))) ⟶ (∀x. ∃y. H(x,y))
 let p36 = 
     !! @"(forall x. exists y. J(x,y)) /\
         (forall x. exists y. G(x,y)) /\
@@ -57,6 +63,9 @@ let p44 =
         (exists x. J(x) /\ (forall y. G(y) ==> H(x,y)))
         ==> (exists x. J(x) /\ ~P(x))"
 
+/// (∀ x. P(x) ∧ (∀ y. G(y) ∧ H(x,y) ⟶ J(x,y)) ⟶ (∀ y. G(y) ∧ H(x,y) ⟶ R(y))) ∧ 
+/// ~(∃ y. L(y) ∧ R(y)) ∧ (∃ x. P(x) ∧ (∀ y. H(x,y) ⟶ L(y)) ∧ 
+/// (∀ y. G(y) ∧ H(x,y) ⟶ J(x,y))) ⟶ (∃ x. P(x) ∧ ~(∃ y. G(y) ∧ H(x,y)))
 let p45 = 
     !! @"(forall x. P(x) /\ (forall y. G(y) /\ H(x,y) ==> J(x,y))
     ==> (forall y. G(y) /\ H(x,y) ==> R(y))) /\
