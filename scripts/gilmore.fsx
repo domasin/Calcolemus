@@ -11,7 +11,7 @@ open FolAutomReas.Pelletier
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
-let fm = !! @"~((forall x. G(x,y)) /\ (~forall y. G(z,w)))" // !!"exists x. forall y. P(x) ==> P(y)"
+let fm = !!"exists x. forall y. P(x) ==> P(y)"
 let sfm = skolemize (Not (generalize fm))
 // <<P(x) /\ ~P(f_y(x))>>
 
