@@ -24,19 +24,34 @@ let rec istriv env x t =
         List.exists (istriv env x) args 
         && failwith "cyclic"
         
+/// <summary>
 /// Main unification procedure.
-/// 
-/// It applies some transformations to `eqs` (a list of term–term pairs 
-/// to be unified) and incorporates the resulting variable–term mappings 
-/// into `env` (a finite partial function from variables to terms).
+/// </summary>
+/// <example>
+/// This example shows how it works.
+/// <code lang="fsharp">
+/// unify undefined [!!!"f(x,y)",!!!"f(y,x)"]
+/// </code>
+/// returns:
+/// <code lang="fsharp">
+/// val it: func&lt;string,term&gt; = Leaf (..., [("x", &lt;&lt;|y|&gt;&gt;)])
+/// </code>
+/// </example>
+/// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms used as an accumulator for the final result of the unification procedure.</param>
+/// <param name="eqs">The list of term-term pairs to be unified.</param>
+/// <returns>
+/// The final resulting variable-term mappings that unify `eqs`.
+/// </returns>
+/// <remarks>
+/// It applies some transformations to `eqs` and incorporates the 
+/// resulting variable-term mappings into `env`
 /// 
 /// `env` might contain mappings that could map a variable to a term 
 /// containing other variables that are themselves assigned: for example 
-/// `x |-> y` and `y |-> z` instead of just `x |-> z` directly. The call 
-/// to `istriv` guarantees that there is no cycle or detects it and stops 
-/// immediately the unification process with a failure.
-/// 
-/// It returns the final resulting variable–term mappings.
+/// \(x \mapsto y\) and \(y \mapsto z\) instead of just \(x \mapsto z\) 
+/// directly. The call to `istriv` guarantees that there is no cycle 
+/// or detects it and stops immediately the unification process with a failure.
+/// </remarks>
 let rec unify (env : func<string, term>) eqs =
     match eqs with
     | [] -> env

@@ -7,6 +7,7 @@ open FolAutomReas.Formulas
 open FolAutomReas.Fol
 open FolAutomReas.Herbrand
 open FolAutomReas.Pelletier
+open FolAutomReas.Lib
 
 [<Fact>]
 let ``pholds (function Atom (R ("P", [Var "x"])) -> true) (parse "P(x)") returns true.``() = 
@@ -41,6 +42,23 @@ let ``gilmore should succeed on p24 after trying 1 ground instance.``() =
 let ``gilmore should succeed on p45 after trying 5 ground instances.``() = 
     gilmore p45
     |> should equal 5
+
+[<Fact>]
+let ``dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"c"])) [] should return [[P(c)]; [~P(f_y(c))]].``() = 
+    dp_mfn 
+        [[!!"P(x)"]; [!!"~P(f_y(x))"]] 
+        (subst (fpf ["x"] [!!!"c"])) 
+        [] 
+    |> should equal [[!!"P(c)"]; [!!"~P(f_y(c))"]]
+
+[<Fact>]
+let ``dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"f_y(c)"])) [[!!"P(c)"]; [!!"~P(f_y(c))"]] should return [[P(c)]; [P(f_y(c))]; [~P(f_y(c))]; [~P(f_y(f_y(c)))]].``() = 
+    dp_mfn 
+        [[!!"P(x)"]; [!!"~P(f_y(x))"]] 
+        (subst (fpf ["x"] [!!!"f_y(c)"])) 
+        [[!!"P(c)"]; [!!"~P(f_y(c))"]]
+    |> should equal 
+        [[!!"P(c)"]; [!!"P(f_y(c))"]; [!!"~P(f_y(c))"]; [!!"~P(f_y(f_y(c)))"]]
 
 [<Fact>]
 let ``davisputnam should succeed on p20 after trying 19 ground instances.``() = 

@@ -462,7 +462,7 @@ let dnf fm =
 /// by using `purednf`.
 let purecnf fm = image (image negate) (purednf (nnf (Not fm)))
     
-/// Transforms the input formula `fm` in a list of list representation of  
+/// Transforms the input formula `fm` in a list of list representation of 
 /// conjunctive normal form. It exploits the list of list representation 
 /// filtering out trivial complementary literals and subsumed ones.
 let simpcnf fm =

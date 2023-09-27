@@ -5,6 +5,12 @@ open FsUnit.Xunit
 
 open FolAutomReas.Fol
 open FolAutomReas.Unif
+open FolAutomReas.Lib
+
+[<Fact>]
+let ``unify undefined [!!!"f(x,y)",!!!"f(y,x)"] should return (("x" |-> Var "y")undefined).``() = 
+    unify undefined [!!!"f(x,y)",!!!"f(y,x)"]
+    |> should equal (("x" |-> Var "y")undefined)
 
 [<Fact>]
 let ``unify_and_apply [!!!"f(x,g(y))",!!!"f(f(z),w)"] should return [(!!!"f(f(z),g(y))", !!!"f(f(z),g(y))")].``() = 

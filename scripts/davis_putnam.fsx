@@ -12,7 +12,7 @@ open FolAutomReas.Dp
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
-let fm = p42
+let fm = !!"exists x. forall y. P(x) ==> P(y)" //p42
 davisputnam fm
 
 let sfm = skolemize (Not (generalize fm))
@@ -29,6 +29,11 @@ let cntms = image (fun (c, _) -> Fn (c, [])) consts
 // 2 ground instances tried; 8 items in list.
 
 let newtups0 = groundtuples cntms funcs 0 (List.length fvs)
+
+dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf fvs [!!!"c"])) []
+
+dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf fvs [!!!"f_y(c)"])) [[!!"P(c)"]; [!!"~P(f_y(c))"]]
+
 let fl0 = union (image (image (subst (fpf fvs (newtups0 |> List.head)))) cnf) []
 not (dpll fl0), 0
 

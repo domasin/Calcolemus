@@ -153,6 +153,36 @@ let gilmore fm =
 // The Davis-Putnam procedure for first order logic.                         //
 // ------------------------------------------------------------------------- //
 
+/// <summary>
+/// The modification function (specific to the Davis-Putnam procedure), that 
+/// augments the ground instances with a new one.
+/// </summary>
+/// <example>
+/// This example shows the first generation of ground instance when the set is 
+/// initially empty.
+/// <code lang="fsharp">
+/// dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"c"])) []
+/// </code>
+/// returns 
+/// <code lang="fsharp">
+/// [[P(c)]; [~P(f_y(c))]]
+/// </code>
+/// This example shows the second generation of ground instance when the 
+/// nonempty set is augmented.
+/// <code lang="fsharp">
+/// dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"f_y(c)"])) [[!!"P(c)"]; [!!"~P(f_y(c))"]]
+/// </code>
+/// returns 
+/// <code lang="fsharp">
+/// [[P(c)]; [P(f_y(c))]; [~P(f_y(c))]; [~P(f_y(f_y(c)))]]
+/// </code>
+/// </example>
+/// <param name="cjs0">The initial formula in a list of list representation of conjunctive normal.</param>
+/// <param name="ifn">The instantiation to be applied to the formula to generate ground instances.</param>
+/// <param name="cjs">The set of ground instances so far.</param>
+/// <returns>
+/// The set of ground instances incremented.
+/// </returns>
 let dp_mfn cjs0 ifn cjs = union (image (image ifn) cjs0) cjs
 
 /// In the specific case of the davis-putnam procedure, the generic 
