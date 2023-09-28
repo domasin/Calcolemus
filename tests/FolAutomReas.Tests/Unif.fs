@@ -8,26 +8,70 @@ open FolAutomReas.Unif
 open FolAutomReas.Lib
 
 [<Fact>]
-let ``unify undefined [!!!"f(x,y)",!!!"f(y,x)"] should return (("x" |-> Var "y")undefined).``() = 
-    unify undefined [!!!"f(x,y)",!!!"f(y,x)"]
-    |> should equal (("x" |-> Var "y")undefined)
+let ``istriv should return true on trivial assignment.``() = 
+    istriv undefined "x" (Var "x")
+    |> should equal true
 
-[<Fact>]
-let ``unify_and_apply [!!!"f(x,g(y))",!!!"f(f(z),w)"] should return [(!!!"f(f(z),g(y))", !!!"f(f(z),g(y))")].``() = 
-    unify_and_apply [!!!"f(x,g(y))",!!!"f(f(z),w)"]
-    |> should equal [(!!!"f(f(z),g(y))", !!!"f(f(z),g(y))")]
+let ``istriv should return false on acyclic assignment.``() = 
+    istriv undefined "x" (Var "y")
+    |> should equal false
 
-[<Fact>]
-let ``unify_and_apply [!!!"f(x,y)",!!!"f(y,x)"] should return [(!!!"f(y,y)", !!!"f(y,y)")].``() = 
-    unify_and_apply [!!!"f(x,y)",!!!"f(y,x)"]
-    |> should equal [(!!!"f(y,y)", !!!"f(y,y)")]
-
-[<Fact>]
-let ``unify_and_apply [!!!"f(x,g(y))",!!!"f(y,x)"] should return [(!!!"f(y,y)", !!!"f(y,y)")].``() = 
-    (fun () -> unify_and_apply [!!!"f(x,g(y))",!!!"f(y,x)"] |> ignore) 
+let ``istriv should fail on cyclic nontrivial assignment.``() = 
+    (fun () -> 
+        istriv (("y" |-> (Var "x"))undefined) "x" (Fn("f",[Var "y"]))) 
+        |> ignore
     |> should (throwWithMessage "cyclic") typeof<System.Exception>
 
 [<Fact>]
-let ``unify_and_apply [!!!"x_0",!!!"f(x_1,x_1)";!!!"x_1",!!!"f(x_2,x_2)";!!!"x_2",!!!"f(x_3,x_3)"] should return [(!!!"f(f(f(x_3,x_3),f(x_3,x_3)),f(f(x_3,x_3),f(x_3,x_3)))",!!!"f(f(f(x_3,x_3),f(x_3,x_3)),f(f(x_3,x_3),f(x_3,x_3)))");(!!!"f(f(x_3,x_3),f(x_3,x_3))", !!!"f(f(x_3,x_3),f(x_3,x_3))");(!!!"f(x_3,x_3)", !!!"f(x_3,x_3)")].``() = 
-    unify_and_apply [!!!"x_0",!!!"f(x_1,x_1)";!!!"x_1",!!!"f(x_2,x_2)";!!!"x_2",!!!"f(x_3,x_3)"]
-    |> should equal [(!!!"f(f(f(x_3,x_3),f(x_3,x_3)),f(f(x_3,x_3),f(x_3,x_3)))",!!!"f(f(f(x_3,x_3),f(x_3,x_3)),f(f(x_3,x_3),f(x_3,x_3)))");(!!!"f(f(x_3,x_3),f(x_3,x_3))", !!!"f(f(x_3,x_3),f(x_3,x_3))");(!!!"f(x_3,x_3)", !!!"f(x_3,x_3)")]
+let ``unify should return a unification assignment on success.``() = 
+    unify undefined [Var "x", Fn("0",[])]
+    |> should equal (("x" |-> Fn("0",[]))undefined)
+
+[<Fact>]
+let ``unify should return an augmented unification assignment on success with a nonempty environment.``() = 
+    unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("0",[])]
+    |> should equal (("x" |-> (Var "y"))(("y" |-> Fn("0",[]))undefined))
+
+[<Fact>]
+let ``unify should fail with 'cyclic' with a direct cycle.``() = 
+    (fun () -> 
+        unify undefined [Var "y", Fn("f",[Var "y"])]
+        |> ignore
+    )
+    |> should (throwWithMessage "cyclic") typeof<System.Exception>
+
+[<Fact>]
+let ``unify should fail with 'cyclic' with a derived cycle.``() = 
+    (fun () -> 
+        unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("f",[Var "y"])]
+        |> ignore
+    )
+    |> should (throwWithMessage "cyclic") typeof<System.Exception>
+
+[<Fact>]
+let ``unify should fail with 'impossible unification' if the unification is not possible.``() = 
+    (fun () -> 
+        unify undefined [Fn ("0",[]), Fn("1",[])]
+        |> ignore
+    )
+    |> should (throwWithMessage "impossible unification") typeof<System.Exception>
+
+let ``solve should return an MGU of the input env.``() = 
+    solve (("x" |-> Fn("0",[]))(("x" |-> Var "y")undefined))
+    |> should equal (("x" |-> Fn("0",[]))undefined)
+
+let ``solve should return the input unchanged it is already an MGU.``() = 
+    let env = (("y" |-> Fn("0",[]))(("x" |-> Var "y")undefined))
+    solve env
+    |> should equal env
+
+let ``fullunify should return an MGU for the input, if it is unifiable.``() = 
+    fullunify [Var "x", Fn("0",[])]
+    |> should equal (("x" |-> Fn("0",[]))undefined)
+
+let ``fullunify should fail, with 'impossible unification', if the input is not unifiable.``() = 
+    (fun () -> 
+        fullunify [Fn ("0",[]), Fn("1",[])]
+        |> ignore
+    )
+    |> should (throwWithMessage "impossible unification") typeof<System.Exception>
