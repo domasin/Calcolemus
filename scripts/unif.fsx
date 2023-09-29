@@ -60,12 +60,17 @@ unify undefined [
 fullunify [Var "x", Fn("0",[])]
 // x |-> 0
 
+fullunify [Fn ("f",[Var "x"; Fn("g",[Var "y"])]), Fn ("f",[Var "y"; Var "x"])]
+// System.Exception: cyclic
+
 fullunify [Fn ("0",[]), Fn("1",[])]
 // System.Exception: impossible unification
+
+unify_and_apply [Var "x", Fn("0",[])]
+// [(Fn ("0", []), Fn ("0", []))]
 
 unify_and_apply [Var "x", Var "y"; Var "x", Fn("0",[])]
 // [(Fn ("0", []), Fn ("0", [])); (Fn ("0", []), Fn ("0", []))]
 
-unify_and_apply [Fn("f",[Var "x"]), Fn("f",[Fn("f",[Var "z"])]);]
-
-unify_and_apply [Fn("f",[Var "x"]), Fn("f",[Fn("f",[Var "z"])]); Var "x", Fn("0",[])]
+// handbook example 1
+unify_and_apply [!!!"f(x,g(y))",!!!"f(f(z),w)"]

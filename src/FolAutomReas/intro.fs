@@ -4,7 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-/// A simple algebraic expression example.
+/// <namespacedoc><summary>
+/// Types, functions, operators and procedures for automated/interactive 
+/// reasoning in first order logic.
+/// </summary></namespacedoc>
+/// <summary>A simple algebraic expression example.</summary>
 module FolAutomReas.Intro
 
 open System

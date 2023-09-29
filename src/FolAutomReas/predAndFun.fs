@@ -5,7 +5,13 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <namespacedoc><summary>
+/// Misc library functions to set up a nice environment. 
+/// </summary></namespacedoc>
+/// 
+/// <summary>
 /// Functions over predicates and functions.
+/// </summary>
 [<AutoOpen>]
 module FolAutomReas.Lib.PredAndFun
 

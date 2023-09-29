@@ -69,9 +69,57 @@ let ``fullunify should return an MGU for the input, if it is unifiable.``() =
     fullunify [Var "x", Fn("0",[])]
     |> should equal (("x" |-> Fn("0",[]))undefined)
 
+let ``fullunify should fail, with 'cyclic', if the unification is cyclic.``() = 
+    (fun () -> 
+        fullunify 
+            [Fn ("f",[Var "x"; Fn("g",[Var "y"])]), Fn ("f",[Var "y"; Var "x"])]
+        |> ignore
+    )
+    |> should (throwWithMessage "cyclic") typeof<System.Exception>
+
 let ``fullunify should fail, with 'impossible unification', if the input is not unifiable.``() = 
     (fun () -> 
         fullunify [Fn ("0",[]), Fn("1",[])]
         |> ignore
     )
     |> should (throwWithMessage "impossible unification") typeof<System.Exception>
+
+let ``unify_and_apply should return the unified input, if it is unifiable.``() = 
+    unify_and_apply [Var "x", Fn("0",[])]
+    |> should equal [(Fn ("0", []), Fn ("0", []))]
+
+let ``unify_and_apply fail, with 'cyclic', if the unification is cyclic (handbook example 3).``() = 
+    (fun () -> 
+        unify_and_apply 
+            [Fn ("f",[Var "x"; Fn("g",[Var "y"])]), Fn ("f",[Var "y"; Var "x"])]
+        |> ignore
+    )
+    |> should (throwWithMessage "cyclic") typeof<System.Exception>
+
+let ``unify_and_apply should fail, with 'impossible unification', if the input is not unifiable.``() = 
+    (fun () -> 
+        unify_and_apply [Fn ("0",[]), Fn("1",[])]
+        |> ignore
+    )
+    |> should (throwWithMessage "impossible unification") typeof<System.Exception>
+
+let ``unify_and_apply should succeed on handbook example 1.``() = 
+    unify_and_apply [!!!"f(x,g(y))",!!!"f(f(z),w)"]
+    |> should equal [(!!!"f(f(z),g(y))", !!!"f(f(z),g(y))")]
+
+let ``unify_and_apply should succeed on handbook example 2.``() = 
+    unify_and_apply [!!!"f(x,y)",!!!"f(y,x)"]
+    |> should equal [(!!!"f(y,y)", !!!"f(y,y)")]
+
+let ``unify_and_apply should succeed on handbook example 4.``() = 
+    unify_and_apply [
+        !!!"x_0",!!!"f(x_1,x_1)";
+        !!!"x_1",!!!"f(x_2,x_2)";
+        !!!"x_2",!!!"f(x_3,x_3)"
+    ]
+    |> should equal [
+        (!!!"f(f(f(x_3,x_3),f(x_3,x_3)),f(f(x_3,x_3),f(x_3,x_3)))",
+            !!!"f(f(f(x_3,x_3),f(x_3,x_3)),f(f(x_3,x_3),f(x_3,x_3)))");
+        (!!!"f(f(x_3,x_3),f(x_3,x_3))", !!!"f(f(x_3,x_3),f(x_3,x_3))");
+        (!!!"f(x_3,x_3)", !!!"f(x_3,x_3)")
+    ]

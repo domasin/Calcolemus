@@ -46,11 +46,13 @@
     <Compile Include="defcnf.fs" />
     <Compile Include="dp.fs" />
     <Compile Include="stal.fs" />
+    <Compile Include="bdd.fsi" />
     <Compile Include="bdd.fs" />
     <Compile Include="fol.fs" />
     <Compile Include="skolem.fs" />
     <Compile Include="Pelletier.fs" />
     <Compile Include="herbrand.fs" />
+    <Compile Include="unif.fsi" />
     <Compile Include="unif.fs" />
     <Compile Include="tableaux.fs" />
     <Compile Include="resolution.fs" />
