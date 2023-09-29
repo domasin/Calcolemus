@@ -87,8 +87,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Prenex and Skolem normal forms.  
+        <p>Prenex and Skolem normal forms.</p>
+
 
       </p>
     </div>
@@ -165,9 +165,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Overall Skolemization function, intended to be used with any type of 
- initial fol formula.
+                    <p>Overall Skolemization function, intended to be used with any type of
+initial fol formula.</p>
+
 
                   </p>
                 </div>
@@ -250,10 +250,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Returns the functions present in the input term `tm`
- 
- `funcs (parset @"x + 1")` returns `[("+", 2); ("1", 0)]`
+                    <p>Returns the functions present in the input term <code>tm</code></p>
+<p><code>funcs (parset @"x + 1")</code> returns <code>[("+", 2); ("1", 0)]</code></p>
+
 
                   </p>
                 </div>
@@ -336,12 +335,11 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Returns the functions present in the input formula `fm`
- 
- `functions (parse @"x + 1 > 0 /\ f(z) > g(z,i)")`
- returns `[("+", 2); ("0", 0); ("1", 0); ("f", 1); ("g", 2)]`
- `
+                    <p>Returns the functions present in the input formula <code>fm</code></p>
+<p><code>functions (parse @"x + 1 &gt; 0 /\ f(z) &gt; g(z,i)")</code>
+returns <code>[("+", 2); ("0", 0); ("1", 0); ("f", 1); ("g", 2)]</code>
+`</p>
+
 
                   </p>
                 </div>
@@ -424,14 +422,12 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Transforms the input formula `fm` in negation normal form.
- 
- It eliminates implication and equivalence, and pushes down negations 
- through quantiﬁers.
- 
- `nnf (parse @"~ exists x. P(x) <=> Q(x)")` returns 
- `<<forall x. P(x) /\ ~Q(x) \/ ~P(x) /\ Q(x)>>`
+                    <p>Transforms the input formula <code>fm</code> in negation normal form.</p>
+<p>It eliminates implication and equivalence, and pushes down negations
+through quantiﬁers.</p>
+<p><code>nnf (parse @"~ exists x. P(x) &lt;=&gt; Q(x)")</code> returns
+<code>&lt;&lt;forall x. P(x) /\ ~Q(x) \/ ~P(x) /\ Q(x)&gt;&gt;</code></p>
+
 
                   </p>
                 </div>
@@ -514,16 +510,16 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Transforms the input formula `fm` in prenex normal form and simplifies it.
- 
- * simplifies away False, True, vacuous quantiﬁcation, etc.;
- * eliminates implication and equivalence, push down negations;
- * pulls out quantiﬁers.
- 
- `pnf (parse @"(forall x. P(x) \/ R(y)) ==> exists y z. Q(y) \/ ~(exists z. P
- (z) /\ Q(z))")` 
- returns `<<exists x. forall z. ~P(x) /\ ~R(y) \/ Q(x) \/ ~P(z) \/ ~Q(z)>>`
+                    <p>Transforms the input formula <code>fm</code> in prenex normal form and simplifies it.</p>
+<ul>
+<li>simplifies away False, True, vacuous quantiﬁcation, etc.;</li>
+<li>eliminates implication and equivalence, push down negations;</li>
+<li>pulls out quantiﬁers.</li>
+</ul>
+<p><code>pnf (parse @"(forall x. P(x) \/ R(y)) ==&gt; exists y z. Q(y) \/ ~(exists z. P
+(z) /\ Q(z))")</code>
+returns <code>&lt;&lt;exists x. forall z. ~P(x) /\ ~R(y) \/ Q(x) \/ ~P(z) \/ ~Q(z)&gt;&gt;</code></p>
+
 
                   </p>
                 </div>
@@ -606,9 +602,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- leaves quantiﬁed formulas alone, and for conjunctions and disjunctions 
- recursively prenexes the immediate subformulas and then uses pullquants
+                    <p>leaves quantiﬁed formulas alone, and for conjunctions and disjunctions
+recursively prenexes the immediate subformulas and then uses pullquants</p>
+
 
                   </p>
                 </div>
@@ -755,9 +751,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- calls the main `pullquants` functions again on the body to pull up 
- further quantiﬁers
+                    <p>calls the main <code>pullquants</code> functions again on the body to pull up
+further quantiﬁers</p>
+
 
                   </p>
                 </div>
@@ -904,8 +900,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- It pulls out quantifiers.
+                    <p>It pulls out quantifiers.</p>
+
 
                   </p>
                 </div>
@@ -988,28 +984,23 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Performs a simplification routine on the input formula 
- `fm` eliminating the basic propositional constants `False` and `True`
- and also the vacuous universal and existential quantiﬁers (those 
- applied to variables that does not occur free in the body).
- 
- Whenever `False` and `True` occur in combination, there is always a a 
- tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
- p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
- also eliminates double negations `~~p`.
- 
- If x not in FV(p) then forall x. p and exists x. p are logically 
- equivalent to p.
- 
- While `simplify1` performs the transformation just at the first level, 
- `simplify` performs it at every levels in a recursive bottom-up sweep.
- 
- `simplify (parse @"true ==> (p <=> (p <=> false))")` returns 
- `<<p <=> ~p>>`
- 
- `simplify (parse @"exists x y z. P(x) ==> Q(z) ==> false")` 
- returns `<<exists x z. P(x) ==> ~Q(z)>>`
+                    <p>Performs a simplification routine on the input formula
+<code>fm</code> eliminating the basic propositional constants <code>False</code> and <code>True</code>
+and also the vacuous universal and existential quantiﬁers (those
+applied to variables that does not occur free in the body).</p>
+<p>Whenever <code>False</code> and <code>True</code> occur in combination, there is always a a
+tautology justifying the equivalence with a simpler formula, e.g. <code>False /\
+p &lt;=&gt; False</code>, <code>True \/ p &lt;=&gt; p</code>, <code>p ==&gt; False &lt;=&gt; ~p</code>. At he same time, it
+also eliminates double negations <code>~~p</code>.</p>
+<p>If x not in FV(p) then forall x. p and exists x. p are logically
+equivalent to p.</p>
+<p>While <code>simplify1</code> performs the transformation just at the first level,
+<code>simplify</code> performs it at every levels in a recursive bottom-up sweep.</p>
+<p><code>simplify (parse @"true ==&gt; (p &lt;=&gt; (p &lt;=&gt; false))")</code> returns
+<code>&lt;&lt;p &lt;=&gt; ~p&gt;&gt;</code></p>
+<p><code>simplify (parse @"exists x y z. P(x) ==&gt; Q(z) ==&gt; false")</code>
+returns <code>&lt;&lt;exists x z. P(x) ==&gt; ~Q(z)&gt;&gt;</code></p>
+
 
                   </p>
                 </div>
@@ -1092,23 +1083,19 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Performs a simplification routine but just at the first level of the input 
- formula `fm`. It eliminates the basic propositional constants `False` and 
- `True` and also the vacuous universal and existential quantiﬁers (those 
- applied to variables that does not occur free in the body).
- 
- Whenever `False` and `True` occur in combination, there is always a a 
- tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
- p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
- also eliminates double negations `~~p`.
- 
- If x not in FV(p) then forall x. p and exists x. p are logically 
- equivalent to p.
- 
- `simplify1 (parse @"exists x. P(y)")` returns `<<P(y)>>`
- 
- `simplify1 (parse @"true ==> exists x. P(x)")` returns `<<exists x. P(x)>>`
+                    <p>Performs a simplification routine but just at the first level of the input
+formula <code>fm</code>. It eliminates the basic propositional constants <code>False</code> and
+<code>True</code> and also the vacuous universal and existential quantiﬁers (those
+applied to variables that does not occur free in the body).</p>
+<p>Whenever <code>False</code> and <code>True</code> occur in combination, there is always a a
+tautology justifying the equivalence with a simpler formula, e.g. <code>False /\
+p &lt;=&gt; False</code>, <code>True \/ p &lt;=&gt; p</code>, <code>p ==&gt; False &lt;=&gt; ~p</code>. At he same time, it
+also eliminates double negations <code>~~p</code>.</p>
+<p>If x not in FV(p) then forall x. p and exists x. p are logically
+equivalent to p.</p>
+<p><code>simplify1 (parse @"exists x. P(y)")</code> returns <code>&lt;&lt;P(y)&gt;&gt;</code></p>
+<p><code>simplify1 (parse @"true ==&gt; exists x. P(x)")</code> returns <code>&lt;&lt;exists x. P(x)&gt;&gt;</code></p>
+
 
                   </p>
                 </div>
@@ -1199,13 +1186,12 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Core Skolemization function specifically intended to be used on NNF 
- formulas. 
- 
- It simply recursively descends the formula, Skolemizing any existential 
- formulas and then proceeding to subformulas using `skolem2` for binary 
- connectives.
+                    <p>Core Skolemization function specifically intended to be used on NNF
+formulas.</p>
+<p>It simply recursively descends the formula, Skolemizing any existential
+formulas and then proceeding to subformulas using <code>skolem2</code> for binary
+connectives.</p>
+
 
                   </p>
                 </div>
@@ -1320,10 +1306,10 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Auxiliary to `skolem` when dealing with binary connectives. 
- It updates the set of functions to avoid with new Skolem functions 
- introduced into one formula before tackling the other.
+                    <p>Auxiliary to <code>skolem</code> when dealing with binary connectives.
+It updates the set of functions to avoid with new Skolem functions
+introduced into one formula before tackling the other.</p>
+
 
                   </p>
                 </div>
@@ -1430,16 +1416,14 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Puts the input formula `fm` into skolem normal form 
- while also removing all universal quantifiers.
- 
- It puts the formula in prenex normal form, substitutes existential 
- quantifiers with skolem functions and also removes all universal 
- quantifiers.
- 
- `skolemize (parse @"forall x. exists y. R(x,y)")`
- returns `<<R(x,f_y(x))>>`
+                    <p>Puts the input formula <code>fm</code> into skolem normal form
+while also removing all universal quantifiers.</p>
+<p>It puts the formula in prenex normal form, substitutes existential
+quantifiers with skolem functions and also removes all universal
+quantifiers.</p>
+<p><code>skolemize (parse @"forall x. exists y. R(x,y)")</code>
+returns <code>&lt;&lt;R(x,f_y(x))&gt;&gt;</code></p>
+
 
                   </p>
                 </div>
@@ -1522,10 +1506,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Removes all universale quantifiers from the input formula `p`.
- 
- `specialize <<forall x y. P(x) /\ P(y)>>` returns `<<P(x) /\ P(y)>>`
+                    <p>Removes all universale quantifiers from the input formula <code>p</code>.</p>
+<p><code>specialize &lt;&lt;forall x y. P(x) /\ P(y)&gt;&gt;</code> returns <code>&lt;&lt;P(x) /\ P(y)&gt;&gt;</code></p>
+
 
                   </p>
                 </div>

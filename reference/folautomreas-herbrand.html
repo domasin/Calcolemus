@@ -87,8 +87,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Relation between FOL and propositional logic; Herbrand theorem.
+        <p>Relation between FOL and propositional logic; Herbrand theorem.</p>
+
 
       </p>
     </div>
@@ -160,20 +160,18 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L170-170" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L203-203" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Tests an input fol formula `fm` for validity based on the Davis-Putnam 
- procedure.
- 
- The initial formula is generalized, negated and Skolemized, then the 
- specific herbrand loop for the davis-putnam procedure is called to test for 
- the unsatisfiability of the transformed formula.
- 
- If the test terminates, it reports how many ground instances where tried.
+                    <p>Tests an input fol formula <code>fm</code> for validity based on the Davis-Putnam
+procedure.</p>
+<p>The initial formula is generalized, negated and Skolemized, then the
+specific herbrand loop for the davis-putnam procedure is called to test for
+the unsatisfiability of the transformed formula.</p>
+<p>If the test terminates, it reports how many ground instances where tried.</p>
+
 
                   </p>
                 </div>
@@ -251,16 +249,16 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L206-206" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L239-239" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Tests an input fol formula `fm` for validity based on the Davis-Putnam 
- procedure redefined to run through the list of possibly-needed 
- instances, putting them onto the list of needed ones only if 
- the other instances are satisfiable.
+                    <p>Tests an input fol formula <code>fm</code> for validity based on the Davis-Putnam
+procedure redefined to run through the list of possibly-needed
+instances, putting them onto the list of needed ones only if
+the other instances are satisfiable.</p>
+
 
                   </p>
                 </div>
@@ -326,17 +324,17 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L160-160" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L193-193" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- In the specific case of the davis-putnam procedure, the generic 
- herbrand loop `herbloop` is called with the initial formula `fl0` 
- and the ground instances so far `fl` are maintained in a CNF list 
- representation and each time we incorporate a new instance, we check for 
- unsatisfiability using `dpll`.
+                    <p>In the specific case of the davis-putnam procedure, the generic
+herbrand loop <code>herbloop</code> is called with the initial formula <code>fl0</code>
+and the ground instances so far <code>fl</code> are maintained in a CNF list
+representation and each time we incorporate a new instance, we check for
+unsatisfiability using <code>dpll</code>.</p>
+
 
                   </p>
                 </div>
@@ -409,41 +407,65 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cjs0
-                </span>
-                :
-                <code><span><span>'a&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ifn
-                </span>
-                :
-                <code><span>'a&#32;->&#32;'b</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cjs
-                </span>
-                :
-                <code><span><span>'b&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>'b&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Herbrand.dp_mfn``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Herbrand.dp_mfn``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L186-186" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <p>The modification function (specific to the Davis-Putnam procedure), that
+augments the ground instances with a new one.</p>
+
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cjs0
+                  </span>
+                  :
+                  <code><span><span>'a&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ifn
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cjs
+                  </span>
+                  :
+                  <code><span><span>'b&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>'b&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -521,15 +543,15 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L184-184" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L217-217" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Auxiliary function to redefine the Davis-Putnam procedure to run through 
- the list of possibly-needed instances `dunno`, putting them onto the list 
- of needed ones `need` only if the other instances are satisfiable.
+                    <p>Auxiliary function to redefine the Davis-Putnam procedure to run through
+the list of possibly-needed instances <code>dunno</code>, putting them onto the list
+of needed ones <code>need</code> only if the other instances are satisfiable.</p>
+
 
                   </p>
                 </div>
@@ -804,20 +826,18 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L142-142" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L145-145" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Tests an input fol formula `fm` for validity based on a gilmore-like 
- procedure.
- 
- The initial formula is generalized, negated and Skolemized, then the 
- specific herbrand loop for the gilmore procedure is called to test for 
- the unsatisfiability of the transformed formula.
- 
- If the test terminates, it reports how many ground instances where tried.
+                    <p>Tests an input fol formula <code>fm</code> for validity based on a gilmore-like
+procedure.</p>
+<p>The initial formula is generalized, negated and Skolemized, then the
+specific herbrand loop for the gilmore procedure is called to test for
+the unsatisfiability of the transformed formula.</p>
+<p>If the test terminates, it reports how many ground instances where tried.</p>
+
 
                   </p>
                 </div>
@@ -883,17 +903,17 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L129-129" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/herbrand.fs#L132-132" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- In the specific case of the gilmore procedure, the generic herbrand loop 
- `herbloop` is called with the initial formula `fl0` and the ground 
- instances so far `fl` are maintained in a DNF list representation and the 
- modification function applies the instantiation to the starting formula 
- and combines the DNFs by distribution.
+                    <p>In the specific case of the gilmore procedure, the generic herbrand loop
+<code>herbloop</code> is called with the initial formula <code>fl0</code> and the ground
+instances so far <code>fl</code> are maintained in a DNF list representation and the
+modification function applies the instantiation to the starting formula
+and combines the DNFs by distribution.</p>
+
 
                   </p>
                 </div>
@@ -982,17 +1002,13 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Enumerates all ground terms involving `n` functions.
- 
- If `n` = 0, it returns the constant terms, otherwise tries all possible 
- functions.
- 
- `groundterms [!|"0";!|"1"] ["f",1;"g",1] 0`
- returns `[<<|0|>>; <<|1|>>]`.
- 
- `groundterms [!|"0";!|"1"] ["f",1;"g",1] 1`
- returns `[<<|f(0)|>>; <<|f(1)|>>; <<|g(0)|>>; <<|g(1)|>>]`
+                    <p>Enumerates all ground terms involving <code>n</code> functions.</p>
+<p>If <code>n</code> = 0, it returns the constant terms, otherwise tries all possible
+functions.</p>
+<p><code>groundterms [0;1] [(f,1);(g,2)] 0</code> returns <code>[0,1]</code>.</p>
+<p><code>groundterms [0;1] [(f,1);(g,2)] 1</code> returns <code>[f(0);f(1);g(0,0);g(0,1);g...]</code></p>
+<p><code>groundterms [0;1] [(f,1);(g,1)] 2</code> returns <code>[f(f(0));...;f(g(0,0));...]</code></p>
+
 
                   </p>
                 </div>
@@ -1115,13 +1131,10 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- generates all `m`-tuples of ground terms involving (in total) `n` functions.
- 
- `groundtuples [!|"0";] ["f",1] 1 1` returns `[[<<|f(0)|>>]]`
- 
- `groundtuples [!|"0";] ["f",1] 1 2` returns 
- `[[<<|0|>>; <<|f(0)|>>]; [<<|f(0)|>>; <<|0|>>]]`
+                    <p>generates all <code>m</code>-tuples of ground terms involving (in total) <code>n</code> functions.</p>
+<p><code>groundtuples [0] [(f,1)] 1 1</code> returns <code>[[f(0)]]</code></p>
+<p><code>groundtuples [0] [(f,1)] 1 2</code> returns <code>[[0;f(0)]; [f(0);0]]</code></p>
+
 
                   </p>
                 </div>
@@ -1228,8 +1241,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Gets the constants for Herbrand base, adding nullary one if necessary. 
+                    <p>Gets the constants for Herbrand base, adding nullary one if necessary.</p>
+
 
                   </p>
                 </div>
@@ -1282,9 +1295,6 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-folmodule-fol.html">fol</a>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-folmodule-fol.html">fol</a>&gt;</span></span>)</span>&#32;->&#32;<span>'b&#32;list</span>&#32;->&#32;<span>'b&#32;list</span></span></code>
-                       - 
-                      The modification function that augments the ground 
- instances with a new instance.
                     </span>
                     <br/>
                     <span>
@@ -1293,8 +1303,6 @@
                       </b>
                       :
                       <code><span><span>'b&#32;list</span>&#32;->&#32;bool</span></code>
-                       - 
-                      The satisfiability test to be done.
                     </span>
                     <br/>
                     <span>
@@ -1303,9 +1311,6 @@
                       </b>
                       :
                       <code>'a</code>
-                       - 
-                      The initial formula in some transformed list 
- representation.
                     </span>
                     <br/>
                     <span>
@@ -1314,8 +1319,6 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-folmodule-term.html">term</a>&#32;list</span></code>
-                       - 
-                      The constant terms of the formula.
                     </span>
                     <br/>
                     <span>
@@ -1324,8 +1327,6 @@
                       </b>
                       :
                       <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
-                       - 
-                      The functions (name, arity) of the formula.
                     </span>
                     <br/>
                     <span>
@@ -1334,8 +1335,6 @@
                       </b>
                       :
                       <code><span>string&#32;list</span></code>
-                       - 
-                      The free variables of the formula.
                     </span>
                     <br/>
                     <span>
@@ -1344,8 +1343,6 @@
                       </b>
                       :
                       <code>int</code>
-                       - 
-                      The next level of the enumeration to generate.
                     </span>
                     <br/>
                     <span>
@@ -1354,8 +1351,6 @@
                       </b>
                       :
                       <code><span>'b&#32;list</span></code>
-                       - 
-                      The set of ground instances so far.
                     </span>
                     <br/>
                     <span>
@@ -1364,8 +1359,6 @@
                       </b>
                       :
                       <code><span><span><a href="/FolAutomReas/reference/folautomreas-folmodule-term.html">term</a>&#32;list</span>&#32;list</span></code>
-                       - 
-                      The instances tried.
                     </span>
                     <br/>
                     <span>
@@ -1374,9 +1367,6 @@
                       </b>
                       :
                       <code><span><span><a href="/FolAutomReas/reference/folautomreas-folmodule-term.html">term</a>&#32;list</span>&#32;list</span></code>
-                       - 
-                      The remaining ground instances in the current level.
- 
                     </span>
                     <br/>
                   </ul>
@@ -1407,13 +1397,12 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- A generic function to be used with different 'herbrand procedures'.
- 
- It tests larger and larger conjunctions of ground instances for 
- unsatisfiability, iterating modifier `mfn` over ground terms 
- till `tfn` fails. 
- 
+                    <p>A generic function to be used with different 'herbrand procedures'.</p>
+<p>It tests larger and larger conjunctions of ground instances for
+unsatisfiability, iterating modifier <code>mfn</code> over ground terms
+till <code>tfn</code> fails.</p>
+
+
                   </p>
                 </div>
               </summary>
@@ -1425,12 +1414,7 @@
                   :
                   <code><span>'a&#32;->&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-folmodule-fol.html">fol</a>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-folmodule-fol.html">fol</a>&gt;</span></span>)</span>&#32;->&#32;<span>'b&#32;list</span>&#32;->&#32;<span>'b&#32;list</span></span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The modification function that augments the ground 
- instances with a new instance.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     tfn
@@ -1438,11 +1422,7 @@
                   :
                   <code><span><span>'b&#32;list</span>&#32;->&#32;bool</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The satisfiability test to be done.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     fl0
@@ -1450,12 +1430,7 @@
                   :
                   <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The initial formula in some transformed list 
- representation.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     cntms
@@ -1463,11 +1438,7 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-folmodule-term.html">term</a>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The constant terms of the formula.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     funcs
@@ -1475,11 +1446,7 @@
                   :
                   <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The functions (name, arity) of the formula.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     fvs
@@ -1487,11 +1454,7 @@
                   :
                   <code><span>string&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The free variables of the formula.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     n
@@ -1499,11 +1462,7 @@
                   :
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The next level of the enumeration to generate.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     fl
@@ -1511,11 +1470,7 @@
                   :
                   <code><span>'b&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The set of ground instances so far.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     tried
@@ -1523,11 +1478,7 @@
                   :
                   <code><span><span><a href="/FolAutomReas/reference/folautomreas-folmodule-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The instances tried.
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     tuples
@@ -1535,12 +1486,7 @@
                   :
                   <code><span><span><a href="/FolAutomReas/reference/folautomreas-folmodule-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The remaining ground instances in the current level.
- 
-                  </p>
-                </dd>
+                <dd class="fsdocs-param-docs"></dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1618,16 +1564,14 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- A variant of the notion of propositional evaluation `eval` where the 
- input propositional valuation `d` maps atomic formulas themselves to 
- truth values.
- 
- It determines if the input formula `fm` holds in the sense of propositional 
- logic for this notion of valuation.
- 
- `pholds (function Atom (R ("P", [Var "x"])) -> true) (parse "P(x)")`
- returns `true`
+                    <p>A variant of the notion of propositional evaluation <code>eval</code> where the
+input propositional valuation <code>d</code> maps atomic formulas themselves to
+truth values.</p>
+<p>It determines if the input formula <code>fm</code> holds in the sense of propositional
+logic for this notion of valuation.</p>
+<p><code>pholds (function Atom (R ("P", [Var "x"])) -&gt; true) (parse "P(x)")</code>
+returns <code>true</code></p>
+
 
                   </p>
                 </div>

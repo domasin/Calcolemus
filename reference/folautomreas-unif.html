@@ -87,8 +87,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Unification for first order terms. 
+        <p>Unification for first order terms.</p>
+
 
       </p>
     </div>
@@ -112,7 +112,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '785', 785)" onmouseover="showTip(event, '785', 785)">
+              <code onmouseout="hideTip(event, '784', 784)" onmouseover="showTip(event, '784', 784)">
                 <p>
                   <a id="fullunify">
                     <a href="#fullunify">
@@ -121,7 +121,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="785">
+              <div class="fsdocs-tip" id="784">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fullunify&#32;<span>eqs</span></span></code>
@@ -160,16 +160,14 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L79-79" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Unification reaching a final solved form (often this isn't needed).
- 
- If the input list of term pairs `eqs` is unifiable, it returns
- one instantiation that is an MGU for it. Otherwise, it fails.
+                    <p>Returns an MGU for the input list of term-term pairs eqs, if it is
+actually unifiable.</p>
+
 
                   </p>
                 </div>
@@ -199,7 +197,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '786', 786)" onmouseover="showTip(event, '786', 786)">
+              <code onmouseout="hideTip(event, '785', 785)" onmouseover="showTip(event, '785', 785)">
                 <p>
                   <a id="istriv">
                     <a href="#istriv">
@@ -208,7 +206,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="786">
+              <div class="fsdocs-tip" id="785">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>istriv&#32;<span>env&#32;x&#32;t</span></span></code>
@@ -263,15 +261,14 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Checks if the assignment `x |-> t` is cyclic and in this case fails 
- unless `x` = `t` in which case it returns true, indicating that the 
- assignment is 'trivial' 
+                    <p>Checks if the assignment (x \mapsto t), added to env,
+is trivial or cyclic.</p>
+
 
                   </p>
                 </div>
@@ -317,7 +314,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '787', 787)" onmouseover="showTip(event, '787', 787)">
+              <code onmouseout="hideTip(event, '786', 786)" onmouseover="showTip(event, '786', 786)">
                 <p>
                   <a id="solve">
                     <a href="#solve">
@@ -326,7 +323,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="787">
+              <div class="fsdocs-tip" id="786">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>solve&#32;<span>env</span></span></code>
@@ -365,14 +362,15 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L70-70" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Returns one Most General Unifier (MGU) of an `env` result from `unify` 
- to reach a 'fully solved form.
+                    <p>Removes useless mappings from an environment of variable-term
+mappings env returned by ,
+giving a most general unifier (MGU).</p>
+
 
                   </p>
                 </div>
@@ -402,7 +400,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '788', 788)" onmouseover="showTip(event, '788', 788)">
+              <code onmouseout="hideTip(event, '787', 787)" onmouseover="showTip(event, '787', 787)">
                 <p>
                   <a id="unify">
                     <a href="#unify">
@@ -411,7 +409,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="788">
+              <div class="fsdocs-tip" id="787">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>unify&#32;<span>env&#32;eqs</span></span></code>
@@ -458,25 +456,13 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Main unification procedure.
- 
- It applies some transformations to `eqs` (a list of term�term pairs 
- to be unified) and incorporates the resulting variable�term mappings 
- into `env` (a finite partial function from variables to terms).
- 
- `env` might contain mappings that could map a variable to a term 
- containing other variables that are themselves assigned: for example 
- `x |-> y` and `y |-> z` instead of just `x |-> z` directly. The call 
- to `istriv` guarantees that there is no cycle or detects it and stops 
- immediately the unification process with a failure.
- 
- It returns the final resulting variable�term mappings.
+                    <p>Main unification procedure.</p>
+
 
                   </p>
                 </div>
@@ -514,7 +500,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '789', 789)" onmouseover="showTip(event, '789', 789)">
+              <code onmouseout="hideTip(event, '788', 788)" onmouseover="showTip(event, '788', 788)">
                 <p>
                   <a id="unify_and_apply">
                     <a href="#unify_and_apply">
@@ -523,7 +509,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="789">
+              <div class="fsdocs-tip" id="788">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>unify_and_apply&#32;<span>eqs</span></span></code>
@@ -562,13 +548,14 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L82-82" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/unif.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Unifier for a pair of terms
+                    <p>Finds an MGU for a list of term-term pairs eqs, if it is
+unifiable, and applies the instantiation to give the unified result.</p>
+
 
                   </p>
                 </div>

@@ -87,8 +87,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Functions for sorting
+        <p>Functions for sorting</p>
+
 
       </p>
     </div>
@@ -112,7 +112,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '859', 859)" onmouseover="showTip(event, '859', 859)">
+              <code onmouseout="hideTip(event, '858', 858)" onmouseover="showTip(event, '858', 858)">
                 <p>
                   <a id="decreasing">
                     <a href="#decreasing">
@@ -121,7 +121,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="859">
+              <div class="fsdocs-tip" id="858">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>decreasing&#32;<span>f&#32;x&#32;y</span></span></code>
@@ -181,10 +181,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- decreasing predicate to use with "sort"
- 
- decreasing List.length [1;2] [1] returns true
+                    <p>decreasing predicate to use with "sort"</p>
+<p>decreasing List.length [1;2] [1] returns true</p>
+
 
                   </p>
                 </div>
@@ -230,7 +229,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '860', 860)" onmouseover="showTip(event, '860', 860)">
+              <code onmouseout="hideTip(event, '859', 859)" onmouseover="showTip(event, '859', 859)">
                 <p>
                   <a id="increasing">
                     <a href="#increasing">
@@ -239,7 +238,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="860">
+              <div class="fsdocs-tip" id="859">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>increasing&#32;<span>f&#32;x&#32;y</span></span></code>
@@ -299,10 +298,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- increasing predicate to use with "sort"
- 
- increasing List.length [1] [1;2] returns true`
+                    <p>increasing predicate to use with "sort"</p>
+<p>increasing List.length [1] [1;2] returns true`</p>
+
 
                   </p>
                 </div>
@@ -348,7 +346,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '861', 861)" onmouseover="showTip(event, '861', 861)">
+              <code onmouseout="hideTip(event, '860', 860)" onmouseover="showTip(event, '860', 860)">
                 <p>
                   <a id="merge">
                     <a href="#merge">
@@ -357,7 +355,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="861">
+              <div class="fsdocs-tip" id="860">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>merge&#32;<span>comparer&#32;l1&#32;l2</span></span></code>
@@ -417,16 +415,14 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Merges together two sorted lists with respect to a given ordering.
- 
- If two lists l1 and l2 are sorted with respect to the given ordering 
- comparer, then merge ord l1 l2 will merge them into a sorted list of all 
- the elements. The merge keeps any duplicates; it is not a set operation.
- merge (<) [1;3;7] [2;4;5;6] returns [1;2;3;4;5;6;7]
- 
- Never fails, but if the lists are not appropriately sorted the results 
- will not in general be correct.
+                    <p>Merges together two sorted lists with respect to a given ordering.</p>
+<p>If two lists l1 and l2 are sorted with respect to the given ordering
+comparer, then merge ord l1 l2 will merge them into a sorted list of all
+the elements. The merge keeps any duplicates; it is not a set operation.
+merge (&lt;) [1;3;7] [2;4;5;6] returns [1;2;3;4;5;6;7]</p>
+<p>Never fails, but if the lists are not appropriately sorted the results
+will not in general be correct.</p>
+
 
                   </p>
                 </div>
@@ -472,7 +468,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '862', 862)" onmouseover="showTip(event, '862', 862)">
+              <code onmouseout="hideTip(event, '861', 861)" onmouseover="showTip(event, '861', 861)">
                 <p>
                   <a id="sort">
                     <a href="#sort">
@@ -481,7 +477,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="862">
+              <div class="fsdocs-tip" id="861">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>sort&#32;<span>ord</span></span></code>
@@ -525,33 +521,18 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Sorts a list using a given transitive ‘ordering’ relation.
- 
- The call sort op list where op is a transitive relation on the elements of 
- list, will topologically sort the list, i.e. will permute it such that if x 
- op y but not y op x then x will occur to the left of y in the sorted list. 
- In particular if op is a total order, the list will be sorted in the usual 
- sense of the word
- 
- Never fails
- 
+                    <p>Sorts a list using a given transitive ‘ordering’ relation.</p>
+<p>The call sort op list where op is a transitive relation on the elements of
+list, will topologically sort the list, i.e. will permute it such that if x
+op y but not y op x then x will occur to the left of y in the sorted list.
+In particular if op is a total order, the list will be sorted in the usual
+sense of the word</p>
+<p>Never fails</p>
+
+
                   </p>
                 </div>
               </summary>
-              <p class="fsdocs-remarks">
-                
- This function uses the Quicksort algorithm internally, which has good 
- typical-case performance and will sort topologically. However, its 
- worst-case performance is quadratic. By contrast mergesort gives a good 
- worst-case performance but requires a total order. Note that any 
- comparison-based topological sorting function must have quadratic behaviour 
- in the worst case. For an n-element list, there are n(n-1)/2 pairs. For any 
- topological sorting algorithm, we can make sure the first n(n-1)/2-1 pairs 
- compared are unrelated in either direction, while still leaving the option 
- of choosing for the last pair (a,b) either 
- 
-              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
