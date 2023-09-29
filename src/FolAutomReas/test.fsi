@@ -2060,66 +2060,7 @@ val davisputnam002: fm: Formulas.formula<Fol.fol> -> int
 
 
 
-module FolAutomReas.Tableaux
 
-/// Unifies an input pair of litterals.
-/// 
-/// It uses `env` as an accumulator of the environment of the variable 
-/// assignments, maintained globally and represented as a cycle-free finite 
-/// partial function just as in `unify`.
-/// 
-/// It also handles the degenerated case `False,False` because it will 
-/// be used later.
-val unify_literals:
-  env: Lib.FPF.func<string,Fol.term> ->
-    Formulas.formula<Fol.fol> * Formulas.formula<Fol.fol> ->
-      Lib.FPF.func<string,Fol.term>
-
-/// Unifies complementary literals `(p, q)`.   
-val unify_complements:
-  env: Lib.FPF.func<string,Fol.term> ->
-    p: Formulas.formula<Fol.fol> * q: Formulas.formula<Fol.fol> ->
-      Lib.FPF.func<string,Fol.term>
-
-/// Unifies and refutes a list of disjuncts `dsj`, each member of which 
-/// being a list of implicitly conjoined litterals.
-val unify_refute:
-  djs: Formulas.formula<Fol.fol> list list ->
-    acc: Lib.FPF.func<string,Fol.term> -> Lib.FPF.func<string,Fol.term>
-
-/// <summary>
-/// Main loop for prawitz procedure.
-/// </summary>
-/// <param name="djs0">The initial formula in DNF uninstantiated.</param>
-/// <param name="fvs">The set of free variables in the initial formula.</param>
-/// <param name="djs">Accumulator for the substitution instances.</param>
-/// <param name="n">A counter to generate fresh variable names.</param>
-/// <returns>
-/// The final instantiation together with the number of instances tried.
-/// </returns>
-val prawitz_loop:
-  djs0: Formulas.formula<Fol.fol> list list ->
-    fvs: string list ->
-    djs: Formulas.formula<Fol.fol> list list ->
-    n: int -> Lib.FPF.func<string,Fol.term> * int
-
-/// Tests an input fol formula `fm` for validity based on a Prawitz-like 
-/// procedure.
-val prawitz: fm: Formulas.formula<Fol.fol> -> int
-
-val tableau:
-  fms: Formulas.formula<Fol.fol> list * lits: Formulas.formula<Fol.fol> list *
-  n: int ->
-    cont: (Lib.FPF.func<string,Fol.term> * int -> 'a) ->
-    env: Lib.FPF.func<string,Fol.term> * k: int -> 'a
-
-val deepen: f: (int -> 'a) -> n: int -> 'a
-
-val tabrefute: fms: Formulas.formula<Fol.fol> list -> int
-
-val tab: fm: Formulas.formula<Fol.fol> -> int
-
-val splittab: fm: Formulas.formula<Fol.fol> -> int list
 
 
 module FolAutomReas.Resolution
