@@ -72,7 +72,7 @@
     <Compile Include="cooper.fs" />
     <Compile Include="complex.fs" />
     <Compile Include="real.fs" />
-    <Compile Include="grobner.f.fs" />
+    <Compile Include="grobner.fs" />
     <Compile Include="geom.fs" />
     <Compile Include="interpolation.fs" />
     <Compile Include="combining.fs" />

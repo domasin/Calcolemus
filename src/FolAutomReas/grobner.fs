@@ -1,4 +1,4 @@
-﻿// ========================================================================= //
+// ========================================================================= //
 // Copyright (c) 2003-2007, John Harrison.                                   //
 // Copyright (c) 2012 Eric Taucher, Jack Pappas, Anh-Dung Phan               //
 // (See "LICENSE.txt" for details.)                                          //
@@ -8,38 +8,16 @@
 // Grobner basis algorithm.                                                  //
 // ========================================================================= //
 
-module FSharpx.Books.AutomatedReasoning.grobner
+module FolAutomReas.Grobner
 
-open FSharp.Compatibility.OCaml.Num
+open FolAutomReas.Lib
 
-open intro
-open formulas
-open prop
-open defcnf
-open dp
-open stal
-open bdd
-open fol
-open skolem
-open herbrand
-open unif
-open tableaux
-open resolution
-open prolog
-open meson
-open skolems
-open equal
-open cong
-open rewrite
-open order
-open completion
-open eqelim
-open paramodulation
-open decidable
-open qelim
-open cooper
-open complex
-open real
+open Formulas
+open Prop
+open Fol
+open Skolem
+open Order
+open Cooper
 
 // pg. 384
 // ------------------------------------------------------------------------- //
