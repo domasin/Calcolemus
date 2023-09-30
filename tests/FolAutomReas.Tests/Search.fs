@@ -1,4 +1,4 @@
-module Tests.Search
+module FolAutomReas.Tests.Search
 
 open Xunit
 open FsUnit.Xunit

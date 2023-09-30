@@ -1,4 +1,4 @@
-module Tests.Herbrand
+module FolAutomReas.Tests.Herbrand
 
 open Xunit
 open FsUnit.Xunit

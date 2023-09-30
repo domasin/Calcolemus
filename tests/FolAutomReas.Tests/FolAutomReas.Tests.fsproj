@@ -12,6 +12,7 @@
     <Compile Include="Repetitions.fs" />
     <Compile Include="Search.fs" />
     <Compile Include="SetOperations.fs" />
+    <Compile Include="FPF.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fs" />

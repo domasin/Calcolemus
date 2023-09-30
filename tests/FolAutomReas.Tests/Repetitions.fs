@@ -1,4 +1,4 @@
-module Tests.Repetitions
+module FolAutomReas.Tests.Repetitions
 
 open Xunit
 open FsUnit.Xunit

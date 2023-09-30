@@ -1,4 +1,4 @@
-module Tests.AssociationLists
+module FolAutomReas.Tests.AssociationLists
 
 open Xunit
 open FsUnit.Xunit

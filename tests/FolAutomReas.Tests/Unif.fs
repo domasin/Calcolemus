@@ -1,4 +1,4 @@
-module Tests.Unif
+module FolAutomReas.Tests.Unif
 
 open Xunit
 open FsUnit.Xunit

@@ -1,4 +1,4 @@
-module Tests.SetOperations
+module FolAutomReas.Tests.SetOperations
 
 open Xunit
 open FsUnit.Xunit

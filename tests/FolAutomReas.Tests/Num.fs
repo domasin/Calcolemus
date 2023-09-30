@@ -1,4 +1,4 @@
-module Tests.Num
+module FolAutomReas.Tests.Num
 
 open Xunit
 open FsUnit.Xunit

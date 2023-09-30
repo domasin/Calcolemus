@@ -1,4 +1,4 @@
-module Tests.Sorting
+module FolAutomReas.Tests.Sorting
 
 open Xunit
 open FsUnit.Xunit

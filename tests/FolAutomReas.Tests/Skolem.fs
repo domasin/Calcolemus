@@ -1,4 +1,4 @@
-module Tests.Skolem
+module FolAutomReas.Tests.Skolem
 
 open Xunit
 open FsUnit.Xunit

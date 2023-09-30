@@ -1,4 +1,4 @@
-module Tests.ToDebug
+module FolAutomReas.Tests.ToDebug
 
 open Xunit
 open FsUnit.Xunit

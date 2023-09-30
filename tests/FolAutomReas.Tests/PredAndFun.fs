@@ -1,4 +1,4 @@
-module Tests.PredAndFun
+module FolAutomReas.Tests.PredAndFun
 
 open Xunit
 open FsUnit.Xunit

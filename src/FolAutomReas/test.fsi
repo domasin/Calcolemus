@@ -1,7 +1,4 @@
-
-
 namespace FSharp
-
 
 module FolAutomReas.Lib.Num
 
@@ -442,89 +439,7 @@ type func<'a,'b> =
     | Leaf of int * ('a * 'b) list
     | Branch of int * int * func<'a,'b> * func<'a,'b>
 
-val string_of_patricia_tree_with_level: pt: func<'a,'b> -> level: int -> string
 
-val string_of_patricia_tree: pt: func<'a,'b> -> string
-
-val sprint_patricia_tree: pt: func<'a,'b> -> string
-
-val print_patricia_tree: pt: func<'a,'b> -> unit
-
-/// The undefined function.
-val undefined: func<'a,'b>
-
-/// Checks if the function is completely undefined.
-/// In case of equality comparison worries, better use this. 
-val is_undefined: _arg1: func<'a,'b> -> bool
-
-/// Operation for `func` analogous to `map` for lists.
-val mapf: (('a -> 'b) -> func<'c,'a> -> func<'c,'b>)
-
-/// Operation for `func` analogous to `foldl` for lists.
-val foldl: (('a -> 'b -> 'c -> 'a) -> 'a -> func<'b,'c> -> 'a)
-
-/// Operation for `func` analogous to `foldr` for lists.
-val foldr: (('a -> 'b -> 'c -> 'c) -> func<'a,'b> -> 'c -> 'c)
-
-/// Graph of function `f`.
-val graph:
-  f: func<'a,'b> -> ('a * 'b) list when 'a: comparison and 'b: comparison
-
-/// Domain of function `f`.
-val dom: f: func<'a,'b> -> 'a list when 'a: comparison
-
-/// Range of function `f`.
-val ran: f: func<'a,'b> -> 'b list when 'b: comparison
-
-val applyd: (func<'a,'b> -> ('a -> 'b) -> 'a -> 'b) when 'a: comparison
-
-val apply: f: func<'a,'b> -> ('a -> 'b) when 'a: comparison
-
-val tryapplyd: f: func<'a,'b> -> a: 'a -> d: 'b -> 'b when 'a: comparison
-
-val tryapplyl: f: func<'a,'b list> -> x: 'a -> 'b list when 'a: comparison
-
-/// Checks if the function `f` is defined for the argument `x`.
-val defined: f: func<'a,'b> -> x: 'a -> bool when 'a: comparison
-
-/// Undefines the function for the given argument.
-val undefine:
-  ('a -> func<'a,'b> -> func<'a,'b>) when 'a: comparison and 'b: equality
-
-/// Updates the function with a new mapping.
-val (|->) : ('a -> 'b -> func<'a,'b> -> func<'a,'b>) when 'a: comparison
-
-/// Updates the function with a new mapping.
-val combine:
-  (('c -> 'c -> 'c) -> ('c -> bool) -> func<'d,'c> -> func<'d,'c> -> func<'d,'c>)
-    when 'c: equality and 'd: comparison
-
-/// Creates a new FPF defined only for the value `x` and maps it to `y`.
-val (|=>) : x: 'a -> y: 'b -> func<'a,'b> when 'a: comparison
-
-/// Creates a new FPF from lists `xs` and `ys` representing its domain 
-/// and range. It associates argument to value based on the order of items 
-/// in the two lists.
-val fpf: xs: 'a list -> ys: 'b list -> func<'a,'b> when 'a: comparison
-
-val choose: t: func<'a,'b> -> 'a * 'b
-
-val valmod: a: 'a -> y: 'b -> f: ('a -> 'b) -> x: 'a -> 'b when 'a: equality
-
-/// In a non-functional world you can create a list of values and
-/// initialize the list signifying nothing. e.g. []
-/// Then when you process the list it could return without exception
-/// or if you wanted the processing of the list to return with
-/// exception when there is nothing in the list, you would check
-/// the list for nothing and return an exception.
-///
-/// In a functional world you can create a list of functions and
-/// initialize the list with a function causing an exception given that
-/// the items is the list are evaluated as functions.
-/// 
-/// undef is that function which is used to initialize a list to
-/// cause an exception if the list is empty when evaluated.
-val undef: x: 'a -> 'b
 
 
 module FolAutomReas.Lib.UnionFindAlgorithm

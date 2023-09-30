@@ -1,4 +1,4 @@
-module Tests.ListFunctions
+module FolAutomReas.Tests.ListFunctions
 
 open Xunit
 open FsUnit.Xunit

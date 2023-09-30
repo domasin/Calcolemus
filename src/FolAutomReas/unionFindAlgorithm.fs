@@ -23,21 +23,6 @@ type pnode<'a> =
 // Type for use with union-find algorithm 
 // HOL Light: termequivalence
 type partition<'a> = Partition of func<'a, pnode<'a>>
-
-// EGT - print Partition
-let rec string_of_partition par =
-    let rec string_of_partition_interal par level =
-        match par with
-        | Partition x -> 
-            let pt = string_of_patricia_tree_with_level x 1
-            "Partition\n" + pt
-    string_of_partition_interal par 0
-
-let sprint_partition pt =
-    string_of_partition pt
-
-let print_partition pt =
-    printfn "%O" (sprint_partition pt) |> ignore
     
 // Not in book
 // Support function for use with union-find algorithm 

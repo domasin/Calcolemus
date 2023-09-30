@@ -1,4 +1,4 @@
-module Tests.Tableaux
+module FolAutomReas.Tests.Tableaux
 
 open Xunit
 open FsUnit.Xunit
