@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <UsesMarkdownComments>true</UsesMarkdownComments>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <Authors>Domenico Masini</Authors>
@@ -25,8 +24,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="" />
-    <None Include="LICENSE.txt" Pack="true" PackagePath="" />
     <Compile Include="num.fs" />
     <Compile Include="predAndFun.fs" />
     <Compile Include="listFunctions.fs" />
