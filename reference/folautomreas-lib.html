@@ -6,11 +6,15 @@
     <title>FolAutomReas.Lib</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,18 +63,26 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2 id="folautomreas-lib">
     FolAutomReas.Lib Namespace
   </h2>
-  <div class="fsdocs-xmldoc"></div>
+  <div class="fsdocs-xmldoc">
+    <p>
+      
+ Misc library functions to set up a nice environment. 
+ 
+    </p>
+  </div>
   <table class="table outer-list fsdocs-entity-list">
     <thead>
       <tr>
@@ -111,8 +120,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Association Lists</p>
-
+              
+ Association Lists
 
             </p>
           </div>
@@ -143,8 +152,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Polymorphic finite partial functions via Patricia trees.</p>
-
+              
+ Polymorphic finite partial functions via Patricia trees. 
 
             </p>
           </div>
@@ -175,8 +184,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Handy functions for list manipulation</p>
-
+              
+ Handy functions for list manipulation
 
             </p>
           </div>
@@ -237,9 +246,9 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Functions over predicates and functions.</p>
-
-
+              
+ Functions over predicates and functions.
+ 
             </p>
           </div>
         </td>
@@ -269,8 +278,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Functions to handle repetitions</p>
-
+              
+ Functions to handle repetitions
 
             </p>
           </div>
@@ -301,8 +310,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Functions to handle searching</p>
-
+              
+ Functions to handle searching
 
             </p>
           </div>
@@ -333,8 +342,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Set operations on ordered lists.</p>
-
+              
+ Set operations on ordered lists.
 
             </p>
           </div>
@@ -365,8 +374,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Functions for sorting</p>
-
+              
+ Functions for sorting
 
             </p>
           </div>
@@ -397,8 +406,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Explosion and implosion of strings</p>
-
+              
+ Explosion and implosion of strings
 
             </p>
           </div>
@@ -429,8 +438,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Timing; useful for documentation but not logically necessary.</p>
-
+              
+ Timing; useful for documentation but not logically necessary. 
 
             </p>
           </div>
@@ -461,8 +470,8 @@
               <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              <p>Union-find algorithm.</p>
-
+              
+ Union-find algorithm.
 
             </p>
           </div>
@@ -471,19 +480,17 @@
     </tbody>
   </table>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>

@@ -6,11 +6,15 @@
     <title>Fol (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,14 +63,16 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2>
     Fol Module
   </h2>
@@ -87,9 +90,9 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        <p>Basic stuff for first order logic: datatype, parsing and printing,
-semantics, syntax operations and substitution.</p>
-
+        
+ Basic stuff for first order logic: datatype, parsing and printing, 
+ semantics, syntax operations and substitution.
 
       </p>
     </div>
@@ -135,8 +138,8 @@ semantics, syntax operations and substitution.</p>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                <p>Type for atomic first order formulas.</p>
-
+                
+ Type for atomic first order formulas.
 
               </p>
             </div>
@@ -167,8 +170,8 @@ semantics, syntax operations and substitution.</p>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                <p>Type for first order terms.</p>
-
+                
+ Type for first order terms.
 
               </p>
             </div>
@@ -237,8 +240,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>A convenient operator to call <code>parset</code>.</p>
-
+                    
+ A convenient operator to call `parset`.
 
                   </p>
                 </div>
@@ -299,8 +302,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>A convenient operator to call <code>parse</code>.</p>
-
+                    
+ A convenient operator to call `parse`.
 
                   </p>
                 </div>
@@ -361,8 +364,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>An interpretation à la Boole.</p>
-
+                    
+ An interpretation à la Boole.
 
                   </p>
                 </div>
@@ -446,8 +449,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Printer of atomic fol formulas with TextWriter.</p>
-
+                    
+ Printer of atomic fol formulas with TextWriter.
 
                   </p>
                 </div>
@@ -548,8 +551,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Prints a function and its arguments.</p>
-
+                    
+ Prints a function and its arguments.
 
                   </p>
                 </div>
@@ -639,8 +642,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Printer of fol formulas with TextWriter.</p>
-
+                    
+ Printer of fol formulas with TextWriter.
 
                   </p>
                 </div>
@@ -766,8 +769,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Prints an infix operation.</p>
-
+                    
+ Prints an infix operation.
 
                   </p>
                 </div>
@@ -900,8 +903,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Prints terms.</p>
-
+                    
+ Prints terms.
 
                   </p>
                 </div>
@@ -994,8 +997,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Term printer with TextWriter.</p>
-
+                    
+ Term printer with TextWriter.
 
                   </p>
                 </div>
@@ -1077,8 +1080,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the free variables in the FOL formula <code>fm</code>.</p>
-
+                    
+ Returns the free variables in the FOL formula `fm`.
 
                   </p>
                 </div>
@@ -1161,8 +1164,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the free variables in the term <code>tm</code>.</p>
-
+                    
+ Returns the free variables in the term `tm`.
 
                   </p>
                 </div>
@@ -1245,8 +1248,8 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Universal closure of a formula.</p>
-
+                    
+ Universal closure of a formula.
 
                   </p>
                 </div>
@@ -1361,9 +1364,9 @@ semantics, syntax operations and substitution.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Evaluates a fol formula <code>fm</code> in the interpretation specified
-by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the variables valuation <code>v</code>.</p>
-
+                    
+ Evaluates a fol formula `fm` in the interpretation specified
+ by the triplet `domain`, `func`, `pred` and the variables valuation `v`.
 
                   </p>
                 </div>
@@ -1478,8 +1481,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Checks if a string is a constant term. Only numerals and the empty list constant "nil" are considered as constants.</p>
-
+                    
+ Checks if a string is a constant term. Only numerals and the empty list constant "nil" are considered as constants.
 
                   </p>
                 </div>
@@ -1562,8 +1565,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>An arithmetic modulo <code>n</code> interpretation.</p>
-
+                    
+ An arithmetic modulo `n` interpretation.
 
                   </p>
                 </div>
@@ -1646,8 +1649,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Applies a subfunction <code>f</code> to the top <em>terms</em>.</p>
-
+                    
+ Applies a subfunction `f` to the top *terms*.
 
                   </p>
                 </div>
@@ -1718,8 +1721,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses a fol formula</p>
-
+                    
+ Parses a fol formula
 
                   </p>
                 </div>
@@ -1800,8 +1803,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses atomic fol formulas.</p>
-
+                    
+ Parses atomic fol formulas.
 
                   </p>
                 </div>
@@ -1900,8 +1903,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses an atomic term.</p>
-
+                    
+ Parses an atomic term.
 
                   </p>
                 </div>
@@ -2000,8 +2003,8 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>A special recognizer for 'inﬁx' atomic formulas like s &lt; t.</p>
-
+                    
+ A special recognizer for 'inﬁx' atomic formulas like s < t.
 
                   </p>
                 </div>
@@ -2100,15 +2103,17 @@ by the triplet <code>domain</code>, <code>func</code>, <code>pred</code> and the
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Recursive descent parser of terms built up from an atomic term parser
-by cascading instances of parse infix in order of precedence, following the
-conventions with '^' coming highest and '::' lowest.</p>
-<p>It takes a list of string tokens <code>inp</code> and returns a pair consisting of the
-parsed term tree together with any unparsed input.</p>
-<p>In order to check whether a name is within the scope of a quantiﬁer, it
-takes an additional argument <code>vs</code> which is the set of bound variables in
-the current scope.</p>
-
+                    
+ Recursive descent parser of terms built up from an atomic term parser 
+ by cascading instances of parse infix in order of precedence, following the 
+ conventions with '^' coming highest and '::' lowest.
+ 
+ It takes a list of string tokens `inp` and returns a pair consisting of the 
+ parsed term tree together with any unparsed input. 
+ 
+ In order to check whether a name is within the scope of a quantiﬁer, it 
+ takes an additional argument `vs` which is the set of bound variables in 
+ the current scope.
 
                   </p>
                 </div>
@@ -2187,8 +2192,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses a string into a term.</p>
-
+                    
+ Parses a string into a term.
 
                   </p>
                 </div>
@@ -2267,8 +2272,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Printer of atomic fol formulas.</p>
-
+                    
+ Printer of atomic fol formulas.
 
                   </p>
                 </div>
@@ -2348,8 +2353,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Printer of fol formulas.</p>
-
+                    
+ Printer of fol formulas.
 
                   </p>
                 </div>
@@ -2421,8 +2426,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Term printer.</p>
-
+                    
+ Term printer.
 
                   </p>
                 </div>
@@ -2507,8 +2512,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the concrete syntax representation of an atom.</p>
-
+                    
+ Returns the concrete syntax representation of an atom.
 
                   </p>
                 </div>
@@ -2602,8 +2607,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the string of the concrete syntax representation of fol formulas.</p>
-
+                    
+ Returns the string of the concrete syntax representation of fol formulas.
 
                   </p>
                 </div>
@@ -2689,8 +2694,8 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Return the string of the concrete syntax representation of a term.</p>
-
+                    
+ Return the string of the concrete syntax representation of a term.
 
                   </p>
                 </div>
@@ -2781,11 +2786,12 @@ the current scope.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Given a substitution function <code>sbfn</code> applies it to the input formula <code>fm</code>.
-Bound variables will be renamed if necessary to avoid capture.</p>
-<p><code>subst ("y" |=&gt; Var "x") ("forall x. x = y" |&gt; parse)</code> returns
-<code>&lt;&lt;forall x'. x' = x&gt;&gt;</code>.</p>
-
+                    
+ Given a substitution function `sbfn` applies it to the input formula `fm`.
+ Bound variables will be renamed if necessary to avoid capture.
+ 
+ `subst ("y" |=> Var "x") ("forall x. x = y" |> parse)` returns 
+ `<<forall x'. x' = x>>`.
 
                   </p>
                 </div>
@@ -2900,9 +2906,9 @@ Bound variables will be renamed if necessary to avoid capture.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Checks whether there would be variable capture if the bound variable
-<code>x</code> is not renamed.</p>
-
+                    
+ Checks whether there would be variable capture if the bound variable 
+ `x` is not renamed.
 
                   </p>
                 </div>
@@ -3041,9 +3047,9 @@ Bound variables will be renamed if necessary to avoid capture.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the value of a term <code>tm</code> in a particular
-interpretation M (<code>domain</code>, <code>func</code>, <code>pred</code>) and valuation <code>v</code>.</p>
-
+                    
+ Returns the value of a term `tm` in a particular 
+ interpretation M (`domain`, `func`, `pred`) and valuation `v`.
 
                   </p>
                 </div>
@@ -3166,8 +3172,8 @@ interpretation M (<code>domain</code>, <code>func</code>, <code>pred</code>) and
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Substitution within terms.                                                //</p>
-
+                    
+ Substitution within terms.                                                //
 
                   </p>
                 </div>
@@ -3258,8 +3264,8 @@ interpretation M (<code>domain</code>, <code>func</code>, <code>pred</code>) and
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns all the variables in the FOL formula <code>fm</code>.</p>
-
+                    
+ Returns all the variables in the FOL formula `fm`.
 
                   </p>
                 </div>
@@ -3350,10 +3356,11 @@ interpretation M (<code>domain</code>, <code>func</code>, <code>pred</code>) and
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Creates a ‘variant’ of a variable name by adding prime characters to it
-until it is distinct from some given list of variables to avoid.</p>
-<p><code>variant "x" ["x"; "y"]</code> returns <code>"x'"</code>.</p>
-
+                    
+ Creates a ‘variant’ of a variable name by adding prime characters to it 
+ until it is distinct from some given list of variables to avoid.
+ 
+ `variant "x" ["x"; "y"]` returns `"x'"`.
 
                   </p>
                 </div>
@@ -3400,19 +3407,17 @@ until it is distinct from some given list of variables to avoid.</p>
   <div></div>
   <div></div>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>

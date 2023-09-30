@@ -6,11 +6,15 @@
     <title>Bdd (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,14 +63,16 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2>
     Bdd Module
   </h2>
@@ -87,11 +90,17 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        <p>Binary decision diagrams (BDDs) using complement edges.</p>
-
-
+        
+ Binary decision diagrams (BDDs) using complement edges.
+ 
       </p>
     </div>
+    <p class="fsdocs-remarks">
+      
+ In practice one would use hash tables, but we use abstract finite
+ partial functions here. They might also look nicer imperatively.
+ 
+    </p>
   </div>
   <div>
     <h3>
@@ -134,9 +143,7 @@
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                <p>The type of Binary Decision Diagram.</p>
-
-
+                The type of Binary Decision Diagram.
               </p>
             </div>
           </td>
@@ -166,10 +173,8 @@
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                <p>The type of binary decision diagram
-() node.</p>
-
-
+                The type of binary decision diagram 
+ (<a href="/FolAutomReas/reference/folautomreas-bdd-bdd.html">bdd</a>) node.
               </p>
             </div>
           </td>
@@ -273,8 +278,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Perform an AND operation on BDDs, maintaining canonicity.</p>
-
+                    
+ Perform an AND operation on BDDs, maintaining canonicity.
 
                   </p>
                 </div>
@@ -405,8 +410,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Perform an IFF operation on BDDs, maintaining canonicity.</p>
-
+                    
+ Perform an IFF operation on BDDs, maintaining canonicity.
 
                   </p>
                 </div>
@@ -537,8 +542,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Perform an IMP operation on BDDs, maintaining canonicity.</p>
-
+                    
+ Perform an IMP operation on BDDs, maintaining canonicity.
 
                   </p>
                 </div>
@@ -669,8 +674,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Perform an OR operation on BDDs, maintaining canonicity.</p>
-
+                    
+ Perform an OR operation on BDDs, maintaining canonicity.
 
                   </p>
                 </div>
@@ -777,8 +782,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Tautology checking using BDDs.</p>
-
+                    
+ Tautology checking using BDDs.  
 
                   </p>
                 </div>
@@ -983,8 +988,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Tautology checking using BDDs with an improved setup</p>
-
+                    
+ Tautology checking using BDDs with an improved setup
 
                   </p>
                 </div>
@@ -1075,9 +1080,9 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the bddnode corresponding to the index <code>n</code> of the bdd
-If a negative index is used the complement of the node is returned.</p>
-
+                    
+ Returns the bddnode corresponding to the index `n` of the bdd
+ If a negative index is used the complement of the node is returned.
 
                   </p>
                 </div>
@@ -1192,8 +1197,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Lookup or insertion if not there in unique table.</p>
-
+                    
+ Lookup or insertion if not there in unique table. 
 
                   </p>
                 </div>
@@ -1300,8 +1305,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Create a new BDD with a given ordering.</p>
-
+                    
+ Create a new BDD with a given ordering. 
 
                   </p>
                 </div>
@@ -1408,8 +1413,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Produce a BDD node (old or new).</p>
-
+                    
+ Produce a BDD node (old or new).
 
                   </p>
                 </div>
@@ -1532,8 +1537,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Formula to BDD conversion.</p>
-
+                    
+ Formula to BDD conversion.
 
                   </p>
                 </div>
@@ -1656,8 +1661,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Formula to BDD conversion with improved setup</p>
-
+                    
+ Formula to BDD conversion with improved setup
 
                   </p>
                 </div>
@@ -1905,8 +1910,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Extract the ordering field of a BDD.</p>
-
+                    
+ Extract the ordering field of a BDD. 
 
                   </p>
                 </div>
@@ -2371,8 +2376,8 @@ If a negative index is used the complement of the node is returned.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Threading state through.</p>
-
+                    
+ Threading state through.  
 
                   </p>
                 </div>
@@ -2451,19 +2456,17 @@ If a negative index is used the complement of the node is returned.</p>
   <div></div>
   <div></div>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>

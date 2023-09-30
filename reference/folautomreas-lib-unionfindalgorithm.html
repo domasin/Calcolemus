@@ -6,11 +6,15 @@
     <title>UnionFindAlgorithm (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,14 +63,16 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2>
     UnionFindAlgorithm Module
   </h2>
@@ -87,8 +90,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        <p>Union-find algorithm.</p>
-
+        
+ Union-find algorithm.
 
       </p>
     </div>
@@ -191,7 +194,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '865', 865)" onmouseover="showTip(event, '865', 865)">
+              <code onmouseout="hideTip(event, '864', 864)" onmouseover="showTip(event, '864', 864)">
                 <p>
                   <a id="canonize">
                     <a href="#canonize">
@@ -200,7 +203,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="865">
+              <div class="fsdocs-tip" id="864">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>canonize&#32;<span>ptn&#32;a</span></span></code>
@@ -268,7 +271,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '866', 866)" onmouseover="showTip(event, '866', 866)">
+              <code onmouseout="hideTip(event, '865', 865)" onmouseover="showTip(event, '865', 865)">
                 <p>
                   <a id="equate">
                     <a href="#equate">
@@ -277,7 +280,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="866">
+              <div class="fsdocs-tip" id="865">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>equate&#32;<span><span>(<span>a,&#32;b</span>)</span>&#32;ptn</span></span></code>
@@ -361,7 +364,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
+              <code onmouseout="hideTip(event, '866', 866)" onmouseover="showTip(event, '866', 866)">
                 <p>
                   <a id="equated">
                     <a href="#equated">
@@ -370,7 +373,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="867">
+              <div class="fsdocs-tip" id="866">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>equated&#32;<span>arg1</span></span></code>
@@ -422,7 +425,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
+              <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
                 <p>
                   <a id="equivalent">
                     <a href="#equivalent">
@@ -431,7 +434,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="868">
+              <div class="fsdocs-tip" id="867">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>equivalent&#32;<span>eqv&#32;a&#32;b</span></span></code>
@@ -515,7 +518,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
+              <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
                 <p>
                   <a id="first">
                     <a href="#first">
@@ -524,7 +527,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="869">
+              <div class="fsdocs-tip" id="868">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>first&#32;<span>n&#32;p</span></span></code>
@@ -592,7 +595,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
+              <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
                 <p>
                   <a id="print_partition">
                     <a href="#print_partition">
@@ -601,7 +604,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="870">
+              <div class="fsdocs-tip" id="869">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>print_partition&#32;<span>pt</span></span></code>
@@ -639,7 +642,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
+              <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
                 <p>
                   <a id="sprint_partition">
                     <a href="#sprint_partition">
@@ -648,7 +651,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="871">
+              <div class="fsdocs-tip" id="870">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>sprint_partition&#32;<span>pt</span></span></code>
@@ -700,7 +703,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '872', 872)" onmouseover="showTip(event, '872', 872)">
+              <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
                 <p>
                   <a id="string_of_partition">
                     <a href="#string_of_partition">
@@ -709,7 +712,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="872">
+              <div class="fsdocs-tip" id="871">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>string_of_partition&#32;<span>par</span></span></code>
@@ -761,7 +764,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '873', 873)" onmouseover="showTip(event, '873', 873)">
+              <code onmouseout="hideTip(event, '872', 872)" onmouseover="showTip(event, '872', 872)">
                 <p>
                   <a id="terminus">
                     <a href="#terminus">
@@ -770,7 +773,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="873">
+              <div class="fsdocs-tip" id="872">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>terminus&#32;<span>ptn&#32;a</span></span></code>
@@ -838,7 +841,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '874', 874)" onmouseover="showTip(event, '874', 874)">
+              <code onmouseout="hideTip(event, '873', 873)" onmouseover="showTip(event, '873', 873)">
                 <p>
                   <a id="tryterminus">
                     <a href="#tryterminus">
@@ -847,7 +850,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="874">
+              <div class="fsdocs-tip" id="873">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>tryterminus&#32;<span>ptn&#32;a</span></span></code>
@@ -915,7 +918,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '875', 875)" onmouseover="showTip(event, '875', 875)">
+              <code onmouseout="hideTip(event, '874', 874)" onmouseover="showTip(event, '874', 874)">
                 <p>
                   <a id="unequal">
                     <a href="#unequal">
@@ -924,7 +927,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="875">
+              <div class="fsdocs-tip" id="874">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>unequal&#32;<span></span></span></code>
@@ -954,7 +957,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '876', 876)" onmouseover="showTip(event, '876', 876)">
+              <code onmouseout="hideTip(event, '875', 875)" onmouseover="showTip(event, '875', 875)">
                 <p>
                   <a id="writeToString">
                     <a href="#writeToString">
@@ -963,7 +966,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="876">
+              <div class="fsdocs-tip" id="875">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>writeToString&#32;<span>fn</span></span></code>
@@ -1007,8 +1010,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Write from a StringWriter to a string</p>
-
+                    
+ Write from a StringWriter to a string
 
                   </p>
                 </div>
@@ -1047,19 +1050,17 @@
   <div></div>
   <div></div>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>

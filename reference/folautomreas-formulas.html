@@ -6,11 +6,15 @@
     <title>Formulas (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,14 +63,16 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2>
     Formulas Module
   </h2>
@@ -87,8 +90,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        <p>Polymorphic type of formulas with parser and printer.</p>
-
+        
+ Polymorphic type of formulas with parser and printer. 
 
       </p>
     </div>
@@ -134,8 +137,8 @@
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                <p>Abstract syntax tree of polymorphic type of formulas.</p>
-
+                
+ Abstract syntax tree of polymorphic type of formulas.
 
               </p>
             </div>
@@ -221,8 +224,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the antecedent of an implication.</p>
-
+                    
+ Returns the antecedent of an implication.
 
                   </p>
                 </div>
@@ -313,11 +316,11 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Collects together some set of attributes associated with the atoms; in the
-simplest case just returning the set of all atoms. It does this by
-iterating a function <code>f</code> together with an ‘append’ over all the atoms, and
-ﬁnally converting the result to a set to remove duplicates.</p>
-
+                    
+ Collects together some set of attributes associated with the atoms; in the 
+ simplest case just returning the set of all atoms. It does this by 
+ iterating a function `f` together with an ‘append’ over all the atoms, and 
+ ﬁnally converting the result to a set to remove duplicates.
 
                   </p>
                 </div>
@@ -408,8 +411,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Iteratively breaks apart a conjunction.</p>
-
+                    
+ Iteratively breaks apart a conjunction.
 
                   </p>
                 </div>
@@ -497,8 +500,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the consequent of an implication.</p>
-
+                    
+ Returns the consequent of an implication.
 
                   </p>
                 </div>
@@ -581,8 +584,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Formula destructor for conjunction into the two conjuncts.</p>
-
+                    
+ Formula destructor for conjunction into the two conjuncts.
 
                   </p>
                 </div>
@@ -665,8 +668,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Formula destructor for logical equivalence.</p>
-
+                    
+ Formula destructor for logical equivalence.
 
                   </p>
                 </div>
@@ -749,8 +752,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Breaks apart an implication into antecedent and consequent.</p>
-
+                    
+ Breaks apart an implication into antecedent and consequent.
 
                   </p>
                 </div>
@@ -833,8 +836,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Breaks apart a disjunction into the two disjuncts.</p>
-
+                    
+ Breaks apart a disjunction into the two disjuncts.
 
                   </p>
                 </div>
@@ -917,8 +920,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Iteratively breaks apart a disjunction.</p>
-
+                    
+ Iteratively breaks apart a disjunction.
 
                   </p>
                 </div>
@@ -1036,8 +1039,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Modiﬁes a basic printer to have a kind of boxing 'wrapped' around it.</p>
-
+                    
+ Modiﬁes a basic printer to have a kind of boxing 'wrapped' around it.
 
                   </p>
                 </div>
@@ -1159,8 +1162,8 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Printing parametrized by a function <code>pfn</code> to print atoms.</p>
-
+                    
+ Printing parametrized by a function `pfn` to print atoms.
 
                   </p>
                 </div>
@@ -1262,9 +1265,9 @@ iterating a function <code>f</code> together with an ‘append’ over all the a
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Main toplevel printer. It just adds the guillemot-style quotations round
-the formula so that it looks like the quoted formulas we parse.</p>
-
+                    
+ Main toplevel printer. It just adds the guillemot-style quotations round 
+ the formula so that it looks like the quoted formulas we parse.
 
                   </p>
                 </div>
@@ -1367,8 +1370,8 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Constructs a conjunction.</p>
-
+                    
+ Constructs a conjunction.
 
                   </p>
                 </div>
@@ -1472,8 +1475,8 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Constructs an existential quantification.</p>
-
+                    
+ Constructs an existential quantification.
 
                   </p>
                 </div>
@@ -1577,8 +1580,8 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Constructs a universal quantification.</p>
-
+                    
+ Constructs a universal quantification.
 
                   </p>
                 </div>
@@ -1682,8 +1685,8 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Constructs a logical equivalence.</p>
-
+                    
+ Constructs a logical equivalence.
 
                   </p>
                 </div>
@@ -1787,8 +1790,8 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Constructs an implication.</p>
-
+                    
+ Constructs an implication.
 
                   </p>
                 </div>
@@ -1892,8 +1895,8 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Constructs a disjunction.</p>
-
+                    
+ Constructs a disjunction.
 
                   </p>
                 </div>
@@ -1992,10 +1995,10 @@ the formula so that it looks like the quoted formulas we parse.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Checks if the head of a list (typically the list of unparsed input) is some
-particular item, but also ﬁrst checks that the list is nonempty before
-looking at its head.</p>
-
+                    
+ Checks if the head of a list (typically the list of unparsed input) is some 
+ particular item, but also ﬁrst checks that the list is nonempty before 
+ looking at its head.
 
                   </p>
                 </div>
@@ -2094,10 +2097,10 @@ looking at its head.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Applies a function to all the atoms in a formula, but otherwise leaves
-the structure unchanged. It can be used, for example, to perform systematic
-replacement of one particular atomic proposition by another formula.</p>
-
+                    
+ Applies a function to all the atoms in a formula, but otherwise leaves 
+ the structure unchanged. It can be used, for example, to perform systematic 
+ replacement of one particular atomic proposition by another formula.
 
                   </p>
                 </div>
@@ -2204,10 +2207,10 @@ replacement of one particular atomic proposition by another formula.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Formula analog of list iterator <code>List.foldBack</code>. It iterates a binary
-function <code>f</code> over all the atoms of a formula (as the first argument) using
-the input <code>b</code> as the second argument.</p>
-
+                    
+ Formula analog of list iterator `List.foldBack`. It iterates a binary 
+ function `f` over all the atoms of a formula (as the first argument) using 
+ the input `b` as the second argument.
 
                   </p>
                 </div>
@@ -2327,9 +2330,9 @@ the input <code>b</code> as the second argument.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Applies a function to the ﬁrst element of a pair, the idea being to modify
-the returned abstract syntax tree while leaving the ‘unparsed input’ alone.</p>
-
+                    
+ Applies a function to the ﬁrst element of a pair, the idea being to modify 
+ the returned abstract syntax tree while leaving the ‘unparsed input’ alone.
 
                   </p>
                 </div>
@@ -2452,10 +2455,10 @@ the returned abstract syntax tree while leaving the ‘unparsed input’ alone.<
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Attempts to parse an atomic formula as a term followed by an inﬁx predicate
-symbol and only if that fails proceed to considering other kinds of
-formulas.</p>
-
+                    
+ Attempts to parse an atomic formula as a term followed by an inﬁx predicate 
+ symbol and only if that fails proceed to considering other kinds of 
+ formulas.
 
                   </p>
                 </div>
@@ -2578,12 +2581,12 @@ formulas.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Deals with the common situation of syntactic items enclosed in brackets. It
-simply calls the subparser and then checks and eliminates the closing
-bracket. In principle, the terminating character can be anything, so this
-function could equally be used for other purposes, but we will always use
-')' for the cbra (‘closing bracket’) argument.</p>
-
+                    
+ Deals with the common situation of syntactic items enclosed in brackets. It 
+ simply calls the subparser and then checks and eliminates the closing 
+ bracket. In principle, the terminating character can be anything, so this 
+ function could equally be used for other purposes, but we will always use 
+ ')' for the cbra (‘closing bracket’) argument.
 
                   </p>
                 </div>
@@ -2706,16 +2709,18 @@ function could equally be used for other purposes, but we will always use
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Recursive descent parser of polymorphic formulas built up from an
-atomic formula parser by cascading instances of parse infix in order of
-precedence, following the conventions with '/\' coming highest and '<=>'
-lowest.</p>
-<p>It takes a list of string tokens <code>inp</code> and In order to check whether a name
-is within the scope of a quantiﬁer, it takes an additional argument <code>vs</code>
-which is the set of bound variables in the current scope.</p>
-<p>It returns a pair consisting of the parsed formula tree together with
-any unparsed input.</p>
-
+                    
+ Recursive descent parser of polymorphic formulas built up from an 
+ atomic formula parser by cascading instances of parse infix in order of 
+ precedence, following the conventions with '/\' coming highest and '<=>' 
+ lowest.
+ 
+ It takes a list of string tokens `inp` and In order to check whether a name 
+ is within the scope of a quantiﬁer, it takes an additional argument `vs` 
+ which is the set of bound variables in the current scope.
+ 
+ It returns a pair consisting of the parsed formula tree together with 
+ any unparsed input. 
 
                   </p>
                 </div>
@@ -2854,8 +2859,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>General parsing of iterated infixes.</p>
-
+                    
+ General parsing of iterated infixes. 
 
                   </p>
                 </div>
@@ -2978,8 +2983,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses left infix.</p>
-
+                    
+ Parses left infix.
 
                   </p>
                 </div>
@@ -3070,8 +3075,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses a list: used to parse the list of arguments to a function.</p>
-
+                    
+ Parses a list: used to parse the list of arguments to a function.
 
                   </p>
                 </div>
@@ -3194,8 +3199,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses quantifiers.</p>
-
+                    
+ Parses quantifiers.
 
                   </p>
                 </div>
@@ -3326,8 +3331,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Parses right infix.</p>
-
+                    
+ Parses right infix.
 
                   </p>
                 </div>
@@ -3424,8 +3429,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Prints a formula <code>fm</code> using a function <code>pfn</code> to print atoms.</p>
-
+                    
+ Prints a formula `fm` using a function `pfn` to print atoms.
 
                   </p>
                 </div>
@@ -3513,8 +3518,8 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Prints a formula <code>fm</code> using a function <code>pfn</code> to print atoms.</p>
-
+                    
+ Prints a formula `fm` using a function `pfn` to print atoms.
 
                   </p>
                 </div>
@@ -3607,9 +3612,9 @@ any unparsed input.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns a string representation of a formula <code>fm</code> using a function <code>pfn</code> to
-print atoms.</p>
-
+                    
+ Returns a string representation of a formula `fm` using a function `pfn` to 
+ print atoms.
 
                   </p>
                 </div>
@@ -3711,9 +3716,9 @@ print atoms.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns a string representation of a formula <code>fm</code> using a function <code>pfn</code> to
-print atoms.</p>
-
+                    
+ Returns a string representation of a formula `fm` using a function `pfn` to 
+ print atoms.
 
                   </p>
                 </div>
@@ -3804,8 +3809,8 @@ print atoms.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Breaks up a quantiﬁed term into its quantiﬁed variables and body.</p>
-
+                    
+ Breaks up a quantiﬁed term into its quantiﬁed variables and body.
 
                   </p>
                 </div>
@@ -3844,19 +3849,17 @@ print atoms.</p>
   <div></div>
   <div></div>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>

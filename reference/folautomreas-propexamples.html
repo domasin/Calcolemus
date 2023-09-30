@@ -6,11 +6,15 @@
     <title>Propexamples (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,14 +63,16 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2>
     Propexamples Module
   </h2>
@@ -87,8 +90,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        <p>Some propositional formulas to test, and functions to generate classes.</p>
-
+        
+ Some propositional formulas to test, and functions to generate classes.
 
       </p>
     </div>
@@ -173,8 +176,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Extract the <code>n</code>th bit (as a boolean value) of a nonnegative integer <code>x</code>.</p>
-
+                    
+ Extract the `n`th bit (as a boolean value) of a nonnegative integer `x`.
 
                   </p>
                 </div>
@@ -265,8 +268,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Returns the nuber of bit needed to represent x in binary notation.</p>
-
+                    
+ Returns the nuber of bit needed to represent x in binary notation.
 
                   </p>
                 </div>
@@ -365,11 +368,12 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Generates the propositional formula whose truth value correponds to the
-carry of a full adder, given the <code>x</code>, <code>y</code> and <code>z</code> digits to be summed also
-represented as formulas: false for 0 true for 1.</p>
-<p>(x /\ y) \/ ((x \/ y) /\ z)</p>
-
+                    
+ Generates the propositional formula whose truth value correponds to the 
+ carry of a full adder, given the `x`, `y` and `z` digits to be summed also 
+ represented as formulas: false for 0 true for 1. 
+ 
+ (x /\ y) \/ ((x \/ y) /\ z)
 
                   </p>
                 </div>
@@ -689,9 +693,9 @@ represented as formulas: false for 0 true for 1.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Produces a propositional formula asserting that the atoms <code>x</code>(i) encode
-the bits of a value <code>m</code>, at least modulo 2^<code>n</code>.</p>
-
+                    
+ Produces a propositional formula asserting that the atoms `x`(i) encode 
+ the bits of a value `m`, at least modulo 2^`n`.
 
                   </p>
                 </div>
@@ -798,10 +802,11 @@ the bits of a value <code>m</code>, at least modulo 2^<code>n</code>.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>An auxiliary function to define ripplecarry.</p>
-<p>Given a function that creates a prop formula from an index and a list of
-indexes, it puts multiple full-adders together into an n-bit adder.</p>
-
+                    
+ An auxiliary function to define ripplecarry.
+ 
+ Given a function that creates a prop formula from an index and a list of 
+ indexes, it puts multiple full-adders together into an n-bit adder.
 
                   </p>
                 </div>
@@ -924,11 +929,12 @@ indexes, it puts multiple full-adders together into an n-bit adder.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Full adder function.</p>
-<p>Generates a propositional formula that is true if the input terms represent
-respectively two digits <code>x</code> and <code>y</code> to be summed, the <code>z</code> carry from a
-previous sum, the resulting sum <code>s</code> and the carry <code>c</code>.</p>
-
+                    
+ Full adder function.
+ 
+ Generates a propositional formula that is true if the input terms represent 
+ respectively two digits `x` and `y` to be summed, the `z` carry from a 
+ previous sum, the resulting sum `s` and the carry `c`.
 
                   </p>
                 </div>
@@ -1067,11 +1073,12 @@ previous sum, the resulting sum <code>s</code> and the carry <code>c</code>.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Half adder function.</p>
-<p>Generates a propositional formula that is true if the input formulas
-represent respectively two digits <code>x</code> and <code>y</code> to be summed, the resulting
-sum <code>s</code> and the carry <code>c</code>.</p>
-
+                    
+ Half adder function.
+ 
+ Generates a propositional formula that is true if the input formulas 
+ represent respectively two digits `x` and `y` to be summed, the resulting 
+ sum `s` and the carry `c`.
 
                   </p>
                 </div>
@@ -1186,11 +1193,12 @@ sum <code>s</code> and the carry <code>c</code>.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Generates the propositional formulas whose truth value correponds to the
-sum of an half adder, given the <code>x</code> and <code>y</code> digits to be summed also
-represented as prop formulas: false for 0 true for 1.</p>
-<p>x <=> ~ y.</p>
-
+                    
+ Generates the propositional formulas whose truth value correponds to the 
+ sum of an half adder, given the `x` and `y` digits to be summed also 
+ represented as prop formulas: false for 0 true for 1. 
+ 
+ x <=> ~ y.
 
                   </p>
                 </div>
@@ -1289,11 +1297,12 @@ represented as prop formulas: false for 0 true for 1.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Generates the propositional formula whose truth value correponds to the
-carry of an half adder, given the <code>x</code> and <code>y</code> digits to be summed also
-represented as prop formulas: false for 0 true for 1.</p>
-<p>x /\ y</p>
-
+                    
+ Generates the propositional formula whose truth value correponds to the 
+ carry of an half adder, given the `x` and `y` digits to be summed also 
+ represented as prop formulas: false for 0 true for 1.
+ 
+ x /\ y
 
                   </p>
                 </div>
@@ -1392,12 +1401,13 @@ represented as prop formulas: false for 0 true for 1.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Generates propositions that state the equivalence of various ripplecarry
-and carryselect circuits based on the input <code>n</code> (number of bit to be added)
-and <code>k</code> (number of blocks in the carryselect circuit).</p>
-<p>If the proposition generated is a tautology, the equivalence between the
-two circuit is proved.</p>
-
+                    
+ Generates propositions that state the equivalence of various ripplecarry 
+ and carryselect circuits based on the input `n` (number of bit to be added) 
+ and `k` (number of blocks in the carryselect circuit).
+ 
+ If the proposition generated is a tautology, the equivalence between the 
+ two circuit is proved.
 
                   </p>
                 </div>
@@ -1496,13 +1506,15 @@ two circuit is proved.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>An auxiliary function to generate input for ripplecarry.</p>
-<p>Given a prpo formula <code>x</code> and an index <code>i</code>, it generates a propositional
-variable <code>P "x_i"</code>.</p>
-<p><code>let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]</code>
-generates the x, y, out and c functions that can be given
-as input to ripplecarry</p>
-
+                    
+ An auxiliary function to generate input for ripplecarry.
+ 
+ Given a prpo formula `x` and an index `i`, it generates a propositional 
+ variable `P "x_i"`.
+ 
+ `let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]` 
+ generates the x, y, out and c functions that can be given 
+ as input to ripplecarry
 
                   </p>
                 </div>
@@ -1609,10 +1621,11 @@ as input to ripplecarry</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Similar to <code>mk_index</code>.</p>
-<p>Given a prop formula <code>x</code> and an indexes <code>i</code> and <code>j</code>, it generates a
-propositional variable <code>P "x_i_j"</code>.</p>
-
+                    
+ Similar to `mk_index`. 
+ 
+ Given a prop formula `x` and an indexes `i` and `j`, it generates a 
+ propositional variable `P "x_i_j"`.
 
                   </p>
                 </div>
@@ -1743,8 +1756,8 @@ propositional variable <code>P "x_i_j"</code>.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Naive multiplier based on repeated ripple carry.</p>
-
+                    
+ Naive multiplier based on repeated ripple carry. 
 
                   </p>
                 </div>
@@ -1875,10 +1888,10 @@ propositional variable <code>P "x_i_j"</code>.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Multiplexer used to define the carry-select adder. We will use it to
-select between the two alternatives (carry-in of 0 or 1) when we do
-carry propagation.</p>
-
+                    
+ Multiplexer used to define the carry-select adder. We will use it to 
+ select between the two alternatives (carry-in of 0 or 1) when we do 
+ carry propagation.
 
                   </p>
                 </div>
@@ -1993,9 +2006,9 @@ carry propagation.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>An auxiliary function to oﬀset the indices in an array of bits.
-It is used to define the carry-select adder.</p>
-
+                    
+ An auxiliary function to oﬀset the indices in an array of bits. 
+ It is used to define the carry-select adder.
 
                   </p>
                 </div>
@@ -2094,9 +2107,9 @@ It is used to define the carry-select adder.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Applied to a positive integer <code>p</code> generates a propositional formula
-that is a tautology precisely if <code>p</code> is prime.</p>
-
+                    
+ Applied to a positive integer `p` generates a propositional formula 
+ that is a tautology precisely if `p` is prime.
 
                   </p>
                 </div>
@@ -2195,8 +2208,8 @@ that is a tautology precisely if <code>p</code> is prime.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Generate assertion equivalent to R(s,t) &lt;= n for the Ramsey number R(s,t)</p>
-
+                    
+ Generate assertion equivalent to R(s,t) <= n for the Ramsey number R(s,t) 
 
                   </p>
                 </div>
@@ -2327,17 +2340,22 @@ that is a tautology precisely if <code>p</code> is prime.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>n-bit ripple carry adder with carry c(0) propagated in and c(n) out.</p>
-<p>Generates a propsitional formula that represent a riple-carry adder circuit.
-Filtering the true rows of its truth table gives the sum and carry values
-for each digits.</p>
-<p>It expects the user to supply functions <code>x</code>, <code>y</code>, <code>out</code> and <code>c</code> that, when
-given an index, generates an appropriate new variable. Use <code>mk_index</code>
-to generate such functions.</p>
-<p>For example,</p>
-<p><code>let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]</code></p>
-<p><code>ripplecarry x y c out 2</code></p>
-
+                    
+ n-bit ripple carry adder with carry c(0) propagated in and c(n) out.  
+ 
+ Generates a propsitional formula that represent a riple-carry adder circuit.
+ Filtering the true rows of its truth table gives the sum and carry values 
+ for each digits.
+ 
+ It expects the user to supply functions `x`, `y`, `out` and `c` that, when 
+ given an index, generates an appropriate new variable. Use `mk_index` 
+ to generate such functions.
+ 
+ For example, 
+ 
+ `let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]`
+ 
+ `ripplecarry x y c out 2`
 
                   </p>
                 </div>
@@ -2484,9 +2502,10 @@ to generate such functions.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>n-bit ripple carry adder with carry c(0) forced to 0.</p>
-<p>It can be used when we are not interested in a carry in at the low end.</p>
-
+                    
+ n-bit ripple carry adder with carry c(0) forced to 0.
+ 
+ It can be used when we are not interested in a carry in at the low end.
 
                   </p>
                 </div>
@@ -2633,12 +2652,13 @@ to generate such functions.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>n-bit ripple carry adder with carry c(0) forced at 1.</p>
-<p>It is used to define the carry-select adder. In a carry-select adder the
-n-bit inputs are split into several blocks of k, and corresponding k-bit
-blocks are added twice, once assuming a carry-in of 0 and once assuming a
-carry-in of 1.</p>
-
+                    
+ n-bit ripple carry adder with carry c(0) forced at 1.
+ 
+ It is used to define the carry-select adder. In a carry-select adder the 
+ n-bit inputs are split into several blocks of k, and corresponding k-bit 
+ blocks are added twice, once assuming a carry-in of 0 and once assuming a 
+ carry-in of 1.
 
                   </p>
                 </div>
@@ -2793,8 +2813,8 @@ carry-in of 1.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Ripple carry stage that separates off the final result of a multiplication.</p>
-
+                    
+ Ripple carry stage that separates off the final result of a multiplication.
 
                   </p>
                 </div>
@@ -2933,11 +2953,12 @@ carry-in of 1.</p>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Generates the propositional formula whose truth value correponds to the sum
-of a full adder, given the <code>x</code>, <code>y</code> and <code>z</code> digits to be summed also
-represented as formulas: false for 0 true for 1.</p>
-<p>(x <=> ~ y) <=> ~ z</p>
-
+                    
+ Generates the propositional formula whose truth value correponds to the sum 
+ of a full adder, given the `x`, `y` and `z` digits to be summed also 
+ represented as formulas: false for 0 true for 1. 
+ 
+ (x <=> ~ y) <=> ~ z
 
                   </p>
                 </div>
@@ -2992,19 +3013,17 @@ represented as formulas: false for 0 true for 1.</p>
   <div></div>
   <div></div>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>

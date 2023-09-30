@@ -6,11 +6,15 @@
     <title>Num (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
     <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
@@ -22,39 +26,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
     <!-- END SEARCH BOX: this adds support for the search box -->
     
-</head> 
+</head>
 
 <body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="/FolAutomReas/">
-                        <figure class="image is-128x128 container">
-                            <img src="/FolAutomReas/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white pb-4">FolAutomReas</h2>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
                 </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
-                        <li class="nav-header">
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -62,14 +63,16 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
   <h2>
     Num Type
   </h2>
@@ -105,8 +108,8 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        <p>arbitrary-precision rational numbers derived from OCaml equivalent</p>
-
+        
+ arbitrary-precision rational numbers derived from OCaml equivalent
 
       </p>
     </div>
@@ -133,7 +136,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '919', 919)" onmouseover="showTip(event, '919', 919)">
+              <code onmouseout="hideTip(event, '918', 918)" onmouseover="showTip(event, '918', 918)">
                 <p>
                   <a id="Big_int">
                     <a href="#Big_int">
@@ -142,7 +145,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="919">
+              <div class="fsdocs-tip" id="918">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Big_int&#32;bigint</span></code>
@@ -173,8 +176,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>Arbitrary-precision integer.</p>
-
+                    
+ Arbitrary-precision integer.
 
                   </p>
                 </div>
@@ -195,7 +198,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '920', 920)" onmouseover="showTip(event, '920', 920)">
+              <code onmouseout="hideTip(event, '919', 919)" onmouseover="showTip(event, '919', 919)">
                 <p>
                   <a id="Int">
                     <a href="#Int">
@@ -204,7 +207,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="920">
+              <div class="fsdocs-tip" id="919">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Int&#32;int</span></code>
@@ -235,8 +238,8 @@
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <p>32-bit signed integer.</p>
-
+                    
+ 32-bit signed integer.
 
                   </p>
                 </div>
@@ -257,7 +260,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '921', 921)" onmouseover="showTip(event, '921', 921)">
+              <code onmouseout="hideTip(event, '920', 920)" onmouseover="showTip(event, '920', 920)">
                 <p>
                   <a id="Ratio">
                     <a href="#Ratio">
@@ -266,7 +269,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="921">
+              <div class="fsdocs-tip" id="920">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Ratio&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-ratio.html">ratio</a></span></code>
@@ -326,7 +329,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '922', 922)" onmouseover="showTip(event, '922', 922)">
+              <code onmouseout="hideTip(event, '921', 921)" onmouseover="showTip(event, '921', 921)">
                 <p>
                   <a id="IsZero">
                     <a href="#IsZero">
@@ -335,7 +338,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="922">
+              <div class="fsdocs-tip" id="921">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsZero</span></code>
@@ -384,7 +387,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '923', 923)" onmouseover="showTip(event, '923', 923)">
+              <code onmouseout="hideTip(event, '922', 922)" onmouseover="showTip(event, '922', 922)">
                 <p>
                   <a id="(%)">
                     <a href="#(%)">
@@ -393,7 +396,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="923">
+              <div class="fsdocs-tip" id="922">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>x&#32;%&#32;y</span></code>
@@ -461,7 +464,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '924', 924)" onmouseover="showTip(event, '924', 924)">
+              <code onmouseout="hideTip(event, '923', 923)" onmouseover="showTip(event, '923', 923)">
                 <p>
                   <a id="(*)">
                     <a href="#(*)">
@@ -470,7 +473,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="924">
+              <div class="fsdocs-tip" id="923">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>x&#32;*&#32;y</span></code>
@@ -538,7 +541,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '925', 925)" onmouseover="showTip(event, '925', 925)">
+              <code onmouseout="hideTip(event, '924', 924)" onmouseover="showTip(event, '924', 924)">
                 <p>
                   <a id="(+)">
                     <a href="#(+)">
@@ -547,7 +550,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="925">
+              <div class="fsdocs-tip" id="924">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>x&#32;+&#32;y</span></code>
@@ -615,7 +618,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '926', 926)" onmouseover="showTip(event, '926', 926)">
+              <code onmouseout="hideTip(event, '925', 925)" onmouseover="showTip(event, '925', 925)">
                 <p>
                   <a id="(-)">
                     <a href="#(-)">
@@ -624,7 +627,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="926">
+              <div class="fsdocs-tip" id="925">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>x&#32;-&#32;y</span></code>
@@ -692,7 +695,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '927', 927)" onmouseover="showTip(event, '927', 927)">
+              <code onmouseout="hideTip(event, '926', 926)" onmouseover="showTip(event, '926', 926)">
                 <p>
                   <a id="(/)">
                     <a href="#(/)">
@@ -701,7 +704,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="927">
+              <div class="fsdocs-tip" id="926">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>x&#32;/&#32;y</span></code>
@@ -769,7 +772,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
+              <code onmouseout="hideTip(event, '927', 927)" onmouseover="showTip(event, '927', 927)">
                 <p>
                   <a id="(~-)">
                     <a href="#(~-)">
@@ -778,7 +781,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="928">
+              <div class="fsdocs-tip" id="927">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>~-x</span></code>
@@ -830,7 +833,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
+              <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
                 <p>
                   <a id="Abs">
                     <a href="#Abs">
@@ -839,7 +842,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="929">
+              <div class="fsdocs-tip" id="928">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Abs<span><span>(<span>x</span>)</span></span></span></code>
@@ -891,7 +894,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
+              <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
                 <p>
                   <a id="Ceiling">
                     <a href="#Ceiling">
@@ -900,7 +903,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="930">
+              <div class="fsdocs-tip" id="929">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Ceiling<span><span>(<span>x</span>)</span></span></span></code>
@@ -952,7 +955,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
+              <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
                 <p>
                   <a id="Floor">
                     <a href="#Floor">
@@ -961,7 +964,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="931">
+              <div class="fsdocs-tip" id="930">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Floor<span><span>(<span>x</span>)</span></span></span></code>
@@ -1013,7 +1016,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '932', 932)" onmouseover="showTip(event, '932', 932)">
+              <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
                 <p>
                   <a id="Max">
                     <a href="#Max">
@@ -1022,7 +1025,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="932">
+              <div class="fsdocs-tip" id="931">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Max<span><span>(<span>x,&#32;y</span>)</span></span></span></code>
@@ -1090,7 +1093,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '933', 933)" onmouseover="showTip(event, '933', 933)">
+              <code onmouseout="hideTip(event, '932', 932)" onmouseover="showTip(event, '932', 932)">
                 <p>
                   <a id="Min">
                     <a href="#Min">
@@ -1099,7 +1102,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="933">
+              <div class="fsdocs-tip" id="932">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Min<span><span>(<span>x,&#32;y</span>)</span></span></span></code>
@@ -1167,7 +1170,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '934', 934)" onmouseover="showTip(event, '934', 934)">
+              <code onmouseout="hideTip(event, '933', 933)" onmouseover="showTip(event, '933', 933)">
                 <p>
                   <a id="One">
                     <a href="#One">
@@ -1176,7 +1179,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="934">
+              <div class="fsdocs-tip" id="933">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.One</span></code>
@@ -1206,7 +1209,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '935', 935)" onmouseover="showTip(event, '935', 935)">
+              <code onmouseout="hideTip(event, '934', 934)" onmouseover="showTip(event, '934', 934)">
                 <p>
                   <a id="Parse">
                     <a href="#Parse">
@@ -1215,7 +1218,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="935">
+              <div class="fsdocs-tip" id="934">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Parse<span><span>(<span>str</span>)</span></span></span></code>
@@ -1267,7 +1270,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '936', 936)" onmouseover="showTip(event, '936', 936)">
+              <code onmouseout="hideTip(event, '935', 935)" onmouseover="showTip(event, '935', 935)">
                 <p>
                   <a id="Pow">
                     <a href="#Pow">
@@ -1276,7 +1279,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="936">
+              <div class="fsdocs-tip" id="935">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Pow<span><span>(<span>x,&#32;y</span>)</span></span></span></code>
@@ -1344,7 +1347,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '937', 937)" onmouseover="showTip(event, '937', 937)">
+              <code onmouseout="hideTip(event, '936', 936)" onmouseover="showTip(event, '936', 936)">
                 <p>
                   <a id="Pow">
                     <a href="#Pow">
@@ -1353,7 +1356,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="937">
+              <div class="fsdocs-tip" id="936">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Pow<span><span>(<span>x,&#32;y</span>)</span></span></span></code>
@@ -1421,7 +1424,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '938', 938)" onmouseover="showTip(event, '938', 938)">
+              <code onmouseout="hideTip(event, '937', 937)" onmouseover="showTip(event, '937', 937)">
                 <p>
                   <a id="Quotient">
                     <a href="#Quotient">
@@ -1430,7 +1433,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="938">
+              <div class="fsdocs-tip" id="937">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Quotient<span><span>(<span>x,&#32;y</span>)</span></span></span></code>
@@ -1498,7 +1501,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '939', 939)" onmouseover="showTip(event, '939', 939)">
+              <code onmouseout="hideTip(event, '938', 938)" onmouseover="showTip(event, '938', 938)">
                 <p>
                   <a id="Round">
                     <a href="#Round">
@@ -1507,7 +1510,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="939">
+              <div class="fsdocs-tip" id="938">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Round<span><span>(<span>x</span>)</span></span></span></code>
@@ -1559,7 +1562,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '940', 940)" onmouseover="showTip(event, '940', 940)">
+              <code onmouseout="hideTip(event, '939', 939)" onmouseover="showTip(event, '939', 939)">
                 <p>
                   <a id="Sign">
                     <a href="#Sign">
@@ -1568,7 +1571,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="940">
+              <div class="fsdocs-tip" id="939">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Sign<span><span>(<span>x</span>)</span></span></span></code>
@@ -1620,7 +1623,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '941', 941)" onmouseover="showTip(event, '941', 941)">
+              <code onmouseout="hideTip(event, '940', 940)" onmouseover="showTip(event, '940', 940)">
                 <p>
                   <a id="Truncate">
                     <a href="#Truncate">
@@ -1629,7 +1632,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="941">
+              <div class="fsdocs-tip" id="940">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Truncate<span><span>(<span>x</span>)</span></span></span></code>
@@ -1681,7 +1684,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '942', 942)" onmouseover="showTip(event, '942', 942)">
+              <code onmouseout="hideTip(event, '941', 941)" onmouseover="showTip(event, '941', 941)">
                 <p>
                   <a id="Zero">
                     <a href="#Zero">
@@ -1690,7 +1693,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="942">
+              <div class="fsdocs-tip" id="941">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Num.Zero</span></code>
@@ -1721,19 +1724,17 @@
     </table>
   </div>
 </div>
-                </div>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
 </body>
 
 </html>
