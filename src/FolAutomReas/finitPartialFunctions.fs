@@ -30,7 +30,7 @@ module FPF =
         | Empty -> true
         | _     -> false
     
-    let mapf =
+    let mapf f t =
         let rec map_list f l =
             match l with
             | [] -> []
@@ -43,7 +43,7 @@ module FPF =
                 Leaf (h, map_list f l)
             | Branch (p, b, l, r) ->
                 Branch (p, b, mapf f l, mapf f r)
-        mapf
+        mapf f t
     
     let foldl =
         let rec foldl_list f a l =

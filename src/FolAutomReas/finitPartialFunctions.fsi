@@ -86,8 +86,23 @@ module FPF =
     /// </remarks>
     val is_undefined: _arg1: func<'a,'b> -> bool
     
-    /// Operation for `func` analogous to `map` for lists.
-    val mapf: (('a -> 'b) -> func<'c,'a> -> func<'c,'b>)
+    /// <summary>Composes a normal F# function with an FPF.</summary>
+    /// 
+    /// <param name="f">The normal F# function.</param>
+    /// <param name="t">The FPF function.</param>
+    /// 
+    /// <returns>
+    /// The input FPF <c>t</c> with all \(x \mapsto y\) replaced with \(x 
+    /// \mapsto f(y)\)
+    /// </returns>
+    /// 
+    /// <example id="is_undefined-2">
+    /// <code lang="fsharp">
+    /// mapf (fun x -> x * 10) (("x" |-> 1)undefined)
+    /// </code>
+    /// Evaluates to <code lang="fsharp">Leaf (1907997954, [("x", 10)])</code>.
+    /// </example>
+    val mapf: f: ('a -> 'b) -> t: func<'c,'a> -> func<'c,'b>
     
     /// Operation for `func` analogous to `foldl` for lists.
     val foldl: (('a -> 'b -> 'c -> 'a) -> 'a -> func<'b,'c> -> 'a)
