@@ -4,6 +4,9 @@ open FolAutomReas.Lib
 
 let f = ("w" |-> 4)(("z" |-> 3)(("y" |-> 2)(("x" |-> 1)undefined)))
 
+("y" |-> 2)(("x" |-> 1)undefined) 
+|> foldl (fun a x y -> a + y) 0 
+
 mapf (fun x -> x * 10) (("x" |-> 1)undefined)
 
 is_undefined undefined

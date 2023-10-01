@@ -45,7 +45,7 @@ module FPF =
                 Branch (p, b, mapf f l, mapf f r)
         mapf f t
     
-    let foldl =
+    let foldl folder state fpf =
         let rec foldl_list f a l =
             match l with
             | [] -> a
@@ -58,7 +58,7 @@ module FPF =
                 foldl_list f a l
             | Branch (p, b, l, r) ->
                 foldl f (foldl f a l) r
-        foldl
+        foldl folder state fpf 
             
     let foldr =
         let rec foldr_list f l a =

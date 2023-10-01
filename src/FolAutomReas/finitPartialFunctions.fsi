@@ -104,8 +104,39 @@ module FPF =
     /// </example>
     val mapf: f: ('a -> 'b) -> t: func<'c,'a> -> func<'c,'b>
     
-    /// Operation for `func` analogous to `foldl` for lists.
-    val foldl: (('a -> 'b -> 'c -> 'a) -> 'a -> func<'b,'c> -> 'a)
+    /// <summary>
+    /// Applies a function to the argument and value of an fpf, threading 
+    /// an accumulator argument through the computation. Take the second 
+    /// argument, and apply the function to it and the first argument and value 
+    /// of the fpf. Then feed this result into the function along with the 
+    /// second argument and value and so on. Return the final result. If the 
+    /// input function is <c>f</c> and the fpf's arguments and values are <c>
+    /// (i0,j0)...(iN,jN)</c> then 
+    /// computes <c>f (... (f s i0 j0) i1 j1 ...) iN jN</c>.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It is, for finite partial functions, the same operation that <c>fold</c> is for lists.
+    /// </remarks>
+    /// 
+    /// <param name="folder">The normal F# function to update the state given the input fpf.</param>
+    /// <param name="state">The initial state.</param>
+    /// <param name="fpf">The input fpf</param>
+    /// 
+    /// <returns>The final state value.</returns>
+    /// 
+    /// <example id="foldl-1">
+    /// <code lang="fsharp">
+    /// ("y" |-> 2)(("x" |-> 1)undefined) 
+    /// |> foldl (fun acc i j -> acc + j) 0
+    /// </code>
+    /// Evaluates to <c>3</c>.
+    /// </example>
+    val foldl:
+        folder: ('State -> 'a -> 'b -> 'State) ->
+        state: 'State ->
+        fpf: func<'a,'b>
+        -> 'State
     
     /// Operation for `func` analogous to `foldr` for lists.
     val foldr: (('a -> 'b -> 'c -> 'c) -> func<'a,'b> -> 'c -> 'c)
