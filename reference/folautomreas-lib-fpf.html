@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>FPF (FolAutomReas)</title>
+    <title>Fpf (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
 
@@ -74,7 +74,7 @@
         <div class="container" id="fsdocs-content">
             <div>
   <h2>
-    FPF Module
+    Fpf Module
   </h2>
   <dl class="fsdocs-metadata">
     <dt>
@@ -90,11 +90,23 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Polymorphic finite partial functions via Patricia trees. 
-
+        Polymorphic finite partial functions via Patricia trees.
       </p>
     </div>
+    <p class="fsdocs-remarks">
+      
+ The point of this strange representation is that it is canonical (equal 
+ functions have the same encoding) yet reasonably efficient on average. 
+ 
+    </p>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      
+ Idea due to Diego Olivier Fernandez Pons (OCaml list, 2003/11/10).
+ 
+    </p>
   </div>
   <div>
     <h3>
@@ -124,22 +136,24 @@
           </td>
           <td class="fsdocs-entity-xmldoc">
             <div>
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FolAutomReas.Lib.FPF.func`2``')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FolAutomReas.Lib.Fpf.func`2``')">
                 <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FolAutomReas.Lib.FPF.func`2\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FolAutomReas.Lib.Fpf.func`2\'/>')">
                 <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fsi#L34-34" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Type of functions represented as a patritia tree.
-
+ Type of polymorphic finite partial functions represented as a patricia 
+ tree, <code>&#39;a</code> being the type of the arguments and <code>&#39;b</code> that of 
+ the values.
+ 
               </p>
             </div>
           </td>
@@ -183,7 +197,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'b&#32;->&#32;'c&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></span></code>
+                    <code><span>'a&#32;->&#32;'b&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></span></code>
                   </span>
                   <br/>
                 </div>
@@ -194,15 +208,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.op_BarMinusGreater``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.op_BarMinusGreater``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.op_BarMinusGreater``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.op_BarMinusGreater``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L224-224" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L168-168" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -218,7 +232,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span>'b&#32;->&#32;'c&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></span></code>
+                  <code><span>'a&#32;->&#32;'b&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -276,15 +290,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.op_BarEqualsGreater``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.op_BarEqualsGreater``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.op_BarEqualsGreater``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.op_BarEqualsGreater``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L349-349" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L292-292" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -332,7 +346,7 @@
                 <p>
                   <a id="apply">
                     <a href="#apply">
-                      <code><span>apply&#32;<span>f</span></span></code>
+                      <code><span>apply&#32;<span>fpf</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -340,24 +354,168 @@
               <div class="fsdocs-tip" id="792">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>apply&#32;<span>f</span></span></code>
+                  <code><span>apply&#32;<span>fpf</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        f
+                        fpf
                       </b>
                       :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                       - 
+                      The input fpf to be applied.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'b&#32;->&#32;'c</span></code>
+                    <code><span>'a&#32;->&#32;'b</span></code>
+                  </span>
+                  
+ A normal F# function from the fpf's arguments to the fpf's values.  
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.apply``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.apply``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L101-101" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Creates, from an input <code>fpf</code>, a normal F# function that applied to 
+ an argument for which the <code>fpf</code> is defined, returns its value.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It never fails, but its result will failed if applied to an argument 
+ for which the <code>fpf</code> is not defined.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fpf
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input fpf to be applied.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A normal F# function from the fpf's arguments to the fpf's values.  
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="apply-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">apply</span> <span class="pn">(</span><span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="o">|-&gt;</span> <span class="n">2</span><span class="pn">)</span><span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="o">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span><span class="pn">)</span> <span class="s">&quot;y&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>2</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="apply-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">apply</span> <span class="pn">(</span><span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="o">|-&gt;</span> <span class="n">2</span><span class="pn">)</span><span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="o">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span><span class="pn">)</span> <span class="s">&quot;z&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: apply</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '793', 793)" onmouseover="showTip(event, '793', 793)">
+                <p>
+                  <a id="applyd">
+                    <a href="#applyd">
+                      <code><span>applyd&#32;<span>fpf&#32;d&#32;x</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="793">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>applyd&#32;<span>fpf&#32;d&#32;x</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fpf
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        d
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;'b</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'b</code>
                   </span>
                   <br/>
                 </div>
@@ -368,10 +526,26 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  f
+                  fpf
                 </span>
                 :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  d
+                </span>
+                :
+                <code><span>'a&#32;->&#32;'b</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code>'a</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -380,46 +554,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span>'b&#32;->&#32;'c</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '793', 793)" onmouseover="showTip(event, '793', 793)">
-                <p>
-                  <a id="applyd">
-                    <a href="#applyd">
-                      <code><span>applyd&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="793">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>applyd&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;->&#32;<span>(<span>'a&#32;->&#32;'b</span>)</span>&#32;->&#32;'a&#32;->&#32;'b</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;->&#32;<span>(<span>'a&#32;->&#32;'b</span>)</span>&#32;->&#32;'a&#32;->&#32;'b</span></code>
+                <code>'b</code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -506,7 +641,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span>(<span>'a&#32;->&#32;'a&#32;->&#32;'a</span>)</span>&#32;->&#32;<span>(<span>'a&#32;->&#32;bool</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'a</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'a</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'a</span>&gt;</span></span></code>
+                    <code><span><span>(<span>'c&#32;->&#32;'c&#32;->&#32;'c</span>)</span>&#32;->&#32;<span>(<span>'c&#32;->&#32;bool</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'c</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'c</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'c</span>&gt;</span></span></code>
                   </span>
                   <br/>
                 </div>
@@ -517,15 +652,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.combine``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.combine``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.combine``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.combine``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L224-224" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L168-168" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -541,7 +676,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span>(<span>'a&#32;->&#32;'a&#32;->&#32;'a</span>)</span>&#32;->&#32;<span>(<span>'a&#32;->&#32;bool</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'a</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'a</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'a</span>&gt;</span></span></code>
+                  <code><span><span>(<span>'c&#32;->&#32;'c&#32;->&#32;'c</span>)</span>&#32;->&#32;<span>(<span>'c&#32;->&#32;bool</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'c</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'c</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'c</span>&gt;</span></span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -573,7 +708,7 @@
                         f
                       </b>
                       :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -581,7 +716,7 @@
                         x
                       </b>
                       :
-                      <code>'b</code>
+                      <code>'a</code>
                     </span>
                     <br/>
                   </ul>
@@ -599,15 +734,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.defined``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.defined``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.defined``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.defined``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L164-164" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L110-110" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -624,7 +759,7 @@
                     f
                   </span>
                   :
-                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -632,7 +767,7 @@
                     x
                   </span>
                   :
-                  <code>'b</code>
+                  <code>'a</code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -655,7 +790,7 @@
                 <p>
                   <a id="dom">
                     <a href="#dom">
-                      <code><span>dom&#32;<span>f</span></span></code>
+                      <code><span>dom&#32;<span>fpf</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -663,25 +798,30 @@
               <div class="fsdocs-tip" id="797">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>dom&#32;<span>f</span></span></code>
+                  <code><span>dom&#32;<span>fpf</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        f
+                        fpf
                       </b>
                       :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                       - 
+                      The input fpf
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'b&#32;list</span></code>
+                    <code><span>'a&#32;list</span></code>
                   </span>
+                  
+ The domain (the set of arguments) of the input <code>fpf</code>.
+ 
                   <br/>
                 </div>
               </div>
@@ -691,44 +831,64 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.dom``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.dom``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.dom``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.dom``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Domain of function `f`.
-
+                    Returns the domain of the input <code>fpf</code>.
                   </p>
                 </div>
               </summary>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    f
+                    fpf
                   </span>
                   :
-                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input fpf
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span>'b&#32;list</span></code>
+                  <code><span>'a&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The domain (the set of arguments) of the input <code>fpf</code>.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="graph-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">|-&gt;</span> <span class="n">2</span><span class="pn">)</span><span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="pn">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[&quot;x&quot;; &quot;y&quot;]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -739,7 +899,7 @@
                 <p>
                   <a id="foldl">
                     <a href="#foldl">
-                      <code><span>foldl&#32;<span></span></span></code>
+                      <code><span>foldl&#32;<span>folder&#32;state&#32;fpf</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -747,13 +907,48 @@
               <div class="fsdocs-tip" id="798">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>foldl&#32;<span></span></span></code>
+                  <code><span>foldl&#32;<span>folder&#32;state&#32;fpf</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        folder
+                      </b>
+                      :
+                      <code><span>'State&#32;->&#32;'a&#32;->&#32;'b&#32;->&#32;'State</span></code>
+                       - 
+                      The normal F# function to update the state given the input fpf.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        state
+                      </b>
+                      :
+                      <code>'State</code>
+                       - 
+                      The initial state.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fpf
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                       - 
+                      The input fpf
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span>(<span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'a</span>)</span>&#32;->&#32;'a&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span>&#32;->&#32;'a</span></code>
+                    <code>'State</code>
                   </span>
+                  The final state value.
                   <br/>
                 </div>
               </div>
@@ -763,34 +958,100 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.foldl``3```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.foldl``3```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.foldl``3\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.foldl``3\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L48-48" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Operation for `func` analogous to `foldl` for lists.
-
+ Applies a function to the argument and value of an fpf, threading 
+ an accumulator argument through the computation. Take the second 
+ argument, and apply the function to it and the first argument and value 
+ of the fpf. Then feed this result into the function along with the 
+ second argument and value and so on. Return the final result. If the 
+ input function is <code>f</code> and the fpf's arguments and values are <code>
+ (i0,j0)...(iN,jN)</code> then 
+ computes <code>f (... (f s i0 j0) i1 j1 ...) iN jN</code>.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ It is, for finite partial functions, the same operation that <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#Fold">ListModule.Fold</a> is for <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-list-1">list</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    folder
+                  </span>
+                  :
+                  <code><span>'State&#32;->&#32;'a&#32;->&#32;'b&#32;->&#32;'State</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The normal F# function to update the state given the input fpf.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    state
+                  </span>
+                  :
+                  <code>'State</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The initial state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fpf
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input fpf
+                  </p>
+                </dd>
+              </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span>(<span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'a</span>)</span>&#32;->&#32;'a&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span>&#32;->&#32;'a</span></code>
+                  <code>'State</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The final state value.
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="foldl-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">|-&gt;</span> <span class="n">2</span><span class="pn">)</span><span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="pn">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+ <span class="o">|&gt;</span> <span class="id">foldl</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">acc</span> <span class="id">i</span> <span class="id">j</span> <span class="k">-&gt;</span> <span class="id">acc</span> <span class="o">+</span> <span class="id">j</span><span class="pn">)</span> <span class="n">0</span>
+</code></pre>
+
+
+ Evaluates to <code>3</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -799,68 +1060,6 @@
             <div>
               <code onmouseout="hideTip(event, '799', 799)" onmouseover="showTip(event, '799', 799)">
                 <p>
-                  <a id="foldr">
-                    <a href="#foldr">
-                      <code><span>foldr&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="799">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>foldr&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span>(<span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'c</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;->&#32;'c&#32;->&#32;'c</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.foldr``3```')">
-                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.foldr``3\'/>')">
-                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L97-97" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Operation for `func` analogous to `foldr` for lists.
-
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span><span>(<span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'c</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;->&#32;'c&#32;->&#32;'c</span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '800', 800)" onmouseover="showTip(event, '800', 800)">
-                <p>
                   <a id="fpf">
                     <a href="#fpf">
                       <code><span>fpf&#32;<span>xs&#32;ys</span></span></code>
@@ -868,7 +1067,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="800">
+              <div class="fsdocs-tip" id="799">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fpf&#32;<span>xs&#32;ys</span></span></code>
@@ -907,15 +1106,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.fpf``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.fpf``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.fpf``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.fpf``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L359-359" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L299-299" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -961,37 +1160,42 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '801', 801)" onmouseover="showTip(event, '801', 801)">
+              <code onmouseout="hideTip(event, '800', 800)" onmouseover="showTip(event, '800', 800)">
                 <p>
                   <a id="graph">
                     <a href="#graph">
-                      <code><span>graph&#32;<span>f</span></span></code>
+                      <code><span>graph&#32;<span>fpf</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="801">
+              <div class="fsdocs-tip" id="800">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>graph&#32;<span>f</span></span></code>
+                  <code><span>graph&#32;<span>fpf</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        f
+                        fpf
                       </b>
                       :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'g,&#32;'h</span>&gt;</span></code>
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                       - 
+                      The input fpf
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span>(<span>'g&#32;*&#32;'h</span>)</span>&#32;list</span></code>
+                    <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
                   </span>
+                  
+ The graph (the set of pairs argument-value) of the input <code>fpf</code>.
+ 
                   <br/>
                 </div>
               </div>
@@ -1001,51 +1205,71 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.graph``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.graph``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.graph``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.graph``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- Graph of function `f`.
-
+                    Returns the graph of the input <code>fpf</code>.
                   </p>
                 </div>
               </summary>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    f
+                    fpf
                   </span>
                   :
-                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'g,&#32;'h</span>&gt;</span></code>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input fpf
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span>(<span>'g&#32;*&#32;'h</span>)</span>&#32;list</span></code>
+                  <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The graph (the set of pairs argument-value) of the input <code>fpf</code>.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="graph-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">|-&gt;</span> <span class="n">2</span><span class="pn">)</span><span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="pn">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[(&quot;x&quot;, 1); (&quot;y&quot;, 2)]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '802', 802)" onmouseover="showTip(event, '802', 802)">
+              <code onmouseout="hideTip(event, '801', 801)" onmouseover="showTip(event, '801', 801)">
                 <p>
                   <a id="is_undefined">
                     <a href="#is_undefined">
@@ -1054,7 +1278,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="802">
+              <div class="fsdocs-tip" id="801">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>is_undefined&#32;<span>_arg1</span></span></code>
@@ -1068,6 +1292,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                       - 
+                      The function to be checked.
                     </span>
                     <br/>
                   </ul>
@@ -1076,6 +1302,7 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  True if the function is undefined.
                   <br/>
                 </div>
               </div>
@@ -1085,26 +1312,31 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.is_undefined``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.is_undefined``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.is_undefined``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.is_undefined``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L60-60" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Checks if the function is completely undefined.
- In case of equality comparison worries, better use this. 
-
+ Returns true if the function is completely undefined, false 
+ otherwise.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ In case of equality comparison worries, better use this.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -1113,7 +1345,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to be checked.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1122,33 +1358,86 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    True if the function is undefined.
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="is_undefined-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"><span class="id">is_undefined</span> <span class="id">undefined</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="is_undefined-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"><span class="id">is_undefined</span> <span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="o">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '803', 803)" onmouseover="showTip(event, '803', 803)">
+              <code onmouseout="hideTip(event, '802', 802)" onmouseover="showTip(event, '802', 802)">
                 <p>
                   <a id="mapf">
                     <a href="#mapf">
-                      <code><span>mapf&#32;<span></span></span></code>
+                      <code><span>mapf&#32;<span>mapping&#32;fpf</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="803">
+              <div class="fsdocs-tip" id="802">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>mapf&#32;<span></span></span></code>
+                  <code><span>mapf&#32;<span>mapping&#32;fpf</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mapping
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;'b</span></code>
+                       - 
+                      The function to transform values of the input fpf.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fpf
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'a</span>&gt;</span></code>
+                       - 
+                      The input fpf.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span>(<span>'a&#32;->&#32;'b</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'a</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'b</span>&gt;</span></span></code>
+                    <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'b</span>&gt;</span></code>
                   </span>
+                  
+ The fpf with transformed values.
+ 
                   <br/>
                 </div>
               </div>
@@ -1158,34 +1447,193 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.mapf``3```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.mapf``3```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.mapf``3\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.mapf``3\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Operation for `func` analogous to `map` for lists.
-
+ Builds a new fpf whose values are the results of applying the given 
+ function to the values of the input fpf.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ It is, for finite partial functions, the same operation that <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#Map">ListModule.Map</a> is for <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-list-1">list</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    mapping
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to transform values of the input fpf.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fpf
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'a</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input fpf.
+                  </p>
+                </dd>
+              </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span>(<span>'a&#32;->&#32;'b</span>)</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'a</span>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'b</span>&gt;</span></span></code>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'c,&#32;'b</span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The fpf with transformed values.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mapf-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="pn">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span>
+ <span class="o">|&gt;</span> <span class="id">mapf</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="id">x</span> <span class="pn">*</span> <span class="n">10</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>Leaf (..., [(&quot;x&quot;, 10)])</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '803', 803)" onmouseover="showTip(event, '803', 803)">
+                <p>
+                  <a id="ran">
+                    <a href="#ran">
+                      <code><span>ran&#32;<span>fpf</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="803">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ran&#32;<span>fpf</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fpf
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                       - 
+                      The input fpf
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'b&#32;list</span></code>
+                  </span>
+                  
+ The range (the set of values) of the input <code>fpf</code>.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.ran``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.ran``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L71-71" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Returns the range of the input <code>fpf</code>.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fpf
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input fpf
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'b&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The range (the set of values) of the input <code>fpf</code>.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="graph-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">|-&gt;</span> <span class="n">2</span><span class="pn">)</span><span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="pn">|-&gt;</span> <span class="n">1</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[1; 2]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -1194,9 +1642,9 @@
             <div>
               <code onmouseout="hideTip(event, '804', 804)" onmouseover="showTip(event, '804', 804)">
                 <p>
-                  <a id="print_patricia_tree">
-                    <a href="#print_patricia_tree">
-                      <code><span>print_patricia_tree&#32;<span>pt</span></span></code>
+                  <a id="tryapplyd">
+                    <a href="#tryapplyd">
+                      <code><span>tryapplyd&#32;<span>f&#32;a&#32;d</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -1204,54 +1652,7 @@
               <div class="fsdocs-tip" id="804">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>print_patricia_tree&#32;<span>pt</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        pt
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pt
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '805', 805)" onmouseover="showTip(event, '805', 805)">
-                <p>
-                  <a id="ran">
-                    <a href="#ran">
-                      <code><span>ran&#32;<span>f</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="805">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ran&#32;<span>f</span></span></code>
+                  <code><span>tryapplyd&#32;<span>f&#32;a&#32;d</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -1262,6 +1663,107 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        d
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'b</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  f
+                </span>
+                :
+                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  d
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '805', 805)" onmouseover="showTip(event, '805', 805)">
+                <p>
+                  <a id="tryapplyl">
+                    <a href="#tryapplyl">
+                      <code><span>tryapplyl&#32;<span>f&#32;x</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="805">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>tryapplyl&#32;<span>f&#32;x</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;<span>'b&#32;list</span></span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>'a</code>
                     </span>
                     <br/>
                   </ul>
@@ -1276,397 +1778,13 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.ran``2```')">
-                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.ran``2\'/>')">
-                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L123-123" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Range of function `f`.
-
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    f
-                  </span>
-                  :
-                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span>'b&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '806', 806)" onmouseover="showTip(event, '806', 806)">
-                <p>
-                  <a id="sprint_patricia_tree">
-                    <a href="#sprint_patricia_tree">
-                      <code><span>sprint_patricia_tree&#32;<span>pt</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="806">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>sprint_patricia_tree&#32;<span>pt</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        pt
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>string</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pt
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '807', 807)" onmouseover="showTip(event, '807', 807)">
-                <p>
-                  <a id="string_of_patricia_tree">
-                    <a href="#string_of_patricia_tree">
-                      <code><span>string_of_patricia_tree&#32;<span>pt</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="807">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>string_of_patricia_tree&#32;<span>pt</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        pt
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>string</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pt
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '808', 808)" onmouseover="showTip(event, '808', 808)">
-                <p>
-                  <a id="string_of_patricia_tree_with_level">
-                    <a href="#string_of_patricia_tree_with_level">
-                      <code><span>string_of_patricia_tree_with_level&#32;<span>pt&#32;level</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="808">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>string_of_patricia_tree_with_level&#32;<span>pt&#32;level</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        pt
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'e</span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        level
-                      </b>
-                      :
-                      <code>int</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>string</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pt
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;'e</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  level
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '809', 809)" onmouseover="showTip(event, '809', 809)">
-                <p>
-                  <a id="tryapplyd">
-                    <a href="#tryapplyd">
-                      <code><span>tryapplyd&#32;<span>f&#32;a&#32;d</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="809">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>tryapplyd&#32;<span>f&#32;a&#32;d</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        f
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        a
-                      </b>
-                      :
-                      <code>'b</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        d
-                      </b>
-                      :
-                      <code>'c</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>'c</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   f
                 </span>
                 :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  a
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  d
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '810', 810)" onmouseover="showTip(event, '810', 810)">
-                <p>
-                  <a id="tryapplyl">
-                    <a href="#tryapplyl">
-                      <code><span>tryapplyl&#32;<span>f&#32;x</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="810">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>tryapplyl&#32;<span>f&#32;x</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        f
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'e,&#32;<span>'f&#32;list</span></span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        x
-                      </b>
-                      :
-                      <code>'e</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>'f&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'e,&#32;<span>'f&#32;list</span></span>&gt;</span></code>
+                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;<span>'b&#32;list</span></span>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1674,7 +1792,7 @@
                   x
                 </span>
                 :
-                <code>'e</code>
+                <code>'a</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -1683,7 +1801,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span>'f&#32;list</span></code>
+                <code><span>'b&#32;list</span></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1692,7 +1810,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '811', 811)" onmouseover="showTip(event, '811', 811)">
+              <code onmouseout="hideTip(event, '806', 806)" onmouseover="showTip(event, '806', 806)">
                 <p>
                   <a id="undef">
                     <a href="#undef">
@@ -1701,7 +1819,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="811">
+              <div class="fsdocs-tip" id="806">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>undef&#32;<span>x</span></span></code>
@@ -1714,14 +1832,14 @@
                         x
                       </b>
                       :
-                      <code>'c</code>
+                      <code>'a</code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code>'d</code>
+                    <code>'b</code>
                   </span>
                   <br/>
                 </div>
@@ -1732,15 +1850,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.undef``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.undef``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.undef``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.undef``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L403-403" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L330-330" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1769,7 +1887,7 @@
                     x
                   </span>
                   :
-                  <code>'c</code>
+                  <code>'a</code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1778,7 +1896,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code>'d</code>
+                  <code>'b</code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1788,7 +1906,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '812', 812)" onmouseover="showTip(event, '812', 812)">
+              <code onmouseout="hideTip(event, '807', 807)" onmouseover="showTip(event, '807', 807)">
                 <p>
                   <a id="undefine">
                     <a href="#undefine">
@@ -1797,7 +1915,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="812">
+              <div class="fsdocs-tip" id="807">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>undefine&#32;<span></span></span></code>
@@ -1816,15 +1934,15 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.undefine``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.undefine``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.undefine``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.undefine``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L176-176" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L121-121" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1850,7 +1968,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '813', 813)" onmouseover="showTip(event, '813', 813)">
+              <code onmouseout="hideTip(event, '808', 808)" onmouseover="showTip(event, '808', 808)">
                 <p>
                   <a id="undefined">
                     <a href="#undefined">
@@ -1859,7 +1977,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="813">
+              <div class="fsdocs-tip" id="808">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>undefined&#32;<span></span></span></code>
@@ -1867,8 +1985,9 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                    <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                   </span>
+                  <code>Empty</code>.
                   <br/>
                 </div>
               </div>
@@ -1878,22 +1997,20 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.FPF.undefined``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Fpf.undefined``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.FPF.undefined``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Fpf.undefined``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/finitPartialFunctions.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Fpf.fs#L27-27" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- The undefined function.
-
+                    The empty, or everywhere undefined, function.
                   </p>
                 </div>
               </summary>
@@ -1902,9 +2019,13 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'b,&#32;'c</span>&gt;</span></code>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    <code>Empty</code>.
+                  </p>
+                </dd>
               </dl>
             </details>
           </td>
@@ -1912,7 +2033,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '814', 814)" onmouseover="showTip(event, '814', 814)">
+              <code onmouseout="hideTip(event, '809', 809)" onmouseover="showTip(event, '809', 809)">
                 <p>
                   <a id="valmod">
                     <a href="#valmod">
@@ -1921,7 +2042,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="814">
+              <div class="fsdocs-tip" id="809">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>valmod&#32;<span>a&#32;y&#32;f&#32;x</span></span></code>
@@ -1934,7 +2055,7 @@
                         a
                       </b>
                       :
-                      <code>'c</code>
+                      <code>'a</code>
                     </span>
                     <br/>
                     <span>
@@ -1942,7 +2063,7 @@
                         y
                       </b>
                       :
-                      <code>'d</code>
+                      <code>'b</code>
                     </span>
                     <br/>
                     <span>
@@ -1950,7 +2071,7 @@
                         f
                       </b>
                       :
-                      <code><span>'c&#32;->&#32;'d</span></code>
+                      <code><span>'a&#32;->&#32;'b</span></code>
                     </span>
                     <br/>
                     <span>
@@ -1958,14 +2079,14 @@
                         x
                       </b>
                       :
-                      <code>'c</code>
+                      <code>'a</code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code>'d</code>
+                    <code>'b</code>
                   </span>
                   <br/>
                 </div>
@@ -1979,7 +2100,7 @@
                   a
                 </span>
                 :
-                <code>'c</code>
+                <code>'a</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1987,7 +2108,7 @@
                   y
                 </span>
                 :
-                <code>'d</code>
+                <code>'b</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1995,7 +2116,7 @@
                   f
                 </span>
                 :
-                <code><span>'c&#32;->&#32;'d</span></code>
+                <code><span>'a&#32;->&#32;'b</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -2003,7 +2124,7 @@
                   x
                 </span>
                 :
-                <code>'c</code>
+                <code>'a</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -2012,7 +2133,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code>'d</code>
+                <code>'b</code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
