@@ -33,8 +33,8 @@
     <Compile Include="search.fs" />
     <Compile Include="setOperations.fs" />
     <Compile Include="stringExplosion.fs" />
-    <Compile Include="finitPartialFunctions.fsi" />
-    <Compile Include="finitPartialFunctions.fs" />
+    <Compile Include="Fpf.fsi" />
+    <Compile Include="Fpf.fs" />
     <Compile Include="unionFindAlgorithm.fs" />
     <Compile Include="timing.fs" />
     <Compile Include="intro.fs" />

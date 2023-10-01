@@ -2,10 +2,54 @@
 
 open FolAutomReas.Lib
 
+
+
+apply (("y" |-> 2)(("x" |-> 1)undefined)) 
+<| "y"
+
+apply (("y" |-> 2)(("x" |-> 1)undefined)) 
+<| "z"
+
+let rec apply_listd l d x =
+    match l with
+    | [] -> d x
+    | (a, b) :: tl ->
+        let c = compare x a
+        if c = 0 then b
+        elif c > 0 then apply_listd tl d x
+        else d x
+
+apply_listd ["x",1] (function "y" -> 2) "x"
+
+let rec look d x fpf =
+    let k = hash x
+    match fpf with
+    | Leaf (h, l) when h = k ->
+        apply_listd l d x
+    | Branch (p, b, l, r) when (k ^^^ p) &&& (b - 1) = 0 ->
+        if k &&& b = 0 then l else r
+        |> look d x
+    | _ -> d x
+
+("w" |-> 4)(("z" |-> 3)(("y" |-> 2)(("x" |-> 1)undefined)))
+|> look (fun x -> 2) "w"
+
 let f = ("w" |-> 4)(("z" |-> 3)(("y" |-> 2)(("x" |-> 1)undefined)))
+
+
+
 
 ("y" |-> 2)(("x" |-> 1)undefined) 
 |> foldl (fun a x y -> a + y) 0 
+
+("y" |-> 2)(("x" |-> 1)undefined) 
+|> graph 
+
+("y" |-> 2)(("x" |-> 1)undefined) 
+|> dom 
+
+
+
 
 mapf (fun x -> x * 10) (("x" |-> 1)undefined)
 

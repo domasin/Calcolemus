@@ -8,7 +8,7 @@
 namespace FolAutomReas.Lib
 
 [<AutoOpen>]
-module FPF = 
+module Fpf = 
 
     // ---------------------------------------------------------------------- //
     // Polymorphic finite partial functions via Patricia trees.               //
@@ -30,61 +30,46 @@ module FPF =
         | Empty -> true
         | _     -> false
     
-    let mapf f t =
-        let rec map_list f l =
-            match l with
+    let mapf mapping fpf =
+        let rec map_list mapping list =
+            match list with
             | [] -> []
-            | (x, y) :: t ->
-                (x, f y) :: (map_list f t)
-        let rec mapf f t =
-            match t with
+            | (arg, value) :: t ->
+                (arg, mapping value) :: (map_list mapping t)
+        let rec mapf mapping fpf =
+            match fpf with
             | Empty -> Empty
-            | Leaf (h, l) ->
-                Leaf (h, map_list f l)
-            | Branch (p, b, l, r) ->
-                Branch (p, b, mapf f l, mapf f r)
-        mapf f t
+            | Leaf (hash, list) ->
+                Leaf (hash, map_list mapping list)
+            | Branch (p, b, left, right) ->
+                Branch (p, b, mapf mapping left, mapf mapping right)
+        mapf mapping fpf
     
     let foldl folder state fpf =
-        let rec foldl_list f a l =
-            match l with
-            | [] -> a
-            | (x, y) :: t ->
-                foldl_list f (f a x y) t
-        let rec foldl f a t =
-            match t with
-            | Empty -> a
-            | Leaf (h, l) ->
-                foldl_list f a l
-            | Branch (p, b, l, r) ->
-                foldl f (foldl f a l) r
+        let rec foldl_list folder state list =
+            match list with
+            | [] -> state
+            | (arg, value) :: t ->
+                foldl_list folder (folder state arg value) t
+        let rec foldl folder state fpf =
+            match fpf with
+            | Empty -> state
+            | Leaf (hash, list) ->
+                foldl_list folder state list
+            | Branch (p, b, left, right) ->
+                foldl folder (foldl folder state left) right
         foldl folder state fpf 
-            
-    let foldr =
-        let rec foldr_list f l a =
-            match l with
-            | [] -> a
-            | (x, y) :: t ->
-                f x y (foldr_list f t a)
-        let rec foldr f t a =
-            match t with
-            | Empty -> a
-            | Leaf (h, l) ->
-                foldr_list f l a
-            | Branch (p, b, l, r) ->
-                foldr f l (foldr f r a)
-        foldr
     
-    let graph f =
-        foldl (fun a x y -> (x, y) :: a) [] f
+    let graph fpf =
+        foldl (fun acc arg value -> (arg, value) :: acc) [] fpf
         |> setify
         
-    let dom f =
-        foldl (fun a x y -> x :: a) [] f
+    let dom fpf =
+        foldl (fun acc arg _ -> arg :: acc) [] fpf
         |> setify
         
-    let ran f =
-        foldl (fun a x y -> y :: a) [] f
+    let ran fpf =
+        foldl (fun acc _ value -> value :: acc) [] fpf
         |> setify
     
     // ---------------------------------------------------------------------- //
@@ -92,7 +77,7 @@ module FPF =
     // ---------------------------------------------------------------------- //
     
     // Support function for use with apply, tryapplyd, and tryapplyl.
-    let applyd =
+    let applyd fpf d x =
         let rec apply_listd l d x =
             match l with
             | [] -> d x
@@ -102,20 +87,19 @@ module FPF =
                 elif c > 0 then apply_listd tl d x
                 else d x
                 
-        fun f d x ->
-            let k = hash x
-            let rec look t =
-                match t with
-                | Leaf (h, l) when h = k ->
-                    apply_listd l d x
-                | Branch (p, b, l, r) when (k ^^^ p) &&& (b - 1) = 0 ->
-                    if k &&& b = 0 then l else r
-                    |> look
-                | _ -> d x
-            look f
+        let k = hash x
+        let rec look fpf =
+            match fpf with
+            | Leaf (h, l) when h = k ->
+                apply_listd l d x
+            | Branch (p, b, l, r) when (k ^^^ p) &&& (b - 1) = 0 ->
+                if k &&& b = 0 then l else r
+                |> look
+            | _ -> d x
+        look fpf
     
-    let apply f =
-        applyd f (fun _ -> failwith "apply")
+    let apply fpf =
+        applyd fpf (fun _ -> failwith "apply")
     
     let tryapplyd f a d =
         applyd f (fun _ -> d) a

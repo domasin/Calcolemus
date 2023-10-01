@@ -9,12 +9,12 @@ namespace FolAutomReas.Lib
 /// Idea due to Diego Olivier Fernandez Pons (OCaml list, 2003/11/10).
 /// </note>
 [<AutoOpen>]
-module FPF = 
+module Fpf = 
 
     /// <summary>
     /// Type of polymorphic finite partial functions represented as a patricia 
-    /// tree, <c>'a</c> being the type of the domain and <c>'b</c> of the 
-    /// codomain.
+    /// tree, <c>'a</c> being the type of the arguments and <c>'b</c> that of 
+    /// the values.
     /// </summary>
     /// <example>
     /// The following represents the function \(x \mapsto 1, y \mapsto 2, z 
@@ -67,6 +67,10 @@ module FPF =
     /// otherwise.
     /// </summary>
     /// 
+    /// <remarks>
+    /// In case of equality comparison worries, better use this.
+    /// </remarks>
+    /// 
     /// <param name="_arg1">The function to be checked.</param>
     /// 
     /// <returns>True if the function is undefined.</returns>
@@ -80,29 +84,32 @@ module FPF =
     /// <code lang="fsharp">is_undefined (("x" |-> 1)undefined)</code>
     /// Evaluates to <c>false</c>.
     /// </example>
-    /// 
-    /// <remarks>
-    /// In case of equality comparison worries, better use this.
-    /// </remarks>
     val is_undefined: _arg1: func<'a,'b> -> bool
     
-    /// <summary>Composes a normal F# function with an FPF.</summary>
+    /// <summary>
+    /// Builds a new fpf whose values are the results of applying the given 
+    /// function to the values of the input fpf.
+    /// </summary>
     /// 
-    /// <param name="f">The normal F# function.</param>
-    /// <param name="t">The FPF function.</param>
+     /// <remarks>
+    /// It is, for finite partial functions, the same operation that <see cref='M:Microsoft.FSharp.Collections.ListModule.Map``2'/> is for <see cref='T:Microsoft.FSharp.Collections.list`1'/>.
+    /// </remarks>
+    /// 
+    /// <param name="mapping">The function to transform values of the input fpf.</param>
+    /// <param name="fpf">The input fpf.</param>
     /// 
     /// <returns>
-    /// The input FPF <c>t</c> with all \(x \mapsto y\) replaced with \(x 
-    /// \mapsto f(y)\)
+    /// The fpf with transformed values.
     /// </returns>
     /// 
-    /// <example id="is_undefined-2">
+    /// <example id="mapf-2">
     /// <code lang="fsharp">
-    /// mapf (fun x -> x * 10) (("x" |-> 1)undefined)
+    /// ("x" |-> 1)undefined
+    /// |> mapf (fun x -> x * 10) 
     /// </code>
-    /// Evaluates to <code lang="fsharp">Leaf (1907997954, [("x", 10)])</code>.
+    /// Evaluates to <c>Leaf (..., [("x", 10)])</c>.
     /// </example>
-    val mapf: f: ('a -> 'b) -> t: func<'c,'a> -> func<'c,'b>
+    val mapf: mapping: ('a -> 'b) -> fpf: func<'c,'a> -> func<'c,'b>
     
     /// <summary>
     /// Applies a function to the argument and value of an fpf, threading 
@@ -116,7 +123,7 @@ module FPF =
     /// </summary>
     /// 
     /// <remarks>
-    /// It is, for finite partial functions, the same operation that <c>fold</c> is for lists.
+    /// It is, for finite partial functions, the same operation that <see cref='M:Microsoft.FSharp.Collections.ListModule.Fold``2'/> is for <see cref='T:Microsoft.FSharp.Collections.list`1'/>.
     /// </remarks>
     /// 
     /// <param name="folder">The normal F# function to update the state given the input fpf.</param>
@@ -137,23 +144,91 @@ module FPF =
         state: 'State ->
         fpf: func<'a,'b>
         -> 'State
-    
-    /// Operation for `func` analogous to `foldr` for lists.
-    val foldr: (('a -> 'b -> 'c -> 'c) -> func<'a,'b> -> 'c -> 'c)
-    
-    /// Graph of function `f`.
+
+    /// <summary>Returns the graph of the input <c>fpf</c>.</summary>
+    /// 
+    /// <param name="fpf">The input fpf</param>
+    /// 
+    /// <returns>
+    /// The graph (the set of pairs argument-value) of the input <c>fpf</c>.
+    /// </returns>
+    /// 
+    /// <example id="graph-1">
+    /// <code lang="fsharp">
+    /// ("y" |-> 2)(("x" |-> 1)undefined) 
+    /// |> graph 
+    /// </code>
+    /// Evaluates to <c>[("x", 1); ("y", 2)]</c>.
+    /// </example>
     val graph:
-      f: func<'a,'b> -> ('a * 'b) list when 'a: comparison and 'b: comparison
+      fpf: func<'a,'b> -> ('a * 'b) list when 'a: comparison and 'b: comparison
     
-    /// Domain of function `f`.
-    val dom: f: func<'a,'b> -> 'a list when 'a: comparison
+    /// <summary>Returns the domain of the input <c>fpf</c>.</summary>
+    /// 
+    /// <param name="fpf">The input fpf</param>
+    /// 
+    /// <returns>
+    /// The domain (the set of arguments) of the input <c>fpf</c>.
+    /// </returns>
+    /// 
+    /// <example id="graph-1">
+    /// <code lang="fsharp">
+    /// ("y" |-> 2)(("x" |-> 1)undefined) 
+    /// |> graph 
+    /// </code>
+    /// Evaluates to <c>["x"; "y"]</c>.
+    /// </example>
+    val dom: fpf: func<'a,'b> -> 'a list when 'a: comparison
     
-    /// Range of function `f`.
-    val ran: f: func<'a,'b> -> 'b list when 'b: comparison
+    /// <summary>Returns the range of the input <c>fpf</c>.</summary>
+    /// 
+    /// <param name="fpf">The input fpf</param>
+    /// 
+    /// <returns>
+    /// The range (the set of values) of the input <c>fpf</c>.
+    /// </returns>
+    /// 
+    /// <example id="graph-1">
+    /// <code lang="fsharp">
+    /// ("y" |-> 2)(("x" |-> 1)undefined) 
+    /// |> graph 
+    /// </code>
+    /// Evaluates to <c>[1; 2]</c>.
+    /// </example>
+    val ran: fpf: func<'a,'b> -> 'b list when 'b: comparison
     
-    val applyd: (func<'a,'b> -> ('a -> 'b) -> 'a -> 'b) when 'a: comparison
+    val applyd: fpf: func<'a,'b> -> d: ('a -> 'b) -> x: 'a -> 'b when 'a: comparison
     
-    val apply: f: func<'a,'b> -> ('a -> 'b) when 'a: comparison
+    /// <summary>
+    /// Creates, from an input <c>fpf</c>, a normal F# function that applied to 
+    /// an argument for which the <c>fpf</c> is defined, returns its value.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It never fails, but its result will failed if applied to an argument 
+    /// for which the <c>fpf</c> is not defined.
+    /// </remarks>
+    /// 
+    /// <param name="fpf">The input fpf to be applied.</param>
+    /// 
+    /// <returns>
+    /// A normal F# function from the fpf's arguments to the fpf's values.  
+    /// </returns>
+    /// 
+    /// <example id="apply-1">
+    /// <code lang="fsharp">
+    /// apply (("y" |-> 2)(("x" |-> 1)undefined)) "y"
+    /// </code>
+    /// Evaluates to <c>2</c>.
+    /// </example>
+    /// 
+    /// <example id="apply-2">
+    /// <code lang="fsharp">
+    /// apply (("y" |-> 2)(("x" |-> 1)undefined)) "z"
+    /// </code>
+    /// Throws <c>System.Exception: apply</c>.
+    /// </example>
+    val apply: fpf: func<'a,'b> -> ('a -> 'b) when 'a: comparison
     
     val tryapplyd: f: func<'a,'b> -> a: 'a -> d: 'b -> 'b when 'a: comparison
     

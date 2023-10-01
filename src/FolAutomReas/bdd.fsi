@@ -1,5 +1,7 @@
 namespace FolAutomReas
 
+open FolAutomReas.Lib
+
 /// <summary>
 /// Binary decision diagrams (BDDs) using complement edges.
 /// </summary>
@@ -28,7 +30,7 @@ module Bdd =
     /// </remarks>
     type bdd =
         | Bdd of
-          (Lib.FPF.func<bddnode,int> * Lib.FPF.func<int,bddnode> * int) *
+          (func<bddnode,int> * func<int,bddnode> * int) *
           (Prop.prop -> Prop.prop -> bool)
 
     val print_bdd: bdd -> unit
@@ -58,29 +60,29 @@ module Bdd =
 
     /// Perform an AND operation on BDDs, maintaining canonicity.
     val bdd_and:
-      bdd * Lib.FPF.func<(int * int),int> ->
-        m1: int * m2: int -> (bdd * Lib.FPF.func<(int * int),int>) * int
+      bdd * func<(int * int),int> ->
+        m1: int * m2: int -> (bdd * func<(int * int),int>) * int
 
     /// Perform an OR operation on BDDs, maintaining canonicity.
     val bdd_or:
-      bdd * Lib.FPF.func<(int * int),int> ->
-        m1: int * m2: int -> (bdd * Lib.FPF.func<(int * int),int>) * int
+      bdd * func<(int * int),int> ->
+        m1: int * m2: int -> (bdd * func<(int * int),int>) * int
 
     /// Perform an IMP operation on BDDs, maintaining canonicity.
     val bdd_imp:
-      bdd * Lib.FPF.func<(int * int),int> ->
-        m1: int * m2: int -> (bdd * Lib.FPF.func<(int * int),int>) * int
+      bdd * func<(int * int),int> ->
+        m1: int * m2: int -> (bdd * func<(int * int),int>) * int
 
     /// Perform an IFF operation on BDDs, maintaining canonicity.
     val bdd_iff:
-      bdd * Lib.FPF.func<(int * int),int> ->
-        m1: int * m2: int -> (bdd * Lib.FPF.func<(int * int),int>) * int
+      bdd * func<(int * int),int> ->
+        m1: int * m2: int -> (bdd * func<(int * int),int>) * int
 
     /// Formula to BDD conversion.
     val mkbdd:
-      bdd * Lib.FPF.func<(int * int),int> ->
+      bdd * func<(int * int),int> ->
         fm: Formulas.formula<Prop.prop> ->
-        (bdd * Lib.FPF.func<(int * int),int>) * int
+        (bdd * func<(int * int),int>) * int
 
     /// Tautology checking using BDDs.  
     val bddtaut: fm: Formulas.formula<Prop.prop> -> bool
@@ -106,17 +108,17 @@ module Bdd =
 
     /// Formula to BDD conversion with improved setup
     val mkbdde:
-      sfn: Lib.FPF.func<Prop.prop,int> ->
-        bdd * Lib.FPF.func<(int * int),int> ->
+      sfn: func<Prop.prop,int> ->
+        bdd * func<(int * int),int> ->
           fm: Formulas.formula<Prop.prop> ->
-          (bdd * Lib.FPF.func<(int * int),int>) * int
+          (bdd * func<(int * int),int>) * int
 
     val mkbdds:
-      sfn: Lib.FPF.func<Prop.prop,int> ->
-        bdd * Lib.FPF.func<(int * int),int> ->
+      sfn: func<Prop.prop,int> ->
+        bdd * func<(int * int),int> ->
           defs: (Prop.prop * Formulas.formula<Prop.prop>) list ->
           fm: Formulas.formula<Prop.prop> ->
-          (bdd * Lib.FPF.func<(int * int),int>) * int
+          (bdd * func<(int * int),int>) * int
 
     /// Tautology checking using BDDs with an improved setup
     val ebddtaut: fm: Formulas.formula<Prop.prop> -> bool
