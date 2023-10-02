@@ -1,7 +1,7 @@
 // ========================================================================= //
 // Copyright (c) 2003-2007, John Harrison.                                   //
 // Copyright (c) 2012 Eric Taucher, Jack Pappas, Anh-Dung Phan               //
-// Copyright (c) 2023 Domenico Masini (derived from lib.fs)
+// Copyright (c) 2023 Domenico Masini (modified for ease of documentation)   //
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
@@ -10,15 +10,6 @@ namespace FolAutomReas.Lib
 [<AutoOpen>]
 module Fpf = 
 
-    // ---------------------------------------------------------------------- //
-    // Polymorphic finite partial functions via Patricia trees.               //
-    //                                                                        //
-    // The point of this strange representation is that it is canonical (equal//
-    // functions have the same encoding) yet reasonably efficient on average. //
-    //                                                                        //
-    // Idea due to Diego Olivier Fernandez Pons (OCaml list, 2003/11/10).     //
-    // -----------------------------------------------------------------------//
-    
     type func<'a,'b> =
         | Empty
         | Leaf of int * ('a * 'b) list
@@ -71,54 +62,57 @@ module Fpf =
     let ran fpf =
         foldl (fun acc _ value -> value :: acc) [] fpf
         |> setify
-    
-    // ---------------------------------------------------------------------- //
-    // Application.                                                           //
-    // ---------------------------------------------------------------------- //
-    
-    // Support function for use with apply, tryapplyd, and tryapplyl.
-    let applyd fpf d x =
+
+    let applyd fpf d a =
+        // search x as a fst elem of pairs in list l.
+        // If it is there, returns the snd elem of the same pair;
+        // otherwise, returns function d applied to d.
         let rec apply_listd l d x =
             match l with
+            // if list is empty, returns d applied to x
             | [] -> d x
             | (a, b) :: tl ->
                 let c = compare x a
+                // otherwise, if x equals the fst elem of pair, 
+                // returns the snd elem
                 if c = 0 then b
+                // otherwise, if x follows (in the default order) the fs 
+                // elem of pair, search for a matching in the following pairs
                 elif c > 0 then apply_listd tl d x
+                // otherwise, returns d applied to x
                 else d x
                 
-        let k = hash x
+        let k = hash a
+        // search x in fpf
         let rec look fpf =
             match fpf with
+            // if fpf is a leaf and x's hash equals leaf's hash,
+            // search x in leaf's list, with apply_listd
             | Leaf (h, l) when h = k ->
-                apply_listd l d x
+                apply_listd l d a
             | Branch (p, b, l, r) when (k ^^^ p) &&& (b - 1) = 0 ->
                 if k &&& b = 0 then l else r
                 |> look
-            | _ -> d x
+            | _ -> d a
         look fpf
     
-    let apply fpf =
-        applyd fpf (fun _ -> failwith "apply")
+    let apply fpf a =
+        applyd fpf (fun _ -> failwith "apply") a
     
-    let tryapplyd f a d =
-        applyd f (fun _ -> d) a
+    let tryapplyd fpf a d =
+        applyd fpf (fun _ -> d) a
     
-    let tryapplyl f x =
-        tryapplyd f x []
+    let tryapplyl fpf a =
+        tryapplyd fpf a []
         
-    let defined f x =
+    let defined fpf a =
         try
-            apply f x |> ignore
+            apply fpf a |> ignore
             true
         with
         | Failure _ -> false
     
-    // ---------------------------------------------------------------------- //
-    // Undefinition.                                                          //
-    // ---------------------------------------------------------------------- //
-    
-    let undefine =
+    let undefine a fpf =
         let rec undefine_list x l =
             match l with
             | [] -> []
@@ -131,7 +125,7 @@ module Fpf =
                         if t' = t then l
                         else ab :: t'
                                   
-        fun x ->
+        let undefineAux x fpf = 
             let k = hash x
             let rec und t =
                 match t with
@@ -157,174 +151,147 @@ module Fpf =
                             | Empty -> l
                             | _ -> Branch (p, b, l, r')
                 | _ -> t
-            und
+            und fpf
+
+        undefineAux a fpf
+
+    let newbranch p1 t1 p2 t2 =
+        let zp = p1 ^^^ p2
+        let b = zp &&& -zp
+        let p = p1 &&& (b - 1)
+        if p1 &&& b = 0 then Branch (p, b, t1, t2)
+        else Branch (p, b, t2, t1)
     
-    // ---------------------------------------------------------------------- //
-    // Redefinition and combination.                                          //
-    // ---------------------------------------------------------------------- //
+    let rec define_list (x, y as xy) l =
+        match l with
+        | [] -> [xy]
+        | (a, b as ab) :: t ->
+            let c = compare x a
+            if c = 0 then xy :: t
+            elif c < 0 then xy :: l
+            else ab :: (define_list xy t)
     
-    // Finite Partial Functions (FPF)
+    // it seems unused
+    // and combine_list op z l1 l2 =
+    //     match l1, l2 with
+    //     | [], x
+    //     | x, [] -> x
+    //     | ((x1, y1 as xy1) :: t1, (x2, y2 as xy2) :: t2) ->
+    //         let c = compare x1 x2
+    //         if c < 0 then xy1 :: (combine_list op z t1 l2)
+    //         elif c > 0 then xy2 :: (combine_list op z l1 t2)
+    //         else
+    //             let y = op y1 y2
+    //             let l = combine_list op z t1 t2
+    //             if z y then l
+    //             else (x1, y) :: l
     
-    let (|->),combine =
-        let newbranch p1 t1 p2 t2 =
-            let zp = p1 ^^^ p2
-            let b = zp &&& -zp
-            let p = p1 &&& (b - 1)
-            if p1 &&& b = 0 then Branch (p, b, t1, t2)
-            else Branch (p, b, t2, t1)
+    let (|->) argument value fpf =
+        let k = hash argument
+        let rec upd t =
+            match t with
+            | Empty -> Leaf (k, [argument, value])
+            | Leaf (h, l) ->
+                if h = k then Leaf (h, define_list (argument, value) l)
+                else newbranch h t k (Leaf (k, [argument, value]))
+            | Branch (p, b, l, r) ->
+                if k &&& (b - 1) <> p then newbranch p t k (Leaf (k, [argument, value]))
+                elif k &&& b = 0 then Branch (p, b, upd l, r)
+                else Branch (p, b, l, upd r)
+        upd fpf
     
-        let rec define_list (x, y as xy) l =
-            match l with
-            | [] -> [xy]
-            | (a, b as ab) :: t ->
-                let c = compare x a
-                if c = 0 then xy :: t
-                elif c < 0 then xy :: l
-                else ab :: (define_list xy t)
+    // it seems unused
+    // let rec combine op z t1 t2 =
+    //     match t1, t2 with
+    //     | Empty, x
+    //     | x, Empty -> x
+    //     | Leaf (h1, l1), Leaf (h2, l2) ->
+    //         if h1 = h2 then
+    //             let l = combine_list op z l1 l2
+    //             if l = [] then Empty
+    //             else Leaf (h1, l)
+    //         else newbranch h1 t1 h2 t2
     
-        and combine_list op z l1 l2 =
-            match l1, l2 with
-            | [], x
-            | x, [] -> x
-            | ((x1, y1 as xy1) :: t1, (x2, y2 as xy2) :: t2) ->
-                let c = compare x1 x2
-                if c < 0 then xy1 :: (combine_list op z t1 l2)
-                elif c > 0 then xy2 :: (combine_list op z l1 t2)
-                else
-                    let y = op y1 y2
-                    let l = combine_list op z t1 t2
-                    if z y then l
-                    else (x1, y) :: l
+    //     | (Leaf (k, lis) as lf), (Branch (p, b, l, r) as br) ->
+    //         if k &&& (b - 1) = p then
+    //             if k &&& b = 0 then
+    //                 match combine op z lf l with
+    //                 | Empty -> r
+    //                 | l' -> Branch (p, b, l', r)
+    //             else
+    //                 match combine op z lf r with
+    //                 | Empty -> l
+    //                 | r' -> Branch (p, b, l, r')
+    //         else
+    //             newbranch k lf p br
     
-        let (|->) x y =
-            let k = hash x
-            let rec upd t =
-                match t with
-                | Empty -> Leaf (k, [x, y])
-                | Leaf (h, l) ->
-                    if h = k then Leaf (h, define_list (x, y) l)
-                    else newbranch h t k (Leaf (k, [x, y]))
-                | Branch (p, b, l, r) ->
-                    if k &&& (b - 1) <> p then newbranch p t k (Leaf (k, [x, y]))
-                    elif k &&& b = 0 then Branch (p, b, upd l, r)
-                    else Branch (p, b, l, upd r)
-            upd
+    //     | (Branch (p, b, l, r) as br), (Leaf (k, lis) as lf) ->
+    //         if k &&& (b - 1) = p then
+    //             if k &&& b = 0 then
+    //                 match combine op z l lf with
+    //                 | Empty -> r
+    //                 | l' -> Branch (p, b, l', r)
+    //             else
+    //                 match combine op z r lf with
+    //                 | Empty -> l
+    //                 | r' -> Branch (p, b, l, r')
+    //         else
+    //             newbranch p br k lf
     
-        let rec combine op z t1 t2 =
-            match t1, t2 with
-            | Empty, x
-            | x, Empty -> x
-            | Leaf (h1, l1), Leaf (h2, l2) ->
-                if h1 = h2 then
-                    let l = combine_list op z l1 l2
-                    if l = [] then Empty
-                    else Leaf (h1, l)
-                else newbranch h1 t1 h2 t2
+    //     | Branch (p1, b1, l1, r1), Branch (p2, b2, l2, r2) ->
+    //         if b1 < b2 then
+    //             if p2 &&& (b1 - 1) <> p1 then
+    //                 newbranch p1 t1 p2 t2
+    //             elif p2 &&& b1 = 0 then
+    //                 match combine op z l1 t2 with
+    //                 | Empty -> r1
+    //                 | l -> Branch (p1, b1, l, r1)
+    //             else
+    //                 match combine op z r1 t2 with
+    //                 | Empty -> l1
+    //                 | r -> Branch (p1, b1, l1, r)
     
-            | (Leaf (k, lis) as lf), (Branch (p, b, l, r) as br) ->
-                if k &&& (b - 1) = p then
-                    if k &&& b = 0 then
-                        match combine op z lf l with
-                        | Empty -> r
-                        | l' -> Branch (p, b, l', r)
-                    else
-                        match combine op z lf r with
-                        | Empty -> l
-                        | r' -> Branch (p, b, l, r')
-                else
-                    newbranch k lf p br
+    //         elif b2 < b1 then
+    //             if p1 &&& (b2 - 1) <> p2 then
+    //                 newbranch p1 t1 p2 t2
+    //             elif p1 &&& b2 = 0 then
+    //                 match combine op z t1 l2 with
+    //                 | Empty -> r2
+    //                 | l -> Branch (p2, b2, l, r2)
+    //             else
+    //                 match combine op z t1 r2 with
+    //                 | Empty -> l2
+    //                 | r -> Branch (p2, b2, l2, r)
     
-            | (Branch (p, b, l, r) as br), (Leaf (k, lis) as lf) ->
-                if k &&& (b - 1) = p then
-                    if k &&& b = 0 then
-                        match combine op z l lf with
-                        | Empty -> r
-                        | l' -> Branch (p, b, l', r)
-                    else
-                        match combine op z r lf with
-                        | Empty -> l
-                        | r' -> Branch (p, b, l, r')
-                else
-                    newbranch p br k lf
+    //         elif p1 = p2 then
+    //             match combine op z l1 l2, combine op z r1 r2 with
+    //             | Empty, x
+    //             | x, Empty -> x
+    //             | l, r ->
+    //                 Branch (p1, b1, l, r)
+    //         else
+    //             newbranch p1 t1 p2 t2
     
-            | Branch (p1, b1, l1, r1), Branch (p2, b2, l2, r2) ->
-                if b1 < b2 then
-                    if p2 &&& (b1 - 1) <> p1 then
-                        newbranch p1 t1 p2 t2
-                    elif p2 &&& b1 = 0 then
-                        match combine op z l1 t2 with
-                        | Empty -> r1
-                        | l -> Branch (p1, b1, l, r1)
-                    else
-                        match combine op z r1 t2 with
-                        | Empty -> l1
-                        | r -> Branch (p1, b1, l1, r)
-    
-                elif b2 < b1 then
-                    if p1 &&& (b2 - 1) <> p2 then
-                        newbranch p1 t1 p2 t2
-                    elif p1 &&& b2 = 0 then
-                        match combine op z t1 l2 with
-                        | Empty -> r2
-                        | l -> Branch (p2, b2, l, r2)
-                    else
-                        match combine op z t1 r2 with
-                        | Empty -> l2
-                        | r -> Branch (p2, b2, l2, r)
-    
-                elif p1 = p2 then
-                    match combine op z l1 l2, combine op z r1 r2 with
-                    | Empty, x
-                    | x, Empty -> x
-                    | l, r ->
-                        Branch (p1, b1, l, r)
-                else
-                    newbranch p1 t1 p2 t2
-    
-        (|->), combine
-    
-    // ---------------------------------------------------------------------- //
-    // Special case of point function.                                        //
-    // ---------------------------------------------------------------------- //
-    
-    // Finite Partial Functions (FPF)
-    
-    let (|=>) x y = 
-        (x |-> y) undefined
-    
-    // ---------------------------------------------------------------------- //
-    // Idiom for a mapping zipping domain and range lists.                    //
-    // ---------------------------------------------------------------------- //
-    
+    let (|=>) a b = 
+        (a |-> b) undefined
+ 
     let fpf xs ys =
         List.foldBack2 (|->) xs ys undefined
     
-    // ---------------------------------------------------------------------- //
-    // Grab an arbitrary element.                                             //
-    // ---------------------------------------------------------------------- //
+    // it seems unused.
+    // // Grab an arbitrary element
+    // let rec choose t =
+    //     match t with
+    //     | Empty ->
+    //         failwith "choose: completely undefined function"
+    //     | Leaf (_, l) ->
+    //         // NOTE : This will fail (crash) when 'l' is an empty list!
+    //         List.head l
+    //     | Branch (b, p, t1, t2) ->
+    //         choose t1
     
-    let rec choose t =
-        match t with
-        | Empty ->
-            failwith "choose: completely undefined function"
-        | Leaf (_, l) ->
-            // NOTE : This will fail (crash) when 'l' is an empty list!
-            List.head l
-        | Branch (b, p, t1, t2) ->
-            choose t1
-    
-    // ---------------------------------------------------------------------- //
-    // Install a (trivial) printer for finite partial functions.              //
-    // ---------------------------------------------------------------------- //
-    
-    //let print_fpf (f : func<'a,'b>) = printf "<func>"
-    
-    // ---------------------------------------------------------------------- //
-    // Related stuff for standard functions.                                  //
-    // ---------------------------------------------------------------------- //
-    
-    let valmod a y f x =
-        if x = a then y
+    let valmod a b f x =
+        if x = a then b
         else f x
         
     let undef x =
