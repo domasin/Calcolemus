@@ -2,35 +2,54 @@
 
 open FolAutomReas.Lib
 
-valmod 1 100 id 1
+[1;4;5]
+|> List.fold (fun acc x -> (x|->x)acc) undefined
 
-valmod 1 100 id 2
-
-valmod 1 100 (undef) 1
-
-((undef 1):int)
+[-3..3]
+|> List.fold (fun acc x -> (x|->x)acc) undefined
 
 
-"x" |=> 1 |> graph
+[-10..10]
+|> List.fold (fun acc x -> (x|->x)acc) undefined
 
-fpf [1;2;3] [1;4;9] |> graph
+(5|->5)((4|->4)((3|->3)((2|-> 2)((1 |-> 1)undefined))))
 
-let h = hash "x"
-let k = hash "y"
+printfn "old|new|  b|  p"
+for o in [-10..10] do 
+    for n in [-10..10] do 
+        let h = hash o
+        let k = hash n
 
-let t1 = Leaf (h, [("x", 1)])
-let t2 = Leaf (k, [("y", 2)])
+        let zp = h ^^^ k
+        let b = zp &&& -zp
+        let p = k &&& (b - 1)
+        let position = 
+            if o &&& b = 0 then 
+                "old,new"
+            else 
+                "new,old"
+        printfn "%3i|%3i|%3i|%3i|%s" o n p b position
 
-let zp = h ^^^ k
 
-let newbranch p1 t1 p2 t2 =
-    let zp = p1 ^^^ p2
-    let b = zp &&& -zp
-    let p = p1 &&& (b - 1)
-    if p1 &&& b = 0 then Branch (p, b, t1, t2)
-    else Branch (p, b, t2, t1)
 
-newbranch h t1 k t2
+// let t1 = Leaf (h, [(1, 1)])
+// let t2 = Leaf (k, [(2, 2)])
+
+
+System.Convert.ToString(-3,2)
+
+let newbranch oldHsh oldMap newHsh newMap =
+    let zp = oldHsh ^^^ newHsh  
+    let b = zp &&& -zp         
+    let p = oldHsh &&& (b - 1)
+    // if old hash not equals b
+    if oldHsh &&& b = 0 then 
+        Branch (p, b, oldMap, newMap)
+    // if old hash equals b
+    else 
+        Branch (p, b, newMap, oldMap)
+
+// newbranch h t1 k t2
 
 ("x" |-> 1)undefined
 

@@ -5,14 +5,7 @@
 
 namespace FolAutomReas.Lib
 
-/// <summary>Polymorphic finite partial functions via Patricia trees.</summary>
-/// <remarks>
-/// The point of this strange representation is that it is canonical (equal
-/// functions have the same encoding) yet reasonably efficient on average.
-/// </remarks>
-/// <note>
-/// Idea due to Diego Olivier Fernandez Pons (OCaml list, 2003/11/10).
-/// </note>
+/// <summary>Polymorphic Finite Partial functions via Patricia Trees.</summary>
 [<AutoOpen>]
 module Fpf =
 
@@ -21,6 +14,12 @@ module Fpf =
     /// tree, <c>'a</c> being the type of the arguments and <c>'b</c> that of
     /// the values.
     /// </summary>
+    /// 
+    /// <note>
+    /// For a description of patricia trees see the article "Fast mergeable 
+    /// integer maps" by Chris Okasaki, Andy Gill - Workshop on ML, 1998.
+    /// </note>
+    /// 
     /// <example>
     /// The following represents the function \(x \mapsto 1, y \mapsto 2, z
     /// \mapsto 3, w \mapsto 4\):
@@ -49,7 +48,7 @@ module Fpf =
         /// <param name="Item1">A generic hash used for comparison.</param>
         /// <param name="Item2">The pair of domain-codomain elements.</param>
         | Leaf of int * list<'a * 'b>
-        /// <summary>Used to store mode then one mapping.</summary>
+        /// <summary>Used to store more then one mapping.</summary>
         /// <example>
         /// <code lang="fsharp">Branch
         /// (3, 4,
@@ -57,8 +56,8 @@ module Fpf =
         /// Leaf (-1991064537, [("z", 'c')])
         /// )</code>
         /// </example>
-        /// <param name="Item1">To be defined...</param>
-        /// <param name="Item2">To be defined...</param>
+        /// <param name="Item1">The prefix.</param>
+        /// <param name="Item2">The branching bit.</param>
         /// <param name="Item3">The left branch.</param>
         /// <param name="Item4">The right branch.</param>
         | Branch of int * int * func<'a,'b> * func<'a,'b>

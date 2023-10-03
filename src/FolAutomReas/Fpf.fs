@@ -190,14 +190,32 @@ module Fpf =
         let k = hash argument
         let rec upd t =
             match t with
-            | Empty -> Leaf (k, [argument, value])
+            // If fpf is undefined,
+            | Empty -> 
+                // add a leaf with the input mapping.
+                Leaf (k, [argument, value])
+            // If fpf has just one mapping,
             | Leaf (h, l) ->
-                if h = k then Leaf (h, define_list (argument, value) l)
-                else newbranch h t k (Leaf (k, [argument, value]))
+                // if its argument equals the input one,
+                if h = k then 
+                    // update the old vale with the new one;
+                    Leaf (h, define_list (argument, value) l)
+                else 
+                    // otherwise, create a new branch.
+                    newbranch h t k (Leaf (k, [argument, value]))
+            // If fpf has more the one mapping,
             | Branch (p, b, l, r) ->
-                if k &&& (b - 1) <> p then newbranch p t k (Leaf (k, [argument, value]))
-                elif k &&& b = 0 then Branch (p, b, upd l, r)
-                else Branch (p, b, l, upd r)
+                // if fpf is not defined for the input argument,
+                if k &&& (b - 1) <> p then 
+                    // create a new branch;
+                    newbranch p t k (Leaf (k, [argument, value]))
+                // otherwise, if the input argument is in the left branch,
+                elif k &&& b = 0 then 
+                    // update the left branch;
+                    Branch (p, b, upd l, r)
+                // otherwise, update the right branch.
+                else 
+                    Branch (p, b, l, upd r)
         upd fpf
     
     // it seems unused
