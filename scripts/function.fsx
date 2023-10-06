@@ -1,6 +1,6 @@
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
-open FolAutomReas.Lib.Functions
+open FolAutomReas.Lib.Function
 
 4 |> non ((=) 2)
 

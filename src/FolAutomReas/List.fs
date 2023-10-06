@@ -38,7 +38,8 @@ module List =
             List.foldBack (fun y a -> (x, y) :: a) t (distinctpairs t)
 
     let rec chop_list n l =
-        if n = 0 then [], l
+        if n = 0 then 
+            [], l
         else
             try
                 let m, l' = chop_list (n - 1) (List.tail l) 
@@ -47,7 +48,8 @@ module List =
                 failwith "chop_list"
 
     let rec insertat i x l =
-        if i = 0 then x :: l
+        if i = 0 then 
+            x :: l
         else
             match l with
             | [] -> failwith "insertat: list too short for position to exist"
