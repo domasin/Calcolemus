@@ -8,6 +8,8 @@
 namespace FolAutomReas
 
 open FolAutomReas.Lib
+open FolAutomReas.Lib.List
+
 open Formulas
 open Prop
 open Fol

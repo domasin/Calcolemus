@@ -10,6 +10,7 @@ module FolAutomReas.Stal
 
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
+open FolAutomReas.Lib.List
 
 open Formulas
 open Prop

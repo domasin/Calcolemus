@@ -7,6 +7,7 @@
 module FolAutomReas.Equal
 
 open FolAutomReas.Lib
+open FolAutomReas.Lib.List
 
 open Formulas
 open Fol

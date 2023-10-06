@@ -7,7 +7,7 @@
 
 namespace FolAutomReas.Lib
 
-module Functions = 
+module Function = 
 
     let inline non p x = 
         not (p x)

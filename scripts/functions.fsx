@@ -6,4 +6,6 @@ open FolAutomReas.Lib.Functions
 
 4 |> check ((=) 2)
 
+funpow 2 (( ** ) 2.) 2.
+
 4 |> funpow 2 ((/) 0)

@@ -4,7 +4,7 @@ open Xunit
 open FsUnit.Xunit
 
 open FolAutomReas.Lib.Search
-open FolAutomReas.Lib.ListFunctions
+open FolAutomReas.Lib.List
 
 [<Fact>]
 let ``tryfind butlast [[];[1;2;3];[4;3;5]] returns [1;2].``() = 

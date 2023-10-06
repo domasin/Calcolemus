@@ -7,8 +7,9 @@
 module FolAutomReas.Limitations
 
 open FolAutomReas.Lib
-open Num
-open Functions
+open FolAutomReas.Lib.Num
+open FolAutomReas.Lib.Function
+open FolAutomReas.Lib.List
 
 open LanguagePrimitives
 

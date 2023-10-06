@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Num.fs" />
-    <Compile Include="Functions.fs" />
-    <Compile Include="ListFunctions.fs" />
+    <Compile Include="Function.fs" />
+    <Compile Include="List.fs" />
     <Compile Include="AssociationLists.fs" />
     <Compile Include="Sorting.fs" />
     <Compile Include="Repetitions.fs" />

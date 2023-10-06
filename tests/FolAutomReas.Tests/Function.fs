@@ -3,7 +3,7 @@ module FolAutomReas.Tests.Functions
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.Lib.Functions
+open FolAutomReas.Lib.Function
 
 [<Fact>]
 let ``non p x should return true if x doesn't satisfy the predicate.``() = 

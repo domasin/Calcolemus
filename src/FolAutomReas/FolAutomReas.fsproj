@@ -25,9 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Num.fs" />
-    <Compile Include="Functions.fsi" />
-    <Compile Include="Functions.fs" />
-    <Compile Include="listFunctions.fs" />
+    <Compile Include="Function.fsi" />
+    <Compile Include="Function.fs" />
+    <Compile Include="List.fsi" />
+    <Compile Include="List.fs" />
     <Compile Include="associationLists.fs" />
     <Compile Include="sorting.fs" />
     <Compile Include="repetitions.fs" />

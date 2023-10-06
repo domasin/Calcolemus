@@ -11,8 +11,9 @@
 module FolAutomReas.Combining
 
 open FolAutomReas.Lib
-open Num
-open Functions
+open FolAutomReas.Lib.Num
+open FolAutomReas.Lib.Function
+open FolAutomReas.Lib.List
 
 open Formulas
 open Prop
