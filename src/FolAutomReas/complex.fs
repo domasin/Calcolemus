@@ -7,6 +7,7 @@
 module FolAutomReas.Complex
 
 open FolAutomReas.Lib
+open Functions
 
 open LanguagePrimitives
 

@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Num.fs" />
-    <Compile Include="PredAndFun.fs" />
+    <Compile Include="Functions.fs" />
     <Compile Include="ListFunctions.fs" />
     <Compile Include="AssociationLists.fs" />
     <Compile Include="Sorting.fs" />

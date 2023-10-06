@@ -7,6 +7,7 @@
 module FolAutomReas.Dp
 
 open FolAutomReas.Lib
+open Functions
 
 open Formulas
 open Prop

@@ -11,6 +11,7 @@
 module FolAutomReas.Lcffol
 
 open FolAutomReas.Lib
+open Functions
 
 open Formulas
 open Fol

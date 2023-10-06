@@ -25,7 +25,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Num.fs" />
-    <Compile Include="predAndFun.fs" />
+    <Compile Include="Functions.fsi" />
+    <Compile Include="Functions.fs" />
     <Compile Include="listFunctions.fs" />
     <Compile Include="associationLists.fs" />
     <Compile Include="sorting.fs" />

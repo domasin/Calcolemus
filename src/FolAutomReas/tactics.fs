@@ -11,6 +11,7 @@
 module FolAutomReas.Tactics
 
 open FolAutomReas.Lib
+open Functions
 
 open Formulas
 open Prop

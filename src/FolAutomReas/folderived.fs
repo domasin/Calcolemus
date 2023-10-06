@@ -11,6 +11,7 @@
 module FolAutomReas.Folderived
 
 open FolAutomReas.Lib
+open Functions
 
 open Formulas
 open Fol

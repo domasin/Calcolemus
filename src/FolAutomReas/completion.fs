@@ -7,25 +7,12 @@
 module FolAutomReas.Completion
 
 open FolAutomReas.Lib
+open Functions
 
-open Intro
 open Formulas
-open Prop
-open Defcnf
-open Dp
-open Stal
-open Bdd
 open Fol
-open Skolem
-open Herbrand
 open Unif
-open Tableaux
-open Resolution
-open Prolog
-open Meson
-open Skolems
 open Equal
-open Cong
 open Rewrite
 open Order
 

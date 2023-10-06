@@ -8,6 +8,7 @@
 module FolAutomReas.Prop
 
 open FolAutomReas.Lib
+open Functions
 
 open Intro
 open Formulas

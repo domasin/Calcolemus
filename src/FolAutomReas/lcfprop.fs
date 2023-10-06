@@ -11,9 +11,9 @@
 module FolAutomReas.Lcfprop
 
 open FolAutomReas.Lib
+open Functions
 
 open Formulas
-open Fol
 open Lcf
 
 // pg. 478

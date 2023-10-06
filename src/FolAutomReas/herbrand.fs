@@ -8,6 +8,7 @@
 module FolAutomReas.Herbrand
 
 open FolAutomReas.Lib
+open Functions
 
 open Formulas
 open Prop
