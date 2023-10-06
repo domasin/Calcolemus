@@ -196,15 +196,165 @@ module List =
     /// </note>
     val insertat: i: int -> x: 'a -> l: 'a list -> 'a list
 
-    /// Returns position of given element in list.
+    /// <summary>
+    /// Returns the index of the first element in the list <c>xs</c> that 
+    /// equals <c>x</c>. Raises <c>KeyNotFoundException</c> if no such element 
+    /// exists. 
+    /// </summary>
     /// 
-    /// The call index x l where l is a list returns the position number of the 
-    /// first instance of x in the list, failing if there is none. The indices 
-    /// start at zero, corresponding to el.
+    /// <param name="x">The element to search.</param>
+    /// <param name="xs">The input list.</param>
+    /// 
+    /// <returns>
+    /// The index of the first element that equals <c>x</c>.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when no element in the list equals <c>x</c>.</exception>
+    /// 
+    /// <example id="index-1">
+    /// <code lang="fsharp">
+    /// index 2 [0;1;3;3;2;3]
+    /// </code>
+    /// Evaluates to <c>4</c>.
+    /// </example>
+    /// 
+    /// <example id="index-2">
+    /// <code lang="fsharp">
+    /// index 5 [0;1;3;3;2;3]
+    /// </code>
+    /// Throws <c>System.Collections.Generic.KeyNotFoundException: An index satisfying the predicate was not found in the collection.</c>.
+    /// </example>
     val inline index: x: 'a -> xs: 'a list -> int when 'a: equality
 
-    /// Checks if x comes earlier than y in list l
+    /// <summary>
+    /// Checks if <c>x</c> comes earlier than <c>y</c> in list <c>l</c>.
+    /// </summary>
     /// 
-    /// earlier [0;1;2;3] 2 3 return true, earlier [0;1;2;3] 3 2 false.
-    /// earlier returns false also if x or y is not in the list.
+    /// <param name="l">The input list.</param>
+    /// <param name="x">The element to search.</param>
+    /// <param name="y">The element to compare with <c>x</c>.</param>
+    /// 
+    /// <returns>
+    /// true, if <c>x</c> comes earlier than <c>y</c> in <c>l</c>, 
+    /// or <c>x</c> is in <c>l</c> but not <c>y</c>. Otherwise, false.
+    /// </returns>
+    /// 
+    /// <example id="earlier-1">
+    /// <code lang="fsharp">
+    /// earlier [0;1;2;3] 2 3
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="earlier-2">
+    /// <code lang="fsharp">
+    /// earlier [0;1;2;3] 3 4
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="earlier-3">
+    /// <code lang="fsharp">
+    /// earlier [0;1;2;3] 3 2
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="earlier-4">
+    /// <code lang="fsharp">
+    /// earlier [0;1;3] 2 3
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="earlier-4">
+    /// <code lang="fsharp">
+    /// earlier [0;1;2;3] 4 5
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     val earlier: l: 'a list -> x: 'a -> y: 'a -> bool when 'a: comparison
+
+    /// <summary>
+    /// Searches a list of pairs <c>l</c> for a pair whose first component 
+    /// equals a specified value <c>a</c>, failing if no matching is found.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// <c>assoc a [(a1,b1);...;(an,bn)]</c> returns the first <c>bi</c> in the 
+    /// list such that <c>ai</c> equals <c>a</c>.
+    /// </remarks>
+    /// 
+    /// <param name="l">The input list.</param>
+    /// <param name="a">The value to search.</param>
+    /// 
+    /// <returns>
+    /// The second component of the pair, if a matching for the first is 
+    /// found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'find' when no matching is found.</exception>
+    /// 
+    /// <example id="assoc-1">
+    /// <code lang="fsharp">
+    /// assoc 2 [(1,2);(2,3)]
+    /// </code>
+    /// Evaluates to <c>3</c>.
+    /// </example>
+    /// 
+    /// <example id="assoc-2">
+    /// <code lang="fsharp">
+    /// assoc 2 [(1,2);(2,3);(2,4)]
+    /// </code>
+    /// Evaluates to <c>3</c>.
+    /// </example>
+    /// 
+    /// <example id="assoc-3">
+    /// <code lang="fsharp">
+    /// assoc 3 [(1,2);(2,3)]
+    /// </code>
+    /// Throws <c>System.Exception: find</c>.
+    /// </example>
+    val assoc: a: 'a -> l: ('a * 'b) list -> 'b when 'a: comparison
+
+    /// <summary>
+    /// Searches a list of pairs <c>l</c> for a pair whose second component 
+    /// equals a specified value <c>b</c>, failing if no matching is found.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// <c>rev_assoc b [(a1,b1);...;(an,bn)]</c> returns the first <c>ai</c> in 
+    /// the list such that <c>bi</c> equals <c>b</c>.
+    /// </remarks>
+    /// 
+    /// <param name="l">The input list.</param>
+    /// <param name="b">The value to search.</param>
+    /// 
+    /// <returns>
+    /// The first component of the pair, if a matching for the second is 
+    /// found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'find' when no matching is found.</exception>
+    /// 
+    /// <example id="rev_assoc-1">
+    /// <code lang="fsharp">
+    /// rev_assoc 2 [(1,2);(2,3)]
+    /// </code>
+    /// Evaluates to <c>1</c>.
+    /// </example>
+    /// 
+    /// <example id="rev_assoc-2">
+    /// <code lang="fsharp">
+    /// rev_assoc 2 [(1,2);(2,2);(2,3)]
+    /// </code>
+    /// Evaluates to <c>1</c>.
+    /// </example>
+    /// 
+    /// <example id="rev_assoc-3">
+    /// <code lang="fsharp">
+    /// rev_assoc 1 [(1,2);(2,3)]
+    /// </code>
+    /// Throws <c>System.Exception: find</c>.
+    /// </example>
+    val rev_assoc: b: 'b -> l: ('a * 'b) list -> 'a when 'b: comparison

@@ -7,7 +7,6 @@
     <Compile Include="Num.fs" />
     <Compile Include="Function.fs" />
     <Compile Include="List.fs" />
-    <Compile Include="AssociationLists.fs" />
     <Compile Include="Sorting.fs" />
     <Compile Include="Repetitions.fs" />
     <Compile Include="Search.fs" />

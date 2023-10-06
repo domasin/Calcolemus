@@ -29,7 +29,6 @@
     <Compile Include="Function.fs" />
     <Compile Include="List.fsi" />
     <Compile Include="List.fs" />
-    <Compile Include="associationLists.fs" />
     <Compile Include="sorting.fs" />
     <Compile Include="repetitions.fs" />
     <Compile Include="search.fs" />

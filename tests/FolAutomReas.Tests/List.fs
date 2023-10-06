@@ -78,11 +78,72 @@ let ``index returns position of given element in list.``() =
     |> should equal 4
 
 [<Fact>]
-let ``earlier [0;1;2;3] 2 3 return true.``() = 
+let ``index fails if no element in the list equals x.``() = 
+    (fun () -> 
+        index 5 [0;1;3;3;2;3]
+        |> ignore
+    ) 
+    |> should (throwWithMessage "An index satisfying the predicate was not found in the collection.") typeof<System.Collections.Generic.KeyNotFoundException>
+
+[<Fact>]
+let ``earlier should return true if x comes earlier than y in list.``() = 
     earlier [0;1;2;3] 2 3
     |> should equal true
 
 [<Fact>]
-let ``earlier [0;1;2;3] 3 2 returns false.``() = 
+let ``earlier should return true if x is in list but not y.``() = 
+    earlier [0;1;2;3] 3 4
+    |> should equal true
+
+[<Fact>]
+let ``earlier should return false if x doesn't come earlier than y in list.``() = 
     earlier [0;1;2;3] 3 2
     |> should equal false
+
+[<Fact>]
+let ``earlier should return false if y is in list but not x.``() = 
+    earlier [0;1;3] 2 3
+    |> should equal false
+
+[<Fact>]
+let ``earlier should return false if both x and y are not in list.``() = 
+    earlier [0;1;2;3] 4 5
+    |> should equal false
+
+[<Fact>]
+let ``assoc should return the second component of the pair if a matching for the first is found.``() = 
+    assoc 2 [(1,2);(2,3)]
+    |> should equal 3
+
+[<Fact>]
+let ``assoc should return just the first occurrence if a matching is found.``() = 
+    assoc 2 [(1,2);(2,3);(2,4)]
+    |> should equal 3
+
+[<Fact>]
+let ``assoc should fail with message 'find' if no matching is found.``() = 
+    (fun () -> 
+        assoc 3 [(1,2);(2,3)]
+        |> ignore
+    ) 
+    |> should (throwWithMessage "find") typeof<System.Exception>
+
+[<Fact>]
+let ``rev_assoc should return the first component of the list if a matching for the second is found.``() = 
+    rev_assoc 2 [(1,2);(2,3)]
+    |> should equal 1
+
+[<Fact>]
+let ``rev_assoc should return just the first occurrence if a matching is found.``() = 
+    rev_assoc 2 [(1,2);(2,2);(2,3)]
+    |> should equal 1
+
+[<Fact>]
+let ``rev_assoc should fail with message 'find' if no matching is found.``() = 
+    (fun () -> 
+        rev_assoc 1 [(1,2);(2,3)]
+        |> ignore
+    ) 
+    |> should (throwWithMessage "find") typeof<System.Exception>
+
+

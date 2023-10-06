@@ -56,10 +56,29 @@ module List =
             | h :: t ->
                 h :: (insertat (i - 1) x t)
 
-    let inline index x xs = List.findIndex ((=) x) xs
+    let inline index x xs = 
+        List.findIndex ((=) x) xs
 
     let rec earlier l x y =
         match l with
         | [] -> false
         | h :: t ->
             (compare h y <> 0) && (compare h x = 0 || earlier t x y)
+
+    // ---------------------------------------------------------------------- //
+    // Association lists.                                                     //
+    // ---------------------------------------------------------------------- //
+
+    let rec assoc a l =
+        match l with
+        | [] -> failwith "find"
+        | (x, y) :: t ->
+            if compare x a = 0 then y
+            else assoc a t
+
+    let rec rev_assoc b l =
+        match l with
+        | [] -> failwith "find"
+        | (x, y) :: t ->
+            if compare y b = 0 then x
+            else rev_assoc b t
