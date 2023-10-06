@@ -77,7 +77,7 @@ and groundtuples cntms funcs n m =
             allpairs (fun h t -> h :: t)
                 (groundterms cntms funcs k)
                 (groundtuples cntms funcs (n - k) (m - 1)) @ l)
-                (0 -- n) []
+                [0..n] []
 
 /// <summary>
 /// A generic function to be used with different 'herbrand procedures'.

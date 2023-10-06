@@ -47,7 +47,7 @@ module Tableaux =
     let rec prawitz_loop djs0 fvs djs n =
         let l = List.length fvs
         // create new variables.
-        let newvars = List.map (fun k -> "_" + string (n * l + k)) (1--l)
+        let newvars = List.map (fun k -> "_" + string (n * l + k)) [1..l]
         // create the new instantiation.
         let inst = fpf fvs (List.map (fun x -> Var x) newvars)
         // incorporate the new instantiation in the previous substitution instances.

@@ -223,7 +223,7 @@ let grobner_trivial fms =
     let vars0 = List.foldBack (union << fv) fms []
     let eqs, neqs = List.partition positive fms
     let rvs = List.map (fun n -> variant ("_" + string n) vars0)
-                (1 -- List.length neqs)
+                [1..(List.length neqs)]
     let vars = vars0 @ rvs
     let rec poleqs = List.map (mpolyatom vars) eqs
     and polneqs = List.map (mpolyatom vars << negate) neqs

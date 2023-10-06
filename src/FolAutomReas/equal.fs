@@ -52,8 +52,8 @@ let rec predicates fm =
 let function_congruence (f, n) =
     if n = 0 then [] 
     else
-        let argnames_x = List.map (fun n -> "x" + (string n)) (1 -- n)
-        let argnames_y = List.map (fun n -> "y" + (string n)) (1 -- n)
+        let argnames_x = List.map (fun n -> "x" + (string n)) [1..n]
+        let argnames_y = List.map (fun n -> "y" + (string n)) [1..n]
         let args_x = List.map (fun x -> Var x) argnames_x
         let args_y = List.map (fun x -> Var x) argnames_y
         let ant = List.reduceBack mk_and (List.map2 mk_eq args_x args_y)
@@ -68,8 +68,8 @@ let function_congruence (f, n) =
 let predicate_congruence (p, n) =
     if n = 0 then []
     else
-        let argnames_x = List.map (fun n -> "x" + (string n)) (1 -- n)
-        let argnames_y = List.map (fun n -> "y" + (string n)) (1 -- n)
+        let argnames_x = List.map (fun n -> "x" + (string n)) [1..n]
+        let argnames_y = List.map (fun n -> "y" + (string n)) [1..n]
         let args_x = List.map (fun x -> Var x) argnames_x
         let args_y = List.map (fun x -> Var x) argnames_y
         let ant = List.reduceBack mk_and (List.map2 mk_eq args_x args_y)

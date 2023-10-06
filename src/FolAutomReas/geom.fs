@@ -46,8 +46,8 @@ let coordinations =
 
 let coordinate = onatoms <| fun (R (a, args)) ->
     let xtms,ytms = List.unzip (List.map (fun (Var v) -> Var (v + "_x"), Var (v + "_y")) args)
-    let rec xs = List.map (fun n -> string n + "_x") (1 -- List.length args)
-    and ys = List.map (fun n -> string n + "_y") (1 -- List.length args)
+    let rec xs = List.map (fun n -> string n + "_x") [1..(List.length args)]
+    and ys = List.map (fun n -> string n + "_y") [1..(List.length args)]
     subst (fpf (xs @ ys) (xtms @ ytms)) (assoc a coordinations)
     
 // pg. 415
@@ -61,7 +61,7 @@ let invariant (x', y') (s : string, z) =
         and y = string n + "_y"
         let i = fpf ["x";"y"] [Var x;Var y]
         (x |-> tsubst i x') ((y |-> tsubst i y') f)
-    Iff (z,subst (List.foldBack m (1 -- 5) undefined) z)
+    Iff (z,subst (List.foldBack m [1..5] undefined) z)
 
 let invariant_under_translation = invariant ((parset "x + X"),(parset "y + Y"))
 

@@ -1,18 +1,14 @@
+// ========================================================================= //
+// Copyright (c) 2023, Domenico Masini.                                      //
+// (See "LICENSE.txt" for details.)                                          //
+// ========================================================================= //
+
 namespace FolAutomReas.Lib
 
+/// <summary>
+/// Handy functions for list manipulation.
+/// </summary>
 module List = 
-
-    /// Gives a finite list of integers between the given bounds.
-    /// 
-    /// The call m--n returns the list of consecutive numbers from m to n.
-    val inline (--) : m: int -> n: int -> int list
-
-    /// Gives a finite list of nums between the given bounds.
-    /// 
-    /// The call m--n returns the list of consecutive numbers from m to n.
-    val inline (---) :
-      m: FolAutomReas.Lib.Num.num ->
-        n: FolAutomReas.Lib.Num.num -> FolAutomReas.Lib.Num.num list
 
     /// Computes the last element of a list.
     /// 

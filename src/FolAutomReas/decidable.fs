@@ -150,7 +150,7 @@ let allpredicates dom n = allmappings (alltuples n dom) [false; true]
 
 let decide_finite n fm =
     let interps =
-        let dom = 1 -- n
+        let dom = [1..n]
         let fints =
             let funcs = functions fm
             alldepmappings funcs (allfunctions dom)

@@ -177,7 +177,7 @@ let skolemfuns fm =
     let skofun i (Forall (y, p) as ap) =
         let vars = List.map (fun v -> Var v) (fv ap)
         ap, Fn (variant ("f_" + string i) fns, vars)
-    List.map2 skofun (1 -- List.length skts) skts
+    List.map2 skofun [1..(List.length skts)] skts
         
 // pg. 501
 //  ------------------------------------------------------------------------- // 
@@ -259,7 +259,7 @@ let deskolcont thp (env, sks, k) =
     let ifn = tsubst (solve env)
     let isk = setify (List.map (fun (p, t) -> onformula ifn p, ifn t) sks)
     let ssk = sort (decreasing (termsize << snd)) isk
-    let vs = List.map (fun i -> Var ("Y_" + string i)) (1 -- List.length ssk)
+    let vs = List.map (fun i -> Var ("Y_" + string i)) [1..(List.length ssk)]
     let vfn =
         replacet (List.foldBack2 (fun (p, t) v -> t |-> v) ssk vs undefined)
     let th = thp (vfn << ifn, onformula vfn (List.foldBack mk_skol ssk False))

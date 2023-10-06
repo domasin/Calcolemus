@@ -273,7 +273,7 @@ let mod_interp n =
         | "=", [x; y] -> x = y
         | _ -> failwith "uninterpreted predicate"
 
-    0 -- (n - 1), func, pred
+    [0..(n - 1)], func, pred
 
 // ------------------------------------------------------------------------- //
 // Free variables in terms and formulas.                                     //
