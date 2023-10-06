@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PredAndFun (FolAutomReas)</title>
+    <title>Function (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
 
@@ -74,7 +74,7 @@
         <div class="container" id="fsdocs-content">
             <div>
   <h2>
-    PredAndFun Module
+    Function Module
   </h2>
   <dl class="fsdocs-metadata">
     <dt>
@@ -90,9 +90,7 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Functions over predicates and functions.
- 
+        Functions over predicates and functions.
       </p>
     </div>
   </div>
@@ -115,7 +113,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '823', 823)" onmouseover="showTip(event, '823', 823)">
+              <code onmouseout="hideTip(event, '806', 806)" onmouseover="showTip(event, '806', 806)">
                 <p>
                   <a id="can">
                     <a href="#can">
@@ -124,7 +122,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="823">
+              <div class="fsdocs-tip" id="806">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>can&#32;<span>f&#32;x</span></span></code>
@@ -138,6 +136,8 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;'b</span></code>
+                       - 
+                      The function to test.
                     </span>
                     <br/>
                     <span>
@@ -146,6 +146,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The argument on which to test the function.
                     </span>
                     <br/>
                   </ul>
@@ -154,6 +156,9 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if <code>f x</code> succeeds; false, otherwise.
+ 
                   <br/>
                 </div>
               </div>
@@ -163,27 +168,23 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.PredAndFun.can``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Function.can``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.PredAndFun.can``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Function.can``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/predAndFun.fs#L48-48" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Function.fs#L27-27" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests for failure.
+ Tests if an input function <code>f</code> can be applied to an argument 
+ <code>x</code> without failing.
  
- can f x evaluates to true if the application of f to x succeeds. It evaluates to false if
- the application fails with a Failure _ exception.
- 
- Never fails on Failure _ exceptions.
-
                   </p>
                 </div>
               </summary>
@@ -195,7 +196,11 @@
                   :
                   <code><span>'a&#32;->&#32;'b</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to test.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     x
@@ -203,7 +208,11 @@
                   :
                   <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The argument on which to test the function.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -212,15 +221,77 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if <code>f x</code> succeeds; false, otherwise.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="can-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">can</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">head</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">2</span><span class="pn">]</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs2">val head: list: &#39;T list -&gt; &#39;T</div>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="can-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">can</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">head</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs2">val head: list: &#39;T list -&gt; &#39;T</div>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '824', 824)" onmouseover="showTip(event, '824', 824)">
+              <code onmouseout="hideTip(event, '807', 807)" onmouseover="showTip(event, '807', 807)">
                 <p>
                   <a id="check">
                     <a href="#check">
@@ -229,7 +300,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="824">
+              <div class="fsdocs-tip" id="807">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>check&#32;<span>p&#32;x</span></span></code>
@@ -243,6 +314,8 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;bool</span></code>
+                       - 
+                      The input predicate.
                     </span>
                     <br/>
                     <span>
@@ -251,6 +324,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The element that should satisfy the predicate.
                     </span>
                     <br/>
                   </ul>
@@ -259,6 +334,9 @@
                     Returns: 
                     <code>'a</code>
                   </span>
+                  
+ The input element <code>x</code> itself, if it satisfies <code>p</code>.
+ 
                   <br/>
                 </div>
               </div>
@@ -268,27 +346,22 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.PredAndFun.check``1```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Function.check``1```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.PredAndFun.check``1\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Function.check``1\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/predAndFun.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Function.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Checks that a value satisfies a predicate.
+ Checks if the value <code>x</code> satisfies the predicate <code>p</code>.
  
- check p x returns x if the application p x yields true. Otherwise, check p x fails.
- 
- check p x fails with Failure "check" if the predicate p yields false when applied 
- to the value x.
-
                   </p>
                 </div>
               </summary>
@@ -300,7 +373,11 @@
                   :
                   <code><span>'a&#32;->&#32;bool</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input predicate.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     x
@@ -308,7 +385,11 @@
                   :
                   <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The element that should satisfy the predicate.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -317,15 +398,56 @@
                   </span>
                   <code>'a</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The input element <code>x</code> itself, if it satisfies <code>p</code>.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'check', when
+ <code>x</code> does not satisfy <code>p</code>.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="check-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">check</span> <span class="pn">(</span><span class="pn">(</span><span class="o">=</span><span class="pn">)</span> <span class="n">2</span><span class="pn">)</span> <span class="n">2</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="check-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">check</span> <span class="pn">(</span><span class="pn">(</span><span class="o">=</span><span class="pn">)</span> <span class="n">2</span><span class="pn">)</span> <span class="n">4</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: check</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '825', 825)" onmouseover="showTip(event, '825', 825)">
+              <code onmouseout="hideTip(event, '808', 808)" onmouseover="showTip(event, '808', 808)">
                 <p>
                   <a id="funpow">
                     <a href="#funpow">
@@ -334,7 +456,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="825">
+              <div class="fsdocs-tip" id="808">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>funpow&#32;<span>n&#32;f&#32;x</span></span></code>
@@ -348,6 +470,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The number of times to apply the function.
                     </span>
                     <br/>
                     <span>
@@ -356,6 +480,8 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;'a</span></code>
+                       - 
+                      The function to apply.
                     </span>
                     <br/>
                     <span>
@@ -364,6 +490,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The element to apply the function to.
                     </span>
                     <br/>
                   </ul>
@@ -372,6 +500,10 @@
                     Returns: 
                     <code>'a</code>
                   </span>
+                  
+ The result of applying <code>f</code> to <code>x</code> for <code>n</code> times, if 
+ <code>n</code> is >= 0. Otherwise, the input argument <code>x</code> unchanged.
+ 
                   <br/>
                 </div>
               </div>
@@ -381,30 +513,34 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.PredAndFun.funpow``1```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Function.funpow``1```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.PredAndFun.funpow``1\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Function.funpow``1\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/predAndFun.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Function.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Iterates a function a fixed number of times.
+ Iterates the application of a function <code>f</code> to an argument <code>x</code> 
+ a fixed number <code>n</code> of times.
  
- funpow n f x applies f to x, n times, giving the result f (f ... (f x)...) where the
- number of f’s is n. funpow 0 f x returns x. If n is negative, it is treated as zero.
- 
- funpow n f x fails if any of the n applications of f fail.
-
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                <code>funpow n f x</code> applies <code>f</code> to <code>x</code> for <code>n</code> times, 
+ giving the result <code>f (f ... (f x)...)</code> where the number of 
+ <code>f</code>'s is <code>n</code>. <code>funpow 0 f x</code> returns <code>x</code>. If 
+ <code>n</code> is negative, it is treated as <code>0</code>. It fails, if any of 
+ the <code>n</code> applications of <code>f</code> fail.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -413,7 +549,11 @@
                   :
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The number of times to apply the function.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     f
@@ -421,7 +561,11 @@
                   :
                   <code><span>'a&#32;->&#32;'a</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to apply.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     x
@@ -429,7 +573,11 @@
                   :
                   <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The element to apply the function to.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -438,15 +586,63 @@
                   </span>
                   <code>'a</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The result of applying <code>f</code> to <code>x</code> for <code>n</code> times, if 
+ <code>n</code> is >= 0. Otherwise, the input argument <code>x</code> unchanged.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="funpow-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">2.</span> <span class="o">|&gt;</span> <span class="id">funpow</span> <span class="n">2</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="id">x</span> <span class="o">**</span> <span class="n">2.</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>16.</code>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="funpow-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">2.</span> <span class="o">|&gt;</span> <span class="id">funpow</span> <span class="n">0</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="id">x</span> <span class="o">**</span> <span class="n">2.</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>2.</code>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="funpow-3">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">2.</span> <span class="o">|&gt;</span> <span class="id">funpow</span> <span class="o">-</span><span class="n">1</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="id">x</span> <span class="o">**</span> <span class="n">2.</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>2.</code>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="funpow-4">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">2.</span> <span class="o">|&gt;</span> <span class="id">funpow</span> <span class="n">2</span> <span class="pn">(</span><span class="pn">(</span><span class="o">/</span><span class="pn">)</span> <span class="n">0</span><span class="pn">)</span>
+</code></pre>
+
+
+ Throws <code>System.DivideByZeroException: 
+ Attempted to divide by zero.</code>
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '826', 826)" onmouseover="showTip(event, '826', 826)">
+              <code onmouseout="hideTip(event, '809', 809)" onmouseover="showTip(event, '809', 809)">
                 <p>
                   <a id="non">
                     <a href="#non">
@@ -455,7 +651,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="826">
+              <div class="fsdocs-tip" id="809">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>non&#32;<span>p&#32;x</span></span></code>
@@ -468,7 +664,9 @@
                         p
                       </b>
                       :
-                      <code><span>'b&#32;->&#32;bool</span></code>
+                      <code><span>'a&#32;->&#32;bool</span></code>
+                       - 
+                      The predicate to reverse.
                     </span>
                     <br/>
                     <span>
@@ -476,7 +674,9 @@
                         x
                       </b>
                       :
-                      <code>'b</code>
+                      <code>'a</code>
+                       - 
+                      The element to apply the inverse to.
                     </span>
                     <br/>
                   </ul>
@@ -485,12 +685,15 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true if <code>p x</code> returns false, otherwise false.
+ 
                   <br/>
                   Modifiers: 
                   inline
                   <br/>
                   Type parameters: 
-                  &#39;b
+                  &#39;a
                 </div>
               </div>
             </div>
@@ -499,26 +702,22 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.PredAndFun.non``1```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Function.non``1```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.PredAndFun.non``1\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Function.non``1\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/predAndFun.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Function.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Revereses a predicate
+ Applies the inverse of a predicate <code>p</code> to an argument <code>x</code>.
  
- (non f) equals (fun x -> not (f x)). 
- 4 |> non (fun x -> x = 2) gives true.
- 2 |> non (fun x -> x = 2) gives false.
-
                   </p>
                 </div>
               </summary>
@@ -528,17 +727,25 @@
                     p
                   </span>
                   :
-                  <code><span>'b&#32;->&#32;bool</span></code>
+                  <code><span>'a&#32;->&#32;bool</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The predicate to reverse.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     x
                   </span>
                   :
-                  <code>'b</code>
+                  <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The element to apply the inverse to.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -547,15 +754,43 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true if <code>p x</code> returns false, otherwise false.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="non-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">4</span> <span class="o">|&gt;</span> <span class="id">non</span> <span class="pn">(</span><span class="pn">(</span><span class="o">=</span><span class="pn">)</span> <span class="n">2</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="non-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">2</span> <span class="o">|&gt;</span> <span class="id">non</span> <span class="pn">(</span><span class="pn">(</span><span class="o">=</span><span class="pn">)</span> <span class="n">2</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '827', 827)" onmouseover="showTip(event, '827', 827)">
+              <code onmouseout="hideTip(event, '810', 810)" onmouseover="showTip(event, '810', 810)">
                 <p>
                   <a id="repeat">
                     <a href="#repeat">
@@ -564,7 +799,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="827">
+              <div class="fsdocs-tip" id="810">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>repeat&#32;<span>f&#32;x</span></span></code>
@@ -577,7 +812,9 @@
                         f
                       </b>
                       :
-                      <code><span>'b&#32;->&#32;'b</span></code>
+                      <code><span>'a&#32;->&#32;'a</span></code>
+                       - 
+                      The function to apply.
                     </span>
                     <br/>
                     <span>
@@ -585,15 +822,19 @@
                         x
                       </b>
                       :
-                      <code>'b</code>
+                      <code>'a</code>
+                       - 
+                      The element to apply the function to.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code>'b</code>
+                    <code>'a</code>
                   </span>
+                  <code>x</code>, if the application of <code>f x</code> fails.
+ 
                   <br/>
                 </div>
               </div>
@@ -603,27 +844,23 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.PredAndFun.repeat``1```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Function.repeat``1```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.PredAndFun.repeat``1\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Function.repeat``1\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/predAndFun.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Function.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Repeatedly apply a function until it fails.
+ Repeats the application of a function <code>f</code> to an argument <code>x</code> 
+ until it fails.
  
- The call repeat f x successively applies f over and over again starting with x, and stops
- at the first point when a Failure _ exception occurs.
- 
- Never fails. If f fails at once it returns x.
-
                   </p>
                 </div>
               </summary>
@@ -633,27 +870,68 @@
                     f
                   </span>
                   :
-                  <code><span>'b&#32;->&#32;'b</span></code>
+                  <code><span>'a&#32;->&#32;'a</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to apply.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     x
                   </span>
                   :
-                  <code>'b</code>
+                  <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The element to apply the function to.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code>'b</code>
+                  <code>'a</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    <code>x</code>, if the application of <code>f x</code> fails.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="repeat-example">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">repeat</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">removeAt</span> <span class="n">0</span><span class="pn">)</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">3</span><span class="pn">;</span><span class="n">4</span><span class="pn">;</span><span class="n">5</span><span class="pn">]</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs2">val removeAt: index: int -&gt; source: &#39;T list -&gt; &#39;T list</div>
+
+
+ Evaluates to <code>[]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
