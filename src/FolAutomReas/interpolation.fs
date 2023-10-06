@@ -14,6 +14,7 @@
 module FolAutomReas.Interpolation
 
 open FolAutomReas.Lib
+open FolAutomReas.Lib.Num
 
 open Formulas
 open Prop

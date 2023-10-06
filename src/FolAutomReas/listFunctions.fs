@@ -9,6 +9,8 @@
 [<AutoOpen>]
 module FolAutomReas.Lib.ListFunctions
 
+open FolAutomReas.Lib.Num
+
 // --------------------------------------------------------------------//
 // List operations.                                                    //
 // --------------------------------------------------------------------//

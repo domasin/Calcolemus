@@ -62,7 +62,7 @@ module Fpf =
         /// <param name="Item4">The right branch.</param>
         | Branch of int * int * func<'a,'b> * func<'a,'b>
 
-    /// <summary>The empty, or everywhere undefined, function.</summary>
+    /// <summary>The empty, or everywhere undefined, fpf.</summary>
     /// <returns><c>Empty</c>.</returns>
     val undefined: func<'a,'b>
 
@@ -175,10 +175,10 @@ module Fpf =
     /// The domain (the set of arguments) of the input <c>fpf</c>.
     /// </returns>
     ///
-    /// <example id="graph-1">
+    /// <example id="dom-1">
     /// <code lang="fsharp">
     /// ("y" |-> 2)(("x" |-> 1)undefined)
-    /// |> graph
+    /// |> dom
     /// </code>
     /// Evaluates to <c>["x"; "y"]</c>.
     /// </example>
@@ -192,10 +192,10 @@ module Fpf =
     /// The range (the set of values) of the input <c>fpf</c>.
     /// </returns>
     ///
-    /// <example id="graph-1">
+    /// <example id="ran-1">
     /// <code lang="fsharp">
     /// ("y" |-> 2)(("x" |-> 1)undefined)
-    /// |> graph
+    /// |> ran
     /// </code>
     /// Evaluates to <c>[1; 2]</c>.
     /// </example>
@@ -277,8 +277,8 @@ module Fpf =
     val tryapplyd: fpf: func<'a,'b> -> a: 'a -> d: 'b -> 'b when 'a: comparison
 
     /// <summary>
-    /// Tries to apply an <c>fpf</c> with list values to an argument <c>a</c>,
-    /// returning <c>[]</c> as a default value, if it fails.
+    /// Tries to apply an <c>fpf</c> whose values are lists to an argument 
+    /// <c>a</c>,returning <c>[]</c> as a default value if it fails.
     /// </summary>
     ///
     /// <param name="fpf">The input fpf to be applied.</param>
@@ -481,19 +481,19 @@ module Fpf =
     /// </remarks>
     /// 
     /// <note>
-    /// In a non-functional world you can create a list of values and
-    /// initialize the list signifying nothing. e.g. []
+    /// <p>In a non-functional world you can create a list of values and
+    /// initialize the list signifying nothing: e.g. <c>[]</c>.
     /// Then when you process the list it could return without exception
     /// or if you wanted the processing of the list to return with
     /// exception when there is nothing in the list, you would check
-    /// the list for nothing and return an exception.
+    /// the list for nothing and return an exception.</p>
     ///
-    /// In a functional world you can create a list of functions and
+    /// <p>In a functional world you can create a list of functions and
     /// initialize the list with a function causing an exception given that
-    /// the items is the list are evaluated as functions.
+    /// the items is the list are evaluated as functions.</p>
     ///
-    /// undef is that function which is used to initialize a list to
-    /// cause an exception if the list is empty when evaluated.
+    /// <p>undef is that function which is used to initialize a list to
+    /// cause an exception if the list is empty when evaluated.</p>
     /// </note>
     /// 
     /// <exception cref="T:System.Exception">Thrown with the message 'undefined function' when applied to any argument.</exception>

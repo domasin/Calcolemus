@@ -9,6 +9,8 @@
 [<AutoOpen>]
 module FolAutomReas.Lib.UnionFindAlgorithm
 
+open FolAutomReas.Lib.Num
+
 // ------------------------------------------------------------------------- //
 // Union-find algorithm.                                                     //
 // ------------------------------------------------------------------------- //

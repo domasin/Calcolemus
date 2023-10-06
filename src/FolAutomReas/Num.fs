@@ -3,7 +3,7 @@
 // F# links to original source to be added                                   //
 // ==========================================================================//
 
-[<AutoOpen>]
+// [<AutoOpen>]
 module FolAutomReas.Lib.Num
 
 open System
