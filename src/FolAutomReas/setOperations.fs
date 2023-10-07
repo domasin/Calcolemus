@@ -9,6 +9,8 @@
 [<AutoOpen>]
 module FolAutomReas.Lib.SetOperations
 
+open Sort
+
 // ------------------------------------------------------------------------- //
 // Set operations on ordered lists                                           //
 // ------------------------------------------------------------------------- //

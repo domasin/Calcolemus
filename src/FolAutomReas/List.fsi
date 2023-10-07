@@ -157,7 +157,9 @@ module List =
     /// </note>
     val chop_list: n: int -> l: 'a list -> 'a list * 'a list
 
-    /// <summary>Return a new list with a new item inserted before the given index.</summary>
+    /// <summary>
+    /// Return a new list with a new item inserted before the given index.
+    /// </summary>
     ///
     /// <param name="i">The index where the item should be inserted.</param>
     /// <param name="x">The value to insert.</param>

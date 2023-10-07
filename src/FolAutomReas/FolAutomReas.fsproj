@@ -24,12 +24,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Num.fsi" />
     <Compile Include="Num.fs" />
     <Compile Include="Function.fsi" />
     <Compile Include="Function.fs" />
     <Compile Include="List.fsi" />
     <Compile Include="List.fs" />
-    <Compile Include="sorting.fs" />
+    <Compile Include="Sort.fsi" />
+    <Compile Include="Sort.fs" />
     <Compile Include="repetitions.fs" />
     <Compile Include="search.fs" />
     <Compile Include="setOperations.fs" />

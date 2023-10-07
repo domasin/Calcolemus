@@ -13,6 +13,7 @@ module FolAutomReas.Real
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Sort
 
 open Formulas
 open Prop

@@ -7,8 +7,6 @@
 
 namespace FolAutomReas.Lib
 
-open FolAutomReas.Lib.Num
-
 module List = 
 
     let rec last l =
