@@ -32,7 +32,8 @@
     <Compile Include="List.fs" />
     <Compile Include="Sort.fsi" />
     <Compile Include="Sort.fs" />
-    <Compile Include="search.fs" />
+    <Compile Include="Search.fsi" />
+    <Compile Include="Search.fs" />
     <Compile Include="setOperations.fs" />
     <Compile Include="stringExplosion.fs" />
     <Compile Include="Fpf.fsi" />

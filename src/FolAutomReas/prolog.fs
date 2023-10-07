@@ -7,7 +7,7 @@
 module FolAutomReas.Prolog
 
 open FolAutomReas.Lib
-open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Search
 
 open Intro
 open Formulas
