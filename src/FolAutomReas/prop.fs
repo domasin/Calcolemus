@@ -10,6 +10,7 @@ module FolAutomReas.Prop
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Set
 
 open Intro
 open Formulas

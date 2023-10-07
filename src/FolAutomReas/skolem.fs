@@ -8,8 +8,8 @@
 module FolAutomReas.Skolem
 
 open FolAutomReas.Lib
+open FolAutomReas.Lib.Set
 
-open Intro
 open Formulas
 open Prop
 open Fol

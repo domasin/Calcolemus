@@ -7,6 +7,8 @@
 
 namespace FolAutomReas.Lib
 
+open FolAutomReas.Lib.Set
+
 [<AutoOpen>]
 module Fpf = 
 

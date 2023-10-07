@@ -8,10 +8,10 @@ module FolAutomReas.Order
 
 open FolAutomReas.Lib
 open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Set
 
 open Fol
 
-// pg. 265
 // ========================================================================= //
 // Term orderings.                                                           //
 // ========================================================================= //

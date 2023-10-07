@@ -6,12 +6,13 @@
 
 module FolAutomReas.Cooper
 
+open LanguagePrimitives
+
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
-
-open LanguagePrimitives
+open FolAutomReas.Lib.Set
 
 open Formulas
 open Prop
@@ -63,8 +64,8 @@ let rec linear_cmul (n : num) tm =
     else
         match tm with
         | Fn ("+", [Fn ("*", [c; x]); r]) ->
-            Fn ("+", [Fn("*", [numeral1 ((*) n) c; x]); linear_cmul n r])
-        | k -> numeral1 ((*) n) k
+            Fn ("+", [Fn("*", [numeral1 (( * ) n) c; x]); linear_cmul n r])
+        | k -> numeral1 (( * ) n) k
 
 let rec linear_add vars tm1 tm2 =
     match tm1, tm2 with

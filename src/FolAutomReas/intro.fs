@@ -11,8 +11,8 @@
 /// <summary>A simple algebraic expression example.</summary>
 module FolAutomReas.Intro
 
-open System
 open FolAutomReas.Lib
+open FolAutomReas.Lib.Set
 
 /// Abstract syntax tree of algebraic expressions.
 type expression =

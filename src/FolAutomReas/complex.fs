@@ -6,11 +6,12 @@
 
 module FolAutomReas.Complex
 
+open LanguagePrimitives
+
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
-
-open LanguagePrimitives
+open FolAutomReas.Lib.Set
 
 open Formulas
 open Prop

@@ -9,7 +9,7 @@ module FolAutomReas.Limitations
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
-open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Set
 
 open LanguagePrimitives
 

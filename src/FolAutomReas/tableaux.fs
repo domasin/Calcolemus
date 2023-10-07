@@ -10,6 +10,7 @@ namespace FolAutomReas
 open FolAutomReas.Lib
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Search
+open FolAutomReas.Lib.Set
 
 open Formulas
 open Prop

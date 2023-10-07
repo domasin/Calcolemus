@@ -9,7 +9,7 @@
 module FolAutomReas.Propexamples
 
 open FolAutomReas.Lib
-open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Set
 
 open Formulas
 open Prop

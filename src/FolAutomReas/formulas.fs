@@ -8,6 +8,7 @@
 module FolAutomReas.Formulas
 
 open FolAutomReas.Lib
+open FolAutomReas.Lib.Set
 
 /// Abstract syntax tree of polymorphic type of formulas.
 type formula<'a> =

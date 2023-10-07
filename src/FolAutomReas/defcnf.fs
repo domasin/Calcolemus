@@ -6,12 +6,11 @@
 
 module FolAutomReas.Defcnf
 
-open FolAutomReas.Lib
-
-open FolAutomReas.Lib.Num
-
 open LanguagePrimitives
-// open FSharp.Compatibility.OCaml.Num
+
+open FolAutomReas.Lib
+open FolAutomReas.Lib.Num
+open FolAutomReas.Lib.Set
 
 open Intro
 open Formulas

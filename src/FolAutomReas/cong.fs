@@ -8,6 +8,7 @@ module FolAutomReas.Cong
 
 open FolAutomReas.Lib
 open FolAutomReas.Lib.List
+open FolAutomReas.Lib.Set
 
 open Formulas
 open Prop
@@ -15,7 +16,6 @@ open Fol
 open Skolem
 open Equal
 
-// pg. 249
 // ========================================================================= //
 // Simple congruence closure.                                                //
 // ========================================================================= //

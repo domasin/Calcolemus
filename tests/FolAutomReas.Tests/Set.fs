@@ -1,9 +1,9 @@
-module FolAutomReas.Tests.SetOperations
+module FolAutomReas.Tests.Set
 
 open Xunit
 open FsUnit.Xunit
 
-open FolAutomReas.Lib.SetOperations
+open FolAutomReas.Lib.Set
 
 [<Fact>]
 let ``setify [1;2;3;1;4;3] returns [1;2;3;4].``() = 
