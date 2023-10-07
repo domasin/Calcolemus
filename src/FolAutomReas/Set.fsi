@@ -10,27 +10,57 @@ namespace FolAutomReas.Lib
 /// </summary>
 module Set = 
 
-    /// Removes repeated elements from a list. Makes a list into a ‘set’.
+    /// <summary>
+    /// Removes repeated elements from a list, making a list into a 'set'.
+    /// </summary>
     /// 
-    /// setify l removes repeated elements from l, leaving the last occurrence of 
-    /// each duplicate in the list.
+    /// <remarks>
+    /// Returns a sorted list that contains no duplicate entries according to 
+    /// generic hash and equality comparisons on the entries. If an element 
+    /// occurs multiple times in the list then the later occurrences are 
+    /// discarded. 
+    /// </remarks>
     /// 
-    /// <example>
-    /// <code>setify [1;2;3;1;4;3]</code> returns <code>[1;2;3;4]</code>
+    /// <param name="l">The input list.</param>
+    /// 
+    /// <returns>The result list.</returns>
+    /// 
+    /// <example id="setify-1">
+    /// <code lang="fsharp">
+    /// setify [1;2;3;1;4;3]
+    /// </code>
+    /// Evaluates to <c>[1;2;3;4]</c>.
+    /// </example>
+    val setify: l: 'a list -> 'a list when 'a: comparison
+
+    /// <summary>
+    /// Computes the union of two `sets'.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// <c>union l1 l2</c> returns a list consisting of the elements of 
+    /// <c>l1</c> not already in <c>l2</c> concatenated with <c>l2</c> . 
+    /// If <c>l1</c>  and <c>l2</c>  are initially free from duplicates, 
+    /// this gives a set-theoretic union operation. 
+    /// </remarks>
+    /// 
+    /// <param name="l1">The first input list.</param>
+    /// <param name="l2">The second input list.</param>
+    /// 
+    /// <example id="union-1">
+    /// <code lang="union">
+    /// union [1;2;3] [1;5;4;3]
+    /// </code>
+    /// Evaluates to <c>[1;2;3;4;5]</c>.
     /// </example>
     /// 
-    /// Never fails
-    val setify: ('a list -> 'a list) when 'a: comparison
-
-    /// Computes the union of two ‘sets’.
-    /// 
-    /// union l1 l2 returns a list consisting of the elements of l1 not already in 
-    /// l2 concatenated with l2. If l1 and l2 are initially free from duplicates, 
-    /// this gives a set-theoretic union operation. union [1;2;3] [1;5;4;3] returns 
-    /// [1;2;3;4;5]; union [1;1;1] [1;2;3;2] returns [1;2;3].
-    /// 
-    /// Never fails.
-    val union: ('a list -> 'a list -> 'a list) when 'a: comparison
+    /// <example id="union-1">
+    /// <code lang="union">
+    /// union [1;1;1] [1;2;3;2] 
+    /// </code>
+    /// Evaluates to <c>[1;2;3]</c>.
+    /// </example>
+    val union: l1: 'a list -> l2: 'a list -> 'a list when 'a: comparison
 
     /// Computes the intersection of two ‘sets’.
     /// 

@@ -13,33 +13,35 @@ module Set =
     // Set operations on ordered lists                                        //
     // ---------------------------------------------------------------------- //
 
-    let setify =
+    let setify l =
         let rec canonical lis =
             match lis with
             | x :: (y :: _ as rest) ->
                 compare x y < 0
                 && canonical rest
             | _ -> true
-        fun l -> 
-            if canonical l then 
-                l
-            else
-                List.distinct (List.sort l)
 
-    let union =
-        let rec union l1 l2 =
-            match l1, l2 with
-            | [], l2 -> l2
-            | l1, [] -> l1
-            | (h1 :: t1 as l1), (h2 :: t2 as l2) ->
-                if h1 = h2 then
-                    h1 :: (union t1 t2)
-                elif h1 < h2 then
-                    h1 :: (union t1 l2)
-                else
-                    h2 :: (union l1 t2)
-        fun s1 s2 ->
-            union (setify s1) (setify s2)
+        if canonical l then 
+            l
+        else
+            List.distinct (List.sort l)
+
+    let union l1 l2 =
+        Set.union (l1 |> Set.ofList) (l2 |> Set.ofList)
+        |> Set.toList
+        // let rec union l1 l2 =
+        //     match l1, l2 with
+        //     | [], l2 -> l2
+        //     | l1, [] -> l1
+        //     | (h1 :: t1 as l1), (h2 :: t2 as l2) ->
+        //         if h1 = h2 then
+        //             h1 :: (union t1 t2)
+        //         elif h1 < h2 then
+        //             h1 :: (union t1 l2)
+        //         else
+        //             h2 :: (union l1 t2)
+
+        // union (setify l1) (setify l2)
 
     let intersect =
         let rec intersect l1 l2 =
