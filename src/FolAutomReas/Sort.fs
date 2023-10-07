@@ -9,23 +9,19 @@ namespace FolAutomReas.Lib
 
 module Sort = 
 
-    // ---------------------------------------------------------------------- //
-    // Merging of sorted lists (maintaining repetitions).                     //
-    // ---------------------------------------------------------------------- //
+    // Merging of sorted lists (maintaining repetitions)
     
-    let rec merge comparer l1 l2 =
+    let rec merge ord l1 l2 =
         match l1, l2 with
         | [], x
         | x, [] -> x
         | h1 :: t1, h2 :: t2 ->
-            if comparer h1 h2 then
-                h1 :: (merge comparer t1 l2)
+            if ord h1 h2 then
+                h1 :: (merge ord t1 l2)
             else
-                h2 :: (merge comparer l1 t2)
+                h2 :: (merge ord l1 t2)
     
-    // ---------------------------------------------------------------------- //
-    // Bottom-up mergesort.                                                   //
-    // ---------------------------------------------------------------------- //
+    // Bottom-up mergesort
     
     let sort ord =
         let rec mergepairs l1 l2 =
@@ -42,9 +38,7 @@ module Sort =
             else mergepairs [] (List.map (fun x -> [x]) l)
     
     
-    // ---------------------------------------------------------------------- //
-    // Common measure predicates to use with "sort".                          //
-    // ---------------------------------------------------------------------- //
+    // Common measure predicates to use with "sort"
     
     let increasing f x y =
         compare (f x) (f y) < 0
