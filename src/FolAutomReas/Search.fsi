@@ -5,6 +5,9 @@
 
 namespace FolAutomReas.Lib
 
+///<summary>
+/// Searching functions.
+/// </summary>
 module Search = 
 
     /// <summary>
@@ -82,18 +85,74 @@ module Search =
     /// </example>
     val mapfilter: f: ('a -> 'b) -> l: 'a list -> 'b list
     
-    /// finds the element of a list l that maximizes or minimizes a function f 
-    /// based on the given ord.
+    /// <summary>
+    /// Finds the element of a list <c>l</c> that maximizes or minimizes 
+    /// (based on the given <c>ord</c>) a function <c>f</c>. 
+    /// </summary>
     /// 
-    /// Support function for use with maximize and minimize.
-    val optimize: ord: ('a -> 'a -> bool) -> f: ('b -> 'a) -> lst: 'b list -> 'b
+    /// <remarks>
+    /// Used to define maximize and minimize.
+    /// </remarks>
+    /// 
+    /// <param name="ord">The order that defines whether to maximize or minimize.</param>
+    /// <param name="f">The input function.</param>
+    /// <param name="l">The input list.</param>
+    /// 
+    /// <returns>
+    /// The element of the list that optimizes the function.
+    /// </returns>
+    /// 
+    /// <example id="optimize-1">
+    /// <code lang="fsharp">
+    /// optimize (&lt;) (( * ) -1) [-1;2;3]
+    /// </code>
+    /// Evaluates to <c>-1</c>.
+    /// </example>
+    /// 
+    /// <example id="optimize-2">
+    /// <code lang="fsharp">
+    /// optimize (&gt;) (( * ) -1) [-1;2;3]
+    /// </code>
+    /// Evaluates to <c>3</c>.
+    /// </example>
+    val optimize: ord: ('a -> 'a -> bool) -> f: ('b -> 'a) -> l: 'b list -> 'b
     
-    /// finds the element of a list l that maximizes a function f
+    /// <summary>
+    /// Finds the element of a list <c>l</c> that maximizes a function 
+    /// <c>f</c>. 
+    /// </summary>
     /// 
-    /// maximize ((*) -1) [-1;2;3] returns -1
+    /// <param name="f">The input function.</param>
+    /// <param name="l">The input list.</param>
+    /// 
+    /// <returns>
+    /// The element of the list that maximises the function.
+    /// </returns>
+    /// 
+    /// <example id="maximize-example">
+    /// <code lang="fsharp">
+    /// maximize (( * ) -1) [-1;2;3]
+    /// </code>
+    /// Evaluates to <c>-1</c>.
+    /// </example>
     val maximize: f: ('a -> 'b) -> l: 'a list -> 'a when 'b: comparison
     
-    /// finds the element of a list l that minimizes a function f
+    /// <summary>
+    /// Finds the element of a list <c>l</c> that minimizes a function 
+    /// <c>f</c>. 
+    /// </summary>
     /// 
-    /// minimize ((*) -1) [-1;2;3] returns 3
+    /// <param name="f">The input function.</param>
+    /// <param name="l">The input list.</param>
+    /// 
+    /// <returns>
+    /// The element of the list that minimizes the function.
+    /// </returns>
+    /// 
+    /// <example id="minimizes-example">
+    /// <code lang="fsharp">
+    /// minimize (( * ) -1) [-1;2;3]
+    /// </code>
+    /// Evaluates to <c>3</c>.
+    /// </example>
     val minimize: f: ('a -> 'b) -> l: 'a list -> 'a when 'b: comparison

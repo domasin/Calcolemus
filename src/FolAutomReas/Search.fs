@@ -7,7 +7,6 @@
 
 namespace FolAutomReas.Lib
 
-/// Functions to handle searching
 [<AutoOpen>]
 module Search = 
 
@@ -32,8 +31,8 @@ module Search =
     // Find list member that maximizes or minimizes a function.               //
     // ---------------------------------------------------------------------- //
 
-    let optimize ord f lst =
-        lst
+    let optimize ord f l =
+        l
         |> List.map (fun x -> x, f x)
         |> List.reduceBack (fun (_, y1 as p1) (_, y2 as p2) ->
             if ord y1 y2 then p1 else p2)

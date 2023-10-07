@@ -34,11 +34,21 @@ let ``mapfilter should return the empty list if no application succeeds.``() =
     |> should equal ([]:string list)
 
 [<Fact>]
-let ``maximize (( * ) -1) [-1;2;3] returns -1``() = 
+let ``optimize should return the element in the list that maximizes the function if the ord is increasing.``() = 
+    optimize (>) (( * ) -1) [-1;2;3]
+    |> should equal -1
+
+[<Fact>]
+let ``optimize should return the element in the list that minimizes the function if the ord is decreasing.``() = 
+    optimize (<) (( * ) -1) [-1;2;3]
+    |> should equal 3
+
+[<Fact>]
+let ``maximize should return the element in the list that maximizes the function.``() = 
     maximize (( * ) -1) [-1;2;3] 
     |> should equal -1
 
 [<Fact>]
-let ``minimize (( * ) -1) [-1;2;3] returns 3``() = 
+let ``minimize should return the element in the list that minimizes the function``() = 
     minimize (( * ) -1) [-1;2;3] 
     |> should equal 3

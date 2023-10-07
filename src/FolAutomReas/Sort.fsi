@@ -6,7 +6,7 @@
 namespace FolAutomReas.Lib
 
 ///<summary>
-/// Functions for sorting.
+/// Sorting functions.
 /// </summary>
 module Sort = 
 
