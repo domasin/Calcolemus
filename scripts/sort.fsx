@@ -40,3 +40,9 @@ let comparer ord = fun x y ->
 increasing List.length [1] [1;2]
 
 increasing List.length [1;2] [1]
+
+open FolAutomReas.Lib
+
+uniq [1;1;3;2;2]
+
+List.distinct [1;1;3;2;2]

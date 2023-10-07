@@ -8,7 +8,6 @@
     <Compile Include="Function.fs" />
     <Compile Include="List.fs" />
     <Compile Include="Sort.fs" />
-    <Compile Include="Repetitions.fs" />
     <Compile Include="Search.fs" />
     <Compile Include="SetOperations.fs" />
     <Compile Include="Fpf.fs" />
