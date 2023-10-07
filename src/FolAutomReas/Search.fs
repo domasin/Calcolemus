@@ -17,15 +17,16 @@ module Search =
             failwith "tryfind"
         | h :: t ->
             try f h
-            with Failure _ ->
+            with _ ->
                 tryfind f t
+    
     let rec mapfilter f l =
         match l with
         | [] -> []
         | h :: t ->
             let rest = mapfilter f t
             try (f h) :: rest
-            with Failure _ -> rest
+            with _ -> rest
 
     // ---------------------------------------------------------------------- //
     // Find list member that maximizes or minimizes a function.               //
