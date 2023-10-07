@@ -62,26 +62,67 @@ module Sort =
     /// the usual sense of the word.
     /// </remarks>
     /// 
-    /// <note>
-    /// This function uses the Quicksort algorithm internally, which has good 
-    /// typical-case performance and will sort topologically. However, its 
-    /// worst-case performance is quadratic. By contrast mergesort gives a good 
-    /// worst-case performance but requires a total order. Note that any 
-    /// comparison-based topological sorting function must have quadratic 
-    /// behaviour in the worst case. For an n-element list, there are n(n-1)/2 
-    /// pairs. For any topological sorting algorithm, we can make sure the 
-    /// first n(n-1)/2-1 pairs compared are unrelated in either direction, 
-    /// while still leaving the option of choosing for the last pair (a,b) 
-    /// either.
-    /// </note>
-    val sort: ord: ('a -> 'a -> bool) -> ('a list -> 'a list) when 'a: equality
-    
-    /// increasing predicate to use with "sort"
+    /// <param name="ord">The ordering relation.</param>
+    /// <param name="l">The input list.</param>
     /// 
-    /// increasing List.length [1] [1;2] returns true`
+    /// <returns>The sorted list.</returns>
+    /// 
+    /// <example id="sort-1">
+    /// <code lang="fsharp">
+    /// sort (&lt;) [3;1;4;1;5;9;2;6;5;3;5]
+    /// </code>
+    /// Evaluates to <c>[1;1;2;3;3;4;5;5;5;6;9]</c>.
+    /// </example>
+    val sort: ord: ('a -> 'a -> bool) -> l: 'a list -> 'a list when 'a: equality
+    
+    /// <summary>
+    /// Checks whether <c>x</c> is less than <c>y</c> based on <c>f</c>.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// increasing predicate to use with 
+    /// <see cref='M:FolAutomReas.Lib.Sort.sort``1'/>.
+    /// </remarks>
+    /// 
+    /// <param name="f">The function based on which to compare <c>x</c> and <c>y</c>.</param>
+    /// <param name="x">The supposed smaller element.</param>
+    /// <param name="y">The supposed greater element.</param>
+    /// 
+    /// <returns>
+    /// true if <c>x</c> is less than <c>y</c> based on <c>f</c>, otherwise 
+    /// false.
+    /// </returns>
+    /// 
+    /// <example id="increasing-1">
+    /// <code lang="fsharp">
+    /// increasing List.length [1] [1;2]
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     val increasing: f: ('a -> 'b) -> x: 'a -> y: 'a -> bool when 'b: comparison
     
-    /// decreasing predicate to use with "sort"
+    /// <summary>
+    /// Checks whether <c>x</c> is greater than <c>y</c> based on <c>f</c>.
+    /// </summary>
     /// 
-    /// decreasing List.length [1;2] [1] returns true
+    /// <remarks>
+    /// decreasing predicate to use with 
+    /// <see cref='M:FolAutomReas.Lib.Sort.sort``1'/>.
+    /// </remarks>
+    /// 
+    /// <param name="f">The function based on which to compare <c>x</c> and <c>y</c>.</param>
+    /// <param name="x">The supposed greater element.</param>
+    /// <param name="y">The supposed smaller element.</param>
+    /// 
+    /// <returns>
+    /// true if <c>x</c> is greater than <c>y</c> based on <c>f</c>, otherwise 
+    /// false.
+    /// </returns>
+    /// 
+    /// <example id="decreasing-1">
+    /// <code lang="fsharp">
+    /// decreasing List.length [1;2] [1]
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     val decreasing: f: ('a -> 'b) -> x: 'a -> y: 'a -> bool when 'b: comparison

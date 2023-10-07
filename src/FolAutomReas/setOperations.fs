@@ -33,8 +33,10 @@ let setify =
             && canonical rest
         | _ -> true
     fun l -> 
-        if canonical l then l
-        else uniq (sort (fun x y -> compare x y <= 0) l)
+        if canonical l then 
+            l
+        else // try List.sortWith compare instead
+            uniq (sort (fun x y -> compare x y <= 0) l)
 
 /// Computes the union of two ‘sets’.
 /// 

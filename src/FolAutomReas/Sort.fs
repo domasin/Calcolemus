@@ -23,7 +23,7 @@ module Sort =
     
     // Bottom-up mergesort
     
-    let sort ord =
+    let sort ord l =
         let rec mergepairs l1 l2 =
             match l1, l2 with
             | [s],[] -> s
@@ -33,9 +33,13 @@ module Sort =
                 mergepairs (s1::l) []
             | l, s1 :: s2 :: ss ->
                 mergepairs ((merge ord s1 s2)::l) ss
-        fun l -> 
-            if l = [] then [] 
-            else mergepairs [] (List.map (fun x -> [x]) l)
+
+        let sortAux l = 
+            if l = [] then 
+                [] 
+            else 
+                mergepairs [] (List.map (fun x -> [x]) l)
+        sortAux l
     
     
     // Common measure predicates to use with "sort"
