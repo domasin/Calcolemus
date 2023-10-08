@@ -41,6 +41,41 @@ let ``subtract [1;2;4;1] [4;5] returns [1;2].``() =
     |> should equal [1;2]
 
 [<Fact>]
+let ``subset should return true if first list is subset of the second [1;2;4;1].``() = 
+    subset [1;2;3] [1;4;3;2] 
+    |> should equal true
+
+[<Fact>]
+let ``subset should return true also if first list elements are the same of the second.``() = 
+    subset [1;2;3] [2;3;1] 
+    |> should equal true
+
+[<Fact>]
+let ``subset should return false if first list has elements that are not in the second.``() = 
+    subset [1;2;3;4] [2;3;1] 
+    |> should equal false
+
+[<Fact>]
+let ``psubset should return true if first list is a proper subset of the second [1;2;4;1].``() = 
+    psubset [1;2;3] [1;4;3;2] 
+    |> should equal true
+
+[<Fact>]
+let ``psubset should return false if first list elements are the same of the second.``() = 
+    psubset [1;2;3] [2;3;1] 
+    |> should equal false
+
+[<Fact>]
+let ``psubset should return false if first list has elements that are not in the second.``() = 
+    psubset [1;2;3;4] [2;3;1] 
+    |> should equal false
+
+[<Fact>]
+let ``subset should return false if first lista ha elements that are not in the second.``() = 
+    subset [1;2;3;4] [2;3;1] 
+    |> should equal false
+
+[<Fact>]
 let ``set_eq [1;2] [2;1;2] returns true.``() = 
     set_eq [1;2] [2;1;2]
     |> should equal true

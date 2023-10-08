@@ -24,6 +24,8 @@ module Set =
         if canonical l then 
             l
         else
+            // this change, compared to the original, has greatly improved 
+            // performance.
             List.distinct (List.sort l)
 
     let union l1 l2 =
@@ -43,76 +45,78 @@ module Set =
 
         // union (setify l1) (setify l2)
 
-    let intersect =
-        let rec intersect l1 l2 =
-            match l1, l2 with
-            | [], l2 -> []
-            | l1, [] -> []
-            | (h1 :: t1 as l1), (h2 :: t2 as l2) ->
-                if h1 = h2 then
-                    h1 :: (intersect t1 t2)
-                elif h1 < h2 then
-                    intersect t1 l2
-                else
-                    intersect l1 t2
-        fun s1 s2 ->
-            intersect (setify s1) (setify s2)
+    let intersect l1 l2 =
+        Set.intersect (l1 |> Set.ofList) (l2 |> Set.ofList)
+        |> Set.toList
+        // let rec intersect l1 l2 =
+        //     match l1, l2 with
+        //     | [], l2 -> []
+        //     | l1, [] -> []
+        //     | (h1 :: t1 as l1), (h2 :: t2 as l2) ->
+        //         if h1 = h2 then
+        //             h1 :: (intersect t1 t2)
+        //         elif h1 < h2 then
+        //             intersect t1 l2
+        //         else
+        //             intersect l1 t2
+        
+        // intersect (setify l1) (setify l2)
 
-    let subtract =
-        let rec subtract l1 l2 =
-            match l1, l2 with
-            | [], l2 -> []
-            | l1, [] -> l1
-            | (h1 :: t1 as l1), (h2 :: t2 as l2) ->
-                if h1 = h2 then
-                    subtract t1 t2
-                elif h1 < h2 then
-                    h1 :: (subtract t1 l2)
-                else
-                    subtract l1 t2
-        fun s1 s2 ->
-            subtract (setify s1) (setify s2)
+    let subtract l1 l2 =
+        Set.difference (l1 |> Set.ofList) (l2 |> Set.ofList)
+        |> Set.toList
+        // let rec subtract l1 l2 =
+        //     match l1, l2 with
+        //     | [], l2 -> []
+        //     | l1, [] -> l1
+        //     | (h1 :: t1 as l1), (h2 :: t2 as l2) ->
+        //         if h1 = h2 then
+        //             subtract t1 t2
+        //         elif h1 < h2 then
+        //             h1 :: (subtract t1 l2)
+        //         else
+        //             subtract l1 t2
+        
+        // subtract (setify l1) (setify l2)
+    
+    // let rec subsetAux l1 l2 =
+    //     match l1, l2 with
+    //     | [], l2 -> true
+    //     | l1, [] -> false
+    //     | h1 :: t1, h2 :: t2 ->
+    //         if h1 = h2 then subsetAux t1 t2
+    //         elif h1 < h2 then false
+    //         else subsetAux l1 t2
+    // and psubsetAux l1 l2 =
+    //     match l1, l2 with
+    //     | l1, [] -> false
+    //     | [], l2 -> true
+    //     | h1 :: t1, h2 :: t2 ->
+    //         if h1 = h2 then psubsetAux t1 t2
+    //         elif h1 < h2 then false
+    //         else subsetAux l1 t2
 
-    let subset,psubset =
-        let rec subset l1 l2 =
-            match l1, l2 with
-            | [], l2 -> true
-            | l1, [] -> false
-            | h1 :: t1, h2 :: t2 ->
-                if h1 = h2 then subset t1 t2
-                elif h1 < h2 then false
-                else subset l1 t2
-        and psubset l1 l2 =
-            match l1, l2 with
-            | l1, [] -> false
-            | [], l2 -> true
-            | h1 :: t1, h2 :: t2 ->
-                if h1 = h2 then psubset t1 t2
-                elif h1 < h2 then false
-                else subset l1 t2
-        (fun s1 s2 -> subset (setify s1) (setify s2)),
-        (fun s1 s2 -> psubset (setify s1) (setify s2))
+    let subset l1 l2 =
+        Set.isSubset (l1 |> Set.ofList) (l2 |> Set.ofList)
+        // subsetAux (setify l1) (setify l2)
 
-    let rec set_eq s1 s2 =
-        setify s1 = setify s2
+    let psubset l1 l2 =
+        Set.isProperSubset (l1 |> Set.ofList) (l2 |> Set.ofList)
+        // psubsetAux (setify l1) (setify l2)
 
-    let insert x s =
-        union [x] s
+    let rec set_eq l1 l2 =
+        setify l1 = setify l2
+
+    let insert x l =
+        l |> Set.ofList |> Set.add x |> Set.toList
+        // union [x] s
 
     let image f s =
         setify (List.map f s)
 
-    // ---------------------------------------------------------------------- //
-    // Union of a family of sets.                                             //
-    // ---------------------------------------------------------------------- //
-
     let unions s =
         List.foldBack (@) s []
         |> setify
-
-    // ---------------------------------------------------------------------- //
-    // List membership. This does *not* assume the list is a set.             //
-    // ---------------------------------------------------------------------- //
 
     let rec mem x lis =
         match lis with
@@ -120,10 +124,6 @@ module Set =
         | hd :: tl ->
             hd = x
             || mem x tl
-
-    // ---------------------------------------------------------------------- //
-    // Finding all subsets or all subsets of a given size.                    //
-    // ---------------------------------------------------------------------- //
 
     let rec allsets m l =
         if m = 0 then [[]]
