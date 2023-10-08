@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Repetitions (FolAutomReas)</title>
+    <title>Time (FolAutomReas)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
 
@@ -74,7 +74,7 @@
         <div class="container" id="fsdocs-content">
             <div>
   <h2>
-    Repetitions Module
+    Time Module
   </h2>
   <dl class="fsdocs-metadata">
     <dt>
@@ -91,8 +91,8 @@
     <div>
       <p class="fsdocs-summary">
         
- Functions to handle repetitions
-
+ Timing: useful for documentation but not logically necessary.
+ 
       </p>
     </div>
   </div>
@@ -115,83 +115,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '826', 826)" onmouseover="showTip(event, '826', 826)">
+              <code onmouseout="hideTip(event, '860', 860)" onmouseover="showTip(event, '860', 860)">
                 <p>
-                  <a id="repetitions">
-                    <a href="#repetitions">
-                      <code><span>repetitions&#32;<span></span></span></code>
+                  <a id="time">
+                    <a href="#time">
+                      <code><span>time&#32;<span>f&#32;x</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="826">
+              <div class="fsdocs-tip" id="860">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>repetitions&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span>'a&#32;list</span>&#32;->&#32;<span><span>(<span>'a&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Repetitions.repetitions``1```')">
-                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Repetitions.repetitions``1\'/>')">
-                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/repetitions.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- returns the number of repetitions in a list
- 
- repetitions [1;1;3;2;2] returns [(1,2);(3,1);(2,2)].
-
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span><span>'a&#32;list</span>&#32;->&#32;<span><span>(<span>'a&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '827', 827)" onmouseover="showTip(event, '827', 827)">
-                <p>
-                  <a id="tryfind">
-                    <a href="#tryfind">
-                      <code><span>tryfind&#32;<span>f&#32;l</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="827">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>tryfind&#32;<span>f&#32;l</span></span></code>
+                  <code><span>time&#32;<span>f&#32;x</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -202,14 +138,18 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;'b</span></code>
+                       - 
+                      The input function.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        l
+                        x
                       </b>
                       :
-                      <code><span>'a&#32;list</span></code>
+                      <code>'a</code>
+                       - 
+                      The input argument for the function.
                     </span>
                     <br/>
                   </ul>
@@ -218,6 +158,9 @@
                     Returns: 
                     <code>'b</code>
                   </span>
+                  
+ The application <code>f x</code> plus the CPU time taken to evaluate it.
+ 
                   <br/>
                 </div>
               </div>
@@ -227,29 +170,34 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Repetitions.tryfind``2```')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Time.time``2```')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Repetitions.tryfind``2\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Time.time``2\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/repetitions.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Time.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Returns the result of the first successful application of a function `f` 
- to the elements of a list `l`.
+ Report CPU time taken by a function.
  
- `tryfind f [x1;...;xn]` returns `f xi` for the first `xi` in the list for 
- which application of `f` succeeds.
-
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ A call <code>time f x</code> will evaluate <code>f x</code> as usual, but will also 
+ print the CPU time taken by that function evaluation.
+ <p></p>
+ Never fails in itself, though it propagates any exception generated by 
+ the call <code>f x</code> itself.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -258,15 +206,23 @@
                   :
                   <code><span>'a&#32;->&#32;'b</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input function.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    l
+                    x
                   </span>
                   :
-                  <code><span>'a&#32;list</span></code>
+                  <code>'a</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input argument for the function.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -275,94 +231,33 @@
                   </span>
                   <code>'b</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '828', 828)" onmouseover="showTip(event, '828', 828)">
-                <p>
-                  <a id="uniq">
-                    <a href="#uniq">
-                      <code><span>uniq&#32;<span>l</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="828">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>uniq&#32;<span>l</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        l
-                      </b>
-                      :
-                      <code><span>'b&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>'b&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Repetitions.uniq``1```')">
-                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Repetitions.uniq``1\'/>')">
-                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/repetitions.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
-                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
+                <dd class="fsdocs-return-docs">
+                  <p>
                     
- removes adjacent duplicated elements from a list
-
- uniq [1;1;3;2;2] returns [1;3;2]
-
+ The application <code>f x</code> plus the CPU time taken to evaluate it.
+ 
                   </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    l
-                  </span>
-                  :
-                  <code><span>'b&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                </dd>
               </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span>'b&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="time-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">time</span> <span class="id">tab</span> <span class="id">p38</span>
+</code></pre>
+
+
+ Evaluates to:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">0</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">1</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">2</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">3</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">4</span>
+ <span class="id">CPU</span> <span class="id">time</span> <span class="pn">(</span><span class="id">user</span><span class="pn">)</span><span class="pn">:</span> <span class="n">0.088133</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>
