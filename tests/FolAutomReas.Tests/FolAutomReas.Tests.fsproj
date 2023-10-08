@@ -10,6 +10,7 @@
     <Compile Include="Sort.fs" />
     <Compile Include="Search.fs" />
     <Compile Include="Set.fs" />
+    <Compile Include="String.fs" />
     <Compile Include="Fpf.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Herbrand.fs" />

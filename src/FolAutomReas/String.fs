@@ -10,9 +10,12 @@ namespace FolAutomReas.Lib
 module String = 
 
     let explode (s : string) =
-        let rec exap n l =
-            if n < 0 then l
-            else exap (n - 1) ((s.Substring(n,1))::l)
-        exap ((String.length s) - 1) []
+        s |> Seq.map string |> Seq.toList
+        // let rec exap n l =
+        //     if n < 0 then l
+        //     else exap (n - 1) ((s.Substring(n,1))::l)
+        // exap ((String.length s) - 1) []
 
-    let implode l = List.foldBack (+) l ""
+    let implode (l:string list) = 
+        // l |> String.concat ""
+        List.foldBack (+) l "" // seems better to be checked
