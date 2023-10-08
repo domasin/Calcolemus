@@ -13,6 +13,7 @@ module FolAutomReas.Intro
 
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.String
 
 /// Abstract syntax tree of algebraic expressions.
 type expression =

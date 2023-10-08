@@ -8,6 +8,7 @@ module FolAutomReas.Prolog
 
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Search
+open FolAutomReas.Lib.String
 
 open Intro
 open Formulas

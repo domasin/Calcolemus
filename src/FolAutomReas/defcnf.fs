@@ -11,6 +11,7 @@ open LanguagePrimitives
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.String
 
 open Intro
 open Formulas
