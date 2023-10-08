@@ -19,3 +19,8 @@ module String =
     let implode (l:string list) = 
         // l |> String.concat ""
         List.foldBack (+) l "" // seems better to be checked
+
+    let writeToString fn = 
+        use sw = new System.IO.StringWriter()
+        fn sw
+        sw.ToString()

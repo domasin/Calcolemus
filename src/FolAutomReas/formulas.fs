@@ -7,8 +7,8 @@
 /// Polymorphic type of formulas with parser and printer. 
 module FolAutomReas.Formulas
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.String
 
 /// Abstract syntax tree of polymorphic type of formulas.
 type formula<'a> =

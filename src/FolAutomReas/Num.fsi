@@ -105,3 +105,8 @@ module Num =
     /// 
     /// Fails if either number is not an integer (the type num supports arbitrary   rationals).
     val lcm_num: n1: num -> n2: num -> Num
+
+    /// First number starting at n for which p succeeds.
+    val first:
+      n: Num ->
+        p: (Num -> bool) -> Num

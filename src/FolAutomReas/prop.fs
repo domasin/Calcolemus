@@ -7,11 +7,11 @@
 /// Basic stuff for propositional logic: datatype, parsing and printing. 
 module FolAutomReas.Prop
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Fpf
+open FolAutomReas.Lib.String
 
 open Intro
 open Formulas

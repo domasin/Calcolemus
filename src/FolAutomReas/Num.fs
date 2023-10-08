@@ -490,3 +490,7 @@ module Num =
 
     let lcm_num (n1 : num) (n2 : num) =
         (abs (n1 * n2)) / gcd_num n1 n2
+
+    let rec first n p =
+        if p n then n
+        else first (n + Int 1) p

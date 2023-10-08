@@ -80,3 +80,6 @@ module String =
     /// Evaluates to <c>""</c>.
     /// </example>
     val implode: l: string list -> string
+
+    /// Write from a StringWriter to a string
+    val writeToString: fn: (System.IO.StringWriter -> unit) -> string

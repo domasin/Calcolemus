@@ -35,7 +35,7 @@ module FolAutomReas.Lcf
 //  |- p \/ q <=> -(-p /\ -q)                                          
 //  |- (exists x. p) <=> -(forall x. -p)                               
 
-open FolAutomReas.Lib
+open FolAutomReas.Lib.String
 
 open Formulas
 open Fol
