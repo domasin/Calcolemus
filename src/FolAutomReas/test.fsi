@@ -1,11 +1,5 @@
 namespace FSharp
 
-module FolAutomReas.Lib.StringExplosion
-
-val explode: s: string -> string list
-
-val implode: l: string list -> string
-
 module FolAutomReas.Lib.UnionFindAlgorithm
 
 type pnode<'a> =
@@ -41,13 +35,6 @@ val first:
 
 /// Write from a StringWriter to a string
 val writeToString: fn: (System.IO.StringWriter -> unit) -> string
-
-
-module FolAutomReas.Lib.Timing
-
-/// Timing; useful for documentation but not logically necessary. 
-val time: f: ('a -> 'b) -> x: 'a -> 'b
-
 
 module FolAutomReas.Intro
 

@@ -16,6 +16,7 @@ open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Search
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.Fpf
 
 open Formulas
 open Prop

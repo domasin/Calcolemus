@@ -10,6 +10,7 @@
 module FolAutomReas.Lib.UnionFindAlgorithm
 
 open FolAutomReas.Lib.Num
+open FolAutomReas.Lib.Fpf
 
 // ------------------------------------------------------------------------- //
 // Union-find algorithm.                                                     //

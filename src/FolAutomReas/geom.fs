@@ -12,6 +12,7 @@ module FolAutomReas.Geom
 open FolAutomReas.Lib
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.Fpf
 
 open Formulas
 open Fol

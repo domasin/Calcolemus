@@ -3,11 +3,12 @@ module FolAutomReas.Tests.Herbrand
 open Xunit
 open FsUnit.Xunit
 
+open FolAutomReas.Lib.Fpf
+
 open FolAutomReas.Formulas
 open FolAutomReas.Fol
 open FolAutomReas.Herbrand
 open FolAutomReas.Pelletier
-open FolAutomReas.Lib
 
 [<Fact>]
 let ``pholds (function Atom (R ("P", [Var "x"])) -> true) (parse "P(x)") returns true.``() = 

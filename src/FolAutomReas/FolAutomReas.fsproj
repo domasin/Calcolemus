@@ -40,8 +40,9 @@
     <Compile Include="String.fs" />
     <Compile Include="Fpf.fsi" />
     <Compile Include="Fpf.fs" />
+    <Compile Include="Time.fsi" />
+    <Compile Include="Time.fs" />
     <Compile Include="unionFindAlgorithm.fs" />
-    <Compile Include="timing.fs" />
     <Compile Include="intro.fs" />
     <Compile Include="formulas.fs" />
     <Compile Include="prop.fs" />

@@ -1,6 +1,6 @@
 namespace FolAutomReas
 
-open FolAutomReas.Lib
+open FolAutomReas.Lib.Fpf
 
 /// <summary>
 /// Binary decision diagrams (BDDs) using complement edges.

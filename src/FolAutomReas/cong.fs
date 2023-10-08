@@ -9,6 +9,7 @@ module FolAutomReas.Cong
 open FolAutomReas.Lib
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.Fpf
 
 open Formulas
 open Prop

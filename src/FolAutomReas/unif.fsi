@@ -1,6 +1,7 @@
 namespace FolAutomReas
 
-open FolAutomReas.Lib
+open FolAutomReas.Lib.Fpf
+
 open Fol
 
 /// Unification for first order terms. 
@@ -35,7 +36,7 @@ module Unif =
     /// </returns>
     /// <exception cref="T:System.Exception">with message 'cyclic', on cyclic but not trivial assignment.</exception>
     val istriv:
-        env: func<string,Fol.term> -> x: string -> t: Fol.term -> bool
+        env: func<string,term> -> x: string -> t: term -> bool
 
     /// <summary>
     /// Main unification procedure.
@@ -86,8 +87,8 @@ module Unif =
     /// </ul>
     /// </exception>
     val unify:
-        env: func<string,Fol.term> ->
-        eqs: (Fol.term * Fol.term) list -> func<string,Fol.term>
+        env: func<string,term> ->
+        eqs: (term * term) list -> func<string,term>
 
     /// <summary>Removes useless mappings from an environment of variable-term 
     /// mappings <c>env</c> returned by <see cref='M:FolAutomReas.Unif.unify'/>, 
@@ -118,7 +119,7 @@ module Unif =
     /// <remarks>The function never fails. However, it would cause a StackOverflow 
     /// crash if called on a cyclic <c>env</c>. <see cref='M:FolAutomReas.Unif.unify'/> 
     /// is specifically designed not to produce cyclic mappings.</remarks>
-    val solve: env: func<string,Fol.term> -> func<string,Fol.term>
+    val solve: env: func<string,term> -> func<string,term>
 
     /// <summary>
     /// Returns an MGU for the input list of term-term pairs <c>eqs</c>, if it is 
@@ -150,7 +151,7 @@ module Unif =
     /// possible.</li>
     /// </ul>
     /// </exception>
-    val fullunify: eqs: (Fol.term * Fol.term) list -> func<string,Fol.term>
+    val fullunify: eqs: (term * term) list -> func<string,term>
 
     /// <summary>
     /// Finds an MGU for a list of term-term pairs <c>eqs</c>, if it is 
@@ -180,4 +181,4 @@ module Unif =
     /// </ul>
     /// </exception>
     val unify_and_apply:
-        eqs: (Fol.term * Fol.term) list -> (Fol.term * Fol.term) list
+        eqs: (term * term) list -> (term * term) list

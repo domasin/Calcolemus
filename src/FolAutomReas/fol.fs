@@ -12,6 +12,7 @@ module FolAutomReas.Fol
 open FolAutomReas.Lib
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.String
+open FolAutomReas.Lib.Fpf
 
 open Intro
 open Formulas

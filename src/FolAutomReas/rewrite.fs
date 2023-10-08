@@ -7,6 +7,7 @@
 module FolAutomReas.Rewrite
 
 open FolAutomReas.Lib
+open FolAutomReas.Lib.Fpf
 
 open Formulas
 open Fol

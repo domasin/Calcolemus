@@ -3,9 +3,10 @@ module FolAutomReas.Tests.Unif
 open Xunit
 open FsUnit.Xunit
 
+open FolAutomReas.Lib.Fpf
+
 open FolAutomReas.Fol
 open FolAutomReas.Unif
-open FolAutomReas.Lib
 
 [<Fact>]
 let ``istriv should return true on trivial assignment.``() = 

@@ -2,7 +2,8 @@ module FolAutomReas.Tests.Fpf
 
 open Xunit
 open FsUnit.Xunit
-open FolAutomReas.Lib
+
+open FolAutomReas.Lib.Fpf
 
 [<Fact>]
 let ``is_undefined should return true on undefined function``() = 

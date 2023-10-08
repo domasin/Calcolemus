@@ -5,8 +5,9 @@
 
 namespace FolAutomReas.Lib
 
-/// <summary>Polymorphic Finite Partial functions via Patricia Trees.</summary>
-[<AutoOpen>]
+/// <summary>
+/// Polymorphic Finite Partial functions via Patricia Trees.
+/// </summary>
 module Fpf =
 
     /// <summary>

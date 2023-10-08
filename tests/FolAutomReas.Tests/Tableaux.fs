@@ -3,10 +3,11 @@ module FolAutomReas.Tests.Tableaux
 open Xunit
 open FsUnit.Xunit
 
+open FolAutomReas.Lib.Fpf
+
+open FolAutomReas.Fol
 open FolAutomReas.Tableaux
 open FolAutomReas.Pelletier
-open FolAutomReas.Lib
-open FolAutomReas.Fol
 
 [<Fact>]
 let ``unify_literals should return an augmented unification assignment on a unifiable pair not already unified.``() = 
