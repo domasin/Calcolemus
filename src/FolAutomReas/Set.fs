@@ -9,10 +9,6 @@ namespace FolAutomReas.Lib
 
 module Set = 
 
-    // ---------------------------------------------------------------------- //
-    // Set operations on ordered lists                                        //
-    // ---------------------------------------------------------------------- //
-
     let setify l =
         let rec canonical lis =
             match lis with
@@ -108,22 +104,27 @@ module Set =
         setify l1 = setify l2
 
     let insert x l =
-        l |> Set.ofList |> Set.add x |> Set.toList
-        // union [x] s
+        // l |> Set.ofList |> Set.add x |> Set.toList
+        union [x] l
 
     let image f s =
         setify (List.map f s)
 
     let unions s =
+        // s
+        // |> List.map Set.ofList
+        // |> Set.unionMany
+        // |> Set.toList
         List.foldBack (@) s []
         |> setify
 
-    let rec mem x lis =
-        match lis with
-        | [] -> false
-        | hd :: tl ->
-            hd = x
-            || mem x tl
+    let mem value source =
+        List.contains value source
+        // match source with
+        // | [] -> false
+        // | hd :: tl ->
+        //     hd = value
+        //     || mem value tl
 
     let rec allsets m l =
         if m = 0 then [[]]

@@ -46,3 +46,19 @@ Set.union (xs |> Set.ofList) (ys |> Set.ofList)
 union [1;2;3] [1;5;4;3]
 
 union [1;1;1] [1;2;3;2] 
+
+[1;2;3] |> image (fun x -> x * 2)
+
+[[1;2;3]; [4;3;2;6;2]; [5;3;1;3]]
+|> unions
+// [1; 2; 3; 4; 5; 6]
+
+[[1;2;3]; [4;3;2;6;2]; [5;3;1;3]]
+|> Seq.map Set.ofList
+|> Set.unionMany
+
+allsets 2 [1;2;3]
+
+allsubsets [1;2;3]
+
+allnonemptysubsets [1;2;3]

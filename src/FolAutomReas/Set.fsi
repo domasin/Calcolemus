@@ -8,6 +8,15 @@ namespace FolAutomReas.Lib
 ///<summary>
 /// Set represented as ordered lists and related operations.
 /// </summary>
+/// 
+/// <note>
+/// Try to change the functions that uses this module to use the standard 
+/// <see cref='T:Microsoft.FSharp.Collections.SetModule'/>.
+/// 
+/// <p>
+/// This is a point where performance could possibly be greatly improved.
+/// </p>
+/// </note>
 module Set = 
 
     /// <summary>
@@ -274,18 +283,139 @@ module Set =
     /// </note>
     val insert: x: 'a -> l: 'a list -> 'a list when 'a: comparison
 
+    /// <summary>
+    /// The image of <c>s</c> under <c>f</c>.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Returns a new collection containing the results of applying the
+    /// given function to each element of the input 'set'.
+    /// </remarks>
+    ///
+    /// <param name="f">The function to transform elements of the input 'set'.</param>
+    /// <param name="s">The input 'set'.</param>
+    ///
+    /// <returns>A 'set' containing the transformed elements.</returns>
+    ///
+    /// <example id="set-map">
+    /// <code lang="fsharp">
+    /// [1;2;3] |> image (fun x -> x * 2)
+    /// </code>
+    /// Evaluates to <c>[2; 4; 6]</c>
+    /// </example>
     val image: f: ('a -> 'b) -> s: 'a list -> 'b list when 'b: comparison
 
-    /// Union of a family of sets. 
+    /// <summary>Computes the union of a sequence of 'sets'.</summary>
+    ///
+    /// <param name="s">The sequence of 'sets' to union.</param>
+    ///
+    /// <returns>The union of the input 'sets'.</returns>
+    ///
+    /// <example id="unions-1">
+    /// <code lang="fsharp">
+    /// unions [[1;2;3]; [4;3;2;6;2]; [5;3;1;3]]
+    /// </code>
+    /// Evaluates to <c>[1; 2; 3; 4; 5; 6]</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// Corresponds to the standard 
+    /// <see cref='M:Microsoft.FSharp.Collections.SetModule.UnionMany``1'/>.
+    /// </note>
     val unions: s: 'a list list -> 'a list when 'a: comparison
 
-    /// List membership. This does *not* assume the list is a set.
-    val mem: x: 'a -> lis: 'a list -> bool when 'a: equality
+    /// <summary>Tests if the list contains the specified element.</summary>
+    ///
+    /// <param name="value">The value to locate in the input list.</param>
+    /// <param name="source">The input list.</param>
+    ///
+    /// <returns>
+    /// True if the input list contains the specified element; false otherwise.
+    /// </returns>
+    /// 
+    /// <example id="mem-1">
+    /// <code lang="fsharp">
+    /// [1..9] |> mem 0
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="mem-2">
+    /// <code lang="fsharp">
+    /// [1..9] |> mem 3
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="mem-3">
+    /// <code lang="fsharp">
+    /// [1, "SpongeBob"; 2, "Patrick"; 3, "Squidward"; 4, "Mr. Krabs"] 
+    /// |> mem (2, "Patrick")
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="mem-4">
+    /// <code lang="fsharp">
+    /// [1, "SpongeBob"; 2, "Patrick"; 3, "Squidward"; 4, "Mr. Krabs"] 
+    /// |> mem (22, "Patrick")
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// It's just an alias for 
+    /// <see cref='M:Microsoft.FSharp.Collections.ListModule.Contains``1'/>.
+    /// </note>
+    val mem: value: 'a -> source: 'a list -> bool when 'a: equality
 
-    /// Finding all subsets of a given size.
+    /// <summary>
+    /// Returns all subsets of the given size.
+    /// </summary>
+    /// 
+    /// <param name="m">The size of the subsets to be returned.</param>
+    /// <param name="l">The input 'set'.</param>
+    /// 
+    /// <returns>All the subsets of the given size.</returns>
+    /// 
+    /// <example id="allsets-1">
+    /// <code lang="fsharp">
+    /// allsets 2 [1;2;3]
+    /// </code>
+    /// Evaluates to <c>[[1; 2]; [1; 3]; [2; 3]]</c>.
+    /// </example>
     val allsets: m: int -> l: 'a list -> 'a list list when 'a: comparison
 
-    /// Finding all subsets
+    /// <summary>
+    /// Returns all the subsets of the input 'set'.
+    /// </summary>
+    /// 
+    /// <param name="s">The input 'set'.</param>
+    /// 
+    /// <returns>All the subsets of the input 'set'.</returns>
+    /// 
+    /// <example id="allsubsets-1">
+    /// <code lang="fsharp">
+    /// allsubsets [1;2;3]
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[]; [1]; [1; 2]; [1; 2; 3]; [1; 3]; [2]; [2; 3]; [3]]</c>.
+    /// </example>
     val allsubsets: s: 'a list -> 'a list list when 'a: comparison
 
+    /// <summary>
+    /// Returns all nonempty subsets of the input 'set'.
+    /// </summary>
+    /// 
+    /// <param name="s">The input 'set'.</param>
+    /// 
+    /// <returns>All nonempty subsets of the input 'set'.</returns>
+    /// 
+    /// <example id="allnonemptysubsets-1">
+    /// <code lang="fsharp">
+    /// allsubsets [1;2;3]
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[1]; [1; 2]; [1; 2; 3]; [1; 3]; [2]; [2; 3]; [3]]</c>.
+    /// </example>
     val allnonemptysubsets: s: 'a list -> 'a list list when 'a: comparison
