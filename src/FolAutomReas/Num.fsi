@@ -1,5 +1,6 @@
 namespace FolAutomReas.Lib
 
+/// Arbitrary precision numbers.
 module Num = 
 
     /// Infinite-precision rational number.

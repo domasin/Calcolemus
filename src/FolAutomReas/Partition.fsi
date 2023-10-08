@@ -13,11 +13,11 @@ open FolAutomReas.Lib.Fpf
 module Partition =
 
     type pnode<'a> =
-    | Nonterminal of 'a
-    | Terminal of 'a * int
+      | Nonterminal of 'a
+      | Terminal of 'a * int
 
     type partition<'a> = 
-    | Partition of func<'a,pnode<'a>>
+      | Partition of func<'a,pnode<'a>>
 
     val terminus: ptn: partition<'a> -> a: 'a -> 'a * int when 'a: comparison
 
