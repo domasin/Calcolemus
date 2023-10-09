@@ -52,7 +52,8 @@
     <Compile Include="prop.fs" />
     <Compile Include="propexamples.fs" />
     <Compile Include="defcnf.fs" />
-    <Compile Include="dp.fs" />
+    <Compile Include="DP.fsi" />
+    <Compile Include="DP.fs" />
     <Compile Include="stal.fs" />
     <Compile Include="bdd.fsi" />
     <Compile Include="bdd.fs" />
