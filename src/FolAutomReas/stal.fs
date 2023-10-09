@@ -13,6 +13,7 @@ open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Fpf
 open FolAutomReas.Lib.Partition
+open FolAutomReas.Lib.Lexer
 
 open Formulas
 open Prop

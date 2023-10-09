@@ -315,9 +315,12 @@ let rec onatoms f fm =
         Exists (x, onatoms f p)
     | _ -> fm
 
-/// Formula analog of list iterator `List.foldBack`. It iterates a binary 
-/// function `f` over all the atoms of a formula (as the first argument) using 
-/// the input `b` as the second argument.
+/// <summary>
+/// Formula analog of list iterator 
+/// <see cref='M:Microsoft.FSharp.Collections.ListModule.FoldBack``2'/>. It 
+/// iterates a binary function <c>f</c> over all the atoms of a formula (as the 
+/// first argument) using the input <c>b</c> as the second argument.
+/// </summary>
 let rec overatoms f fm b =
     match fm with
     | Atom a ->

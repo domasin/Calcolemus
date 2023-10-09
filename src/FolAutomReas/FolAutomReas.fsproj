@@ -44,7 +44,10 @@
     <Compile Include="Time.fs" />
     <Compile Include="Partition.fsi" />
     <Compile Include="Partition.fs" />
-    <Compile Include="intro.fs" />
+    <Compile Include="Lexer.fsi" />
+    <Compile Include="Lexer.fs" />
+    <Compile Include="Intro.fsi" />
+    <Compile Include="Intro.fs" />
     <Compile Include="formulas.fs" />
     <Compile Include="prop.fs" />
     <Compile Include="propexamples.fs" />

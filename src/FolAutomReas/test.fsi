@@ -1,41 +1,5 @@
 namespace FSharp
 
-module FolAutomReas.Lib.UnionFindAlgorithm
-
-type pnode<'a> =
-    | Nonterminal of 'a
-    | Terminal of 'a * int
-
-type partition<'a> = | Partition of FolAutomReas.Lib.FPF.func<'a,pnode<'a>>
-
-val string_of_partition: par: partition<'a> -> string
-
-val sprint_partition: pt: partition<'a> -> string
-
-val print_partition: pt: partition<'a> -> unit
-
-val terminus: ptn: partition<'a> -> a: 'a -> 'a * int when 'a: comparison
-
-val tryterminus: ptn: partition<'a> -> a: 'a -> 'a * int when 'a: comparison
-
-val canonize: ptn: partition<'a> -> a: 'a -> 'a when 'a: comparison
-
-val equivalent: eqv: partition<'a> -> a: 'a -> b: 'a -> bool when 'a: comparison
-
-val equate:
-  a: 'a * b: 'a -> ptn: partition<'a> -> partition<'a> when 'a: comparison
-
-val unequal: partition<'a>
-
-val equated: partition<'a> -> 'a list when 'a: comparison
-
-val first:
-  n: FolAutomReas.Lib.Num.Num ->
-    p: (FolAutomReas.Lib.Num.Num -> bool) -> FolAutomReas.Lib.Num.Num
-
-/// Write from a StringWriter to a string
-val writeToString: fn: (System.IO.StringWriter -> unit) -> string
-
 module FolAutomReas.Intro
 
 /// Abstract syntax tree of algebraic expressions.

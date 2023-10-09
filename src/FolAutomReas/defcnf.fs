@@ -8,11 +8,11 @@ module FolAutomReas.Defcnf
 
 open LanguagePrimitives
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Fpf
+open FolAutomReas.Lib.Lexer
 
 open Intro
 open Formulas
