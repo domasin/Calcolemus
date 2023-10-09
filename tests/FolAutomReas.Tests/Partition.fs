@@ -4,6 +4,7 @@ open Xunit
 open FsUnit.Xunit
 
 open FolAutomReas.Lib.Partition
+open FolAutomReas.Lib.Fpf
 
 let (Partition f as ptn) = 
     unequal
@@ -50,3 +51,20 @@ let ``canonize should return the canonical representative of the equivalence cla
 let ``canonize should return the input element itself if element is not found.``() = 
     canonize ptn 8
     |> should equal 8
+
+[<Fact>]
+let ``equivalent should return true if elements belong to the same equivalent class in the partition.``() = 
+    equivalent ptn 3 2
+    |> should equal true
+
+[<Fact>]
+let ``equivalent should return false if elements don't belong to the same equivalent class in the partition.``() = 
+    equivalent ptn 6 1
+    |> should equal false
+
+[<Fact>]
+let ``equate should return a new partition with the updated equivalence classes.``() = 
+    unequal
+    |> equate (2,1)
+    |> fun (Partition f) -> graph f
+    |> should equal [(1, Terminal (1, 2)); (2, Nonterminal 1)]

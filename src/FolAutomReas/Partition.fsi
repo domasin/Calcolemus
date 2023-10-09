@@ -257,14 +257,76 @@ module Partition =
     /// </example>
     val canonize: ptn: partition<'a> -> a: 'a -> 'a when 'a: comparison
 
-    /// Tests if a and b are equivalent w.r.t. ptn
+    /// <summary>
+    /// Tests if <c>a</c> and <c>b</c> are equivalent w.r.t. <c>ptn</c>.
+    /// </summary>
+    /// 
+    /// <param name="ptn">The input partition.</param>
+    /// <param name="a">The first element to compare.</param>
+    /// <param name="b">The second element to compare.</param>
+    /// 
+    /// <returns>
+    /// true if <c>a</c> and <c>b</c> belong to the same equivalence class 
+    /// in <c>ptn</c>; otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="equivalent-1">
+    /// <code lang="fsharp">
+    /// let (Partition f as ptn) = 
+    ///   unequal
+    ///   |> equate (2,1) 
+    ///   |> equate (3,1)
+    ///   |> equate (4,1) 
+    ///   |> equate (6,5) 
+    ///   |> equate (7,5) 
+    /// 
+    /// equivalent ptn 3 2
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="equivalent-2">
+    /// <code lang="fsharp">
+    /// let (Partition f as ptn) = 
+    ///   unequal
+    ///   |> equate (2,1) 
+    ///   |> equate (3,1)
+    ///   |> equate (4,1) 
+    ///   |> equate (6,5) 
+    ///   |> equate (7,5) 
+    /// 
+    /// equivalent ptn 6 1
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     val equivalent: ptn: partition<'a> -> a: 'a -> b: 'a -> bool when 'a: comparison
 
-    /// Creates a new partition that results from merging the a and b classes 
-    /// in ptn, i.e. the smallest equivalence relation containing ptn such that 
-    /// a and b are equivalent
+    /// <summary>
+    /// Creates a new partition that results from merging the <c>a</c> and 
+    /// <c>b</c> classes in <c>ptn</c>, i.e. the smallest equivalence relation 
+    /// containing <c>ptn</c> such that <c>a</c> and <c>b</c> are equivalent.
+    /// </summary>
     /// 
-    /// Corresponds to union in union-find algorithm?
+    /// <remarks>
+    /// Corresponds to the union method in the union-find algorithm.
+    /// </remarks>
+    /// 
+    /// <param name="a">The first element to equate.</param>
+    /// <param name="b">The second element to equate.</param>
+    /// <param name="ptn">The input partition.</param>
+    /// 
+    /// <returns>
+    /// The new partition with the updated equivalence classes.
+    /// </returns>
+    /// 
+    /// <example id="equivalent-1">
+    /// <code lang="fsharp">
+    /// unequal
+    /// |> equate (2,1)
+    /// |> fun (Partition f) -> graph f
+    /// </code>
+    /// Evaluates to <c>[(1, Terminal (1, 2)); (2, Nonterminal 1)]</c>.
+    /// </example>
     val equate:
       a: 'a * b: 'a -> ptn: partition<'a> -> partition<'a> when 'a: comparison
 

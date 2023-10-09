@@ -11,6 +11,10 @@ let (Partition f as ptn) =
     |> equate (6,5) 
     |> equate (7,5)
 
+unequal
+|> equate (2,1)
+|> fun (Partition f) -> graph f
+
 terminus ptn 4
 tryterminus ptn 8
 
