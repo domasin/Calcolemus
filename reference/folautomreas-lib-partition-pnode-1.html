@@ -111,6 +111,10 @@
     <div>
       <p class="fsdocs-summary">
         
+ Type of polymorphic 
+ <a href="/FolAutomReas/reference/folautomreas-lib-partition-partition-1.html">partition</a>
+ node.
+ 
       </p>
     </div>
   </div>
@@ -159,6 +163,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The representative of the equivalence class.
                     </span>
                     <br/>
                   </ul>
@@ -168,16 +174,42 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Partition.fsi#L36-36" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Nonterminal node: associated to non canonical elements.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                <code>Nonterminal 1</code> is the node that would be associated to an 
+ element that is **not** the representative, or the canonical 
+ element, of its equivalence class and in fact in this case the 
+ representative would be <code>1</code>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The representative of the equivalence class.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -206,6 +238,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The representative of the equivalence class.
                     </span>
                     <br/>
                     <span>
@@ -214,6 +248,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The size of the equivalence class.
                     </span>
                     <br/>
                   </ul>
@@ -223,24 +259,54 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Partition.fsi#L48-48" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Terminal node: associated to canonical elements.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                <code>Terminal (1, 4)</code> is the node that would be associated to
+ <code>1</code> when <code>1</code> is the representative, or the canonical 
+ element, of its equivalence class and the equivalence class has 4 
+ elements.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The representative of the equivalence class.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The size of the equivalence class.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
