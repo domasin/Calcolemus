@@ -1,7 +1,8 @@
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
+open FolAutomReas.Lib.Fpf
+
 open FolAutomReas.Fol
-open FolAutomReas.Lib
 open FolAutomReas.Unif
 
 // fsi.AddPrinter sprint_fol_formula

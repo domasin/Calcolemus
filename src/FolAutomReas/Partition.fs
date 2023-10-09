@@ -7,8 +7,6 @@
 
 namespace FolAutomReas.Lib
 
-/// Union-find algorithm.
-[<AutoOpen>]
 module Partition = 
 
     open FolAutomReas.Lib.Fpf
@@ -19,6 +17,12 @@ module Partition =
 
     type partition<'a> = 
         | Partition of func<'a, pnode<'a>>
+    
+    let unequal = Partition undefined
+
+    let equated ptn = 
+        let (Partition f) = ptn
+        dom f
 
     let rec terminus (Partition f as ptn) a =
         match apply f a with
@@ -34,8 +38,8 @@ module Partition =
     let canonize ptn a =
         fst <| tryterminus ptn a
 
-    let equivalent eqv a b =
-        canonize eqv a = canonize eqv b
+    let equivalent ptn a b =
+        canonize ptn a = canonize ptn b
 
     let equate (a, b) (Partition f as ptn) =
         let a', na = tryterminus ptn a
@@ -47,6 +51,6 @@ module Partition =
             List.foldBack id [b' |-> Nonterminal a'; a' |-> Terminal (a', na + nb)]     f
         |> Partition
 
-    let unequal = Partition undefined
+    
 
-    let equated (Partition f) = dom f
+    
