@@ -13,6 +13,7 @@
     <Compile Include="String.fs" />
     <Compile Include="Fpf.fs" />
     <Compile Include="Partition.fs" />
+    <Compile Include="Lexer.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fs" />

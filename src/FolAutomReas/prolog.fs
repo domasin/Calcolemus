@@ -6,7 +6,6 @@
 
 module FolAutomReas.Prolog
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Search
 open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Fpf

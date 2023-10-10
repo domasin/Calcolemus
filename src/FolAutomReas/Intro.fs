@@ -9,6 +9,7 @@ namespace FolAutomReas
 
 open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Lexer
+open FolAutomReas.Lib.Parser
 
 module Intro = 
 
@@ -44,8 +45,6 @@ module Intro =
             |> simplify1
         | _ ->
             simplify1 expr
-
-    
 
     // ---------------------------------------------------------------------- //
     // Parsing.                                                               //

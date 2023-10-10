@@ -6,7 +6,6 @@
 
 module FolAutomReas.Eqelim
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Search
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Fpf

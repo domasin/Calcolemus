@@ -8,7 +8,6 @@
 /// Some propositional formulas to test, and functions to generate classes.
 module FolAutomReas.Propexamples
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Set
 
 open Formulas

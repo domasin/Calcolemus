@@ -14,8 +14,8 @@ open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Fpf
 open FolAutomReas.Lib.Lexer
+open FolAutomReas.Lib.Parser
 
-open Intro
 open Formulas
 
 /// Type for first order terms.

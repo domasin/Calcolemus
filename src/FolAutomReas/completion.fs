@@ -6,7 +6,6 @@
 
 module FolAutomReas.Completion
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set

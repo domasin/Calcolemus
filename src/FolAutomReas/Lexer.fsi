@@ -17,60 +17,227 @@ module Lexer =
     /// Creates a pattern matching function based on the input string <c>s</c> 
     /// as the pattern.
     /// </summary>
+    /// 
+    /// <param name="s">The string of all characters to be matched.</param>
+    /// 
+    /// <returns>
+    /// A function that applied to a single character string checks 
+    /// if it matches the given pattern.
+    /// </returns>
+    /// 
+    /// <example id="matches-1">
+    /// <code lang="fsharp">
+    /// matches "abc" "a"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="matches-2">
+    /// <code lang="fsharp">
+    /// matches "abc" "d"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     val matches: s: string -> (string -> bool)  
 
     /// <summary>
-    /// Classifies string characters as spaces.
-    /// </summary>
-    val space: (string -> bool) 
-
-    /// <summary>
-    /// Classifies string characters as punctuation.
-    /// </summary>
-    val punctuation: (string -> bool)   
-
-    /// <summary>
-    /// Classifies string characters as symbolic.
-    /// </summary>
-    val symbolic: (string -> bool)  
-
-    /// <summary>
-    /// Classifies string characters as numeric.
-    /// </summary>
-    val numeric: (string -> bool)   
-
-    /// <summary>
-    /// Classifies string characters as alphanumeric.
-    /// </summary>
-    val alphanumeric: (string -> bool)  
-
-    /// <summary>
-    /// Takes a property <c>prop</c> of characters, such as one of the 
-    /// classifying predicates (<see cref='P:FolAutomReas.Lib.Lexer.space'/>, 
-    /// <see cref='P:FolAutomReas.Lib.Lexer.punctuation'/>, 
-    /// <see cref='P:FolAutomReas.Lib.Lexer.symbolic'/>, 
-    /// <see cref='P:FolAutomReas.Lib.Lexer.numeric'/>, 
-    /// <see cref='P:FolAutomReas.Lib.Lexer.alphanumeric'/>), and a list of 
-    /// input characters <c>inp</c>, separating off as a string the longest 
-    /// initial sequence of that list of characters 
-    /// satisfying <c>prop</c>.
-    /// </summary>
-    val lexwhile: prop: (string -> bool) -> inp: string list -> string * string list    
-
-    /// <summary>
-    /// Lexical analyser. It maps a list of input characters <c>inp</c> into a 
-    /// list of token strings.
-    /// </summary>
-    val lex: inp: string list -> string list   
-
-    /// <summary>
-    /// Generic function to impose lexing and exhaustion checking on a parser. 
+    /// Classifies single character strings as spaces.
     /// </summary>
     /// 
     /// <remarks>
-    /// A wrapper function that explodes the input string, lexically analyzes 
-    /// it, parses the sequence of tokens and then internally checks that no 
-    /// input remains 
-    /// unparsed.
+    /// Tabs and new lines are also considered spaces.
     /// </remarks>
-    val make_parser: pfn: (string list -> 'a * 'b list) -> s: string -> 'a  
+    /// 
+    /// <param name="s">The single character string to be classified.</param>
+    /// 
+    /// <returns>
+    /// true if the single character string it is considered a space, 
+    /// otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="space-1">
+    /// <code lang="fsharp">
+    /// space " "
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="space-2">
+    /// <code lang="fsharp">
+    /// space "."
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    val space: s: string -> bool
+
+    /// <summary>
+    /// Classifies single character strings as punctuation symbols: 
+    /// <c>()[]{},</c>.
+    /// </summary>
+    ///
+    /// <param name="s">The single character string to be classified.</param>
+    /// 
+    /// <returns>
+    /// true if the single character string it is considered a 
+    /// punctuation symbol, otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="punctuation-1">
+    /// <code lang="fsharp">
+    /// punctuation ","
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="punctuation-2">
+    /// <code lang="fsharp">
+    /// punctuation "."
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    val punctuation: s: string -> bool
+
+    /// <summary>
+    /// Classifies single character strings as symbolic: 
+    /// <c>~`!@#$%^&amp;*-+=|\\:;&lt;&gt;.?/</c>.
+    /// </summary>
+    ///
+    /// <param name="s">The single character string to be classified.</param>
+    /// 
+    /// <returns>
+    /// true if the single character string it is considered symbolic, 
+    /// otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="symbolic-1">
+    /// <code lang="fsharp">
+    /// symbolic "."
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="symbolic-2">
+    /// <code lang="fsharp">
+    /// symbolic "1"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    val symbolic: s: string -> bool
+
+    ///  <summary>
+    /// Classifies single character strings as numeric.
+    /// </summary>
+    ///
+    /// <param name="s">The single character string to be classified.</param>
+    /// 
+    /// <returns>
+    /// true if the single character string it is considered 
+    /// numeric, otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="numeric-1">
+    /// <code lang="fsharp">
+    /// numeric "1"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="numeric-2">
+    /// <code lang="fsharp">
+    /// numeric "z"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    val numeric: s: string -> bool
+
+    ///  <summary>
+    /// Classifies single character strings as alphanumeric.
+    /// </summary>
+    ///
+    /// <param name="s">The single character string to be classified.</param>
+    /// 
+    /// <returns>
+    /// true if the single character string it is considered 
+    /// alphanumeric, otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="alphanumeric-1">
+    /// <code lang="fsharp">
+    /// alphanumeric "1"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="alphanumeric-2">
+    /// <code lang="fsharp">
+    /// alphanumeric "z"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="alphanumeric-3">
+    /// <code lang="fsharp">
+    /// alphanumeric "."
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    val alphanumeric: s: string -> bool
+
+    /// <summary>
+    /// Takes a property <c>prop</c> of characters (such as one of the 
+    /// classifying predicates: <see cref='P:FolAutomReas.Lib.Lexer.space'/>, 
+    /// <see cref='P:FolAutomReas.Lib.Lexer.punctuation'/>, 
+    /// <see cref='P:FolAutomReas.Lib.Lexer.symbolic'/>, 
+    /// <see cref='P:FolAutomReas.Lib.Lexer.numeric'/>, 
+    /// <see cref='P:FolAutomReas.Lib.Lexer.alphanumeric'/>) and a list of 
+    /// single character strings <c>inp</c>, separating off as a string 
+    /// the longest initial sequence of that list of characters 
+    /// satisfying <c>prop</c>.
+    /// </summary>
+    /// 
+    /// <param name="prop">The predicate to identify tokens.</param>
+    /// <param name="inp">The input list of single character strings.</param>
+    /// 
+    /// <returns>
+    /// A pair with the longest initial sequence of elements of 
+    /// <c>inp</c> classifiable as satisfying <c>prop</c> as the first 
+    /// component, and the remaining characters as the second.
+    /// </returns>
+    /// 
+    /// <example id="lexwhile-1">
+    /// <code lang="fsharp">
+    /// "((1 + 2) * x_1)"
+    /// |> explode
+    /// |> lexwhile punctuation 
+    /// </code>
+    /// Evaluates to <c>("((", ["1"; " "; "+"; " "; "2"; ")"; " "; "*"; " "; "x"; "_"; "1"; ")"])</c>.
+    /// </example>
+    val lexwhile: prop: (string -> bool) -> inp: string list -> string * string list    
+
+    /// <summary>
+    /// Lexical analyser. 
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It maps a list of input characters <c>inp</c> into a 
+    /// list of token strings.
+    /// </remarks>
+    /// 
+    /// <param name="inp">The input list of single character strings to be tokenized.</param>
+    /// 
+    /// <returns>
+    /// The input list of single character strings tokenized.
+    /// </returns>
+    /// 
+    /// <example id="lexwhile-1">
+    /// <code lang="fsharp">
+    /// "((11 + 2) * x_1)"
+    /// |> explode
+    /// |> lex
+    /// </code>
+    /// Evaluates to <c>["("; "("; "11"; "+"; "2"; ")"; "*"; "x_1"; ")"]</c>.
+    /// Note how <c>11</c> and <c>x_1</c> are analyzed as a single tokens.
+    /// </example>
+    val lex: inp: string list -> string list   
+
+    

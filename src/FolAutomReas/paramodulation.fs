@@ -6,7 +6,6 @@
 
 module FolAutomReas.Paramodulation
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Search
 open FolAutomReas.Lib.Set
 

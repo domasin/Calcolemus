@@ -6,7 +6,6 @@
 
 module FolAutomReas.Order
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
 

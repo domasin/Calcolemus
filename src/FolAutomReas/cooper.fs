@@ -8,7 +8,6 @@ module FolAutomReas.Cooper
 
 open LanguagePrimitives
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List

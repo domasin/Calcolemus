@@ -1,13 +1,16 @@
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
+open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.Fpf
+
 open FolAutomReas.Formulas
 open FolAutomReas.Fol
 open FolAutomReas.Skolem
 open FolAutomReas.Herbrand
-open FolAutomReas.Lib
+
 open FolAutomReas.Prop
 open FolAutomReas.Pelletier
-open FolAutomReas.Dp
+open FolAutomReas.DP
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term

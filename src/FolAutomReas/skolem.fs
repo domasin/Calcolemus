@@ -7,7 +7,6 @@
 /// Prenex and Skolem normal forms.  
 module FolAutomReas.Skolem
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Fpf
 

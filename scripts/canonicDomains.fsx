@@ -1,6 +1,6 @@
 #r "nuget: FolAutomReas,1.0.3"
 
-open FolAutomReas.Lib
+open FolAutomReas.Lib.FPF
 open FolAutomReas.Formulas
 open FolAutomReas.Fol
 open FolAutomReas.Herbrand

@@ -12,22 +12,25 @@ open FolAutomReas.Lib.Set
 
 module Lexer = 
 
-    // Lexical analysis
-
     let matches s = 
         let chars = 
             explode s 
         fun c -> mem c chars
 
-    let space = matches " \t\n\r"
+    let space s = 
+        matches " \t\n\r" s
 
-    let punctuation = matches "()[]{},"
+    let punctuation s = 
+        matches "()[]{}," s
 
-    let symbolic = matches "~`!@#$%^&*-+=|\\:;<>.?/"
+    let symbolic s = 
+        matches "~`!@#$%^&*-+=|\\:;<>.?/" s
 
-    let numeric = matches "0123456789"
+    let numeric s = 
+        matches "0123456789" s
 
-    let alphanumeric = matches  "abcdefghijklmnopqrstuvwxyz_'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    let alphanumeric s = 
+        matches  "abcdefghijklmnopqrstuvwxyz_'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" s
 
     let rec lexwhile prop inp =
         match inp with
@@ -46,25 +49,3 @@ module Lexer =
                 else fun c -> false
             let toktl, rest = lexwhile prop cs
             (c + toktl) :: lex rest
-    
-    // Generic function to impose lexing and exhaustion checking on a parser
-
-    let make_parser pfn (s : string) =
-        let tokens =
-            // Replace newlines with spaces so the lexer and parser
-            // work correctly on multi-line strings.
-            // TODO : This could probably be optimized to make the replacements
-            // in a single pass using a Regex.
-            s.Replace('\r', ' ')
-                .Replace('\n', ' ')
-            // Reduce multiple spaces to single spaces to help the parser.
-                .Replace("  ", " ")
-            |> explode
-            |> lex
-
-        match pfn tokens with
-        | expr, [] ->
-            expr
-        | _, rest ->
-            failwithf "Unparsed input: %i tokens remaining in buffer."
-                <| List.length rest

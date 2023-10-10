@@ -6,7 +6,6 @@
 
 namespace FolAutomReas
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Fpf
 
 open Fol

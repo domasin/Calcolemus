@@ -8,7 +8,6 @@ module FolAutomReas.Complex
 
 open LanguagePrimitives
 
-open FolAutomReas.Lib
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
