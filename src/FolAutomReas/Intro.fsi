@@ -44,8 +44,45 @@ module Intro =
         | Mul of expression * expression    
 
     /// <summary>
-    /// Simplify an algebraic expression at the first level.
+    /// Simplifies an algebraic expression at the first level.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// This is an example of symbolic computation.
+    /// 
+    /// It applies the following transformation rules
+    /// <ul>
+    /// <li>\(0 * x, x * 0 \longrightarrow 0\)</li>
+    /// <li>\(0 + x, x + 0, 1 * x, x * 1 \longrightarrow x\)</li>
+    /// </ul>
+    /// if they are applicable directly at the first level of the expression's 
+    /// structure.
+    /// </remarks>
+    /// 
+    /// <param name="expr">The input expression.</param>
+    /// 
+    /// <returns>
+    /// The simplified expression if simplifiable; otherwise the input itself.
+    /// </returns>
+    /// 
+    /// <example id="simplify1-1">
+    /// <code lang="fsharp">
+    /// Add(Const 0, Const 1) |> simplify1
+    /// </code>
+    /// Evaluates to <c>Const 1</c>.
+    /// </example>
+    /// 
+    /// <example id="simplify1-2">
+    /// <code lang="fsharp">
+    /// Mul (Add(Const 0, Const 1), Add(Const 0, Const 0)) |> simplify1 
+    /// </code>
+    /// Evaluates to <c>Mul (Add(Const 0, Const 1), Add(Const 0, Const 0))</c>.
+    /// <p>
+    /// The input is returned unchanged, because even if the rules are 
+    /// applicable to its sub-expressions, they cannot be applied directly 
+    /// to the expression itself.
+    /// </p>
+    /// </example>
     val simplify1: expr: expression -> expression   
 
     /// <summary>
