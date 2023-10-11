@@ -56,14 +56,12 @@ module Intro =
             let e2, i2 = parse_expression i1
             Add (e1, e2), i2
         | x -> x
-    /// Parses a product.
     and parse_product i =
         match parse_atom i with
         | e1, "*" :: i1 ->
             let e2, i2 = parse_product i1
             Mul (e1, e2), i2
         | x -> x
-    /// Parses an atom.
     and parse_atom i =
         match i with
         | [] ->

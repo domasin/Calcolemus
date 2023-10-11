@@ -52,11 +52,22 @@ module Intro =
     /// 
     /// It applies the following transformation rules
     /// <ul>
-    /// <li>\(0 * x, x * 0 \longrightarrow 0\)</li>
-    /// <li>\(0 + x, x + 0, 1 * x, x * 1 \longrightarrow x\)</li>
+    /// <li>
+    /// <c>Const 0 * Var x</c>, <c>Var x * Const 0</c> \(\longrightarrow\)
+    /// <c>Const 0</c>
+    /// </li>
+    /// <li>
+    /// <c>Const 0 + Var x</c>, <c>Var x + Const 0</c>, <c>Const 1 * Var x</c>, 
+    /// <c>Var x * Const 1</c> \(\longrightarrow\) <c> Var x</c></li>
+    /// <li><c>Const m + Const n</c> \(\longrightarrow\) <c>Const (m+n)</c></li>
+    /// <li><c>Const m * Const n</c> \(\longrightarrow\) <c>Const (m*n)</c></li>
     /// </ul>
-    /// if they are applicable directly at the first level of the expression's 
-    /// structure.
+    /// 
+    /// This function applies the rules only if they are applicable directly at 
+    /// the first level of the expression's structure. It is an auxiliary 
+    /// function used to define the complete function 
+    /// <see cref='M:FolAutomReas.Intro.simplify'/> that applies the rules at 
+    /// every level of the expression.
     /// </remarks>
     /// 
     /// <param name="expr">The input expression.</param>
@@ -86,11 +97,175 @@ module Intro =
     val simplify1: expr: expression -> expression   
 
     /// <summary>
+    /// Simplifies an algebraic expression completely.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Completes the work of <see cref='M:FolAutomReas.Intro.simplify1'/>.
+    /// 
     /// Recursively simplifies any immediate sub-expressions as much as 
     /// possible, then applies <see cref='M:FolAutomReas.Intro.simplify1'/> 
     /// to the result.
-    /// </summary>
+    /// </remarks>
+    /// 
+    /// <param name="expr">The input expression.</param>
+    /// 
+    /// <returns>
+    /// The simplified expression if simplifiable; otherwise the input itself.
+    /// </returns>
+    /// 
+    /// <example id="simplify-1">
+    /// <code lang="fsharp">
+    /// Mul (Add(Const 0, Const 1), Add(Const 0, Const 0)) |> simplify
+    /// </code>
+    /// Evaluates to <c>Const 0</c>.
+    /// </example>
+    /// 
+    /// <example id="simplify-2">
+    /// <code lang="fsharp">
+    /// Add (Mul (Add (Mul (Const 0, Var "x"), Const 1), Const 3), Const 12)
+    /// |> simplify
+    /// </code>
+    /// Evaluates to <c>Const 15</c>.
+    /// </example>
     val simplify: expr: expression -> expression    
+
+    /// <summary>
+    /// Parses an atom.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Implements the atoms part of the expression's recursive 
+    /// descent parsing:
+    /// 
+    /// \begin{eqnarray*} 
+    ///  atoms &amp; \longrightarrow &amp; (expression) \\
+    ///        &amp; |               &amp; constant \\
+    ///        &amp; |               &amp; variable 
+    /// \end{eqnarray*}
+    /// 
+    /// It parses constants and variables and calls 
+    /// <see cref='M:FolAutomReas.Intro.parse_expression'/> if applied to an 
+    /// expression enclosed in brackets.
+    /// </remarks>
+    /// 
+    /// <param name="i">The tokenized string list to be parsed.</param>
+    /// 
+    /// <returns>
+    /// The pair consisting of the parsed expression tree together with any 
+    /// unparsed input.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an empty list.</exception>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
+    /// 
+    /// <example id="parse_atom-1">
+    /// Parsing of a variable:
+    /// <code lang="fsharp">
+    /// parse_atom ["x"; "+"; "3"]
+    /// </code>
+    /// Evaluates to <c>(Var "x", ["+"; "3"])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_atom-2">
+    /// Parsing of a constant:
+    /// <code lang="fsharp">
+    /// parse_atom ["12"; "+"; "3"]
+    /// </code>
+    /// Evaluates to <c>(Const 12, ["+"; "3"])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_atom-3">
+    /// Parsing of an expression enclosed in brackets:
+    /// <code lang="fsharp">
+    /// parse_atom ["(";"12"; "+"; "3";")"]
+    /// </code>
+    /// Evaluates to <c>(Add (Const 12, Const 3), [])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_atom-4">
+    /// <code lang="fsharp">
+    /// parse_atom []
+    /// </code>
+    /// Throws <c>System.Exception: Expected an expression at end of input</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_atom-5">
+    /// <code lang="fsharp">
+    /// parse_atom ["(";"12"; "+"; "3"]
+    /// </code>
+    /// Throws <c>System.Exception: Expected closing bracket</c>.
+    /// </example>
+    val parse_atom: i: string list -> expression * string list  
+
+    /// <summary>
+    /// Parses a product.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Implements the products part of the expression's recursive 
+    /// descent parsing:
+    /// 
+    /// \begin{eqnarray*} 
+    ///  product &amp; \longrightarrow &amp; atom \\
+    ///          &amp; |               &amp; atom * product \\
+    /// \end{eqnarray*}
+    /// 
+    /// It calls 
+    /// <see cref='M:FolAutomReas.Intro.parse_atom'/> to parse the first part of
+    /// the expression and tries to parse the rest as a product.
+    /// </remarks>
+    /// 
+    /// <param name="i">The tokenized string list to be parsed.</param>
+    /// 
+    /// <returns>
+    /// The pair consisting of the parsed expression tree together with any 
+    /// unparsed input.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an empty list.</exception>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
+    /// 
+    /// <example id="parse_product-1">
+    /// It parses an atom:
+    /// <code lang="fsharp">
+    /// parse_product ["x"; "+"; "3"]
+    /// </code>
+    /// Evaluates to <c>(Var "x", ["+"; "3"])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_product-2">
+    /// It parses a product completely:
+    /// <code lang="fsharp">
+    /// parse_product ["x"; "*"; "3"]
+    /// </code>
+    /// Evaluates to <c>(Mul (Var "x", Const 3), [])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_product-3">
+    /// It parses expressions enclosed in brackets:
+    /// <code lang="fsharp">
+    /// parse_product ["(";"12"; "+"; "3";")"]
+    /// </code>
+    /// Evaluates to <c>(Add (Const 12, Const 3), [])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_product-4">
+    /// <code lang="fsharp">
+    /// parse_product []
+    /// </code>
+    /// Throws <c>System.Exception: Expected an expression at end of input</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_product-5">
+    /// <code lang="fsharp">
+    /// parse_product ["(";"12"; "+"; "3"]
+    /// </code>
+    /// Throws <c>System.Exception: Expected closing bracket</c>.
+    /// </example>
+    val parse_product: i: string list -> expression * string list 
 
     /// <summary>
     /// Recursive descent parsing of expression. It takes a list of tokens 
@@ -98,16 +273,6 @@ module Intro =
     /// together with any unparsed input.
     /// </summary>
     val parse_expression: i: string list -> expression * string list    
-
-    /// <summary>
-    /// Parses a product.
-    /// </summary>
-    val parse_product: i: string list -> expression * string list   
-
-    /// <summary>
-    /// Parses an atom.
-    /// </summary>
-    val parse_atom: i: string list -> expression * string list  
 
     /// Parses a string into an expression.
     val parse_exp: (string -> expression)   
