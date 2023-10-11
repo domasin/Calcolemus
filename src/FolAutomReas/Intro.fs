@@ -13,11 +13,15 @@ open FolAutomReas.Lib.Parser
 
 module Intro = 
 
+    // Abstract syntax tree
+
     type expression =
         | Var of string
         | Const of int
         | Add of expression * expression
         | Mul of expression * expression
+
+    // Symbolic computation
 
     let simplify1 expr =
         match expr with
@@ -46,18 +50,18 @@ module Intro =
         | _ ->
             simplify1 expr
 
-    // ---------------------------------------------------------------------- //
-    // Parsing.                                                               //
-    // ---------------------------------------------------------------------- //
+    // Parsing
 
     let rec parse_expression i =
         match parse_product i with
+        // right associative
         | e1, "+" :: i1 ->
             let e2, i2 = parse_expression i1
             Add (e1, e2), i2
         | x -> x
     and parse_product i =
         match parse_atom i with
+        // right associative
         | e1, "*" :: i1 ->
             let e2, i2 = parse_product i1
             Mul (e1, e2), i2
@@ -75,16 +79,11 @@ module Intro =
                 Const (int tok), i1
             else Var tok, i1
 
-    let parse_exp =
-        make_parser parse_expression
+    let parse_exp s =
+        make_parser parse_expression s
 
-    // ---------------------------------------------------------------------- //
-    // Printing                                                               //
-    // ---------------------------------------------------------------------- //
+    // Printing
 
-    /// Reverses transformation, from abstract to concrete syntax keeping brackets. 
-    /// It puts brackets uniformly round each instance of a binary operator, 
-    /// which is perfectly correct but sometimes looks cumbersome to a human.
     let rec string_of_exp_naive e =
         match e with
         | Var s -> s

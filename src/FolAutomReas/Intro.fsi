@@ -9,7 +9,17 @@ namespace FolAutomReas
 /// Types, functions, operators and procedures for automated/interactive 
 /// reasoning in first order logic.
 /// </summary></namespacedoc>
-/// <summary>A simple algebraic expression example.</summary>
+/// <summary>A simple algebraic expressions example
+/// used to demonstrate the basic concepts of 
+/// <p>
+/// <ul>
+/// <li>Abstract syntax tree;</li>
+/// <li>Symbolic computation;</li>
+/// <li>Parsing;</li>
+/// <li>Prettyprinting;</li>
+/// </ul>
+/// </p>
+/// </summary>
 module Intro =
 
     /// <summary>
@@ -36,7 +46,7 @@ module Intro =
         /// <param name="Item2">The second addendum.</param>
         | Add of expression * expression
         /// <summary>
-        /// Multiplication expression.
+        /// Product expression.
         /// </summary>
         /// 
         /// <param name="Item1">The first expression to be multiplied.</param>
@@ -131,7 +141,7 @@ module Intro =
     val simplify: expr: expression -> expression    
 
     /// <summary>
-    /// Parses an atom.
+    /// Parses an atomic expression.
     /// </summary>
     /// 
     /// <remarks>
@@ -144,9 +154,11 @@ module Intro =
     ///        &amp; |               &amp; variable 
     /// \end{eqnarray*}
     /// 
-    /// It parses constants and variables and calls 
-    /// <see cref='M:FolAutomReas.Intro.parse_expression'/> if applied to an 
+    /// An atomic expression is either a constant, a variable or an arbitrary 
     /// expression enclosed in brackets.
+    /// 
+    /// See also: <see cref='M:FolAutomReas.Intro.parse_expression'/>; 
+    /// <see cref='M:FolAutomReas.Intro.parse_product'/>.
     /// </remarks>
     /// 
     /// <param name="i">The tokenized string list to be parsed.</param>
@@ -200,7 +212,7 @@ module Intro =
     val parse_atom: i: string list -> expression * string list  
 
     /// <summary>
-    /// Parses a product.
+    /// Parses a product expression.
     /// </summary>
     /// 
     /// <remarks>
@@ -212,9 +224,10 @@ module Intro =
     ///          &amp; |               &amp; atom * product \\
     /// \end{eqnarray*}
     /// 
-    /// It calls 
-    /// <see cref='M:FolAutomReas.Intro.parse_atom'/> to parse the first part of
-    /// the expression and tries to parse the rest as a product.
+    /// A product expression is a sequence of 'atomic expressions' (see <see 
+    /// cref='M:FolAutomReas.Intro.parse_atom'/>) separated by <c>*</c>.
+    /// 
+    /// See also: <see cref='M:FolAutomReas.Intro.parse_expression'/>.
     /// </remarks>
     /// 
     /// <param name="i">The tokenized string list to be parsed.</param>
@@ -229,7 +242,7 @@ module Intro =
     /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
     /// 
     /// <example id="parse_product-1">
-    /// It parses an atom:
+    /// It parses just the first atom if applied to an addition:
     /// <code lang="fsharp">
     /// parse_product ["x"; "+"; "3"]
     /// </code>
@@ -265,32 +278,254 @@ module Intro =
     /// </code>
     /// Throws <c>System.Exception: Expected closing bracket</c>.
     /// </example>
+    /// 
+    /// <note>
+    /// The grammar is right-associative (\(atom * product \)). 
+    /// So repeated operations that lacks disambiguation are interpreted 
+    /// as right-associative: \(x * y * z = x * (y * z)\) .
+    /// </note>
     val parse_product: i: string list -> expression * string list 
 
     /// <summary>
-    /// Recursive descent parsing of expression. It takes a list of tokens 
-    /// <c>i</c> and returns a pair consisting of the parsed expression tree 
-    /// together with any unparsed input.
+    /// Parses an expression.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Implements the addition part of the expression's recursive 
+    /// descent parsing:
+    /// 
+    /// \begin{eqnarray*} 
+    ///  expression &amp; \longrightarrow &amp; product \\
+    ///             &amp; |               &amp; product + expression \\
+    /// \end{eqnarray*}
+    /// 
+    /// An expression is a sequence of 'product expressions' (see <see 
+    /// cref='M:FolAutomReas.Intro.parse_product'/>) separated by <c>+</c>.
+    /// 
+    /// See also: <see cref='M:FolAutomReas.Intro.parse_atom'/>.
+    /// </remarks>
+    /// 
+    /// <param name="i">The tokenized string list to be parsed.</param>
+    /// 
+    /// <returns>
+    /// The pair consisting of the parsed expression tree together with any 
+    /// unparsed input.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an incomplete expression.</exception>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
+    /// 
+    /// <example id="parse_expression-1">
+    /// <code lang="fsharp">
+    /// parse_expression ["x"; "+"; "3"]
+    /// </code>
+    /// Evaluates to <c>(Add (Var "x", Const 3), [])</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_expression-2">
+    /// <code lang="fsharp">
+    /// parse_expression ["x"; "+";]
+    /// </code>
+    /// Throws <c>System.Exception: Expected an expression at end of input</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_expression-5">
+    /// <code lang="fsharp">
+    /// parse_expression ["(";"12"; "+"; "3"]
+    /// </code>
+    /// Throws <c>System.Exception: Expected closing bracket</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// The grammar is right-associative (\(product + expression \)). 
+    /// So repeated operations that lacks disambiguation are interpreted 
+    /// as right-associative: \(x + y + z = x + (y + z)\) .
+    /// </note>
     val parse_expression: i: string list -> expression * string list    
 
+    /// <summary>
     /// Parses a string into an expression.
-    val parse_exp: (string -> expression)   
+    /// </summary>
+    /// 
+    /// <param name="s">The input string to be parsed.</param>
+    /// 
+    /// <returns>
+    /// The expression corresponding to the input string.
+    /// </returns>
+    /// 
+    /// <remarks>
+    /// See also: <see cref='M:FolAutomReas.Intro.parse_atom'/>; 
+    /// <see cref='M:FolAutomReas.Intro.parse_product'/>; 
+    /// <see cref='M:FolAutomReas.Intro.parse_expression'/>
+    /// </remarks>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an incomplete string expression.</exception>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a string with an initial opening bracket but without a closing one.</exception>
+    /// 
+    /// <example id="parse_exp-1">
+    /// <code lang="fsharp">
+    /// parse_exp "(x1 + x2 + x3) * (1 + 2 + 3 * x + y)"
+    /// </code>
+    /// Evaluates to 
+    /// <code lang="fsharp">
+    /// Mul
+    ///     (Add (Var "x1", Add (Var "x2", Var "x3")),
+    ///      Add (Const 1, Add (Const 2, Add (Mul (Const 3, Var "x"), Var "y"))))
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="parse_exp-2">
+    /// <code lang="fsharp">
+    /// parse_exp "x +"
+    /// </code>
+    /// Throws <c>System.Exception: Expected an expression at end of input</c>.
+    /// </example>
+    /// 
+    /// <example id="parse_exp-5">
+    /// <code lang="fsharp">
+    /// parse_exp "(12 + 3"
+    /// </code>
+    /// Throws <c>System.Exception: Expected closing bracket</c>.
+    /// </example>
+    val parse_exp: s: string -> expression
 
-    /// Reverses transformation, from abstract to concrete syntax keeping brackets. 
-    /// It puts brackets uniformly round each instance of a binary operator, 
-    /// which is perfectly correct but sometimes looks cumbersome to a human.
+    /// <summary>
+    /// Returns a naive concrete syntax representation of an expression.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Reverses transformation, from abstract to concrete syntax keeping 
+    /// brackets. 
+    /// 
+    /// This is a naive version that puts brackets uniformly round each 
+    /// instance of a binary operator, which is perfectly correct but sometimes 
+    /// looks cumbersome to a human.
+    /// 
+    /// Seealso: 
+    /// <see cref='M:FolAutomReas.Intro.sprint_exp'/>; 
+    /// <see cref='M:FolAutomReas.Intro.print_exp'/>;
+    /// for clever versions.
+    /// </remarks>
+    /// 
+    /// <param name="e">The expression to be translated.</param>
+    /// 
+    /// <returns>The expression's concrete syntax representation.</returns>
+    /// 
+    /// <example id="string_of_exp_naive-1">
+    /// <code lang="fsharp">
+    /// Mul (Add(Const 0, Const 1), Add(Const 0, Const 0))
+    /// |> string_of_exp_naive
+    /// </code>
+    /// Evaluates to <c>"((0 + 1) * (0 + 0))"</c>
+    /// </example>
     val string_of_exp_naive: e: expression -> string    
 
-    /// Auxiliary function to print expressions without unnecessary brackets. 
+    /// <summary>
+    /// Returns a concrete syntax representation of an expression considering 
+    /// the precedence level of the operator of which the expression is an 
+    /// immediate sub-expression.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It is an auxiliary function used to define 
+    /// <see cref='M:FolAutomReas.Intro.sprint_exp'/> and 
+    /// <see cref='M:FolAutomReas.Intro.print_exp'/>.
+    /// and to calculate whether or not additional brackets can be omitted.
+    /// 
+    /// <p>
+    /// The allocated precedences are as follows:
+    /// </p>
+    /// 
+    /// <ul>
+    /// <li>2 to addition;</li>
+    /// <li>4 to multiplication;</li>
+    /// <li>0 at the outermost level.</li>
+    /// </ul>
+    /// </remarks>
+    /// 
+    /// <param name="pr">The precedence level of the operator of which the expression is an immediate sub-expression .</param>
+    /// <param name="e">The expression to be translated.</param>
+    /// 
+    /// <returns>
+    /// The expression's concrete syntax representation with 
+    /// additional brackets based on <c>pr</c>.
+    /// </returns>
+    /// 
+    /// <example id="string_of_exp-1">
+    /// <code lang="fsharp">
+    /// "x + 1"
+    /// |> parse_exp
+    /// |> string_of_exp 2
+    /// </code>
+    /// Evaluates to <c>"x + 1"</c>
+    /// </example>
+    /// 
+    /// <example id="string_of_exp-2">
+    /// <code lang="fsharp">
+    /// "x + 1"
+    /// |> parse_exp
+    /// |> string_of_exp 3
+    /// </code>
+    /// Evaluates to <c>"(x + 1)"</c>
+    /// </example>
     val string_of_exp: pr: int -> e: expression -> string   
 
-    /// Prints an expression `e` in concrete syntax removing unnecessary brackets. 
-    /// It omits the outermost brackets, and those that are implicit in rules for 
-    /// precedence or associativity.
+    /// <summary>
+    /// Prints to the <c>stdout</c> the concrete syntax representation of an 
+    /// expression.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Calculates the concrete syntax of an expression <c>e</c> 
+    /// removing unnecessary brackets and writes it to the <c>stdout</c>. 
+    /// 
+    /// It omits the outermost brackets, and those that are implicit in rules 
+    /// for precedence or associativity.
+    /// 
+    /// Seealso: 
+    /// <see cref='M:FolAutomReas.Intro.string_of_exp'/>;
+    /// <see cref='M:FolAutomReas.Intro.sprint_exp'/>.
+    /// </remarks>
+    /// 
+    /// <param name="e">The expression to be translated.</param>
+    /// 
+    /// <returns><see cref='T:Microsoft.FSharp.Core.unit'/>.</returns>
+    /// 
+    /// <example id="print_exp-1">
+    /// <code lang="fsharp">
+    /// Mul (Add(Const 0, Const 1), Add(Const 0, Const 0))
+    /// |> print_exp
+    /// </code>
+    /// After evaluation the text <c>"&lt;&lt;(0 + 1) * (0 + 0)&gt;&gt;"</c> is 
+    /// written to the <c>stdout</c>.
+    /// </example>
     val print_exp: e: expression -> unit    
 
-    /// Returns a string of the concrete syntax of an expression `e` removing 
-    /// unnecessary brackets. It omits the outermost brackets, and those that are 
-    /// implicit in rules for precedence or associativity.
+    /// <summary>
+    /// Returns the concrete syntax representation of an expression.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Returns a string of the concrete syntax of an expression <c>e</c> 
+    /// removing unnecessary brackets. It omits the outermost brackets, and 
+    /// those that are implicit in rules for precedence or associativity.
+    /// 
+    /// Seealso: 
+    /// <see cref='M:FolAutomReas.Intro.string_of_exp'/>;
+    /// <see cref='M:FolAutomReas.Intro.print_exp'/>.
+    /// </remarks>
+    /// 
+    /// <param name="e">The expression to be translated.</param>
+    /// 
+    /// <returns>The expression's concrete syntax representation.</returns>
+    /// 
+    /// <example id="sprint_exp-1">
+    /// <code lang="fsharp">
+    /// Mul (Add(Const 0, Const 1), Add(Const 0, Const 0))
+    /// |> sprint_exp
+    /// </code>
+    /// Evaluates to <c>"&lt;&lt;(0 + 1) * (0 + 0)&gt;&gt;"</c>
+    /// </example>
     val sprint_exp: e: expression -> string
