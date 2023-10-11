@@ -10,8 +10,8 @@ open FolAutomReas.Lib.Search
 open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Fpf
 open FolAutomReas.Lib.Lexer
+open FolAutomReas.Lib.Parser
 
-open Intro
 open Formulas
 open Prop
 open Fol

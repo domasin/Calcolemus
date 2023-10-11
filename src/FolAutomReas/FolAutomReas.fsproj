@@ -50,7 +50,8 @@
     <Compile Include="Parser.fs" />
     <Compile Include="Intro.fsi" />
     <Compile Include="Intro.fs" />
-    <Compile Include="formulas.fs" />
+    <Compile Include="Formulas.fsi" />
+    <Compile Include="Formulas.fs" />
     <Compile Include="prop.fs" />
     <Compile Include="propexamples.fs" />
     <Compile Include="defcnf.fs" />
