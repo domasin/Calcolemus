@@ -90,7 +90,16 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        A simple algebraic expression example.
+        A simple algebraic expressions example
+ used to demonstrate the basic concepts of 
+ <p>
+  <ul>
+    <li>Abstract syntax tree;</li>
+    <li>Symbolic computation;</li>
+    <li>Parsing;</li>
+    <li>Prettyprinting;</li>
+  </ul>
+</p>
       </p>
     </div>
   </div>
@@ -130,7 +139,7 @@
                 <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fsi#L18-18" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fsi#L28-28" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
@@ -187,6 +196,8 @@
                       </b>
                       :
                       <code><span>string&#32;list</span></code>
+                       - 
+                      The tokenized string list to be parsed.
                     </span>
                     <br/>
                   </ul>
@@ -195,6 +206,10 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a>&#32;*&#32;<span>string&#32;list</span></span></code>
                   </span>
+                  
+ The pair consisting of the parsed expression tree together with any 
+ unparsed input.
+ 
                   <br/>
                 </div>
               </div>
@@ -212,17 +227,35 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Parses an atom.
+ Parses an atomic expression.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Implements the atoms part of the expression's recursive 
+ descent parsing:
+ 
+ \begin{eqnarray*} 
+  atoms & \longrightarrow & (expression) \\
+        & |               & constant \\
+        & |               & variable 
+ \end{eqnarray*}
+ 
+ An atomic expression is either a constant, a variable or an arbitrary 
+ expression enclosed in brackets.
+ 
+ See also: <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_expression">Intro.parse_expression</a>; 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_product">Intro.parse_product</a>.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -231,7 +264,11 @@
                   :
                   <code><span>string&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The tokenized string list to be parsed.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -240,8 +277,98 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a>&#32;*&#32;<span>string&#32;list</span></span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair consisting of the parsed expression tree together with any 
+ unparsed input.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected an expression at end of input', when applied to an empty list.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_atom-1">
+                
+ Parsing of a variable:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_atom</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Var &quot;x&quot;, [&quot;+&quot;; &quot;3&quot;])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_atom-2">
+                
+ Parsing of a constant:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_atom</span> <span class="pn">[</span><span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Const 12, [&quot;+&quot;; &quot;3&quot;])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_atom-3">
+                
+ Parsing of an expression enclosed in brackets:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_atom</span> <span class="pn">[</span><span class="s">&quot;(&quot;</span><span class="pn">;</span><span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">;</span><span class="s">&quot;)&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Add (Const 12, Const 3), [])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_atom-4">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_atom</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected an expression at end of input</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_atom-5">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_atom</span> <span class="pn">[</span><span class="s">&quot;(&quot;</span><span class="pn">;</span><span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected closing bracket</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -252,7 +379,7 @@
                 <p>
                   <a id="parse_exp">
                     <a href="#parse_exp">
-                      <code><span>parse_exp&#32;<span></span></span></code>
+                      <code><span>parse_exp&#32;<span>s</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -260,13 +387,30 @@
               <div class="fsdocs-tip" id="358">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>parse_exp&#32;<span></span></span></code>
+                  <code><span>parse_exp&#32;<span>s</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        s
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The input string to be parsed.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>string&#32;->&#32;<a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></span></code>
+                    <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                   </span>
+                  
+ The expression corresponding to the input string.
+ 
                   <br/>
                 </div>
               </div>
@@ -276,34 +420,120 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:FolAutomReas.Intro.parse_exp`')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Intro.parse_exp`')">
                     <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:FolAutomReas.Intro.parse_exp\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Intro.parse_exp\'/>')">
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L80-80" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L82-82" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
  Parses a string into an expression.
-
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ See also: <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_atom">Intro.parse_atom</a>; 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_product">Intro.parse_product</a>; 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_expression">Intro.parse_expression</a>
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input string to be parsed.
+                  </p>
+                </dd>
+              </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span>string&#32;->&#32;<a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></span></code>
+                  <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The expression corresponding to the input string.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected an expression at end of input', when applied to an incomplete string expression.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected closing bracket', when applied to a string with an initial opening bracket but without a closing one.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_exp-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_exp</span> <span class="s">&quot;(x1 + x2 + x3) * (1 + 2 + 3 * x + y)&quot;</span>
+</code></pre>
+
+
+ Evaluates to 
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Mul</span>
+     <span class="pn">(</span><span class="id">Add</span> <span class="pn">(</span><span class="id">Var</span> <span class="s">&quot;x1&quot;</span><span class="pn">,</span> <span class="id">Add</span> <span class="pn">(</span><span class="id">Var</span> <span class="s">&quot;x2&quot;</span><span class="pn">,</span> <span class="id">Var</span> <span class="s">&quot;x3&quot;</span><span class="pn">)</span><span class="pn">)</span><span class="pn">,</span>
+      <span class="id">Add</span> <span class="pn">(</span><span class="id">Const</span> <span class="n">1</span><span class="pn">,</span> <span class="id">Add</span> <span class="pn">(</span><span class="id">Const</span> <span class="n">2</span><span class="pn">,</span> <span class="id">Add</span> <span class="pn">(</span><span class="id">Mul</span> <span class="pn">(</span><span class="id">Const</span> <span class="n">3</span><span class="pn">,</span> <span class="id">Var</span> <span class="s">&quot;x&quot;</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Var</span> <span class="s">&quot;y&quot;</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_exp-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_exp</span> <span class="s">&quot;x +&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected an expression at end of input</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_exp-5">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_exp</span> <span class="s">&quot;(12 + 3&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected closing bracket</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -333,6 +563,8 @@
                       </b>
                       :
                       <code><span>string&#32;list</span></code>
+                       - 
+                      The tokenized string list to be parsed.
                     </span>
                     <br/>
                   </ul>
@@ -341,6 +573,10 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a>&#32;*&#32;<span>string&#32;list</span></span></code>
                   </span>
+                  
+ The pair consisting of the parsed expression tree together with any 
+ unparsed input.
+ 
                   <br/>
                 </div>
               </div>
@@ -358,19 +594,32 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Recursive descent parsing of expression. It takes a list of tokens 
- <code>i</code> and returns a pair consisting of the parsed expression tree 
- together with any unparsed input.
+ Parses an expression.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Implements the addition part of the expression's recursive 
+ descent parsing:
+ 
+ \begin{eqnarray*} 
+  expression & \longrightarrow & product \\
+             & |               & product + expression \\
+ \end{eqnarray*}
+ 
+ An expression is a sequence of 'product expressions' (see <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_product">Intro.parse_product</a>) separated by <code>+</code>.
+ 
+ See also: <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_atom">Intro.parse_atom</a>.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -379,7 +628,11 @@
                   :
                   <code><span>string&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The tokenized string list to be parsed.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -388,8 +641,80 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a>&#32;*&#32;<span>string&#32;list</span></span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair consisting of the parsed expression tree together with any 
+ unparsed input.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected an expression at end of input', when applied to an incomplete expression.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ The grammar is right-associative (\(product + expression \)). 
+ So repeated operations that lacks disambiguation are interpreted 
+ as right-associative: \(x + y + z = x + (y + z)\) .
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_expression-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_expression</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Add (Var &quot;x&quot;, Const 3), [])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_expression-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_expression</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected an expression at end of input</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_expression-5">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_expression</span> <span class="pn">[</span><span class="s">&quot;(&quot;</span><span class="pn">;</span><span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected closing bracket</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -419,6 +744,8 @@
                       </b>
                       :
                       <code><span>string&#32;list</span></code>
+                       - 
+                      The tokenized string list to be parsed.
                     </span>
                     <br/>
                   </ul>
@@ -427,6 +754,10 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a>&#32;*&#32;<span>string&#32;list</span></span></code>
                   </span>
+                  
+ The pair consisting of the parsed expression tree together with any 
+ unparsed input.
+ 
                   <br/>
                 </div>
               </div>
@@ -444,17 +775,32 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L60-60" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Parses a product.
+ Parses a product expression.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Implements the products part of the expression's recursive 
+ descent parsing:
+ 
+ \begin{eqnarray*} 
+  product & \longrightarrow & atom \\
+          & |               & atom * product \\
+ \end{eqnarray*}
+ 
+ A product expression is a sequence of 'atomic expressions' (see <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_atom">Intro.parse_atom</a>) separated by <code>*</code>.
+ 
+ See also: <a href="/FolAutomReas/reference/folautomreas-intro.html#parse_expression">Intro.parse_expression</a>.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -463,7 +809,11 @@
                   :
                   <code><span>string&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The tokenized string list to be parsed.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -472,8 +822,108 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a>&#32;*&#32;<span>string&#32;list</span></span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair consisting of the parsed expression tree together with any 
+ unparsed input.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected an expression at end of input', when applied to an empty list.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ The grammar is right-associative (\(atom * product \)). 
+ So repeated operations that lacks disambiguation are interpreted 
+ as right-associative: \(x * y * z = x * (y * z)\) .
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_product-1">
+                
+ It parses just the first atom if applied to an addition:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_product</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Var &quot;x&quot;, [&quot;+&quot;; &quot;3&quot;])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_product-2">
+                
+ It parses a product completely:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_product</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span> <span class="s">&quot;*&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Mul (Var &quot;x&quot;, Const 3), [])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_product-3">
+                
+ It parses expressions enclosed in brackets:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_product</span> <span class="pn">[</span><span class="s">&quot;(&quot;</span><span class="pn">;</span><span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">;</span><span class="s">&quot;)&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>(Add (Const 12, Const 3), [])</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_product-4">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_product</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected an expression at end of input</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parse_product-5">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">parse_product</span> <span class="pn">[</span><span class="s">&quot;(&quot;</span><span class="pn">;</span><span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;+&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Expected closing bracket</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -503,6 +953,8 @@
                       </b>
                       :
                       <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
+                       - 
+                      The expression to be translated.
                     </span>
                     <br/>
                   </ul>
@@ -523,19 +975,31 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L112-112" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L109-109" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Prints an expression `e` in concrete syntax removing unnecessary brackets. 
- It omits the outermost brackets, and those that are implicit in rules for 
- precedence or associativity.
-
+ Prints to the <code>stdout</code> the concrete syntax representation of an 
+ expression.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Calculates the concrete syntax of an expression <code>e</code> 
+ removing unnecessary brackets and writes it to the <code>stdout</code>. 
+ 
+ It omits the outermost brackets, and those that are implicit in rules 
+ for precedence or associativity.
+ 
+ Seealso: 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#string_of_exp">Intro.string_of_exp</a>;
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#sprint_exp">Intro.sprint_exp</a>.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -544,8 +1008,25 @@
                   :
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The expression to be translated.
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="print_exp-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Mul</span> <span class="pn">(</span><span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">0</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">print_exp</span>
+</code></pre>
+
+
+ After evaluation the text <code>&quot;&lt;&lt;(0 + 1) * (0 + 0)&gt;&gt;&quot;</code> is 
+ written to the <code>stdout</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -575,6 +1056,8 @@
                       </b>
                       :
                       <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
+                       - 
+                      The input expression.
                     </span>
                     <br/>
                   </ul>
@@ -583,6 +1066,9 @@
                     Returns: 
                     <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                   </span>
+                  
+ The simplified expression if simplifiable; otherwise the input itself.
+ 
                   <br/>
                 </div>
               </div>
@@ -600,19 +1086,26 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Recursively simplifies any immediate sub-expressions as much as 
- possible, then applies <a href="/FolAutomReas/reference/folautomreas-intro.html#simplify1">Intro.simplify1</a> 
- to the result.
+ Simplifies an algebraic expression completely.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Completes the work of <a href="/FolAutomReas/reference/folautomreas-intro.html#simplify1">Intro.simplify1</a>.
+ 
+ Recursively simplifies any immediate sub-expressions as much as 
+ possible, then applies <a href="/FolAutomReas/reference/folautomreas-intro.html#simplify1">Intro.simplify1</a> 
+ to the result.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -621,7 +1114,11 @@
                   :
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input expression.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -630,8 +1127,37 @@
                   </span>
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The simplified expression if simplifiable; otherwise the input itself.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simplify-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Mul</span> <span class="pn">(</span><span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">0</span><span class="pn">)</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">simplify</span>
+</code></pre>
+
+
+ Evaluates to <code>Const 0</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simplify-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Add</span> <span class="pn">(</span><span class="id">Mul</span> <span class="pn">(</span><span class="id">Add</span> <span class="pn">(</span><span class="id">Mul</span> <span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Var</span> <span class="s">&quot;x&quot;</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">3</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">12</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">simplify</span>
+</code></pre>
+
+
+ Evaluates to <code>Const 15</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -661,6 +1187,8 @@
                       </b>
                       :
                       <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
+                       - 
+                      The input expression.
                     </span>
                     <br/>
                   </ul>
@@ -669,6 +1197,9 @@
                     Returns: 
                     <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                   </span>
+                  
+ The simplified expression if simplifiable; otherwise the input itself.
+ 
                   <br/>
                 </div>
               </div>
@@ -686,17 +1217,42 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Simplify an algebraic expression at the first level.
+ Simplifies an algebraic expression at the first level.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ This is an example of symbolic computation.
+ 
+ It applies the following transformation rules
+ <ul>
+  <li>
+    <c>Const 0 * Var x</c>, <c>Var x * Const 0</c> \(\longrightarrow\)
+ <c>Const 0</c></li>
+  <li>
+    <c>Const 0 + Var x</c>, <c>Var x + Const 0</c>, <c>Const 1 * Var x</c>, 
+ <c>Var x * Const 1</c> \(\longrightarrow\) <c> Var x</c></li>
+  <li>
+    <c>Const m + Const n</c> \(\longrightarrow\) <c>Const (m+n)</c></li>
+  <li>
+    <c>Const m * Const n</c> \(\longrightarrow\) <c>Const (m*n)</c></li>
+</ul>
+ 
+ This function applies the rules only if they are applicable directly at 
+ the first level of the expression's structure. It is an auxiliary 
+ function used to define the complete function 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#simplify">Intro.simplify</a> that applies the rules at 
+ every level of the expression.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -705,7 +1261,11 @@
                   :
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input expression.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -714,8 +1274,40 @@
                   </span>
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The simplified expression if simplifiable; otherwise the input itself.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simplify1-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">simplify1</span>
+</code></pre>
+
+
+ Evaluates to <code>Const 1</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simplify1-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Mul</span> <span class="pn">(</span><span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">0</span><span class="pn">)</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">simplify1</span>
+</code></pre>
+
+
+ Evaluates to <code>Mul (Add(Const 0, Const 1), Add(Const 0, Const 0))</code>.
+ <p>
+ The input is returned unchanged, because even if the rules are 
+ applicable to its sub-expressions, they cannot be applied directly 
+ to the expression itself.
+ </p>
+              </p>
             </details>
           </td>
         </tr>
@@ -745,6 +1337,8 @@
                       </b>
                       :
                       <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
+                       - 
+                      The expression to be translated.
                     </span>
                     <br/>
                   </ul>
@@ -753,6 +1347,7 @@
                     Returns: 
                     <code>string</code>
                   </span>
+                  The expression's concrete syntax representation.
                   <br/>
                 </div>
               </div>
@@ -770,19 +1365,28 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L112-112" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Returns a string of the concrete syntax of an expression `e` removing 
- unnecessary brackets. It omits the outermost brackets, and those that are 
- implicit in rules for precedence or associativity.
-
+ Returns the concrete syntax representation of an expression.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Returns a string of the concrete syntax of an expression <code>e</code> 
+ removing unnecessary brackets. It omits the outermost brackets, and 
+ those that are implicit in rules for precedence or associativity.
+ 
+ Seealso: 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#string_of_exp">Intro.string_of_exp</a>;
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#print_exp">Intro.print_exp</a>.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -791,7 +1395,11 @@
                   :
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The expression to be translated.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -800,8 +1408,23 @@
                   </span>
                   <code>string</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The expression's concrete syntax representation.
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="sprint_exp-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Mul</span> <span class="pn">(</span><span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">0</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">sprint_exp</span>
+</code></pre>
+
+
+ Evaluates to <code>&quot;&lt;&lt;(0 + 1) * (0 + 0)&gt;&gt;&quot;</code>
+              </p>
             </details>
           </td>
         </tr>
@@ -831,6 +1454,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The precedence level of the operator of which the expression is an immediate sub-expression .
                     </span>
                     <br/>
                     <span>
@@ -839,6 +1464,8 @@
                       </b>
                       :
                       <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
+                       - 
+                      The expression to be translated.
                     </span>
                     <br/>
                   </ul>
@@ -847,6 +1474,10 @@
                     Returns: 
                     <code>string</code>
                   </span>
+                  
+ The expression's concrete syntax representation with 
+ additional brackets based on <code>pr</code>.
+ 
                   <br/>
                 </div>
               </div>
@@ -864,17 +1495,34 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L99-99" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L96-96" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Auxiliary function to print expressions without unnecessary brackets. 
-
+ Returns a concrete syntax representation of an expression considering 
+ the precedence level of the operator of which the expression is an 
+ immediate sub-expression.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ It is an auxiliary function used to define 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#sprint_exp">Intro.sprint_exp</a> and 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#print_exp">Intro.print_exp</a>.
+ and to calculate whether or not additional brackets can be omitted.
+ 
+ <p>
+ The allocated precedences are as follows:
+ </p><ul>
+  <li>2 to addition;</li>
+  <li>4 to multiplication;</li>
+  <li>0 at the outermost level.</li>
+</ul>
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -883,7 +1531,11 @@
                   :
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The precedence level of the operator of which the expression is an immediate sub-expression .
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     e
@@ -891,7 +1543,11 @@
                   :
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The expression to be translated.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -900,8 +1556,39 @@
                   </span>
                   <code>string</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The expression's concrete syntax representation with 
+ additional brackets based on <code>pr</code>.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="string_of_exp-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="s">&quot;x + 1&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">parse_exp</span>
+ <span class="o">|&gt;</span> <span class="id">string_of_exp</span> <span class="n">2</span>
+</code></pre>
+
+
+ Evaluates to <code>&quot;x + 1&quot;</code>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="string_of_exp-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="s">&quot;x + 1&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">parse_exp</span>
+ <span class="o">|&gt;</span> <span class="id">string_of_exp</span> <span class="n">3</span>
+</code></pre>
+
+
+ Evaluates to <code>&quot;(x + 1)&quot;</code>
+              </p>
             </details>
           </td>
         </tr>
@@ -931,6 +1618,8 @@
                       </b>
                       :
                       <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
+                       - 
+                      The expression to be translated.
                     </span>
                     <br/>
                   </ul>
@@ -939,6 +1628,7 @@
                     Returns: 
                     <code>string</code>
                   </span>
+                  The expression's concrete syntax representation.
                   <br/>
                 </div>
               </div>
@@ -956,19 +1646,32 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L90-90" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Intro.fs#L87-87" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Reverses transformation, from abstract to concrete syntax keeping brackets. 
- It puts brackets uniformly round each instance of a binary operator, 
- which is perfectly correct but sometimes looks cumbersome to a human.
-
+ Returns a naive concrete syntax representation of an expression.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Reverses transformation, from abstract to concrete syntax keeping 
+ brackets. 
+ 
+ This is a naive version that puts brackets uniformly round each 
+ instance of a binary operator, which is perfectly correct but sometimes 
+ looks cumbersome to a human.
+ 
+ Seealso: 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#sprint_exp">Intro.sprint_exp</a>; 
+ <a href="/FolAutomReas/reference/folautomreas-intro.html#print_exp">Intro.print_exp</a>;
+ for clever versions.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -977,7 +1680,11 @@
                   :
                   <code><a href="/FolAutomReas/reference/folautomreas-intro-expression.html">expression</a></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The expression to be translated.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -986,8 +1693,23 @@
                   </span>
                   <code>string</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The expression's concrete syntax representation.
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="string_of_exp_naive-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Mul</span> <span class="pn">(</span><span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">1</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Add</span><span class="pn">(</span><span class="id">Const</span> <span class="n">0</span><span class="pn">,</span> <span class="id">Const</span> <span class="n">0</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">string_of_exp_naive</span>
+</code></pre>
+
+
+ Evaluates to <code>&quot;((0 + 1) * (0 + 0))&quot;</code>
+              </p>
             </details>
           </td>
         </tr>
