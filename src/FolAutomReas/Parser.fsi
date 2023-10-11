@@ -54,7 +54,12 @@ module Parser =
     // General parsing of infixes.                                            //
     // ---------------------------------------------------------------------- //
 
-    /// General parsing of iterated infixes. 
+    /// <summary>
+    /// General parsing of iterated infixes.
+    /// </summary>
+    /// 
+    /// <param name="opupdate">Modifies the function appropriately when a new item is parsed.</param>
+    /// <param name="sof">Takes the current input and combines it in some way with the items arrived at so far.</param>
     val parse_ginfix:
       opsym: 'a ->
         opupdate: (('b -> 'c) -> 'b -> 'b -> 'c) ->
@@ -83,8 +88,11 @@ module Parser =
     // Other general parsing combinators.                                     //
     // ---------------------------------------------------------------------- //
 
-    /// Applies a function to the ?rst element of a pair, the idea being to modify 
-    /// the returned abstract syntax tree while leaving the ‘unparsed input’ alone.
+    /// <summary>
+    /// Applies a function to the first element of a pair, the idea being to 
+    /// modify the returned abstract syntax tree while leaving the 'unparsed 
+    /// input' alone.
+    /// </summary>
     val inline papply: f: ('a -> 'b) -> ast: 'a * rest: 'c -> 'b * 'c
 
     /// Checks if the head of a list (typically the list of unparsed input) is some 
