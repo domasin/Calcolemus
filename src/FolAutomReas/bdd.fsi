@@ -1,6 +1,7 @@
 namespace FolAutomReas
 
 open FolAutomReas.Lib.Fpf
+open FolAutomReas.Formulas
 
 /// <summary>
 /// Binary decision diagrams (BDDs) using complement edges.
@@ -10,6 +11,8 @@ open FolAutomReas.Lib.Fpf
 /// In practice one would use hash tables, but we use abstract finite
 /// partial functions here. They might also look nicer imperatively.
 /// </remarks>
+/// 
+/// <category index="3">Propositional logic</category>
 module Bdd = 
 
     /// <summary>The type of binary decision diagram 
@@ -81,44 +84,44 @@ module Bdd =
     /// Formula to BDD conversion.
     val mkbdd:
       bdd * func<(int * int),int> ->
-        fm: Formulas.formula<Prop.prop> ->
+        fm: formula<Prop.prop> ->
         (bdd * func<(int * int),int>) * int
 
     /// Tautology checking using BDDs.  
-    val bddtaut: fm: Formulas.formula<Prop.prop> -> bool
+    val bddtaut: fm: formula<Prop.prop> -> bool
 
     val dest_nimp:
-      fm: Formulas.formula<'a> -> Formulas.formula<'a> * Formulas.formula<'a>
+      fm: formula<'a> -> formula<'a> * formula<'a>
 
-    val dest_iffdef: fm: Formulas.formula<'a> -> 'a * Formulas.formula<'a>
+    val dest_iffdef: fm: formula<'a> -> 'a * formula<'a>
 
     val restore_iffdef:
-      x: 'a * e: Formulas.formula<'a> ->
-        fm: Formulas.formula<'a> -> Formulas.formula<'a>
+      x: 'a * e: formula<'a> ->
+        fm: formula<'a> -> formula<'a>
 
     val suitable_iffdef:
-      defs: ('a * 'b) list -> x: 'c * q: Formulas.formula<'a> -> bool
+      defs: ('a * 'b) list -> x: 'c * q: formula<'a> -> bool
         when 'a: comparison
 
     val sort_defs:
-      acc: ('a * Formulas.formula<'a>) list ->
-        defs: ('a * Formulas.formula<'a>) list ->
-        fm: Formulas.formula<'a> ->
-        ('a * Formulas.formula<'a>) list * Formulas.formula<'a> when 'a: comparison
+      acc: ('a * formula<'a>) list ->
+        defs: ('a * formula<'a>) list ->
+        fm: formula<'a> ->
+        ('a * formula<'a>) list * formula<'a> when 'a: comparison
 
     /// Formula to BDD conversion with improved setup
     val mkbdde:
       sfn: func<Prop.prop,int> ->
         bdd * func<(int * int),int> ->
-          fm: Formulas.formula<Prop.prop> ->
+          fm: formula<Prop.prop> ->
           (bdd * func<(int * int),int>) * int
 
     val mkbdds:
       sfn: func<Prop.prop,int> ->
         bdd * func<(int * int),int> ->
-          defs: (Prop.prop * Formulas.formula<Prop.prop>) list ->
-          fm: Formulas.formula<Prop.prop> ->
+          defs: (Prop.prop * formula<Prop.prop>) list ->
+          fm: formula<Prop.prop> ->
           (bdd * func<(int * int),int>) * int
 
     /// Tautology checking using BDDs with an improved setup
-    val ebddtaut: fm: Formulas.formula<Prop.prop> -> bool
+    val ebddtaut: fm: formula<Prop.prop> -> bool

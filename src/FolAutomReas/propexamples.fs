@@ -5,7 +5,11 @@
 // ========================================================================= //
 
 
+/// <summary>
 /// Some propositional formulas to test, and functions to generate classes.
+/// </summary>
+/// 
+/// <category index="3">Propositional logic</category>
 module FolAutomReas.Propexamples
 
 open FolAutomReas.Lib.Set

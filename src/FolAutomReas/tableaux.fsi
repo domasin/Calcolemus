@@ -9,7 +9,11 @@ open FolAutomReas.Lib.Fpf
 open Formulas
 open Fol
 
-/// <summary>Tableaux, seen as an optimized version of a Prawitz-like procedure.</summary>
+/// <summary>
+/// Tableaux, seen as an optimized version of a Prawitz-like procedure.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module Tableaux = 
 
     /// <summary>Unifies an input pair of litterals.</summary>

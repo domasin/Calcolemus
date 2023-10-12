@@ -4,6 +4,8 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>Definite Conjunctive Normal Form</summary>
+/// <category index="3">Propositional logic</category>
 module FolAutomReas.Defcnf
 
 open LanguagePrimitives
@@ -14,7 +16,6 @@ open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Fpf
 open FolAutomReas.Lib.Lexer
 
-open Intro
 open Formulas
 open Prop
 

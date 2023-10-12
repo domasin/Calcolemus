@@ -13,6 +13,8 @@ open Prop
 /// <summary>
 /// The Davis-Putnam and the Davis-Putnam-Loveland-Logemann procedures.
 /// </summary>
+/// 
+/// <category index="3">Propositional logic</category>
 module DP =
 
     /// <summary>

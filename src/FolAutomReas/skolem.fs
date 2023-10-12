@@ -4,7 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
-/// Prenex and Skolem normal forms.  
+/// <summary>
+/// Prenex and Skolem normal forms.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Skolem
 
 open FolAutomReas.Lib.Set

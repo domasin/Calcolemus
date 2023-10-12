@@ -4,7 +4,11 @@ open FolAutomReas.Lib.Fpf
 
 open Fol
 
-/// Unification for first order terms. 
+/// <summary>
+/// Unification for first order terms.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module Unif = 
 
     /// <summary>

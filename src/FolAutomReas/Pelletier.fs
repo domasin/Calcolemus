@@ -1,4 +1,8 @@
+/// <summary>
 /// Some Pelletier problems to compare proof procedures.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Pelletier
 
 open FolAutomReas.Fol

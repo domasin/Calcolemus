@@ -4,7 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
 /// Basic stuff for propositional logic: datatype, parsing and printing. 
+/// </summary>
+/// 
+/// <category index="3">Propositional logic</category>
 module FolAutomReas.Prop
 
 open FolAutomReas.Lib.Function

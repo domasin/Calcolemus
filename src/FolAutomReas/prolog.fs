@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Prolog.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Prolog
 
 open FolAutomReas.Lib.Search

@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Model Elimination.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Meson
 
 open FolAutomReas.Lib.List

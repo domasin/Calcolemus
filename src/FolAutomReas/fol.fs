@@ -4,8 +4,12 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
 /// Basic stuff for first order logic: datatype, parsing and printing, 
 /// semantics, syntax operations and substitution.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module FolAutomReas.Fol
  

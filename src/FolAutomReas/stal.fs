@@ -6,6 +6,11 @@
 // NOTE: Stalmarck's method is protected by patents covering commercial use. //
 // ========================================================================= //
 
+/// <summary>
+/// Stalmarck method.
+/// </summary>
+/// 
+/// <category index="3">Propositional logic</category>
 module FolAutomReas.Stal
 
 open FolAutomReas.Lib.Num

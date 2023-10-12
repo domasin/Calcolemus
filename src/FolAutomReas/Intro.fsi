@@ -9,17 +9,12 @@ namespace FolAutomReas
 /// Types, functions, operators and procedures for automated/interactive 
 /// reasoning in first order logic.
 /// </summary></namespacedoc>
-/// <summary>A simple algebraic expressions example
-/// used to demonstrate the basic concepts of 
-/// <p>
-/// <ul>
-/// <li>Abstract syntax tree;</li>
-/// <li>Symbolic computation;</li>
-/// <li>Parsing;</li>
-/// <li>Prettyprinting;</li>
-/// </ul>
-/// </p>
+/// <summary>A simple algebraic expressions example to demonstrate the basic 
+/// concepts of abstract syntax tree, symbolic computation, parsing and 
+/// prettyprinting.
 /// </summary>
+/// 
+/// <category index="1">Algebraic Example</category>
 module Intro =
 
     /// <summary>
@@ -104,6 +99,8 @@ module Intro =
     /// to the expression itself.
     /// </p>
     /// </example>
+    /// 
+    /// <category index="1">Symbolic computation</category>
     val simplify1: expr: expression -> expression   
 
     /// <summary>
@@ -138,6 +135,8 @@ module Intro =
     /// </code>
     /// Evaluates to <c>Const 15</c>.
     /// </example>
+    /// 
+    /// <category index="1">Symbolic computation</category>
     val simplify: expr: expression -> expression    
 
     /// <summary>
@@ -209,6 +208,8 @@ module Intro =
     /// </code>
     /// Throws <c>System.Exception: Expected closing bracket</c>.
     /// </example>
+    /// 
+    /// <category index="2">Parsing</category>
     val parse_atom: i: string list -> expression * string list  
 
     /// <summary>
@@ -284,6 +285,8 @@ module Intro =
     /// So repeated operations that lacks disambiguation are interpreted 
     /// as right-associative: \(x * y * z = x * (y * z)\) .
     /// </note>
+    /// 
+    /// <category index="2">Parsing</category>
     val parse_product: i: string list -> expression * string list 
 
     /// <summary>
@@ -342,6 +345,8 @@ module Intro =
     /// So repeated operations that lacks disambiguation are interpreted 
     /// as right-associative: \(x + y + z = x + (y + z)\) .
     /// </note>
+    /// 
+    /// <category index="2">Parsing</category>
     val parse_expression: i: string list -> expression * string list    
 
     /// <summary>
@@ -389,6 +394,8 @@ module Intro =
     /// </code>
     /// Throws <c>System.Exception: Expected closing bracket</c>.
     /// </example>
+    /// 
+    /// <category index="2">Parsing</category>
     val parse_exp: s: string -> expression
 
     /// <summary>
@@ -420,6 +427,8 @@ module Intro =
     /// </code>
     /// Evaluates to <c>"((0 + 1) * (0 + 0))"</c>
     /// </example>
+    /// 
+    /// <category index="3">Prettyprinting</category>
     val string_of_exp_naive: e: expression -> string    
 
     /// <summary>
@@ -470,6 +479,8 @@ module Intro =
     /// </code>
     /// Evaluates to <c>"(x + 1)"</c>
     /// </example>
+    /// 
+    /// <category index="3">Prettyprinting</category>
     val string_of_exp: pr: int -> e: expression -> string   
 
     /// <summary>
@@ -501,6 +512,8 @@ module Intro =
     /// After evaluation the text <c>"&lt;&lt;(0 + 1) * (0 + 0)&gt;&gt;"</c> is 
     /// written to the <c>stdout</c>.
     /// </example>
+    /// 
+    /// <category index="3">Prettyprinting</category>
     val print_exp: e: expression -> unit    
 
     /// <summary>
@@ -528,4 +541,6 @@ module Intro =
     /// </code>
     /// Evaluates to <c>"&lt;&lt;(0 + 1) * (0 + 0)&gt;&gt;"</c>
     /// </example>
+    /// 
+    /// <category index="3">Prettyprinting</category>
     val sprint_exp: e: expression -> string

@@ -4,7 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
 /// Relation between FOL and propositional logic; Herbrand theorem.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Herbrand
 
 open FolAutomReas.Lib.Function

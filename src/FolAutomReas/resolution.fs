@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Resolution.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Resolution
 
 open FolAutomReas.Lib.List

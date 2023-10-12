@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Skolems.
+/// </summary>
+/// 
+/// <category index="4">First order logic</category>
 module FolAutomReas.Skolems
 
 open Fol
