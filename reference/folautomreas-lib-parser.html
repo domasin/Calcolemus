@@ -123,7 +123,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '826', 826)" onmouseover="showTip(event, '826', 826)">
+              <code onmouseout="hideTip(event, '819', 819)" onmouseover="showTip(event, '819', 819)">
                 <p>
                   <a id="make_parser">
                     <a href="#make_parser">
@@ -132,7 +132,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="826">
+              <div class="fsdocs-tip" id="819">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>make_parser&#32;<span>pfn&#32;s</span></span></code>
@@ -280,6 +280,795 @@
  Evaluates to <code>[11; 12]</code>.
  
               </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '820', 820)" onmouseover="showTip(event, '820', 820)">
+                <p>
+                  <a id="nextin">
+                    <a href="#nextin">
+                      <code><span>nextin&#32;<span>inp&#32;tok</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="820">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>nextin&#32;<span>inp&#32;tok</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        inp
+                      </b>
+                      :
+                      <code><span>'a&#32;list</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tok
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.nextin``1```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.nextin``1\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Checks if the head of a list (typically the list of unparsed input) is some 
+ particular item, but also ?rst checks that the list is nonempty before 
+ looking at its head.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    inp
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tok
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '821', 821)" onmouseover="showTip(event, '821', 821)">
+                <p>
+                  <a id="papply">
+                    <a href="#papply">
+                      <code><span>papply&#32;<span>f&#32;<span>(<span>ast,&#32;rest</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="821">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>papply&#32;<span>f&#32;<span>(<span>ast,&#32;rest</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;'b</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ast
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        rest
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'b&#32;*&#32;'c</span></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a, &#39;b, &#39;c
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.papply``3```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.papply``3\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L60-60" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Applies a function to the first element of a pair, the idea being to 
+ modify the returned abstract syntax tree while leaving the 'unparsed 
+ input' alone.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ast
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rest
+                  </span>
+                  :
+                  <code>'c</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'b&#32;*&#32;'c</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '822', 822)" onmouseover="showTip(event, '822', 822)">
+                <p>
+                  <a id="parse_bracketed">
+                    <a href="#parse_bracketed">
+                      <code><span>parse_bracketed&#32;<span>subparser&#32;cbra&#32;inp</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="822">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_bracketed&#32;<span>subparser&#32;cbra&#32;inp</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        subparser
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;<span>'b&#32;*&#32;<span>'c&#32;list</span></span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cbra
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        inp
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'b&#32;*&#32;<span>'c&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.parse_bracketed``3```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.parse_bracketed``3\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Deals with the common situation of syntactic items enclosed in brackets. It 
+ simply calls the subparser and then checks and eliminates the closing 
+ bracket. In principle, the terminating character can be anything, so this 
+ function could equally be used for other purposes, but we will always use 
+ ')' for the cbra ('closing bracket') argument.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    subparser
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;<span>'b&#32;*&#32;<span>'c&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cbra
+                  </span>
+                  :
+                  <code>'c</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    inp
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'b&#32;*&#32;<span>'c&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '823', 823)" onmouseover="showTip(event, '823', 823)">
+                <p>
+                  <a id="parse_ginfix">
+                    <a href="#parse_ginfix">
+                      <code><span>parse_ginfix&#32;<span>opsym&#32;opupdate&#32;sof&#32;subparser&#32;inp</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="823">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_ginfix&#32;<span>opsym&#32;opupdate&#32;sof&#32;subparser&#32;inp</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        opsym
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        opupdate
+                      </b>
+                      :
+                      <code><span><span>(<span>'b&#32;->&#32;'c</span>)</span>&#32;->&#32;'b&#32;->&#32;'b&#32;->&#32;'c</span></code>
+                       - 
+                      Modifies the function appropriately when a new item is parsed.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        sof
+                      </b>
+                      :
+                      <code><span>'b&#32;->&#32;'c</span></code>
+                       - 
+                      Takes the current input and combines it in some way with the items arrived at so far.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        subparser
+                      </b>
+                      :
+                      <code><span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        inp
+                      </b>
+                      :
+                      <code><span>'a&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'c&#32;*&#32;<span>'a&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.parse_ginfix``3```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.parse_ginfix``3\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ General parsing of iterated infixes.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opsym
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opupdate
+                  </span>
+                  :
+                  <code><span><span>(<span>'b&#32;->&#32;'c</span>)</span>&#32;->&#32;'b&#32;->&#32;'b&#32;->&#32;'c</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Modifies the function appropriately when a new item is parsed.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    sof
+                  </span>
+                  :
+                  <code><span>'b&#32;->&#32;'c</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Takes the current input and combines it in some way with the items arrived at so far.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    subparser
+                  </span>
+                  :
+                  <code><span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    inp
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'c&#32;*&#32;<span>'a&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '824', 824)" onmouseover="showTip(event, '824', 824)">
+                <p>
+                  <a id="parse_left_infix">
+                    <a href="#parse_left_infix">
+                      <code><span>parse_left_infix&#32;<span>opsym&#32;opcon</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="824">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_left_infix&#32;<span>opsym&#32;opcon</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        opsym
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        opcon
+                      </b>
+                      :
+                      <code><span><span>'b&#32;*&#32;'b</span>&#32;->&#32;'b</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span>)</span>&#32;->&#32;<span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.parse_left_infix``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.parse_left_infix``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses left infix.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opsym
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opcon
+                  </span>
+                  :
+                  <code><span><span>'b&#32;*&#32;'b</span>&#32;->&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span>)</span>&#32;->&#32;<span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '825', 825)" onmouseover="showTip(event, '825', 825)">
+                <p>
+                  <a id="parse_list">
+                    <a href="#parse_list">
+                      <code><span>parse_list&#32;<span>opsym</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="825">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_list&#32;<span>opsym</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        opsym
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span>)</span>&#32;->&#32;<span>'a&#32;list</span>&#32;->&#32;<span><span>'b&#32;list</span>&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.parse_list``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.parse_list``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses a list: used to parse the list of arguments to a function.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opsym
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span>)</span>&#32;->&#32;<span>'a&#32;list</span>&#32;->&#32;<span><span>'b&#32;list</span>&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '826', 826)" onmouseover="showTip(event, '826', 826)">
+                <p>
+                  <a id="parse_right_infix">
+                    <a href="#parse_right_infix">
+                      <code><span>parse_right_infix&#32;<span>opsym&#32;opcon</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="826">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_right_infix&#32;<span>opsym&#32;opcon</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        opsym
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        opcon
+                      </b>
+                      :
+                      <code><span><span>'b&#32;*&#32;'b</span>&#32;->&#32;'b</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span>)</span>&#32;->&#32;<span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Lib.Parser.parse_right_infix``2```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Lib.Parser.parse_right_infix``2\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Parser.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses right infix.
+
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opsym
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    opcon
+                  </span>
+                  :
+                  <code><span><span>'b&#32;*&#32;'b</span>&#32;->&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span>)</span>&#32;->&#32;<span>'a&#32;list</span>&#32;->&#32;<span>'b&#32;*&#32;<span>'a&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
             </details>
           </td>
         </tr>

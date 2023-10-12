@@ -98,8 +98,6 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&gt;</span></code>
-      , 
       <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
       , 
       <code><span><a href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&gt;</span></code>
@@ -114,7 +112,7 @@
       <p class="fsdocs-summary">
         
  Abstract syntax tree of polymorphic type of formulas.
-
+ 
       </p>
     </div>
   </div>
@@ -163,6 +161,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first conjunct.
                     </span>
                     <br/>
                     <span>
@@ -171,6 +171,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second conjunct.
                     </span>
                     <br/>
                   </ul>
@@ -180,24 +182,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Conjunction.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first conjunct.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second conjunct.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -226,6 +251,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The type of the formula: see <a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a> and <a href="/FolAutomReas/reference/folautomreas-folmodule-fol.html">fol</a>.
                     </span>
                     <br/>
                   </ul>
@@ -235,16 +262,35 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L34-34" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Atomic formula.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The type of the formula: see <a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a> and <a href="/FolAutomReas/reference/folautomreas-folmodule-fol.html">fol</a>.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -273,6 +319,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      The name of the existentially quantified variable.
                     </span>
                     <br/>
                     <span>
@@ -281,6 +329,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The scope of the existential quantification.
                     </span>
                     <br/>
                   </ul>
@@ -290,24 +340,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L82-82" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Existentially quantified formula.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the existentially quantified variable.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The scope of the existential quantification.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -334,12 +407,14 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/formulas.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L24-24" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Constant formula <code>False</code>.
+ 
               </p>
             </div>
           </td>
@@ -370,6 +445,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      The name of the universally quantified variable.
                     </span>
                     <br/>
                     <span>
@@ -378,6 +455,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The scope of the universal quantification.
                     </span>
                     <br/>
                   </ul>
@@ -387,24 +466,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L75-75" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Universally quantified formula.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the universally quantified variable.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The scope of the universal quantification.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -433,6 +535,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first member of the equivalence.
                     </span>
                     <br/>
                     <span>
@@ -441,6 +545,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second member of the equivalence.
                     </span>
                     <br/>
                   </ul>
@@ -450,24 +556,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Logical Equivalence.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first member of the equivalence.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second member of the equivalence.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -496,6 +625,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The antecedent of the implication.
                     </span>
                     <br/>
                     <span>
@@ -504,6 +635,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The conclusion of the implication.
                     </span>
                     <br/>
                   </ul>
@@ -513,24 +646,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L61-61" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Implication.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The antecedent of the implication.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The conclusion of the implication.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -559,6 +715,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The formula being negated.
                     </span>
                     <br/>
                   </ul>
@@ -568,16 +726,35 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Negation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The formula being negated.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -606,6 +783,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first disjunct.
                     </span>
                     <br/>
                     <span>
@@ -614,6 +793,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second disjunct.
                     </span>
                     <br/>
                   </ul>
@@ -623,24 +804,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L54-54" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Disjunction.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first disjunct.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second disjunct.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -667,12 +871,14 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/formulas.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Formulas.fsi#L28-28" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                 <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Constant formula <code>True</code>.
+ 
               </p>
             </div>
           </td>
