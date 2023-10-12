@@ -158,39 +158,51 @@ module Formulas =
     // Formula Destructors.                                                   //
     // ---------------------------------------------------------------------- //
 
-    let dest_iff = function
-        | Iff (p, q) ->
-            p, q
-        | _ ->
-            failwith "dest_iff"
+    let dest_iff fm = 
+        fm
+        |> function
+            | Iff (p, q) ->
+                p, q
+            | _ ->
+                failwith "dest_iff"
 
-    let dest_and = function
-        | And (p, q) ->
-            p, q
-        | _ ->
-            failwith "dest_and"
+    let dest_and fm = 
+        fm
+        |> function
+            | And (p, q) ->
+                p, q
+            | _ ->
+                failwith "dest_and"
 
-    let rec conjuncts = function
-        | And (p, q) ->
-            conjuncts p @ conjuncts q 
-        | fm -> [fm]
+    let rec conjuncts fm = 
+        fm
+        |> function
+            | And (p, q) ->
+                conjuncts p @ conjuncts q 
+            | fm -> [fm]
 
-    let dest_or = function
-        | Or (p, q) ->
-            p, q
-        | _ ->
-            failwith "dest_or"
+    let dest_or fm = 
+        fm
+        |> function
+            | Or (p, q) ->
+                p, q
+            | _ ->
+                failwith "dest_or"
 
-    let rec disjuncts = function
-        | Or (p, q) ->
-            disjuncts p @ disjuncts q 
-        | fm -> [fm]
+    let rec disjuncts fm = 
+        fm
+        |> function
+            | Or (p, q) ->
+                disjuncts p @ disjuncts q 
+            | fm -> [fm]
 
-    let dest_imp = function
-        | Imp (p, q) ->
-            p, q
-        | _ ->
-            failwith "dest_imp"
+    let dest_imp fm = 
+        fm
+        |> function
+            | Imp (p, q) ->
+                p, q
+            | _ ->
+                failwith "dest_imp"
 
     let inline antecedent fm =
         fst <| dest_imp fm
@@ -218,24 +230,24 @@ module Formulas =
             Exists (x, onatoms f p)
         | _ -> fm
 
-    let rec overatoms f fm b =
+    let rec overatoms folder fm state =
         match fm with
         | Atom a ->
-            f a b
+            folder a state
         | Not p ->
-            overatoms f p b
+            overatoms folder p state
         | And (p, q)
         | Or (p, q)
         | Imp (p, q)
         | Iff (p, q) ->
-            overatoms f p (overatoms f q b)
+            overatoms folder p (overatoms folder q state)
         | Forall (x, p)
         | Exists (x, p) ->
-            overatoms f p b
-        | _ -> b
+            overatoms folder p state
+        | _ -> state
 
-    let atom_union f fm =
+    let atom_union mapping fm =
         (fm, [])
         ||> overatoms (fun h t ->
-            (f h) @ t)
+            (mapping h) @ t)
         |> setify
