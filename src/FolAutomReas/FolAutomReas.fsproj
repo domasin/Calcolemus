@@ -54,7 +54,8 @@
     <Compile Include="Intro.fs" />
     <Compile Include="Formulas.fsi" />
     <Compile Include="Formulas.fs" />
-    <Compile Include="prop.fs" />
+    <Compile Include="Prop.fsi" />
+    <Compile Include="Prop.fs" />
     <Compile Include="propexamples.fs" />
     <Compile Include="defcnf.fs" />
     <Compile Include="DP.fsi" />
