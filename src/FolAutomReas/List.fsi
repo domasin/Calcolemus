@@ -269,7 +269,7 @@ module List =
     /// Evaluates to <c>false</c>.
     /// </example>
     /// 
-    /// <example id="earlier-4">
+    /// <example id="earlier-5">
     /// <code lang="fsharp">
     /// earlier [0;1;2;3] 4 5
     /// </code>

@@ -39,7 +39,7 @@ module Sort =
     /// Evaluates to <c>[1;2;3;4;5;6;7]</c>.
     /// </example>
     /// 
-    /// <example id="merge-1">
+    /// <example id="merge-2">
     /// <code lang="fsharp">
     /// merge (&lt;) [1;3;7] [4;6;5;2;]
     /// </code>

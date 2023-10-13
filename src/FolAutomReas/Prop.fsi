@@ -9,8 +9,19 @@ open FolAutomReas.Lib.Fpf
 open FolAutomReas.Formulas
 
 /// <summary>
-/// Basic stuff for propositional logic: datatype, parsing and printing. 
+/// Basic stuff for propositional logic: datatype, parsing and prettyprinting, 
+/// syntax and semantics, normal forms.
 /// </summary>
+/// 
+/// <note>
+/// Many functions defined for propositional logic apply generically 
+/// to any kind of <see cref='T:FolAutomReas.Formulas.formula`1'/> (and in 
+/// particular also to <see cref='T:FolAutomReas.FolModule.fol'/> formulas).
+/// <br />
+/// A defined type for propositional variables 
+/// (<see cref='T:FolAutomReas.Prop.prop'/>) is fixed here just to make 
+/// experimentation with some of the operations easier.
+/// </note>
 /// 
 /// <category index="3">Propositional logic</category>
 module Prop = 
@@ -18,15 +29,6 @@ module Prop =
     /// <summary>
     /// Type of propositional variables.
     /// </summary>
-    /// 
-    /// <note>
-    /// Many functions defined for propositional logic apply generically 
-    /// to any kind of <see cref='T:FolAutomReas.Formulas.formula`1'/> and in 
-    /// particular for <see cref='T:FolAutomReas.FolModule.fol'/> formulas. 
-    /// 
-    /// A defined type for primitive propositions is fixed here to make 
-    /// experimentation with some of the operations easier.
-    /// </note>
     type prop = 
         /// <summary>
         /// Propositional variable.
@@ -36,7 +38,7 @@ module Prop =
         | P of string
 
     /// <summary>
-    /// Returns then name of a propositional variable.
+    /// Returns the name of a propositional variable.
     /// </summary>
     /// 
     /// <param name="p">The input propositional variable.</param>
@@ -66,6 +68,23 @@ module Prop =
     /// 
     /// <category index="1">Parsing</category>
     val parse_prop_formula: (string -> formula<prop>)
+
+    /// <summary>
+    /// A convenient parsing operator to make it easier to parse prop formulas
+    /// </summary>
+    /// 
+    /// <param name="s">The string to be parsed.</param>
+    /// <returns>The parsed prop formula.</returns>
+    /// 
+    /// <example id="exclamation-greater-1">
+    /// <code lang="fsharp">
+    /// !> "p /\ q ==> q /\ r"
+    /// </code>
+    /// Evaluates to <c>Imp (And (Atom (P "p"), Atom (P "q")), And (Atom (P "q"), Atom (P "r")))</c>.
+    /// </example>
+    /// 
+    /// <category index="1">Parsing</category>
+    val (!>): s: string -> formula<prop>
 
     /// <summary>
     /// Prints a propositional variable using a TextWriter.
@@ -112,16 +131,52 @@ module Prop =
     val inline sprint_prop_formula: f: formula<prop> -> string
 
     /// <summary>
-    /// Interpretation of  formulas
+    /// Evaluates the truth-value of a formula given a valuation.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// A valuation is a function from the set of atoms to the set of 
+    /// truth-values {<c>false</c>, <c>true</c>} (note that these are elements 
+    /// of the metalanguage, in this case F#, that represent the semantic 
+    /// concepts of truth-values and are not the same thing as <c>False</c> and 
+    /// <c>True</c> which are element of the object language and so syntactic 
+    /// elements).
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <param name="v">The input valuation.</param>
+    /// <returns>
+    /// <c>true</c>, if the formula is true in the give valuation; otherwise 
+    /// <c>false</c>.
+    /// </returns>
+    /// 
+    /// <example id="eval-1">
+    /// The following evaluates the formula given a valuation that evaluates 
+    /// <c>p</c> and <c>r</c> to <c>true</c> and <c>q</c> to <c>false</c>:
+    /// <code lang="fsharp">
+    /// eval (!>"p /\ q ==> q /\ r") 
+    ///     (function P"p" -> true | P"q" -> false | P"r" -> true)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="4">Semantics</category>
     val eval: fm: formula<'a> -> v: ('a -> bool) -> bool
 
     /// <summary>
-    /// Return the set of atoms in a formula (regardless of whether it is a 
-    /// propositional or first-order formula)
+    /// Returns the set of atoms in a formula.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>The set of atoms in the formula</returns>
+    /// 
+    /// <example id="atoms-1">
+    /// <code lang="fsharp">
+    /// !>"p /\ q ==> q /\ r" |> atoms
+    /// </code>
+    /// Evaluates to <c>[P "p"; P "q"; P "r"]</c>.
+    /// </example>
     /// 
     /// <category index="3">Syntax operations</category>
     val atoms: fm: formula<'a> -> 'a list when 'a: comparison
@@ -131,6 +186,22 @@ module Prop =
     /// possible valuations of the atoms <c>ats</c>, using an existing 
     /// valuation <c>v</c> for all other atoms.
     /// </summary>
+    /// 
+    /// <param name="subfn">A function that given a valuation return true or false.</param>
+    /// <param name="v">The default valuation for other atoms.</param>
+    /// <param name="ats">The list of atoms on which to test all possibile valuations.</param>
+    /// 
+    /// <returns>true, if <c>subfn</c> returns <c>true</c> on all 
+    /// possible valuations of the atoms <c>ats</c> with 
+    /// valuation <c>v</c> for all other atoms; otherwise false.</returns>
+    /// 
+    /// <example id="onallvaluations-1">
+    /// <c>eval True</c> returns <c>true</c> on all valuations:
+    /// <code lang="fsharp">
+    /// onallvaluations (eval True) (fun _ -> false) []
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="4">Semantics</category>
     val onallvaluations:
@@ -192,9 +263,9 @@ module Prop =
         (formula<'a> -> formula<'a>) when 'a: comparison
 
     /// <summary>
-    /// Returns the dual of the input formula <c>fm</c>: i.e. the result of 
-    /// systematically exchanging \(\land\)'s with \(\lor\)'s and also 
-    /// \(\top\) 's with \(\bot\)'s.
+    /// Returns the dual of the input formula: i.e. the result of 
+    /// systematically exchanging \(\land\) with \(\lor\) and also 
+    /// \(\top\) with \(\bot\).
     /// </summary>
     /// 
     /// <category index="3">Syntax operations</category>
@@ -250,62 +321,121 @@ module Prop =
     /// <category index="8">Litterals</category>
     val positive: lit: formula<'a> -> bool
 
-    /// Changes a literal into its contrary.
+    /// <summary>Changes a literal into its contrary.</summary>
+    /// 
+    /// <category index="8">Litterals</category>
     val negate: _arg1: formula<'a> -> formula<'a>
 
+    /// <summary>
     /// Changes a formula into its negation normal form without simplifying it.
+    /// </summary>
+    /// 
+    /// <category index="9">Negation Normal Form</category>
     val nnf_naive: fm: formula<'a> -> formula<'a>
 
+    /// <summary>
     /// Changes a formula into its negation normal and applies it the routine 
-    /// simplification `psimplify`.
+    /// simplification <see cref='M:FolAutomReas.Prop.psimplify``1'/>.
+    /// </summary>
+    /// 
+    /// <category index="9">Negation Normal Form</category> 
     val nnf: fm: formula<'a> -> formula<'a>
 
-    /// Simply pushes negations in the input formula `fm` down to the level of  atoms without simplifying it.
+    /// <summary>
+    /// Simply pushes negations in the input formula <c>fm</c> down to the 
+    /// level of  atoms without simplifying it.
+    /// </summary>
+    /// 
+    /// <category index="9">Negation Normal Form</category>
     val nenf_naive: fm: formula<'a> -> formula<'a>
 
-    /// Simply pushes negations in the input formula `fm` down to the level of 
-    /// atoms and applies it the routine simplification `psimplify`.
+    /// <summary>
+    /// Simply pushes negations in the input formula <c>fm</c> down to the 
+    /// level of atoms and applies it the routine simplification 
+    /// <see cref='M:FolAutomReas.Prop.psimplify``1'/>.
+    /// </summary>
+    /// 
+    /// <category index="9">Negation Normal Form</category>
     val nenf: fm: formula<'a> -> formula<'a>
 
-    /// Creates a conjunction of all the formulas in the input list `l`.
+    /// <summary>
+    /// Creates a conjunction of all the formulas in the input list <c>l</c>.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val list_conj:
       l: formula<'a> list -> formula<'a> when 'a: equality
 
-    /// Creates a disjunction of all the formulas in the input list `l`.
+    /// <summary>
+    /// Creates a disjunction of all the formulas in the input list <c>l</c>.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val list_disj:
       l: formula<'a> list -> formula<'a> when 'a: equality
 
-    /// Given a list of formulas `pvs`, makes a conjunction of these formulas and 
-    /// their negations according to whether each is satis?ed by the valuation `v`.
+    /// <summary>
+    /// Given a list of formulas <c>pvs</c>, makes a conjunction of these 
+    /// formulas and their negations according to whether each is satisfied by 
+    /// the valuation <c>v</c>.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val mk_lits:
       pvs: formula<'a> list -> v: ('a -> bool) -> formula<'a>
         when 'a: equality
 
-    /// A close analogue of `onallvaluations` that collects the valuations for 
-    /// which `subfn` holds into a list.
+    /// <summary>
+    /// A close analogue of 
+    /// <see cref='M:FolAutomReas.Prop.onallvaluations``1'/> that collects 
+    /// into a list the valuations for which <c>subfn</c> holds.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val allsatvaluations:
       subfn: (('a -> bool) -> bool) ->
         v: ('a -> bool) -> pvs: 'a list -> ('a -> bool) list when 'a: equality
 
-    /// Transforms a formula `fm` in disjunctive normal form using truth tables.
+    /// <summary>
+    /// Transforms a formula <c>fm</c> in disjunctive normal form using truth 
+    /// tables.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val dnf_by_truth_tables:
       fm: formula<'a> -> formula<'a> when 'a: comparison
 
-    /// Applies the distributive laws to the input formula `fm`.
+    /// <summary>
+    /// Applies the distributive laws to the input formula <c>fm</c>.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val distrib_naive: fm: formula<'a> -> formula<'a>
 
-    /// Transforms the input formula `fm` in disjunctive normal form.
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in disjunctive normal form.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val rawdnf: fm: formula<'a> -> formula<'a>
 
-    /// Applies the distributive laws of propositional connectives `/\` and 
-    /// `\/` using a list representation of the formulas `s1` and `s2` on which 
-    /// to operate.
+    /// <summary>
+    /// Applies the distributive laws of propositional connectives \(\land\) 
+    /// and \(\lor\) using a list representation of the input formulas 
+    /// <c>s1</c> and <c>s2</c>.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val distrib:
       s1: 'a list list -> s2: 'a list list -> 'a list list when 'a: comparison
 
-    /// Transforms the input formula `fm` in disjunctive normal form using 
-    /// (internally) a list representation of the formula as a set of sets. 
-    /// `p /\ q \/ ~ p /\ r` as `[[p; q]; [~ p; r]]`
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in disjunctive normal form 
+    /// using a list representation of the formula as a set of sets: 
+    /// <c>p /\ q \/ ~ p /\ r</c> as <c>[[p; q]; [~ p; r]]</c>.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val purednf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
@@ -317,29 +447,60 @@ module Prop =
     /// Check if there are complementary literals of the form p and ~ p 
     /// in the same list.
     /// </remarks>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val trivial: lits: formula<'a> list -> bool when 'a: comparison
 
-    /// Transforms the input formula `fm` in a list of list representation of  
-    /// disjunctive normal form. It exploits the list of list representation 
-    /// filtering out trivial complementary literals and subsumed ones.
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in disjunctive normal form 
+    /// using a list representation of the formula as a set of sets: 
+    /// <c>p /\ q \/ ~ p /\ r</c> as <c>[[p; q]; [~ p; r]]</c>.
+    /// </summary>
     /// 
-    /// With subsumption checking, done very naively (quadratic). 
+    /// <remarks>
+    /// It exploits the list of list representation filtering out trivial 
+    /// complementary literals and subsumed ones (with subsumption checking, 
+    /// done very naively: quadratic).
+    /// </remarks>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val simpdnf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
-    /// Transforms the input formula `fm` in disjunctive normal form.
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in disjunctive normal form.
+    /// </summary>
+    /// 
+    /// <category index="10">Disjunctive Normal Form</category>
     val dnf: fm: formula<'a> -> formula<'a> when 'a: comparison
 
-    /// Transforms the input formula `fm` in conjunctive normal form 
-    /// by using `purednf`.
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in conjunctive normal form 
+    /// by using <see cref='M:FolAutomReas.Prop.purednf``1'/>.
+    /// </summary>
+    /// 
+    /// <category index="11">Conjunctive Normal Form</category>
     val purecnf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
-    /// Transforms the input formula `fm` in a list of list representation of 
-    /// conjunctive normal form. It exploits the list of list representation 
-    /// filtering out trivial complementary literals and subsumed ones.
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in conjunctive normal form 
+    /// using a list representation of the formula as a set of sets: 
+    /// <c>p \/ q /\ ~ p \/ r</c> as <c>[[p; q]; [~ p; r]]</c>.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It exploits the list of list representation filtering out trivial 
+    /// complementary literals and subsumed ones.
+    /// </remarks>
+    /// 
+    /// <category index="11">Conjunctive Normal Form</category>
     val simpcnf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
-    /// Transforms the input formula `fm` in conjunctive normal form.
+    /// <summary>
+    /// Transforms the input formula <c>fm</c> in conjunctive normal form.
+    /// </summary>
+    /// 
+    /// <category index="11">Conjunctive Normal Form</category>
     val cnf: fm: formula<'a> -> formula<'a> when 'a: comparison

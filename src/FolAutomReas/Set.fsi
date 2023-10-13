@@ -65,7 +65,7 @@ module Set =
     /// Evaluates to <c>[1;2;3;4;5]</c>.
     /// </example>
     /// 
-    /// <example id="union-1">
+    /// <example id="union-2">
     /// <code lang="fsharp">
     /// union [1;1;1] [1;2;3;2] 
     /// </code>
@@ -101,7 +101,7 @@ module Set =
     /// Evaluates to <c>[1;3]</c>.
     /// </example>
     /// 
-    /// <example id="intersect-1">
+    /// <example id="intersect-2">
     /// <code lang="fsharp">
     /// intersect [1;2;4;1] [1;2;3;2]
     /// </code>
@@ -138,7 +138,7 @@ module Set =
     /// Evaluates to <c>[2]</c>.
     /// </example>
     /// 
-    /// <example id="subtract-1">
+    /// <example id="subtract-2">
     /// <code lang="fsharp">
     /// subtract [1;2;4;1] [4;5]
     /// </code>

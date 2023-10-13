@@ -191,7 +191,7 @@ module Formulas =
     /// Evaluates to <c>(["y"; "x"], Atom "p")</c>.
     /// </example>
     /// 
-    /// <example id="strip_quant-1">
+    /// <example id="strip_quant-2">
     /// <code lang="fsharp">
     /// Atom "p" |> strip_quant
     /// </code>

@@ -37,6 +37,8 @@ module Prop =
         parse_formula ((fun _ _ -> failwith ""), parse_propvar) []
         |> make_parser
 
+    let (!>) s = parse_prop_formula s
+
     // ---------------------------------------------------------------------- //
     // Printing of propositional formulas.                                    //
     // ---------------------------------------------------------------------- //
