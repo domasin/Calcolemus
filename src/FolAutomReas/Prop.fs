@@ -20,7 +20,7 @@ module Prop =
 
     type prop = P of string
 
-    let inline pname (P s) = s
+    let inline pname (P s as p) = s
 
     // ---------------------------------------------------------------------- //
     // Parsing of propositional formulas.                                     //

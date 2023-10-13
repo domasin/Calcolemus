@@ -17,6 +17,7 @@
     <Compile Include="Parser.fs" />
     <Compile Include="Intro.fs" />
     <Compile Include="Formulas.fs" />
+    <Compile Include="Prop.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fs" />

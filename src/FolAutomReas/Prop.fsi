@@ -15,108 +15,239 @@ open FolAutomReas.Formulas
 /// <category index="3">Propositional logic</category>
 module Prop = 
 
-    /// Type of primitive propositions indexed by names.
-    type prop = | P of string
+    /// <summary>
+    /// Type of propositional variables.
+    /// </summary>
+    /// 
+    /// <note>
+    /// Many functions defined for propositional logic apply generically 
+    /// to any kind of <see cref='T:FolAutomReas.Formulas.formula`1'/> and in 
+    /// particular for <see cref='T:FolAutomReas.FolModule.fol'/> formulas. 
+    /// 
+    /// A defined type for primitive propositions is fixed here to make 
+    /// experimentation with some of the operations easier.
+    /// </note>
+    type prop = 
+        /// <summary>
+        /// Propositional variable.
+        /// </summary>
+        /// 
+        /// <param name="Item">Name of the propositional variable.</param>
+        | P of string
 
-    /// Returns constant or variable name of a propositional formula.
-    val inline pname: prop -> string
+    /// <summary>
+    /// Returns then name of a propositional variable.
+    /// </summary>
+    /// 
+    /// <param name="p">The input propositional variable.</param>
+    /// <returns>The name of the propositional variable.</returns>
+    /// 
+    /// <example id="pname-1">
+    /// <code lang="fsharp">
+    /// P "x" |> pname
+    /// </code>
+    /// Evaluates to <c>"x"</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Syntax operations</category>
+    val inline pname: p: prop -> string
 
-    /// Parses atomic propositions.
+    /// <summary>
+    /// Parses atomic propositional variables.
+    /// </summary>
+    /// 
+    /// <category index="1">Parsing</category>
     val parse_propvar:
       vs: 'a -> inp: string list -> formula<prop> * string list
 
+    /// <summary>
     /// Parses a string in a propositional formula.
+    /// </summary>
+    /// 
+    /// <category index="1">Parsing</category>
     val parse_prop_formula: (string -> formula<prop>)
 
-    /// Prints a prop variable using a TextWriter.
+    /// <summary>
+    /// Prints a propositional variable using a TextWriter.
+    /// </summary>
+    /// 
+    /// <category index="2">Prettyprinting</category>
     val fprint_propvar: sw: System.IO.TextWriter -> prec: 'a -> p: prop -> unit
 
-    /// Prints a prop variable
+    /// <summary>
+    /// Prints a propositional variable.
+    /// </summary>
+    /// 
+    /// <category index="2">Prettyprinting</category>
     val inline print_propvar: prec: 'a -> p: prop -> unit
 
-    /// Returns a string representation of a prop variable.
+    /// <summary>
+    /// Returns a string representation of a propositional variable.
+    /// </summary>
+    /// 
+    /// <category index="2">Prettyprinting</category>
     val inline sprint_propvar: prec: 'a -> p: prop -> string
 
-    /// Prints a prop formula using a TextWriter.
+    /// <summary>
+    /// Prints a propositional formula using a TextWriter.
+    /// </summary>
+    /// 
+    /// <category index="2">Prettyprinting</category>
     val fprint_prop_formula:
       sw: System.IO.TextWriter -> (formula<prop> -> unit)
 
-    /// Prints a prop formula
+    /// <summary>
+    /// Prints a propositional formula.
+    /// </summary>
+    /// 
+    /// <category index="2">Prettyprinting</category>
     val inline print_prop_formula: f: formula<prop> -> unit
 
+    /// <summary>
     /// Returns a string representation of a propositional formula instead of 
-    /// its abstract syntax tree..
+    /// its abstract syntax tree.
+    /// </summary>
+    /// 
+    /// <category index="2">Prettyprinting</category>
     val inline sprint_prop_formula: f: formula<prop> -> string
 
-    /// Interpretation of  
+    /// <summary>
+    /// Interpretation of  formulas
+    /// </summary>
+    /// 
+    /// <category index="4">Semantics</category>
     val eval: fm: formula<'a> -> v: ('a -> bool) -> bool
 
-    /// Return the set of propositional variables in a formula.
+    /// <summary>
+    /// Return the set of atoms in a formula (regardless of whether it is a 
+    /// propositional or first-order formula)
+    /// </summary>
+    /// 
+    /// <category index="3">Syntax operations</category>
     val atoms: fm: formula<'a> -> 'a list when 'a: comparison
 
-    /// Tests whether a function `subfn` returns `true` on all possible valuations 
-    /// of the atoms `ats`, using an existing valuation `v` for all other atoms.
+    /// <summary>
+    /// Tests whether a function <c>subfn</c> returns <c>true</c> on all 
+    /// possible valuations of the atoms <c>ats</c>, using an existing 
+    /// valuation <c>v</c> for all other atoms.
+    /// </summary>
+    /// 
+    /// <category index="4">Semantics</category>
     val onallvaluations:
       subfn: (('a -> bool) -> bool) -> v: ('a -> bool) -> ats: 'a list -> bool
         when 'a: equality
 
-    /// Prints the truth table of a formula `fm` using a TextWriter.
+    /// <summary>
+    /// Prints the truth table of a formula <c>fm</c> using a TextWriter.
+    /// </summary>
+    /// 
+    /// <category index="5">Truth tables</category>
     val fprint_truthtable:
       sw: System.IO.TextWriter -> fm: formula<prop> -> unit
 
-    /// Prints the truth table of the propositional formula `f`.
+    /// <summary>
+    /// Prints the truth table of the propositional formula <c>f</c>.
+    /// </summary>
+    /// 
+    /// <category index="5">Truth tables</category>
     val inline print_truthtable: f: formula<prop> -> unit
 
+    /// <summary>
     /// Returns a string representation of the truth table of the propositional 
-    /// formula `f`.
+    /// formula <c>f</c>.
+    /// </summary>
+    /// 
+    /// <category index="5">Truth tables</category>
     val inline sprint_truthtable: f: formula<prop> -> string
 
-    /// Checks if a propositional formula is a tautology.
+    /// <summary>
+    /// Checks if a formula is a tautology at the propositional level.
+    /// </summary>
+    /// 
+    /// <category index="6">Tautology, unsatisfiability and satisfiability</category>
     val tautology: fm: formula<'a> -> bool when 'a: comparison
 
-    /// Checks if a propositional formula is unsatisfiable.
+    /// <summary>
+    /// Checks if a formula is unsatisfiable at the propositional level.
+    /// </summary>
+    /// 
+    /// <category index="6">Tautology, unsatisfiability and satisfiability</category>
     val unsatisfiable: fm: formula<'a> -> bool when 'a: comparison
 
-    /// Checks if a propositional formula is satisfiable.
+    /// <summary>
+    /// Checks if a formula is satisfiable at the propositional level.
+    /// </summary>
+    /// 
+    /// <category index="6">Tautology, unsatisfiability and satisfiability</category>
     val satisfiable: fm: formula<'a> -> bool when 'a: comparison
 
-    /// Returns the formula resulting from applying the substitution `sbfn` 
-    /// to the input formula.
+    /// <summary>
+    /// Returns the formula resulting from applying the substitution 
+    /// <c>sbfn</c> to the input formula.
+    /// </summary>
+    /// 
+    /// <category index="3">Syntax operations</category>
     val psubst:
       subfn: func<'a,formula<'a>> ->
         (formula<'a> -> formula<'a>) when 'a: comparison
 
-    /// Returns the dual of the input formula `fm`: i.e. the result of 
-    /// systematically exchanging `/\`s with `\/`s and also `True` with 
-    /// `False`.
+    /// <summary>
+    /// Returns the dual of the input formula <c>fm</c>: i.e. the result of 
+    /// systematically exchanging \(\land\)'s with \(\lor\)'s and also 
+    /// \(\top\) 's with \(\bot\)'s.
+    /// </summary>
+    /// 
+    /// <category index="3">Syntax operations</category>
     val dual: fm: formula<'a> -> formula<'a>
 
-    /// Performs a simplification routine but just at the first level of the input 
-    /// formula `fm`. It eliminates the basic propositional constants `False` and 
-    /// `True`. 
+    /// <summary>
+    /// Performs a propositional simplification routine (but just at the first 
+    /// level of the input formula) eliminating eliminating the basic 
+    /// propositional constants <c>False</c> and <c>True</c> and the double 
+    /// negations <c>~~p</c>.
+    /// </summary>
     /// 
-    /// Whenever `False` and `True` occur in combination, there is always a a 
-    /// tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
-    /// p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
-    /// also eliminates double negations `~~p`.
+    /// <remarks>
+    /// It eliminates the basic propositional 
+    /// constants \(\bot\) and \(\top\). 
+    /// (Whenever \(\bot\) and \(\top\) occur in combination, there is always a 
+    /// a tautology justifying the equivalence with a simpler formula, e.g. 
+    /// \(\bot \land p \Leftrightarrow \bot\), 
+    /// \(\top \lor p \Leftrightarrow p\), 
+    /// \(p \Rightarrow \bot \Leftrightarrow \neg p\).)
+    /// 
+    /// At the same time, it also eliminates double negations \(\neg \neg p\).
+    /// </remarks>
+    /// 
+    /// <category index="7">Simplification</category>
     val psimplify1: fm: formula<'a> -> formula<'a>
 
-    /// Performs a simplification routine on the input formula 
-    /// `fm` eliminating the basic propositional constants `False` and `True`. 
+    /// <summary>
+    /// Performs a propositional simplification routine eliminating eliminating 
+    /// the basic propositional constants <c>False</c> and <c>True</c> and the 
+    /// double negations <c>~~p</c>.
+    /// </summary>
     /// 
-    /// Whenever `False` and `True` occur in combination, there is always a a 
-    /// tautology justifying the equivalence with a simpler formula, e.g. `False /\ 
-    /// p <=> False`, `True \/ p <=> p`, `p ==> False <=> ~p`. At he same time, it 
-    /// also eliminates double negations `~~p`.
+    /// <remarks>
+    /// Completes the simplification routine psimplify1 applying it at every 
+    /// level of the formula.
+    /// </remarks>
     /// 
-    /// While `psimplify1` performs the transformation just at the first level, 
-    /// `psimplify` performs it at every levels in a recursive bottom-up sweep.
+    /// <category index="7">Simplification</category>
     val psimplify: fm: formula<'a> -> formula<'a>
 
+    /// <summary>
     /// Checks if a literal is negative.
+    /// </summary>
+    /// 
+    /// <category index="8">Litterals</category>
     val negative: _arg1: formula<'a> -> bool
 
+    /// <summary>
     /// Checks if a literal is positive.
+    /// </summary>
+    /// 
+    /// <category index="8">Litterals</category>
     val positive: lit: formula<'a> -> bool
 
     /// Changes a literal into its contrary.
