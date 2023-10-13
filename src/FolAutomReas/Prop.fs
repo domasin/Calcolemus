@@ -117,9 +117,11 @@ module Prop =
         fprintfn sw "%s" separator
         fprintfn sw ""
 
-    let inline print_truthtable f = fprint_truthtable stdout f
+    let inline print_truthtable fm = 
+        fprint_truthtable stdout fm
 
-    let inline sprint_truthtable f = writeToString (fun sw -> fprint_truthtable sw  f)
+    let inline sprint_truthtable fm = 
+        writeToString (fun sw -> fprint_truthtable sw  fm)
 
     // ---------------------------------------------------------------------- //
     // Tautology, Unsatisfiability, Satisfiability                            //

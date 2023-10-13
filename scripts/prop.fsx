@@ -30,6 +30,14 @@ onallvaluations (function _ -> true) (fun _ -> false) []
 onallvaluations (function _ -> false) (fun _ -> true) []
 
 
+let file = System.IO.File.CreateText("out.txt")
+fprint_truthtable file (!>"p ==> q")
+file.Close()
+
+print_truthtable !>"p /\ q ==> q /\ r"
+sprint_truthtable !>"p ==> q"
+
+
 Atom (P "x")
 
 

@@ -187,6 +187,12 @@ module Prop =
     /// valuation <c>v</c> for all other atoms.
     /// </summary>
     /// 
+    /// <remarks>
+    /// This function is used to define both truth-table (see 
+    /// <see cref='M:FolAutomReas.Prop.print_truthtable'/>) and 
+    /// <see cref='M:FolAutomReas.Prop.tautology``1'/>
+    /// </remarks>
+    /// 
     /// <param name="subfn">A function that given a valuation return true or false.</param>
     /// <param name="v">The default valuation for other atoms.</param>
     /// <param name="ats">The list of atoms on which to test all possibile valuations.</param>
@@ -209,27 +215,158 @@ module Prop =
         when 'a: equality
 
     /// <summary>
-    /// Prints the truth table of a formula <c>fm</c> using a TextWriter.
+    /// Prints the truth table of the prop formula <c>fm</c> to a TextWriter 
+    /// <c>sw</c>.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// See also <see cref='M:FolAutomReas.Prop.print_truthtable'/>
+    /// </remarks>
+    /// 
+    /// <param name="sw">The TextWriter to print to.</param>
+    /// <param name="fm">The input prop formula.</param>
+    /// 
+    /// <example id="fprint_truthtable-1">
+    /// <code lang="fsharp">
+    /// let file = System.IO.File.CreateText("out.txt")
+    /// fprint_truthtable file (!>"p ==> q")
+    /// file.Close()
+    /// </code>
+    /// After evaluation the file contains the text
+    /// <code lang="fsharp">
+    /// p     q     |   formula
+    /// ---------------------
+    /// false false | true  
+    /// false true  | true  
+    /// true  false | false 
+    /// true  true  | true  
+    /// ---------------------
+    /// </code>
+    /// </example>
     /// 
     /// <category index="5">Truth tables</category>
     val fprint_truthtable:
       sw: System.IO.TextWriter -> fm: formula<prop> -> unit
 
     /// <summary>
-    /// Prints the truth table of the propositional formula <c>f</c>.
+    /// Prints the truth table of the prop formula <c>fm</c> to the 
+    /// <c>stdout</c>.
     /// </summary>
     /// 
+    /// <remarks>
+    /// <p>Each logical connective is interpreted by a corresponding bool 
+    /// operator of the metalanguage.</p>
+    /// 
+    /// <p>A truth-table shows how the truth-value assigned to a formula is 
+    /// determined by those of its atoms, based on the interpretation of its 
+    /// logical connectives.</p>
+    /// 
+    /// For binary connective we have:
+    /// 
+    /// \begin{array}{|c|c||c|c|c|c|}
+    /// \hline
+    /// p &amp; q &amp; p \land q &amp; p \lor q &amp; p \Rightarrow q &amp; p \Leftrightarrow q \\
+    /// \hline
+    /// false &amp; false &amp; false &amp; false &amp; true &amp; true \\
+    /// \hline
+    /// false &amp; true &amp; false &amp; true &amp; true &amp; false \\
+    /// \hline
+    /// true &amp; false &amp; false &amp; true &amp; false &amp; false \\
+    /// \hline
+    /// true &amp; true &amp; true &amp; true &amp; true &amp; true \\
+    /// \hline
+    /// \end{array}
+    /// 
+    /// while for the unary negation:
+    /// 
+    /// \begin{array}{|c||c|}
+    /// 	\hline
+    /// 	p &amp; \neg p \\
+    /// 	\hline
+    /// 	false &amp; true\\
+    /// 	\hline
+    /// 	true &amp; false\\
+    /// 	\hline
+    /// \end{array} 
+    /// 
+    /// <p>A truth table has one column for each propositional variable and one 
+    /// final column showing all of the possible results of the logical 
+    /// operation that the table represents. Each row of the truth table 
+    /// contains one possible configuration of the propositional variables, 
+    /// and the result of the operation for those values.</p>
+    /// 
+    /// In particular, truth-tables can be used to show whether (i) a prop 
+    /// formula is logically valid (i.e. a tautology: see 
+    /// <see cref='M:FolAutomReas.Prop.tautology``1'/> that, as this 
+    /// function, is based on 
+    /// <see cref='M:FolAutomReas.Prop.onallvaluations``1'/>) when the result 
+    /// column has <c>true</c> in each rows of the table; (ii) 
+    /// <see cref='M:FolAutomReas.Prop.satisfiable``1'/>, when the result colum 
+    /// has <c>true</c> at least in one row; (iii) 
+    /// <see cref='M:FolAutomReas.Prop.unsatisfiable``1'/> when has 
+    /// <c>false</c> in each rows.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input prop formula.</param>
+    /// 
+    /// <example id="print_truthtable-1">
+    /// <code lang="fsharp">
+    /// print_truthtable !>"p /\ q ==> q /\ r"
+    /// </code>
+    /// After evaluation the following text is printed to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// p     q     r     |   formula
+    /// ---------------------------
+    /// false false false | true  
+    /// false false true  | true  
+    /// false true  false | true  
+    /// false true  true  | true  
+    /// true  false false | true  
+    /// true  false true  | true  
+    /// true  true  false | false 
+    /// true  true  true  | true  
+    /// ---------------------------
+    /// </code>
+    /// </example>
+    /// 
     /// <category index="5">Truth tables</category>
-    val inline print_truthtable: f: formula<prop> -> unit
+    val inline print_truthtable: fm: formula<prop> -> unit
 
     /// <summary>
-    /// Returns a string representation of the truth table of the propositional 
-    /// formula <c>f</c>.
+    /// Returns a string representation of the truth table of the prop formula 
+    /// <c>fm</c>.
     /// </summary>
     /// 
+    /// <remarks>
+    /// See also <see cref='M:FolAutomReas.Prop.print_truthtable'/>
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input prop formula.</param>
+    /// <returns>
+    /// The string representation of the truth table of the formula.
+    /// </returns>
+    /// 
+    /// <example id="sprint_truthtable-1">
+    /// <code lang="fsharp">
+    /// sprint_truthtable !>"p ==> q"
+    /// </code>
+    /// Evaluates to:
+    /// <code lang="fsharp">
+    /// "p     q     |   formula
+    /// ---------------------
+    /// false false | true  
+    /// false true  | true  
+    /// true  false | false 
+    /// true  true  | true  
+    /// ---------------------
+    /// 
+    /// "
+    /// </code>
+    /// </example>
+    /// 
     /// <category index="5">Truth tables</category>
-    val inline sprint_truthtable: f: formula<prop> -> string
+    val inline sprint_truthtable: fm: formula<prop> -> string
 
     /// <summary>
     /// Checks if a formula is a tautology at the propositional level.

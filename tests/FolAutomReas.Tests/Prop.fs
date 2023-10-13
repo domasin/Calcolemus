@@ -32,3 +32,17 @@ let ``atoms should return the atoms of the formula.``() =
 let ``onallvaluations should return true if subfn returns true for each atoms on all valuations.``() = 
     onallvaluations (eval True) (fun _ -> false) []
     |> should equal true
+
+[<Fact>]
+let ``sprint_truthtable should return a string representation of the truth table of the input formula.``() = 
+    sprint_truthtable !>"p ==> q"
+    |> should equal 
+        "p     q     |   formula
+---------------------
+false false | true  
+false true  | true  
+true  false | false 
+true  true  | true  
+---------------------
+
+"

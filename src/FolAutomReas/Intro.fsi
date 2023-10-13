@@ -502,8 +502,6 @@ module Intro =
     /// 
     /// <param name="e">The expression to be translated.</param>
     /// 
-    /// <returns><see cref='T:Microsoft.FSharp.Core.unit'/>.</returns>
-    /// 
     /// <example id="print_exp-1">
     /// <code lang="fsharp">
     /// Mul (Add(Const 0, Const 1), Add(Const 0, Const 0))
