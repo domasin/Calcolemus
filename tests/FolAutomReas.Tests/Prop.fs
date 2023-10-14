@@ -230,3 +230,13 @@ let ``mk_lits should return the conjunction of the input formulas positive or ne
         (function P"p" -> true | P"q" -> false | _ -> failwith "")
     |> sprint_prop_formula
     |> should equal "`p /\ ~q`"
+
+[<Fact>]
+let ``allsatvaluations should return the valuation for which subfn holds on atoms.``() = 
+    let fm = !> "p /\ q"
+    let atms = atoms fm
+    let satvals = allsatvaluations (eval fm) (fun _ -> false) atms
+
+    Assert.Equal(satvals[0] (P"p"), true)
+    Assert.Equal(satvals[0] (P"q"), true)
+    Assert.Equal(satvals[0] (P"x"), false)

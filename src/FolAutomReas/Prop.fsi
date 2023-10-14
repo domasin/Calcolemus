@@ -14,13 +14,21 @@ open FolAutomReas.Formulas
 /// </summary>
 /// 
 /// <note>
-/// Many functions defined for propositional logic apply generically 
-/// to any kind of <see cref='T:FolAutomReas.Formulas.formula`1'/> (and in 
-/// particular also to <see cref='T:FolAutomReas.FolModule.fol'/> formulas).
-/// <br />
-/// A defined type for propositional variables 
-/// (<see cref='T:FolAutomReas.Prop.prop'/>) is fixed here just to make 
-/// experimentation with some of the operations easier.
+/// Although this module defines a specific type 
+/// <see cref='T:FolAutomReas.Prop.prop'/> for primitive propositions, most of 
+/// the functions defined here for propositional logic are applicable (and 
+/// intended to be applied) in general to any kind of 
+/// <see cref='T:FolAutomReas.Formulas.formula`1'/> and in particular 
+/// to our specific type of first order logic formulas 
+/// <see cref='T:FolAutomReas.FolModule.fol'/>. These functions handle symbolic 
+/// computation at the propositional level for any kind of 
+/// <see cref='T:FolAutomReas.Formulas.formula`1'/> unless the signature 
+/// restricts them to the <see cref='T:FolAutomReas.Prop.prop'/> type.
+/// <p>
+/// </p>
+/// As remarked in the handbook, the defined type 
+/// <see cref='T:FolAutomReas.Prop.prop'/> for propositional variables is fixed 
+/// here just to make experimentation with some of the operations easier.
 /// </note>
 /// 
 /// <category index="3">Propositional logic</category>
@@ -901,6 +909,26 @@ module Prop =
     /// <see cref='M:FolAutomReas.Prop.onallvaluations``1'/> that collects 
     /// into a list the valuations for which <c>subfn</c> holds.
     /// </summary>
+    /// 
+    /// <param name="subfn">A function that given a valuation return true or false.</param>
+    /// <param name="v">The default valuation for other atoms.</param>
+    /// <param name="pvs">The list of atoms on which to test all possibile valuations.</param>
+    /// 
+    /// <example id="allsatvaluations-1">
+    /// <code lang="fsharp">
+    /// let fm = !> "p /\ q"
+    /// let atms = atoms fm
+    /// let satvals = allsatvaluations (eval fm) (fun _ -> false) atms
+    /// 
+    /// satvals[0] (P"p") // true
+    /// satvals[0] (P"q") // true
+    /// satvals[0] (P"x") // false
+    /// </code>
+    /// </example>
+    /// 
+    /// <returns>
+    /// The list of valuations for which <c>subfn</c> holds on <c>pvs</c>.
+    /// </returns>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val allsatvaluations:

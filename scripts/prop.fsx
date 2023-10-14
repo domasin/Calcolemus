@@ -130,3 +130,19 @@ list_disj [!>"p";!>"q";!>"r"]
 
 mk_lits [!>"p";!>"q"] 
     (function P"p" -> true | P"q" -> false | _ -> failwith "")
+
+let fm = !> "p /\ q"
+let atms = atoms fm
+let satvals = allsatvaluations (eval fm) (fun _ -> false) atms
+
+satvals[0] (P"p") // true
+satvals[0] (P"q") // true
+satvals[0] (P"a") // false
+
+allsatvaluations (eval fm) (fun _ -> false) atms
+|> List.map (mk_lits (List.map Atom atms))
+
+allsatvaluations (eval (And (Atom 1, Atom 2))) (fun s -> false) [1; 2]
+
+!> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+|> dnf_by_truth_tables
