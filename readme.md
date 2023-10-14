@@ -28,4 +28,6 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * Unit tests with XUnit (in progress).
 
+* Quotations symbols `<<>>` replaced with `` since the latter cause less problems in writing documentation. This change is actually present only in source code and not in the last release.
+
 

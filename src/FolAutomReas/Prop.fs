@@ -131,18 +131,17 @@ module Prop =
         onallvaluations (eval fm) (fun s -> false) (atoms fm)
 
     let unsatisfiable fm = 
-        tautology <| Not fm
+        tautology (Not fm)
 
     let satisfiable fm = 
-        not <| unsatisfiable fm
+        not (unsatisfiable fm)
 
     // ---------------------------------------------------------------------- //
     // Substitution operation.                                                //
     // ---------------------------------------------------------------------- //
 
-    let psubst subfn =
-        onatoms <| fun p ->
-            tryapplyd subfn p (Atom p)
+    let psubst subfn fm =
+        onatoms (fun p -> tryapplyd subfn p (Atom p)) fm
 
     // ---------------------------------------------------------------------- //
     // Dualization.                                                           //

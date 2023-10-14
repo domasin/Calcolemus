@@ -372,12 +372,72 @@ module Prop =
     /// Checks if a formula is a tautology at the propositional level.
     /// </summary>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// true, if the formula is a tautology at the propositional level; 
+    /// otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="tautology-1">
+    /// <code lang="fsharp">
+    /// !> @"p \/ ~p"
+    /// |> tautology
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="tautology-2">
+    /// <code lang="fsharp">
+    /// !> @"p \/ q ==> p"
+    /// |> tautology
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="tautology-3">
+    /// <code lang="fsharp">
+    /// !> @"p \/ q ==> q \/ (p &lt;=&gt; q)"
+    /// |> tautology
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="tautology-4">
+    /// <code lang="fsharp">
+    /// !> @"(p \/ q) /\ ~(p /\ q) ==> (~p &lt;=&gt; q)"
+    /// |> tautology
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
     /// <category index="6">Tautology, unsatisfiability and satisfiability</category>
     val tautology: fm: formula<'a> -> bool when 'a: comparison
 
     /// <summary>
     /// Checks if a formula is unsatisfiable at the propositional level.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// true, if the formula is a unsatisfiable at the propositional level; 
+    /// otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="unsatisfiable-1">
+    /// <code lang="fsharp">
+    /// !> "p /\ ~p"
+    /// |> unsatisfiable
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="unsatisfiable-2">
+    /// <code lang="fsharp">
+    /// !> @"p"
+    /// |> unsatisfiable
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="6">Tautology, unsatisfiability and satisfiability</category>
     val unsatisfiable: fm: formula<'a> -> bool when 'a: comparison
@@ -386,46 +446,110 @@ module Prop =
     /// Checks if a formula is satisfiable at the propositional level.
     /// </summary>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// true, if the formula is a satisfiable at the propositional level; 
+    /// otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="satisfiable-1">
+    /// <code lang="fsharp">
+    /// !> "p /\ ~p"
+    /// |> satisfiable
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="satisfiable-2">
+    /// <code lang="fsharp">
+    /// !> @"p"
+    /// |> satisfiable
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
     /// <category index="6">Tautology, unsatisfiability and satisfiability</category>
     val satisfiable: fm: formula<'a> -> bool when 'a: comparison
 
     /// <summary>
-    /// Returns the formula resulting from applying the substitution 
-    /// <c>sbfn</c> to the input formula.
+    /// Substitutes atoms in a formula with other formulas based on an fpf.
     /// </summary>
+    /// 
+    /// <param name="subfn">The fpf mapping atoms to formulas.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The formula resulting from substituting atoms of <c>fm</c> with the 
+    /// formulas based on the mapping defined in <c>sbfn</c>.
+    /// </returns>
+    /// 
+    /// <example id="psubst-1">
+    /// <code lang="fsharp">
+    /// !> "p /\ q /\ p /\ q"
+    /// |> psubst (P"p" |=> !>"p /\ q")
+    /// </code>
+    /// Evaluates to <c>`(p /\ q) /\ q /\ (p /\ q) /\ q`</c>.
+    /// </example>
     /// 
     /// <category index="3">Syntax operations</category>
     val psubst:
       subfn: func<'a,formula<'a>> ->
-        (formula<'a> -> formula<'a>) when 'a: comparison
+        fm: formula<'a> -> formula<'a> when 'a: comparison
 
     /// <summary>
     /// Returns the dual of the input formula: i.e. the result of 
-    /// systematically exchanging \(\land\) with \(\lor\) and also 
-    /// \(\top\) with \(\bot\).
+    /// systematically exchanging <c>/\</c> with <c>\/</c> and also 
+    /// <c>True</c> with <c>False</c>.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>The dual of the input formula.</returns>
+    /// 
+    /// <example id="dual-1">
+    /// <code lang="fsharp">
+    /// !> @"p \/ ~p"
+    /// |> dual
+    /// </code>
+    /// Evaluates to <c>`p /\ ~p`</c>.
+    /// </example>
     /// 
     /// <category index="3">Syntax operations</category>
     val dual: fm: formula<'a> -> formula<'a>
 
     /// <summary>
     /// Performs a propositional simplification routine (but just at the first 
-    /// level of the input formula) eliminating eliminating the basic 
+    /// level) of the input formula, eliminating the basic 
     /// propositional constants <c>False</c> and <c>True</c> and the double 
     /// negations <c>~~p</c>.
     /// </summary>
     /// 
     /// <remarks>
+    /// This function applies to formulas a simplification routine similar to 
+    /// the one <see cref='M:FolAutomReas.Intro.simplify1'/> applies on 
+    /// algebraic expressions.
+    /// 
     /// It eliminates the basic propositional 
-    /// constants \(\bot\) and \(\top\). 
-    /// (Whenever \(\bot\) and \(\top\) occur in combination, there is always a 
-    /// a tautology justifying the equivalence with a simpler formula, e.g. 
-    /// \(\bot \land p \Leftrightarrow \bot\), 
-    /// \(\top \lor p \Leftrightarrow p\), 
-    /// \(p \Rightarrow \bot \Leftrightarrow \neg p\).)
+    /// constants \(\bot\) and \(\top\) based on the following equivalences:
+    /// <ul>
+    /// <li>\(\bot \land p \Leftrightarrow \bot\)</li>
+    /// <li>\(\top \lor p \Leftrightarrow p\)</li>
+    /// <li>\(p \Rightarrow \bot \Leftrightarrow \neg p\)</li>
+    /// </ul>
     /// 
     /// At the same time, it also eliminates double negations \(\neg \neg p\).
     /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>The formula simplified.</returns>
+    /// 
+    /// <example id="psimplify1-1">
+    /// <code lang="fsharp">
+    /// !> "false /\ p"
+    /// </code>
+    /// Evaluates to <c>`false`</c>.
+    /// </example>
     /// 
     /// <category index="7">Simplification</category>
     val psimplify1: fm: formula<'a> -> formula<'a>

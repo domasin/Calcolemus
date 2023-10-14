@@ -126,9 +126,9 @@ module Formulas =
         print_formula 0
 
     let fprint_qformula tw pfn fm =
-        fprintf tw "<<"
+        fprintf tw "`"
         fprint_formula tw pfn fm
-        fprintf tw ">>"
+        fprintf tw "`"
 
     let inline print_formula pfn fm = fprint_formula stdout pfn fm
 

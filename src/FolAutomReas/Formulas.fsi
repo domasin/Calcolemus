@@ -214,6 +214,16 @@ module Formulas =
     /// round the formula so that it looks like the quoted formulas we parse.
     /// </summary>
     /// 
+    /// <note>
+    /// The quotations symbols <c>&lt;&lt;&gt;&gt;</c> for formulas have been 
+    /// replaced with <c>``</c> that are more concise and cause less problems 
+    /// in writing documentation.
+    /// 
+    /// Even if in F# there isn't an equivalent of OCaml's quotations 
+    /// expansions, it is convenient to keep quotation symbols to delimit 
+    /// formulas and terms to make it easier identifying.
+    /// </note>
+    /// 
     /// <category index="3">Prettyprinting</category>
     val fprint_qformula:
       tw: System.IO.TextWriter ->

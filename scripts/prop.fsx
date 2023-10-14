@@ -1,5 +1,7 @@
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
+open FolAutomReas.Lib.Fpf
+
 open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Fol
@@ -60,3 +62,16 @@ Or (Atom (R ("Q",[Var "x"])), (Atom (R ("Q",[Var "x"]))))
 // Or (Atom (R ("Q",[Var "x"])), (Atom (R ("Q",[Var "x"]))))
 // |> print_truthtable
 
+// fsi.AddPrinter sprint_prop_formula
+
+!> "p /\ q /\ p /\ q"
+|> psubst (P"p" |=> !>"p /\ q")
+
+!> @"p \/ ~p"
+|> dual
+
+!> "false /\ p"
+|> psimplify1
+
+!> "false /\ p"
+|> psimplify

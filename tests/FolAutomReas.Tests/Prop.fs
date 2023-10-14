@@ -3,6 +3,8 @@ module FolAutomReas.Tests.Prop
 open Xunit
 open FsUnit.Xunit
 
+open FolAutomReas.Lib.Fpf
+
 open FolAutomReas.Prop
 open FolAutomReas.Formulas
 
@@ -46,3 +48,65 @@ true  true  | true
 ---------------------
 
 "
+
+[<Fact>]
+let ``tautology-1 should return false.``() = 
+    !> @"p \/ ~p"
+    |> tautology
+    |> should equal true
+
+[<Fact>]
+let ``tautology-2 should return false.``() = 
+    !> @"p \/ q ==> p"
+    |> tautology
+    |> should equal false
+
+[<Fact>]
+let ``tautology-3 should return false.``() = 
+    !> @"p \/ q ==> q \/ (p <=> q)"
+    |> tautology
+    |> should equal false
+
+[<Fact>]
+let ``tautology-4 should return true.``() = 
+    !> @"(p \/ q) /\ ~(p /\ q) ==> (~p <=> q)"
+    |> tautology
+    |> should equal true
+
+[<Fact>]
+let ``unsatisfiable should return true if the formula is unsatisfiable.``() = 
+    !> "p /\ ~p"
+    |> unsatisfiable
+    |> should equal true
+
+[<Fact>]
+let ``unsatisfiable should return false if the formula is satisfiable.``() = 
+    !> "p"
+    |> unsatisfiable
+    |> should equal false
+
+[<Fact>]
+let ``satisfiable should return false if the formula is unsatisfiable.``() = 
+    !> "p /\ ~p"
+    |> unsatisfiable
+    |> should equal true
+
+[<Fact>]
+let ``satisfiable should return true if the formula is satisfiable.``() = 
+    !> "p"
+    |> unsatisfiable
+    |> should equal false
+
+[<Fact>]
+let ``psubst should replace atoms with formulas based on fpf mapping.``() = 
+    !> "p /\ q /\ p /\ q"
+    |> psubst (P"p" |=> !>"p /\ q")
+    |> sprint_prop_formula
+    |> should equal "`(p /\ q) /\ q /\ (p /\ q) /\ q`"
+
+[<Fact>]
+let ``dual should return the dual of the input formula.``() = 
+    !> @"p \/ ~p"
+    |> dual
+    |> sprint_prop_formula
+    |> should equal "`p /\ ~p`"
