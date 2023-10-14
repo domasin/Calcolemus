@@ -6,6 +6,8 @@ open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Fol
 
+// fsi.AddPrinter sprint_prop_formula
+
 P "x" |> pname
 
 !> "p /\ q ==> q /\ r"
@@ -62,7 +64,7 @@ Or (Atom (R ("Q",[Var "x"])), (Atom (R ("Q",[Var "x"]))))
 // Or (Atom (R ("Q",[Var "x"])), (Atom (R ("Q",[Var "x"]))))
 // |> print_truthtable
 
-// fsi.AddPrinter sprint_prop_formula
+
 
 !> "p /\ q /\ p /\ q"
 |> psubst (P"p" |=> !>"p /\ q")
@@ -75,3 +77,56 @@ Or (Atom (R ("Q",[Var "x"])), (Atom (R ("Q",[Var "x"]))))
 
 !> "false /\ p"
 |> psimplify
+
+!> "~ (p ==> false)"
+|> nnf_naive
+
+!> "~ (p ==> false)"
+|> psimplify
+|> nnf_naive
+
+!> "~ (p ==> ~ false)"
+|> nnf_naive
+
+!> "~ (p ==> ~ false)"
+|> nnf_naive
+
+!> "~ ~ (p ==> ~ ~ false)"
+|> nnf_naive
+
+!> @"a /\ (b \/ ~c)"
+|> nnf_naive
+
+!> @"(a /\ b) \/ (a /\ ~c)"
+|> nnf_naive
+
+!> @"~(a \/ ~c)"
+|> nnf_naive
+
+!> @"a /\ (b \/ ~c)"
+|> nnf
+
+!> @"(a /\ b) \/ (a /\ ~c)"
+|> nnf
+
+
+!> "~ (p ==> q)"
+|> nenf_naive
+
+!> "~ (p <=> q)"
+|> nenf_naive
+
+!> "~ (p <=> q)"
+|> nenf
+
+!> "~ (false <=> p)"
+|> nenf_naive
+
+!> "~ (false <=> p)"
+|> nenf
+
+list_conj [!>"p";!>"q";!>"r"]
+list_disj [!>"p";!>"q";!>"r"]
+
+mk_lits [!>"p";!>"q"] 
+    (function P"p" -> true | P"q" -> false | _ -> failwith "")

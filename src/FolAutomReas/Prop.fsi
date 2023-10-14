@@ -530,11 +530,13 @@ module Prop =
     /// algebraic expressions.
     /// 
     /// It eliminates the basic propositional 
-    /// constants \(\bot\) and \(\top\) based on the following equivalences:
+    /// constants \(\bot\) and \(\top\) based on the equivalences similar to 
+    /// the following (see the implementation for details):
     /// <ul>
     /// <li>\(\bot \land p \Leftrightarrow \bot\)</li>
     /// <li>\(\top \lor p \Leftrightarrow p\)</li>
     /// <li>\(p \Rightarrow \bot \Leftrightarrow \neg p\)</li>
+    /// <li>...</li>
     /// </ul>
     /// 
     /// At the same time, it also eliminates double negations \(\neg \neg p\).
@@ -547,6 +549,7 @@ module Prop =
     /// <example id="psimplify1-1">
     /// <code lang="fsharp">
     /// !> "false /\ p"
+    /// |> psimplify1
     /// </code>
     /// Evaluates to <c>`false`</c>.
     /// </example>
@@ -555,7 +558,7 @@ module Prop =
     val psimplify1: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Performs a propositional simplification routine eliminating eliminating 
+    /// Performs a propositional simplification routine eliminating 
     /// the basic propositional constants <c>False</c> and <c>True</c> and the 
     /// double negations <c>~~p</c>.
     /// </summary>
@@ -565,6 +568,18 @@ module Prop =
     /// level of the formula.
     /// </remarks>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>The formula simplified.</returns>
+    /// 
+    /// <example id="psimplify-1">
+    /// <code lang="fsharp">
+    /// !> "((x ==> y) ==> true) \/ ~false"
+    /// |> psimplify
+    /// </code>
+    /// Evaluates to <c>`true`</c>.
+    /// </example>
+    /// 
     /// <category index="7">Simplification</category>
     val psimplify: fm: formula<'a> -> formula<'a>
 
@@ -572,74 +587,309 @@ module Prop =
     /// Checks if a literal is negative.
     /// </summary>
     /// 
-    /// <category index="8">Litterals</category>
-    val negative: _arg1: formula<'a> -> bool
+    /// <remarks>
+    /// A literal is an atomic formula or its negation. This function can be 
+    /// applied to any kind of formulas but is specifically intended to be used 
+    /// on literals.
+    /// </remarks>
+    /// 
+    /// <param name="lit">The input literal.</param>
+    /// 
+    /// <returns>true, if the literal is negative; otherwise false.</returns>
+    /// 
+    /// <example id="negative-1">
+    /// <code lang="fsharp">
+    /// !> "~p" |> negative
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="negative-2">
+    /// <code lang="fsharp">
+    /// !> "p" |> negative
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <category index="8">Literals</category>
+    val negative: lit: formula<'a> -> bool
 
     /// <summary>
     /// Checks if a literal is positive.
     /// </summary>
     /// 
-    /// <category index="8">Litterals</category>
+    /// <remarks>
+    /// A literal is an atomic formula or its negation. This function can be 
+    /// applied to any kind of formulas but is specifically intended to be used 
+    /// on literals.
+    /// </remarks>
+    /// 
+    /// <param name="lit">The input literal.</param>
+    /// 
+    /// <returns>true, if the literal is positive; otherwise false.</returns>
+    /// 
+    /// <example id="positive-1">
+    /// <code lang="fsharp">
+    /// !> "p" |> positive
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="positive-2">
+    /// <code lang="fsharp">
+    /// !> "~p" |> positive
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <category index="8">Literals</category>
     val positive: lit: formula<'a> -> bool
 
     /// <summary>Changes a literal into its contrary.</summary>
     /// 
-    /// <category index="8">Litterals</category>
-    val negate: _arg1: formula<'a> -> formula<'a>
+    /// <remarks>
+    /// A literal is an atomic formula or its negation. This function can be 
+    /// applied to any kind of formulas but is specifically intended to be used 
+    /// on literals.
+    /// </remarks>
+    /// 
+    /// <param name="lit">The input literal.</param>
+    /// 
+    /// <returns>
+    /// The negated literal if the input is positive and vice versa.
+    /// </returns>
+    /// 
+    /// <example id="negate-1">
+    /// <code lang="fsharp">
+    /// !> "p" |> negate
+    /// </code>
+    /// Evaluates to <c>`~p`</c>.
+    /// </example>
+    /// 
+    /// <example id="negate-2">
+    /// <code lang="fsharp">
+    /// !> "~p" |> negate
+    /// </code>
+    /// Evaluates to <c>`p`</c>.
+    /// </example>
+    /// 
+    /// <category index="8">Literals</category>
+    val negate: lit: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Changes a formula into its negation normal form without simplifying it.
+    /// Changes a formula into a naive negation normal form.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// A formula is in <em>negation normal form</em> (NNF) if it is 
+    /// constructed from literals using only the binary connectives \(\land\) 
+    /// and \(\lor\), or else is one of the degenerate cases \(\top\) and 
+    /// \(\bot\).
+    /// 
+    /// <c>nnf_naive</c> implements an incomplete transformation of NNF which 
+    /// pushes down negation on atoms and removes the binary connective 
+    /// \(\Rightarrow\) and \(\Leftrightarrow\) but keeps \(\top\) and 
+    /// \(\bot\) mixed with other formulas.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The input formula transformed in a naive negation normal form.
+    /// </returns>
+    /// 
+    /// <example id="nnf_naive-1">
+    /// <code lang="fsharp">
+    /// !> "~ (p ==> false)"
+    /// |> nnf_naive
+    /// </code>
+    /// Evaluates to <c>`p /\ ~false`</c>.
+    /// </example>
     /// 
     /// <category index="9">Negation Normal Form</category>
     val nnf_naive: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Changes a formula into its negation normal and applies it the routine 
-    /// simplification <see cref='M:FolAutomReas.Prop.psimplify``1'/>.
+    /// Changes a formula into a naive negation normal form.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// A formula is in <em>negation normal form</em> (NNF) if it is 
+    /// constructed from literals using only the binary connectives \(\land\) 
+    /// and \(\lor\), or else is one of the degenerate cases \(\top\) and 
+    /// \(\bot\).
+    /// 
+    /// <c>nnf</c> implements a complete transformation in NNF 
+    /// applying <see cref='M:FolAutomReas.Prop.psimplify``1'/> first 
+    /// and then <see cref='M:FolAutomReas.Prop.nnf_naive``1'/>.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The input formula transformed in a negation normal form.
+    /// </returns>
+    /// 
+    /// <example id="nnf-1">
+    /// <code lang="fsharp">
+    /// !> "~ (p ==> false)"
+    /// |> nnf
+    /// </code>
+    /// Evaluates to <c>`p`</c>.
+    /// </example>
+    /// 
+    /// <example id="nnf-2">
+    /// <code lang="fsharp">
+    /// !> "(p &lt;=&gt; q) &lt;=&gt; ~(r ==> s)"
+    /// |> nnf
+    /// </code>
+    /// Evaluates to <c>`(p /\ q \/ ~p /\ ~q) /\ r /\ ~s \/ (p /\ ~q \/ ~p /\ q) /\ (~r \/ s)`</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// Negation normal form is not a canonical form: for example, 
+    /// \(a \land (b \lor \lnot c)\) and \((a \land b) \lor (a \land \lnot c)\) 
+    /// are equivalent, and are both in negation normal form.
+    /// (from 
+    /// <a href="https://en.wikipedia.org/wiki/Negation_normal_form">https://en.wikipedia.org/wiki/Negation_normal_form</a>)
+    /// </note>
     /// 
     /// <category index="9">Negation Normal Form</category> 
     val nnf: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Simply pushes negations in the input formula <c>fm</c> down to the 
-    /// level of  atoms without simplifying it.
+    /// Changes a formula into negation normal form but keeps logical 
+    /// equivalences and <c>False</c> and <c>True</c> mixed with other 
+    /// formulas.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The input formula transformed in a negation normal form that keeps 
+    /// equivalences and logical constants mixed with other formulas.
+    /// </returns>
+    /// 
+    /// <example id="nenf_naive-1">
+    /// <code lang="fsharp">
+    /// !> "~ (p &lt;=&gt; q)"
+    /// |> nenf_naive
+    /// </code>
+    /// Evaluates to <c>`p &lt;=&gt; ~q`</c>.
+    /// </example>
+    /// 
+    /// <example id="nenf_naive-2">
+    /// <code lang="fsharp">
+    /// !> "~ (false &lt;=&gt; q)"
+    /// |> nenf_naive
+    /// </code>
+    /// Evaluates to <c>`false &lt;=&gt; ~q`</c>.
+    /// </example>
     /// 
     /// <category index="9">Negation Normal Form</category>
     val nenf_naive: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Simply pushes negations in the input formula <c>fm</c> down to the 
-    /// level of atoms and applies it the routine simplification 
-    /// <see cref='M:FolAutomReas.Prop.psimplify``1'/>.
+    /// Changes a formula into negation normal form but keeps logical 
+    /// equivalences.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Applies <see cref='M:FolAutomReas.Prop.psimplify``1'/> first 
+    /// and then <see cref='M:FolAutomReas.Prop.nenf_naive``1'/>.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The input formula transformed in a negation normal form that keeps 
+    /// equivalences.
+    /// </returns>
+    /// 
+    /// <example id="nenf-1">
+    /// <code lang="fsharp">
+    /// !> "~ (p &lt;=&gt; q)"
+    /// |> nenf
+    /// </code>
+    /// Evaluates to <c>`p &lt;=&gt; ~q)`</c>.
+    /// </example>
+    /// 
+    /// <example id="nenf-2">
+    /// <code lang="fsharp">
+    /// !> "~ (false &lt;=&gt; q)"
+    /// |> nenf
+    /// </code>
+    /// Evaluates to <c>`q`</c>.
+    /// </example>
     /// 
     /// <category index="9">Negation Normal Form</category>
     val nenf: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Creates a conjunction of all the formulas in the input list <c>l</c>.
+    /// Constructs a conjunction from a list of formulas.
     /// </summary>
+    /// 
+    /// <param name="l">The list of formulas to conjunct.</param>
+    /// 
+    /// <returns>The conjunction of the input formulas.</returns>
+    /// 
+    /// <example id="list_conj-1">
+    /// <code lang="fsharp">
+    /// list_conj [!>"p";!>"q";!>"r"]
+    /// </code>
+    /// Evaluates to <c>`p /\ q /\ r`</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val list_conj:
       l: formula<'a> list -> formula<'a> when 'a: equality
 
     /// <summary>
-    /// Creates a disjunction of all the formulas in the input list <c>l</c>.
+    /// Constructs a disjunction from a list of formulas.
     /// </summary>
+    /// 
+    /// <param name="l">The list of formulas to disjunct.</param>
+    /// 
+    /// <returns>The disjunction of the input formulas.</returns>
+    /// 
+    /// <example id="list_disj-1">
+    /// <code lang="fsharp">
+    /// list_disj [!>"p";!>"q";!>"r"]
+    /// </code>
+    /// Evaluates to <c>`p \/ q \/ r`</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val list_disj:
       l: formula<'a> list -> formula<'a> when 'a: equality
 
     /// <summary>
-    /// Given a list of formulas <c>pvs</c>, makes a conjunction of these 
-    /// formulas and their negations according to whether each is satisfied by 
-    /// the valuation <c>v</c>.
+    /// Constructs a conjunction from a list of formulas <c>pvs</c> and their 
+    /// negations, according to whether each is satisfied by a valuation 
+    /// <c>v</c>.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// As the name suggest, it is intended to be used on literals and 
+    /// actually is used just to define 
+    /// <see cref='M:FolAutomReas.Prop.dnf_by_truth_tables``1'/>
+    /// </remarks>
+    /// 
+    /// <param name="pvs">The input list of formulas.</param>
+    /// <param name="v">The input valuation.</param>
+    /// 
+    /// <returns>
+    /// The conjunction of the <c>pvs</c> formulas (positive or negated 
+    /// depending on <c>v</c>).
+    /// </returns>
+    /// 
+    /// <example id="mk_lits-1">
+    /// <code lang="fsharp">
+    /// mk_lits [!>"p";!>"q"] 
+    ///     (function P"p" -> true | P"q" -> false)
+    /// </code>
+    /// Evaluates to <c>`p /\ ~q`</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val mk_lits:

@@ -216,13 +216,16 @@ module Prop =
     // Literals.                                                              //
     // ---------------------------------------------------------------------- //
 
-    let negative = function
+    let negative lit = 
+        match lit with
         | Not p -> true
         | _ -> false
 
-    let positive lit = not <| negative lit
+    let positive lit = 
+        not (negative lit)
 
-    let negate = function
+    let negate lit = 
+        match lit with
         | Not p -> p
         | p -> Not p
 
@@ -255,7 +258,9 @@ module Prop =
         | fm -> fm
 
     let nnf fm =
-        nnf_naive <| psimplify fm
+        fm
+        |> psimplify
+        |> nnf_naive
 
     // ---------------------------------------------------------------------- //
     // Simple negation-pushing when we don't care to distinguish occurrences. //
@@ -284,7 +289,9 @@ module Prop =
         | fm -> fm
 
     let nenf fm =
-        nenf_naive <| psimplify fm
+        fm
+        |> psimplify
+        |> nenf_naive
 
     // ---------------------------------------------------------------------- //
     // Disjunctive normal form (DNF) via truth tables.                        //

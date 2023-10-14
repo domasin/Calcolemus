@@ -110,3 +110,123 @@ let ``dual should return the dual of the input formula.``() =
     |> dual
     |> sprint_prop_formula
     |> should equal "`p /\ ~p`"
+
+[<Fact>]
+let ``psimplify1 should simplify at the first level.``() = 
+    !> "false /\ p"
+    |> psimplify1
+    |> sprint_prop_formula
+    |> should equal "`false`"
+
+[<Fact>]
+let ``psimplify should simplify also on subformulas.``() = 
+    !> @"((x ==> y) ==> true) \/ ~false"
+    |> psimplify
+    |> sprint_prop_formula
+    |> should equal "`true`"
+
+[<Fact>]
+let ``negative should return true if applied to a negative literal.``() = 
+    !> "~p"
+    |> negative
+    |> should equal true
+
+[<Fact>]
+let ``negative should return false if applied to a literal that is not negative.``() = 
+    !> "p"
+    |> negative
+    |> should equal false
+
+[<Fact>]
+let ``positive should return true if applied to a positive literal.``() = 
+    !> "p"
+    |> positive
+    |> should equal true
+
+[<Fact>]
+let ``positive should return false if applied to a literal that is not positive.``() = 
+    !> "~p"
+    |> positive
+    |> should equal false
+
+[<Fact>]
+let ``negate should return the negated literal if applied to a positive literal.``() = 
+    !> "p"
+    |> negate
+    |> sprint_prop_formula
+    |> should equal "`~p`"
+
+[<Fact>]
+let ``negate should return the not negated literal  if applied to a negative literal.``() = 
+    !> "~p"
+    |> negate
+    |> sprint_prop_formula
+    |> should equal "`p`"
+
+[<Fact>]
+let ``nnf_naive should return the input formula transformed in a naive nnf.``() = 
+    !> "~ (p ==> false)"
+    |> nnf_naive
+    |> sprint_prop_formula
+    |> should equal "`p /\ ~false`"
+
+[<Fact>]
+let ``nnf should return the input formula transformed in a complete nnf.``() = 
+    !> "~ (p ==> false)"
+    |> nnf
+    |> sprint_prop_formula
+    |> should equal "`p`"
+
+[<Fact>]
+let ``nnf-2.``() = 
+    !> "(p <=> q) <=> ~(r ==> s)"
+    |> nnf
+    |> sprint_prop_formula
+    |> should equal @"`(p /\ q \/ ~p /\ ~q) /\ r /\ ~s \/ (p /\ ~q \/ ~p /\ q) /\ (~r \/ s)`"
+
+[<Fact>]
+let ``nenf_naive should return nnf but keeping logical equivalences.``() = 
+    !> "~ (p <=> q)"
+    |> nenf_naive
+    |> sprint_prop_formula
+    |> should equal "`p <=> ~q`"
+
+[<Fact>]
+let ``nenf_naive should return nnf but keeping logical constants mixed with other formulas.``() = 
+    !> "~ (false <=> q)"
+    |> nenf_naive
+    |> sprint_prop_formula
+    |> should equal "`false <=> ~q`"
+
+[<Fact>]
+let ``nenf should return nnf but keeping logical equivalences.``() = 
+    !> "~ (p <=> q)"
+    |> nenf
+    |> sprint_prop_formula
+    |> should equal "`p <=> ~q`"
+
+[<Fact>]
+let ``nenf_naive should apply simplification.``() = 
+    !> "~ (false <=> q)"
+    |> nenf
+    |> sprint_prop_formula
+    |> should equal "`q`"
+
+[<Fact>]
+let ``list_conj should return the conjunction of the input formulas.``() = 
+    list_conj [!>"p";!>"q";!>"r"]
+    |> sprint_prop_formula
+    |> should equal "`p /\ q /\ r`"
+
+[<Fact>]
+let ``list_disj should return the disjunction of the input formulas.``() = 
+    list_disj [!>"p";!>"q";!>"r"]
+    |> sprint_prop_formula
+    |> should equal @"`p \/ q \/ r`"
+
+[<Fact>]
+let ``mk_lits should return the conjunction of the input formulas positive or negative depending on valuation.``() = 
+    mk_lits [!>"p";!>"q"] 
+        (function P"p" -> true | P"q" -> false | _ -> failwith "")
+    |> sprint_prop_formula
+    |> should equal "`p /\ ~q`"
