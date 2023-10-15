@@ -1279,7 +1279,7 @@ module Prop =
     /// <c>`q \/ ~p`</c>.
     /// </example>
     /// 
-    /// <example id="dnf-1">
+    /// <example id="dnf-2">
     /// <code lang="fsharp">
     /// let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
     /// let dnf = dnf fm // `p /\ ~r \/ q /\ r /\ ~p`
