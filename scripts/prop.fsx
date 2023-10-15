@@ -131,18 +131,45 @@ list_disj [!>"p";!>"q";!>"r"]
 mk_lits [!>"p";!>"q"] 
     (function P"p" -> true | P"q" -> false | _ -> failwith "")
 
-let fm = !> "p /\ q"
+let fm = !> @"(p /\ q) \/ (s /\ t)"
 let atms = atoms fm
-let satvals = allsatvaluations (eval fm) (fun _ -> false) atms
 
-satvals[0] (P"p") // true
-satvals[0] (P"q") // true
-satvals[0] (P"a") // false
-
+// graphs of all valuations satisfying fm
 allsatvaluations (eval fm) (fun _ -> false) atms
-|> List.map (mk_lits (List.map Atom atms))
+|> List.map (fun v -> 
+    atms
+    |> List.map (fun a -> (a, v a))
+)
 
-allsatvaluations (eval (And (Atom 1, Atom 2))) (fun s -> false) [1; 2]
+!> @"p ==> q"
+|> dnf_by_truth_tables 
+// Evaluates to `~p /\ ~q \/ ~p /\ q \/ p /\ q`
+
+// Note the symmetry between the conjunctions 
+// and the true-rows of the truth table.
+!> @"p ==> q"
+|> print_truthtable
+
+// p     q     |   formula
+// ---------------------
+// false false | true  
+// false true  | true  
+// true  false | false 
+// true  true  | true  
+// ---------------------
 
 !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
 |> dnf_by_truth_tables
+
+!> @"(p <=> q) <=> ~(r ==> s)"
+|> dnf_by_truth_tables
+
+!> @"p /\ (q \/ r)" |> distrib_naive
+
+!> @"p ==> q" |> distrib_naive
+
+!> @"(p ==> q) /\ q" 
+|> rawdnf
+
+!> @"p ==> q" 
+|> rawdnf

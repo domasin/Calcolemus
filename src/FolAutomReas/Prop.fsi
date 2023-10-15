@@ -726,7 +726,14 @@ module Prop =
     /// constructed from literals using only the binary connectives \(\land\) 
     /// and \(\lor\), or else is one of the degenerate cases \(\top\) and 
     /// \(\bot\).
-    /// 
+    /// <p>
+    /// </p>
+    /// It is analogous to the following procedure in ordinary algebra: 
+    /// (i) replace subtraction by its definition \(x - y = x + -y\) 
+    /// and then (ii) systematically push negations down using 
+    /// \(-(x + y) = -x + -y\), \(-(xy) = (-x)y\), \(-(-x) = x\).
+    /// <p>
+    /// </p>
     /// <c>nnf</c> implements a complete transformation in NNF 
     /// applying <see cref='M:FolAutomReas.Prop.psimplify``1'/> first 
     /// and then <see cref='M:FolAutomReas.Prop.nnf_naive``1'/>.
@@ -926,6 +933,31 @@ module Prop =
     /// </code>
     /// </example>
     /// 
+    /// <example id="allsatvaluations-1">
+    /// <c>allsatvaluations</c> applied to <c>eval fm</c> 
+    /// extracts all valuations satisfying <c>fm</c>.
+    /// <code lang="fsharp">
+    /// let fm = !> @"(p /\ q) \/ (s /\ t)"
+    /// let atms = atoms fm
+    /// 
+    /// allsatvaluations (eval fm) (fun _ -> false) atms
+    /// // graphs of all valuations satisfying fm
+    /// |> List.map (fun v -> 
+    ///     atms
+    ///     |> List.map (fun a -> (a, v a))
+    /// )
+    /// </code>
+    /// Evaluates to:
+    /// <code lang="fsharp">
+    /// [[(P "p", false); (P "q", false); (P "s", true); (P "t", true)];
+    ///  [(P "p", false); (P "q", true); (P "s", true); (P "t", true)];
+    ///  [(P "p", true); (P "q", false); (P "s", true); (P "t", true)];
+    ///  [(P "p", true); (P "q", true); (P "s", false); (P "t", false)];
+    ///  [(P "p", true); (P "q", true); (P "s", false); (P "t", true)];
+    ///  [(P "p", true); (P "q", true); (P "s", true); (P "t", false)];
+    ///  [(P "p", true); (P "q", true); (P "s", true); (P "t", true)]]
+    /// </code>
+    /// </example>
     /// <returns>
     /// The list of valuations for which <c>subfn</c> holds on <c>pvs</c>.
     /// </returns>
@@ -940,19 +972,97 @@ module Prop =
     /// tables.
     /// </summary>
     /// 
+    /// <remarks>
+    /// A formula is in disjunctive normal form (DNF) if it is a disjunction of 
+    /// conjunctions of litterals.
+    /// <p>
+    /// </p>
+    /// It is analogous to a fully expanded <em>sum of products</em> expression 
+    /// like \(x^3 + x^2 y + xy + z\) in algebra.
+    /// <p>
+    /// </p>
+    /// <c>dnf_by_truth_tables</c>, from all valuations satisfying the formula 
+    /// generates, an equivalent that is the disjunction of the conjunctions of 
+    /// the atoms that in each evaluation are mapped to true. Thus, it is based 
+    /// on the same semantical process of truth-tables.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The input formula transformed in disjunctive normal form.
+    /// </returns>
+    /// 
+    /// <example id="dnf_by_truth_tables-1">
+    /// <code lang="fsharp">
+    /// !> @"p ==> q"
+    /// |> dnf_by_truth_tables 
+    /// // Evaluates to `~p /\ ~q \/ ~p /\ q \/ p /\ q`
+    /// 
+    /// // Note the symmetry between the conjunctions 
+    /// // and the true-rows of the truth table.
+    /// !> @"p ==> q"
+    /// |> print_truthtable
+    /// 
+    /// // p     q     |   formula
+    /// // ---------------------
+    /// // false false | true  
+    /// // false true  | true  
+    /// // true  false | false 
+    /// // true  true  | true  
+    /// // ---------------------
+    /// </code>
+    /// </example>
+    /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val dnf_by_truth_tables:
       fm: formula<'a> -> formula<'a> when 'a: comparison
 
     /// <summary>
-    /// Applies the distributive laws to the input formula <c>fm</c>.
+    /// Applies the distributive laws of <c>/\</c> and <c>\/</c> to the input 
+    /// formula <c>fm</c>, assuming that its immediate subformulas are in DNF.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The distributive laws are the following:
+    /// <ul>
+    /// <li><c>p /\ (q \/ r) &lt;=&gt; p /\ q \/ p /\ r</c></li>
+    /// <li><c>(p \/ q) /\ r &lt;=&gt; p /\ r \/ q /\ r</c>.</li>
+    /// </ul>
+    /// Analogous to the following in algebra:
+    /// <ul>
+    /// <li><c>x(y + z) = xy + xz</c></li>
+    /// <li><c>(x + y)z = xz + yz</c>.</li>
+    /// </ul>
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula with immediate subformulas in DNF.</param>
+    /// 
+    /// <returns>
+    /// The formula transformed with the distributive laws of 
+    /// <c>/\</c> and <c>\/</c>, if its immediate subformulas are  in DNF; 
+    /// otherwise, the input unchanged.
+    /// </returns>
+    /// 
+    /// <example id="distrib_naive-1">
+    /// <code lang="fsharp">
+    /// !> @"p /\ (q \/ r)" |> distrib_naive
+    /// </code>
+    /// Evaluates to <c>`p /\ q \/ p /\ r`</c>.
+    /// </example>
+    /// 
+    /// <example id="distrib_naive-2">
+    /// <code lang="fsharp">
+    /// !> "p ==> q" |> distrib_naive
+    /// </code>
+    /// Evaluates to <c>`p ==> q`</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val distrib_naive: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in disjunctive normal form.
+    /// Transforms the input formula <c>fm</c> in a raw disjunctive normal form.
     /// </summary>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>

@@ -240,3 +240,53 @@ let ``allsatvaluations should return the valuation for which subfn holds on atom
     Assert.Equal(satvals[0] (P"p"), true)
     Assert.Equal(satvals[0] (P"q"), true)
     Assert.Equal(satvals[0] (P"x"), false)
+
+[<Fact>]
+let ``allsatvaluations should return the valuations satisfying a fm if applied to eval fm.``() = 
+    let fm = !> @"(p /\ q) \/ (s /\ t)"
+    let atms = atoms fm
+
+    allsatvaluations (eval fm) (fun _ -> false) atms
+    // graphs of all valuations satisfying fm
+    |> List.map (fun v -> 
+        atms
+        |> List.map (fun a -> (a, v a))
+    )
+    |> should equal 
+        [[(P "p", false); (P "q", false); (P "s", true); (P "t", true)];
+         [(P "p", false); (P "q", true); (P "s", true); (P "t", true)];
+         [(P "p", true); (P "q", false); (P "s", true); (P "t", true)];
+         [(P "p", true); (P "q", true); (P "s", false); (P "t", false)];
+         [(P "p", true); (P "q", true); (P "s", false); (P "t", true)];
+         [(P "p", true); (P "q", true); (P "s", true); (P "t", false)];
+         [(P "p", true); (P "q", true); (P "s", true); (P "t", true)]]
+
+[<Fact>]
+let ``dnf_by_truth_tables should return the input formula in dnf.``() = 
+    !> @"p ==> q"
+    |> dnf_by_truth_tables
+    |> sprint_prop_formula
+    |> should equal @"`~p /\ ~q \/ ~p /\ q \/ p /\ q`"
+
+[<Fact>]
+let ``dnf_by_truth_tables should return the input formula in a dnf equivalent.``() = 
+    let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    let dnf = fm |> dnf_by_truth_tables
+    let dnf_string = dnf |> sprint_prop_formula
+
+    Assert.Equal(tautology(Iff(fm,dnf)),true)
+    Assert.Equal(dnf_string, @"`~p /\ q /\ r \/ p /\ ~q /\ ~r \/ p /\ q /\ ~r`")
+
+[<Fact>]
+let ``distrib_naive should return the formula transformed via the distributive laws, if its immediate subformulas are in DNF.``() = 
+    !> @"p /\ (q \/ r)" 
+    |> distrib_naive
+    |> sprint_prop_formula
+    |> should equal @"`p /\ q \/ p /\ r`"
+
+[<Fact>]
+let ``distrib_naive should return the input formula unchanged if its immediate subformulas are not in DNF.``() = 
+    !> @"p ==> q" 
+    |> distrib_naive
+    |> sprint_prop_formula
+    |> should equal @"`p ==> q`"
