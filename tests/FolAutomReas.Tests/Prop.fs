@@ -290,3 +290,49 @@ let ``distrib_naive should return the input formula unchanged if its immediate s
     |> distrib_naive
     |> sprint_prop_formula
     |> should equal @"`p ==> q`"
+
+[<Fact>]
+let ``rawdnf should return a raw DNF if input is in NNF.``() = 
+    !> @"p /\ (q \/ r) \/ s" 
+    |> rawdnf
+    |> sprint_prop_formula
+    |> should equal @"`(p /\ q \/ p /\ r) \/ s`"
+
+[<Fact>]
+let ``rawdnf should return the input unchanged if it is not in NNF.``() = 
+    !> @"p ==> q" 
+    |> rawdnf
+    |> sprint_prop_formula
+    |> should equal @"`p ==> q`"
+
+[<Fact>]
+let ``rawdnf-3 book example.``() = 
+    !> @"(p \/ q /\ r) /\ (~p \/ ~r)" 
+    |> rawdnf
+    |> sprint_prop_formula
+    |> should equal @"`(p /\ ~p \/ (q /\ r) /\ ~p) \/ p /\ ~r \/ (q /\ r) /\ ~r`"
+
+[<Fact>]
+let ``distrib returns the set of the unions of first sets with the latter.``() = 
+    distrib [[1;2];[2]] [[3];[4]]
+    |> should equal [[1; 2; 3]; [1; 2; 4]; [2; 3]; [2; 4]]
+
+[<Fact>]
+let ``purednf should return a set of set dnf if input is in nnf.``() = 
+    !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    |> purednf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal [["`p`"; "`~p`"]; ["`p`"; "`~r`"]; ["`q`"; "`r`"; "`~p`"]; ["`q`"; "`r`"; "`~r`"]]
+
+[<Fact>]
+let ``purednf should a meaningless list of list of the input itself if it is not in nnf.``() = 
+    !> "p ==> q"
+    |> purednf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal [["`p ==> q`"]]

@@ -968,23 +968,30 @@ module Prop =
         v: ('a -> bool) -> pvs: 'a list -> ('a -> bool) list when 'a: equality
 
     /// <summary>
-    /// Transforms a formula <c>fm</c> in disjunctive normal form using truth 
-    /// tables.
+    /// Transforms a formula <c>fm</c> in disjunctive normal form by the 
+    /// valuations satisfying it.
     /// </summary>
     /// 
     /// <remarks>
     /// A formula is in disjunctive normal form (DNF) if it is a disjunction of 
-    /// conjunctions of litterals.
+    /// conjunctions of litterals. 
     /// <p>
     /// </p>
     /// It is analogous to a fully expanded <em>sum of products</em> expression 
     /// like \(x^3 + x^2 y + xy + z\) in algebra.
     /// <p>
     /// </p>
-    /// <c>dnf_by_truth_tables</c>, from all valuations satisfying the formula 
-    /// generates, an equivalent that is the disjunction of the conjunctions of 
-    /// the atoms that in each evaluation are mapped to true. Thus, it is based 
-    /// on the same semantical process of truth-tables.
+    /// <c>dnf_by_truth_tables</c>, from all valuations satisfying the formula, 
+    /// generates an equivalent that is the disjunction of the conjunctions of 
+    /// the atoms that in each evaluation are mapped to true or their negations 
+    /// if they're mapped to false. Thus, it is based on the same semantic 
+    /// process of truth-tables.
+    /// <p>
+    /// </p>
+    /// Note also that since it is based on truth-tables (or more precisely 
+    /// on valuations), it generates disjunctions in which each conjunct 
+    /// contains every atoms of the original formula, while other dnf functions 
+    /// generate more cleaner results.
     /// </remarks>
     /// 
     /// <param name="fm">The input formula.</param>
@@ -1013,6 +1020,13 @@ module Prop =
     /// // ---------------------
     /// </code>
     /// </example>
+    /// 
+    /// <note>
+    /// It is not canonical since for example 
+    /// <c>p /\ ~q /\ r \/ p /\ q /\ ~r \/ p /\ q /\ r</c> and 
+    /// <c>p /\ q \/ p /\ r</c> are both equivalent DNF.
+    /// <a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form">https://en.wikipedia.org/wiki/Disjunctive_normal_form</a> should be corrected.
+    /// </note>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val dnf_by_truth_tables:
@@ -1062,27 +1076,118 @@ module Prop =
     val distrib_naive: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in a raw disjunctive normal form.
+    /// Transforms an NNF formula in a raw disjunctive normal form.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// It is raw because:
+    /// <ol>
+    /// <li>it requires the input formula being in NNF;</li>
+    /// <li>
+    /// it's  hard to read due to mixed associations in iterated conjunctions 
+    /// and disjunctions enclosed in parentheses. E.g. 
+    /// <c>(p /\ q \/ p /\ r) \/ s</c> instead of <c>p /\ q \/ p /\ r \/ s</c>;
+    /// </li>
+    /// <li>it can contain redundant disjuncts equivalent to <c>False</c>.</li>
+    /// </ol>
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The formula transformed in a raw DNF if the input is already in NNF; 
+    /// otherwise, the input unchanged.
+    /// </returns>
+    /// 
+    /// <example id="rawdnf-1">
+    /// <code lang="fsharp">
+    /// !> @"p /\ (q \/ r) \/ s" |> rawdnf
+    /// </code>
+    /// Evaluates to <c>`(p /\ q \/ p /\ r) \/ s`</c>.
+    /// </example>
+    /// 
+    /// <example id="rawdnf-2">
+    /// <code lang="fsharp">
+    /// !> "p ==> q" |> rawdnf
+    /// </code>
+    /// Evaluates to <c>`p ==> q`</c>.
+    /// </example>
+    /// 
+    /// <example id="rawdnf-3">
+    /// <code lang="fsharp">
+    /// !> "(p \/ q /\ r) /\ (~p \/ ~r)" |> rawdnf
+    /// </code>
+    /// Evaluates to 
+    /// <c>`(p /\ ~p \/ (q /\ r) /\ ~p) \/ p /\ ~r \/ (q /\ r) /\ ~r`</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val rawdnf: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Applies the distributive laws of propositional connectives \(\land\) 
-    /// and \(\lor\) using a list representation of the input formulas 
-    /// <c>s1</c> and <c>s2</c>.
+    /// Takes two sets of sets and returns the set of the unions of each set in 
+    /// the first with sets in the second.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// It is used to obtain the distributive laws of <c>/\</c> over 
+    /// <c>\/</c> (see <see cref='M:FolAutomReas.Prop.distrib_naive``1'/>) in 
+    /// the context of a set of sets representation of dnf (see 
+    /// <see cref='M:FolAutomReas.Prop.purednf``1'/>)
+    /// </remarks>
+    /// 
+    /// <param name="s1">The first input set of set.</param>
+    /// <param name="s2">The second input set of set.</param>
+    /// 
+    /// <returns>The set of the unions of first sets with the latter.</returns>
+    /// 
+    /// <example id="distrib-3">
+    /// <code lang="fsharp">
+    /// distrib [[1;2];[2]] [[3];[4]]
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[1; 2; 3]; [1; 2; 4]; [2; 3]; [2; 4]]</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val distrib:
       s1: 'a list list -> s2: 'a list list -> 'a list list when 'a: comparison
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in disjunctive normal form 
-    /// using a list representation of the formula as a set of sets: 
-    /// <c>p /\ q \/ ~ p /\ r</c> as <c>[[p; q]; [~ p; r]]</c>.
+    /// Transform a formula already in NNF in DNF with a set of sets 
+    /// representation form as output.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The resulting global set represents the disjunction and the 
+    /// subsets the conjunctions: e.g. the set of sets representation of
+    /// <c>p /\ q \/ ~ p /\ r</c> is <c>[[p; q]; [~ p; r]]</c>.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The set of set representation of the input formula, if it is in NNF; 
+    /// otherwise a meaningless list of list of the input itself.
+    /// </returns>
+    /// 
+    /// <example id="purednf-1">
+    /// <code lang="fsharp">
+    /// !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    /// |> purednf
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[`p`; `~p`]; [`p`; `~r`]; [`q`; `r`; `~p`]; [`q`; `r`; `~r`]]</c>.
+    /// </example>
+    /// 
+    /// <example id="purednf-1">
+    /// <code lang="fsharp">
+    /// !> "p ==> q"
+    /// |> purednf
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[`p ==> q`]]</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val purednf:

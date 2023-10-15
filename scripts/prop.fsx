@@ -5,6 +5,8 @@ open FolAutomReas.Lib.Fpf
 open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Fol
+open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.List
 
 // fsi.AddPrinter sprint_prop_formula
 
@@ -173,3 +175,86 @@ allsatvaluations (eval fm) (fun _ -> false) atms
 
 !> @"p ==> q" 
 |> rawdnf
+
+
+!> @"p /\ (q \/ r) \/ ~s" 
+|> rawdnf
+
+!> @"p /\ (q \/ r) \/ s"
+|> rawdnf
+
+!> @"p /\ (q \/ r) \/ s"
+|> dnf
+
+!> @"p /\ (q \/ r) \/ s"
+|> dnf_by_truth_tables
+
+!> @"p ==> q"
+|> dnf
+
+!> @"p ==> q"
+|> rawdnf
+
+!> @"(p \/ q /\ r) /\ (~p \/ ~r)" 
+|> dnf
+
+
+!> @"p /\ ~ (q \/ r) \/ s"
+|> rawdnf
+
+!> @"a ==> b ==> c"
+|> dnf_by_truth_tables
+
+!> @"a ==> b ==> c"
+|> dnf
+
+!> @"p /\ (q \/ r)"
+|> dnf_by_truth_tables
+
+!> @"p /\ (q \/ r)"
+|> dnf
+
+let fm1 = 
+    !> @"p /\ ~q /\ r \/ p /\ q /\ ~r \/ p /\ q /\ r"
+
+let fm2 = 
+    !> @"p /\ q \/ p /\ r"
+
+tautology(mk_iff fm1 fm2)
+
+
+
+
+!> @"p /\ (q \/ r)" |> distrib_naive
+// `p /\ q \/ p /\ r`
+distrib [["p"]] [["q"];["r"]]
+// [["p"; "q"]; ["p"; "r"]]
+
+!> @"(p \/ q) /\ r" |> distrib_naive
+// `p /\ r \/ q /\ r`
+distrib [["p"];["q"]] [["r"]]
+// [["p"; "r"]; ["q"; "r"]]
+
+
+
+[!>"p"; !>"q"; !>"x"; !>"~y"]
+|> List.fold (fun acc c -> And (acc,c)) True
+
+
+allpairs union [["p"]] [["q"];["r"]]
+
+allpairs union [["p"]] [["q"]]
+
+
+distrib [[1;2];[2]] [[3];[4]]
+
+!> @"p /\ q \/ ~ p /\ r"
+|> purednf
+
+!> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+|> purednf
+
+!> @"p ==> q"
+|> nnf
+|> purednf
+
