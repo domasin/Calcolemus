@@ -258,3 +258,7 @@ distrib [[1;2];[2]] [[3];[4]]
 |> nnf
 |> purednf
 
+trivial [!>"p";!>"~p"]
+
+!> @"p ==> q"
+|> simpdnf

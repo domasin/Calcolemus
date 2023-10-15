@@ -336,3 +336,35 @@ let ``purednf should a meaningless list of list of the input itself if it is not
         |> List.map sprint_prop_formula
     )
     |> should equal [["`p ==> q`"]]
+
+[<Fact>]
+let ``trivial returns true if there are complementary literals.``() = 
+    trivial [!>"p";!>"~p"]
+    |> should equal true
+
+[<Fact>]
+let ``trivial returns false if there aren't complementary literals.``() = 
+    trivial [!>"p";!>"~q"]
+    |> should equal false
+
+[<Fact>]
+let ``simpdnf should return a set of set dnf of the input.``() = 
+    !> @"p ==> q" |> simpdnf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal [["`q`"]; ["`~p`"]]
+
+[<Fact>]
+let ``dnf should return a dnf of any kind of formula.``() = 
+    !> @"p ==> q" |> dnf
+    |> sprint_prop_formula
+    |> should equal @"`q \/ ~p`"
+
+[<Fact>]
+let ``dnf should return a dnf equivalent of the input.``() = 
+    let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    let dnf = dnf fm
+    Assert.Equal(dnf |> sprint_prop_formula, @"`p /\ ~r \/ q /\ r /\ ~p`")
+    Assert.Equal(tautology(mk_iff fm dnf), true)

@@ -933,7 +933,7 @@ module Prop =
     /// </code>
     /// </example>
     /// 
-    /// <example id="allsatvaluations-1">
+    /// <example id="allsatvaluations-2">
     /// <c>allsatvaluations</c> applied to <c>eval fm</c> 
     /// extracts all valuations satisfying <c>fm</c>.
     /// <code lang="fsharp">
@@ -973,8 +973,8 @@ module Prop =
     /// </summary>
     /// 
     /// <remarks>
-    /// A formula is in disjunctive normal form (DNF) if it is a disjunction of 
-    /// conjunctions of litterals. 
+    /// A formula is in disjunctive normal form (DNF) if it is an iterated 
+    /// disjunction of conjunctions of litterals. 
     /// <p>
     /// </p>
     /// It is analogous to a fully expanded <em>sum of products</em> expression 
@@ -1130,7 +1130,7 @@ module Prop =
     /// </summary>
     /// 
     /// <remarks>
-    /// It is used to obtain the distributive laws of <c>/\</c> over 
+    /// It is used to obtain the distributive laws of <c>/\</c> and  
     /// <c>\/</c> (see <see cref='M:FolAutomReas.Prop.distrib_naive``1'/>) in 
     /// the context of a set of sets representation of dnf (see 
     /// <see cref='M:FolAutomReas.Prop.purednf``1'/>)
@@ -1141,12 +1141,20 @@ module Prop =
     /// 
     /// <returns>The set of the unions of first sets with the latter.</returns>
     /// 
-    /// <example id="distrib-3">
+    /// <example id="distrib-1">
     /// <code lang="fsharp">
     /// distrib [[1;2];[2]] [[3];[4]]
     /// </code>
     /// Evaluates to 
     /// <c>[[1; 2; 3]; [1; 2; 4]; [2; 3]; [2; 4]]</c>.
+    /// </example>
+    /// 
+    /// <example id="distrib-2">
+    /// Representing the distributive laws:
+    /// <code lang="fsharp">
+    /// distrib [["p"]] [["q"];["r"]] // [["p"; "q"]; ["p"; "r"]]
+    /// distrib [["p"];["q"]] [["r"]] // [["p"; "r"]; ["q"; "r"]]
+    /// </code>
     /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
@@ -1180,7 +1188,7 @@ module Prop =
     /// <c>[[`p`; `~p`]; [`p`; `~r`]; [`q`; `r`; `~p`]; [`q`; `r`; `~r`]]</c>.
     /// </example>
     /// 
-    /// <example id="purednf-1">
+    /// <example id="purednf-2">
     /// <code lang="fsharp">
     /// !> "p ==> q"
     /// |> purednf
@@ -1194,21 +1202,39 @@ module Prop =
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
     /// <summary>
-    /// Filters out trivial disjuncts (in this guise, contradictory).
+    /// Check if there are complementary literals of the form <c>p</c> and 
+    /// <c>~ p</c> in a list of formulas.
     /// </summary>
     /// 
-    /// <remarks>
-    /// Check if there are complementary literals of the form p and ~ p 
-    /// in the same list.
-    /// </remarks>
+    /// <param name="fm">The input list of formulas.</param>
+    /// 
+    /// <returns>
+    /// true, if there are complementary literals in the input list; 
+    /// otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="trivial-1">
+    /// <code lang="fsharp">
+    /// trivial [!>"p";!>"~p"]
+    /// </code>
+    /// Evaluates to 
+    /// <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="trivial-2">
+    /// <code lang="fsharp">
+    /// trivial [!>"p";!>"~q"]
+    /// </code>
+    /// Evaluates to 
+    /// <c>false</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val trivial: lits: formula<'a> list -> bool when 'a: comparison
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in disjunctive normal form 
-    /// using a list representation of the formula as a set of sets: 
-    /// <c>p /\ q \/ ~ p /\ r</c> as <c>[[p; q]; [~ p; r]]</c>.
+    /// Transforms any kind of formula in disjunctive normal form 
+    /// returning a set of set representation.
     /// </summary>
     /// 
     /// <remarks>
@@ -1217,13 +1243,50 @@ module Prop =
     /// done very naively: quadratic).
     /// </remarks>
     /// 
+    /// <param name="fm">The input formulas.</param>
+    /// 
+    /// <returns>
+    /// A set of set representation of a dnf equivalent of the input.
+    /// </returns>
+    /// 
+    /// <example id="simpdnf-1">
+    /// <code lang="fsharp">
+    /// !> @"p ==> q" |> simpdnf
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[`q`]; [`~p`]]</c>.
+    /// </example>
+    /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val simpdnf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in disjunctive normal form.
+    /// Transforms any kind of formula in disjunctive normal form.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formulas.</param>
+    /// 
+    /// <returns>
+    /// A dnf equivalent of the input.
+    /// </returns>
+    /// 
+    /// <example id="dnf-1">
+    /// <code lang="fsharp">
+    /// !> @"p ==> q" |> dnf
+    /// </code>
+    /// Evaluates to 
+    /// <c>`q \/ ~p`</c>.
+    /// </example>
+    /// 
+    /// <example id="dnf-1">
+    /// <code lang="fsharp">
+    /// let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    /// let dnf = dnf fm // `p /\ ~r \/ q /\ r /\ ~p`
+    /// tautology(mk_iff fm dnf)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val dnf: fm: formula<'a> -> formula<'a> when 'a: comparison
