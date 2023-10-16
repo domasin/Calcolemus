@@ -4652,6 +4652,19 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ A formula is in disjunctive normal form (DNF) if it is an iterated 
+ disjunction of conjunctions of litterals. 
+ <p></p>
+ It is analogous to a fully expanded <em>sum of products</em> expression 
+ like \(x^3 + x^2 y + xy + z\) in algebra.
+ <p></p>
+ It is not canonical since for example 
+ <code>p /\ ~q /\ r \/ p /\ q /\ ~r \/ p /\ q /\ r</code> and 
+ <code>p /\ q \/ p /\ r</code> are both equivalent DNF.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -4781,11 +4794,7 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
               </summary>
               <p class="fsdocs-remarks">
                 
- A formula is in disjunctive normal form (DNF) if it is an iterated 
- disjunction of conjunctions of litterals. 
- <p></p>
- It is analogous to a fully expanded <em>sum of products</em> expression 
- like \(x^3 + x^2 y + xy + z\) in algebra.
+ See <a href="/FolAutomReas/reference/folautomreas-prop.html">Prop.dnf</a> for a definition of DNF.
  <p></p><code>dnf_by_truth_tables</code>, from all valuations satisfying the formula, 
  generates an equivalent that is the disjunction of the conjunctions of 
  the atoms that in each evaluation are mapped to true or their negations 
@@ -4827,17 +4836,6 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </p>
                 </dd>
               </dl>
-              <h5 class="fsdocs-note-header">
-                Note
-              </h5>
-              <p class="fsdocs-note">
-                
- It is not canonical since for example 
- <code>p /\ ~q /\ r \/ p /\ q /\ ~r \/ p /\ q /\ r</code> and 
- <code>p /\ q \/ p /\ r</code> are both equivalent DNF.
- <a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form">https://en.wikipedia.org/wiki/Disjunctive_normal_form</a> should be corrected.
- 
-              </p>
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
@@ -5257,8 +5255,9 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                   </span>
                   
- The set of set representation of the input formula, if it is in NNF; 
- otherwise a meaningless list of list of the input itself.
+ A dnf equivalent of the input formula in a set of sets representation 
+ with possible superfluous and subsumed disjuncts, if the input is in 
+ NNF; otherwise a meaningless list of lists of the input itself.
  
                   <br/>
                 </div>
@@ -5284,7 +5283,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   <p class="fsdocs-summary">
                     
  Transform a formula already in NNF in DNF with a set of sets 
- representation form as output.
+ representation form as output (with possible superfluous and subsumed 
+ disjuncts in the result).
  
                   </p>
                 </div>
@@ -5320,8 +5320,9 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- The set of set representation of the input formula, if it is in NNF; 
- otherwise a meaningless list of list of the input itself.
+ A dnf equivalent of the input formula in a set of sets representation 
+ with possible superfluous and subsumed disjuncts, if the input is in 
+ NNF; otherwise a meaningless list of lists of the input itself.
  
                   </p>
                 </dd>
@@ -5648,6 +5649,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                       </b>
                       :
                       <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                       - 
+                      The input list of literals.
                     </span>
                     <br/>
                   </ul>
@@ -5697,7 +5700,11 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   :
                   <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of literals.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -5798,6 +5805,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -5806,6 +5815,9 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                   </span>
+                  
+ A cnf equivalent of the input formula.
+ 
                   <br/>
                 </div>
               </div>
@@ -5829,11 +5841,20 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </a>
                   <p class="fsdocs-summary">
                     
- Transforms the input formula <code>fm</code> in conjunctive normal form.
+ Transforms any kind of input formulas in conjunctive normal.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ A formula is in conjunctive normal form (CNF) if it is an iterated 
+ conjunction of disjunctions of litterals. 
+ <p></p>
+ It is analogous to a fully factorized <em>product of sums</em> 
+ expression like \((x + 1)(y + 2)(z + 3)\) in algebra.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -5842,7 +5863,11 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -5851,8 +5876,30 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A cnf equivalent of the input formula.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="cnf-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">fm</span> <span class="o">=</span> <span class="pn">!&gt;</span> <span class="s">@&quot;(p \/ q /\ r) /\ (~p \/ ~r)&quot;</span>
+ <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">cnf</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="id">cnf</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">fm</span> <span class="c">// `(p \/ q) /\ (p \/ r) /\ (~p \/ ~r)`</span>
+ <span class="id">tautology</span><span class="pn">(</span><span class="id">mk_iff</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="id">fm</span> <span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="id">cnf</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val fm: obj</div>
+<div class="fsdocs-tip" id="fs2">val cnf: obj</div>
+
+
+ Evaluates to 
+ <code>true</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -5882,6 +5929,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -5890,6 +5939,10 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     Returns: 
                     <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ A cnf equivalent of the input formula in a set of sets representation 
+ with possible superfluous and subsumed conjuncts.
+ 
                   <br/>
                 </div>
               </div>
@@ -5913,12 +5966,19 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </a>
                   <p class="fsdocs-summary">
                     
- Transforms the input formula <code>fm</code> in conjunctive normal form 
- by using <a href="/FolAutomReas/reference/folautomreas-prop.html">Prop.purednf</a>.
+ Transforms any kind of input formulas in conjunctive normal form with a 
+ set of sets representation form as output, but keeps possible 
+ superfluous and subsumed conjuncts.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ In the cnf context the outer set represents the iterated conjunction 
+ and the subsets the disjunctions. Thus, <code>[[p; q]; [~ p; r]]</code> 
+ represents <code>p \/ q /\ ~ p \/ r</code>
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -5927,7 +5987,11 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -5936,8 +6000,38 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </span>
                   <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A cnf equivalent of the input formula in a set of sets representation 
+ with possible superfluous and subsumed conjuncts.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="purecnf-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!&gt;</span> <span class="s">@&quot;p ==&gt; q&quot;</span> <span class="o">|&gt;</span> <span class="id">purecnf</span>
+</code></pre>
+
+
+ Evaluates to 
+ <code>[[`q`; `~p`]]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="purecnf-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!&gt;</span> <span class="s">@&quot;p \/ ~p&quot;</span> <span class="o">|&gt;</span> <span class="id">purecnf</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`p`; `~p`]]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -5967,6 +6061,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -5975,6 +6071,9 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     Returns: 
                     <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ A cnf equivalent of the input formula in a set of sets representation.
+ 
                   <br/>
                 </div>
               </div>
@@ -5998,9 +6097,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </a>
                   <p class="fsdocs-summary">
                     
- Transforms the input formula <code>fm</code> in conjunctive normal form 
- using a list representation of the formula as a set of sets: 
- <code>p \/ q /\ ~ p \/ r</code> as <code>[[p; q]; [~ p; r]]</code>.
+ Transforms any kind of input formulas in conjunctive normal form with a 
+ set of sets representation form as output.
  
                   </p>
                 </div>
@@ -6019,7 +6117,11 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -6028,8 +6130,37 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </span>
                   <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A cnf equivalent of the input formula in a set of sets representation.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simpcnf-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!&gt;</span> <span class="s">@&quot;p ==&gt; q&quot;</span> <span class="o">|&gt;</span> <span class="id">simpcnf</span>
+</code></pre>
+
+
+ Evaluates to 
+ <code>[[`q`; `~p`]]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simpcnf-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!&gt;</span> <span class="s">@&quot;p \/ ~p&quot;</span> <span class="o">|&gt;</span> <span class="id">simpcnf</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`p`; `~p`]]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
