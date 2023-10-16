@@ -973,12 +973,7 @@ module Prop =
     /// </summary>
     /// 
     /// <remarks>
-    /// A formula is in disjunctive normal form (DNF) if it is an iterated 
-    /// disjunction of conjunctions of litterals. 
-    /// <p>
-    /// </p>
-    /// It is analogous to a fully expanded <em>sum of products</em> expression 
-    /// like \(x^3 + x^2 y + xy + z\) in algebra.
+    /// See <see cref='M:FolAutomReas.Prop.dnf``1'/> for a definition of DNF.
     /// <p>
     /// </p>
     /// <c>dnf_by_truth_tables</c>, from all valuations satisfying the formula, 
@@ -1020,13 +1015,6 @@ module Prop =
     /// // ---------------------
     /// </code>
     /// </example>
-    /// 
-    /// <note>
-    /// It is not canonical since for example 
-    /// <c>p /\ ~q /\ r \/ p /\ q /\ ~r \/ p /\ q /\ r</c> and 
-    /// <c>p /\ q \/ p /\ r</c> are both equivalent DNF.
-    /// <a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form">https://en.wikipedia.org/wiki/Disjunctive_normal_form</a> should be corrected.
-    /// </note>
     /// 
     /// <category index="10">Disjunctive Normal Form</category>
     val dnf_by_truth_tables:
@@ -1163,7 +1151,8 @@ module Prop =
 
     /// <summary>
     /// Transform a formula already in NNF in DNF with a set of sets 
-    /// representation form as output.
+    /// representation form as output (with possible superfluous and subsumed 
+    /// disjuncts in the result).
     /// </summary>
     /// 
     /// <remarks>
@@ -1175,8 +1164,9 @@ module Prop =
     /// <param name="fm">The input formula.</param>
     /// 
     /// <returns>
-    /// The set of set representation of the input formula, if it is in NNF; 
-    /// otherwise a meaningless list of list of the input itself.
+    /// A dnf equivalent of the input formula in a set of sets representation 
+    /// with possible superfluous and subsumed disjuncts, if the input is in 
+    /// NNF; otherwise a meaningless list of lists of the input itself.
     /// </returns>
     /// 
     /// <example id="purednf-1">
@@ -1206,7 +1196,7 @@ module Prop =
     /// <c>~ p</c> in a list of formulas.
     /// </summary>
     /// 
-    /// <param name="fm">The input list of formulas.</param>
+    /// <param name="lits">The input list of literals.</param>
     /// 
     /// <returns>
     /// true, if there are complementary literals in the input list; 
@@ -1265,6 +1255,20 @@ module Prop =
     /// Transforms any kind of formula in disjunctive normal form.
     /// </summary>
     /// 
+    /// <remarks>
+    /// A formula is in disjunctive normal form (DNF) if it is an iterated 
+    /// disjunction of conjunctions of litterals. 
+    /// <p>
+    /// </p>
+    /// It is analogous to a fully expanded <em>sum of products</em> expression 
+    /// like \(x^3 + x^2 y + xy + z\) in algebra.
+    /// <p>
+    /// </p>
+    /// It is not canonical since for example 
+    /// <c>p /\ ~q /\ r \/ p /\ q /\ ~r \/ p /\ q /\ r</c> and 
+    /// <c>p /\ q \/ p /\ r</c> are both equivalent DNF.
+    /// </remarks>
+    /// 
     /// <param name="fm">The input formulas.</param>
     /// 
     /// <returns>
@@ -1292,18 +1296,46 @@ module Prop =
     val dnf: fm: formula<'a> -> formula<'a> when 'a: comparison
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in conjunctive normal form 
-    /// by using <see cref='M:FolAutomReas.Prop.purednf``1'/>.
+    /// Transforms any kind of input formulas in conjunctive normal form with a 
+    /// set of sets representation form as output, but keeps possible 
+    /// superfluous and subsumed conjuncts.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// In the cnf context the outer set represents the iterated conjunction 
+    /// and the subsets the disjunctions. Thus, <c>[[p; q]; [~ p; r]]</c> 
+    /// represents <c>p \/ q /\ ~ p \/ r</c>
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// A cnf equivalent of the input formula in a set of sets representation 
+    /// with possible superfluous and subsumed conjuncts.
+    /// </returns>
+    /// 
+    /// <example id="purecnf-1">
+    /// <code lang="fsharp">
+    /// !> @"p ==> q" |> purecnf
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[`q`; `~p`]]</c>.
+    /// </example>
+    /// 
+    /// <example id="purecnf-2">
+    /// <code lang="fsharp">
+    /// !> @"p \/ ~p" |> purecnf
+    /// </code>
+    /// Evaluates to <c>[[`p`; `~p`]]</c>.
+    /// </example>
     /// 
     /// <category index="11">Conjunctive Normal Form</category>
     val purecnf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in conjunctive normal form 
-    /// using a list representation of the formula as a set of sets: 
-    /// <c>p \/ q /\ ~ p \/ r</c> as <c>[[p; q]; [~ p; r]]</c>.
+    /// Transforms any kind of input formulas in conjunctive normal form with a 
+    /// set of sets representation form as output.
     /// </summary>
     /// 
     /// <remarks>
@@ -1311,13 +1343,59 @@ module Prop =
     /// complementary literals and subsumed ones.
     /// </remarks>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// A cnf equivalent of the input formula in a set of sets representation.
+    /// </returns>
+    /// 
+    /// <example id="simpcnf-1">
+    /// <code lang="fsharp">
+    /// !> @"p ==> q" |> simpcnf
+    /// </code>
+    /// Evaluates to 
+    /// <c>[[`q`; `~p`]]</c>.
+    /// </example>
+    /// 
+    /// <example id="simpcnf-2">
+    /// <code lang="fsharp">
+    /// !> @"p \/ ~p" |> simpcnf
+    /// </code>
+    /// Evaluates to <c>[[`p`; `~p`]]</c>.
+    /// </example>
+    /// 
     /// <category index="11">Conjunctive Normal Form</category>
     val simpcnf:
       fm: formula<'a> -> formula<'a> list list when 'a: comparison
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in conjunctive normal form.
+    /// Transforms any kind of input formulas in conjunctive normal.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// A formula is in conjunctive normal form (CNF) if it is an iterated 
+    /// conjunction of disjunctions of litterals. 
+    /// <p>
+    /// </p>
+    /// It is analogous to a fully factorized <em>product of sums</em> 
+    /// expression like \((x + 1)(y + 2)(z + 3)\) in algebra.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// A cnf equivalent of the input formula.
+    /// </returns>
+    /// 
+    /// <example id="cnf-1">
+    /// <code lang="fsharp">
+    /// let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    /// let cnf = cnf fm // `(p \/ q) /\ (p \/ r) /\ (~p \/ ~r)`
+    /// tautology(mk_iff fm cnf)
+    /// </code>
+    /// Evaluates to 
+    /// <c>true</c>.
+    /// </example>
     /// 
     /// <category index="11">Conjunctive Normal Form</category>
     val cnf: fm: formula<'a> -> formula<'a> when 'a: comparison

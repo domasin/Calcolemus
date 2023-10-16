@@ -237,9 +237,9 @@ let ``allsatvaluations should return the valuation for which subfn holds on atom
     let atms = atoms fm
     let satvals = allsatvaluations (eval fm) (fun _ -> false) atms
 
-    Assert.Equal(satvals[0] (P"p"), true)
-    Assert.Equal(satvals[0] (P"q"), true)
-    Assert.Equal(satvals[0] (P"x"), false)
+    Assert.Equal(true, satvals[0] (P"p"))
+    Assert.Equal(true,satvals[0] (P"q"))
+    Assert.Equal(false,satvals[0] (P"x"))
 
 [<Fact>]
 let ``allsatvaluations should return the valuations satisfying a fm if applied to eval fm.``() = 
@@ -274,8 +274,8 @@ let ``dnf_by_truth_tables should return the input formula in a dnf equivalent.``
     let dnf = fm |> dnf_by_truth_tables
     let dnf_string = dnf |> sprint_prop_formula
 
-    Assert.Equal(tautology(Iff(fm,dnf)),true)
-    Assert.Equal(dnf_string, @"`~p /\ q /\ r \/ p /\ ~q /\ ~r \/ p /\ q /\ ~r`")
+    Assert.Equal(true, tautology(Iff(fm,dnf)))
+    Assert.Equal(@"`~p /\ q /\ r \/ p /\ ~q /\ ~r \/ p /\ q /\ ~r`",dnf_string)
 
 [<Fact>]
 let ``distrib_naive should return the formula transformed via the distributive laws, if its immediate subformulas are in DNF.``() = 
@@ -366,5 +366,48 @@ let ``dnf should return a dnf of any kind of formula.``() =
 let ``dnf should return a dnf equivalent of the input.``() = 
     let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
     let dnf = dnf fm
-    Assert.Equal(dnf |> sprint_prop_formula, @"`p /\ ~r \/ q /\ r /\ ~p`")
-    Assert.Equal(tautology(mk_iff fm dnf), true)
+    Assert.Equal(@"`p /\ ~r \/ q /\ r /\ ~p`",dnf |> sprint_prop_formula)
+    Assert.Equal(true, tautology(mk_iff fm dnf))
+
+[<Fact>]
+let ``purecnf should return a cnf set of sets.``() = 
+    !> @"p ==> q" |> purecnf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal [["`q`"; "`~p`"]]
+
+[<Fact>]
+let ``purecnf keeps possible superfluous and subsumed conjuncts.``() = 
+    !> @"p \/ ~p" |> purecnf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal [["`p`"; "`~p`"]]
+
+[<Fact>]
+let ``simpcnf should return a cnf set of sets.``() = 
+    !> @"p ==> q" |> simpcnf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal [["`q`"; "`~p`"]]
+
+[<Fact>]
+let ``simpcnf removes possible superfluous and subsumed conjuncts.``() = 
+    !> @"p \/ ~p" |> simpcnf
+    |> List.map (fun xs -> 
+        xs
+        |> List.map sprint_prop_formula
+    )
+    |> should equal ([]:string list list)
+
+[<Fact>]
+let ``cnf should return a cnf equivalent of the input.``() = 
+    let fm = !> @"(p \/ q /\ r) /\ (~p \/ ~r)"
+    let cnf = cnf fm
+    Assert.Equal(@"`(p \/ q) /\ (p \/ r) /\ (~p \/ ~r)`", cnf |> sprint_prop_formula)
+    Assert.Equal(true, tautology(mk_iff fm cnf))

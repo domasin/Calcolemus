@@ -262,3 +262,31 @@ trivial [!>"p";!>"~p"]
 
 !> @"p ==> q"
 |> simpdnf
+
+!> "p ==> q"
+|> purecnf
+
+!> @"(p \/ ~p) /\ True"
+|> purecnf
+|> List.map list_disj
+|> list_conj
+
+!> @"(p \/ ~p) /\ True"
+|> cnf
+
+!> @"p \/ ~p"
+|> purecnf
+
+!> @"p \/ ~p"
+|> simpcnf
+
+purednf
+
+!> @"p \/ ~p"
+|> simpcnf
+
+!> @"p ==> False"
+|> cnf
+
+!> @"p ==> False"
+|> cnf
