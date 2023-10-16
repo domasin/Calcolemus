@@ -56,7 +56,8 @@
     <Compile Include="Formulas.fs" />
     <Compile Include="Prop.fsi" />
     <Compile Include="Prop.fs" />
-    <Compile Include="propexamples.fs" />
+    <Compile Include="Propexamples.fsi" />
+    <Compile Include="Propexamples.fs" />
     <Compile Include="defcnf.fs" />
     <Compile Include="DP.fsi" />
     <Compile Include="DP.fs" />
