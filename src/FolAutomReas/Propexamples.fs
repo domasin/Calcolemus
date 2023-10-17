@@ -88,7 +88,8 @@ module Propexamples =
     // Useful idiom.                                                          //
     // ---------------------------------------------------------------------- //
 
-    let conjoin f l = list_conj (List.map f l)
+    let conjoin f l = 
+        list_conj (List.map f l)
 
     // ---------------------------------------------------------------------- //
     // n-bit ripple carry adder with carry c(0) propagated in and c(n) out.   //

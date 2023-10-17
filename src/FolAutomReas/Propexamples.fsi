@@ -19,6 +19,10 @@ open FolAutomReas.Prop
 /// efficiency of propositional logic algorithms.
 /// </remarks>
 /// 
+/// <note>
+/// <b>This document is still in progress and needs to be rewritten better</b>
+/// </note>
+/// 
 /// <category index="3">Propositional logic</category>
 module Propexamples = 
 
@@ -69,18 +73,20 @@ module Propexamples =
     val ramsey: s: int -> t: int -> n: int -> formula<prop>
 
     /// <summary>
-    /// Sum of an half adder: <c>x &lt;=&gt; ~ y</c>.
+    /// Sum of an half adder.
+    /// <br />
+    /// <c>x &lt;=&gt; ~ y</c>.
     /// </summary>
     /// 
     /// <remarks>
     /// Generates the propositional formula whose truth value corresponds to 
-    /// the sum of an half adder, given the <c>x</c> and <c>y</c> digits to 
-    /// be summed also represented as prop formulas: <c>False</c> for 0, 
+    /// the sum of an half adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
+    /// be added also represented as prop formulas: <c>False</c> for 0, 
     /// <c>True</c> for 1.
     /// </remarks>
     /// 
-    /// <param name="x">The first digit to be summed.</param>
-    /// <param name="y">The second digit to be summed.</param>
+    /// <param name="x">The first one-bit-number to be added.</param>
+    /// <param name="y">The second one-bit-number to be added.</param>
     /// <returns>The half adder's sum of <c>x</c> + <c>y</c></returns>
     /// 
     /// <example id="halfsum-1">
@@ -110,7 +116,7 @@ module Propexamples =
     ///             (halfsum x y |> to01)
     /// printfn "-------------"
     /// </code>
-    /// After evaluation the following is printed to the to the <c>stdout</c>:
+    /// After evaluation the following is printed to the <c>stdout</c>:
     /// <code lang="fsharp">
     /// -------------
     /// | x | y | s |
@@ -128,18 +134,20 @@ module Propexamples =
       x: formula<'a> -> y: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Carry of an half adder: <c>x /\ y</c>.
+    /// Carry of an half adder.
+    /// <br />
+    /// <c>x /\ y</c>.
     /// </summary>
     /// 
     /// <remarks>
     /// Generates the propositional formulas whose truth value corresponds to 
-    /// the carry of an half adder, given the <c>x</c> and <c>y</c> digits to 
-    /// be summed also represented as prop formulas: <c>False</c> for 0 
+    /// the carry of an half adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
+    /// be added also represented as prop formulas: <c>False</c> for 0 
     /// <c>True</c> for 1.
     /// </remarks>
     /// 
-    /// <param name="x">The first digit to be summed.</param>
-    /// <param name="y">The second digit to be summed.</param>
+    /// <param name="x">The first one-bit-number to be added.</param>
+    /// <param name="y">The second one-bit-number to be added.</param>
     /// <returns>The half adder's carry of <c>x</c> + <c>y</c></returns>
     /// 
     /// <example id="halfcarry-1">
@@ -159,7 +167,7 @@ module Propexamples =
     ///   | true  -> 1
     /// 
     /// printfn "-------------"
-    /// printfn "| x | y | s |"
+    /// printfn "| x | y | c |"
     /// printfn "-------------"
     /// for x in [False;True] do 
     ///     for y in [False;True] do 
@@ -169,10 +177,10 @@ module Propexamples =
     ///             (halfcarry x y |> to01)
     /// printfn "-------------"
     /// </code>
-    /// After evaluation the following is printed to the to the <c>stdout</c>:
+    /// After evaluation the following is printed to the <c>stdout</c>:
     /// <code lang="fsharp">
     /// -------------
-    /// | x | y | s |
+    /// | x | y | c |
     /// -------------
     /// | 0 | 0 | 0 |
     /// | 0 | 1 | 0 |
@@ -188,38 +196,44 @@ module Propexamples =
 
     /// <summary>
     /// Half adder function.
+    /// <br />
+    /// <c>(s &lt;=&gt; x &lt;=&gt; ~y) /\ (c &lt;=&gt; x /\ y)</c>.
     /// </summary>
     /// 
     /// <remarks>
-    /// Generates a propositional formula that is a tautology if the input 
-    /// formulas represent respectively two digits <c>x</c> and <c>y</c> to be 
-    /// summed, the resulting sum <c>s</c> and the carry <c>c</c>.
+    /// An half adder calculates the sum and carry for only two 
+    /// one-bit-numbers.
+    /// <p></p>
+    /// <c>ha</c> generates a propositional formula that is true in those 
+    /// valuations in which <c>s</c> and <c>c</c> are, respectively, the sum 
+    /// and carry calculated by an half-adder for the sum of <c>x</c> and 
+    /// <c>y</c>.
     /// </remarks>
     /// 
-    /// <param name="x">The first digit to be summed.</param>
-    /// <param name="y">The second digit to be summed.</param>
+    /// <param name="x">The first one-bit-number to be added.</param>
+    /// <param name="y">The second one-bit-number to be added.</param>
     /// <param name="s">The supposed sum.</param>
     /// <param name="c">The supposed carry.</param>
     /// <returns>
-    /// The propositional formula that represents the intended relations 
-    /// between the input. In other words, a formula that is a tautology 
-    /// if <c>s</c> and <c>c</c> are the sum and carry of an half adder for 
-    /// the input digits <c>x</c> and <c>y</c>.
+    /// The propositional formula that is true in those valuations in which 
+    /// <c>s</c> and <c>c</c> are, respectively, the sum and carry calculated 
+    /// by an half-adder for the sum of <c>x</c> and <c>y</c>.
     /// </returns>
     /// 
     /// <example id="ha-1">
     /// <code lang="fsharp">
-    /// let fm = ha (True:prop formula) True False True
-    /// // evaluates to: `(false &lt;=&gt; true &lt;=&gt; ~true) /\ (true &lt;=&gt; true /\ true)`
-    /// tautology(fm)
+    /// ha (True:prop formula) True False True
     /// </code>
-    /// Evaluates to <c>true</c>.
+    /// Evaluates to <c>`(false &lt;=&gt; true &lt;=&gt; ~true) /\ (true &lt;=&gt; true /\ true)`</c>.
     /// </example>
     /// 
     /// <example id="ha-2">
-    /// Taking only the tautologies returned by the function 
-    /// gives an half adder:
+    /// Al the valuations satisfying the formula represent the correct 
+    /// relation between input and output of an half adder.
     /// <code lang="fsharp">
+    /// let fm = ha (!>"x") (!>"y") (!>"s") (!>"c")
+    /// // `(s &lt;=&gt; x &lt;=&gt; ~y) /\ (c &lt;=&gt; x /\ y)`
+    /// 
     /// let to01 fm = 
     ///   match eval fm (fun _ -> false) with
     ///   | false  -> 0
@@ -228,16 +242,18 @@ module Propexamples =
     /// printfn "-----------------"
     /// printfn "| x | y | c | s |"
     /// printfn "-----------------"
-    /// for x in [False;True] do 
-    ///     for y in [False;True] do 
-    ///         for c in [False;True] do 
-    ///             for s in [False;True] do 
-    ///                 if tautology(ha x y s c) then 
-    ///                     printfn "| %i | %i | %i | %i |" 
-    ///                       (x |> to01) (y |> to01) (c |> to01) (s |> to01)
+    /// 
+    /// (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    /// |> List.iter (fun v -> 
+    ///     printfn "| %A | %A | %A | %A |" 
+    ///         (to01 v (P "x"))
+    ///         (to01 v (P "y"))
+    ///         (to01 v (P "c"))
+    ///         (to01 v (P "s"))
+    /// )
     /// printfn "-----------------"
     /// </code>
-    /// After evaluation the following is printed to the to the <c>stdout</c>:
+    /// After evaluation the following is printed to the <c>stdout</c>:
     /// <code lang="fsharp">
     /// -----------------
     /// | x | y | c | s |
@@ -262,10 +278,62 @@ module Propexamples =
     /// 
     /// <remarks>
     /// Generates the propositional formula whose truth value corresponds to 
-    /// the carry of a full adder, given the <c>x</c> and <c>y</c> digits to 
-    /// be summed also represented as prop formulas: <c>False</c> for 0 
+    /// the carry of a full adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
+    /// be added also represented as prop formulas: <c>False</c> for 0 
     /// <c>True</c> for 1.
     /// </remarks>
+    /// 
+    /// <param name="x">The first one-bit-number to be added.</param>
+    /// <param name="y">The second one-bit-number to be added.</param>
+    /// <param name="z">The possibile carry of a previous sum.</param>
+    /// <returns>
+    /// The full adder's carry of <c>x</c> + <c>y</c> + <c>z</c>
+    /// </returns>
+    /// 
+    /// <example id="carry-1">
+    /// <code lang="fsharp">
+    /// carry (True:prop formula) False True
+    /// </code>
+    /// Evaluates to <c>`true /\ false \/ (true \/ false) /\ true`</c>.
+    /// </example>
+    /// 
+    /// <example id="carry-2">
+    /// The following shows the results of the function for each possible 
+    /// combination of the intended inputs:
+    /// <code lang="fsharp">
+    /// let to01 fm = 
+    ///   match eval fm (fun _ -> false) with
+    ///   | false  -> 0
+    ///   | true  -> 1
+    /// 
+    /// printfn "-----------------"
+    /// printfn "| x | y | z | c |"
+    /// printfn "-----------------"
+    /// for x in [False;True] do 
+    ///     for y in [False;True] do 
+    ///         for z in [False;True] do 
+    ///             printfn "| %i | %i | %i | %i |" 
+    ///                 (x |> to01) 
+    ///                 (y |> to01) 
+    ///                 (z |> to01) 
+    ///                 (carry x y z |> to01)
+    /// printfn "-----------------"
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// | x | y | z | c |
+    /// -----------------
+    /// | 0 | 0 | 0 | 0 |
+    /// | 0 | 0 | 1 | 0 |
+    /// | 0 | 1 | 0 | 0 |
+    /// | 0 | 1 | 1 | 1 |
+    /// | 1 | 0 | 0 | 0 |
+    /// | 1 | 0 | 1 | 1 |
+    /// | 1 | 1 | 0 | 1 |
+    /// | 1 | 1 | 1 | 1 |
+    /// -----------------
+    /// </code>
+    /// </example>
     /// 
     /// <category index="3">Full adder</category>
     val carry:
@@ -278,10 +346,62 @@ module Propexamples =
     /// 
     /// <remarks>
     /// Generates the propositional formula whose truth value corresponds to 
-    /// the sum of a full adder, given the <c>x</c> and <c>y</c> digits to 
-    /// be summed also represented as prop formulas: <c>False</c> for 0 
+    /// the sum of a full adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
+    /// be added also represented as prop formulas: <c>False</c> for 0 
     /// <c>True</c> for 1.
     /// </remarks>
+    /// 
+    /// <param name="x">The first one-bit-number to be added.</param>
+    /// <param name="y">The second one-bit-number to be added.</param>
+    /// <param name="z">The possibile carry of a previous sum.</param>
+    /// <returns>
+    /// The full adder's sum of <c>x</c> + <c>y</c> + <c>z</c>.
+    /// </returns>
+    /// 
+    /// <example id="sum-1">
+    /// <code lang="fsharp">
+    /// sum (True:prop formula) False True
+    /// </code>
+    /// Evaluates to <c>`(true &lt;=&gt; ~false) &lt;=&gt; ~true`</c>.
+    /// </example>
+    /// 
+    /// <example id="sum-2">
+    /// The following shows the results of the function for each possible 
+    /// combination of the intended inputs:
+    /// <code lang="fsharp">
+    /// let to01 fm = 
+    ///   match eval fm (fun _ -> false) with
+    ///   | false  -> 0
+    ///   | true  -> 1
+    /// 
+    /// printfn "-----------------"
+    /// printfn "| x | y | z | s |"
+    /// printfn "-----------------"
+    /// for x in [False;True] do 
+    ///     for y in [False;True] do 
+    ///         for z in [False;True] do 
+    ///             printfn "| %i | %i | %i | %i |" 
+    ///                 (x |> to01) 
+    ///                 (y |> to01) 
+    ///                 (z |> to01) 
+    ///                 (sum x y z |> to01)
+    /// printfn "-----------------"
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// | x | y | z | s |
+    /// -----------------
+    /// | 0 | 0 | 0 | 0 |
+    /// | 0 | 0 | 1 | 0 |
+    /// | 0 | 1 | 0 | 0 |
+    /// | 0 | 1 | 1 | 1 |
+    /// | 1 | 0 | 0 | 0 |
+    /// | 1 | 0 | 1 | 1 |
+    /// | 1 | 1 | 0 | 1 |
+    /// | 1 | 1 | 1 | 1 |
+    /// -----------------
+    /// </code>
+    /// </example>
     /// 
     /// <category index="3">Full adder</category>
     val sum:
@@ -293,11 +413,79 @@ module Propexamples =
     /// </summary>
     /// 
     /// <remarks>
-    /// Generates a propositional formula that is a tautology if the input 
-    /// formulas represent respectively two digits <c>x</c> and <c>y</c> to be 
-    /// summed, the <c>z</c> carry from a previous sum, the resulting sum 
-    /// <c>s</c> and the carry <c>c</c>.
+    /// A full adder is a one-bit adder that adds three one-bit-numbers: two 
+    /// operands <c>x</c> and <c>y</c> plus <c>z</c> that represent the 
+    /// carry from a previous sum.
+    /// <p></p>
+    /// <c>fa</c> generates a propositional formula that is a tautology if the 
+    /// input formulas represent three one-bit-numbers <c>x</c> and <c>y</c> 
+    /// to be added plus <c>z</c> (the previous sum carry), and <c>s</c> and 
+    /// <c>c</c>, respectively, the resulting sum and the carry as would be 
+    /// calculated by a full adder.
     /// </remarks>
+    /// 
+    /// <param name="x">The first one-bit-number to be added.</param>
+    /// <param name="y">The second one-bit-number to be added.</param>
+    /// <param name="z">The carry from a previous sum.</param>
+    /// <param name="s">The supposed sum.</param>
+    /// <param name="c">The supposed carry.</param>
+    /// <returns>
+    /// The propositional formula that represents the intended relations 
+    /// between the input. In other words, a formula that is a tautology 
+    /// if <c>s</c> and <c>c</c> are the sum and carry of a full adder for 
+    /// the input one-bit-numbers <c>x</c> and <c>y</c> to be added plus a carry 
+    /// <c>z</c> from a previous sum.
+    /// </returns>
+    /// 
+    /// <example id="fa-1">
+    /// <code lang="fsharp">
+    /// let fm = fa (True:prop formula) True True True True
+    /// // evaluates to: `(true &lt;=&gt; (true &lt;=&gt; ~true) &lt;=&gt; ~true) 
+    /// // /\ (true &lt;=&gt; true /\ true \/ (true \/ true) /\ true)`
+    /// tautology(fm)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="ha-2">
+    /// Taking only the tautologies returned by the function 
+    /// gives a full adder:
+    /// <code lang="fsharp">
+    /// let to01 fm = 
+    ///   match eval fm (fun _ -> false) with
+    ///   | false  -> 0
+    ///   | true  -> 1
+    /// 
+    /// printfn "---------------------"
+    /// printfn "| x | y | z | c | s |"
+    /// printfn "---------------------"
+    /// for x in [False;True] do 
+    ///     for y in [False;True] do 
+    ///         for z in [False;True] do 
+    ///             for c in [False;True] do 
+    ///                 for s in [False;True] do 
+    ///                     if tautology(fa x y z s c) then 
+    ///                         printfn "| %i | %i | %i | %i | %i |" 
+    ///                             (x |> to01) (y |> to01) (z |> to01) 
+    ///                             (c |> to01) (s |> to01)
+    /// printfn "---------------------"
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// ---------------------
+    /// | x | y | z | c | s |
+    /// ---------------------
+    /// | 0 | 0 | 0 | 0 | 0 |
+    /// | 0 | 0 | 1 | 0 | 1 |
+    /// | 0 | 1 | 0 | 0 | 1 |
+    /// | 0 | 1 | 1 | 1 | 0 |
+    /// | 1 | 0 | 0 | 0 | 1 |
+    /// | 1 | 0 | 1 | 1 | 0 |
+    /// | 1 | 1 | 0 | 1 | 0 |
+    /// | 1 | 1 | 1 | 1 | 1 |
+    /// ---------------------
+    /// </code>
+    /// </example>
     /// 
     /// <category index="3">Full adder</category>
     val fa:
@@ -307,16 +495,31 @@ module Propexamples =
         s: formula<'a> -> c: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Conjoins multiple full-adders.
+    /// Constructs a conjunction of the formulas obtained by applying a 
+    /// function (from indexes to formulas) to the elements of a list of 
+    /// indexes.
     /// </summary>
     /// 
     /// <remarks>
-    /// Given a function that creates a propositional formula from an index and 
-    /// a list of indexes, it puts multiple full-adders together into an n-bit 
-    /// adder.
-    /// <p></p>
-    /// It is an auxiliary function to define ripplecarry.
+    /// Its intended use, in our context, is to put multiple 1-bit adders 
+    /// together into an n-bit adder. Indexes, in this case, point the bit 
+    /// positions.
     /// </remarks>
+    /// 
+    /// <param name="f">A function from indexes to formulas.</param>
+    /// <param name="l">A list of indexes.</param>
+    /// 
+    /// <returns>
+    /// The conjunctions of the formulas obtained by applying <c>f</c>
+    /// to the elements of <c>l</c>.
+    /// </returns>
+    /// 
+    /// <example id="conjoin-1">
+    /// <code lang="fsharp">
+    /// conjoin Atom [1;2;3]
+    /// </code>
+    /// Evaluates to <c>And (Atom 1, And (Atom 2, Atom 3))</c>.
+    /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val conjoin:
@@ -324,13 +527,16 @@ module Propexamples =
         when 'b: equality
 
     /// <summary>
-    /// N-bit ripple carry adder with carry c(0) propagated in and c(n) out.  
+    /// <c>n</c>-bit ripple carry adder with carry <c>c 0</c> propagated in and 
+    /// <c>c n</c> out.  
     /// </summary>
     /// 
     /// <remarks>
+    /// 'Conjoins' <c>n</c> one-bit full adders to obtain an <c>n</c>-bit adder.
+    /// 
     /// Generates a propositional formula that represent a ripple-carry adder 
     /// circuit. Filtering the true rows of its truth table gives the sum and 
-    /// carry values for each digits.
+    /// carry values for each one-bit-numbers.
     /// 
     /// It expects the user to supply functions <c>x</c>, <c>y</c>, <c>out</c> 
     /// and <c>c</c> that, when given an index, generates an appropriate new 
@@ -342,6 +548,16 @@ module Propexamples =
     /// 
     /// <c>ripplecarry x y c out 2</c>
     /// </remarks>
+    /// 
+    /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
+    /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
+    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
+    /// 
+    /// <param name="n">The number of bits added by the ripplecarry adder.</param>
+    /// <returns>
+    /// The conjunction of the formulas that represent full adders for each 
+    /// bit (index)
+    /// </returns>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val ripplecarry:
