@@ -103,6 +103,12 @@
  efficiency of propositional logic algorithms.
  
     </p>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      <b>This document is still in progress and needs to be rewritten better</b>
+    </p>
   </div>
   <h3>
     Table of contents
@@ -408,7 +414,7 @@
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                        - 
-                      The first digit to be summed.
+                      The first one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -418,7 +424,7 @@
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                        - 
-                      The second digit to be summed.
+                      The second one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -448,10 +454,9 @@
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                   </span>
                   
- The propositional formula that represents the intended relations 
- between the input. In other words, a formula that is a tautology 
- if <code>s</code> and <code>c</code> are the sum and carry of an half adder for 
- the input digits <code>x</code> and <code>y</code>.
+ The propositional formula that is true in those valuations in which 
+ <code>s</code> and <code>c</code> are, respectively, the sum and carry calculated 
+ by an half-adder for the sum of <code>x</code> and <code>y</code>.
  
                   <br/>
                 </div>
@@ -477,15 +482,19 @@
                   <p class="fsdocs-summary">
                     
  Half adder function.
+ <br /><code>(s &lt;=&gt; x &lt;=&gt; ~y) /\ (c &lt;=&gt; x /\ y)</code>.
  
                   </p>
                 </div>
               </summary>
               <p class="fsdocs-remarks">
                 
- Generates a propositional formula that is a tautology if the input 
- formulas represent respectively two digits <code>x</code> and <code>y</code> to be 
- summed, the resulting sum <code>s</code> and the carry <code>c</code>.
+ An half adder calculates the sum and carry for only two 
+ one-bit-numbers.
+ <p></p><code>ha</code> generates a propositional formula that is true in those 
+ valuations in which <code>s</code> and <code>c</code> are, respectively, the sum 
+ and carry calculated by an half-adder for the sum of <code>x</code> and 
+ <code>y</code>.
  
               </p>
               <dl class="fsdocs-params">
@@ -498,7 +507,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The first digit to be summed.
+                    The first one-bit-number to be added.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -510,7 +519,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The second digit to be summed.
+                    The second one-bit-number to be added.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -548,10 +557,9 @@
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- The propositional formula that represents the intended relations 
- between the input. In other words, a formula that is a tautology 
- if <code>s</code> and <code>c</code> are the sum and carry of an half adder for 
- the input digits <code>x</code> and <code>y</code>.
+ The propositional formula that is true in those valuations in which 
+ <code>s</code> and <code>c</code> are, respectively, the sum and carry calculated 
+ by an half-adder for the sum of <code>x</code> and <code>y</code>.
  
                   </p>
                 </dd>
@@ -560,14 +568,11 @@
                 Example
               </h5>
               <p class="fsdocs-example" id="ha-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">fm</span> <span class="o">=</span> <span class="id">ha</span> <span class="pn">(</span><span class="id">True</span><span class="pn">:</span><span class="id">prop</span> <span class="id">formula</span><span class="pn">)</span> <span class="id">True</span> <span class="id">False</span> <span class="id">True</span>
- <span class="c">// evaluates to: `(false &lt;=&gt; true &lt;=&gt; ~true) /\ (true &lt;=&gt; true /\ true)`</span>
- <span class="id">tautology</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">fm</span><span class="pn">)</span>
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">ha</span> <span class="pn">(</span><span class="id">True</span><span class="pn">:</span><span class="id">prop</span> <span class="id">formula</span><span class="pn">)</span> <span class="id">True</span> <span class="id">False</span> <span class="id">True</span>
 </code></pre>
-<div class="fsdocs-tip" id="fs1">val fm: obj</div>
 
 
- Evaluates to <code>true</code>.
+ Evaluates to <code>`(false &lt;=&gt; true &lt;=&gt; ~true) /\ (true &lt;=&gt; true /\ true)`</code>.
  
               </p>
               <h5 class="fsdocs-example-header">
@@ -575,35 +580,55 @@
               </h5>
               <p class="fsdocs-example" id="ha-2">
                 
- Taking only the tautologies returned by the function 
- gives an half adder:
- <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">fm</span> <span class="o">=</span> 
-   <span class="k">match</span> <span class="id">eval</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="id">fm</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span class="k">false</span><span class="pn">)</span> <span class="k">with</span>
+ Al the valuations satisfying the formula represent the correct 
+ relation between input and output of an half adder.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">fm</span> <span class="o">=</span> <span class="id">ha</span> <span class="pn">(</span><span class="o">!&gt;</span><span class="s">&quot;x&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="o">!&gt;</span><span class="s">&quot;y&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="o">!&gt;</span><span class="s">&quot;s&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="o">!&gt;</span><span class="s">&quot;c&quot;</span><span class="pn">)</span>
+ <span class="c">// `(s &lt;=&gt; x &lt;=&gt; ~y) /\ (c &lt;=&gt; x /\ y)`</span>
+ 
+ <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="fn">fm</span> <span class="o">=</span> 
+   <span class="k">match</span> <span class="id">eval</span> <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="id">fm</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span class="k">false</span><span class="pn">)</span> <span class="k">with</span>
    <span class="pn">|</span> <span class="k">false</span>  <span class="k">-&gt;</span> <span class="n">0</span>
    <span class="pn">|</span> <span class="k">true</span>  <span class="k">-&gt;</span> <span class="n">1</span>
  
- <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
- <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">printfn</span> <span class="s">&quot;| x | y | c | s |&quot;</span>
- <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
- <span class="k">for</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">x</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
-     <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="fn">y</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
-         <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="fn">c</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
-             <span class="k">for</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="fn">s</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
-                 <span class="k">if</span> <span class="id">tautology</span><span class="pn">(</span><span class="id">ha</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="id">x</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="id">y</span> <span onmouseout="hideTip(event, 'fs7', 13)" onmouseover="showTip(event, 'fs7', 13)" class="id">s</span> <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="id">c</span><span class="pn">)</span> <span class="k">then</span> 
-                     <span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="fn">printfn</span> <span class="s">&quot;| </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> |&quot;</span> 
-                       <span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="fn">x</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 17)" onmouseover="showTip(event, 'fs1', 17)" class="fn">to01</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 18)" onmouseover="showTip(event, 'fs5', 18)" class="fn">y</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 19)" onmouseover="showTip(event, 'fs1', 19)" class="fn">to01</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs6', 20)" onmouseover="showTip(event, 'fs6', 20)" class="fn">c</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 21)" onmouseover="showTip(event, 'fs1', 21)" class="fn">to01</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs7', 22)" onmouseover="showTip(event, 'fs7', 22)" class="fn">s</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 23)" onmouseover="showTip(event, 'fs1', 23)" class="fn">to01</span><span class="pn">)</span>
- <span onmouseout="hideTip(event, 'fs3', 24)" onmouseover="showTip(event, 'fs3', 24)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="fn">printfn</span> <span class="s">&quot;| x | y | c | s |&quot;</span>
+ <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ 
+ <span class="pn">(</span><span class="id">allsatvaluations</span> <span class="pn">(</span><span class="id">eval</span> <span onmouseout="hideTip(event, 'fs1', 8)" onmouseover="showTip(event, 'fs1', 8)" class="id">fm</span><span class="pn">)</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span class="k">false</span><span class="pn">)</span> <span class="pn">(</span><span class="id">atoms</span> <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="id">fm</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">v</span> <span class="k">-&gt;</span> 
+     <span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="fn">printfn</span> <span class="s">&quot;| </span><span class="pf">%A</span><span class="s"> | </span><span class="pf">%A</span><span class="s"> | </span><span class="pf">%A</span><span class="s"> | </span><span class="pf">%A</span><span class="s"> |&quot;</span> 
+         <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 14)" onmouseover="showTip(event, 'fs2', 14)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="fn">v</span> <span class="pn">(</span><span class="id">P</span> <span class="s">&quot;x&quot;</span><span class="pn">)</span><span class="pn">)</span>
+         <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 16)" onmouseover="showTip(event, 'fs2', 16)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs7', 17)" onmouseover="showTip(event, 'fs7', 17)" class="fn">v</span> <span class="pn">(</span><span class="id">P</span> <span class="s">&quot;y&quot;</span><span class="pn">)</span><span class="pn">)</span>
+         <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 18)" onmouseover="showTip(event, 'fs2', 18)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs7', 19)" onmouseover="showTip(event, 'fs7', 19)" class="fn">v</span> <span class="pn">(</span><span class="id">P</span> <span class="s">&quot;c&quot;</span><span class="pn">)</span><span class="pn">)</span>
+         <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 20)" onmouseover="showTip(event, 'fs2', 20)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs7', 21)" onmouseover="showTip(event, 'fs7', 21)" class="fn">v</span> <span class="pn">(</span><span class="id">P</span> <span class="s">&quot;s&quot;</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="pn">)</span>
+ <span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
 </code></pre>
-<div class="fsdocs-tip" id="fs1">val to01: fm: &#39;a -&gt; int</div>
-<div class="fsdocs-tip" id="fs2">val fm: &#39;a</div>
-<div class="fsdocs-tip" id="fs3">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
-<div class="fsdocs-tip" id="fs4">val x: obj</div>
-<div class="fsdocs-tip" id="fs5">val y: obj</div>
-<div class="fsdocs-tip" id="fs6">val c: obj</div>
-<div class="fsdocs-tip" id="fs7">val s: obj</div>
+<div class="fsdocs-tip" id="fs1">val fm: obj</div>
+<div class="fsdocs-tip" id="fs2">val to01: fm: &#39;a -&gt; int</div>
+<div class="fsdocs-tip" id="fs3">val fm: &#39;a</div>
+<div class="fsdocs-tip" id="fs4">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs5">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs6">val iter: action: (&#39;T -&gt; unit) -&gt; list: &#39;T list -&gt; unit</div>
+<div class="fsdocs-tip" id="fs7">val v: obj</div>
 
 
- After evaluation the following is printed to the to the <code>stdout</code>:
+ After evaluation the following is printed to the <code>stdout</code>:
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="o">-----------------</span>
  <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">c</span> <span class="pn">|</span> <span class="id">s</span> <span class="pn">|</span>
  <span class="o">-----------------</span>
@@ -646,7 +671,7 @@
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                        - 
-                      The first digit to be summed.
+                      The first one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -656,7 +681,7 @@
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                        - 
-                      The second digit to be summed.
+                      The second one-bit-number to be added.
                     </span>
                     <br/>
                   </ul>
@@ -689,7 +714,8 @@
                   </a>
                   <p class="fsdocs-summary">
                     
- Carry of an half adder: <code>x /\ y</code>.
+ Carry of an half adder.
+ <br /><code>x /\ y</code>.
  
                   </p>
                 </div>
@@ -697,8 +723,8 @@
               <p class="fsdocs-remarks">
                 
  Generates the propositional formulas whose truth value corresponds to 
- the carry of an half adder, given the <code>x</code> and <code>y</code> digits to 
- be summed also represented as prop formulas: <code>False</code> for 0 
+ the carry of an half adder, given the <code>x</code> and <code>y</code> one-bit-numbers to 
+ be added also represented as prop formulas: <code>False</code> for 0 
  <code>True</code> for 1.
  
               </p>
@@ -712,7 +738,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The first digit to be summed.
+                    The first one-bit-number to be added.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -724,7 +750,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The second digit to be summed.
+                    The second one-bit-number to be added.
                   </p>
                 </dd>
               </dl>
@@ -765,7 +791,7 @@
    <span class="pn">|</span> <span class="k">true</span>  <span class="k">-&gt;</span> <span class="n">1</span>
  
  <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="fn">printfn</span> <span class="s">&quot;-------------&quot;</span>
- <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">printfn</span> <span class="s">&quot;| x | y | s |&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">printfn</span> <span class="s">&quot;| x | y | c |&quot;</span>
  <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">printfn</span> <span class="s">&quot;-------------&quot;</span>
  <span class="k">for</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">x</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
      <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="fn">y</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
@@ -782,9 +808,9 @@
 <div class="fsdocs-tip" id="fs5">val y: obj</div>
 
 
- After evaluation the following is printed to the to the <code>stdout</code>:
+ After evaluation the following is printed to the <code>stdout</code>:
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="o">-------------</span>
- <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">s</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">c</span> <span class="pn">|</span>
  <span class="o">-------------</span>
  <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
  <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
@@ -825,7 +851,7 @@
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                        - 
-                      The first digit to be summed.
+                      The first one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -835,7 +861,7 @@
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                        - 
-                      The second digit to be summed.
+                      The second one-bit-number to be added.
                     </span>
                     <br/>
                   </ul>
@@ -868,7 +894,8 @@
                   </a>
                   <p class="fsdocs-summary">
                     
- Sum of an half adder: <code>x &lt;=&gt; ~ y</code>.
+ Sum of an half adder.
+ <br /><code>x &lt;=&gt; ~ y</code>.
  
                   </p>
                 </div>
@@ -876,8 +903,8 @@
               <p class="fsdocs-remarks">
                 
  Generates the propositional formula whose truth value corresponds to 
- the sum of an half adder, given the <code>x</code> and <code>y</code> digits to 
- be summed also represented as prop formulas: <code>False</code> for 0, 
+ the sum of an half adder, given the <code>x</code> and <code>y</code> one-bit-numbers to 
+ be added also represented as prop formulas: <code>False</code> for 0, 
  <code>True</code> for 1.
  
               </p>
@@ -891,7 +918,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The first digit to be summed.
+                    The first one-bit-number to be added.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -903,7 +930,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The second digit to be summed.
+                    The second one-bit-number to be added.
                   </p>
                 </dd>
               </dl>
@@ -961,7 +988,7 @@
 <div class="fsdocs-tip" id="fs5">val y: obj</div>
 
 
- After evaluation the following is printed to the to the <code>stdout</code>:
+ After evaluation the following is printed to the <code>stdout</code>:
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="o">-------------</span>
  <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">s</span> <span class="pn">|</span>
  <span class="o">-------------</span>
@@ -1033,6 +1060,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -1041,6 +1070,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -1049,6 +1080,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The possibile carry of a previous sum.
                     </span>
                     <br/>
                   </ul>
@@ -1057,6 +1090,8 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                   </span>
+                  
+ The full adder's carry of <code>x</code> + <code>y</code> + <code>z</code>
                   <br/>
                 </div>
               </div>
@@ -1088,8 +1123,8 @@
               <p class="fsdocs-remarks">
                 
  Generates the propositional formula whose truth value corresponds to 
- the carry of a full adder, given the <code>x</code> and <code>y</code> digits to 
- be summed also represented as prop formulas: <code>False</code> for 0 
+ the carry of a full adder, given the <code>x</code> and <code>y</code> one-bit-numbers to 
+ be added also represented as prop formulas: <code>False</code> for 0 
  <code>True</code> for 1.
  
               </p>
@@ -1101,7 +1136,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first one-bit-number to be added.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     y
@@ -1109,7 +1148,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second one-bit-number to be added.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     z
@@ -1117,7 +1160,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The possibile carry of a previous sum.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1126,8 +1173,73 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The full adder's carry of <code>x</code> + <code>y</code> + <code>z</code>
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="carry-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">carry</span> <span class="pn">(</span><span class="id">True</span><span class="pn">:</span><span class="id">prop</span> <span class="id">formula</span><span class="pn">)</span> <span class="id">False</span> <span class="id">True</span>
+</code></pre>
+
+
+ Evaluates to <code>`true /\ false \/ (true \/ false) /\ true`</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="carry-2">
+                
+ The following shows the results of the function for each possible 
+ combination of the intended inputs:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">fm</span> <span class="o">=</span> 
+   <span class="k">match</span> <span class="id">eval</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="id">fm</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span class="k">false</span><span class="pn">)</span> <span class="k">with</span>
+   <span class="pn">|</span> <span class="k">false</span>  <span class="k">-&gt;</span> <span class="n">0</span>
+   <span class="pn">|</span> <span class="k">true</span>  <span class="k">-&gt;</span> <span class="n">1</span>
+ 
+ <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">printfn</span> <span class="s">&quot;| x | y | z | c |&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">x</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+     <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="fn">y</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+         <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="fn">z</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+             <span onmouseout="hideTip(event, 'fs3', 10)" onmouseover="showTip(event, 'fs3', 10)" class="fn">printfn</span> <span class="s">&quot;| </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> |&quot;</span> 
+                 <span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="fn">x</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 12)" onmouseover="showTip(event, 'fs1', 12)" class="fn">to01</span><span class="pn">)</span> 
+                 <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="fn">y</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 14)" onmouseover="showTip(event, 'fs1', 14)" class="fn">to01</span><span class="pn">)</span> 
+                 <span class="pn">(</span><span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="fn">z</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 16)" onmouseover="showTip(event, 'fs1', 16)" class="fn">to01</span><span class="pn">)</span> 
+                 <span class="pn">(</span><span class="id">carry</span> <span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">x</span> <span onmouseout="hideTip(event, 'fs5', 18)" onmouseover="showTip(event, 'fs5', 18)" class="id">y</span> <span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="id">z</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 20)" onmouseover="showTip(event, 'fs1', 20)" class="fn">to01</span><span class="pn">)</span>
+ <span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val to01: fm: &#39;a -&gt; int</div>
+<div class="fsdocs-tip" id="fs2">val fm: &#39;a</div>
+<div class="fsdocs-tip" id="fs3">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs4">val x: obj</div>
+<div class="fsdocs-tip" id="fs5">val y: obj</div>
+<div class="fsdocs-tip" id="fs6">val z: obj</div>
+
+
+ After evaluation the following is printed to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">z</span> <span class="pn">|</span> <span class="id">c</span> <span class="pn">|</span>
+ <span class="o">-----------------</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="o">-----------------</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>
@@ -1157,6 +1269,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -1165,6 +1279,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -1173,6 +1289,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The carry from a previous sum.
                     </span>
                     <br/>
                     <span>
@@ -1181,6 +1299,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed sum.
                     </span>
                     <br/>
                     <span>
@@ -1189,6 +1309,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed carry.
                     </span>
                     <br/>
                   </ul>
@@ -1197,6 +1319,13 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                   </span>
+                  
+ The propositional formula that represents the intended relations 
+ between the input. In other words, a formula that is a tautology 
+ if <code>s</code> and <code>c</code> are the sum and carry of a full adder for 
+ the input one-bit-numbers <code>x</code> and <code>y</code> to be added plus a carry 
+ <code>z</code> from a previous sum.
+ 
                   <br/>
                 </div>
               </div>
@@ -1227,10 +1356,14 @@
               </summary>
               <p class="fsdocs-remarks">
                 
- Generates a propositional formula that is a tautology if the input 
- formulas represent respectively two digits <code>x</code> and <code>y</code> to be 
- summed, the <code>z</code> carry from a previous sum, the resulting sum 
- <code>s</code> and the carry <code>c</code>.
+ A full adder is a one-bit adder that adds three one-bit-numbers: two 
+ operands <code>x</code> and <code>y</code> plus <code>z</code> that represent the 
+ carry from a previous sum.
+ <p></p><code>fa</code> generates a propositional formula that is a tautology if the 
+ input formulas represent three one-bit-numbers <code>x</code> and <code>y</code> 
+ to be added plus <code>z</code> (the previous sum carry), and <code>s</code> and 
+ <code>c</code>, respectively, the resulting sum and the carry as would be 
+ calculated by a full adder.
  
               </p>
               <dl class="fsdocs-params">
@@ -1241,7 +1374,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first one-bit-number to be added.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     y
@@ -1249,7 +1386,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second one-bit-number to be added.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     z
@@ -1257,7 +1398,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The carry from a previous sum.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     s
@@ -1265,7 +1410,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed sum.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     c
@@ -1273,7 +1422,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed carry.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1282,8 +1435,86 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The propositional formula that represents the intended relations 
+ between the input. In other words, a formula that is a tautology 
+ if <code>s</code> and <code>c</code> are the sum and carry of a full adder for 
+ the input one-bit-numbers <code>x</code> and <code>y</code> to be added plus a carry 
+ <code>z</code> from a previous sum.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="fa-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">fm</span> <span class="o">=</span> <span class="id">fa</span> <span class="pn">(</span><span class="id">True</span><span class="pn">:</span><span class="id">prop</span> <span class="id">formula</span><span class="pn">)</span> <span class="id">True</span> <span class="id">True</span> <span class="id">True</span> <span class="id">True</span>
+ <span class="c">// evaluates to: `(true &lt;=&gt; (true &lt;=&gt; ~true) &lt;=&gt; ~true) </span>
+ <span class="c">// /\ (true &lt;=&gt; true /\ true \/ (true \/ true) /\ true)`</span>
+ <span class="id">tautology</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">fm</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val fm: obj</div>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="ha-2">
+                
+ Taking only the tautologies returned by the function 
+ gives a full adder:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">fm</span> <span class="o">=</span> 
+   <span class="k">match</span> <span class="id">eval</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="id">fm</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span class="k">false</span><span class="pn">)</span> <span class="k">with</span>
+   <span class="pn">|</span> <span class="k">false</span>  <span class="k">-&gt;</span> <span class="n">0</span>
+   <span class="pn">|</span> <span class="k">true</span>  <span class="k">-&gt;</span> <span class="n">1</span>
+ 
+ <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="fn">printfn</span> <span class="s">&quot;---------------------&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">printfn</span> <span class="s">&quot;| x | y | z | c | s |&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">printfn</span> <span class="s">&quot;---------------------&quot;</span>
+ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">x</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+     <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="fn">y</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+         <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="fn">z</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+             <span class="k">for</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="fn">c</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+                 <span class="k">for</span> <span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="fn">s</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+                     <span class="k">if</span> <span class="id">tautology</span><span class="pn">(</span><span class="id">fa</span> <span onmouseout="hideTip(event, 'fs4', 12)" onmouseover="showTip(event, 'fs4', 12)" class="id">x</span> <span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="id">y</span> <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="id">z</span> <span onmouseout="hideTip(event, 'fs8', 15)" onmouseover="showTip(event, 'fs8', 15)" class="id">s</span> <span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="id">c</span><span class="pn">)</span> <span class="k">then</span> 
+                         <span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="fn">printfn</span> <span class="s">&quot;| </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> |&quot;</span> 
+                             <span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 18)" onmouseover="showTip(event, 'fs4', 18)" class="fn">x</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 19)" onmouseover="showTip(event, 'fs1', 19)" class="fn">to01</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 20)" onmouseover="showTip(event, 'fs5', 20)" class="fn">y</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 21)" onmouseover="showTip(event, 'fs1', 21)" class="fn">to01</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="fn">z</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 23)" onmouseover="showTip(event, 'fs1', 23)" class="fn">to01</span><span class="pn">)</span> 
+                             <span class="pn">(</span><span onmouseout="hideTip(event, 'fs7', 24)" onmouseover="showTip(event, 'fs7', 24)" class="fn">c</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 25)" onmouseover="showTip(event, 'fs1', 25)" class="fn">to01</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 26)" onmouseover="showTip(event, 'fs8', 26)" class="fn">s</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 27)" onmouseover="showTip(event, 'fs1', 27)" class="fn">to01</span><span class="pn">)</span>
+ <span onmouseout="hideTip(event, 'fs3', 28)" onmouseover="showTip(event, 'fs3', 28)" class="fn">printfn</span> <span class="s">&quot;---------------------&quot;</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val to01: fm: &#39;a -&gt; int</div>
+<div class="fsdocs-tip" id="fs2">val fm: &#39;a</div>
+<div class="fsdocs-tip" id="fs3">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs4">val x: obj</div>
+<div class="fsdocs-tip" id="fs5">val y: obj</div>
+<div class="fsdocs-tip" id="fs6">val z: obj</div>
+<div class="fsdocs-tip" id="fs7">val c: obj</div>
+<div class="fsdocs-tip" id="fs8">val s: obj</div>
+
+
+ After evaluation the following is printed to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="o">---------------------</span>
+ <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">z</span> <span class="pn">|</span> <span class="id">c</span> <span class="pn">|</span> <span class="id">s</span> <span class="pn">|</span>
+ <span class="o">---------------------</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="o">---------------------</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>
@@ -1313,6 +1544,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -1321,6 +1554,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second one-bit-number to be added.
                     </span>
                     <br/>
                     <span>
@@ -1329,6 +1564,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The possibile carry of a previous sum.
                     </span>
                     <br/>
                   </ul>
@@ -1337,6 +1574,9 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                   </span>
+                  
+ The full adder's sum of <code>x</code> + <code>y</code> + <code>z</code>.
+ 
                   <br/>
                 </div>
               </div>
@@ -1368,8 +1608,8 @@
               <p class="fsdocs-remarks">
                 
  Generates the propositional formula whose truth value corresponds to 
- the sum of a full adder, given the <code>x</code> and <code>y</code> digits to 
- be summed also represented as prop formulas: <code>False</code> for 0 
+ the sum of a full adder, given the <code>x</code> and <code>y</code> one-bit-numbers to 
+ be added also represented as prop formulas: <code>False</code> for 0 
  <code>True</code> for 1.
  
               </p>
@@ -1381,7 +1621,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first one-bit-number to be added.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     y
@@ -1389,7 +1633,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second one-bit-number to be added.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     z
@@ -1397,7 +1645,11 @@
                   :
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The possibile carry of a previous sum.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1406,8 +1658,74 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The full adder's sum of <code>x</code> + <code>y</code> + <code>z</code>.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="sum-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">sum</span> <span class="pn">(</span><span class="id">True</span><span class="pn">:</span><span class="id">prop</span> <span class="id">formula</span><span class="pn">)</span> <span class="id">False</span> <span class="id">True</span>
+</code></pre>
+
+
+ Evaluates to <code>`(true &lt;=&gt; ~false) &lt;=&gt; ~true`</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="sum-2">
+                
+ The following shows the results of the function for each possible 
+ combination of the intended inputs:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">to01</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">fm</span> <span class="o">=</span> 
+   <span class="k">match</span> <span class="id">eval</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="id">fm</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span class="k">false</span><span class="pn">)</span> <span class="k">with</span>
+   <span class="pn">|</span> <span class="k">false</span>  <span class="k">-&gt;</span> <span class="n">0</span>
+   <span class="pn">|</span> <span class="k">true</span>  <span class="k">-&gt;</span> <span class="n">1</span>
+ 
+ <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">printfn</span> <span class="s">&quot;| x | y | z | s |&quot;</span>
+ <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">x</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+     <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="fn">y</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+         <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="fn">z</span> <span class="k">in</span> <span class="pn">[</span><span class="id">False</span><span class="pn">;</span><span class="id">True</span><span class="pn">]</span> <span class="k">do</span> 
+             <span onmouseout="hideTip(event, 'fs3', 10)" onmouseover="showTip(event, 'fs3', 10)" class="fn">printfn</span> <span class="s">&quot;| </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> | </span><span class="pf">%i</span><span class="s"> |&quot;</span> 
+                 <span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="fn">x</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 12)" onmouseover="showTip(event, 'fs1', 12)" class="fn">to01</span><span class="pn">)</span> 
+                 <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="fn">y</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 14)" onmouseover="showTip(event, 'fs1', 14)" class="fn">to01</span><span class="pn">)</span> 
+                 <span class="pn">(</span><span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="fn">z</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 16)" onmouseover="showTip(event, 'fs1', 16)" class="fn">to01</span><span class="pn">)</span> 
+                 <span class="pn">(</span><span class="id">sum</span> <span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">x</span> <span onmouseout="hideTip(event, 'fs5', 18)" onmouseover="showTip(event, 'fs5', 18)" class="id">y</span> <span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="id">z</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 20)" onmouseover="showTip(event, 'fs1', 20)" class="fn">to01</span><span class="pn">)</span>
+ <span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="fn">printfn</span> <span class="s">&quot;-----------------&quot;</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val to01: fm: &#39;a -&gt; int</div>
+<div class="fsdocs-tip" id="fs2">val fm: &#39;a</div>
+<div class="fsdocs-tip" id="fs3">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs4">val x: obj</div>
+<div class="fsdocs-tip" id="fs5">val y: obj</div>
+<div class="fsdocs-tip" id="fs6">val z: obj</div>
+
+
+ After evaluation the following is printed to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">|</span> <span class="id">x</span> <span class="pn">|</span> <span class="id">y</span> <span class="pn">|</span> <span class="id">z</span> <span class="pn">|</span> <span class="id">s</span> <span class="pn">|</span>
+ <span class="o">-----------------</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">0</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span> <span class="n">1</span> <span class="pn">|</span>
+ <span class="o">-----------------</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>
@@ -1467,6 +1785,8 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></span></code>
+                       - 
+                      A function from indexes to formulas.
                     </span>
                     <br/>
                     <span>
@@ -1475,6 +1795,8 @@
                       </b>
                       :
                       <code><span>'a&#32;list</span></code>
+                       - 
+                      A list of indexes.
                     </span>
                     <br/>
                   </ul>
@@ -1483,6 +1805,10 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></code>
                   </span>
+                  
+ The conjunctions of the formulas obtained by applying <code>f</code>
+ to the elements of <code>l</code>.
+ 
                   <br/>
                 </div>
               </div>
@@ -1506,18 +1832,18 @@
                   </a>
                   <p class="fsdocs-summary">
                     
- Conjoins multiple full-adders.
+ Constructs a conjunction of the formulas obtained by applying a 
+ function (from indexes to formulas) to the elements of a list of 
+ indexes.
  
                   </p>
                 </div>
               </summary>
               <p class="fsdocs-remarks">
                 
- Given a function that creates a propositional formula from an index and 
- a list of indexes, it puts multiple full-adders together into an n-bit 
- adder.
- <p></p>
- It is an auxiliary function to define ripplecarry.
+ Its intended use, in our context, is to put multiple 1-bit adders 
+ together into an n-bit adder. Indexes, in this case, point the bit 
+ positions.
  
               </p>
               <dl class="fsdocs-params">
@@ -1528,7 +1854,11 @@
                   :
                   <code><span>'a&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A function from indexes to formulas.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     l
@@ -1536,7 +1866,11 @@
                   :
                   <code><span>'a&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A list of indexes.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1545,8 +1879,26 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'b&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The conjunctions of the formulas obtained by applying <code>f</code>
+ to the elements of <code>l</code>.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="conjoin-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">conjoin</span> <span class="id">Atom</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">3</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>And (Atom 1, And (Atom 2, Atom 3))</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -1609,7 +1961,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L101-101" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L102-102" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1727,7 +2079,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L104-104" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1810,6 +2162,8 @@
                       </b>
                       :
                       <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                       - 
+                      A function that, given an index, returns a variable for the value of the first addend at that bit (index).
                     </span>
                     <br/>
                     <span>
@@ -1818,6 +2172,8 @@
                       </b>
                       :
                       <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                       - 
+                      A function that, given an index, returns a variable for the value of the second addend at that bit (index).
                     </span>
                     <br/>
                     <span>
@@ -1826,6 +2182,8 @@
                       </b>
                       :
                       <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                       - 
+                      A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).
                     </span>
                     <br/>
                     <span>
@@ -1842,6 +2200,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The number of bits added by the ripplecarry adder.
                     </span>
                     <br/>
                   </ul>
@@ -1850,6 +2210,10 @@
                     Returns: 
                     <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                   </span>
+                  
+ The conjunction of the formulas that represent full adders for each 
+ bit (index)
+ 
                   <br/>
                 </div>
               </div>
@@ -1867,22 +2231,24 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L97-97" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    
- N-bit ripple carry adder with carry c(0) propagated in and c(n) out.  
+                    <code>n</code>-bit ripple carry adder with carry <code>c 0</code> propagated in and 
+ <code>c n</code> out.  
  
                   </p>
                 </div>
               </summary>
               <p class="fsdocs-remarks">
                 
+ 'Conjoins' <code>n</code> one-bit full adders to obtain an <code>n</code>-bit adder.
+ 
  Generates a propositional formula that represent a ripple-carry adder 
  circuit. Filtering the true rows of its truth table gives the sum and 
- carry values for each digits.
+ carry values for each one-bit-numbers.
  
  It expects the user to supply functions <code>x</code>, <code>y</code>, <code>out</code> 
  and <code>c</code> that, when given an index, generates an appropriate new 
@@ -1900,7 +2266,11 @@
                   :
                   <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A function that, given an index, returns a variable for the value of the first addend at that bit (index).
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     y
@@ -1908,7 +2278,11 @@
                   :
                   <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A function that, given an index, returns a variable for the value of the second addend at that bit (index).
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     c
@@ -1916,7 +2290,11 @@
                   :
                   <code><span>int&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     out
@@ -1932,7 +2310,11 @@
                   :
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The number of bits added by the ripplecarry adder.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1941,7 +2323,14 @@
                   </span>
                   <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The conjunction of the formulas that represent full adders for each 
+ bit (index)
+ 
+                  </p>
+                </dd>
               </dl>
             </details>
           </td>
@@ -2029,7 +2418,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L110-110" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L111-111" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2182,7 +2571,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L117-117" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2408,7 +2797,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L124-124" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L125-125" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2570,7 +2959,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L141-141" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L142-142" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2689,7 +3078,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L121-121" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2811,7 +3200,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L122-122" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L123-123" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2978,7 +3367,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L184-184" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L185-185" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3134,7 +3523,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L180-180" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L181-181" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3297,7 +3686,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L204-204" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L205-205" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3390,7 +3779,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L202-202" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L203-203" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3490,7 +3879,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L206-206" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L207-207" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3591,7 +3980,7 @@
                     <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L210-210" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Propexamples.fs#L211-211" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/FolAutomReas/content/img/github.png" class="normal"/>
                     <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
                   </a>
