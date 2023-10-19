@@ -1,12 +1,9 @@
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
-open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Propexamples
-open FolAutomReas.Lib.List
-open System
-open FolAutomReas.Lib.Fpf
 
+// open FolAutomReas.Formulas
 // fsi.AddPrinter sprint_prop_formula
 
 ramsey 2 2 3
@@ -35,20 +32,17 @@ allvaluations fm
 )
 printfn "-----------------"
 
-let fm' = fa (!>"x") (!>"y") (!>"z") (!>"s") (!>"c")
+let fa = fa (!>"x") (!>"y") (!>"z") (!>"s") (!>"c")
 // `(s <=> (x <=> ~y) <=> ~z) /\ (c <=> x /\ y \/ (x \/ y) /\ z)`
-
-let atInd' (v: prop -> bool) (i:int) vName = 
-    v (P (vName)) |> System.Convert.ToInt32
 
 printfn "---------------------"
 printfn "| x | y | z | c | s |"
 printfn "---------------------"
  
-(allsatvaluations (eval fm') (fun _ -> false) (atoms fm'))
+(allsatvaluations (eval fa) (fun _ -> false) (atoms fa))
 |> List.iter (fun v -> 
     printfn "| %A | %A | %A | %A | %A |" 
-        (atInd' v 0 "x")
+        (v (P "x") |> System.Convert.ToInt32)
         (v (P "y") |> System.Convert.ToInt32)
         (v (P "z") |> System.Convert.ToInt32)
         (v (P "c") |> System.Convert.ToInt32)
@@ -63,19 +57,17 @@ let x, y, s, c =
     mk_index "c"
 
 // 2-bit ripple carry adder
-let fm'' = ripplecarry x y c s 2
+let rc = ripplecarry x y c s 2
 // ((s_0 <=> (x_0 <=> ~y_0) <=> ~c_0) /\ (c_1 <=> x_0 /\ y_0 \/ 
 // (x_0 \/ y_0) /\ c_0)) /\ 
 // (s_1 <=> (x_1 <=> ~y_1) <=> ~c_1) /\ (c_2 <=> x_1 /\ y_1 \/ 
 // (x_1 \/ y_1) /\ c_1)
 
-print_truthtable fm''
-
 // eval the atom at the input valuations and convert to int
 let toInt (v: prop -> bool) x =
     v (P x) |> System.Convert.ToInt32
 
-allsatvaluations (eval fm'') (fun _ -> false) (atoms fm'')
+allsatvaluations (eval rc) (fun _ -> false) (atoms rc)
 |> List.iteri (fun i v -> 
     printfn "carry    |   %A %A |" (toInt v "c_1") (toInt v "c_0")
     printfn "------------------"
@@ -87,4 +79,66 @@ allsatvaluations (eval fm'') (fun _ -> false) (atoms fm'')
         (toInt v "s_1")
         (toInt v "s_0")
     printfn ""
+)
+
+let rc0 = ripplecarry0 x y c s 2
+// ((s_0 <=> x_0 <=> ~y_0) /\ 
+//      (c_1 <=> x_0 /\ y_0)) /\ 
+// (s_1 <=> (x_1 <=> ~y_1) <=> ~c_1) /\ 
+//      (c_2 <=> x_1 /\ y_1 \/ (x_1 \/ y_1) /\ c_1)
+
+allsatvaluations (eval rc0) (fun _ -> false) (atoms rc0)
+|> List.filter (fun v -> 
+    (toInt v "x_1") = 0 && (toInt v "x_0") = 1      // x = 01
+    && (toInt v "y_1") = 1 && (toInt v "y_0") = 1   // y = 11
+)
+|> List.iteri (fun i v -> 
+    printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    printfn "---------------"
+    printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    printfn "==============="
+    printfn "sum   | %A %A %A |" 
+        (toInt v "c_2")
+        (toInt v "s_1")
+        (toInt v "s_0")
+    printfn ""
+)
+
+let rc1 = ripplecarry1 x y c s 2
+// ((s_0 <=> ~(x_0 <=> ~y_0)) /\ 
+//    (c_1 <=> x_0 /\ y_0 \/ x_0 \/ y_0)) /\ 
+// (s_1 <=> (x_1 <=> ~y_1) <=> ~c_1) /\ 
+//    (c_2 <=> x_1 /\ y_1 \/ (x_1 \/ y_1) /\ c_1)
+
+allsatvaluations (eval rc1) (fun _ -> false) (atoms rc1)
+|> List.filter (fun v -> 
+    (toInt v "x_1") = 0 && (toInt v "x_0") = 1      // x = 01
+    && (toInt v "y_1") = 1 && (toInt v "y_0") = 1   // y = 11
+)
+|> List.iteri (fun i v -> 
+    printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    printfn "---------------"
+    printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    printfn "==============="
+    printfn "sum   | %A %A %A |" 
+        (toInt v "c_2")
+        (toInt v "s_1")
+        (toInt v "s_0")
+    printfn ""
+)
+
+mux !>"true" !>"in0" !>"in1"
+|> print_truthtable
+
+mux !>"false" !>"in0" !>"in1"
+|> print_truthtable
+
+let fmMux = mux !>"true" !>"in0" !>"in1"
+
+allvaluations fmMux
+|> List.map (fun v -> 
+    atoms fmMux
+    |> List.map v
 )

@@ -20,7 +20,7 @@ open FolAutomReas.Prop
 /// </remarks>
 /// 
 /// <note>
-/// <b>This document is still in progress and needs to be rewritten better</b>
+/// <b>This document is still in progress but already a pretty good version.</b>
 /// </note>
 /// 
 /// <category index="3">Propositional logic</category>
@@ -550,12 +550,11 @@ module Propexamples =
         when 'b: equality
 
     /// <summary>
-    /// Ripple carry adder: with carry c(0) propagated in and c(n) out.
+    /// Ripple carry adder with carry c(0) propagated in and c(n) out.
     /// <br />
     /// <c>(s_0 &lt;=&gt; (x_0 &lt;=&gt; ~y_0) &lt;=&gt; ~c_0) /\ (c_1 &lt;=&gt; x_0 /\ y_0 \/ (x_0 \/ y_0) /\ c_0) /\ 
     /// ... /\ 
-    /// (s_n &lt;=&gt; (x_n &lt;=&gt; ~y_n) &lt;=&gt; ~c_n) /\ (c_n+1 &lt;=&gt; x_n /\ y_n \/ (x_n \/ y_n) /\ c_n)</c>
-    ///   
+    /// (s_n &lt;=&gt; (x_n &lt;=&gt; ~y_n) &lt;=&gt; ~c_n) /\ (c_(n+1) &lt;=&gt; x_n /\ y_n \/ (x_n \/ y_n) /\ c_n)</c>.
     /// </summary>
     /// 
     /// <remarks>
@@ -608,12 +607,12 @@ module Propexamples =
     /// 
     /// allsatvaluations (eval fm) (fun _ -> false) (atoms fm)
     /// |> List.iteri (fun i v -> 
-    ///     printfn "carry    |   %A %A |" (toInt v "c_1") (toInt v "c_0")
-    ///     printfn "------------------"
-    ///     printfn "addend 1 |   %A %A |" (toInt v "x_1") (toInt v "x_0")
-    ///     printfn "addend 2 |   %A %A |" (toInt v "y_1") (toInt v "y_0")
-    ///     printfn "=================="
-    ///     printfn "sum      | %A %A %A |" 
+    ///     printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    ///     printfn "---------------"
+    ///     printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    ///     printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    ///     printfn "==============="
+    ///     printfn "sum   | %A %A %A |" 
     ///         (toInt v "c_2")
     ///         (toInt v "s_1")
     ///         (toInt v "s_0")
@@ -622,26 +621,26 @@ module Propexamples =
     /// </code>
     /// Some output omitted for brevity:
     /// <code lang="fsharp">
-    /// carry    |   0 0 |
-    /// ------------------
-    /// addend 1 |   0 0 |
-    /// addend 2 |   0 0 |
-    /// ==================
-    /// sum      | 0 0 0 |
+    /// carry |   0 0 |
+    /// ---------------
+    /// x     |   0 0 |
+    /// y     |   0 0 |
+    /// ===============
+    /// sum   | 0 0 0 |
     /// ...
-    /// carry    |   0 0 |
-    /// ------------------
-    /// addend 1 |   1 0 |
-    /// addend 2 |   1 1 |
-    /// ==================
-    /// sum      | 1 0 1 |
+    /// carry |   0 0 |
+    /// ---------------
+    /// x     |   1 0 |
+    /// y     |   1 1 |
+    /// ===============
+    /// sum   | 1 0 1 |
     /// ...
-    /// carry    |   1 1 |
-    /// ------------------
-    /// addend 1 |   1 1 |
-    /// addend 2 |   1 1 |
-    /// ==================
-    /// sum      | 1 1 1 |
+    /// carry |   1 1 |
+    /// ---------------
+    /// x     |   1 1 |
+    /// y     |   1 1 |
+    /// ===============
+    /// sum   | 1 1 1 |
     /// </code>
     /// Note how this version admit a carry c(0) different from 0 propagated in 
     /// at the first bit.
@@ -656,42 +655,124 @@ module Propexamples =
         when 'a: equality
 
     /// <summary>
-    /// Generates input for ripplecarry.
+    /// Returns indexed propositional variables.
     /// </summary>
     /// 
     /// <remarks>
-    /// Given a prop formula <c>x</c> and an index <c>i</c>, it generates a 
-    /// propositional variable <c>P "x_i"</c>.
-    /// 
-    /// <c>let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]</c> 
-    /// generates the x, y, out and c functions that can be given 
-    /// as input to ripplecarry
+    /// Given a string <c>"x"</c> and an integer <c>i</c>, generates a 
+    /// propositional variable <c>Atom (P x_i)</c>.
+    /// <p></p>
+    /// Its intended use is to generate input for the ripplecarry functions: 
+    /// partially applying <c>mk_index</c>, just to the first string argument, 
+    /// generates the type of functions (from integers to propositional 
+    /// variables) expected by ripplecarry functions.
     /// </remarks>
+    /// 
+    /// <param name="x">The variable name.</param>
+    /// <param name="i">The variable index.</param>
+    /// <returns>The indexed prop variable <c>Atom (P x_i)</c></returns>
+    /// 
+    /// <example id="mk_index-1">
+    /// <code lang="fsharp">
+    /// mk_index "x" 0
+    /// </code>
+    /// Evaluates to <c>Atom (P "x_0")</c>.
+    /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val mk_index: x: string -> i: int -> formula<prop>
 
     /// <summary>
-    /// Generates input for ripplecarry.
+    /// Returns double indexed propositional variables.
     /// </summary>
     /// 
     /// <remarks>
-    /// Similar to <c>mk_index</c>. 
-    /// 
-    /// Given a prop formula <c>x</c> and an indexes <c>i</c> and <c>j</c>, it 
-    /// generates a propositional variable <c>P "x_i_j"</c>.
+    /// Similar to <see cref='M:FolAutomReas.Propexamples.mk_index'/> 
+    /// <p></p>
+    /// Given a string <c>"x"</c> and indexes <c>i</c> and <c>j</c>, it 
+    /// generates a propositional variable <c>Atom (P x_i_j)</c>.
     /// </remarks>
+    /// 
+    /// <param name="x">The variable name.</param>
+    /// <param name="i">The first variable index.</param>
+    /// <param name="j">The second variable index.</param>
+    /// <returns>
+    /// The double indexed prop variable <c>Atom (P x_i_j)</c>.
+    /// </returns>
+    /// 
+    /// <example id="mk_index2-1">
+    /// <code lang="fsharp">
+    /// mk_index2 "x" 0 1
+    /// </code>
+    /// Evaluates to <c>Atom (P "x_0_1")</c>.
+    /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val mk_index2: x: string -> i: 'a -> j: 'b -> formula<prop>
 
     /// <summary>
-    /// N-bit ripple carry adder with carry c(0) forced to 0.
+    /// Ripple carry adder with carry c(0) forced to 0.
+    /// <br />
+    /// <c>((s_0 &lt;=&gt; x_0 &lt;=&gt; ~y_0) /\ (c_1 &lt;=&gt; x_0 /\ y_0)) /\ ... /\ (s_n &lt;=&gt; (x_n &lt;=&gt; ~y_n) &lt;=&gt; ~c_n) /\ (c_(n+1) &lt;=&gt; x_n /\ y_n \/ (x_n \/ y_n) /\ c_n)</c>
     /// </summary>
     /// 
     /// <remarks>
     /// It can be used when we are not interested in a carry in at the low end.
     /// </remarks>
+    /// 
+    /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
+    /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
+    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
+    /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
+    /// <param name="n">The number of bits added by the ripplecarry adder.</param>
+    /// <returns>
+    /// The conjunction of the formulas that represent full adders for each 
+    /// bit position, except for the first position that is represented by an 
+    /// half adder.
+    /// </returns>
+    /// 
+    /// <example id="ripplecarry0-1">
+    /// Filtering the satisfying valuations with x_1=0,x_0=0,y_1=1,y_0=1 
+    /// gives the ripplecarry0 for the sum of 01+11:
+    /// <code lang="fsharp">
+    /// let rc0 = ripplecarry0 x y c s 2
+    /// // ((s_0 &lt;=&gt; x_0 &lt;=&gt; ~y_0) /\ 
+    /// //      (c_1 &lt;=&gt; x_0 /\ y_0)) /\ 
+    /// // (s_1 &lt;=&gt; (x_1 &lt;=&gt; ~y_1) &lt;=&gt; ~c_1) /\ 
+    /// //      (c_2 &lt;=&gt; x_1 /\ y_1 \/ (x_1 \/ y_1) /\ c_1)
+    /// 
+    /// // eval the atom at the input valuations and convert to int
+    /// let toInt (v: prop -> bool) x =
+    ///     v (P x) |> System.Convert.ToInt32
+    /// 
+    /// allsatvaluations (eval rc0) (fun _ -> false) (atoms rc0)
+    /// |> List.filter (fun v -> 
+    ///     (toInt v "x_1") = 0 &amp;&amp; (toInt v "x_0") = 1      // x = 01
+    ///     &amp;&amp; (toInt v "y_1") = 1 &amp;&amp; (toInt v "y_0") = 1   // y = 11
+    /// )
+    /// |> List.iteri (fun i v -> 
+    ///     printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    ///     printfn "---------------"
+    ///     printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    ///     printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    ///     printfn "==============="
+    ///     printfn "sum   | %A %A %A |" 
+    ///         (toInt v "c_2")
+    ///         (toInt v "s_1")
+    ///         (toInt v "s_0")
+    ///     printfn ""
+    /// )
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// carry |   1 0 |
+    /// ---------------
+    /// x     |   0 1 |
+    /// y     |   1 1 |
+    /// ===============
+    /// sum   | 1 0 0 |
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val ripplecarry0:
@@ -702,15 +783,71 @@ module Propexamples =
         when 'a: equality
 
     /// <summary>
-    /// N-bit ripple carry adder with carry c(0) forced at 1.
+    /// Ripple carry adder with carry c(0) forced to 1.
+    /// <br />
+    /// <c>((s_0 &lt;=&gt; ~(x_0 &lt;=&gt; ~y_0)) /\ (c_1 &lt;=&gt; x_0 /\ y_0 \/ x_0 \/ y_0)) /\ ... /\(s_n &lt;=&gt; (x_n &lt;=&gt; ~y_n) &lt;=&gt; ~c_n) /\ (c_(n+1) &lt;=&gt; x_n /\ y_n \/ (x_n \/ y_n) /\ c_n)</c>
     /// </summary>
     /// 
     /// <remarks>
-    /// It is used to define the carry-select adder. In a carry-select adder 
-    /// the n-bit inputs are split into several blocks of k, and corresponding 
-    /// k-bit blocks are added twice, once assuming a carry-in of 0 and once 
-    /// assuming a carry-in of 1.
+    /// Together with <see cref='M:FolAutomReas.Propexamples.ripplecarry0``1'/> 
+    /// is used to define <see cref='M:FolAutomReas.Propexamples.carryselect``1'/>.
     /// </remarks>
+    /// 
+    /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
+    /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
+    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
+    /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
+    /// <param name="n">The number of bits added by the ripplecarry adder.</param>
+    /// <returns>
+    /// The conjunction of the formulas that represent full adders for each 
+    /// bit position, except for the first position in which a carry-in of 1 is 
+    /// forced.
+    /// </returns>
+    /// 
+    /// <example id="ripplecarry1-1">
+    /// Filtering the satisfying valuations with x_1=0,x_0=0,y_1=1,y_0=1 
+    /// gives the ripplecarry1 for the sum of 01+11:
+    /// <code lang="fsharp">
+    /// let rc1 = ripplecarry1 x y c s 2
+    /// // ((s_0 &lt;=&gt; ~(x_0 &lt;=&gt; ~y_0)) /\ 
+    /// //    (c_1 &lt;=&gt; x_0 /\ y_0 \/ x_0 \/ y_0)) /\ 
+    /// // (s_1 &lt;=&gt; (x_1 &lt;=&gt; ~y_1) &lt;=&gt; ~c_1) /\ 
+    /// //    (c_2 &lt;=&gt; x_1 /\ y_1 \/ (x_1 \/ y_1) /\ c_1)
+    /// 
+    /// // eval the atom at the input valuations and convert to int
+    /// let toInt (v: prop -> bool) x =
+    ///     v (P x) |> System.Convert.ToInt32
+    /// 
+    /// allsatvaluations (eval rc1) (fun _ -> false) (atoms rc1)
+    /// |> List.filter (fun v -> 
+    ///     (toInt v "x_1") = 0 &amp;&amp; (toInt v "x_0") = 1      // x = 01
+    ///     &amp;&amp; (toInt v "y_1") = 1 &amp;&amp; (toInt v "y_0") = 1   // y = 11
+    /// )
+    /// |> List.iteri (fun i v -> 
+    ///     printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    ///     printfn "---------------"
+    ///     printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    ///     printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    ///     printfn "==============="
+    ///     printfn "sum   | %A %A %A |" 
+    ///         (toInt v "c_2")
+    ///         (toInt v "s_1")
+    ///         (toInt v "s_0")
+    ///     printfn ""
+    /// )
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// carry |   1 0 |
+    /// ---------------
+    /// x     |   0 1 |
+    /// y     |   1 1 |
+    /// ===============
+    /// sum   | 1 0 1 |
+    /// </code>
+    /// Note that while there is no <c>c_0</c> in the formula the sum is 
+    /// calculated as if <c>c_0</c> were equal to 1.
+    /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val ripplecarry1:
@@ -721,13 +858,62 @@ module Propexamples =
         when 'a: equality
 
     /// <summary>
-    /// Multiplexer 
+    /// Multiplexer.
+    /// <br />
+    /// <c>~sel /\ in0 \/ sel /\ in1</c>
     /// </summary>
     /// 
     /// <remarks>
-    /// Used to define the carry-select adder. We will use it to select between 
-    /// the two alternatives (carry-in of 0 or 1) when we do carry propagation.
+    /// Selects between two alternatives: if <c>sel</c> selects <c>in1</c>, 
+    /// otherwise selects <c>in0</c>.
+    /// <p></p>
+    /// It is used in the the carry-select adder's implementation to select 
+    /// between carry-in of 0 or 1 when we do carry propagation.
     /// </remarks>
+    /// 
+    /// <param name="sel">The formula that drives selection.</param>
+    /// <param name="in0">The first option.</param>
+    /// <param name="in1">The second option.</param>
+    /// <returns>
+    /// The formula that when <c>sel</c> is true, corresponds to 
+    /// <c>in1</c> and otherwise to <c>in0</c>.
+    /// </returns>
+    /// 
+    /// <example id="mux-1">
+    /// If <c>sel=true</c>, the formula corresponds to <c>in1</c>.
+    /// <code lang="fsharp">
+    /// mux !>"true" !>"in0" !>"in1"
+    /// |> print_truthtable
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>.
+    /// <code lang="fsharp">
+    /// in0   in1   |   formula
+    /// ---------------------
+    /// false false | false 
+    /// false true  | true  
+    /// true  false | false 
+    /// true  true  | true  
+    /// ---------------------
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="mux-2">
+    /// If <c>sel=false</c>, the formula corresponds to <c>in0</c>.
+    /// <code lang="fsharp">
+    /// mux !>"false" !>"in0" !>"in1"
+    /// |> print_truthtable
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>.
+    /// <code lang="fsharp">
+    /// in0   in1   |   formula
+    /// ---------------------
+    /// false false | false 
+    /// false true  | false 
+    /// true  false | true  
+    /// true  true  | true  
+    /// ---------------------
+    /// </code>
+    /// </example>
     /// 
     /// <category index="5">Carry select adder</category>
     val mux:

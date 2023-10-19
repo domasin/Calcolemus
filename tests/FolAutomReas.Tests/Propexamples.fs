@@ -62,29 +62,28 @@ let ``halfcarry should return the carry of an half adder.``() =
         ]
 
 [<Fact>]
-let ``ha returns a tautology if inputs correspond to x y s and c of an half adder.``() = 
-    let fm = ha (True:prop formula) True False True
-    Assert.Equal(
-        "`(false <=> true <=> ~true) /\ (true <=> true /\ true)`", 
-        fm |> sprint_prop_formula)
-    Assert.Equal(
-        true, 
-        tautology(fm))
+let ``ha should return (s <=> x <=> ~y) /\ (c <=> x /\ y).``() = 
+    ha (True:prop formula) True False True
+    |> sprint_prop_formula
+    |> should equal "`(false <=> true <=> ~true) /\ (true <=> true /\ true)`"
 
 [<Fact>]
-let ``ha tautological results represent correct sum s and carry c of an half adder that adds two digits x and y.``() = 
-    [for x in [False;True] do 
-        for y in [False;True] do 
-            for c in [False;True] do 
-                for s in [False;True] do 
-                    if tautology(ha x y s c) then 
-                        (x,y,c,s)]
-    |> shouldEqual
+let ``ha should return a prop formula whose satisfying valuations represent the relations between input and output of an half adder.``() = 
+    let fm = ha (!>"x") (!>"y") (!>"s") (!>"c")
+
+    (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    |> List.map (fun v -> 
+            v (P "x") |> System.Convert.ToInt32,
+            v (P "y") |> System.Convert.ToInt32,
+            v (P "c") |> System.Convert.ToInt32,
+            v (P "s") |> System.Convert.ToInt32
+    )
+    |> should equal 
         [
-            (False, False, False, False); 
-            (False, True, False, True);
-            (True, False, False, True); 
-            (True, True, True, False)
+            (0, 0, 0, 0); 
+            (0, 1, 0, 1); 
+            (1, 0, 0, 1); 
+            (1, 1, 1, 0)
         ]
 
 [<Fact>]
@@ -136,32 +135,171 @@ let ``sum should return the sum of a full adder.``() =
         ]
 
 [<Fact>]
-let ``fa returns a tautology if inputs correspond to x y z s and c of a full adder.``() = 
-    let fm = fa (True:prop formula) True True True True
-    Assert.Equal(
-        @"`(true <=> (true <=> ~true) <=> ~true) /\ (true <=> true /\ true \/ (true \/ true) /\ true)`", 
-        fm |> sprint_prop_formula)
-    Assert.Equal(
-        true, 
-        tautology(fm))
+let ``fa should return (s <=> (x <=> ~y) <=> ~z) /\ (c <=> x /\ y \/ (x \/ y) /\ z).``() = 
+    fa (True:prop formula) True True True True
+    |> sprint_prop_formula
+    |> should equal @"`(true <=> (true <=> ~true) <=> ~true) /\ (true <=> true /\ true \/ (true \/ true) /\ true)`"
 
 [<Fact>]
-let ``fa tautological results represent corrects sum s and carry c of an half adder that adds two digits x and y.``() = 
-    [for x in [(False:prop formula);True] do 
-        for y in [False;True] do 
-            for z in [False;True] do 
-                for c in [False;True] do 
-                    for s in [False;True] do 
-                        if tautology(fa x y z s c) then 
-                            (x,y,z,c,s)]
-    |> shouldEqual
+let ``fa should return a prop formula whose satisfying valuations represent the relations between input and output of a full adder.``() = 
+    let fm = fa (!>"x") (!>"y") (!>"z") (!>"s") (!>"c")
+
+    (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    |> List.map (fun v -> 
+            v (P "x") |> System.Convert.ToInt32,
+            v (P "y") |> System.Convert.ToInt32,
+            v (P "z") |> System.Convert.ToInt32,
+            v (P "c") |> System.Convert.ToInt32,
+            v (P "s") |> System.Convert.ToInt32
+    )
+    |> shouldEqual 
         [
-            (False, False, False, False, False); 
-            (False, False, True, False, True);
-            (False, True, False, False, True); 
-            (False, True, True, True, False);
-            (True, False, False, False, True); 
-            (True, False, True, True, False);
-            (True, True, False, True, False); 
-            (True, True, True, True, True)
+            (0, 0, 0, 0, 0); 
+            (0, 0, 1, 0, 1); 
+            (0, 1, 0, 0, 1); 
+            (1, 0, 0, 0, 1);
+            (0, 1, 1, 1, 0); 
+            (1, 0, 1, 1, 0); 
+            (1, 1, 0, 1, 0); 
+            (1, 1, 1, 1, 1)
+        ]
+
+[<Fact>]
+let ``conjoin should return the conjunctions of all formulas obtained applying the input function to the elements of the input list``() = 
+    conjoin Atom [1;2;3]
+    |> should equal (And (Atom 1, And (Atom 2, Atom 3)))
+
+[<Fact>]
+let ``ripplecarry should return a prop formula whose satisfying valuations represent the relations between input and output of a ripplecarry adder with c(0) propagated in.``() = 
+    let x, y, s, c = 
+        mk_index "x",
+        mk_index "y",
+        mk_index "s",
+        mk_index "c"
+ 
+    let fm = ripplecarry x y c s 2
+
+    (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    |> List.map (fun v -> 
+        atoms fm
+        |> List.map (fun atm -> 
+            (v atm |> System.Convert.ToInt32)
+        )
+    )
+    |> shouldEqual
+        [[0; 0; 0; 0; 0; 0; 0; 0; 0]; [0; 0; 0; 0; 1; 0; 0; 0; 1];
+         [0; 0; 0; 0; 1; 0; 1; 0; 0]; [0; 0; 0; 1; 0; 0; 0; 1; 0];
+         [0; 0; 0; 1; 0; 1; 0; 0; 0]; [0; 0; 0; 1; 1; 0; 0; 1; 1];
+         [0; 0; 0; 1; 1; 0; 1; 1; 0]; [0; 0; 0; 1; 1; 1; 0; 0; 1];
+         [0; 0; 0; 1; 1; 1; 1; 0; 0]; [0; 0; 1; 0; 0; 0; 1; 0; 1];
+         [0; 0; 1; 1; 0; 0; 1; 1; 1]; [0; 0; 1; 1; 0; 1; 1; 0; 1];
+         [0; 1; 0; 0; 1; 1; 0; 1; 0]; [0; 1; 1; 0; 0; 1; 0; 1; 1];
+         [0; 1; 1; 0; 0; 1; 1; 1; 0]; [0; 1; 1; 0; 1; 1; 1; 1; 1];
+         [1; 0; 0; 1; 0; 0; 0; 0; 0]; [1; 0; 0; 1; 1; 0; 0; 0; 1];
+         [1; 0; 0; 1; 1; 0; 1; 0; 0]; [1; 0; 1; 1; 0; 0; 1; 0; 1];
+         [1; 1; 0; 0; 1; 0; 0; 1; 0]; [1; 1; 0; 0; 1; 1; 0; 0; 0];
+         [1; 1; 0; 1; 1; 1; 0; 1; 0]; [1; 1; 1; 0; 0; 0; 0; 1; 1];
+         [1; 1; 1; 0; 0; 0; 1; 1; 0]; [1; 1; 1; 0; 0; 1; 0; 0; 1];
+         [1; 1; 1; 0; 0; 1; 1; 0; 0]; [1; 1; 1; 0; 1; 0; 1; 1; 1];
+         [1; 1; 1; 0; 1; 1; 1; 0; 1]; [1; 1; 1; 1; 0; 1; 0; 1; 1];
+         [1; 1; 1; 1; 0; 1; 1; 1; 0]; [1; 1; 1; 1; 1; 1; 1; 1; 1]]
+
+[<Fact>]
+let ``mk_index should return the appropriate indexed prop variable.``() = 
+    mk_index "x" 0
+    |> should equal (Atom (P "x_0"))
+
+[<Fact>]
+let ``mk_index2 should return the appropriate double indexed prop variable.``() = 
+    mk_index2 "x" 0 1
+    |> should equal (Atom (P "x_0_1"))
+
+[<Fact>]
+let ``ripplecarry0 should return a prop formula whose satisfying valuations represent the relations between input and output of a ripplecarry adder with c(0) forced to 0.``() = 
+    let x, y, s, c = 
+        mk_index "x",
+        mk_index "y",
+        mk_index "s",
+        mk_index "c"
+ 
+    let fm = ripplecarry0 x y c s 2
+
+    (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    |> List.map (fun v -> 
+        atoms fm
+        |> List.map (fun atm -> 
+            (v atm |> System.Convert.ToInt32)
+        )
+    )
+    |> shouldEqual
+        [[0; 0; 0; 0; 0; 0; 0; 0]; [0; 0; 0; 1; 0; 0; 0; 1];
+         [0; 0; 0; 1; 0; 1; 0; 0]; [0; 0; 1; 0; 0; 0; 1; 0];
+         [0; 0; 1; 0; 1; 0; 0; 0]; [0; 0; 1; 1; 0; 0; 1; 1];
+         [0; 0; 1; 1; 0; 1; 1; 0]; [0; 0; 1; 1; 1; 0; 0; 1];
+         [0; 0; 1; 1; 1; 1; 0; 0]; [0; 1; 0; 0; 0; 1; 0; 1];
+         [0; 1; 1; 0; 0; 1; 1; 1]; [0; 1; 1; 0; 1; 1; 0; 1];
+         [1; 0; 0; 1; 1; 0; 1; 0]; [1; 1; 0; 0; 1; 0; 1; 1];
+         [1; 1; 0; 0; 1; 1; 1; 0]; [1; 1; 0; 1; 1; 1; 1; 1]]
+
+[<Fact>]
+let ``ripplecarry1 should return a prop formula whose satisfying valuations represent the relations between input and output of a ripplecarry adder with c(0) forced to 1.``() = 
+    let x, y, s, c = 
+        mk_index "x",
+        mk_index "y",
+        mk_index "s",
+        mk_index "c"
+ 
+    let fm = ripplecarry1 x y c s 2
+
+    (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    |> List.map (fun v -> 
+        atoms fm
+        |> List.map (fun atm -> 
+            (v atm |> System.Convert.ToInt32)
+        )
+    )
+    |> shouldEqual
+        [[0; 0; 1; 0; 0; 0; 0; 0]; [0; 0; 1; 1; 0; 0; 0; 1];
+         [0; 0; 1; 1; 0; 1; 0; 0]; [0; 1; 1; 0; 0; 1; 0; 1];
+         [1; 0; 0; 1; 0; 0; 1; 0]; [1; 0; 0; 1; 1; 0; 0; 0];
+         [1; 0; 1; 1; 1; 0; 1; 0]; [1; 1; 0; 0; 0; 0; 1; 1];
+         [1; 1; 0; 0; 0; 1; 1; 0]; [1; 1; 0; 0; 1; 0; 0; 1];
+         [1; 1; 0; 0; 1; 1; 0; 0]; [1; 1; 0; 1; 0; 1; 1; 1];
+         [1; 1; 0; 1; 1; 1; 0; 1]; [1; 1; 1; 0; 1; 0; 1; 1];
+         [1; 1; 1; 0; 1; 1; 1; 0]; [1; 1; 1; 1; 1; 1; 1; 1]]
+
+[<Fact>]
+let ``mux should select in1 if sel is true.``() = 
+    let fm = mux !>"true" !>"in0" !>"in1"
+
+    allvaluations fm
+    |> List.map (fun v -> 
+        atoms fm
+        |> List.map v, 
+        eval fm v
+    )
+    |> shouldEqual 
+        [
+            ([false; false], false); 
+            ([false; true], true); 
+            ([true; false], false);
+            ([true; true], true)
+        ]
+
+[<Fact>]
+let ``mux should select in0 if sel is false.``() = 
+    let fm = mux !>"false" !>"in0" !>"in1"
+
+    allvaluations fm
+    |> List.map (fun v -> 
+        atoms fm
+        |> List.map v, 
+        eval fm v
+    )
+    |> shouldEqual 
+        [
+            ([false; false], false); 
+            ([false; true], false); 
+            ([true; false], true);
+            ([true; true], true)
         ]
