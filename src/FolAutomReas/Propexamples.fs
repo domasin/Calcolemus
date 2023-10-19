@@ -101,7 +101,7 @@ module Propexamples =
 
     let mk_index x (i : int) = Atom (P (x + "_" + (string i)))
 
-    let mk_index2 x i j =
+    let mk_index2 x (i : int) (j : int) =
         Atom (P (x + "_" + (string i) + "_" + (string j)))
 
     // ---------------------------------------------------------------------- //

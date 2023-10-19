@@ -578,7 +578,7 @@ module Propexamples =
     /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
     /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
     /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
-    /// <param name="n">The number of bits added by the ripplecarry adder.</param>
+    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
     /// bit position.
@@ -708,7 +708,7 @@ module Propexamples =
     /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
-    val mk_index2: x: string -> i: 'a -> j: 'b -> formula<prop>
+    val mk_index2: x: string -> i: int -> j: int -> formula<prop>
 
     /// <summary>
     /// Ripple carry adder with carry c(0) forced to 0.
@@ -724,7 +724,7 @@ module Propexamples =
     /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
     /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
     /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
-    /// <param name="n">The number of bits added by the ripplecarry adder.</param>
+    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
     /// bit position, except for the first position that is represented by an 
@@ -797,7 +797,7 @@ module Propexamples =
     /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
     /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
     /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
-    /// <param name="n">The number of bits added by the ripplecarry adder.</param>
+    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
     /// bit position, except for the first position in which a carry-in of 1 is 
@@ -929,6 +929,20 @@ module Propexamples =
     /// It is used to define the carry-select adder.
     /// </remarks>
     /// 
+    /// <param name="n">The variable's index to offset.</param>
+    /// <param name="x">A function that returns variables at given indexes.</param>
+    /// <param name="i">The number of position by which to offset the variable's index.</param>
+    /// <returns>
+    /// The offset propositional variable.
+    /// </returns>
+    /// 
+    /// <example id="mk_index-1">
+    /// <code lang="fsharp">
+    /// offset 1 (mk_index "x") 2
+    /// </code>
+    /// Evaluates to <c>Atom (P "x_3")</c>.
+    /// </example>
+    /// 
     /// <category index="5">Carry select adder</category>
     val offset: n: int -> x: (int -> 'a) -> i: int -> 'a
 
@@ -966,6 +980,8 @@ module Propexamples =
     /// <summary>
     /// Ripple carry stage that separates off the final result of a 
     /// multiplication.
+    /// <br />
+    /// <c>((z &lt;=&gt; u_0 &lt;=&gt; ~v_0) /\ (c_2 &lt;=&gt; u_0 /\ v_0)) /\ (w_0 &lt;=&gt; (u_1 &lt;=&gt; ~v_1) &lt;=&gt; ~c_2) /\ (w_1 &lt;=&gt; u_1 /\ v_1 \/ (u_1 \/ v_1) /\ c_2)</c>
     /// </summary>
     /// 
     /// <category index="6">Multiplier circuit</category>
@@ -980,6 +996,12 @@ module Propexamples =
     /// <summary>
     /// Naive multiplier based on repeated ripple carry. 
     /// </summary>
+    /// 
+    /// <param name="n">An <c>n</c>-by-<c>n</c> array of input bits representing the product terms.</param>
+    /// <param name="u">An <c>n</c>-by-<c>n</c> to hold the intermediate sums.</param>
+    /// <param name="v">An <c>n</c>-by-<c>n</c> to hold the intermediate carries.</param>
+    /// <param name="out">An <c>n</c>-by-<c>n</c> to hold the result.</param>
+    /// <param name="n">The number of bits of the operands multiplied by the multiplier</param>
     /// 
     /// <category index="6">Multiplier circuit</category>
     val multiplier:

@@ -303,3 +303,8 @@ let ``mux should select in0 if sel is false.``() =
             ([true; false], true);
             ([true; true], true)
         ]
+
+[<Fact>]
+let ``offset should offsets variable indexes``() = 
+    offset 1 (mk_index "x") 2
+    |> should equal (Atom (P "x_3"))

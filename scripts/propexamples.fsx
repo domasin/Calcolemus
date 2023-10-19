@@ -1,9 +1,9 @@
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
+open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Propexamples
 
-// open FolAutomReas.Formulas
 // fsi.AddPrinter sprint_prop_formula
 
 ramsey 2 2 3
@@ -142,3 +142,71 @@ allvaluations fmMux
     atoms fmMux
     |> List.map v
 )
+
+offset 1 (mk_index "x") 2
+
+let u, v, c, w = 
+    mk_index "u", // fst addend indexed variables
+    mk_index "v", // snd addend indexed variables
+    mk_index "c", // carry indexed variables
+                  // z=lowest bit result variable
+    mk_index "w"  // other bits indexed variables
+
+let rs = rippleshift u v c !>"z" w 2
+// ((z <=> u_0 <=> ~v_0) /\ (c_2 <=> u_0 /\ v_0)) /\ (w_0 <=> (u_1 <=> ~v_1) <=> ~c_2) /\ (w_1 <=> u_1 /\ v_1 \/ (u_1 \/ v_1) /\ c_2)
+
+allsatvaluations (eval rs) (fun _ -> false) (atoms rs)
+|> List.filter (fun v -> 
+    (toInt v "u_1") = 0 && (toInt v "u_0") = 1      // x = 01
+    && (toInt v "v_1") = 1 && (toInt v "v_0") = 1   // y = 11
+)
+|> List.iteri (fun i v -> 
+    printfn "carry |   %A   |" (toInt v "c_2")
+    printfn "-----------------"
+    printfn "u     |   %A %A |" (toInt v "u_1") (toInt v "u_0")
+    printfn "v     |   %A %A |" (toInt v "v_1") (toInt v "v_0")
+    printfn "==============="
+    printfn "sum   | %A %A %A |" 
+        (toInt v "w_1")
+        (toInt v "w_0")
+        (toInt v "z")
+    printfn ""
+)
+
+let x, u, v, out = 
+    mk_index2 "x", 
+    mk_index2 "u", 
+    mk_index2 "v", 
+    mk_index "out"  
+
+let ml = multiplier x u v out 2
+
+allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
+|> List.filter (fun v -> 
+    (toInt v "x_0_1") = 0 && (toInt v "x_0_0") = 1      // x_0 = 01
+    && (toInt v "x_1_1") = 1 && (toInt v "x_1_0") = 1   // x_1 = 11
+)
+|> List.iteri (fun i v -> 
+    printfn "x0    |   %A %A |" (toInt v "x_0_1") (toInt v "x_0_0")
+    printfn "x1    |   %A %A |" (toInt v "x_1_1") (toInt v "x_1_0")
+    printfn "==============="
+    printfn "carry |   %A   |" (toInt v "v_0_1")
+    printfn "-----------------"
+    printfn "u_0   |   %A %A |" (toInt v "u_0_1") (toInt v "u_0_1")
+    printfn "u_1   |   %A %A |" (toInt v "u_1_1") (toInt v "u_1_0")
+    printfn "==============="
+    printfn "res   | %A %A %A |" 
+        (toInt v "out_2")
+        (toInt v "out_1")
+        (toInt v "out_0")
+    printfn ""
+)
+
+// expected
+// x0    |   0 1 |
+// x1    |   1 1 |
+// ---------------
+//           0 1
+// 		   0 1
+// ===============
+// 		   0 1 1
