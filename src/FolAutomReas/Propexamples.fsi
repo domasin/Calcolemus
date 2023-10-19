@@ -79,15 +79,19 @@ module Propexamples =
     /// </summary>
     /// 
     /// <remarks>
-    /// Generates the propositional formula whose truth value corresponds to 
-    /// the sum of an half adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
-    /// be added also represented as prop formulas: <c>False</c> for 0, 
-    /// <c>True</c> for 1.
+    /// The truth-value of the generated propositional formula corresponds to 
+    /// the sum of an half adder of two one-bit-numbers <c>x</c> and <c>y</c> 
+    /// also represented as prop formulas. In this context the truth-values 
+    /// <c>false</c> and <c>true</c> should be read as the two digits of the 
+    /// binary system: <c>0</c> and <c>1</c>.
     /// </remarks>
     /// 
     /// <param name="x">The first one-bit-number to be added.</param>
     /// <param name="y">The second one-bit-number to be added.</param>
-    /// <returns>The half adder's sum of <c>x</c> + <c>y</c></returns>
+    /// <returns>
+    /// The prop formula that represents the half adder's sum of <c>x</c> + 
+    /// <c>y</c>.
+    /// </returns>
     /// 
     /// <example id="halfsum-1">
     /// <code lang="fsharp">
@@ -97,23 +101,29 @@ module Propexamples =
     /// </example>
     /// 
     /// <example id="halfsum-2">
-    /// The following shows the results of the function for each possible 
-    /// combination of the intended inputs:
+    /// The truth-table of the output formula, with truth-values converted in 
+    /// integers, shows how it calculates the half-adder sum:
     /// <code lang="fsharp">
-    /// let to01 fm = 
-    ///   match eval fm (fun _ -> false) with
-    ///   | false  -> 0
-    ///   | true  -> 1
+    /// let fm = halfsum (!>"x") (!>"y")
+    /// // evaluates to `x &lt;=&gt; ~y`
     /// 
     /// printfn "-------------"
     /// printfn "| x | y | s |"
     /// printfn "-------------"
-    /// for x in [False;True] do 
-    ///     for y in [False;True] do 
-    ///         printfn "| %i | %i | %i |" 
-    ///             (x |> to01) 
-    ///             (y |> to01) 
-    ///             (halfsum x y |> to01)
+    /// 
+    /// // for each valuation:
+    /// allvaluations fm
+    /// |> List.iter (fun v -> 
+    ///     // for each atom:
+    ///     atoms fm
+    ///     |> List.iter (fun atm -> 
+    ///         // print the truth-value of the atom in the valuation;
+    ///         printf "| %A " (v atm |> System.Convert.ToInt32)
+    ///     )
+    ///     // and print the truth-value of the formula in the valuation.
+    ///     printfn "| %A |" 
+    ///         (eval fm v |> System.Convert.ToInt32)
+    /// )
     /// printfn "-------------"
     /// </code>
     /// After evaluation the following is printed to the <c>stdout</c>:
@@ -140,41 +150,51 @@ module Propexamples =
     /// </summary>
     /// 
     /// <remarks>
-    /// Generates the propositional formulas whose truth value corresponds to 
-    /// the carry of an half adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
-    /// be added also represented as prop formulas: <c>False</c> for 0 
-    /// <c>True</c> for 1.
+    /// The truth-value of the generated propositional formula corresponds to 
+    /// the carry of an half adder of two one-bit-numbers <c>x</c> and <c>y</c> 
+    /// also represented as prop formulas. In this context the truth-values 
+    /// <c>false</c> and <c>true</c> should be read as the two digits of the 
+    /// binary system: <c>0</c> and <c>1</c>.
     /// </remarks>
     /// 
     /// <param name="x">The first one-bit-number to be added.</param>
     /// <param name="y">The second one-bit-number to be added.</param>
-    /// <returns>The half adder's carry of <c>x</c> + <c>y</c></returns>
+    /// <returns>
+    /// The prop formula that represents the half adder's carry of <c>x</c> + 
+    /// <c>y</c>.
+    /// </returns>
     /// 
     /// <example id="halfcarry-1">
     /// <code lang="fsharp">
     /// halfcarry (True:prop formula) False
     /// </code>
-    /// Evaluates to <c>`true /\ false`</c>.
+    /// Evaluates to <c>`true /\ false``</c>.
     /// </example>
     /// 
     /// <example id="halfcarry-2">
-    /// The following shows the results of the function for each possible 
-    /// combination of the intended inputs:
+    /// The truth-table of the output formula, with truth-values converted in 
+    /// integers, shows how it calculates the half-adder carry:
     /// <code lang="fsharp">
-    /// let to01 fm = 
-    ///   match eval fm (fun _ -> false) with
-    ///   | false  -> 0
-    ///   | true  -> 1
+    /// let fm = halfcarry (!>"x") (!>"y")
+    /// // evaluates to `x /\ y`
     /// 
     /// printfn "-------------"
     /// printfn "| x | y | c |"
     /// printfn "-------------"
-    /// for x in [False;True] do 
-    ///     for y in [False;True] do 
-    ///         printfn "| %i | %i | %i |" 
-    ///             (x |> to01) 
-    ///             (y |> to01) 
-    ///             (halfcarry x y |> to01)
+    /// 
+    /// // for each valuation:
+    /// allvaluations fm
+    /// |> List.iter (fun v -> 
+    ///     // for each atom:
+    ///     atoms fm
+    ///     |> List.iter (fun atm -> 
+    ///         // print the truth-value of the atom in the valuation;
+    ///         printf "| %A " (v atm |> System.Convert.ToInt32)
+    ///     )
+    ///     // and print the truth-value of the formula in the valuation.
+    ///     printfn "| %A |" 
+    ///         (eval fm v |> System.Convert.ToInt32)
+    /// )
     /// printfn "-------------"
     /// </code>
     /// After evaluation the following is printed to the <c>stdout</c>:
@@ -228,16 +248,11 @@ module Propexamples =
     /// </example>
     /// 
     /// <example id="ha-2">
-    /// Al the valuations satisfying the formula represent the correct 
+    /// All the valuations satisfying the formula represent the correct 
     /// relation between input and output of an half adder.
     /// <code lang="fsharp">
     /// let fm = ha (!>"x") (!>"y") (!>"s") (!>"c")
     /// // `(s &lt;=&gt; x &lt;=&gt; ~y) /\ (c &lt;=&gt; x /\ y)`
-    /// 
-    /// let to01 fm = 
-    ///   match eval fm (fun _ -> false) with
-    ///   | false  -> 0
-    ///   | true  -> 1
     /// 
     /// printfn "-----------------"
     /// printfn "| x | y | c | s |"
@@ -246,10 +261,10 @@ module Propexamples =
     /// (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
     /// |> List.iter (fun v -> 
     ///     printfn "| %A | %A | %A | %A |" 
-    ///         (to01 v (P "x"))
-    ///         (to01 v (P "y"))
-    ///         (to01 v (P "c"))
-    ///         (to01 v (P "s"))
+    ///         (v (P "x") |> System.Convert.ToInt32)
+    ///         (v (P "y") |> System.Convert.ToInt32)
+    ///         (v (P "c") |> System.Convert.ToInt32)
+    ///         (v (P "s") |> System.Convert.ToInt32)
     /// )
     /// printfn "-----------------"
     /// </code>
@@ -273,19 +288,23 @@ module Propexamples =
         s: formula<'a> -> c: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Carry of a full adder: <c>(x /\ y) \/ ((x \/ y) /\ z)</c>.
+    /// Carry of a full adder.
+    /// <br />
+    /// <c>(x /\ y) \/ ((x \/ y) /\ z)</c>.
     /// </summary>
     /// 
     /// <remarks>
-    /// Generates the propositional formula whose truth value corresponds to 
-    /// the carry of a full adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
-    /// be added also represented as prop formulas: <c>False</c> for 0 
-    /// <c>True</c> for 1.
+    /// The truth-value of the generated propositional formula corresponds to 
+    /// the carry of a full adder of two one-bit-numbers <c>x</c> and <c>y</c> 
+    /// plus a carry <c>z</c> from a previous sum also represented as prop 
+    /// formulas. In this context the truth-values <c>false</c> and <c>true</c> 
+    /// should be read as the two digits of the binary system: <c>0</c> and 
+    /// <c>1</c>.
     /// </remarks>
     /// 
     /// <param name="x">The first one-bit-number to be added.</param>
     /// <param name="y">The second one-bit-number to be added.</param>
-    /// <param name="z">The possibile carry of a previous sum.</param>
+    /// <param name="z">The possible carry of a previous sum.</param>
     /// <returns>
     /// The full adder's carry of <c>x</c> + <c>y</c> + <c>z</c>
     /// </returns>
@@ -298,29 +317,34 @@ module Propexamples =
     /// </example>
     /// 
     /// <example id="carry-2">
-    /// The following shows the results of the function for each possible 
-    /// combination of the intended inputs:
+    /// The truth-table of the output formula, with truth-values converted in 
+    /// integers, shows how it calculates the half-adder carry: 
     /// <code lang="fsharp">
-    /// let to01 fm = 
-    ///   match eval fm (fun _ -> false) with
-    ///   | false  -> 0
-    ///   | true  -> 1
+    /// let fm = carry (!>"x") (!>"y") (!>"z")
+    /// // evaluates to `x /\ y \/ (x \/ y) /\ z`
     /// 
     /// printfn "-----------------"
     /// printfn "| x | y | z | c |"
     /// printfn "-----------------"
-    /// for x in [False;True] do 
-    ///     for y in [False;True] do 
-    ///         for z in [False;True] do 
-    ///             printfn "| %i | %i | %i | %i |" 
-    ///                 (x |> to01) 
-    ///                 (y |> to01) 
-    ///                 (z |> to01) 
-    ///                 (carry x y z |> to01)
+    /// 
+    /// // for each valuation:
+    /// allvaluations fm
+    /// |> List.iter (fun v -> 
+    ///     // for each atom:
+    ///     atoms fm
+    ///     |> List.iter (fun atm -> 
+    ///         // print the truth-value of the atom in the valuation;
+    ///         printf "| %A " (v atm |> System.Convert.ToInt32)
+    ///     )
+    ///     // and print the truth-value of the formula in the valuation.
+    ///     printfn "| %A |" 
+    ///         (eval fm v |> System.Convert.ToInt32)
+    /// )
     /// printfn "-----------------"
     /// </code>
     /// After evaluation the following is printed to the <c>stdout</c>:
     /// <code lang="fsharp">
+    /// -----------------
     /// | x | y | z | c |
     /// -----------------
     /// | 0 | 0 | 0 | 0 |
@@ -341,14 +365,18 @@ module Propexamples =
         y: formula<'a> -> z: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Sum of a full adder: <c>(x &lt;=&gt; ~ y) &lt;=&gt; ~ z</c>.
+    /// Sum of a full adder.
+    /// <br />
+    /// <c>(x &lt;=&gt; ~ y) &lt;=&gt; ~ z</c>.
     /// </summary>
     /// 
     /// <remarks>
-    /// Generates the propositional formula whose truth value corresponds to 
-    /// the sum of a full adder, given the <c>x</c> and <c>y</c> one-bit-numbers to 
-    /// be added also represented as prop formulas: <c>False</c> for 0 
-    /// <c>True</c> for 1.
+    /// The truth-value of the generated propositional formula corresponds to 
+    /// the sum of a full adder of two one-bit-numbers <c>x</c> and <c>y</c> 
+    /// plus a carry <c>z</c> from a previous sum also represented as prop 
+    /// formulas. In this context the truth-values <c>false</c> and <c>true</c> 
+    /// should be read as the two digits of the binary system: <c>0</c> and 
+    /// <c>1</c>.
     /// </remarks>
     /// 
     /// <param name="x">The first one-bit-number to be added.</param>
@@ -366,38 +394,43 @@ module Propexamples =
     /// </example>
     /// 
     /// <example id="sum-2">
-    /// The following shows the results of the function for each possible 
-    /// combination of the intended inputs:
+    /// The truth-table of the output formula, with truth-values converted in 
+    /// integers, shows how it calculates the half-adder carry: 
     /// <code lang="fsharp">
-    /// let to01 fm = 
-    ///   match eval fm (fun _ -> false) with
-    ///   | false  -> 0
-    ///   | true  -> 1
+    /// let fm = sum (!>"x") (!>"y") (!>"z")
+    /// // evaluates to `(x &lt;=&gt; ~y) &lt;=&gt; ~z`
     /// 
     /// printfn "-----------------"
-    /// printfn "| x | y | z | s |"
+    /// printfn "| x | y | z | c |"
     /// printfn "-----------------"
-    /// for x in [False;True] do 
-    ///     for y in [False;True] do 
-    ///         for z in [False;True] do 
-    ///             printfn "| %i | %i | %i | %i |" 
-    ///                 (x |> to01) 
-    ///                 (y |> to01) 
-    ///                 (z |> to01) 
-    ///                 (sum x y z |> to01)
+    /// 
+    /// // for each valuation:
+    /// allvaluations fm
+    /// |> List.iter (fun v -> 
+    ///     // for each atom:
+    ///     atoms fm
+    ///     |> List.iter (fun atm -> 
+    ///         // print the truth-value of the atom in the valuation;
+    ///         printf "| %A " (v atm |> System.Convert.ToInt32)
+    ///     )
+    ///     // and print the truth-value of the formula in the valuation.
+    ///     printfn "| %A |" 
+    ///         (eval fm v |> System.Convert.ToInt32)
+    /// )
     /// printfn "-----------------"
     /// </code>
     /// After evaluation the following is printed to the <c>stdout</c>:
     /// <code lang="fsharp">
-    /// | x | y | z | s |
+    /// -----------------
+    /// | x | y | z | c |
     /// -----------------
     /// | 0 | 0 | 0 | 0 |
-    /// | 0 | 0 | 1 | 0 |
-    /// | 0 | 1 | 0 | 0 |
-    /// | 0 | 1 | 1 | 1 |
-    /// | 1 | 0 | 0 | 0 |
-    /// | 1 | 0 | 1 | 1 |
-    /// | 1 | 1 | 0 | 1 |
+    /// | 0 | 0 | 1 | 1 |
+    /// | 0 | 1 | 0 | 1 |
+    /// | 0 | 1 | 1 | 0 |
+    /// | 1 | 0 | 0 | 1 |
+    /// | 1 | 0 | 1 | 0 |
+    /// | 1 | 1 | 0 | 0 |
     /// | 1 | 1 | 1 | 1 |
     /// -----------------
     /// </code>
@@ -410,6 +443,8 @@ module Propexamples =
 
     /// <summary>
     /// Full adder function.
+    /// <br />
+    /// <c>(s &lt;=&gt; (x &lt;=&gt; ~y) &lt;=&gt; ~z) /\ (c &lt;=&gt; x /\ y \/ (x \/ y) /\ z)</c>
     /// </summary>
     /// 
     /// <remarks>
@@ -417,11 +452,10 @@ module Propexamples =
     /// operands <c>x</c> and <c>y</c> plus <c>z</c> that represent the 
     /// carry from a previous sum.
     /// <p></p>
-    /// <c>fa</c> generates a propositional formula that is a tautology if the 
-    /// input formulas represent three one-bit-numbers <c>x</c> and <c>y</c> 
-    /// to be added plus <c>z</c> (the previous sum carry), and <c>s</c> and 
-    /// <c>c</c>, respectively, the resulting sum and the carry as would be 
-    /// calculated by a full adder.
+    /// <c>fa</c> generates a propositional formula that is true in those 
+    /// valuations in which <c>s</c> and <c>c</c> are, respectively, the sum 
+    /// and carry calculated by a full-adder for the sum of <c>x</c> and 
+    /// <c>y</c> plus the carry <c>z</c> for a previous sum.
     /// </remarks>
     /// 
     /// <param name="x">The first one-bit-number to be added.</param>
@@ -430,44 +464,29 @@ module Propexamples =
     /// <param name="s">The supposed sum.</param>
     /// <param name="c">The supposed carry.</param>
     /// <returns>
-    /// The propositional formula that represents the intended relations 
-    /// between the input. In other words, a formula that is a tautology 
-    /// if <c>s</c> and <c>c</c> are the sum and carry of a full adder for 
-    /// the input one-bit-numbers <c>x</c> and <c>y</c> to be added plus a carry 
-    /// <c>z</c> from a previous sum.
+    /// The propositional formula that is true in those valuations in which 
+    /// <c>s</c> and <c>c</c> are, respectively, the sum and carry calculated 
+    /// by a full-adder for the sum of <c>x</c> and <c>y</c> plus the carry 
+    /// <c>z</c> for a previous sum.
     /// </returns>
     /// 
-    /// <example id="fa-1">
-    /// <code lang="fsharp">
-    /// let fm = fa (True:prop formula) True True True True
-    /// // evaluates to: `(true &lt;=&gt; (true &lt;=&gt; ~true) &lt;=&gt; ~true) 
-    /// // /\ (true &lt;=&gt; true /\ true \/ (true \/ true) /\ true)`
-    /// tautology(fm)
-    /// </code>
-    /// Evaluates to <c>true</c>.
-    /// </example>
-    /// 
     /// <example id="ha-2">
-    /// Taking only the tautologies returned by the function 
-    /// gives a full adder:
+    /// All the valuations satisfying the formula represent the correct 
+    /// relation between input and output of an half adder. 
     /// <code lang="fsharp">
-    /// let to01 fm = 
-    ///   match eval fm (fun _ -> false) with
-    ///   | false  -> 0
-    ///   | true  -> 1
-    /// 
     /// printfn "---------------------"
     /// printfn "| x | y | z | c | s |"
     /// printfn "---------------------"
-    /// for x in [False;True] do 
-    ///     for y in [False;True] do 
-    ///         for z in [False;True] do 
-    ///             for c in [False;True] do 
-    ///                 for s in [False;True] do 
-    ///                     if tautology(fa x y z s c) then 
-    ///                         printfn "| %i | %i | %i | %i | %i |" 
-    ///                             (x |> to01) (y |> to01) (z |> to01) 
-    ///                             (c |> to01) (s |> to01)
+    /// 
+    /// (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    /// |> List.iter (fun v -> 
+    ///     printfn "| %A | %A | %A | %A | %A |" 
+    ///         (v (P "x") |> System.Convert.ToInt32)
+    ///         (v (P "y") |> System.Convert.ToInt32)
+    ///         (v (P "z") |> System.Convert.ToInt32)
+    ///         (v (P "c") |> System.Convert.ToInt32)
+    ///         (v (P "s") |> System.Convert.ToInt32)
+    /// )
     /// printfn "---------------------"
     /// </code>
     /// After evaluation the following is printed to the <c>stdout</c>:
@@ -478,8 +497,8 @@ module Propexamples =
     /// | 0 | 0 | 0 | 0 | 0 |
     /// | 0 | 0 | 1 | 0 | 1 |
     /// | 0 | 1 | 0 | 0 | 1 |
-    /// | 0 | 1 | 1 | 1 | 0 |
     /// | 1 | 0 | 0 | 0 | 1 |
+    /// | 0 | 1 | 1 | 1 | 0 |
     /// | 1 | 0 | 1 | 1 | 0 |
     /// | 1 | 1 | 0 | 1 | 0 |
     /// | 1 | 1 | 1 | 1 | 1 |
@@ -502,8 +521,12 @@ module Propexamples =
     /// 
     /// <remarks>
     /// Its intended use, in our context, is to put multiple 1-bit adders 
-    /// together into an n-bit adder. Indexes, in this case, point the bit 
-    /// positions.
+    /// together into an n-bit adder. Indexes in this case point to the 
+    /// n-bit positions of the two n-bit numbers to be added. For example, 
+    /// <see cref='M:FolAutomReas.Propexamples.ripplecarry``1'/> use this 
+    /// function to 'conjoin' n 
+    /// <see cref='M:FolAutomReas.Propexamples.fa``1'/>'s in order to obtain an 
+    /// n-bit adder.
     /// </remarks>
     /// 
     /// <param name="f">A function from indexes to formulas.</param>
@@ -527,37 +550,102 @@ module Propexamples =
         when 'b: equality
 
     /// <summary>
-    /// <c>n</c>-bit ripple carry adder with carry <c>c 0</c> propagated in and 
-    /// <c>c n</c> out.  
+    /// Ripple carry adder: with carry c(0) propagated in and c(n) out.
+    /// <br />
+    /// <c>(s_0 &lt;=&gt; (x_0 &lt;=&gt; ~y_0) &lt;=&gt; ~c_0) /\ (c_1 &lt;=&gt; x_0 /\ y_0 \/ (x_0 \/ y_0) /\ c_0) /\ 
+    /// ... /\ 
+    /// (s_n &lt;=&gt; (x_n &lt;=&gt; ~y_n) &lt;=&gt; ~c_n) /\ (c_n+1 &lt;=&gt; x_n /\ y_n \/ (x_n \/ y_n) /\ c_n)</c>
+    ///   
     /// </summary>
     /// 
     /// <remarks>
-    /// 'Conjoins' <c>n</c> one-bit full adders to obtain an <c>n</c>-bit adder.
-    /// 
-    /// Generates a propositional formula that represent a ripple-carry adder 
-    /// circuit. Filtering the true rows of its truth table gives the sum and 
-    /// carry values for each one-bit-numbers.
-    /// 
+    /// Conjoins (see <see cref='M:FolAutomReas.Propexamples.conjoin``2'/>) 
+    /// <c>n</c> one-bit full adders to obtain an <c>n</c>-bit adder.
+    /// <p></p>
+    /// The generated propositional formula represents the correct relations 
+    /// between the input and output of a ripple carry adder, just as 
+    /// <see cref='M:FolAutomReas.Propexamples.ha``1'/> and 
+    /// <see cref='M:FolAutomReas.Propexamples.fa``1'/>, respectively, 
+    /// represent the correct relations between input and output for an 
+    /// half-adder and a full-adder.
+    /// <p></p>
     /// It expects the user to supply functions <c>x</c>, <c>y</c>, <c>out</c> 
     /// and <c>c</c> that, when given an index, generates an appropriate new 
-    /// variable. Use <c>mk_index</c> to generate such functions.
-    /// 
-    /// For example, 
-    /// 
-    /// <c>let [x; y; out; c] = map mk_index ["X"; "Y"; "OUT"; "C"]</c>
-    /// 
-    /// <c>ripplecarry x y c out 2</c>
+    /// variable. <see cref='M:FolAutomReas.Propexamples.mk_index'/> is 
+    /// supplied to generate such functions.
     /// </remarks>
     /// 
     /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
     /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
     /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
-    /// 
+    /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
     /// <param name="n">The number of bits added by the ripplecarry adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
-    /// bit (index)
+    /// bit position.
     /// </returns>
+    /// 
+    /// <example id="ripplecarry-0">
+    /// Ripple carry adder of two 2-bit numbers: printing all the valuations 
+    /// satisfying the formula shows all the possible correct relations between 
+    /// input.
+    /// <code lang="fsharp">
+    /// let x, y, s, c = 
+    ///     mk_index "x",
+    ///     mk_index "y",
+    ///     mk_index "s",
+    ///     mk_index "c"
+    /// 
+    /// let fm = ripplecarry x y c s 2
+    /// // ((s_0 &lt;=&gt; (x_0 &lt;=&gt; ~y_0) &lt;=&gt; ~c_0) /\ (c_1 &lt;=&gt; x_0 /\ y_0 \/ 
+    /// // (x_0 \/ y_0) /\ c_0)) /\ 
+    /// // (s_1 &lt;=&gt; (x_1 &lt;=&gt; ~y_1) &lt;=&gt; ~c_1) /\ (c_2 &lt;=&gt; x_1 /\ y_1 \/ 
+    /// // (x_1 \/ y_1) /\ c_1)
+    /// 
+    /// // eval the atom at the input valuations and convert to int
+    /// let toInt (v: prop -> bool) x =
+    ///     v (P x) |> System.Convert.ToInt32
+    /// 
+    /// allsatvaluations (eval fm) (fun _ -> false) (atoms fm)
+    /// |> List.iteri (fun i v -> 
+    ///     printfn "carry    |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    ///     printfn "------------------"
+    ///     printfn "addend 1 |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    ///     printfn "addend 2 |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    ///     printfn "=================="
+    ///     printfn "sum      | %A %A %A |" 
+    ///         (toInt v "c_2")
+    ///         (toInt v "s_1")
+    ///         (toInt v "s_0")
+    ///     printfn ""
+    /// )
+    /// </code>
+    /// Some output omitted for brevity:
+    /// <code lang="fsharp">
+    /// carry    |   0 0 |
+    /// ------------------
+    /// addend 1 |   0 0 |
+    /// addend 2 |   0 0 |
+    /// ==================
+    /// sum      | 0 0 0 |
+    /// ...
+    /// carry    |   0 0 |
+    /// ------------------
+    /// addend 1 |   1 0 |
+    /// addend 2 |   1 1 |
+    /// ==================
+    /// sum      | 1 0 1 |
+    /// ...
+    /// carry    |   1 1 |
+    /// ------------------
+    /// addend 1 |   1 1 |
+    /// addend 2 |   1 1 |
+    /// ==================
+    /// sum      | 1 1 1 |
+    /// </code>
+    /// Note how this version admit a carry c(0) different from 0 propagated in 
+    /// at the first bit.
+    /// </example>
     /// 
     /// <category index="4">Ripple carry adder</category>
     val ripplecarry:

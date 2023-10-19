@@ -217,10 +217,50 @@ module Prop =
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <category index="4">Semantics</category>
+    /// <category index="5">Truth tables</category>
     val onallvaluations:
       subfn: (('a -> bool) -> bool) -> v: ('a -> bool) -> ats: 'a list -> bool
         when 'a: equality
+
+    /// <summary>
+    /// Returns all possible valuations of the atoms in <c>fm</c>.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// This function is not part of the handbook's code and it is added 
+    /// here for convenience and exercise.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>All possible valuations of the atoms in the formula.</returns>
+    /// 
+    /// <example id="allvaluations-1">
+    /// <code lang="fsharp">
+    /// let fm = !> @"(p /\ q) \/ s"
+    /// 
+    /// allvaluations fm
+    /// // graphs of all valuations of atoms in fm
+    /// |> List.map (fun v -> 
+    ///     atoms fm
+    ///     |> List.map (fun a -> (a, v a))
+    /// )
+    /// </code>
+    /// Evaluates to:
+    /// <code lang="fsharp">
+    /// [[(P "p", false); (P "q", false); (P "s", false)];
+    ///  [(P "p", false); (P "q", false); (P "s", true)];
+    ///  [(P "p", false); (P "q", true); (P "s", false)];
+    ///  [(P "p", false); (P "q", true); (P "s", true)];
+    ///  [(P "p", true); (P "q", false); (P "s", false)];
+    ///  [(P "p", true); (P "q", false); (P "s", true)];
+    ///  [(P "p", true); (P "q", true); (P "s", false)];
+    ///  [(P "p", true); (P "q", true); (P "s", true)]]
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="5">Truth tables</category>
+    val allvaluations: fm: formula<'a> -> list<('a -> bool)> when 'a: comparison
 
     /// <summary>
     /// Prints the truth table of the prop formula <c>fm</c> to a TextWriter 

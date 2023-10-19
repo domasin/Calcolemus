@@ -36,6 +36,26 @@ let ``onallvaluations should return true if subfn returns true for each atoms on
     |> should equal true
 
 [<Fact>]
+let ``allvaluations should return all valuations of the formula.``() = 
+    let fm = !> @"(p /\ q) \/ s"
+
+    allvaluations fm
+    // graphs of all valuations of atoms in fm
+    |> List.map (fun v -> 
+        atoms fm
+        |> List.map (fun a -> (a, v a))
+    )
+    |> should equal 
+        [[(P "p", false); (P "q", false); (P "s", false)];
+         [(P "p", false); (P "q", false); (P "s", true)];
+         [(P "p", false); (P "q", true); (P "s", false)];
+         [(P "p", false); (P "q", true); (P "s", true)];
+         [(P "p", true); (P "q", false); (P "s", false)];
+         [(P "p", true); (P "q", false); (P "s", true)];
+         [(P "p", true); (P "q", true); (P "s", false)];
+         [(P "p", true); (P "q", true); (P "s", true)]]
+
+[<Fact>]
 let ``sprint_truthtable should return a string representation of the truth table of the input formula.``() = 
     sprint_truthtable !>"p ==> q"
     |> should equal 

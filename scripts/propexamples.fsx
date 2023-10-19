@@ -4,217 +4,87 @@ open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Propexamples
 open FolAutomReas.Lib.List
+open System
+open FolAutomReas.Lib.Fpf
 
 // fsi.AddPrinter sprint_prop_formula
 
+ramsey 2 2 3
+
 ramsey 3 3 4
 
-allpairs (fun x y -> (x,y)) [(False:prop formula);True] [False;True]
-|> List.map (fun (x,y) -> (x,y), eval (halfsum x y) (fun _ -> false))
-
-let to01 fm = 
-    match eval fm (fun _ -> false) with
-    | false  -> 0
-    | true  -> 1
-
-printfn "-------------"
-printfn "| x | y | s |"
-printfn "-------------"
-for x in [False;True] do 
-    for y in [False;True] do 
-        printfn "| %i | %i | %i |" 
-            (x |> to01) 
-            (y |> to01) 
-            (halfsum x y |> to01)
-printfn "-------------"
-
-printfn "-------------"
-printfn "| x | y | s |"
-printfn "-------------"
-for x in [False;True] do 
-    for y in [False;True] do 
-        printfn "| %i | %i | %i |" 
-            (x |> to01) 
-            (y |> to01) 
-            (halfcarry x y |> to01)
-printfn "-------------"
-
-let fm = ha (True:prop formula) True False True
-// `(false <=> true <=> ~true) /\ (true <=> true /\ true)`
-tautology(fm)
-
-printfn "-----------------"
-printfn "| x | y | c | s |"
-printfn "-----------------"
-for x in [False;True] do 
-    for y in [False;True] do 
-        for c in [False;True] do 
-            for s in [False;True] do 
-                if tautology(ha x y s c) then 
-                    printfn "| %i | %i | %i | %i |" 
-                        (x |> to01) (y |> to01) (c |> to01) (s |> to01)
-printfn "-----------------"
-
-[for x in [(False:prop formula);True] do 
-    for y in [False;True] do 
-        for c in [False;True] do 
-            for s in [False;True] do 
-                if tautology(ha x y s c) then 
-                    (x,y,c,s)]
-
-// carry
+let fm = sum (!>"x") (!>"y") (!>"z")
+// evaluates to `(x <=> ~y) <=> ~z`
 
 printfn "-----------------"
 printfn "| x | y | z | c |"
 printfn "-----------------"
-for x in [False;True] do 
-    for y in [False;True] do 
-        for z in [False;True] do 
-            printfn "| %i | %i | %i | %i |" 
-                (x |> to01) 
-                (y |> to01) 
-                (z |> to01) 
-                (carry x y z |> to01)
+
+// for each valuation:
+allvaluations fm
+|> List.iter (fun v -> 
+    // for each atom:
+    atoms fm
+    |> List.iter (fun atm -> 
+        // print the truth-value of the atom in the valuation;
+        printf "| %A " (v atm |> System.Convert.ToInt32)
+    )
+    // and print the truth-value of the formula in the valuation.
+    printfn "| %A |" 
+        (eval fm v |> System.Convert.ToInt32)
+)
 printfn "-----------------"
 
-[for x in [(False:prop formula);True] do 
-    for y in [False;True] do 
-        for z in [False;True] do 
-            (x,y,z,eval (carry x y z) (fun _ -> false))]
+let fm' = fa (!>"x") (!>"y") (!>"z") (!>"s") (!>"c")
+// `(s <=> (x <=> ~y) <=> ~z) /\ (c <=> x /\ y \/ (x \/ y) /\ z)`
 
-// sum
-
-printfn "-----------------"
-printfn "| x | y | z | s |"
-printfn "-----------------"
-for x in [False;True] do 
-    for y in [False;True] do 
-        for z in [False;True] do 
-            printfn "| %i | %i | %i | %i |" 
-                (x |> to01) 
-                (y |> to01) 
-                (z |> to01) 
-                (sum x y z |> to01)
-printfn "-----------------"
+let atInd' (v: prop -> bool) (i:int) vName = 
+    v (P (vName)) |> System.Convert.ToInt32
 
 printfn "---------------------"
 printfn "| x | y | z | c | s |"
 printfn "---------------------"
-for x in [False;True] do 
-    for y in [False;True] do 
-        for z in [False;True] do 
-            for c in [False;True] do 
-                for s in [False;True] do 
-                    if tautology(fa x y z s c) then 
-                        printfn "| %i | %i | %i | %i | %i |" 
-                            (x |> to01) (y |> to01) (z |> to01) 
-                            (c |> to01) (s |> to01)
+ 
+(allsatvaluations (eval fm') (fun _ -> false) (atoms fm'))
+|> List.iter (fun v -> 
+    printfn "| %A | %A | %A | %A | %A |" 
+        (atInd' v 0 "x")
+        (v (P "y") |> System.Convert.ToInt32)
+        (v (P "z") |> System.Convert.ToInt32)
+        (v (P "c") |> System.Convert.ToInt32)
+        (v (P "s") |> System.Convert.ToInt32)
+)
 printfn "---------------------"
-
-[for x in [(False:prop formula);True] do 
-    for y in [False;True] do 
-        for z in [False;True] do 
-            for c in [False;True] do 
-                for s in [False;True] do 
-                    if tautology(fa x y z s c) then 
-                        (x,y,z,c,s)]
-
-let conjoin2 f l = 
-    l
-    |> List.map f
-    |> list_conj
-
-// Constructs a conjunction of the formulas obtained by applying a function f to the elements of a list l
-conjoin Atom [1;2;3]
-
-
-let ripplecarry x y c out n =
-    [0..(n - 1)]
-    |> List.map (fun i -> fa (x i) (y i) (c i) (out i) (c (i + 1)))
-    |> list_conj
                 
+let x, y, s, c = 
+    mk_index "x",
+    mk_index "y",
+    mk_index "s",
+    mk_index "c"
 
-mk_index "x" 3
+// 2-bit ripple carry adder
+let fm'' = ripplecarry x y c s 2
+// ((s_0 <=> (x_0 <=> ~y_0) <=> ~c_0) /\ (c_1 <=> x_0 /\ y_0 \/ 
+// (x_0 \/ y_0) /\ c_0)) /\ 
+// (s_1 <=> (x_1 <=> ~y_1) <=> ~c_1) /\ (c_2 <=> x_1 /\ y_1 \/ 
+// (x_1 \/ y_1) /\ c_1)
 
-let fa0 = fa (!>"x_0") (!>"y_0") (!>"c_0") (!>"s_0") (!>"c_1")
-let atms = atoms fa0
+print_truthtable fm''
 
-let satvals = allsatvaluations (eval fa0) (fun _ -> false) atms
-// graphs of all valuations satisfying fm
-// |> List.map (fun v -> 
-//     atms
-//     |> List.map (fun a -> (a, v a))
-// )
+// eval the atom at the input valuations and convert to int
+let toInt (v: prop -> bool) x =
+    v (P x) |> System.Convert.ToInt32
 
-// let fm = ha (True:prop formula) True False True
-// eval 
-
-ha (True:prop formula) True False True
-|> fun fm -> 
-    let atms = atoms fm
-    (allsatvaluations (eval fm) (fun _ -> false) atms), atms
-|> fun (vv,atms) -> 
-    vv
-    |> List.map (fun v -> 
-        atms
-        |> List.map (fun a -> (a, v a))
-    )
-
-ha (True:prop formula) True (!>"s") True
-|> fun fm -> 
-    let atms = atoms fm
-    (allsatvaluations (eval fm) (fun _ -> false) atms), atms
-|> fun (vv,atms) -> 
-    vv
-    |> List.map (fun v -> 
-        atms
-        |> List.map (fun a -> (a, v a))
-    )
-
-
-
-printfn "-----------------"
-printfn "| x | y | c | s |"
-printfn "-----------------"
-
-ha (!>"x") (!>"y") (!>"s") (!>"c")
-|> fun fm -> 
-    let atms = atoms fm
-    (allsatvaluations (eval fm) (fun _ -> false) atms)
-|> List.iter (fun v -> 
-    printfn "| %A | %A | %A | %A |" 
-        (to01 v (P "x"))
-        (to01 v (P "y"))
-        (to01 v (P "c"))
-        (to01 v (P "s"))
+allsatvaluations (eval fm'') (fun _ -> false) (atoms fm'')
+|> List.iteri (fun i v -> 
+    printfn "carry    |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    printfn "------------------"
+    printfn "addend 1 |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    printfn "addend 2 |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    printfn "=================="
+    printfn "sum      | %A %A %A |" 
+        (toInt v "c_2")
+        (toInt v "s_1")
+        (toInt v "s_0")
+    printfn ""
 )
-printfn "-----------------"
-
-let to01 v x = 
-    match v x with
-    | false -> 0
-    | true -> 1
-
-let fm = ha (!>"x") (!>"y") (!>"s") (!>"c")
-
-(allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
-|> List.map (fun v -> 
-        (to01 v (P "x")),
-        (to01 v (P "y")),
-        (to01 v (P "c")),
-        (to01 v (P "s"))
-)
-
-printfn "-----------------"
-printfn "| x | y | c | s |"
-printfn "-----------------"
-
-(allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
-|> List.iter (fun v -> 
-    printfn "| %A | %A | %A | %A |" 
-        (to01 v (P "x"))
-        (to01 v (P "y"))
-        (to01 v (P "c"))
-        (to01 v (P "s"))
-)
-printfn "-----------------"

@@ -97,6 +97,18 @@ module Prop =
             onallvaluations subfn (v' false) ps
             && onallvaluations subfn (v' true) ps
 
+    let allvaluations fm = 
+        let rec allvaluationsAux v pvs =
+            match pvs with
+            | [] -> [v]
+            | p :: ps -> 
+                let v' t q =
+                    if q = p then t
+                    else v q
+                allvaluationsAux (v' false) ps @
+                allvaluationsAux (v' true) ps
+        allvaluationsAux undef (atoms fm)
+
     let fprint_truthtable sw fm =
         // [P "p"; P "q"; P "r"]
         let ats = atoms fm
