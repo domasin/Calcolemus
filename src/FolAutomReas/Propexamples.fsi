@@ -978,11 +978,18 @@ module Propexamples =
     val mk_adder_test: n: int -> k: int -> formula<prop>
 
     /// <summary>
-    /// Ripple carry stage that separates off the final result of a 
-    /// multiplication.
+    /// ripplecarry0 that, in the result, separates the less significant 
+    /// bit <c>z</c> from the other bits <c>w</c>.
     /// <br />
     /// <c>((z &lt;=&gt; u_0 &lt;=&gt; ~v_0) /\ (c_2 &lt;=&gt; u_0 /\ v_0)) /\ (w_0 &lt;=&gt; (u_1 &lt;=&gt; ~v_1) &lt;=&gt; ~c_2) /\ (w_1 &lt;=&gt; u_1 /\ v_1 \/ (u_1 \/ v_1) /\ c_2)</c>
     /// </summary>
+    /// 
+    /// <param name="u">A function that, given an index, returns a variable that represent the bit of the first addend at that bit.</param>
+    /// <param name="v">A function that, given an index, returns a variable that represent the bit of the second addend at that bit.</param>
+    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
+    /// <param name="z">The variable that represent the less significant bit of the resulting sum.</param>
+    /// <param name="w">A function that, given an index, returns a variable  that represent the bit of the sum addend at index+1.</param>
+    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
     /// 
     /// <category index="6">Multiplier circuit</category>
     val rippleshift:

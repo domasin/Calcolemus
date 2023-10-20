@@ -308,3 +308,57 @@ let ``mux should select in0 if sel is false.``() =
 let ``offset should offsets variable indexes``() = 
     offset 1 (mk_index "x") 2
     |> should equal (Atom (P "x_3"))
+
+/// eval the atom at the input valuations and convert to int
+let toInt (v: prop -> bool) x =
+    v (P x) |> System.Convert.ToInt32
+
+/// checks if the variable x in the valuation v represent the binary number n.
+let isIn v n x =  
+    let max = (n |> String.length) - 1
+    [0..max]
+    |> List.forall (fun i -> 
+        let bit = n |> seq |> Seq.item(max-i) |> string
+        toInt v (sprintf "%s_%i" x i) = System.Int32.Parse(bit)
+    )
+
+let decode x n v = 
+    [0..n-1]
+    |> Seq.sortDescending
+    |> Seq.map (fun i -> 
+        try sprintf "%s" ((toInt v (sprintf "%s_%i" x i)) |> string)
+        with _ -> sprintf " "
+    )
+    |> System.String.Concat
+
+let multiply m1 m2 = 
+    let n = max (m1 |> String.length) (m2 |> String.length)
+    let x,y,out = 
+        mk_index "x",
+        mk_index "y",
+        mk_index "out"
+
+    let m i j = And(x i,y j)
+
+    let u,v = 
+        mk_index2 "u",
+        mk_index2 "v"
+    let ml = multiplier m u v out n
+
+    allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
+    |> List.filter (fun v -> 
+        "x" |> isIn v m1
+        && "y" |> isIn v m2
+    )
+    |> List.head
+    |> decode "out" 6
+
+let mult2 m1 m2 = 
+    let a = System.Convert.ToInt32(m1,2)
+    let b = System.Convert.ToInt32(m2,2)
+    System.Convert.ToString(a * b,2)
+
+[<Fact>]
+let ``multiply should return correct result``() = 
+    multiply "110" "111"
+    |> should equal (mult2 "110" "111")
