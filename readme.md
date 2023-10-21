@@ -26,8 +26,10 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * Use of exception removed in `dp` and `dpll`, both for performance and because `Failure _`, in any case, should be replaced with `_` to work (since built-in functions, like `List.head`, are used instead of those redefined with custom exceptions, like `hd`).
 
-* Unit tests with XUnit (in progress).
+* Unit tests with XUnit, FSUnit, FSCheck (in progress).
 
-* Quotations symbols `<<>>` replaced with `` since the latter cause less problems in writing documentation. This change is actually present only in source code and not in the last release.
+### Changes in source code not yet released
+
+* Quotations symbols `<<>>` replaced with `` since the latter cause less problems in writing documentation. 
 
 

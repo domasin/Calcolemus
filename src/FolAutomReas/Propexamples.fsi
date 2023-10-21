@@ -19,10 +19,6 @@ open FolAutomReas.Prop
 /// efficiency of propositional logic algorithms.
 /// </remarks>
 /// 
-/// <note>
-/// <b>This document is still in progress but already a pretty good version.</b>
-/// </note>
-/// 
 /// <category index="3">Propositional logic</category>
 module Propexamples = 
 
@@ -574,11 +570,11 @@ module Propexamples =
     /// supplied to generate such functions.
     /// </remarks>
     /// 
-    /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
-    /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
-    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
-    /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
-    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
+    /// <param name="x">The function that produces the indexed variables to encode the bits of the first addend.</param>
+    /// <param name="y">The function that produces the indexed variables to encode the bits of the second addend.</param>
+    /// <param name="c">The function that produces the indexed variables to encode the carry at each bit.</param>
+    /// <param name="out">The function that produces the indexed variables to encode the sum at each bit.</param>
+    /// <param name="n">The number of bits handled by the adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
     /// bit position.
@@ -720,11 +716,11 @@ module Propexamples =
     /// It can be used when we are not interested in a carry in at the low end.
     /// </remarks>
     /// 
-    /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
-    /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
-    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
-    /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
-    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
+    /// <param name="x">The function that produces the indexed variables to encode the bits of the first addend.</param>
+    /// <param name="y">The function that produces the indexed variables to encode the bits of the second addend.</param>
+    /// <param name="c">The function that produces the indexed variables to encode the carry at each bit.</param>
+    /// <param name="out">The function that produces the indexed variables to encode the sum at each bit.</param>
+    /// <param name="n">The number of bits handled by the adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
     /// bit position, except for the first position that is represented by an 
@@ -735,6 +731,12 @@ module Propexamples =
     /// Filtering the satisfying valuations with x_1=0,x_0=0,y_1=1,y_0=1 
     /// gives the ripplecarry0 for the sum of 01+11:
     /// <code lang="fsharp">
+    /// let x, y, s, c = 
+    ///   mk_index "x",
+    ///   mk_index "y",
+    ///   mk_index "s",
+    ///   mk_index "c"
+    /// 
     /// let rc0 = ripplecarry0 x y c s 2
     /// // ((s_0 &lt;=&gt; x_0 &lt;=&gt; ~y_0) /\ 
     /// //      (c_1 &lt;=&gt; x_0 /\ y_0)) /\ 
@@ -793,11 +795,11 @@ module Propexamples =
     /// is used to define <see cref='M:FolAutomReas.Propexamples.carryselect``1'/>.
     /// </remarks>
     /// 
-    /// <param name="x">A function that, given an index, returns a variable for the value of the first addend at that bit (index).</param>
-    /// <param name="y">A function that, given an index, returns a variable for the value of the second addend at that bit (index).</param>
-    /// <param name="c">A function that, given an index, returns a variable for the value of the carry (in and out) at that bit (index).</param>
-    /// <param name="out">A function that, given an index, returns a variable for the value of the sum at that bit (index).</param>
-    /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
+    /// <param name="x">The function that produces the indexed variables to encode the bits of the first addend.</param>
+    /// <param name="y">The function that produces the indexed variables to encode the bits of the second addend.</param>
+    /// <param name="c">The function that produces the indexed variables to encode the carry at each bit.</param>
+    /// <param name="out">The function that produces the indexed variables to encode the sum at each bit.</param>
+    /// <param name="n">The number of bits handled by the adder.</param>
     /// <returns>
     /// The conjunction of the formulas that represent full adders for each 
     /// bit position, except for the first position in which a carry-in of 1 is 
@@ -808,6 +810,12 @@ module Propexamples =
     /// Filtering the satisfying valuations with x_1=0,x_0=0,y_1=1,y_0=1 
     /// gives the ripplecarry1 for the sum of 01+11:
     /// <code lang="fsharp">
+    /// let x, y, s, c = 
+    ///   mk_index "x",
+    ///   mk_index "y",
+    ///   mk_index "s",
+    ///   mk_index "c"
+    /// 
     /// let rc1 = ripplecarry1 x y c s 2
     /// // ((s_0 &lt;=&gt; ~(x_0 &lt;=&gt; ~y_0)) /\ 
     /// //    (c_1 &lt;=&gt; x_0 /\ y_0 \/ x_0 \/ y_0)) /\ 
@@ -948,6 +956,89 @@ module Propexamples =
 
     /// <summary>Carry select adder</summary>
     /// 
+    /// <remarks>
+    /// The carry select adder is a more efficient adder than the ripplecarry, 
+    /// in which the <c>n</c>-bit inputs are split into several blocks of 
+    /// <c>k</c>, and corresponding <c>k</c>-bit blocks are added twice, once 
+    /// assuming a carry-in of 0 and once assuming a carry-in of 1.
+    /// <p></p>
+    /// Here it is used as a comparison term for use in 
+    /// <see cref='M:FolAutomReas.Propexamples.mk_adder_test'/>  
+    /// which demonstrates how it is possible to verify that the efficiency 
+    /// optimization introduced has not made any logical change to the function 
+    /// computed (one of the key problems in the design and verification of 
+    /// computer systems).
+    /// </remarks>
+    /// 
+    /// <param name="x">The function that produces the indexed variables to encode the bits of the first addend.</param>
+    /// <param name="y">The function that produces the indexed variables to encode the bits of the second addend.</param>
+    /// <param name="c0">The function that produces the indexed variables to encode the carries of the <see cref='M:FolAutomReas.Propexamples.ripplecarry0``1'/> step.</param>
+    /// <param name="c1">The function that produces the indexed variables to encode the carries of the <see cref='M:FolAutomReas.Propexamples.ripplecarry1``1'/> step.</param>
+    /// <param name="s0">The function that produces the indexed variables to encode the sums of the <see cref='M:FolAutomReas.Propexamples.ripplecarry0``1'/> step.</param>
+    /// <param name="s1">The function that produces the indexed variables to encode the sums of the <see cref='M:FolAutomReas.Propexamples.ripplecarry1``1'/> step.</param>
+    /// <param name="c">The function that produces the indexed variables to encode the carry at each bit.</param>
+    /// <param name="s">The function that produces the indexed variables to encode the sum at each bit.</param>
+    /// <param name="k">The number of blocks in which the input are splitted.</param>
+    /// <param name="n">The number of bits handled by the adder.</param>
+    /// <returns>
+    /// The propositional formula that is true in the valuations that represent 
+    /// the correct relations between input and output of a carry select adder.
+    /// </returns>
+    /// 
+    /// <example id="carryselect-1">
+    /// <code lang="fsharp">
+    /// let x, y, c0, c1, s0, s1, s, c = 
+    ///      mk_index "x",
+    ///      mk_index "y",
+    ///      mk_index "c0",
+    ///      mk_index "c1",
+    ///      mk_index "s0",
+    ///      mk_index "s1",
+    ///      mk_index "s",
+    ///      mk_index "c"
+    /// 
+    /// let cs = carryselect x y c0 c1 s0 s1 c s 2 2
+    /// 
+    ///  // eval the atom at the input valuations and convert to int
+    /// let toInt (v: prop -> bool) x =
+    ///     v (P x) |> System.Convert.ToInt32
+    /// 
+    /// allsatvaluations (eval cs) (fun _ -> false) (atoms cs)
+    /// |> List.filter (fun v -> 
+    ///     (toInt v "x_1") = 0 &amp;&amp; (toInt v "x_0") = 1      // x = 01
+    ///     &amp;&amp; (toInt v "y_1") = 1 &amp;&amp; (toInt v "y_0") = 1   // y = 11
+    /// )
+    /// |> List.iteri (fun i v -> 
+    ///     printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    ///     printfn "---------------"
+    ///     printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    ///     printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    ///     printfn "==============="
+    ///     printfn "sum   | %A %A %A |" 
+    ///         (toInt v "c_2")
+    ///         (toInt v "s_1")
+    ///         (toInt v "s_0")
+    ///     printfn ""
+    /// )
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// carry |   0 0 |
+    /// ---------------
+    /// x     |   0 1 |
+    /// y     |   1 1 |
+    /// ===============
+    /// sum   | 1 0 0 |
+    /// 
+    /// carry |   0 1 |
+    /// ---------------
+    /// x     |   0 1 |
+    /// y     |   1 1 |
+    /// ===============
+    /// sum   | 1 0 1 |
+    /// </code>
+    /// </example>
+    /// 
     /// <category index="5">Carry select adder</category>
     val carryselect:
       x: (int -> formula<'a>) ->
@@ -974,6 +1065,20 @@ module Propexamples =
     /// the two circuit is proved.
     /// </remarks>
     /// 
+    /// <param name="n">The number of bit to be added.</param>
+    /// <param name="k">The number of blocks in the carryselect.</param>
+    /// <returns>
+    /// A propositional formula that is a tautology, if <see cref='M:FolAutomReas.Propexamples.ripplecarry0``1'/> and <see cref='M:FolAutomReas.Propexamples.carryselect``1'/> are equivalent.
+    /// </returns>
+    /// 
+    /// <example id="mk_adder_test-1">
+    /// <code lang="fsharp">
+    /// mk_adder_test 2 1
+    /// |> tautology
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
     /// <category index="5">Carry select adder</category>
     val mk_adder_test: n: int -> k: int -> formula<prop>
 
@@ -990,6 +1095,67 @@ module Propexamples =
     /// <param name="z">The variable that represent the less significant bit of the resulting sum.</param>
     /// <param name="w">A function that, given an index, returns a variable  that represent the bit of the sum addend at index+1.</param>
     /// <param name="n">The number of bits of the operands added by the ripplecarry adder.</param>
+    /// <returns>A <see cref='M:FolAutomReas.Propexamples.ripplecarry0``1'/> with <c>z</c> as the less significant bit of the sum and <c>w</c> as the other bits</returns>
+    /// 
+    /// <example id="rippleshift-1">
+    /// <code lang="fsharp">
+    /// // eval the atom at the input valuations and convert to int
+    /// let toInt (v: prop -> bool) x =
+    ///     v (P x) |> System.Convert.ToInt32
+    /// 
+    /// // rippleshift
+    /// 
+    /// let u,v,c,w = 
+    ///     mk_index "u",
+    ///     mk_index "v",
+    ///     mk_index "c",
+    ///     mk_index "w"
+    /// 
+    /// let rs = rippleshift u v c !>"z" w 2
+    /// 
+    /// allsatvaluations (eval rs) (fun _ -> false) (atoms rs)
+    /// |> List.iteri (fun i v -> 
+    ///     printfn "u     |   %A %A |" (toInt v "u_1") (toInt v "u_0")
+    ///     printfn "v     |   %A %A |" (toInt v "v_1") (toInt v "v_0")
+    ///     printfn "==============="
+    ///     printfn "w     | %A %A   |" 
+    ///         (toInt v "w_1")
+    ///         (toInt v "w_0")
+    ///     printfn "z     |     %A |" 
+    ///         (toInt v "z")
+    ///     printfn ""
+    /// )
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>.
+    /// (Some result omitted for brevity.)
+    /// <code lang="fsharp">
+    /// u     |   0 0 |
+    /// v     |   0 0 |
+    /// ===============
+    /// w     | 0 0   |
+    /// z     |     0 |
+    /// 
+    /// u     |   0 0 |
+    /// v     |   1 0 |
+    /// ===============
+    /// w     | 0 1   |
+    /// z     |     0 |
+    /// 
+    /// ...
+    /// u     |   0 0 |
+    /// v     |   1 1 |
+    /// ===============
+    /// w     | 0 1   |
+    /// z     |     1 |
+    /// ...
+    /// 
+    /// u     |   1 1 |
+    /// v     |   1 1 |
+    /// ===============
+    /// w     | 1 1   |
+    /// z     |     0 |
+    /// </code>
+    /// </example>
     /// 
     /// <category index="6">Multiplier circuit</category>
     val rippleshift:
@@ -1004,11 +1170,74 @@ module Propexamples =
     /// Naive multiplier based on repeated ripple carry. 
     /// </summary>
     /// 
-    /// <param name="n">An <c>n</c>-by-<c>n</c> array of input bits representing the product terms.</param>
-    /// <param name="u">An <c>n</c>-by-<c>n</c> to hold the intermediate sums.</param>
-    /// <param name="v">An <c>n</c>-by-<c>n</c> to hold the intermediate carries.</param>
-    /// <param name="out">An <c>n</c>-by-<c>n</c> to hold the result.</param>
-    /// <param name="n">The number of bits of the operands multiplied by the multiplier</param>
+    /// <param name="x">The function from each bit positions of both operands to their products (represented as simple conjunctions of their variables).</param>
+    /// <param name="u">An <c>n</c>-by-<c>n</c> 'array' to hold the intermediate sums.</param>
+    /// <param name="v">An <c>n</c>-by-<c>n</c> 'array' to hold the intermediate carries.</param>
+    /// <param name="out">An <c>n</c>-by-<c>n</c> 'array' to hold the result.</param>
+    /// <param name="n">The number of bits handled by the multiplier.</param>
+    /// <returns>
+    /// The propositional formula that represents the relations between the 
+    /// input and output of the multiplier.
+    /// </returns>
+    /// 
+    /// <example id="multiplier-1">
+    /// <code lang="fsharp">
+    /// // eval the atom at the input valuations and convert to int
+    /// let toInt (v: prop -> bool) x =
+    ///     v (P x) |> System.Convert.ToInt32
+    /// 
+    /// let x,y,out = 
+    ///     mk_index "x",
+    ///     mk_index "y",
+    ///     mk_index "out"
+    /// 
+    /// let m i j = And(x i,y j)
+    /// 
+    /// let u,v = 
+    ///     mk_index2 "u",
+    ///     mk_index2 "v"
+    /// 
+    /// let ml = multiplier m u v out 3
+    /// 
+    /// // Checks if the variable x in the valuation v represent the binary 
+    /// // number n.
+    /// let isIn v n x =  
+    ///     let max = (n |> String.length) - 1
+    ///     [0..max]
+    ///     |> List.forall (fun i -> 
+    ///         let bit = n |> seq |> Seq.item(max-i) |> string
+    ///         toInt v (sprintf "%s_%i" x i) = System.Int32.Parse(bit)
+    ///     )
+    /// 
+    /// let printIn v n x = 
+    ///     [0..n-1]
+    ///     |> List.sortDescending
+    ///     |> List.iter (fun i -> 
+    ///         try printf "%s" ((toInt v (sprintf "%s_%i" x i)) |> string)
+    ///         with _ -> printf " "
+    ///     )
+    ///     printfn ""
+    /// 
+    /// allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
+    /// |> List.filter (fun v -> 
+    ///     "x" |> isIn v "110"
+    ///     &amp;&amp; "y" |> isIn v "111"
+    /// )
+    /// |> List.iteri (fun i v -> 
+    ///     "x" |> printIn v 6
+    ///     "y" |> printIn v 6
+    ///     printfn "======"
+    ///     "out" |> printIn v 6
+    /// )
+    /// </code>
+    /// After evaluation the following is printed to the <c>stdout</c>.
+    /// <code lang="fsharp">
+    /// 000110
+    /// 000111
+    /// ======
+    /// 101010
+    /// </code>
+    /// </example>
     /// 
     /// <category index="6">Multiplier circuit</category>
     val multiplier:
@@ -1019,8 +1248,22 @@ module Propexamples =
         when 'a: equality
 
     /// <summary>
-    /// Returns the number of bit needed to represent x in binary notation.
+    /// Returns the number of bit needed to represent <c>x</c> in binary 
+    /// notation.
     /// </summary>
+    /// 
+    /// <param name="x">The decimal number to represent in binary notation.</param>
+    /// <returns>
+    /// The number of bit needed to represent <c>x</c> in binary 
+    /// notation.
+    /// </returns>
+    /// 
+    /// <example id="bitlength-1">
+    /// <code lang="fsharp">
+    /// bitlength 10
+    /// </code>
+    /// Evaluates to <c>4</c>.
+    /// </example>
     /// 
     /// <category index="7">Prime numbers</category>
     val bitlength: x: int -> int
@@ -1030,6 +1273,17 @@ module Propexamples =
     /// integer <c>x</c>.
     /// </summary>
     /// 
+    /// <param name="n">The index of the bit to extract.</param>
+    /// <param name="x">The decimal number to represent in binary notation.</param>
+    /// <returns>The value of the bit at the given index.</returns>
+    /// 
+    /// <example id="bit-1">
+    /// <code lang="fsharp">
+    /// bit 2 5
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
     /// <category index="7">Prime numbers</category>
     val bit: n: int -> x: int -> bool
 
@@ -1037,6 +1291,44 @@ module Propexamples =
     /// Produces a propositional formula asserting that the atoms <c>x</c>(i) 
     /// encode the bits of a value <c>m</c>, at least modulo 2^<c>n</c>.
     /// </summary>
+    /// 
+    /// <param name="x">The integer-to-string function that produces the indexed variables to encode the bits.</param>
+    /// <param name="m">The value to be encoded.</param>
+    /// <param name="n">The number of bits to use.</param>
+    /// <returns>
+    /// The propositional formula that is true in those valuations that assign 
+    /// to the variables the correct values to encode <c>m</c> in binary using 
+    /// <c>n</c> number of bits.
+    /// </returns>
+    /// 
+    /// <example id="congruent_to-1">
+    /// <code lang="fsharp">
+    /// congruent_to (mk_index "x") 10 4
+    /// </code>
+    /// Evaluates to <c>`~x_0 /\ x_1 /\ ~x_2 /\ x_3`</c>. 
+    /// A formula true just in the valuation \(x_0 \mapsto false, x_1 \mapsto 
+    /// true, x_2 \mapsto false, x_3 \mapsto true\) that (reverting and 
+    /// converting booleans to int) can be read as 1010.
+    /// </example>
+    /// 
+    /// <example id="congruent_to-2">
+    /// <code lang="fsharp">
+    /// [0..10]
+    /// |> List.map (fun i -> 
+    ///     let fm = congruent_to (mk_index "x") i (bitlength i)
+    ///     i,
+    ///     (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    ///     |> List.map (fun v -> 
+    ///         atoms fm
+    ///         |> Seq.map (v >> System.Convert.ToInt32 >> string)
+    ///         |> Seq.rev
+    ///         |> System.String.Concat
+    ///     )
+    ///     |> System.String.Concat
+    /// )
+    /// </code>
+    /// Evaluates to <c>[(0, ""); (1, "1"); (2, "10"); (3, "11"); (4, "100"); (5, "101"); (6, "110"); (7, "111"); (8, "1000"); (9, "1001"); (10, "1010")]</c>.
+    /// </example>
     /// 
     /// <category index="7">Prime numbers</category>
     val congruent_to:
@@ -1047,6 +1339,20 @@ module Propexamples =
     /// Applied to a positive integer <c>p</c> generates a propositional 
     /// formula that is a tautology precisely if <c>p</c> is prime.
     /// </summary>
+    /// 
+    /// <param name="p">The input number.</param>
+    /// <returns>
+    /// A propositional formula that is a tautology if <c>p</c> is prime.
+    /// </returns>
+    /// 
+    /// <example id="prime-1">
+    /// <code lang="fsharp">
+    /// prime 2
+    /// // `~(((out_0 &lt;=&gt; x_0 /\ y_0) /\ ~out_1) /\ ~out_0 /\ out_1)`
+    /// |> tautology
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="7">Prime numbers</category>
     val prime: p: int -> formula<prop>

@@ -18,16 +18,10 @@ let toInt (v: prop -> bool) x =
 //     mk_index "c",
 //     mk_index "w"
 
-// // let rippleshift u v c z w n =
-// //         ripplecarry0 u v (fun i -> if i = n then w (n - 1) else c (i + 1))
-// //                         (fun i -> if i = 0 then z else w (i - 1)) n
-
 // let rs = rippleshift u v c !>"z" w 2
 
 // allsatvaluations (eval rs) (fun _ -> false) (atoms rs)
-//  |> List.iteri (fun i v -> 
-//     printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
-//     printfn "---------------"
+// |> List.iteri (fun i v -> 
 //     printfn "u     |   %A %A |" (toInt v "u_1") (toInt v "u_0")
 //     printfn "v     |   %A %A |" (toInt v "v_1") (toInt v "v_0")
 //     printfn "==============="
@@ -37,7 +31,7 @@ let toInt (v: prop -> bool) x =
 //     printfn "z     |     %A |" 
 //         (toInt v "z")
 //     printfn ""
-//  )
+// )
 
 // multiplier
 
@@ -54,12 +48,8 @@ let u,v =
 
 let ml = multiplier m u v out 3
 
-ml 
-|> atoms
-|> List.map pname
-|> List.sortDescending
 
-/// checks if the variable x in the valuation v represent the binary number n.
+// Checks if the variable x in the valuation v represent the binary number n.
 let isIn v n x =  
     let max = (n |> String.length) - 1
     [0..max]
@@ -67,14 +57,6 @@ let isIn v n x =
         let bit = n |> seq |> Seq.item(max-i) |> string
         toInt v (sprintf "%s_%i" x i) = System.Int32.Parse(bit)
     )
-
-// let myVal x = 
-//     match x with
-//     | P "x_0" -> false
-//     | P "x_1" -> true
-//     | P "x_2" -> true
-
-// "x" |> isIn myVal "110"
 
 let printIn v n x = 
     [0..n-1]
@@ -85,53 +67,6 @@ let printIn v n x =
     )
     printfn ""
 
-let decode x n v = 
-    [0..n-1]
-    |> Seq.sortDescending
-    |> Seq.map (fun i -> 
-        try sprintf "%s" ((toInt v (sprintf "%s_%i" x i)) |> string)
-        with _ -> sprintf " "
-    )
-    |> System.String.Concat
-
-let printEqSign n = 
-    printf "%s" ("=" |> String.replicate n)
-    printfn ""
-
-let multiply (i1:int) (i2:int) = 
-    let m1,m2 = 
-        i1 |> string,
-        i2 |> string
-    let n = max (m1 |> String.length) (m2 |> String.length)
-    let x,y,out = 
-        mk_index "x",
-        mk_index "y",
-        mk_index "out"
-
-    let m i j = And(x i,y j)
-
-    let u,v = 
-        mk_index2 "u",
-        mk_index2 "v"
-    let ml = multiplier m u v out n
-
-    allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
-    |> List.filter (fun v -> 
-        "x" |> isIn v "110"
-        && "y" |> isIn v "111"
-    )
-    |> List.head
-    |> decode "out" 6
-
-multiply "110" "111"
-
-let mult2 (m1:int) (m2:int) = 
-    let a = System.Convert.ToInt32(m1 |> string,2)
-    let b = System.Convert.ToInt32(m2 |> string,2)
-    System.Convert.ToString(a * b,2)
-
-mult2 "110" "111"
-
 allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
 |> List.filter (fun v -> 
     "x" |> isIn v "110"
@@ -140,31 +75,119 @@ allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
 |> List.iteri (fun i v -> 
     "x" |> printIn v 6
     "y" |> printIn v 6
-    printEqSign 6
+    printfn "======"
     "out" |> printIn v 6
 )
 
+// // expected
+// //    110
+// //    111
+// //    ---
+// //    110
+// //   110
+// //   ----
+// //  10010
+// //  110
+// //  -----
+// // 101010
+
 #r "nuget:FsCheck"
+
+bitlength 0
+
+System.Convert.ToString(0,2).Length
 
 open FsCheck
 
+let bitlengthIsCorrect x = 
+    if x <= 0 then true else
+    bitlength x = System.Convert.ToString(x,2).Length
 
-let multiplyIsMult2 x y = (multiply x y) = mult2 x y
+Check.Quick bitlengthIsCorrect
 
-multiply "" ""
+// let bitIsCorrect n x = 
+//     let checkFunction (n:int) (x:int) = 
+//         let s = System.Convert.ToString(x,2)
+//         // printfn "%s" s
+//         match s[n] with
+//         | '0' -> false
+//         | '1' -> true
+//         | _ -> failwith ""
+//     if 0 > n || n > s.Length || x < 0 then true else
+//     bit n x = checkFunction n x
 
-mult2 "" ""
+// let n,x = 2,5
+// let s = System.Convert.ToString(x,2)
 
-Check.Quick multiplyIsMult2
+// bit 2 5
 
-// expected
-//    110
-//    111
-//    ---
-//    110
-//   110
-//   ----
-//  10010
-//  110
-//  -----
-// 101010
+// Check.Quick bitIsCorrect
+
+congruent_to (mk_index "x") 10 4
+// `~x_0 /\ x_1 /\ ~x_2 /\ x_3`
+//   0      1       0      1
+// to be read in reverse order 1010
+
+[0..10]
+|> List.map (fun i -> 
+    let fm = congruent_to (mk_index "x") i (bitlength i)
+    i,
+    (allsatvaluations (eval fm) (fun _ -> false) (atoms fm))
+    |> List.map (fun v -> 
+        atoms fm
+        |> Seq.map (v >> System.Convert.ToInt32 >> string)
+        |> Seq.rev
+        |> System.String.Concat
+    )
+    |> System.String.Concat
+)
+
+let cng = congruent_to (mk_index "x") 4 3
+
+prime 2
+// `~(((out_0 <=> x_0 /\ y_0) /\ ~out_1) /\ ~out_0 /\ out_1)`
+|> tautology
+
+prime 2
+|> allvaluations
+|> List.map (fun v -> 
+    atoms (prime 2)
+    |> List.map v
+)
+
+mk_adder_test 2 1
+|> tautology
+
+let x, y, c0, c1, s0, s1, s, c = 
+     mk_index "x",
+     mk_index "y",
+     mk_index "c0",
+     mk_index "c1",
+     mk_index "s0",
+     mk_index "s1",
+     mk_index "s",
+     mk_index "c"
+
+let cs = carryselect x y c0 c1 s0 s1 c s 2 2
+ 
+//  // eval the atom at the input valuations and convert to int
+// let toInt (v: prop -> bool) x =
+//     v (P x) |> System.Convert.ToInt32
+
+allsatvaluations (eval cs) (fun _ -> false) (atoms cs)
+|> List.filter (fun v -> 
+    (toInt v "x_1") = 0 && (toInt v "x_0") = 1      // x = 01
+    && (toInt v "y_1") = 1 && (toInt v "y_0") = 1   // y = 11
+)
+|> List.iteri (fun i v -> 
+    printfn "carry |   %A %A |" (toInt v "c_1") (toInt v "c_0")
+    printfn "---------------"
+    printfn "x     |   %A %A |" (toInt v "x_1") (toInt v "x_0")
+    printfn "y     |   %A %A |" (toInt v "y_1") (toInt v "y_0")
+    printfn "==============="
+    printfn "sum   | %A %A %A |" 
+        (toInt v "c_2")
+        (toInt v "s_1")
+        (toInt v "s_0")
+    printfn ""
+)
