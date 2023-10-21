@@ -58,7 +58,8 @@
     <Compile Include="Prop.fs" />
     <Compile Include="Propexamples.fsi" />
     <Compile Include="Propexamples.fs" />
-    <Compile Include="defcnf.fs" />
+    <Compile Include="Defcnf.fsi" />
+    <Compile Include="Defcnf.fs" />
     <Compile Include="DP.fsi" />
     <Compile Include="DP.fs" />
     <Compile Include="stal.fs" />
