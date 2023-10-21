@@ -35,49 +35,49 @@ let toInt (v: prop -> bool) x =
 
 // multiplier
 
-let x,y,out = 
-    mk_index "x",
-    mk_index "y",
-    mk_index "out"
+// let x,y,out = 
+//     mk_index "x",
+//     mk_index "y",
+//     mk_index "out"
 
-let m i j = And(x i,y j)
+// let m i j = And(x i,y j)
 
-let u,v = 
-    mk_index2 "u",
-    mk_index2 "v"
+// let u,v = 
+//     mk_index2 "u",
+//     mk_index2 "v"
 
-let ml = multiplier m u v out 3
+// let ml = multiplier m u v out 3
 
 
-// Checks if the variable x in the valuation v represent the binary number n.
-let isIn v n x =  
-    let max = (n |> String.length) - 1
-    [0..max]
-    |> List.forall (fun i -> 
-        let bit = n |> seq |> Seq.item(max-i) |> string
-        toInt v (sprintf "%s_%i" x i) = System.Int32.Parse(bit)
-    )
+// // Checks if the variable x in the valuation v represent the binary number n.
+// let isIn v n x =  
+//     let max = (n |> String.length) - 1
+//     [0..max]
+//     |> List.forall (fun i -> 
+//         let bit = n |> seq |> Seq.item(max-i) |> string
+//         toInt v (sprintf "%s_%i" x i) = System.Int32.Parse(bit)
+//     )
 
-let printIn v n x = 
-    [0..n-1]
-    |> List.sortDescending
-    |> List.iter (fun i -> 
-        try printf "%s" ((toInt v (sprintf "%s_%i" x i)) |> string)
-        with _ -> printf " "
-    )
-    printfn ""
+// let printIn v n x = 
+//     [0..n-1]
+//     |> List.sortDescending
+//     |> List.iter (fun i -> 
+//         try printf "%s" ((toInt v (sprintf "%s_%i" x i)) |> string)
+//         with _ -> printf " "
+//     )
+//     printfn ""
 
-allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
-|> List.filter (fun v -> 
-    "x" |> isIn v "110"
-    && "y" |> isIn v "111"
-)
-|> List.iteri (fun i v -> 
-    "x" |> printIn v 6
-    "y" |> printIn v 6
-    printfn "======"
-    "out" |> printIn v 6
-)
+// allsatvaluations (eval ml) (fun _ -> false) (atoms ml)
+// |> List.filter (fun v -> 
+//     "x" |> isIn v "110"
+//     && "y" |> isIn v "111"
+// )
+// |> List.iteri (fun i v -> 
+//     "x" |> printIn v 6
+//     "y" |> printIn v 6
+//     printfn "======"
+//     "out" |> printIn v 6
+// )
 
 // // expected
 // //    110
@@ -159,14 +159,14 @@ mk_adder_test 2 1
 |> tautology
 
 let x, y, c0, c1, s0, s1, s, c = 
-     mk_index "x",
-     mk_index "y",
-     mk_index "c0",
-     mk_index "c1",
-     mk_index "s0",
-     mk_index "s1",
-     mk_index "s",
-     mk_index "c"
+    mk_index "x",
+    mk_index "y",
+    mk_index "c0",
+    mk_index "c1",
+    mk_index "s0",
+    mk_index "s1",
+    mk_index "s",
+    mk_index "c"
 
 let cs = carryselect x y c0 c1 s0 s1 c s 2 2
  
