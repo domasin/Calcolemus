@@ -90,10 +90,38 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        Definite Conjunctive Normal Form
+        Definitional Conjunctive Normal Form.
       </p>
     </div>
   </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Core definitional CNF procedure
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Overall definitional CNF
+      </a>
+    </li>
+    <li>
+      <a href="#section2">
+        Version tweaked to exploit initial structure
+      </a>
+    </li>
+    <li>
+      <a href="#section3">
+        Version that guarantees 3-CNF
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Core definitional CNF procedure
+  </h2>
   <div>
     <h3>
       Functions and values
@@ -113,437 +141,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '176', 176)" onmouseover="showTip(event, '176', 176)">
-                <p>
-                  <a id="andcnf">
-                    <a href="#andcnf">
-                      <code><span>andcnf&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="176">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>andcnf&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        arg0
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        arg1
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        arg2
-                      </b>
-                      :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg2
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '177', 177)" onmouseover="showTip(event, '177', 177)">
-                <p>
-                  <a id="andcnf3">
-                    <a href="#andcnf3">
-                      <code><span>andcnf3&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="177">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>andcnf3&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        arg0
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        arg1
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        arg2
-                      </b>
-                      :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg2
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
               <code onmouseout="hideTip(event, '178', 178)" onmouseover="showTip(event, '178', 178)">
-                <p>
-                  <a id="defcnf">
-                    <a href="#defcnf">
-                      <code><span>defcnf&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="178">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>defcnf&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '179', 179)" onmouseover="showTip(event, '179', 179)">
-                <p>
-                  <a id="defcnf3">
-                    <a href="#defcnf3">
-                      <code><span>defcnf3&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="179">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>defcnf3&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
-                <p>
-                  <a id="defcnfOrig">
-                    <a href="#defcnfOrig">
-                      <code><span>defcnfOrig&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="180">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>defcnfOrig&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '181', 181)" onmouseover="showTip(event, '181', 181)">
-                <p>
-                  <a id="defcnfs">
-                    <a href="#defcnfs">
-                      <code><span>defcnfs&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="181">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>defcnfs&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '182', 182)" onmouseover="showTip(event, '182', 182)">
                 <p>
                   <a id="defstep">
                     <a href="#defstep">
@@ -552,7 +150,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="182">
+              <div class="fsdocs-tip" id="178">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>defstep&#32;<span>op&#32;<span>(<span>p,&#32;q</span>)</span>&#32;<span>(<span>fm,&#32;defs,&#32;n</span>)</span></span></span></code>
@@ -590,6 +188,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                       - 
+                      The formula to be transformed.
                     </span>
                     <br/>
                     <span>
@@ -598,6 +198,8 @@
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                       - 
+                      The definitions made so far.
                     </span>
                     <br/>
                     <span>
@@ -605,14 +207,16 @@
                         n
                       </b>
                       :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
+                      <code>bigint</code>
+                       - 
+                      The current variable index.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
+                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
                   </span>
                   <br/>
                 </div>
@@ -620,116 +224,439 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  op
-                </span>
-                :
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  p
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  q
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  defs
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.defstep`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.defstep\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    TBD
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    op
+                  </span>
+                  :
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;->&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    q
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The formula to be transformed.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    defs
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The definitions made so far.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current variable index.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '183', 183)" onmouseover="showTip(event, '183', 183)">
+              <code onmouseout="hideTip(event, '179', 179)" onmouseover="showTip(event, '179', 179)">
                 <p>
                   <a id="maincnf">
                     <a href="#maincnf">
-                      <code><span>maincnf&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
+                      <code><span>maincnf&#32;<span><span>(<span>fm,&#32;defs,&#32;n</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="183">
+              <div class="fsdocs-tip" id="179">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>maincnf&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
+                  <code><span>maincnf&#32;<span><span>(<span>fm,&#32;defs,&#32;n</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        arg0
+                        fm
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                       - 
+                      The formula to be transformed.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        arg1
+                        defs
                       </b>
                       :
                       <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                       - 
+                      The definitions made so far.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        arg2
+                        n
                       </b>
                       :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
+                      <code>bigint</code>
+                       - 
+                      The current variable index.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
+                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                  </span>
+                  
+ A triple with the transformed formula, the augmented definitions and a 
+ new variable index.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.maincnf`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.maincnf\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Core definitional CNF procedure.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The formula to be transformed.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    defs
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The definitions made so far.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current variable index.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A triple with the transformed formula, the augmented definitions and a 
+ new variable index.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="maincnf-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">maincnf</span> <span class="pn">(</span><span class="o">!&gt;</span> <span class="s">@&quot;p \/ (p \/ q)&quot;</span><span class="pn">,</span> <span class="id">undefined</span><span class="pn">,</span> <span class="n">0I</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="k">`</span><span class="id">p_1</span><span class="k">`</span><span class="pn">,</span>
+   <span class="k">`</span><span class="id">p</span> 
+   <span class="k">`</span><span class="id">p</span> 
+   <span class="n">2I</span><span class="pn">)</span>
+</code></pre>
+
+
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
+                <p>
+                  <a id="mkprop">
+                    <a href="#mkprop">
+                      <code><span>mkprop&#32;<span>n</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="180">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mkprop&#32;<span>n</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>bigint</code>
+                       - 
+                      The index of the variable.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;bigint</span></code>
+                  </span>
+                  The indexed variable and the next index
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.mkprop`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.mkprop\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L27-27" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Generates an indexed variable of the form <code>p_n</code> and the next 
+ index <code>n+1</code>.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The index of the variable.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;bigint</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The indexed variable and the next index
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mkprop-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mkprop</span> <span class="n">3I</span>
+</code></pre>
+
+
+ Evaluates to
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="k">`</span><span class="id">p_3</span><span class="k">`</span><span class="pn">,</span> <span class="n">4</span> <span class="pn">{</span><span class="id">IsEven</span> <span class="o">=</span> <span class="k">true</span><span class="pn">;</span>
+            <span class="id">IsOne</span> <span class="o">=</span> <span class="k">false</span><span class="pn">;</span>
+            <span class="id">IsPowerOfTwo</span> <span class="o">=</span> <span class="k">true</span><span class="pn">;</span>
+            <span class="id">IsZero</span> <span class="o">=</span> <span class="k">false</span><span class="pn">;</span>
+            <span class="id">Sign</span> <span class="o">=</span> <span class="n">1</span><span class="pn">;</span><span class="pn">}</span><span class="pn">)</span>
+</code></pre>
+
+
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Overall definitional CNF
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '181', 181)" onmouseover="showTip(event, '181', 181)">
+                <p>
+                  <a id="defcnfOrig">
+                    <a href="#defcnfOrig">
+                      <code><span>defcnfOrig&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="181">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>defcnfOrig&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -737,47 +664,54 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg2
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.defcnfOrig`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.defcnfOrig\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L79-79" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Overall definitional CNF.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '184', 184)" onmouseover="showTip(event, '184', 184)">
+              <code onmouseout="hideTip(event, '182', 182)" onmouseover="showTip(event, '182', 182)">
                 <p>
                   <a id="max_varindex">
                     <a href="#max_varindex">
@@ -786,7 +720,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="184">
+              <div class="fsdocs-tip" id="182">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>max_varindex&#32;<span>pfx&#32;s&#32;n</span></span></code>
@@ -815,14 +749,14 @@
                         n
                       </b>
                       :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
+                      <code>bigint</code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
+                    <code>bigint</code>
                   </span>
                   <br/>
                 </div>
@@ -830,47 +764,70 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pfx
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.max_varindex`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.max_varindex\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Make n large enough that "v_m" won't clash with s for any m >= n.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfx
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
+              <code onmouseout="hideTip(event, '183', 183)" onmouseover="showTip(event, '183', 183)">
                 <p>
                   <a id="mk_defcnf">
                     <a href="#mk_defcnf">
@@ -879,7 +836,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="185">
+              <div class="fsdocs-tip" id="183">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>mk_defcnf&#32;<span>fn&#32;fm</span></span></code>
@@ -892,7 +849,7 @@
                         fn
                       </b>
                       :
-                      <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num.html">Num</a></span>&#32;->&#32;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;<span>(<span>'e&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;'f</span></span></code>
+                      <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;*&#32;bigint</span>&#32;->&#32;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;<span>(<span>'e&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;'f</span></span></code>
                     </span>
                     <br/>
                     <span>
@@ -915,68 +872,137 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fn
-                </span>
-                :
-                <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num.html">Num</a></span>&#32;->&#32;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;<span>(<span>'e&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;'f</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span>&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Defcnf.mk_defcnf``6```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.mk_defcnf``6\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ TBD
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fn
+                  </span>
+                  :
+                  <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'a,&#32;'b</span>&gt;</span>&#32;*&#32;bigint</span>&#32;->&#32;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span>'d,&#32;<span>(<span>'e&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;'f</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;'c&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section2">
+    Version tweaked to exploit initial structure
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
+              <code onmouseout="hideTip(event, '184', 184)" onmouseover="showTip(event, '184', 184)">
                 <p>
-                  <a id="mkprop">
-                    <a href="#mkprop">
-                      <code><span>mkprop&#32;<span>n</span></span></code>
+                  <a id="andcnf">
+                    <a href="#andcnf">
+                      <code><span>andcnf&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="186">
+              <div class="fsdocs-tip" id="184">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>mkprop&#32;<span>n</span></span></code>
+                  <code><span>andcnf&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        n
+                        arg0
                       </b>
                       :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>bigint</code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num.html">Num</a></span></code>
+                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
                   </span>
                   <br/>
                 </div>
@@ -984,25 +1010,232 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num.html">Num</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.andcnf`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.andcnf\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L99-99" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ TBD
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
+                <p>
+                  <a id="defcnf">
+                    <a href="#defcnf">
+                      <code><span>defcnf&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="185">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>defcnf&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.defcnf`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.defcnf\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L108-108" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Version tweaked to exploit initial structure.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
+                <p>
+                  <a id="defcnfs">
+                    <a href="#defcnfs">
+                      <code><span>defcnfs&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="186">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>defcnfs&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.defcnfs`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.defcnfs\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ TBD
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1046,14 +1279,14 @@
                         arg2
                       </b>
                       :
-                      <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
+                      <code>bigint</code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
+                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1061,41 +1294,64 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg0
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg1
-                </span>
-                :
-                <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg2
-                </span>
-                :
-                <code><a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;<a href="/FolAutomReas/reference/folautomreas-lib-num-num-0.html">num</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.orcnf`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.orcnf\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L93-93" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ TBD
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1186,73 +1442,326 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  sfn
-                </span>
-                :
-                <code><span><span>'a&#32;*&#32;'b&#32;*&#32;'c</span>&#32;->&#32;<span>'d&#32;*&#32;'b&#32;*&#32;'c</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  op
-                </span>
-                :
-                <code><span>'d&#32;->&#32;'d&#32;->&#32;'e</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  p
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  q
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code>'f</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  defs
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'e&#32;*&#32;'b&#32;*&#32;'c</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FolAutomReas.Defcnf.subcnf``6```')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.subcnf``6\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L88-88" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ TBD
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    sfn
+                  </span>
+                  :
+                  <code><span><span>'a&#32;*&#32;'b&#32;*&#32;'c</span>&#32;->&#32;<span>'d&#32;*&#32;'b&#32;*&#32;'c</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    op
+                  </span>
+                  :
+                  <code><span>'d&#32;->&#32;'d&#32;->&#32;'e</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    q
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code>'f</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    defs
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>'c</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'e&#32;*&#32;'b&#32;*&#32;'c</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section3">
+    Version that guarantees 3-CNF
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '189', 189)" onmouseover="showTip(event, '189', 189)">
+                <p>
+                  <a id="andcnf3">
+                    <a href="#andcnf3">
+                      <code><span>andcnf3&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="189">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>andcnf3&#32;<span><span>(<span>arg1,&#32;arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>bigint</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.andcnf3`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.andcnf3\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L117-117" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ TBD.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg0
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>bigint</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-lib-fpf-func-2.html">func</a>&lt;<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>,&#32;<span>(<span><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span>&#32;*&#32;<span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></span>)</span></span>&gt;</span>&#32;*&#32;bigint</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '190', 190)" onmouseover="showTip(event, '190', 190)">
+                <p>
+                  <a id="defcnf3">
+                    <a href="#defcnf3">
+                      <code><span>defcnf3&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="190">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>defcnf3&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FolAutomReas.Defcnf.defcnf3`')">
+                    <img src="/FolAutomReas/content/img/copy-md.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FolAutomReas.Defcnf.defcnf3\'/>')">
+                    <img src="/FolAutomReas/content/img/copy-xml.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/FolAutomReas/tree/master/src/FolAutomReas/Defcnf.fs#L123-123" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/FolAutomReas/content/img/github.png" class="normal"/>
+                    <img src="/FolAutomReas/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Version that guarantees 3-CNF.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/FolAutomReas/reference/folautomreas-formulas-formula-1.html">formula</a>&lt;<a href="/FolAutomReas/reference/folautomreas-prop-prop.html">prop</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

@@ -74,29 +74,17 @@
         <hr />
         <div class="container" id="fsdocs-content">
             <h1><a name="Automated-Reasoning-in-First-Order-Logic" class="anchor" href="#Automated-Reasoning-in-First-Order-Logic">Automated Reasoning in First Order Logic</a></h1>
-<p>This is a fork of the repository <a href="https://github.com/jack-pappas/fsharp-logic-examples,">https://github.com/jack-pappas/fsharp-logic-examples,</a> which in turn is the porting in F# of the code from <strong>John Harrison's "<a href="https://www.cl.cam.ac.uk/~jrh13/atp/index.html">Handbook of Practical Logic and Automated Reasoning</a>"</strong>.</p>
-<p><img src="https://github.com/domasin/FolAutomReas/actions/workflows/publish.yml/badge.svg" alt="nuget package workflow" /></p>
-<h2><a name="Fork-main-purposes" class="anchor" href="#Fork-main-purposes">Fork main purposes</a></h2>
+<p>This site contains the documentation for the FolAutomReas library.</p>
+<p>FolAutomReas is a porting in F# of the code from John Harrison's <a href="https://www.cl.cam.ac.uk/~jrh13/atp/index.html">Handbook of Practical Logic and Automated Reasoning</a> written in OCaml and already ported in F# by <a href="https://github.com/jack-pappas">Jack Pappas</a>, <a href="https://github.com/EricGT">Eric Taucher</a>, <a href="https://github.com/dungpa">Anh-Dung Phan</a> (see <a href="https://github.com/jack-pappas/fsharp-logic-examples).">https://github.com/jack-pappas/fsharp-logic-examples).</a></p>
+<p>FolAutomReas is a fork of the <a href="https://github.com/jack-pappas/fsharp-logic-examples">previous porting</a> with some changes.</p>
+<p>The code contains lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.</p>
+<p>The following namespaces are available:</p>
 <ul>
-<li>to have a .Net Core version of the solution</li>
-<li>to have a <a href="https://www.nuget.org/packages/FolAutomReas">nuget package</a></li>
-<li>to create an <a href="https://domasin.github.io/FolAutomReas/reference/index.html">api documentation</a></li>
-</ul>
-<h2><a name="Fork-main-changes" class="anchor" href="#Fork-main-changes">Fork main changes</a></h2>
-<ul>
-<li>The conversion to .NET Core itself.</li>
-<li>
-<p>The <code>thm</code> type has been changed from a simple type abbreviation of <code>formula&lt;fol&gt;</code> to a discriminated union with a single private case <code>Theorem of formula&lt;fol&gt;</code> to ensure that it is impossible to create new theorems without going through the inference rules defined and thus introduce theorems inconsistent with expressions of the type</p>
-<pre class="fssnip highlighted"><code lang="fsharp">    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">t</span> <span class="pn">:</span> <span class="id">thm</span> <span class="o">=</span> <span class="id">False</span>
-</code></pre>
-</li>
-<li><p>In conjunction with the above change, the <code>ProofOperators</code> module in <code>lcf</code> has been renamed to <code>ProofSystem</code> like the original OCaml module.</p></li>
-<li><p>For better understanding of the source code and more modular documentation, the lib file has been split into a series of modules organized together in the <code>FOL.lib</code>  (to maintain the reference to the original file) namespace.</p></li>
-<li>The name of the namespace has been changed to FolAutomReas (Automated Reasoning in First Order Logic).</li>
+<li><p><a href="/reference/folautomreas.html">FolAutomReas</a> - The main namespace with the specific thematics.</p></li>
+<li><p><a href="/reference/folautomreas-lib.html">FolAutomReas.Lib</a> - The library with basic functions for general implementation.</p></li>
 </ul>
 
-            <div class="fsdocs-tip" id="fs1">val t: obj</div>
-
+            
         </div>
 
         <!-- BEGIN SEARCH BOX: this adds support for the search box -->
