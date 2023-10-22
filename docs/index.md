@@ -1,27 +1,17 @@
 # Automated Reasoning in First Order Logic
 
-This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-examples, which in turn is the porting in F# of the code from **John Harrison's "[Handbook of Practical Logic and Automated Reasoning](https://www.cl.cam.ac.uk/~jrh13/atp/index.html)"**.
+This site contains the documentation for the FolAutomReas library.
 
-![nuget package workflow](https://github.com/domasin/FolAutomReas/actions/workflows/publish.yml/badge.svg)
+FolAutomReas is a porting in F# of the code from John Harrison's [Handbook of Practical Logic and Automated Reasoning](https://www.cl.cam.ac.uk/~jrh13/atp/index.html) written in OCaml and already ported in F# by [Jack Pappas](https://github.com/jack-pappas), [Eric Taucher](https://github.com/EricGT), [Anh-Dung Phan](https://github.com/dungpa) (see https://github.com/jack-pappas/fsharp-logic-examples).
 
-## Fork main purposes
+FolAutomReas is a fork of the [previous porting](https://github.com/jack-pappas/fsharp-logic-examples) with some changes.
 
-* to have a .Net Core version of the solution
-* to have a [nuget package](https://www.nuget.org/packages/FolAutomReas)
-* to create an [api documentation](https://domasin.github.io/FolAutomReas/reference/index.html)
+The code contains lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.
 
-## Fork main changes
+The following namespaces are available:
 
-* The conversion to .NET Core itself.
+* [FolAutomReas](/reference/folautomreas.html) - The main namespace with the specific thematics.
 
-* The `thm` type has been changed from a simple type abbreviation of `formula<fol>` to a discriminated union with a single private case `Theorem of formula<fol>` to ensure that it is impossible to create new theorems without going through the inference rules defined and thus introduce theorems inconsistent with expressions of the type
-
-          let t : thm = False
-
-* In conjunction with the above change, the `ProofOperators` module in `lcf` has been renamed to `ProofSystem` like the original OCaml module.
-
-* For better understanding of the source code and more modular documentation, the lib file has been split into a series of modules organized together in the `FOL.lib`  (to maintain the reference to the original file) namespace.
-
-* The name of the namespace has been changed to FolAutomReas (Automated Reasoning in First Order Logic).
+* [FolAutomReas.Lib](/reference/folautomreas-lib.html) - The library with basic functions for general implementation.
 
 
