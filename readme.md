@@ -34,5 +34,5 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * Separation in .fs .fsi files for documentation: in progress.
 
-* Num replaced with bigint
+* Num dependencies removed and replaced with standard bigint (2023-10-22)
 
