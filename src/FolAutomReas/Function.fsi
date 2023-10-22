@@ -6,10 +6,12 @@
 namespace FolAutomReas.Lib
 
 /// <namespacedoc><summary>
-/// Misc library functions to set up a nice environment. 
+/// Basic library for the global implementation. 
 /// </summary></namespacedoc>
 /// 
 /// <summary>Functions over predicates and functions.</summary>
+/// 
+/// <category index="1">Functions over predicates and functions</category>
 module Function = 
 
     /// <summary>

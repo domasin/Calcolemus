@@ -8,6 +8,8 @@ namespace FolAutomReas.Lib
 /// <summary>
 /// Timing: useful for documentation but not logically necessary.
 /// </summary>
+/// 
+/// <category index="7">Diagnostics</category>
 module Time =
 
     /// <summary>

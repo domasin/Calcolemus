@@ -17,6 +17,8 @@ namespace FolAutomReas.Lib
 /// This is a point where performance could possibly be greatly improved.
 /// </p>
 /// </note>
+/// 
+/// <category index="2">Collections (lists and sets)</category>
 module Set = 
 
     /// <summary>

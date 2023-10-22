@@ -5,7 +5,11 @@
 
 namespace FolAutomReas.Lib
 
+/// <summary>
 /// Explosion and implosion of strings.
+/// </summary>
+/// 
+/// <category index="4">Strings</category>
 module String = 
 
     /// <summary>

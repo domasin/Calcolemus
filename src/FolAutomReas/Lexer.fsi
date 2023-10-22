@@ -6,11 +6,14 @@
 namespace FolAutomReas.Lib
 
 /// <summary>Lexical analysis.</summary>
+/// 
 /// <note>
 /// The functions for lexical analysis in the original code where in the 
 /// <see cref='T:FolAutomReas.Intro'/> module and have been moved here 
 /// for isolation purposes.
 /// </note>
+/// 
+/// <category index="6">Lexer, parser and prettyprinter</category>
 module Lexer = 
 
     /// <summary>

@@ -8,6 +8,8 @@ namespace FolAutomReas.Lib
 /// <summary>
 /// Polymorphic Finite Partial functions via Patricia Trees.
 /// </summary>
+/// 
+/// <category index="5">Finite partial functions and equivalence classes</category>
 module Fpf =
 
     /// <summary>

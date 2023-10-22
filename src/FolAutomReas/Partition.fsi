@@ -15,6 +15,8 @@ open FolAutomReas.Lib.Fpf
 /// See also <a target="_blank" href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure">Disjoint set/Union Find data structure</a> 
 /// on Wikipedia.
 /// </remarks>
+/// 
+/// <category index="5">Finite partial functions and equivalence classes</category>
 module Partition =
 
     /// <summary>

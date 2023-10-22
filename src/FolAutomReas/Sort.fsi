@@ -8,6 +8,8 @@ namespace FolAutomReas.Lib
 ///<summary>
 /// Sorting functions.
 /// </summary>
+/// 
+/// <category index="3">Sort and search algorithms</category>
 module Sort = 
 
     /// <summary>

@@ -6,11 +6,14 @@
 namespace FolAutomReas.Lib
 
 /// <summary>Generic functions for parsing.</summary>
+/// 
 /// <note>
 /// The general function for parsing in the original code was in the 
 /// <see cref='T:FolAutomReas.Intro'/> module and has been moved here 
 /// for isolation purposes.
 /// </note>
+/// 
+/// <category index="6">Lexer, parser and prettyprinter</category>
 module Parser = 
 
     /// <summary>

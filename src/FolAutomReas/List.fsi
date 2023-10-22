@@ -8,6 +8,8 @@ namespace FolAutomReas.Lib
 /// <summary>
 /// Handy functions for list manipulation.
 /// </summary>
+/// 
+/// <category index="2">Collections (lists and sets)</category>
 module List = 
 
     /// <summary>
