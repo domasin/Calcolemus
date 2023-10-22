@@ -74,7 +74,9 @@ module Defcnf =
                      (formula<prop> * formula<prop>)> *
         bigint
 
-    /// <summary>TBD</summary>
+    /// <summary>
+    /// Used to define <see cref='M:FolAutomReas.Defcnf.maincnf'/>.
+    /// </summary>
     /// 
     /// <param name="fm">The formula to be transformed.</param>
     /// <param name="defs">The definitions made so far.</param>

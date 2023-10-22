@@ -10,8 +10,8 @@ The code contains lexer, parsing and printing for propositional and first order 
 
 The following namespaces are available:
 
-* [FolAutomReas](/reference/folautomreas.html) - The main namespace with the specific thematics.
+* [FolAutomReas](./reference/folautomreas.html) - The main namespace with the specific thematics.
 
-* [FolAutomReas.Lib](/reference/folautomreas-lib.html) - The library with basic functions for general implementation.
+* [FolAutomReas.Lib](./reference/folautomreas-lib.html) - The library with basic functions for general implementation.
 
 
