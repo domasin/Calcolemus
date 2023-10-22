@@ -10,7 +10,6 @@
 
 module FolAutomReas.Grobner
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Search
@@ -40,7 +39,7 @@ let mdiv =
         (c1 / c2, List.map2 index_sub m1 m2)
 
 let mlcm (c1, m1) (c2, m2) =
-    (Int 1, List.map2 max m1 m2)
+    (bigint 1, List.map2 max m1 m2)
         
 // pg. 384
 // ------------------------------------------------------------------------- //
@@ -63,11 +62,11 @@ let mpoly_neg = List.map (fun (c, m) -> (-c, m))
 
 let mpoly_const vars c =
     // c : bigint
-    if c = Int 0 then []
+    if c = bigint 0 then []
     else [c, List.map (fun _ -> 0) vars]
 
 let mpoly_var vars x =
-    [Int 1, List.map (fun y -> if y = x then 1 else 0) vars]
+    [bigint 1, List.map (fun y -> if y = x then 1 else 0) vars]
 
 let rec mpoly_add l1 l2 =
     match l1, l2 with
@@ -79,7 +78,7 @@ let rec mpoly_add l1 l2 =
             let rec c = c1 + c2
             and rest = mpoly_add o1 o2
             // if c =/ Int 0
-            if c = Int 0 then rest else (c, m1) :: rest
+            if c = bigint 0 then rest else (c, m1) :: rest
         elif morder_lt m2 m1 then (c1, m1) :: (mpoly_add o1 l2)
         else (c2, m2) :: (mpoly_add l1 o2)
 
@@ -92,13 +91,13 @@ let rec mpoly_mul l1 l2 =
         mpoly_add (mpoly_mmul h1 l2) (mpoly_mul t1 l2)
 
 let mpoly_pow vars l n =
-    funpow n (mpoly_mul l) (mpoly_const vars (Int 1))
+    funpow n (mpoly_mul l) (mpoly_const vars (bigint 1))
 
 let mpoly_inv p =
     match p with
     | [(c, m)] when List.forall (fun i -> i = 0) m ->
         // Int 1 // c
-        [(Int 1 / c), m]
+        [(bigint 1 / c), m]
     | _ -> failwith "mpoly_inv: non-constant polynomial"
 
 let mpoly_div p q =
@@ -212,7 +211,7 @@ let groebner basis =
 // ------------------------------------------------------------------------- //
 
 let rabinowitsch vars v p =
-    mpoly_sub (mpoly_const vars (Int 1))
+    mpoly_sub (mpoly_const vars (bigint 1))
                 (mpoly_mul (mpoly_var vars v) p)
 
 // pg. 413
@@ -229,7 +228,7 @@ let grobner_trivial fms =
     let rec poleqs = List.map (mpolyatom vars) eqs
     and polneqs = List.map (mpolyatom vars << negate) neqs
     let pols = poleqs @ List.map2 (rabinowitsch vars) rvs polneqs
-    reduce (groebner pols) (mpoly_const vars (Int 1)) = []
+    reduce (groebner pols) (mpoly_const vars (bigint 1)) = []
 
 let grobner_decide fm =
     let fm1 = specialize (prenex (nnf (simplify fm)))
@@ -241,7 +240,7 @@ let grobner_decide fm =
 // ------------------------------------------------------------------------- //
 
 let term_of_varpow vars (x,k) =
-    if k = 1 then Var x else Fn("^",[Var x; mk_numeral(Int k)])
+    if k = 1 then Var x else Fn("^",[Var x; mk_numeral(bigint k)])
 
 let term_of_varpows vars lis =
     let tms = List.filter (fun (a,b) -> b <> 0) (List.zip vars lis) in
@@ -249,7 +248,7 @@ let term_of_varpows vars lis =
 
 let term_of_monomial vars (c,m) =
     if List.forall (fun x -> x = 0) m then mk_numeral c
-    else if c =/ Int 1 then term_of_varpows vars m
+    else if c = bigint 1 then term_of_varpows vars m
     else Fn("*",[mk_numeral c; term_of_varpows vars m])
 
 let term_of_poly vars pol =

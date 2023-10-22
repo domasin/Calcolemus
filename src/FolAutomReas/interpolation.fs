@@ -13,7 +13,6 @@
 
 module FolAutomReas.Interpolation
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Sort
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Fpf
@@ -111,8 +110,10 @@ let cinterpolate p q =
 let interpolate p q =
     let rec vs = List.map (fun v -> Var v) (intersect (fv p) (fv q))
     and fns = functions (And (p, q))
-    let n = List.foldBack (max_varindex "c_" << fst) fns (Int 0) + (Int 1)
-    let cs = List.map (fun i -> Fn ("c_" + i.ToString(), [])) [n..(n + Int (List.length vs - 1))]
+    let n = List.foldBack (max_varindex "c_" << fst) fns (0 |> bigint) + (1 |> bigint)
+    let cs = 
+        [n..(n + bigint (List.length vs - 1))]
+        |> List.map (fun i -> Fn ("c_" + i.ToString(), [])) 
     let rec fn_vc = fpf vs cs
     and fn_cv = fpf cs vs
     let rec p' = replace fn_vc p

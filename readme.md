@@ -32,4 +32,7 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * Quotations symbols `<<>>` replaced with `` since the latter cause less problems in writing documentation. 
 
+* Separation in .fs .fsi files for documentation: in progress.
+
+* Num replaced with bigint
 

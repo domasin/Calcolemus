@@ -10,7 +10,6 @@
 
 module FolAutomReas.Combining
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Search
@@ -89,7 +88,7 @@ let rec listify f l cont =
 // Homogenize a term.                                                        //
 // ------------------------------------------------------------------------- //
 
-let rec homot (fn, pr, dp) tm cont (n : num) defs =
+let rec homot (fn, pr, dp) tm cont (n : bigint) defs =
     match tm with
     | Var x ->
         cont tm n defs
@@ -97,7 +96,7 @@ let rec homot (fn, pr, dp) tm cont (n : num) defs =
         if fn (f, List.length args) then
             listify (homot (fn, pr, dp)) args (fun a -> cont (Fn (f, a))) n defs
         else
-            cont (Var ("v_" + n.ToString())) (n + Int 1)
+            cont (Var ("v_" + n.ToString())) (n + bigint 1)
                     (mk_eq (Var ("v_" + n.ToString())) tm :: defs)
                         
 // pg. 438
@@ -133,7 +132,7 @@ let rec homo langs fms cont =
 
 let homogenize langs fms =
     let fvs = unions (List.map fv fms)
-    let n = (Int 1) + List.foldBack (max_varindex "v_") fvs (Int 0)
+    let n = (bigint 1) + List.foldBack (max_varindex "v_") fvs (bigint 0)
     homo langs fms (fun res n defs -> res) n []
 
 // pg. 439

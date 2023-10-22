@@ -9,7 +9,6 @@ namespace FolAutomReas
 
 open LanguagePrimitives
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.String
 open FolAutomReas.Lib.Fpf
@@ -25,9 +24,9 @@ module Defcnf =
     // Make a stylized variable and update the index.                         //
     // ---------------------------------------------------------------------- //
 
-    let mkprop (n : num) =
+    let mkprop (n : bigint) =
         let name = sprintf "p_%O" n
-        Atom (P name), n + (num_of_int 1)
+        Atom (P name), n + (1 |> bigint)
 
     // ---------------------------------------------------------------------- //
     // Core definitional CNF procedure.                                       //
@@ -56,13 +55,13 @@ module Defcnf =
     // Make n large enough that "v_m" won't clash with s for any m >= n       //
     // ---------------------------------------------------------------------- //
 
-    let max_varindex pfx s (n : num) =
+    let max_varindex pfx s (n : bigint) =
         let m = String.length pfx
         let l = String.length s
         if l <= m || s.[0..m] <> pfx then n else
         let s' = s.[m.. (l - m)]
         if List.forall numeric (explode s') then
-            max n (num_of_string s')
+            max n (bigint.Parse(s'))
         else n
 
     // ---------------------------------------------------------------------- //

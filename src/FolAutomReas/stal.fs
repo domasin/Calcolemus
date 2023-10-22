@@ -13,7 +13,6 @@
 /// <category index="3">Propositional logic</category>
 module FolAutomReas.Stal
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Fpf
@@ -38,7 +37,7 @@ open Defcnf
 let triplicate fm =
     let p, defs, _ =
         let fm' = nenf fm
-        let n = (num_of_int 1) + overatoms (max_varindex "p_" << pname) fm' (num_of_int 0)
+        let n = (1 |> bigint) + overatoms (max_varindex "p_" << pname) fm' (0 |> bigint)
         maincnf (fm', undefined, n)
     p, List.map (snd << snd) (graph defs)
 

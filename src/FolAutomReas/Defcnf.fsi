@@ -5,7 +5,6 @@
 
 namespace FolAutomReas
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Fpf
 open FolAutomReas.Formulas
 open FolAutomReas.Prop
@@ -19,7 +18,7 @@ module Defcnf =
     /// </summary>
     /// 
     /// <category index="1">Core definitional CNF procedure</category>
-    val mkprop: n: num -> formula<prop> * Num
+    val mkprop: n: bigint -> formula<prop> * bigint
 
     /// <summary>
     /// Core definitional CNF procedure.
@@ -30,11 +29,11 @@ module Defcnf =
       formula<prop> *
       func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      num ->
+      bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
-        num
+        bigint
 
     /// <summary>TBD</summary>
     /// 
@@ -46,18 +45,18 @@ module Defcnf =
           fm: formula<prop> *
           defs: func<formula<prop>,
                              (formula<prop> *
-                              formula<prop>)> * n: num ->
+                              formula<prop>)> * n: bigint ->
             formula<prop> *
             func<formula<prop>,
                          (formula<prop> * formula<prop>)    > *
-            num
+            bigint
 
     /// <summary>
     /// Make n large enough that "v_m" won't clash with s for any m >= n.
     /// </summary>
     /// 
     /// <category index="2">Overall definitional CNF</category>
-    val max_varindex: pfx: string -> s: string -> n: num -> num
+    val max_varindex: pfx: string -> s: string -> n: bigint -> bigint
 
     /// <summary>
     /// TBD
@@ -65,7 +64,7 @@ module Defcnf =
     /// 
     /// <category index="2">Overall definitional CNF</category>
     val mk_defcnf:
-      fn: (formula<prop> * func<'a,'b> * Num ->
+      fn: (formula<prop> * func<'a,'b> * bigint ->
              formula<'c> * func<'d,('e * formula<'c>)> *
              'f) ->
         fm: formula<prop> -> formula<'c> list list
@@ -97,11 +96,11 @@ module Defcnf =
       formula<prop> *
       func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      num ->
+      bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
-        num
+        bigint
 
     /// <summary>
     /// TBD
@@ -112,11 +111,11 @@ module Defcnf =
       formula<prop> *
       func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      num ->
+      bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
-        num
+        bigint
 
     /// <summary>
     /// TBD
@@ -142,11 +141,11 @@ module Defcnf =
       formula<prop> *
       func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      num ->
+      bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
-        num
+        bigint
 
     /// <summary>
     /// Version that guarantees 3-CNF.

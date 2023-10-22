@@ -10,7 +10,6 @@
 
 module FolAutomReas.Real
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Sort
 open FolAutomReas.Lib.Set
@@ -32,9 +31,9 @@ let rec poly_diffn x n p =
     match p with
     | Fn ("+", [c; Fn ("*", [y; q])])
         when y = x ->
-        Fn ("+", [poly_cmul (Int n) c; Fn ("*", [x; poly_diffn x (n + 1) q])])
+        Fn ("+", [poly_cmul (n) c; Fn ("*", [x; poly_diffn x (n + (1 |> bigint)) q])])
     | _ ->
-        poly_cmul (Int n) p
+        poly_cmul (n) p
 
 let poly_diff vars p =
     match p with

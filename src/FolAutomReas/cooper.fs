@@ -8,7 +8,6 @@ module FolAutomReas.Cooper
 
 open LanguagePrimitives
 
-open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.List
 open FolAutomReas.Lib.Set
@@ -31,13 +30,13 @@ let zero = Fn ("0",[])
 // Lift operations up to numerals.                                           //
 // ------------------------------------------------------------------------- //
 
-let mk_numeral (n : num) =
+let mk_numeral (n : bigint) =
     Fn (n.ToString(), [])
 
-let dest_numeral t : num =
+let dest_numeral t : bigint =
     match t with
     | Fn (ns, []) ->
-        num_of_string ns
+        bigint.Parse ns
     | _ ->
         failwith "dest_numeral"
 
@@ -58,7 +57,7 @@ let numeral2 fn m n =
 // even if it's zero. Thus, it's a constant iff not an addition term.        //
 // ------------------------------------------------------------------------- //
 
-let rec linear_cmul (n : num) tm =
+let rec linear_cmul (n : bigint) tm =
     if n = GenericZero then zero
     else
         match tm with
@@ -158,7 +157,14 @@ let posineq fm =
 // Find the LCM of the coefficients of x.                                    //
 // ------------------------------------------------------------------------- //
 
-let rec formlcm x fm : num =
+let rec gcd_num (n1 : bigint) (n2 : bigint) =
+    if n2 = GenericZero then n1
+    else gcd_num n2 (n1 % n2)
+
+let lcm_num (n1 : bigint) (n2 : bigint) =
+    (abs (n1 * n2)) / gcd_num n1 n2
+
+let rec formlcm x fm : bigint =
     match fm with
     | Atom (R (p, [_; Fn ("+", [Fn ("*", [c; y]); z])]))
         when y = x ->
@@ -231,7 +237,7 @@ let rec minusinf x fm =
 // The LCM of all the divisors that involve x.                               //
 // ------------------------------------------------------------------------- //
 
-let rec divlcm x fm : num =
+let rec divlcm x fm : bigint =
     match fm with
     | Atom (R ("divides", [d; Fn ("+", [Fn ("*", [c; y]); a])]))
         when y = x ->

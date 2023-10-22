@@ -6,7 +6,7 @@
 
 module FolAutomReas.Limitations
 
-open FolAutomReas.Lib.Num
+// open FolAutomReas.Lib.Num
 open FolAutomReas.Lib.Function
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.String
@@ -34,7 +34,7 @@ open Tactics
 
 let rec numeral n =
     if n = GenericZero then Fn ("0", [])
-    else Fn ("S", [numeral (n - Int 1)])
+    else Fn ("S", [numeral (n - bigint 1)])
         
 // pg. 532
 // ------------------------------------------------------------------------- //
@@ -43,7 +43,7 @@ let rec numeral n =
 
 let number (s : string) =
     List.foldBack (fun i g ->
-        Int (1 + int (char s.[i])) + (Int 256) * g) [0..(String.length s - 1)] (Int 0)
+        bigint (1 + int (char s.[i])) + (bigint 256) * g) [0..(String.length s - 1)] (bigint 0)
             
 // pg. 532
 // ------------------------------------------------------------------------- //
@@ -51,7 +51,7 @@ let number (s : string) =
 // ------------------------------------------------------------------------- //
 
 let pair x y =
-    (x + y) * (x + y) + x + Int 1
+    (x + y) * (x + y) + x + bigint 1
         
 // pg. 533
 // ------------------------------------------------------------------------- //
@@ -61,44 +61,44 @@ let pair x y =
 let rec gterm tm =
     match tm with
     | Var x ->
-        pair (Int 0) (number x)
+        pair (bigint 0) (number x)
     | Fn ("0", []) ->
-        pair (Int 1) (Int 0)
+        pair (bigint 1) (bigint 0)
     | Fn ("S", [t]) ->
-        pair (Int 2) (gterm t)
+        pair (bigint 2) (gterm t)
     | Fn ("+", [s;t]) ->
-        pair (Int 3) (pair (gterm s) (gterm t))
+        pair (bigint 3) (pair (gterm s) (gterm t))
     | Fn ("*", [s;t]) ->
-        pair (Int 4) (pair (gterm s) (gterm t))
+        pair (bigint 4) (pair (gterm s) (gterm t))
     | _ ->
         failwith "gterm: not in the language"
 
 let rec gform fm =
     match fm with
     | False ->
-        pair (Int 0) (Int 0)
+        pair (bigint 0) (bigint 0)
     | True ->
-        pair (Int 0) (Int 1)
+        pair (bigint 0) (bigint 1)
     | Atom (R ("=", [s;t])) ->
-        pair (Int 1) (pair (gterm s) (gterm t))
+        pair (bigint 1) (pair (gterm s) (gterm t))
     | Atom (R ("<", [s;t])) ->
-        pair (Int 2) (pair (gterm s) (gterm t))
+        pair (bigint 2) (pair (gterm s) (gterm t))
     | Atom (R ("<=", [s;t])) ->
-        pair (Int 3) (pair (gterm s) (gterm t))
+        pair (bigint 3) (pair (gterm s) (gterm t))
     | Not p ->
-        pair (Int 4) (gform p)
+        pair (bigint 4) (gform p)
     | And (p, q) ->
-        pair (Int 5) (pair (gform p) (gform q))
+        pair (bigint 5) (pair (gform p) (gform q))
     | Or (p, q) ->
-        pair (Int 6) (pair (gform p) (gform q))
+        pair (bigint 6) (pair (gform p) (gform q))
     | Imp (p, q) ->
-        pair (Int 7) (pair (gform p) (gform q))
+        pair (bigint 7) (pair (gform p) (gform q))
     | Iff (p, q) ->
-        pair (Int 8) (pair (gform p) (gform q))
+        pair (bigint 8) (pair (gform p) (gform q))
     | Forall (x, p) ->
-        pair (Int 9) (pair (number x) (gform p))
+        pair (bigint 9) (pair (number x) (gform p))
     | Exists (x, p) ->
-        pair (Int 10) (pair (number x) (gform p))
+        pair (bigint 10) (pair (number x) (gform p))
     | _ ->
         failwith "gform: not in the language"
     
@@ -168,9 +168,9 @@ let rec dtermval v tm =
     | Var x ->
         apply v x
     | Fn ("0", []) ->
-        Int 0
+        bigint 0
     | Fn ("S", [t]) ->
-        dtermval v t + Int 1
+        dtermval v t + bigint 1
     | Fn ("+", [s;t]) ->
         dtermval v s + dtermval v t
     | Fn ("*", [s;t]) ->
@@ -212,9 +212,9 @@ and dhquant pred v x y a t p =
         failwith "dholds: not delta"
     else
         let m =
-            if a = "<" then dtermval v t - Int 1
+            if a = "<" then dtermval v t - bigint 1
             else dtermval v t
-        pred (fun n -> dholds ((x |-> n) v) p) [Int 0..m]
+        pred (fun n -> dholds ((x |-> n) v) p) [bigint 0..m]
 
 // pg. 550
 // ------------------------------------------------------------------------- //
@@ -284,10 +284,10 @@ let rec veref sign m v fm =
         veref sign m v (And (Imp (p, q), Imp (q, p)))
     | Exists (x, p)
         when sign true ->
-        List.exists (fun n -> veref sign m ((x |-> n) v) p) [Int 0..m]
+        List.exists (fun n -> veref sign m ((x |-> n) v) p) [bigint 0..m]
     | Forall (x, p)
         when sign false ->
-        List.exists (fun n -> veref sign m ((x |-> n) v) p) [Int 0..m]
+        List.exists (fun n -> veref sign m ((x |-> n) v) p) [bigint 0..m]
     | Forall (x, Imp (Atom (R (a, [Var y;t])), p))
         when sign true ->
         verefboundquant m v x y a t sign p
@@ -300,9 +300,9 @@ and verefboundquant m v x y a t sign p =
         failwith "veref"
     else
         let m =
-            if a = "<" then dtermval v t - Int 1
+            if a = "<" then dtermval v t - bigint 1
             else dtermval v t
-        List.forall (fun n -> veref sign m ((x |-> n) v) p) [Int 0..m]
+        List.forall (fun n -> veref sign m ((x |-> n) v) p) [bigint 0..m]
 
 let sholds = veref id
     
@@ -311,8 +311,12 @@ let sholds = veref id
 // Find adequate bound for all existentials to make sentence true.           //
 // ------------------------------------------------------------------------- //
 
+let rec first n p =
+        if p n then n
+        else first (n + bigint 1) p
+
 let sigma_bound fm =
-    first (Int 0) (fun n -> sholds n undefined fm)
+    first (bigint 0) (fun n -> sholds n undefined fm)
     
 // pg. 558
 // ------------------------------------------------------------------------- //
@@ -444,7 +448,7 @@ let right_trans th1 th2 =
         
 // pg. 566
 // ------------------------------------------------------------------------- //
-// Evalute constant expressions (allow non-constant on RHS in last clause).  //
+// Evaluate constant expressions (allow non-constant on RHS in last clause).  //
 // ------------------------------------------------------------------------- //
 
 let rec robop tm =
@@ -604,7 +608,7 @@ let rob_ne s t =
     
 // pg. 570
 // ------------------------------------------------------------------------- //
-// Dual version of "eliminate_connective" for unnegated case.                //
+// Dual version of "eliminate_connective" for un-negated case.                //
 // ------------------------------------------------------------------------- //
 
 let introduce_connective fm =
@@ -707,7 +711,7 @@ let rec sigma_prove fm =
             imp_trans2 (sigma_prove (Imp (p, False))) (ex_falso q)
     | Imp (Forall (x, p), False) ->
         let m = sigma_bound (Exists (x, Not p))
-        let n = first (Int 0) (fun n ->
+        let n = first (bigint 0) (fun n ->
             sholds m undefined (subst (x |=> numeral n) (Not p)))
         let ith = ispec (numeral n) (Forall (x, p))
         let th = sigma_prove (Imp (consequent (concl ith), False))

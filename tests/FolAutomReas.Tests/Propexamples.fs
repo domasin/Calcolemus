@@ -3,12 +3,12 @@ module FolAutomReas.Tests.Propexamples
 open Xunit
 open FsUnit.Xunit
 open FsUnitTyped
+open FsCheck
 
 open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Propexamples
 open FolAutomReas.Lib.List
-open FsCheck
 
 [<Fact>]
 let ``ramsey should return a prop equivalent of R(s,t)<=n.``() = 
