@@ -14,8 +14,26 @@ open FolAutomReas.Prop
 module Defcnf = 
 
     /// <summary>
-    /// Make a stylized variable and update the index.
+    /// Generates an indexed variable of the form <c>p_n</c> and the next 
+    /// index <c>n+1</c>.
     /// </summary>
+    /// 
+    /// <param name="n">The index of the variable.</param>
+    /// <returns>The indexed variable and the next index</returns>
+    /// 
+    /// <example id="mkprop-1">
+    /// <code lang="fsharp">
+    /// mkprop 3I
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// (`p_3`, 4 {IsEven = true;
+    ///            IsOne = false;
+    ///            IsPowerOfTwo = true;
+    ///            IsZero = false;
+    ///            Sign = 1;})
+    /// </code>
+    /// </example>
     /// 
     /// <category index="1">Core definitional CNF procedure</category>
     val mkprop: n: bigint -> formula<prop> * bigint
@@ -24,18 +42,30 @@ module Defcnf =
     /// Core definitional CNF procedure.
     /// </summary>
     /// 
+    /// <param name="fm">The formula to be transformed.</param>
+    /// <param name="defs">The definitions made so far.</param>
+    /// <param name="n">The current variable index.</param>
+    /// <returns>
+    /// A triple with the transformed formula, the augmented definitions and a 
+    /// new variable index.
+    /// </returns>
+    /// 
     /// <category index="1">Core definitional CNF procedure</category>
     val maincnf:
-      formula<prop> *
-      func<formula<prop>,
+      fm: formula<prop> *
+      defs: func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      bigint ->
+      n: bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
         bigint
 
     /// <summary>TBD</summary>
+    /// 
+    /// <param name="fm">The formula to be transformed.</param>
+    /// <param name="defs">The definitions made so far.</param>
+    /// <param name="n">The current variable index.</param>
     /// 
     /// <category index="1">Core definitional CNF procedure</category>
     val defstep:

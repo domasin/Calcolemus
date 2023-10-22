@@ -26,13 +26,14 @@ module Defcnf =
 
     let mkprop (n : bigint) =
         let name = sprintf "p_%O" n
-        Atom (P name), n + (1 |> bigint)
+        Atom (P name), n + (1I)
 
     // ---------------------------------------------------------------------- //
     // Core definitional CNF procedure.                                       //
     // ---------------------------------------------------------------------- //
 
-    let rec maincnf (fm, defs, n as trip) =
+    let rec maincnf (fm, defs, n) =
+        let trip = fm, defs, n 
         match fm with
         | And (p, q) ->
             defstep mk_and (p, q) trip

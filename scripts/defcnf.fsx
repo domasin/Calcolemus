@@ -1,11 +1,9 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#load "init.fsx"
 
 open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.Lib.Fpf
 open FolAutomReas.Defcnf
-
-// fsi.AddPrinter sprint_prop_formula
 
 mk_imp !>"(x <=> q) /\ p" (psubst (P "x" |=> !>"q") !>"p")
 |> tautology
@@ -13,4 +11,13 @@ mk_imp !>"(x <=> q) /\ p" (psubst (P "x" |=> !>"q") !>"p")
 mk_iff !>"(x <=> q) /\ p" (psubst (P "x" |=> !>"q") !>"p")
 |> tautology
 
-mkprop (1 |> bigint)
+mkprop 3I
+
+let fm = !> @"(p \/ (q /\ ~r)) /\ s" |> nenf
+// `~p \/ q`
+maincnf (!> @"p \/ (p \/ q)", undefined, 0I) 
+// (`p_1`,
+//    `p \/ p_0` |-> (`p_1`, `p_1 <=> p \/ p_0`)
+//    `p \/ q`   |-> (`p_0`, `p_0 <=> p \/ q`),
+//    2I)
+
