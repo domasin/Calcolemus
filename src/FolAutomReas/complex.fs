@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Complex quantifier elimination.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Complex
 
 open LanguagePrimitives

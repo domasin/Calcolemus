@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Knuth-Bendix completion.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Completion
 
 open FolAutomReas.Lib.Function

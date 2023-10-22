@@ -7,6 +7,11 @@
 //  ========================================================================= // 
 //  Geometry theorem proving.                                             // ========================================================================= // 
 
+/// <summary>
+/// Geometry theorem proving.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Geom
 
 open FolAutomReas.Lib.List

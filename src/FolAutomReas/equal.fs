@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Naive equality axiomatization.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Equal
 
 open FolAutomReas.Lib

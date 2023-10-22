@@ -8,6 +8,11 @@
 // Real quantifier elimination (using Cohen-Hormander algorithm).            //
 // ========================================================================= //
 
+/// <summary>
+/// Real quantifier elimination.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Real
 
 open FolAutomReas.Lib.List

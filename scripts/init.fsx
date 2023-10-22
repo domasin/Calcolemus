@@ -1,5 +1,3 @@
-module init
-
 #r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
 
 open FolAutomReas.Lib.Fpf

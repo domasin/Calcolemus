@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Quantifier elimination basics.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Qelim
 
 open FolAutomReas.Lib.List

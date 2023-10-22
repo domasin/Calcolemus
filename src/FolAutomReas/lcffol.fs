@@ -8,6 +8,11 @@
 //  First order tableau procedure using LCF setup.                        //
 // ====================================================================== // 
 
+/// <summary>
+/// LCF implementation of first-order tableaux.
+/// </summary>
+/// 
+/// <category index="7">Interactive theorem proving</category>
 module FolAutomReas.Lcffol
 
 open FolAutomReas.Lib.Function

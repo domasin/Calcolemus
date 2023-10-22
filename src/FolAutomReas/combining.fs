@@ -8,6 +8,11 @@
 // Nelson-Oppen combined decision procedure.                                 //
 // ========================================================================= //
 
+/// <summary>
+/// Combined decision procedure.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Combining
 
 open FolAutomReas.Lib.Function

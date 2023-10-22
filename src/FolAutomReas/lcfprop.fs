@@ -8,6 +8,11 @@
 // Propositional reasoning by derived rules atop the LCF core.               //
 // ========================================================================= //
 
+/// <summary>
+/// Propositional logic by inference.
+/// </summary>
+/// 
+/// <category index="7">Interactive theorem proving</category>
 module FolAutomReas.Lcfprop
 
 open FolAutomReas.Lib.Function

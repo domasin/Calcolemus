@@ -11,6 +11,11 @@
 // in our context.                                                           //
 // ========================================================================= //
 
+/// <summary>
+/// Constructive Craig/Robinson interpolation.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Interpolation
 
 open FolAutomReas.Lib.Sort

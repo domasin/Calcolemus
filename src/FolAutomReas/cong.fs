@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Congruence closure.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Cong
 
 open FolAutomReas.Lib.List

@@ -8,6 +8,11 @@
 // First-order derived rules in the LCF setup.                               //
 // ========================================================================= //
 
+/// <summary>
+/// First-order reasoning by inference.
+/// </summary>
+/// 
+/// <category index="7">Interactive theorem proving</category>
 module FolAutomReas.Folderived
 
 open FolAutomReas.Lib.Function

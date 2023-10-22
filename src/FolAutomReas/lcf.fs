@@ -8,10 +8,18 @@
 // LCF-style basis for Tarski-style Hilbert system of first order logic.     //
 // ========================================================================= //
 
+/// <summary>
+/// LCF-style system for first order logic.
+/// </summary>
+/// 
+/// <remarks>
 /// Basic first order deductive system.
-///                                                                     
+/// <p></p>
 /// This is based on Tarski's trick for avoiding use of a substitution  
 /// primitive. It seems about the simplest possible system we could use.
+/// </remarks>
+/// 
+/// <category index="7">Interactive theorem proving</category>
 module FolAutomReas.Lcf
 
 //  if |- p ==> q and |- p then |- q                                   

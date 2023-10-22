@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Undecidability.
+/// </summary>
+/// 
+/// <category index="8">Undecidability</category>
 module FolAutomReas.Limitations
 
 // open FolAutomReas.Lib.Num

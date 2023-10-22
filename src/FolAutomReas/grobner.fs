@@ -8,6 +8,11 @@
 // Grobner basis algorithm.                                                  //
 // ========================================================================= //
 
+/// <summary>
+/// Grobner bases.
+/// </summary>
+/// 
+/// <category index="6">Decidable subsets and theories</category>
 module FolAutomReas.Grobner
 
 open FolAutomReas.Lib.Function

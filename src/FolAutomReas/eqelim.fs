@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Equality elimination: Brand transform etc.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Eqelim
 
 open FolAutomReas.Lib.Search

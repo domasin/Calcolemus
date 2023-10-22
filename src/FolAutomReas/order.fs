@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Simple term orderings including LPO.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Order
 
 open FolAutomReas.Lib.List

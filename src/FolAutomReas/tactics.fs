@@ -8,6 +8,11 @@
 // Goals, LCF-like tactics and Mizar-like proofs.                            //
 // ========================================================================= //
 
+/// <summary>
+/// Tactics and Mizar-style proofs.
+/// </summary>
+/// 
+/// <category index="7">Interactive theorem proving</category>
 module FolAutomReas.Tactics
 
 open FolAutomReas.Lib.Function

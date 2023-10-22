@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Rewriting.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Rewrite
 
 open FolAutomReas.Lib.Fpf

@@ -50,6 +50,19 @@ module Defcnf =
     /// new variable index.
     /// </returns>
     /// 
+    /// <example id="maincnf-1">
+    /// <code lang="fsharp">
+    /// maincnf (!> @"p \/ (p \/ q)", undefined, 0I) 
+    /// </code>
+    /// Evaluates to:
+    /// <code lang="fsharp">
+    /// (`p_1`,
+    ///   `p \/ p_0` |-> (`p_1`, `p_1 &lt;=&gt; p \/ p_0`)
+    ///   `p \/ q`   |-> (`p_0`, `p_0 &lt;=&gt; p \/ q`),
+    ///   2I) 
+    /// </code>
+    /// </example>
+    /// 
     /// <category index="1">Core definitional CNF procedure</category>
     val maincnf:
       fm: formula<prop> *

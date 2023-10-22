@@ -5,7 +5,7 @@
 // ========================================================================= //
 
 /// <summary>
-/// Skolems.
+/// Skolemizing a set of formulas.
 /// </summary>
 /// 
 /// <category index="4">First order logic</category>

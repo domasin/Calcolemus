@@ -4,6 +4,11 @@
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
+/// <summary>
+/// Paramodulation.
+/// </summary>
+/// 
+/// <category index="5">Equality</category>
 module FolAutomReas.Paramodulation
 
 open FolAutomReas.Lib.Search
