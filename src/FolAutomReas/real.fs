@@ -44,7 +44,7 @@ let poly_diff vars p =
     match p with
     | Fn ("+", [c; Fn ("*", [Var x; q])])
         when x = List.head vars ->
-        poly_diffn (Var x) 1 q
+        poly_diffn (Var x) 1I q
     | _ -> zero
         
 // pg. 369
@@ -59,9 +59,14 @@ let rel_signs = [
     "<", [Negative];
     ">", [Positive]; ]
 
+// dom modified to remove warning
 let testform pmat fm =
-    eval fm (fun (R (a, [p; z])) ->
-        mem (assoc p pmat) (assoc a rel_signs))
+    eval fm (fun tm ->
+        match tm with 
+        | (R (a, [p; z])) -> 
+            mem (assoc p pmat) (assoc a rel_signs)
+        | _ -> failwith "testform: incomplete pattern matching"
+    )
             
 // pg. 370
 // ------------------------------------------------------------------------- //
@@ -70,7 +75,7 @@ let testform pmat fm =
 
 let inferpsign (pd, qd) =
     try let i = index Zero pd
-        List.nth qd i :: pd
+        (qd |> List.item i) :: pd
     with Failure _ ->
         Nonzero :: pd
             
@@ -122,7 +127,7 @@ let rec inferisign ps =
 let dedmatrix cont mat =
     let l = List.length (List.head mat) / 2
     let mat1 = condense (List.map (inferpsign << chop_list l) mat)
-    let mat2 = [swap true (List.nth (List.head mat1) 1)] :: mat1 @ [[List.nth (last mat1) 1]]
+    let mat2 = [swap true (List.item 1 (List.head mat1))] :: mat1 @ [[List.item 1 (last mat1)]]
     let mat3 = butlast (List.tail (inferisign mat2))
     cont (condense (List.map (fun l -> List.head l :: List.tail (List.tail l)) mat3))
         
@@ -199,13 +204,18 @@ and matrix vars pols cont sgns =
 // Now the actual quantifier elimination code.                               //
 // ------------------------------------------------------------------------- //
 
-let basic_real_qelim vars (Exists (x, p)) =
-    let pols = atom_union (function (R (a, [t; Fn ("0", [])])) -> [t] | _ -> []) p
-    let cont mat =
-        if List.exists (fun m -> testform (List.zip pols m) p) mat then
-            True
-        else False
-    casesplit (x :: vars) [] pols cont init_sgns
+// dom modified to remove warning
+let basic_real_qelim vars fm =
+    match fm with 
+    | (Exists (x, p)) ->
+        let pols = 
+            atom_union (function (R (a, [t; Fn ("0", [])])) -> [t] | _ -> []) p
+        let cont mat =
+            if List.exists (fun m -> testform (List.zip pols m) p) mat then
+                True
+            else False
+        casesplit (x :: vars) [] pols cont init_sgns
+    | _ -> failwith "basic_real_qelim: incomplete pattern matching"
 
 let real_qelim =
     simplify
@@ -213,6 +223,8 @@ let real_qelim =
     << lift_qelim polyatom (simplify << evalc) basic_real_qelim
            
 // pg. 377
+
+// dom modified to remove warning
 let rec grpterm tm =
     match tm with
     | Var x -> tm
@@ -222,11 +234,16 @@ let rec grpterm tm =
     | Fn ("i", [t]) ->
         Fn ("^", [grpterm t; Fn ("2", [])])
     | Fn ("1", []) ->
-        Fn ("2", [])        
+        Fn ("2", [])
+    | _ -> failwith "grpterm: incomplete pattern matching"
 
-let grpform (Atom (R ("=", [s; t]))) =
-    let fm = generalize (Atom (R (">", [grpterm s; grpterm t])))
-    relativize (fun x -> Atom (R (">", [Var x; Fn("1",[])]))) fm
+// dom modified to remove warning
+let grpform fm =
+    match fm with 
+    | (Atom (R ("=", [s; t]))) -> 
+        let fm = generalize (Atom (R (">", [grpterm s; grpterm t])))
+        relativize (fun x -> Atom (R (">", [Var x; Fn("1",[])]))) fm
+    | _ -> failwith "grpform: incomplete pattern matching"
    
 // pg. 379
 // ------------------------------------------------------------------------- //

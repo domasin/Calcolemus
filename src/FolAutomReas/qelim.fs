@@ -67,7 +67,7 @@ let lift_qelim afn nfn qfn =
   
 // pg. 333
 //  ------------------------------------------------------------------------- // 
-//  Cleverer (proposisional) NNF with conditional and literal modification.   // 
+//  Cleverer (propositional) NNF with conditional and literal modification.   // 
 //  ------------------------------------------------------------------------- // 
 
 let cnnf lfn =
@@ -114,8 +114,9 @@ let lfn_dlo fm =
 //  Simple example of dense linear orderings; this is the base function.      // 
 //  ------------------------------------------------------------------------- // 
 
-// Note: List.find throws expcetion it does not return failure
+// Note: List.find throws exception it does not return failure
 //       so "try with failure" will not work with List.find
+// dom modified to remove warning
 let dlobasic fm =
     match fm with
     | Exists (x, p) ->
@@ -130,9 +131,28 @@ let dlobasic fm =
         //| :? System.Collections.Generic.KeyNotFoundException -> // List.find is modified to return failure again
             if mem (Atom (R ("<", [Var x; Var x]))) cjs then False
             else
-                let lefts, rights = List.partition (fun (Atom (R ("<", [s; t]))) -> t = Var x) cjs
-                let ls = List.map (fun (Atom (R ("<", [l;_]))) -> l) lefts
-                let rs = List.map (fun (Atom (R ("<", [_;r]))) -> r) rights
+                let lefts, rights = 
+                    cjs
+                    |> List.partition (fun fm -> 
+                        match fm with 
+                        | Atom (R ("<", [s; t])) -> 
+                            t = Var x
+                        | _ -> failwith "dlobasic: incomplete pattern matching"
+                    ) 
+                let ls = 
+                    lefts
+                    |> List.map (fun fm -> 
+                        match fm with 
+                        | (Atom (R ("<", [l;_]))) -> l
+                        | _ -> failwith "dlobasic: incomplete pattern matching"
+                    ) 
+                let rs = 
+                    rights
+                    |> List.map (fun fm -> 
+                        match fm with 
+                        | (Atom (R ("<", [_;r]))) -> r
+                        | _ -> failwith "dlobasic: incomplete pattern matching"
+                    ) 
                 list_conj (allpairs (fun l r -> Atom (R ("<", [l; r]))) ls rs)
     | _ -> failwith "dlobasic"
 

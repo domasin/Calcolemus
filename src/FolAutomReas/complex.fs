@@ -54,9 +54,13 @@ let rec poly_add vars pol1 pol2 =
     | _ ->
         numeral2 (+) pol1 pol2
 
+// dom modified to remove warning
 and poly_ladd vars =
-    fun pol1 (Fn ("+", [d; Fn ("*", [Var y; q])])) ->
-        Fn ("+", [poly_add vars pol1 d; Fn ("*", [Var y; q])])
+    fun pol1 tm ->
+        match tm with 
+        | (Fn ("+", [d; Fn ("*", [Var y; q])]))  -> 
+            Fn ("+", [poly_add vars pol1 d; Fn ("*", [Var y; q])])
+        | _ -> failwith "poly_ladd: incomplete pattern matching"
 
 let rec poly_neg = function 
     | Fn ("+", [c; Fn ("*", [Var x; p])]) ->
@@ -82,10 +86,14 @@ let rec poly_mul vars pol1 pol2 =
     | _ ->
         numeral2 ( * ) pol1 pol2
 
+// dom modified to remove warning
 and poly_lmul vars =
-    fun pol1 (Fn ("+", [d; Fn ("*", [Var y; q])])) ->
-        poly_add vars (poly_mul vars pol1 d)
-            (Fn ("+", [zero; Fn ("*", [Var y; poly_mul vars pol1 q])]))
+    fun pol1 tm ->
+        match tm with 
+        | (Fn ("+", [d; Fn ("*", [Var y; q])])) -> 
+            poly_add vars (poly_mul vars pol1 d)
+                (Fn ("+", [zero; Fn ("*", [Var y; poly_mul vars pol1 q])]))
+        | _ -> failwith "evalc: incomplete pattern matching"
 
 let poly_pow vars p n =
     funpow n (poly_mul vars p) (Fn ("1", []))
@@ -173,12 +181,14 @@ let rec poly_cmul k p =
     | _ ->
         numeral1 (fun m -> k * m) p
 
+// dom modified to remove warning
 let rec headconst p =
     match p with
     | Fn ("+", [c; Fn ("*", [Var x; q])]) ->
         headconst q
     | Fn (n, []) ->
         dest_numeral p
+    | _ -> failwith "headconst: incomplete pattern matching"
 
 //  pg. 359
 //  ------------------------------------------------------------------------- //
@@ -339,9 +349,13 @@ let init_sgns = [
     Fn ("1", []), Positive;
     Fn ("0", []), Zero; ]
 
-let basic_complex_qelim vars (Exists (x, p)) =
-    let eqs, neqs = List.partition (non negative) (conjuncts p)
-    cqelim (x :: vars) (List.map lhs eqs,List.map (lhs << negate) neqs) init_sgns
+// dom modified to remove warning
+let basic_complex_qelim vars fm =
+    match fm with 
+    | (Exists (x, p)) -> 
+        let eqs, neqs = List.partition (non negative) (conjuncts p)
+        cqelim (x :: vars) (List.map lhs eqs,List.map (lhs << negate) neqs) init_sgns
+    | _ -> failwith "basic_complex_qelim: incomplete pattern matching"
 
 //  pg. 366
 //  ------------------------------------------------------------------------- //

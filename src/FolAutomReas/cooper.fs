@@ -331,14 +331,18 @@ let operations = [
     ">=", (>=);
     "divides", (fun x y -> y % x = GenericZero); ]
 
+// dom modified to remove warning
 let evalc =
-    let v1 (R(p,[s;t]) as at) =
-        try 
-            if assoc p operations (dest_numeral s) (dest_numeral t)
-            then True
-            else False
-        with Failure _ ->
-            Atom at
+    let v1 fm =
+        match fm with 
+        | (R(p,[s;t]) as at) -> 
+            try 
+                if assoc p operations (dest_numeral s) (dest_numeral t)
+                then True
+                else False
+            with Failure _ ->
+                Atom at
+        | _ -> failwith "evalc: incomplete pattern matching"
     onatoms v1
          
 // pg.349

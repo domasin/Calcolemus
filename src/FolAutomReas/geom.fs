@@ -50,8 +50,19 @@ let coordinations =
 //  Convert formula into coordinate form.                                     // 
 //  ------------------------------------------------------------------------- // 
 
+// dom modified to remove warning
 let coordinate = onatoms <| fun (R (a, args)) ->
-    let xtms,ytms = List.unzip (List.map (fun (Var v) -> Var (v + "_x"), Var (v + "_y")) args)
+    let xtms,ytms = 
+        List.unzip (
+            args
+            |> List.map (
+                fun tm -> 
+                match tm with 
+                | (Var v) -> 
+                    Var (v + "_x"), Var (v + "_y")
+                | _ -> failwith "coordinate: incomplete pattern matching"
+            ) 
+        )
     let rec xs = List.map (fun n -> string n + "_x") [1..(List.length args)]
     and ys = List.map (fun n -> string n + "_y") [1..(List.length args)]
     subst (fpf (xs @ ys) (xtms @ ytms)) (assoc a coordinations)
@@ -80,9 +91,12 @@ let invariant_under_rotation fm =
 //  Choose one point to be the origin and rotate to zero another y coordinate // 
 //  ------------------------------------------------------------------------- // 
 
+// dom modified to remove warning
 let originate fm =
-    let a :: b :: ovs = fv fm
-    subst (fpf [a + "_x"; a + "_y"; b + "_y"] [zero; zero; zero]) (coordinate fm)
+    match fv fm with 
+    | a :: b :: ovs -> 
+        subst (fpf [a + "_x"; a + "_y"; b + "_y"] [zero; zero; zero]) (coordinate fm)
+    | _ -> failwith "originate: incomplete pattern matching"
         
 // pg. 417
 //  ------------------------------------------------------------------------- // 
@@ -99,6 +113,7 @@ let invariant_under_shearing = invariant((parset "x + b * y"),(parset "y"))
 //  Reduce p using triangular set, collecting degenerate conditions.          // 
 //  ------------------------------------------------------------------------- // 
 
+// dom modified to remove warning
 let rec pprove vars triang p degens =
     if p = zero then degens
     else
@@ -116,6 +131,7 @@ let rec pprove vars triang p degens =
                 else
                     let degens' = Not (mk_eq (head vars q) zero) :: degens
                     List.foldBack (pprove vars qs) (coefficients vars p') degens'
+        | _ -> failwith "pprove: incomplete pattern matching"
                         
 // pg. 421
 //  ------------------------------------------------------------------------- // 

@@ -70,6 +70,7 @@ let para_clauses cls1 cls2 =
 // Incorporation into resolution loop.                                       //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let rec paraloop (used, unused) =
     match unused with
     | cls :: ros ->
@@ -81,6 +82,7 @@ let rec paraloop (used, unused) =
         if mem [] news then true 
         else
             paraloop (used', List.foldBack (incorporate cls) news ros)
+    | _ -> failwith "paraloop: incomplete pattern matching"
 
 let pure_paramodulation fm =
     paraloop ([], [mk_eq (Var "x") (Var "x")] :: simpcnf (specialize (pnf fm)))
