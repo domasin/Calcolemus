@@ -53,6 +53,7 @@ let unify_complementsf env = function
 //     |- (p ==> f) ==> ... ==> (q ==> p) ==> r                               // 
 //  ------------------------------------------------------------------------- // 
 
+// dom modified to remove warning
 let rec use_laterimp i fm =
     match fm with
     | Imp (Imp (q', s), Imp (Imp (q, p) as i', r))
@@ -63,6 +64,7 @@ let rec use_laterimp i fm =
         imp_swap2(modusponens th1 (imp_trans th2 th3))
     | Imp (qs, Imp (a, b)) ->
         imp_swap2 (imp_add_assum a (use_laterimp i (Imp (qs, b))))
+    | _ -> failwith "use_laterimp: incomplete pattern matching"
             
 // pg. 497
 //  ------------------------------------------------------------------------- // 

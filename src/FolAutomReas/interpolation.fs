@@ -46,6 +46,7 @@ let pinterpolate p q =
 // Relation-symbol interpolation for universal closed formulas.              //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let urinterpolate p q =
     let fm = specialize (prenex (And (p, q)))
     let fvs = fv fm
@@ -53,7 +54,15 @@ let urinterpolate p q =
     let cntms = List.map (fun (c, _) -> Fn (c, [])) consts
     let tups = dp_refine_loop (simpcnf fm) cntms funcs fvs 0 [] [] []
     let fmis = List.map (fun tup -> subst (fpf fvs tup) fm) tups
-    let ps, qs = List.unzip (List.map (fun (And (p, q)) -> p, q) fmis)
+    let ps, qs = 
+        fmis
+        |> List.map (fun fm -> 
+            match fm with 
+            | (And (p, q)) -> 
+                p, q
+            | _ -> failwith "urinterpolate: incomplete pattern matching"
+        ) 
+        |> List.unzip 
     pinterpolate (list_conj (setify ps)) (list_conj (setify qs))
     
 // pg. 432
@@ -76,6 +85,7 @@ let topterms fns =
 // Interpolation for arbitrary universal formulas.                           //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let uinterpolate p q =
     let rec fp = functions p
     and fq = functions q
@@ -90,6 +100,8 @@ let uinterpolate p q =
                 then Exists (v, c')
                 else Forall (v, c')
             simpinter otms (n + 1) c''
+        | _ -> failwith "uinterpolate: incomplete pattern matching"
+        
     let c = urinterpolate p q
     let tts = topterms (union (subtract fp fq) (subtract fq fp)) c
     let tms = sort (decreasing termsize) tts
@@ -100,12 +112,15 @@ let uinterpolate p q =
 // Now lift to arbitrary formulas with no common free variables.             //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let cinterpolate p q =
     let fm = nnf (And (p, q))
     let rec efm = List.foldBack mk_exists (fv fm) fm
     and fns = List.map fst (functions fm)
-    let And (p', q'), _ = skolem efm fns
-    uinterpolate p' q'
+    match skolem efm fns with 
+    | And (p', q'), _ -> 
+        uinterpolate p' q'
+    | _ -> failwith "cinterpolate: incomplete pattern matching"
         
 // pg. 434
 // ------------------------------------------------------------------------- //

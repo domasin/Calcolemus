@@ -233,9 +233,13 @@ let ex_falso p =
 
 let imp_trans2 th1 th2 =
     let p, q, r =
-        match concl th1 with Imp (p, Imp (q, r)) -> p, q, r
+        match concl th1 with 
+        | Imp (p, Imp (q, r)) -> p, q, r
+        | _ -> failwith "imp_trans2: incomplete pattern matching"
     let r', s =
-        match concl th2 with Imp (r', s) -> r', s
+        match concl th2 with 
+        | Imp (r', s) -> r', s
+        | _ -> failwith "imp_trans2: incomplete pattern matching"
     let th = imp_add_assum p (modusponens (imp_trans_th q r s) th2)
     modusponens th th1
         

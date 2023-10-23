@@ -69,6 +69,7 @@ let add_default langs =
 // Choose a language for homogenization of an atom.                          //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let chooselang langs fm =
     match fm with
     | Atom (R ("=", [Fn (f, args); _]))
@@ -76,6 +77,7 @@ let chooselang langs fm =
         List.find (fun (fn, pr, dp) -> fn (f, List.length args)) langs
     | Atom (R (p, args)) ->
         List.find (fun (fn, pr, dp) -> pr (p, List.length args)) langs
+    | _ -> failwith "chooselang: incomplete pattern matching"
             
 // pg. 437
 // ------------------------------------------------------------------------- //
