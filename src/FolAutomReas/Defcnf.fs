@@ -59,8 +59,8 @@ module Defcnf =
     let max_varindex pfx s (n : bigint) =
         let m = String.length pfx
         let l = String.length s
-        if l <= m || s.[0..m] <> pfx then n else
-        let s' = s.[m.. (l - m)]
+        if l <= m || s.Substring(0,m) <> pfx then n else
+        let s' = s.Substring(m,(l - m))
         if List.forall numeric (explode s') then
             max n (bigint.Parse(s'))
         else n
@@ -71,12 +71,13 @@ module Defcnf =
 
     let mk_defcnf fn fm =
         let fm' = nenf fm
-        let n = GenericOne + overatoms (max_varindex "p_" << pname) fm' GenericZero
+        let n = 
+            GenericOne + overatoms (max_varindex "p_" << pname) fm' GenericZero
         let fm'', defs, _ = fn (fm', undefined, n)
         let deflist = List.map (snd << snd) (graph defs)
         unions <| simpcnf fm'' :: List.map simpcnf deflist
 
-    let defcnfOrig fm =
+    let defcnf01 fm =
         mk_defcnf maincnf fm
         |> List.map list_disj
         |> list_conj
