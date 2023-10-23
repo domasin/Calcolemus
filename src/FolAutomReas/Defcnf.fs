@@ -99,7 +99,7 @@ module Defcnf =
         | _ -> maincnf trip
 
     let rec andcnf (fm, defs, n) =
-        let trip = fm, defs, n 
+        let trip = fm, defs, n
         match fm with
         | And (p, q) ->
             subcnf andcnf mk_and (p,q) trip
@@ -117,7 +117,8 @@ module Defcnf =
     // Version that guarantees 3-CNF.                                         //
     // ---------------------------------------------------------------------- //
 
-    let rec andcnf3 (fm, defs, n as trip) =
+    let rec andcnf3 (fm, defs, n) =
+        let trip = fm, defs, n
         match fm with
         | And (p, q) ->
             subcnf andcnf3 mk_and (p, q) trip

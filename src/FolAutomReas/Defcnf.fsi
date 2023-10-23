@@ -290,7 +290,16 @@ module Defcnf =
     /// 
     /// <remarks>
     /// It returns an equisatisfiable CNF of the input formula avoiding some 
-    /// redundant definitions.
+    /// redundant definitions. The optimization is obtained, when dealing with 
+    /// an iterated conjunction,  by 
+    /// <ul>
+    /// <li>putting the conjuncts in CNF separately</li>
+    /// <li>
+    /// and if they in turn are already disjunctions of literals leave them 
+    /// unchanged.
+    /// </li>
+    /// </ul>
+    /// 
     /// </remarks>
     /// 
     /// <param name="fm">The input formula.</param>
@@ -310,23 +319,47 @@ module Defcnf =
     val defcnf: fm: formula<prop> -> formula<prop>
 
     /// <summary>
-    /// TBD.
+    /// Performs the definitional transformation of the conjuncts.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// It keeps the optimization of putting the conjuncts in CNF separately, 
+    /// but removes the second optimization of leaving unchanged conjuncts 
+    /// that are already a disjunction of literals. In this way guarantees that 
+    /// the result is in 3-CNF.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The formula to be transformed.</param>
+    /// <param name="defs">The definitions made so far.</param>
+    /// <param name="n">The current variable index.</param>
     /// 
     /// <category index="4">3-CNF</category>
     val andcnf3:
-      formula<prop> *
-      func<formula<prop>,
+      fm: formula<prop> *
+      defs: func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      bigint ->
+      n: bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
         bigint
 
     /// <summary>
-    /// Version that guarantees 3-CNF.
+    /// Optimized definitional CNF that also guarantees 3-CNF in the result.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// 3-CNF means that each conjunct contains a disjunction of **at most** 
+    /// three literals.
+    /// </remarks>
+    /// 
+    /// <example id="defcnf3-1">
+    /// <code lang="fsharp">
+    /// !> @"(a \/ b \/ c \/ d) /\ s"
+    /// |> defcnf3
+    /// </code>
+    /// Evaluates to <c>`(a \/ p_2 \/ ~p_3) /\ (b \/ p_1 \/ ~p_2) /\ (c \/ d \/ ~p_1) /\ (p_1 \/ ~c) /\ (p_1 \/ ~d) /\ (p_2 \/ ~b) /\ (p_2 \/ ~p_1) /\ p_3 /\ (p_3 \/ ~a) /\ (p_3 \/ ~p_2) /\ s`</c>.
+    /// </example>
     /// 
     /// <category index="4">3-CNF</category>
     val defcnf3: fm: formula<prop> -> formula<prop>

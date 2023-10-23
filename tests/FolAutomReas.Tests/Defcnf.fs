@@ -65,3 +65,10 @@ let ``defcnf returns an equisatisfiable CNF of the input formula.``() =
     |> defcnf
     |> sprint_prop_formula
     |> should equal @"`(p \/ p_1) /\ (p_1 \/ r \/ ~q) /\ (q \/ ~p_1) /\ s /\ (~p_1 \/ ~r)`"
+
+[<Fact>]
+let ``defcnf3 returns an equisatisfiable CNF of the input formula that is in 3-CNF.``() = 
+    !> @"(a \/ b \/ c \/ d) /\ s"
+    |> defcnf3
+    |> sprint_prop_formula
+    |> should equal @"`(a \/ p_2 \/ ~p_3) /\ (b \/ p_1 \/ ~p_2) /\ (c \/ d \/ ~p_1) /\ (p_1 \/ ~c) /\ (p_1 \/ ~d) /\ (p_2 \/ ~b) /\ (p_2 \/ ~p_1) /\ p_3 /\ (p_3 \/ ~a) /\ (p_3 \/ ~p_2) /\ s`"
