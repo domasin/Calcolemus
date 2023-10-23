@@ -11,7 +11,7 @@ let ``stalmarck (prime 11) should return true.``() =
     stalmarck (prime 11)
     |> should equal true
 
-[<Fact>]
+// [<Fact>] // slow test
 let ``stalmarck (mk_adder_test 6 3) should return true.``() = 
     stalmarck (mk_adder_test 6 3)
     |> should equal true

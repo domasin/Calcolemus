@@ -48,3 +48,20 @@ let ``defcnf01 returns an equisatisfiable CNF of the input formula.``() =
     |> defcnf01
     |> sprint_prop_formula
     |> should equal @"`(p \/ p_1) /\ p_1 /\ (p_1 \/ ~q) /\ (q \/ ~p \/ ~p_1)`"
+
+[<Fact>]
+let ``defcnfs should return the result of a specific CNF procedure in a set-of-sets representation.``() = 
+    !> @"(p \/ (q /\ ~r)) /\ s"
+    |> defcnfs
+    |> List.map (fun xs -> 
+        xs |> List.map (fun fm -> fm |> sprint_prop_formula)
+    )
+    |> shouldEqual
+        [["`p`"; "`p_1`"]; ["`p_1`"; "`r`"; "`~q`"]; ["`q`"; "`~p_1`"]; ["`s`"]; ["`~p_1`"; "`~r`"]]
+
+[<Fact>]
+let ``defcnf returns an equisatisfiable CNF of the input formula.``() = 
+    !> @"(p \/ (q /\ ~r)) /\ s"
+    |> defcnf
+    |> sprint_prop_formula
+    |> should equal @"`(p \/ p_1) /\ (p_1 \/ r \/ ~q) /\ (q \/ ~p_1) /\ s /\ (~p_1 \/ ~r)`"

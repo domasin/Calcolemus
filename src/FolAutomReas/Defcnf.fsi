@@ -46,8 +46,8 @@ module Defcnf =
     /// <param name="defs">The definitions made so far.</param>
     /// <param name="n">The current variable index.</param>
     /// <returns>
-    /// A triple with the transformed formula, the augmented definitions and a 
-    /// new variable index.
+    /// The triple with the transformed formula, the augmented definitions 
+    /// and a new variable index.
     /// </returns>
     /// 
     /// <example id="maincnf-1">
@@ -87,8 +87,8 @@ module Defcnf =
     /// <param name="n">The current variable index.</param>
     /// 
     /// <returns>
-    /// A triple with the transformed formula, the augmented definitions and a 
-    /// new variable index.
+    /// The triple with the transformed formula, the augmented definitions 
+    /// and a new variable index.
     /// </returns>
     /// 
     /// <category index="1">Core definitional CNF procedure</category>
@@ -186,65 +186,134 @@ module Defcnf =
     val defcnf01: fm: formula<prop> -> formula<prop>
 
     /// <summary>
-    /// TBD
+    /// Links the definitional transformations produced by <c>sfn</c> in the 
+    /// different parts of the formula.
     /// </summary>
     /// 
-    /// <category index="3">Version tweaked to exploit initial structure</category>
+    /// <param name="sfn">The specific definitional CNF procedure.</param>
+    /// <param name="op">The binary formula constructor received from <c>sfn</c>.</param>
+    /// <param name="p">The left-hand sub-formula.</param>
+    /// /// <param name="q">The right-hand sub-formula.</param>
+    /// <param name="fm">The formula to be transformed.</param>
+    /// <param name="defs">The definitions made so far.</param>
+    /// <param name="n">The current variable index.</param>
+    /// 
+    /// <returns>
+    /// The triple with the transformed formula, the augmented definitions 
+    /// and a new variable index.
+    /// </returns>
+    /// 
+    /// <category index="3">Optimized definitional CNF</category>
     val subcnf:
       sfn: ('a * 'b * 'c -> 'd * 'b * 'c) ->
         op: ('d -> 'd -> 'e) ->
         p: 'a * q: 'a -> fm: 'f * defs: 'b * n: 'c -> 'e * 'b * 'c
 
     /// <summary>
-    /// TBD
+    /// Performs the definitional transformation of the disjuncts.
     /// </summary>
     /// 
-    /// <category index="3">Version tweaked to exploit initial structure</category>
+    /// <param name="fm">The formula to be transformed.</param>
+    /// <param name="defs">The definitions made so far.</param>
+    /// <param name="n">The current variable index.</param>
+    /// 
+    /// <returns>
+    /// The triple with the transformed formula, the augmented definitions 
+    /// and a new variable index.
+    /// </returns>
+    /// 
+    /// <category index="3">Optimized definitional CNF</category>
     val orcnf:
-      formula<prop> *
-      func<formula<prop>,
+      fm: formula<prop> *
+      defs: func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      bigint ->
+      n: bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
         bigint
 
     /// <summary>
-    /// TBD
+    /// Performs the definitional transformation of the conjuncts.
     /// </summary>
     /// 
-    /// <category index="3">Version tweaked to exploit initial structure</category>
+    /// <param name="fm">The formula to be transformed.</param>
+    /// <param name="defs">The definitions made so far.</param>
+    /// <param name="n">The current variable index.</param>
+    /// 
+    /// <returns>
+    /// The triple with the transformed formula, the augmented definitions 
+    /// and a new variable index.
+    /// </returns>
+    /// 
+    /// <category index="3">Optimized definitional CNF</category>
     val andcnf:
-      formula<prop> *
-      func<formula<prop>,
+      fm: formula<prop> *
+      defs: func<formula<prop>,
                    (formula<prop> * formula<prop>)> *
-      bigint ->
+      n: bigint ->
         formula<prop> *
         func<formula<prop>,
                      (formula<prop> * formula<prop>)> *
         bigint
 
     /// <summary>
-    /// TBD
+    /// Optimized definitional CNF in set-of-sets representation.
     /// </summary>
     /// 
-    /// <category index="3">Version tweaked to exploit initial structure</category>
+    /// <remarks>
+    /// It returns an equisatisfiable CNF of the input formula in a set-of-sets 
+    /// representation avoiding some redundant definitions.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// An equisatisfiable CNF of the input formula in a set-of-sets 
+    /// representation.
+    /// </returns>
+    /// 
+    /// <example id="defcnfs-1">
+    /// <code lang="fsharp">
+    /// !> @"(p \/ (q /\ ~r)) /\ s"
+    /// |> defcnfs
+    /// </code>
+    /// Evaluates to <c>[[`p`; `p_1`]; [`p_1`; `r`; `~q`]; [`q`; `~p_1`]; [`s`]; [`~p_1`; `~r`]]</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Optimized definitional CNF</category>
     val defcnfs:
       fm: formula<prop> -> formula<prop> list list
 
     /// <summary>
-    /// Version tweaked to exploit initial structure.
+    /// Optimized definitional CNF.
     /// </summary>
     /// 
-    /// <category index="3">Version tweaked to exploit initial structure</category>
+    /// <remarks>
+    /// It returns an equisatisfiable CNF of the input formula avoiding some 
+    /// redundant definitions.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// An equisatisfiable CNF of the input formula.
+    /// </returns>
+    /// 
+    /// <example id="defcnf-1">
+    /// <code lang="fsharp">
+    /// !> @"(p \/ (q /\ ~r)) /\ s"
+    /// |> defcnf
+    /// </code>
+    /// Evaluates to <c>`(p \/ p_1) /\ (p_1 \/ r \/ ~q) /\ (q \/ ~p_1) /\ s /\ (~p_1 \/ ~r)`</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Optimized definitional CNF</category>
     val defcnf: fm: formula<prop> -> formula<prop>
 
     /// <summary>
     /// TBD.
     /// </summary>
     /// 
-    /// <category index="4">Version that guarantees 3-CNF</category>
+    /// <category index="4">3-CNF</category>
     val andcnf3:
       formula<prop> *
       func<formula<prop>,
@@ -259,5 +328,5 @@ module Defcnf =
     /// Version that guarantees 3-CNF.
     /// </summary>
     /// 
-    /// <category index="4">Version that guarantees 3-CNF</category>
+    /// <category index="4">3-CNF</category>
     val defcnf3: fm: formula<prop> -> formula<prop>

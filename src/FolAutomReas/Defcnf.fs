@@ -91,13 +91,15 @@ module Defcnf =
         let fm2, defs2, n2 = sfn (q, defs1, n1) 
         op fm1 fm2, defs2, n2
 
-    let rec orcnf (fm, defs, n as trip) =
+    let rec orcnf (fm, defs, n) =
+        let trip = fm, defs, n 
         match fm with
         | Or (p, q) ->
             subcnf orcnf mk_or (p,q) trip
         | _ -> maincnf trip
 
-    let rec andcnf (fm, defs, n as trip) =
+    let rec andcnf (fm, defs, n) =
+        let trip = fm, defs, n 
         match fm with
         | And (p, q) ->
             subcnf andcnf mk_and (p,q) trip
