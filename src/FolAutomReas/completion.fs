@@ -64,8 +64,12 @@ let rec overlaps (l, r) tm rfn =
 // Generate all critical pairs between two equations.                        //
 // ------------------------------------------------------------------------- //
 
-let crit1 (Atom (R ("=", [l1;r1]))) (Atom (R ("=", [l2;r2]))) =
-    overlaps (l1,r1) l2 (fun i t -> subst i (mk_eq t r2))
+// dom modified to remove warning
+let crit1 a1 a2 =
+    match a1, a2 with
+    | (Atom (R ("=", [l1;r1]))), (Atom (R ("=", [l2;r2]))) -> 
+        overlaps (l1,r1) l2 (fun i t -> subst i (mk_eq t r2))
+    | _ -> failwith "crit1: incomplete pattern matching" 
 
 let critical_pairs fma fmb =
     let fm1, fm2 = renamepair (fma, fmb)
@@ -77,12 +81,16 @@ let critical_pairs fma fmb =
 // Orienting an equation.                                                    //
 // ------------------------------------------------------------------------- //
 
-let normalize_and_orient ord eqs (Atom (R ("=", [s;t]))) =
-    let s' = rewrite eqs s
-    let t' = rewrite eqs t
-    if ord s' t' then s', t'
-    elif ord t' s' then t', s'
-    else failwith "Can't orient equation"
+// dom modified to remove warning
+let normalize_and_orient ord eqs atm =
+    match atm with
+    | (Atom (R ("=", [s;t])))  -> 
+        let s' = rewrite eqs s
+        let t' = rewrite eqs t
+        if ord s' t' then s', t'
+        elif ord t' s' then t', s'
+        else failwith "Can't orient equation"
+    | _ -> failwith "normalize_and_orient: incomplete pattern matching" 
   
 // pg. 279
 // ------------------------------------------------------------------------- //
@@ -123,9 +131,10 @@ let rec complete ord (eqs,def,crits) =
 
 // pg. 283
 // ------------------------------------------------------------------------- //
-// Interreduction.                                                           //
+// Inter-reduction.                                                           //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let rec interreduce dun eqs =
     match eqs with
     | [] -> List.rev dun
@@ -134,6 +143,7 @@ let rec interreduce dun eqs =
             if rewrite (dun @ oeqs) l <> l then dun
             else mk_eq l (rewrite (dun @ eqs) r) :: dun
         interreduce dun' oeqs
+    | _ -> failwith "interreduce: incomplete pattern matching"
 
 // pg. 283
 // ------------------------------------------------------------------------- //

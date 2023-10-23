@@ -55,7 +55,7 @@ let rec modify_T cl =
 
 // pg. 294
 // ------------------------------------------------------------------------- //
-// Finding nested non-variable subterms.                                     //
+// Finding nested non-variable sub-terms.                                     //
 // ------------------------------------------------------------------------- //
 
 // val is_nonvar : term -> bool
@@ -69,6 +69,7 @@ let find_nestnonvar tm =
     | Fn (f, args) ->
         List.find is_nonvar args
 
+// dom modified to remove warning
 let rec find_nvsubterm fm =
     match fm with
     | Atom (R ("=", [s; t])) ->
@@ -77,6 +78,7 @@ let rec find_nvsubterm fm =
         List.find is_nonvar args
     | Not p ->
         find_nvsubterm p
+    | _ -> failwith "find_nvsubterm: incomplete pattern matching"
 
 // pg. 295
 // ------------------------------------------------------------------------- //

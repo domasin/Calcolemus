@@ -6,6 +6,8 @@ open FolAutomReas.Lib.Fpf
 open FolAutomReas.Defcnf
 open FolAutomReas.Lib.Lexer
 open FolAutomReas.Lib.String
+open FolAutomReas.Stal
+open FolAutomReas.Propexamples
 
 let sprint_bigint (bi:bigint) = sprintf "%OI" bi
 
@@ -51,3 +53,17 @@ max_varindex "p_" "x_2" 1I // evaluates to 1I
 !>"p ==> q"
 |> defcnf01
 |> sprint_prop_formula
+
+stalmarck (mk_adder_test 6 3)
+
+stalmarck (mk_adder_test 2 1)
+
+stalmarck (prime 11)
+
+tautology (prime 2)
+
+stalmarck (!> @"a \/ ~a")
+
+List.nth [1;2;3;4]  2
+
+List.item 2 [1;2;3;4]

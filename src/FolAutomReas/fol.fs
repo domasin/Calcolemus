@@ -185,7 +185,8 @@ let inline sprint_term t = writeToString (fun sw -> fprintert sw t)
 /// Printer of atomic fol formulas with TextWriter.
 let fprint_atom tw prec (R (p, args)) : unit =
     if mem p ["="; "<"; "<="; ">"; ">="] && List.length args = 2 then
-        fprint_infix_term tw false 12 12 (" " + p) (List.nth args 0) (List.nth args 1)
+        fprint_infix_term tw false 12 12 (" " + p) 
+            (args |> List.item 0) (args |> List.item 1)
     else
         fprint_fargs tw p args
 

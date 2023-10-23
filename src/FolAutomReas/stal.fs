@@ -102,7 +102,7 @@ let trigger =
             match fm with
             | Not (Not p) -> p
             | _ -> fm
-        let inst_fn [x; y; z] =
+        let inst_fn (x, y, z) =
             let subfn = fpf [P"p"; P"q"; P"r"] [x; y; z]
             ddnegate << psubst subfn
         let inst2_fn i (p, q) =
@@ -112,13 +112,13 @@ let trigger =
         let inst_trigger = List.map << instn_fn
         function
         | Iff (x, And (y, z)) ->
-            inst_trigger [x; y; z] trig_and
+            inst_trigger (x, y, z) trig_and
         | Iff (x, Or (y, z)) ->
-            inst_trigger [x; y; z] trig_or
+            inst_trigger (x, y, z) trig_or
         | Iff (x, Imp (y, z)) ->
-            inst_trigger [x; y; z] trig_imp
+            inst_trigger (x, y, z) trig_imp
         | Iff (x, Iff (y, z)) ->
-            inst_trigger [x; y; z] trig_iff
+            inst_trigger (x, y, z) trig_iff
         | _ ->
             failwith "How did we get here?"
     | _ ->
