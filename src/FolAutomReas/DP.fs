@@ -19,6 +19,9 @@ open Defcnf
 
 module DP = 
 
+    let (!>>) xs = 
+        xs |> List.map (List.map (!>))
+
     // ====================================================================== //
     // The Davis-Putnam and Davis-Putnam-Loveland-Logemann procedures.        //
     // ====================================================================== //
@@ -27,32 +30,33 @@ module DP =
     // The DP procedure.                                                      //
     //  --------------------------------------------------------------------- //
 
-    let containOneLitterals clauses = 
+    let hasUnitClause (clauses: formula<'a> list list) = 
         clauses |> List.exists (List.length >> (=) 1)
 
     let one_literal_rule clauses =
-      let u = List.head (List.find (fun cl -> List.length cl = 1) clauses)
-      let u' = negate u
-      let clauses1 = List.filter (fun cl -> not (mem u cl)) clauses
-      image (fun cl -> subtract cl [u']) clauses1
+        let u = List.head (List.find (fun cl -> List.length cl = 1) clauses)
+        let u' = negate u
+        let clauses1 = List.filter (fun cl -> not (mem u cl)) clauses
+        image (fun cl -> subtract cl [u']) clauses1
 
-    let containPureLitterals clauses = 
+    let pureLiterals clauses = 
         let neg',pos = List.partition negative (unions clauses)
         let neg = image negate neg'
         let pos_only = subtract pos neg 
         let neg_only = subtract neg pos
         union pos_only (image negate neg_only)
+
+    let hasPureLiteral clauses = 
+        clauses
+        |> pureLiterals
         |> List.length > 0
 
     let affirmative_negative_rule clauses =
-      let neg',pos = List.partition negative (unions clauses)
-      let neg = image negate neg'
-      let pos_only = subtract pos neg 
-      let neg_only = subtract neg pos
-      let pureItem = union pos_only (image negate neg_only)
-      if pureItem = [] then failwith "affirmative_negative_rule" 
-      else
-        List.filter (fun cl -> intersect cl pureItem = []) clauses
+        match clauses |> pureLiterals with 
+        | [] -> failwith "affirmative_negative_rule" 
+        | pureLits -> 
+            clauses
+            |> List.filter (fun cl -> intersect cl pureLits = [])
 
     let resolve_on p clauses =
         let p' = negate p 
@@ -84,9 +88,9 @@ module DP =
             true 
         else if mem [] clauses then 
             false 
-        else if clauses |> containOneLitterals then 
+        else if clauses |> hasUnitClause then 
             dp (one_literal_rule clauses)
-        else if clauses |> containPureLitterals then
+        else if clauses |> hasPureLiteral then
             dp (affirmative_negative_rule clauses)
         else
             dp (resolution_rule clauses)
@@ -113,9 +117,9 @@ module DP =
             true 
         else if mem [] clauses then 
             false 
-        else if clauses |> containOneLitterals then 
+        else if clauses |> hasUnitClause then 
             dpll (one_literal_rule clauses)
-        else if clauses |> containPureLitterals then
+        else if clauses |> hasPureLiteral then
             dpll (affirmative_negative_rule clauses)
         else
             let pvs = List.filter positive (unions clauses)

@@ -20,6 +20,7 @@
     <Compile Include="Prop.fs" />
     <Compile Include="Propexamples.fs" />
     <Compile Include="Defcnf.fs" />
+    <Compile Include="DP.fs" />
     <Compile Include="Stal.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Herbrand.fs" />
