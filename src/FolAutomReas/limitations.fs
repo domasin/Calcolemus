@@ -265,6 +265,7 @@ let rec classify c n fm =
 // Verification of true Sigma_1 formulas, refutation of false Pi_1 formulas. //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let rec veref sign m v fm =
     match fm with
     | False ->
@@ -299,6 +300,7 @@ let rec veref sign m v fm =
     | Exists (x, And (Atom (R (a, [Var y;t])), p))
         when sign false ->
         verefboundquant m v x y a t sign p
+    | _ -> failwith "veref: incomplete pattern matching"
 
 and verefboundquant m v x y a t sign p =
     if x <> y || mem x (fvt t) then
@@ -425,9 +427,11 @@ let exec prog args =
 //
 let robinson = (parse "(forall m n. S(m) = S(n) ==> m = n) /\ (forall n. ~(n = 0) <=> exists m. n = S(m)) /\ (forall n. 0 + n = n) /\ (forall m n. S(m) + n = S(m + n)) /\ (forall n. 0 * n = 0) /\ (forall m n. S(m) * n = n + m * n) /\ (forall m n. m <= n <=> exists d. m + d = n) /\ (forall m n. m < n <=> S(m) <= n)")
 
-let [suc_inj; num_cases; add_0; add_suc;
-        mul_0; mul_suc; le_def; lt_def;] =
-    conjths robinson
+// dom modified to remove warning
+let (suc_inj, num_cases, add_0, add_suc,
+        mul_0, mul_suc, le_def, lt_def) =
+    let thms = conjths robinson
+    thms[0],thms[1],thms[2],thms[3],thms[4],thms[5],thms[6],thms[7]
 
 // pg. 565
 // ------------------------------------------------------------------------- //
@@ -456,6 +460,7 @@ let right_trans th1 th2 =
 // Evaluate constant expressions (allow non-constant on RHS in last clause).  //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 let rec robop tm =
     match tm with
     | Fn (op, [Fn ("0", []); t]) ->
@@ -470,6 +475,7 @@ let rec robop tm =
                 else mul_suc
             List.foldBack right_spec [t;u] th1
         right_trans th2 (robeval (rhs (consequent (concl th2))))
+    | _ -> failwith "robop: incomplete pattern matching"
 
 and robeval tm =
     match tm with
@@ -576,10 +582,17 @@ let robinson_thm =
     so our thesis by ["not_suc_0"];
     qed; ]
 
-let [suc_0_l; suc_0_r; suc_inj_false;
-        expand_le; expand_lt; expand_nle; expand_nlt;
-        num_lecases; le_0; le_suc; lt_suc; lt_0] =
-        List.map (imp_trans robinson_thm) (conjths robinson_consequences)
+// dom modified to remove warning
+let (suc_0_l, suc_0_r, suc_inj_false,
+        expand_le, expand_lt, expand_nle, expand_nlt,
+        num_lecases, le_0, le_suc, lt_suc, lt_0) =
+
+        conjths robinson_consequences
+        |> List.map (imp_trans robinson_thm) 
+        |> fun thms -> 
+            thms[0],thms[1],thms[2],
+            thms[3],thms[4],thms[5],thms[6],
+            thms[7],thms[8],thms[9],thms[10],thms[11]
 
 // pg. 567
 // ------------------------------------------------------------------------- //
@@ -668,6 +681,7 @@ let sigma_elim fm =
 //         |- R ==> forall x. x <= S(n) ==> P(x)                             //
 // ------------------------------------------------------------------------- //
 //
+// dom modified to remove warning
 let boundquant_step th0 th1 =
     match concl th0,concl th1 with
     | Imp (_, Forall (x, Imp (_, p))),
@@ -688,6 +702,7 @@ let boundquant_step th0 th1 =
         and a2 = antecedent (concl th8)
         let tha = modusponens (isubst zero zero a1 a2) (axiom_eqrefl zero)
         gen_right x (imp_unduplicate (imp_trans (imp_trans th9 tha) th8))
+    | _ -> failwith "boundquant_step: incomplete pattern matching"
           
 // pg. 572
 // ------------------------------------------------------------------------- //
@@ -748,6 +763,7 @@ and bounded_prove (a, x, t, q) =
 // Actual expansion of a bounded quantifier.                                 //
 // ------------------------------------------------------------------------- //
 
+// dom modified to remove warning
 and boundednum_prove (a, x, t, q) =
     match a, t with
     | "<", Fn ("0", []) ->
@@ -768,3 +784,4 @@ and boundednum_prove (a, x, t, q) =
         and fm'' = Forall (x, Imp (Atom (R ("<=", [Var x; u])),
                             subst (x |=> Fn ("S", [Var x])) q))
         boundquant_step (sigma_prove fm') (sigma_prove fm'')
+    | _ -> failwith "boundednum_prove: incomplete pattern matching"

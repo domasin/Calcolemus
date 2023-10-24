@@ -93,11 +93,17 @@ let spec' y fm n thp (e, s) =
 let ex_falso' fms (e, s) =
     ex_falso (List.foldBack (mk_imp << onformula e) fms s)
 
-let complits' (p :: fl, lits) i (e, s) =
-    let l1, p' :: l2 = chop_list i lits
-    List.foldBack (imp_insert << onformula e) (fl @ l1)
-            (imp_contr (onformula e p)
-                    (List.foldBack (mk_imp << onformula e) l2 s))
+// dom modified to remove warning
+let complits' (xs, lits) i (e, s) =
+    match xs with
+    | p :: fl -> 
+        match chop_list i lits with
+        | l1, p' :: l2 -> 
+            List.foldBack (imp_insert << onformula e) (fl @ l1)
+                    (imp_contr (onformula e p)
+                            (List.foldBack (mk_imp << onformula e) l2 s))
+        | _ -> failwith "complits': incomplete pattern matching"
+    | _ -> failwith "complits': incomplete pattern matching"
 
 let deskol' (skh : fol formula) thp (e, s) =
     let th = thp (e, s)
@@ -181,12 +187,16 @@ let rec quantforms e fm =
 //  Now create some Skolem functions.                                         // 
 //  ------------------------------------------------------------------------- // 
 
+// dom modified to remove warning
 let skolemfuns fm =
     let rec fns = List.map fst (functions fm)
     and skts = List.map (function Exists (x, p) -> Forall (x,Not p) | p -> p) (quantforms true fm)
-    let skofun i (Forall (y, p) as ap) =
-        let vars = List.map (fun v -> Var v) (fv ap)
-        ap, Fn (variant ("f_" + string i) fns, vars)
+    let skofun i ap =
+        match ap with
+        | Forall (y, p) -> 
+            let vars = List.map (fun v -> Var v) (fv ap)
+            ap, Fn (variant ("f_" + string i) fns, vars)
+        | _ -> failwith "skolemfuns: incomplete pattern matching"
     List.map2 skofun [1..(List.length skts)] skts
         
 // pg. 501
@@ -229,11 +239,15 @@ let lcfrefute fm n cont =
         
 // pg. 501
 //  ------------------------------------------------------------------------- // 
-//  A quick demo before doing deskolemization.                                // 
+//  A quick demo before doing de-skolemization.                                // 
 //  ------------------------------------------------------------------------- // 
 
-let mk_skol (Forall(y, p), fx) q =
-    Imp (Imp (subst (y |=> fx) p, Forall (y, p)), q)
+// dom modified to remove warning
+let mk_skol (fm, fx) q =
+    match fm with 
+    | Forall(y, p) -> 
+        Imp (Imp (subst (y |=> fx) p, Forall (y, p)), q)
+    | _ -> failwith "mk_skol: incomplete pattern matching"
 
 let simpcont thp (env, sks, k) =
     let ifn = tsubst (solve env)
@@ -246,11 +260,14 @@ let simpcont thp (env, sks, k) =
 //                    |- q                                                    // 
 //  ------------------------------------------------------------------------- // 
 
+// dom modified to remove warning
 let elim_skolemvar th =
     match concl th with
     | Imp (Imp (pv, (Forall (x, px) as apx)), q) ->
-        let [th1; th2] =
-            List.map (imp_trans(imp_add_concl False th)) (imp_false_conseqs pv apx)
+        let (th1, th2) =
+            (imp_false_conseqs pv apx)
+            |> List.map (imp_trans(imp_add_concl False th))
+            |> fun xs -> xs[0], xs[1]
         let v = List.head (subtract (fv pv) (fv apx) @ [x])
         let th3 = gen_right v th1
         let th4 = imp_trans th3 (alpha x (consequent (concl th3)))
