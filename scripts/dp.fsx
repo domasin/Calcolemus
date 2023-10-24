@@ -3,6 +3,8 @@
 open FolAutomReas.Prop
 open FolAutomReas.DP
 open FolAutomReas.Lib.Set
+open FolAutomReas.Lib.Search
+open FolAutomReas.Propexamples
 
 // fsi.AddPrinter sprint_prop_formula
 
@@ -47,11 +49,43 @@ open FolAutomReas.Lib.Set
 !>> [["p";"~q";"~t"];["~p";"q"];["p";"t"]]
 |> affirmative_negative_rule
 
-!>> [["p";"c1";"c2"];
-     ["~p";"d1";"d2";"d3";"d4"];
-     ["q";"t"];
-     ["p";"e1";"e2"]]
-|> resolve_on !>"p"
+let cls = !>> [
+     ["p";"c"];["~p";"d"]
+     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+]
 
-!>> [["a"];["b"]]
-|> resolve_on !>"p"
+resolution_blowup cls !>"c" // evaluates to -1
+resolution_blowup cls !>"d" // evaluates to -1
+resolution_blowup cls !>"e" // evaluates to -1
+resolution_blowup cls !>"p" // evaluates to -1
+resolution_blowup cls !>"q" // evaluates to 1
+
+resolve_on !>"c" cls 
+// [[`p`; `q`]; [`q`; `~d`]; [`q`; `~e`]; [`~p`; `d`]; [`~q`; `e`]; [`~q`; `~d`]]
+
+resolve_on !>"d" cls 
+// [[`p`; `c`]; [`q`; `~c`]; [`q`; `~e`]; [`q`; `~p`]; [`~p`; `~q`]; [`~q`; `e`]]
+
+resolve_on !>"e" cls 
+// [[`p`; `c`]; [`q`; `~c`]; [`q`; `~d`]; [`~p`; `d`]; [`~q`; `~d`]]
+
+resolve_on !>"p" cls 
+// [`c`; `d`]; [`q`; `e`]; [`q`; `~c`]; [`q`; `~d`]; [`~q`; `e`]; [`~q`; `~d`]]
+
+resolve_on !>"q" cls 
+// [[`e`]; [`e`; `~c`]; [`e`; `~d`]; [`p`; `c`]; [`~c`; `~d`]; [`~d`]; [`~p`; `d`]]
+
+resolution_rule cls
+
+let pvs = List.filter positive (unions cls)
+let p = minimize (resolution_blowup cls) pvs
+resolve_on p cls
+
+!>> [
+     ["p";"c"];["~p";"d"]
+     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+]
+|> resolution_rule
+
+tautology(prime 15)
+dptaut(prime 15)

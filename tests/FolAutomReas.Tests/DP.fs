@@ -93,7 +93,7 @@ let ``affirmative_negative_rule should fail if there aren't pure literals.``() =
     |> should (throwWithMessage "affirmative_negative_rule") typeof<System.Exception>
 
 [<Fact>]
-let ``resolve_on resolves clauses on p``() = 
+let ``resolve_on resolves clauses on p.``() = 
     !>> [["p";"c1";"c2"];
         ["~p";"d1";"d2";"d3";"d4"];
         ["q";"t"];
@@ -110,3 +110,28 @@ let ``resolve_on returns the input unchanged if the rule is not applicable.``() 
     |> resolve_on !>"p"
     |> should equal 
         !>> [["a"];["b"]]
+
+[<Fact>]
+let ``resolution_blowup returns a number that drives the choice of the literal on which to resolve.``() = 
+    let cls = !>> [
+        ["p";"c"];["~p";"d"]
+        ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    ]
+
+    Assert.Equal(-1,resolution_blowup cls !>"c")
+    Assert.Equal(-1,resolution_blowup cls !>"d")
+    Assert.Equal(-1,resolution_blowup cls !>"e")
+    Assert.Equal(-1,resolution_blowup cls !>"p")
+    Assert.Equal(1,resolution_blowup cls !>"q")
+
+[<Fact>]
+let ``resolution_rule resolves clauses on the literal which minimizes resolution_blowup.``() = 
+    !>> [
+        ["p";"c"];["~p";"d"]
+        ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    ]
+    |> resolution_rule
+    |> should equal !>> [
+            ["c"; "d"]; ["q"; "~c"]; ["q"; "~d"]; 
+            ["q"; "~e"]; ["~q"; "e"];["~q"; "~d"]
+        ]

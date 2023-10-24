@@ -299,8 +299,30 @@ module DP =
         when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// A simplistic heuristic to predict the best literal to resolve on.
     /// </summary>
+    /// 
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="p">The literal on which to resolve.</param>
+    /// <returns>
+    /// m * n - m - n where m and m are the number of clauses in which <c>l</c> 
+    /// occurs respectively positively and negatively in <c>cls</c>.
+    /// </returns>
+    /// 
+    /// <example id="resolution_blowup-1">
+    /// <code lang="fsharp">
+    /// let cls = !>> [
+    ///      ["p";"c"];["~p";"d"]
+    ///      ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    /// ]
+    /// 
+    /// resolution_blowup cls !>"c" // evaluates to -1
+    /// resolution_blowup cls !>"d" // evaluates to -1
+    /// resolution_blowup cls !>"e" // evaluates to -1
+    /// resolution_blowup cls !>"p" // evaluates to -1
+    /// resolution_blowup cls !>"q" // evaluates to 1
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Resolution rule</category>
     val resolution_blowup:
@@ -308,8 +330,25 @@ module DP =
         when 'a: equality
 
     /// <summary>
-    /// TBD.
+    /// Resolves the input <c>clauses</c> on the literal which minimizes <see cref='M:FolAutomReas.DP.resolution_blowup``1'/>.
     /// </summary>
+    /// 
+    /// <param name="clauses">The input clauses.</param>
+    /// 
+    /// <returns>
+    /// The result of resolving the input <c>clauses</c> on the literal which minimizes <see cref='M:FolAutomReas.DP.resolution_blowup``1'/>.
+    /// </returns>
+    /// 
+    /// <example id="resolution_rule-1">
+    /// <code lang="fsharp">
+    /// !>> [
+    ///      ["p";"c"];["~p";"d"]
+    ///      ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    /// ]
+    /// |>  resolution_rule
+    /// </code>
+    /// Evaluates to <c>[[`c`; `d`]; [`q`; `~c`]; [`q`; `~d`]; [`q`; `~e`];[`~q`; `e`]; [`~q`; `~d`]]</c>.
+    /// </example>
     /// 
     /// <category index="4">Resolution rule</category>
     val resolution_rule:
