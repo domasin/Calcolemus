@@ -5,6 +5,8 @@ open FolAutomReas.DP
 open FolAutomReas.Lib.Set
 open FolAutomReas.Lib.Search
 open FolAutomReas.Propexamples
+open FolAutomReas.Formulas
+open FolAutomReas.Lib.Fpf
 
 // fsi.AddPrinter sprint_prop_formula
 
@@ -89,3 +91,62 @@ resolve_on p cls
 
 tautology(prime 15)
 dptaut(prime 15)
+
+dp !>> [["p"]]
+
+dp !>> [["p"];["~p"]]
+
+dpsat !> "p"
+
+dpsat !> "p /\ ~p"
+
+posneg_count !>> [
+     ["p";"c"];["~p";"d"]
+     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+] !>"q"
+
+dptaut(prime 13)
+dplltaut(prime 13)
+
+let trail = [!>"p", Guessed;!>"q", Deduced]
+
+unassigned !>> [
+     ["p";"c"];["~p";"d"]
+     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+] trail
+
+[]
+
+((!>> [["p"];["p";"q"]]), undefined,[])
+|> unit_subpropagate 
+|> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
+
+!>> [["p"];["p";"q"]]
+|> one_literal_rule
+
+((!>> [["p"];["~p";"q"]]), undefined,[])
+|> unit_subpropagate 
+|> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
+
+((!>> [["p"];["p";"q"]]), [])
+|> unit_propagate 
+|> fun (cls,trail) -> (cls,trail)
+
+[
+     !>"c", Deduced; 
+     !>"b", Deduced; 
+     !>"a", Guessed
+
+     !>"e", Deduced; 
+     !>"d", Guessed
+]
+|> backtrack
+
+[
+     !>"c", Deduced; 
+     !>"b", Deduced; 
+     !>"e", Deduced; 
+]
+|> backtrack
+
+dpli !>> [["p"];["p";"q"]] []

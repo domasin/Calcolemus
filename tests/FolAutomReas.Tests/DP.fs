@@ -8,6 +8,8 @@ open FsCheck
 open FolAutomReas.Formulas
 open FolAutomReas.Prop
 open FolAutomReas.DP
+open FolAutomReas.Propexamples
+open FolAutomReas.Lib.Fpf
 
 [<Fact>]
 let ``!>> should return a list of clauses.``() = 
@@ -105,14 +107,14 @@ let ``resolve_on resolves clauses on p.``() =
              ["q"; "t"]]
 
 [<Fact>]
-let ``resolve_on returns the input unchanged if the rule is not applicable.``() = 
+let ``resolve_on should return the input unchanged if the rule is not applicable.``() = 
     !>> [["a"];["b"]]
     |> resolve_on !>"p"
     |> should equal 
         !>> [["a"];["b"]]
 
 [<Fact>]
-let ``resolution_blowup returns a number that drives the choice of the literal on which to resolve.``() = 
+let ``resolution_blowup should return a number that drives the choice of the literal on which to resolve.``() = 
     let cls = !>> [
         ["p";"c"];["~p";"d"]
         ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
@@ -135,3 +137,172 @@ let ``resolution_rule resolves clauses on the literal which minimizes resolution
             ["c"; "d"]; ["q"; "~c"]; ["q"; "~d"]; 
             ["q"; "~e"]; ["~q"; "e"];["~q"; "~d"]
         ]
+
+[<Fact>]
+let ``dp should return true if the input is satisfiable.``() = 
+    dp !>> [["p"]]
+    |> should equal true
+
+[<Fact>]
+let ``dp should return false if the input is satisfiable.``() = 
+    dp !>> [["p"];["~p"]]
+    |> should equal false
+
+[<Fact>]
+let ``dpsat should return true if the input is satisfiable.``() = 
+    dpsat !> "p"
+    |> should equal true
+
+[<Fact>]
+let ``dpsat should return false if the input is satisfiable.``() = 
+    dpsat !> "p /\ ~p"
+    |> should equal false
+
+[<Fact>]
+let ``dptaut should return false if the input is not a tautology.``() = 
+    dptaut !> "p"
+    |> should equal false
+
+[<Fact>]
+let ``dptaut should return true if the input is satisfiable.``() = 
+    dptaut (prime 11)
+    |> should equal true
+
+[<Fact>]
+let ``posneg_count should return the number of l's occurrences in cls.``() = 
+    posneg_count !>> [
+        ["p";"c"];["~p";"d"]
+        ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    ] !>"q"
+    |> should equal 5
+
+[<Fact>]
+let ``dpll should return true if the input is satisfiable.``() = 
+    dpll !>> [["p"]]
+    |> should equal true
+
+[<Fact>]
+let ``dpll should return false if the input is satisfiable.``() = 
+    dpll !>> [["p"];["~p"]]
+    |> should equal false
+
+[<Fact>]
+let ``dpllsat should return true if the input is satisfiable.``() = 
+    dpllsat !> "p"
+    |> should equal true
+
+[<Fact>]
+let ``dpllsat should return false if the input is satisfiable.``() = 
+    dpllsat !> "p /\ ~p"
+    |> should equal false
+
+[<Fact>]
+let ``dplltaut should return false if the input is not a tautology.``() = 
+    dplltaut !> "p"
+    |> should equal false
+
+[<Fact>]
+let ``dplltaut should return true if the input is satisfiable.``() = 
+    dplltaut (prime 11)
+    |> should equal true
+
+[<Fact>]
+let ``unassigned should return the list of literals in clauses that are not in trail.``() = 
+    let trail = [!>"p", Deduced;!>"q", Guessed]
+
+    unassigned !>> [
+        ["p";"c"];["~p";"d"]
+        ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    ] trail
+    |> List.map sprint_prop_formula
+    |> should equal ["`c`"; "`d`"; "`e`"]
+
+[<Fact>]
+let ``unit_subpropagate should return the fpf and trail updated with the result of unit propagation.``() = 
+
+    ((!>> [["p"];["p";"q"]]), undefined,[])
+    |> unit_subpropagate 
+    |> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
+    |> should equal 
+        (!>> [["p"]; ["p"; "q"]], [(!>"p", ())], [(!>"p", Deduced)])
+
+[<Fact>]
+let ``unit_subpropagate should return the fpf and trail updated with the result of unit propagation, updating clauses if there are complementary literals.``() = 
+
+    ((!>> [["p"];["~p";"q"]]), undefined,[])
+    |> unit_subpropagate 
+    |> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
+    |> should equal 
+        (!>> [["p"]; ["q"]], [(!>"p", ()); (!>"q", ())], [(!>"q", Deduced);(!>"p", Deduced)])
+
+[<Fact>]
+let ``unit_propagate should return the trail updated with flags on literals on which apply unit propagation.``() = 
+
+    ((!>> [["p"];["p";"q"]]), [])
+    |> unit_propagate 
+    |> should equal 
+        (!>> [["p"]; ["p"; "q"]], [(!>"p", Deduced)])
+
+[<Fact>]
+let ``unit_propagate should return the trail updated with the result of unit propagation, updating clauses if there are complementary literals.``() = 
+
+    ((!>> [["p"];["~p";"q"]]), [])
+    |> unit_propagate 
+    |> should equal 
+        (!>> [["p"]; ["q"]], [(!>"q", Deduced);(!>"p", Deduced)])
+
+[<Fact>]
+let ``backtrack should return trail from the first guessed literal.``() = 
+    [
+        !>"c", Deduced; 
+        !>"b", Deduced; 
+        !>"a", Guessed
+
+        !>"e", Deduced; 
+        !>"d", Guessed
+    ]
+    |> backtrack
+    |> should equal 
+        [(Atom (P "a"), Guessed); 
+         (Atom (P "e"), Deduced); 
+         (Atom (P "d"), Guessed)]
+
+[<Fact>]
+let ``backtrack should return the empty list if there are no more guessed literals``() =
+    [
+        !>"c", Deduced; 
+        !>"b", Deduced; 
+        !>"e", Deduced; 
+    ]
+    |> backtrack
+    |> shouldEqual []
+
+[<Fact>]
+let ``dpli should return true if the input is satisfiable.``() = 
+    dpli !>> [["p"]] []
+    |> should equal true
+
+[<Fact>]
+let ``dpli should return false if the input is satisfiable.``() = 
+    dpli !>> [["p"];["~p"]] []
+    |> should equal false
+
+[<Fact>]
+let ``dplisat should return true if the input is satisfiable.``() = 
+    dplisat !> "p"
+    |> should equal true
+
+[<Fact>]
+let ``dplisat should return false if the input is satisfiable.``() = 
+    dplisat !> "p /\ ~p"
+    |> should equal false
+
+[<Fact>]
+let ``dplitaut should return false if the input is not a tautology.``() = 
+    dplitaut !> "p"
+    |> should equal false
+
+[<Fact>]
+let ``dplitaut should return true if the input is satisfiable.``() = 
+    dplitaut (prime 11)
+    |> should equal true

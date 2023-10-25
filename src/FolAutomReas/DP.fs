@@ -136,14 +136,14 @@ module DP =
 
     type trailmix = Guessed | Deduced
 
-    let unassigned =
+    let unassigned clauses trail =
         let litabs p = 
             match p with
             | Not q -> q
             | _ -> p
-        fun cls trail ->
-            subtract (unions (image (image litabs) cls))
-                (image (litabs << fst) trail)
+
+        subtract (unions (image (image litabs) clauses))
+            (image (litabs << fst) trail)
 
     let rec unit_subpropagate (cls, fn, trail) =
         let cls' = List.map (List.filter (not << defined fn << negate)) cls

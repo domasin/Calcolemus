@@ -356,29 +356,127 @@ module DP =
         when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>clauses</c> (propositional) satisfiability with the 
+    /// Davis-Putnam procedure.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Tests the (propositional) satisfiability of a list of clauses (to be 
+    /// understood as an iterated conjunction of disjunctions), using the 
+    /// Davis-Putnam procedure which consists in applying recursively the rules 
+    /// <see cref='M:FolAutomReas.DP.one_literal_rule``1'/>, 
+    /// <see cref='M:FolAutomReas.DP.affirmative_negative_rule``1'/> and 
+    /// <see cref='M:FolAutomReas.DP.resolution_rule``1'/>
+    /// </remarks>
+    /// 
+    /// <param name="clauses">The input clauses.</param>
+    /// 
+    /// <returns>
+    /// true, if the recursive application of the rules leads to an empty set 
+    /// of clauses (meaning that the input is satisfiable); otherwise, when the 
+    /// rules lead to a set that contains an empty clause, false (meaning that 
+    /// the input is unsatisfiable).
+    /// </returns>
+    /// 
+    /// <example id="dp-1">
+    /// <code lang="fsharp">
+    /// dp !>> [["p"]]
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dp-2">
+    /// <code lang="fsharp">
+    /// dp !>> [["p"];["~p"]]
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="5">Davis-Putnam Procedure</category>
     val dp: clauses: formula<'a> list list -> bool when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) satisfiability with the Davis-Putnam 
+    /// procedure.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is satisfiable: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dpsat-1">
+    /// <code lang="fsharp">
+    /// dpsat !> "p"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dpsat-2">
+    /// <code lang="fsharp">
+    /// dpsat !> "p /\ ~p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="5">Davis-Putnam Procedure</category>
     val dpsat: fm: formula<prop> -> bool
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) validity with the Davis-Putnam 
+    /// procedure.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is a tautology: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dptaut-1">
+    /// <code lang="fsharp">
+    /// dptaut !> "p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="dptaut-2">
+    /// <code lang="fsharp">
+    /// dptaut (prime 11)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="5">Davis-Putnam Procedure</category>
     val dptaut: fm: formula<prop> -> bool
 
     /// <summary>
-    /// TBD.
+    /// Counts the number of occurrences (both positively or negatively) of the 
+    /// literal <c>l</c> in <c>cls</c>.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// It is used as an heuristic to chose the literal for the splitting rule 
+    /// in the Davis-Putnam-Loveland-Logemann procedure.
+    /// </remarks>
+    /// 
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="l">The input literal.</param>
+    /// <returns>
+    /// The number of <c>l</c>'s occurrences (both positively or negatively) in 
+    /// <c>cls</c>.
+    /// </returns>
+    /// 
+    /// <example id="posneg_count-1">
+    /// <code lang="fsharp">
+    /// posneg_count !>> [
+    ///      ["p";"c"];["~p";"d"]
+    ///      ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    /// ] !>"q"
+    /// </code>
+    /// Evaluates to <c>5</c>.
+    /// </example>
     /// 
     /// <category index="6">Davis-Putnam-Loveland-Logemann Procedure</category>
     val posneg_count:
@@ -386,43 +484,199 @@ module DP =
         when 'a: equality
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>clauses</c> (propositional) satisfiability with the 
+    /// Davis-Putnam-Loveland-Logemann procedure.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Tests the (propositional) satisfiability of a list of clauses (to be 
+    /// understood as an iterated conjunction of disjunctions), using the 
+    /// Davis-Putnam-Loveland-Logemann procedure which consists in applying 
+    /// recursively the rules 
+    /// <see cref='M:FolAutomReas.DP.one_literal_rule``1'/>, 
+    /// <see cref='M:FolAutomReas.DP.affirmative_negative_rule``1'/> and, if 
+    /// neither of these is applicable (instead of 
+    /// <see cref='M:FolAutomReas.DP.resolution_rule``1'/>) the <em>splitting 
+    /// rule</em>.
+    /// <p></p>
+    /// The splitting rule consists in choosing some literal and testing, 
+    /// separately, the satisfiability of the union of the input with this 
+    /// literal and its negation, respectively: if one of these is satisfiable 
+    /// so the original input is.
+    /// <p></p>
+    /// The literal that maximizes 
+    /// <see cref='M:FolAutomReas.DP.posneg_count``1'/> is chosen for the 
+    /// splitting rule.
+    /// </remarks>
+    /// 
+    /// <param name="clauses">The input clauses.</param>
+    /// 
+    /// <returns>
+    /// true, if the recursive application of the rules leads to an empty set 
+    /// of clauses (meaning that the input is satisfiable); otherwise, when the 
+    /// rules lead to a set that contains an empty clause, false (meaning that 
+    /// the input is unsatisfiable).
+    /// </returns>
+    /// 
+    /// <example id="dpll-1">
+    /// <code lang="fsharp">
+    /// dpll !>> [["p"]]
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dpll-2">
+    /// <code lang="fsharp">
+    /// dpll !>> [["p"];["~p"]]
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="6">Davis-Putnam-Loveland-Logemann Procedure</category>
     val dpll: clauses: formula<'a> list list -> bool when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) satisfiability with the 
+    /// Davis-Putnam-Loveland-Logemann procedure.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is satisfiable: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dpllsat-1">
+    /// <code lang="fsharp">
+    /// dpllsat !> "p"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dpllsat-2">
+    /// <code lang="fsharp">
+    /// dpllsat !> "p /\ ~p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="6">Davis-Putnam-Loveland-Logemann Procedure</category>
     val dpllsat: fm: formula<prop> -> bool
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) validity with the 
+    /// Davis-Putnam-Loveland-Logemann procedure.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is a tautology: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dplltaut-1">
+    /// <code lang="fsharp">
+    /// dplltaut !> "p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="dplltaut-2">
+    /// <code lang="fsharp">
+    /// dplltaut (prime 11)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="6">Davis-Putnam-Loveland-Logemann Procedure</category>
     val dplltaut: fm: formula<prop> -> bool
 
+    /// <summary>
+    /// Flags to mark literals in the case split <em>trail</em> used in the 
+    /// DPLL iterative implementation. 
+    /// 
+    /// <seealso cref='M:FolAutomReas.DP.dpli``1'/>
+    /// </summary>
     type trailmix =
+        /// <summary>
+        /// Literal that was just assumed as one half of a case-split.
+        /// </summary>
         | Guessed
+        /// <summary>
+        /// Literal that was deduced by unit propagation from literals assumed 
+        /// earlier.
+        /// </summary>
         | Deduced
 
     /// <summary>
-    /// TBD.
+    /// Returns <c>clauses</c>' literals that are not yet assigned in 
+    /// <c>trail</c>.
     /// </summary>
+    /// 
+    /// <param name="clauses">The input clauses.</param>
+    /// <param name="trail">The input trail of assigned literals.</param>
+    /// 
+    /// <returns>
+    /// The list of literals in <c>clauses</c> that are not in <c>trail</c>.
+    /// </returns>
+    /// 
+    /// <example id="unassigned-1">
+    /// <code lang="fsharp">
+    /// let trail = [!>"p", Deduced;!>"q", Guessed]
+    /// 
+    /// unassigned !>> [
+    ///      ["p";"c"];["~p";"d"]
+    ///      ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
+    /// ] trail
+    /// </code>
+    /// Evaluates to <c>[`c`; `d`; `e`]</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val unassigned:
-      (formula<'a> list list ->
-         (formula<'a> * 'b) list -> formula<'a> list)
+      clauses: formula<'a> list list ->
+         trail: (formula<'a> * 'b) list -> formula<'a> list
         when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Performs unit propagation exhaustively modifying internally the clauses 
+    /// <c>cls</c> and processing the <c>trail</c> into a finite partial 
+    /// function <c>fn</c> for more efficient lookup.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The clauses are updated only from the point of view of the removing of 
+    /// unit clauses' complementary literals, if there are.
+    /// </remarks>
+    /// 
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="fn">The fpf to process the trail.</param>
+    /// <param name="trail">The input trail of assigned literals.</param>
+    /// 
+    /// <returns>
+    /// The triple of the clauses, fpf and trail updated with the result of 
+    /// unit propagation.
+    /// </returns>
+    /// 
+    /// <example id="unit_subpropagate-1">
+    /// <code lang="fsharp">
+    /// ((!>> [["p"];["p";"q"]]), undefined,[])
+    /// |> unit_subpropagate 
+    /// |> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
+    /// </code>
+    /// Evaluates to 
+    /// <c>([[`p`]; [`p`; `q`]], [(`p`, ())], [(`p`, Deduced)])</c>.
+    /// </example>
+    /// 
+    /// <example id="unit_subpropagate-2">
+    /// <code lang="fsharp">
+    /// ((!>> [["p"];["~p";"q"]]), undefined,[])
+    /// |> unit_subpropagate 
+    /// |> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
+    /// </code>
+    /// Evaluates to 
+    /// <c>([[`p`]; [`q`]], [(`p`, ()); (`q`, ())], [(`q`, Deduced); (`p`, Deduced)])</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val unit_subpropagate:
@@ -433,8 +687,39 @@ module DP =
         (formula<'a> * trailmix) list when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Performs unit propagation modifying internally the clauses <c>cls</c>.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The clauses are updated only from the point of view of the removing of 
+    /// unit clauses' complementary literals, if there are.
+    /// </remarks>
+    /// 
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="trail">The input trail of assigned literals.</param>
+    /// 
+    /// <returns>
+    /// The tuple of the clauses and trail updated with the 
+    /// result of unit propagation.
+    /// </returns>
+    /// 
+    /// <example id="unit_propagate-1">
+    /// <code lang="fsharp">
+    /// ((!>> [["p"];["p";"q"]]), [])
+    /// |> unit_propagate 
+    /// </code>
+    /// Evaluates to 
+    /// <c>([[`p`]; [`p`; `q`]], [(`p`, Deduced)])</c>.
+    /// </example>
+    /// 
+    /// <example id="unit_propagate-2">
+    /// <code lang="fsharp">
+    /// ((!>> [["p"];["~p";"q"]]), [])
+    /// |> unit_propagate 
+    /// </code>
+    /// Evaluates to 
+    /// <c>([[`p`]; [`q`]], [(`q`, Deduced); (`p`, Deduced)])</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val unit_propagate:
@@ -444,15 +729,73 @@ module DP =
         when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Removes items from the trail until the most recent decision literal is 
+    /// reached or there are no one left in the trail.
     /// </summary>
+    /// 
+    /// <param name="trail">The input trail of assigned literals.</param>
+    /// 
+    /// <returns>
+    /// The literals in the trail starting from the first guessed one.
+    /// </returns>
+    /// 
+    /// <example id="backtrack-1">
+    /// <code lang="fsharp">
+    /// [
+    ///      !>"c", Deduced; 
+    ///      !>"b", Deduced; 
+    ///      !>"a", Guessed
+    /// 
+    ///      !>"e", Deduced; 
+    ///      !>"d", Guessed
+    /// ]
+    /// |> backtrack
+    /// </code>
+    /// Evaluates to 
+    /// <c>[(`a`, Guessed); (`e`, Deduced); (`d`, Guessed)]</c>.
+    /// </example>
+    /// 
+    /// <example id="backtrack-2">
+    /// <code lang="fsharp">
+    /// [
+    ///      !>"c", Deduced; 
+    ///      !>"b", Deduced; 
+    ///      !>"e", Deduced; 
+    /// ]
+    /// |> backtrack
+    /// </code>
+    /// Evaluates to 
+    /// <c>[]</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val backtrack: trail: ('a * trailmix) list -> ('a * trailmix) list
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>clauses</c> (propositional) satisfiability with the 
+    /// Davis-Putnam-Loveland-Logemann procedure with an iterative 
+    /// implementation.
     /// </summary>
+    /// 
+    /// <param name="clauses">The input clauses.</param>
+    /// 
+    /// <returns>
+    /// true, if the input is satisfiable; otherwise, false.
+    /// </returns>
+    /// 
+    /// <example id="dpli-1">
+    /// <code lang="fsharp">
+    /// dpli !>> [["p"]] []
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dpli-2">
+    /// <code lang="fsharp">
+    /// dpli !>> [["p"];["~p"]] []
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val dpli:
@@ -460,15 +803,58 @@ module DP =
         trail: (formula<'a> * trailmix) list -> bool when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) satisfiability with the 
+    /// Davis-Putnam-Loveland-Logemann procedure with the iterative 
+    /// implementation.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is satisfiable: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dplisat-1">
+    /// <code lang="fsharp">
+    /// dplisat !> "p"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dplisat-2">
+    /// <code lang="fsharp">
+    /// dplisat !> "p /\ ~p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val dplisat: fm: formula<prop> -> bool
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) validity with the 
+    /// Davis-Putnam-Loveland-Logemann procedure with iterative implementation.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is a tautology: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dplitaut-1">
+    /// <code lang="fsharp">
+    /// dplitaut !> "p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="dplitaut-2">
+    /// <code lang="fsharp">
+    /// dplitaut (prime 11)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
     val dplitaut: fm: formula<prop> -> bool
