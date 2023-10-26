@@ -1,10 +1,10 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Formulas
-open FolAutomReas.Fol
-open FolAutomReas.Herbrand
-open FolAutomReas.Tableaux
-open FolAutomReas.Pelletier
+open Calcolemus.Formulas
+open Calcolemus.Fol
+open Calcolemus.Herbrand
+open Calcolemus.Tableaux
+open Calcolemus.Pelletier
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term

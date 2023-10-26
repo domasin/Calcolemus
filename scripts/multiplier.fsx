@@ -1,8 +1,8 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Formulas
-open FolAutomReas.Prop
-open FolAutomReas.Propexamples
+open Calcolemus.Formulas
+open Calcolemus.Prop
+open Calcolemus.Propexamples
 
 // fsi.AddPrinter sprint_prop_formula
 

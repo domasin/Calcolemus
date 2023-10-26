@@ -1,6 +1,6 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Intro
+open Calcolemus.Intro
 
 Add(Const 0, Const 1) |> simplify1
 

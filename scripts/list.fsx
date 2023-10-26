@@ -1,6 +1,6 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.List
+open Calcolemus.Lib.List
 
 last ([]:int list)
 

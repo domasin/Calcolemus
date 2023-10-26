@@ -1,7 +1,7 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.Fpf
-open FolAutomReas.Lib.Partition
+open Calcolemus.Lib.Fpf
+open Calcolemus.Lib.Partition
 
 let (Partition f as ptn) = 
     unequal

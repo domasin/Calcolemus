@@ -1,14 +1,14 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 #r "nuget: MathNet.Numerics.FSharp"
 
 open MathNet.Numerics
 
-open FolAutomReas
-open FolAutomReas.Lib
-open FolAutomReas.Intro
-open FolAutomReas.Formulas
-open FolAutomReas.Prop
-open FolAutomReas.Fol
+open Calcolemus
+open Calcolemus.Lib
+open Calcolemus.Intro
+open Calcolemus.Formulas
+open Calcolemus.Prop
+open Calcolemus.Fol
 
 module FormulasAndTermsFormatter =
 

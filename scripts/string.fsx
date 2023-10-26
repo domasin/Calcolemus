@@ -1,6 +1,6 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.String
+open Calcolemus.Lib.String
 
 let r1 = 
     "The Quick fox."

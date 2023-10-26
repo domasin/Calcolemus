@@ -1,9 +1,9 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.Fpf
+open Calcolemus.Lib.Fpf
 
-open FolAutomReas.Fol
-open FolAutomReas.Tableaux
+open Calcolemus.Fol
+open Calcolemus.Tableaux
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term

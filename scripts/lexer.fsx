@@ -1,7 +1,7 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.String
-open FolAutomReas.Lib.Lexer
+open Calcolemus.Lib.String
+open Calcolemus.Lib.Lexer
 
 matches "abc" "a"
 matches "abc" "d"

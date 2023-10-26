@@ -1,9 +1,9 @@
-#r "nuget: FolAutomReas,1.0.3"
+#r "nuget: Calcolemus,1.0.3"
 
-open FolAutomReas.Lib.FPF
-open FolAutomReas.Formulas
-open FolAutomReas.Fol
-open FolAutomReas.Herbrand
+open Calcolemus.Lib.FPF
+open Calcolemus.Formulas
+open Calcolemus.Fol
+open Calcolemus.Herbrand
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term

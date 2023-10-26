@@ -1,8 +1,8 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.Fpf
-open FolAutomReas.Formulas
-open FolAutomReas.Prop
+open Calcolemus.Lib.Fpf
+open Calcolemus.Formulas
+open Calcolemus.Prop
 
 let sprint_bigint (bi:bigint) = sprintf "%OI" bi
 

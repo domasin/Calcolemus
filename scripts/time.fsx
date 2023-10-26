@@ -1,7 +1,7 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Tableaux
-open FolAutomReas.Pelletier
-open FolAutomReas.Lib.Time
+open Calcolemus.Tableaux
+open Calcolemus.Pelletier
+open Calcolemus.Lib.Time
 
 time tab p38

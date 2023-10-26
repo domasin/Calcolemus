@@ -1,7 +1,7 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.Fpf
-open FolAutomReas.Lib.Set
+open Calcolemus.Lib.Fpf
+open Calcolemus.Lib.Set
 
 [1;4;5]
 |> List.fold (fun acc x -> (x|->x)acc) undefined

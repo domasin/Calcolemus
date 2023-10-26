@@ -1,6 +1,6 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.Sort
+open Calcolemus.Lib.Sort
 
 merge (<) [1;3;7] [4;6;5;2;]
 

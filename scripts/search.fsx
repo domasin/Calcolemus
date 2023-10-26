@@ -1,6 +1,6 @@
-#r "../src/FolAutomReas/bin/Debug/net7.0/FolAutomReas.dll"
+#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open FolAutomReas.Lib.Search
+open Calcolemus.Lib.Search
 
 let f1 = fun n -> if n % 2 = 0 then string n else failwith "f"
 let f2 = fun n -> if n > 3 then string n else failwith "f"
