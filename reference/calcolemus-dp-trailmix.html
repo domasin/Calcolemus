@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Calcolemus (API Reference)</title>
+    <title>trailmix (Calcolemus)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
 
@@ -73,51 +73,151 @@
         <hr />
         <div class="container" id="fsdocs-content">
             <div>
-  <h1>
-    API Reference
-  </h1>
   <h2>
-    Available Namespaces:
+    trailmix Type
   </h2>
-  <table class="table outer-list fsdocs-member-list">
-    <thead>
-      <tr>
-        <td class="fsdocs-member-list-header">
-          Namespace
-        </td>
-        <td class="fsdocs-member-list-header">
-          Description
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="/Calcolemus/reference/calcolemus.html">
-            Calcolemus
-          </a>
-        </td>
-        <td>
-          
- Types, functions, operators and procedures for automated/interactive 
- reasoning in first order logic.
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/Calcolemus/reference/calcolemus.html">
+        Calcolemus
+      </a>
+    </dt>
+    <dt>
+      Assembly: Calcolemus.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="/Calcolemus/reference/calcolemus-dp.html">
+        DP
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+      , 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralcomparable">IStructuralComparable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Flags to mark literals in the case split <em>trail</em> used in the 
+ DPLL iterative implementation. 
  
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="/Calcolemus/reference/calcolemus-lib.html">
-            Calcolemus.Lib
-          </a>
-        </td>
-        <td>
-          
- Basic library for the global implementation. 
+ <a href="/Calcolemus/reference/calcolemus-dp.html">DP.dpli</a>
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Union cases
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Union case
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
+                <p>
+                  <a id="Deduced">
+                    <a href="#Deduced">
+                      <code><span>Deduced</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="870">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Deduced</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fsi#L609-609" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Literal that was deduced by unit propagation from literals assumed 
+ earlier.
  
-        </td>
-      </tr>
-    </tbody>
-  </table>
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
+                <p>
+                  <a id="Guessed">
+                    <a href="#Guessed">
+                      <code><span>Guessed</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="871">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Guessed</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fsi#L604-604" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Literal that was just assumed as one half of a case-split.
+ 
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
 </div>
             
         </div>

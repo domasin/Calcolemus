@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Automated Reasoning in First Order Logic
+    <title>Calcolemus Library Documentation
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
@@ -14,11 +14,11 @@
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-    <link rel="shortcut icon" type="image/x-icon" href="/FolAutomReas/img/favicon.ico">
-    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/navbar-fixed-left.css" />
-    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="/FolAutomReas/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="/FolAutomReas/content/fsdocs-tips.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/Calcolemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calcolemus/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -35,7 +35,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
-            <a href="/FolAutomReas/"><img id="fsdocs-logo" src="/FolAutomReas/img/logo.png" /></a>
+            <a href="/Calcolemus/"><img id="fsdocs-logo" src="/Calcolemus/img/logo.png" /></a>
             <!-- BEGIN SEARCH BOX: this adds support for the search box -->
             <div id="header">
                 <div class="searchbox" id="fsdocs-searchbox">
@@ -52,15 +52,15 @@
             <!-- END SEARCH BOX: this adds support for the search box -->
             <ul class="navbar-nav">
                 <li class="nav-header">Links</li>
-                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus/blob/master/LICENSE.txt">License</a></li>
                 <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
-                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/FolAutomReas">Source Repository</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus">Source Repository</a></li>
                 
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/FolAutomReas/reference/index.html">
+  <a class="nav-link" href="/Calcolemus/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -69,19 +69,18 @@
     </nav>
     <div class="container">
         <div class="masthead">
-            <h3 class="muted"><a href="/FolAutomReas/">FolAutomReas</a></h3>
+            <h3 class="muted"><a href="/Calcolemus/">Calcolemus</a></h3>
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
-            <h1><a name="Automated-Reasoning-in-First-Order-Logic" class="anchor" href="#Automated-Reasoning-in-First-Order-Logic">Automated Reasoning in First Order Logic</a></h1>
-<p>This site contains the documentation for the FolAutomReas library.</p>
-<p>FolAutomReas is a porting in F# of the code from John Harrison's <a href="https://www.cl.cam.ac.uk/~jrh13/atp/index.html">Handbook of Practical Logic and Automated Reasoning</a> written in OCaml and already ported in F# by <a href="https://github.com/jack-pappas">Jack Pappas</a>, <a href="https://github.com/EricGT">Eric Taucher</a>, <a href="https://github.com/dungpa">Anh-Dung Phan</a> (see <a href="https://github.com/jack-pappas/fsharp-logic-examples).">https://github.com/jack-pappas/fsharp-logic-examples).</a></p>
-<p>FolAutomReas is a fork of the <a href="https://github.com/jack-pappas/fsharp-logic-examples">previous porting</a> with some changes.</p>
-<p>The code contains lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.</p>
+            <h1><a name="Calcolemus-Library-Documentation" class="anchor" href="#Calcolemus-Library-Documentation">Calcolemus Library Documentation</a></h1>
+<p>This site contains the documentation for the Calcolemus library.</p>
+<p>The library provides lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.</p>
+<p>It is a porting in F# of the code from John Harrison's book <a href="https://www.cl.cam.ac.uk/~jrh13/atp/index.html">Handbook of Practical Logic and Automated Reasoning</a> written in OCaml and it is based on a <a href="https://github.com/jack-pappas/fsharp-logic-examples">previous F# porting</a> by <a href="https://github.com/jack-pappas">Jack Pappas</a>, <a href="https://github.com/EricGT">Eric Taucher</a>, <a href="https://github.com/dungpa">Anh-Dung Phan</a>.</p>
 <p>The following namespaces are available:</p>
 <ul>
-<li><p><a href="./reference/folautomreas.html">FolAutomReas</a> - The main namespace with the specific thematics.</p></li>
-<li><p><a href="./reference/folautomreas-lib.html">FolAutomReas.Lib</a> - The library with basic functions for general implementation.</p></li>
+<li><p><a href="./reference/Calcolemus.html">Calcolemus</a> - The main namespace with the specific thematics.</p></li>
+<li><p><a href="./reference/Calcolemus-lib.html">Calcolemus.Lib</a> - The library with basic functions for general implementation.</p></li>
 </ul>
 
             
@@ -89,10 +88,10 @@
 
         <!-- BEGIN SEARCH BOX: this adds support for the search box -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-        <script type="text/javascript">var fsdocs_search_baseurl = '/FolAutomReas/';</script>
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calcolemus/';</script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-        <script type="text/javascript" src="/FolAutomReas/content/fsdocs-search.js"></script>
+        <script type="text/javascript" src="/Calcolemus/content/fsdocs-search.js"></script>
         <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
 </body>

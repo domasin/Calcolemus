@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calcolemus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Domenico Masini">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Calcolemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calcolemus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Calcolemus/"><img id="fsdocs-logo" src="/Calcolemus/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus">Source Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calcolemus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Calcolemus/">Calcolemus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2 id="calcolemus">
+    Calcolemus Namespace
+  </h2>
+  <div class="fsdocs-xmldoc">
+    <p>
+      
+ Types, functions, operators and procedures for automated/interactive 
+ reasoning in first order logic.
+ 
+    </p>
+  </div>
+  <h3>
+    Contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#category-0_0">
+        Algebraic Example
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_1">
+        Polymorphic formulas
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_2">
+        Propositional logic
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_3">
+        First order logic
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_4">
+        Equality
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_5">
+        Decidable subsets and theories
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_6">
+        Interactive theorem proving
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_7">
+        Undecidability
+      </a>
+    </li>
+  </ul>
+  <h3>
+    <a class="anchor" name="category-0_0" href="#category-0_0">
+      Algebraic Example
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Intro">
+              <a href="/Calcolemus/reference/calcolemus-intro.html">
+                Intro
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Intro`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Intro\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Intro.fsi#L18-18" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A simple algebraic expressions example to demonstrate the basic 
+ concepts of abstract syntax tree, symbolic computation, parsing and 
+ prettyprinting.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_1" href="#category-0_1">
+      Polymorphic formulas
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Formulas">
+              <a href="/Calcolemus/reference/calcolemus-formulas.html">
+                Formulas
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Formulas`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Formulas\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Formulas.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Polymorphic type of formulas with parser and printer. 
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_2" href="#category-0_2">
+      Propositional logic
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Bdd">
+              <a href="/Calcolemus/reference/calcolemus-bdd.html">
+                Bdd
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Bdd`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Bdd\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/bdd.fsi#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Binary decision diagrams (BDDs) using complement edges.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Defcnf">
+              <a href="/Calcolemus/reference/calcolemus-defcnf.html">
+                Defcnf
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Defcnf`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Defcnf\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Defcnf.fsi#L14-14" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Definitional Conjunctive Normal Form.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="DP">
+              <a href="/Calcolemus/reference/calcolemus-dp.html">
+                DP
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.DP`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.DP\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fsi#L18-18" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ The Davis-Putnam and the Davis-Putnam-Loveland-Logemann procedures.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Prop">
+              <a href="/Calcolemus/reference/calcolemus-prop.html">
+                Prop
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Prop`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Prop\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prop.fsi#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Basic stuff for propositional logic: datatype, parsing and prettyprinting, 
+ syntax and semantics, normal forms.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Propexamples">
+              <a href="/Calcolemus/reference/calcolemus-propexamples.html">
+                Propexamples
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Propexamples`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Propexamples\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Propexamples.fsi#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Some propositional formulas to test, and functions to generate classes.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Stal">
+              <a href="/Calcolemus/reference/calcolemus-stal.html">
+                Stal
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Stal`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Stal\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/stal.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Stalmarck method.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_3" href="#category-0_3">
+      First order logic
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Fol">
+              <a href="/Calcolemus/reference/calcolemus-folmodule.html">
+                Fol
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.FolModule`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.FolModule\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/fol.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Basic stuff for first order logic: datatype, parsing and printing, 
+ semantics, syntax operations and substitution.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Herbrand">
+              <a href="/Calcolemus/reference/calcolemus-herbrand.html">
+                Herbrand
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Herbrand`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Herbrand\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/herbrand.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Relation between FOL and propositional logic; Herbrand theorem.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Meson">
+              <a href="/Calcolemus/reference/calcolemus-meson.html">
+                Meson
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Meson`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Meson\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/meson.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Model Elimination.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pelletier">
+              <a href="/Calcolemus/reference/calcolemus-pelletier.html">
+                Pelletier
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Pelletier`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Pelletier\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Pelletier.fs#L6-6" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Some Pelletier problems to compare proof procedures.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Prolog">
+              <a href="/Calcolemus/reference/calcolemus-prolog.html">
+                Prolog
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Prolog`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Prolog\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/prolog.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Prolog.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Resolution">
+              <a href="/Calcolemus/reference/calcolemus-resolution.html">
+                Resolution
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Resolution`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Resolution\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/resolution.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Resolution.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Skolem">
+              <a href="/Calcolemus/reference/calcolemus-skolem.html">
+                Skolem
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Skolem`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Skolem\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/skolem.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Prenex and Skolem normal forms.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Skolems">
+              <a href="/Calcolemus/reference/calcolemus-skolems.html">
+                Skolems
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Skolems`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Skolems\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/skolems.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Skolemizing a set of formulas.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Tableaux">
+              <a href="/Calcolemus/reference/calcolemus-tableaux.html">
+                Tableaux
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Tableaux`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Tableaux\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/tableaux.fsi#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Tableaux, seen as an optimized version of a Prawitz-like procedure.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Unif">
+              <a href="/Calcolemus/reference/calcolemus-unif.html">
+                Unif
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Unif`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Unif\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/unif.fsi#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Unification for first order terms.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_4" href="#category-0_4">
+      Equality
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Completion">
+              <a href="/Calcolemus/reference/calcolemus-completion.html">
+                Completion
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Completion`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Completion\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/completion.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Knuth-Bendix completion.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Cong">
+              <a href="/Calcolemus/reference/calcolemus-cong.html">
+                Cong
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Cong`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Cong\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/cong.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Congruence closure.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Eqelim">
+              <a href="/Calcolemus/reference/calcolemus-eqelim.html">
+                Eqelim
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Eqelim`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Eqelim\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/eqelim.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Equality elimination: Brand transform etc.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Equal">
+              <a href="/Calcolemus/reference/calcolemus-equal.html">
+                Equal
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Equal`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Equal\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/equal.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Naive equality axiomatization.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Order">
+              <a href="/Calcolemus/reference/calcolemus-order.html">
+                Order
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Order`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Order\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/order.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Simple term orderings including LPO.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Paramodulation">
+              <a href="/Calcolemus/reference/calcolemus-paramodulation.html">
+                Paramodulation
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Paramodulation`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Paramodulation\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/paramodulation.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Paramodulation.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Rewrite">
+              <a href="/Calcolemus/reference/calcolemus-rewrite.html">
+                Rewrite
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Rewrite`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Rewrite\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/rewrite.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Rewriting.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_5" href="#category-0_5">
+      Decidable subsets and theories
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Combining">
+              <a href="/Calcolemus/reference/calcolemus-combining.html">
+                Combining
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Combining`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Combining\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/combining.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Combined decision procedure.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Complex">
+              <a href="/Calcolemus/reference/calcolemus-complex.html">
+                Complex
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Complex`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Complex\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/complex.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Complex quantifier elimination.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Cooper">
+              <a href="/Calcolemus/reference/calcolemus-cooper.html">
+                Cooper
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Cooper`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Cooper\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/cooper.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Cooper's algorithm for Presburger arithmetic.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Decidable">
+              <a href="/Calcolemus/reference/calcolemus-decidable.html">
+                Decidable
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Decidable`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Decidable\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/decidable.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Some decidable subsets of first-order logic.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Geom">
+              <a href="/Calcolemus/reference/calcolemus-geom.html">
+                Geom
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Geom`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Geom\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/geom.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Geometry theorem proving.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Grobner">
+              <a href="/Calcolemus/reference/calcolemus-grobner.html">
+                Grobner
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Grobner`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Grobner\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/grobner.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Grobner bases.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Interpolation">
+              <a href="/Calcolemus/reference/calcolemus-interpolation.html">
+                Interpolation
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Interpolation`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Interpolation\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/interpolation.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Constructive Craig/Robinson interpolation.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Qelim">
+              <a href="/Calcolemus/reference/calcolemus-qelim.html">
+                Qelim
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Qelim`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Qelim\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/qelim.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Quantifier elimination basics.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Real">
+              <a href="/Calcolemus/reference/calcolemus-real.html">
+                Real
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Real`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Real\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/real.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Real quantifier elimination.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_6" href="#category-0_6">
+      Interactive theorem proving
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Folderived">
+              <a href="/Calcolemus/reference/calcolemus-folderived.html">
+                Folderived
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Folderived`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Folderived\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/folderived.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ First-order reasoning by inference.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Lcf">
+              <a href="/Calcolemus/reference/calcolemus-lcf.html">
+                Lcf
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Lcf`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Lcf\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/lcf.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ LCF-style system for first order logic.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Lcffol">
+              <a href="/Calcolemus/reference/calcolemus-lcffol.html">
+                Lcffol
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Lcffol`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Lcffol\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/lcffol.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ LCF implementation of first-order tableaux.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Lcfprop">
+              <a href="/Calcolemus/reference/calcolemus-lcfprop.html">
+                Lcfprop
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Lcfprop`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Lcfprop\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/lcfprop.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Propositional logic by inference.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Tactics">
+              <a href="/Calcolemus/reference/calcolemus-tactics.html">
+                Tactics
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Tactics`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Tactics\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/tactics.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Tactics and Mizar-style proofs.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_7" href="#category-0_7">
+      Undecidability
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Limitations">
+              <a href="/Calcolemus/reference/calcolemus-limitations.html">
+                Limitations
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calcolemus.Limitations`')">
+              <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calcolemus.Limitations\'/>')">
+              <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/limitations.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calcolemus/content/img/github.png" class="normal"/>
+              <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Undecidability.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calcolemus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Calcolemus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>
