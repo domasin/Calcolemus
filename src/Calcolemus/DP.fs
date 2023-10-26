@@ -146,20 +146,36 @@ module DP =
             (image (litabs << fst) trail)
 
     let rec unit_subpropagate (cls, fn, trail) =
-        let cls' = List.map (List.filter (not << defined fn << negate)) cls
+        // remove the contrary of deduced or guessed literals
+        let cls' = 
+            List.map (List.filter (not << defined fn << negate)) cls
+        // find unit clauses
         let uu = function
             | [c] when not (defined fn c) -> [c]
             | _ -> failwith ""
         let newunits = unions (mapfilter uu cls')
+        // if there aren't, we are finished
         if newunits = [] then
             cls', fn, trail
+        // otherwise,
         else
-            let trail' = List.foldBack (fun p t -> (p, Deduced) :: t) newunits trail
-            let fn' = List.foldBack (fun u -> u |-> ()) newunits fn
+            // update the trail with the new unit clauses
+            // (marking the literal as Deduced)
+            let trail' = 
+                trail
+                |> List.foldBack (fun p t -> (p, Deduced) :: t) newunits 
+            // and update the fpf with the new unit clauses
+            let fn' = 
+                fn
+                |> List.foldBack (fun u -> u |-> ()) newunits 
+            // reapply unit propagation on new clauses, fpf and trail
             unit_subpropagate (cls', fn', trail')
 
-    let unit_propagate (cls, trail) =
-        let fn = List.foldBack (fun (x, _) -> x |-> ()) trail undefined
+    let unit_propagate (cls, trail) = 
+        // put in the fpf all literals in trail both Deduced or Guessed
+        let fn = 
+            undefined
+            |> List.foldBack (fun (x, _) -> x |-> ()) trail 
         let cls', fn', trail' = unit_subpropagate (cls, fn, trail)
         cls', trail'
 
@@ -170,18 +186,28 @@ module DP =
         | _ -> trail
 
     let rec dpli cls trail =
+        // apply unit propagation
         let cls', trail' = unit_propagate (cls, trail)
+        // if there is a conflict:
         if mem [] cls' then
             match backtrack trail with
+            // if we are in one half of a case split,
             | (p, Guessed) :: tt ->
+                // test the other half with the decision literal negated;
                 dpli cls ((negate p, Deduced) :: tt)
+            // otherwise, we are finished: clauses are unsatisfiable;
             | _ -> false
-            else
-                match unassigned cls trail' with
-                | [] -> true
-                | ps ->
-                    let p = maximize (posneg_count cls') ps
-                    dpli cls ((p, Guessed) :: trail')
+        // if there is no conflict:
+        else
+            match unassigned cls trail' with
+            // if all literals have already been tested,
+            // we are finished: clauses are satisfiable;
+            | [] -> 
+                true
+            // otherwise, make a new case split.
+            | ps ->
+                let p = maximize (posneg_count cls') ps
+                dpli cls ((p, Guessed) :: trail')
 
     let dplisat fm = dpli (defcnfs fm) []
 
@@ -192,10 +218,19 @@ module DP =
     // ---------------------------------------------------------------------- //
 
     let rec backjump cls p trail =
+        // go back to the last case split start
         match backtrack trail with
+        // if there are
         | (q, Guessed) :: tt ->
+            // unit propagate assuming p
             let cls', trail' = unit_propagate (cls, (p, Guessed) :: tt)
-            if mem [] cls' then backjump cls p tt else trail
+            // if there is still a conflict
+            if mem [] cls' then 
+                // try backjump further
+                backjump cls p tt 
+            else 
+                trail
+        // otherwise, return the trail unchanged
         | _ -> trail
 
     let rec dplb cls trail =

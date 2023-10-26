@@ -599,12 +599,11 @@ module DP =
     /// </summary>
     type trailmix =
         /// <summary>
-        /// Literal that was just assumed as one half of a case-split.
+        /// Literal just assumed as the fst half of a case-split.
         /// </summary>
         | Guessed
         /// <summary>
-        /// Literal that was deduced by unit propagation from literals assumed 
-        /// earlier.
+        /// Literal deduced by unit propagation.
         /// </summary>
         | Deduced
 
@@ -860,8 +859,32 @@ module DP =
     val dplitaut: fm: formula<prop> -> bool
 
     /// <summary>
-    /// TBD.
+    /// Goes back through the trail as far as possible while <c>p</c> still 
+    /// leads to a conflict.
     /// </summary>
+    /// 
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="p">The literal to check.</param>
+    /// <param name="trail">The input trail of assigned literals.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is a tautology: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="backjump-1">
+    /// <code lang="fsharp">
+    /// backjump !>>[["~p";"q"];["~q"]] !>"a"
+    /// [
+    ///     !>"c", Deduced; 
+    ///     !>"b", Deduced; 
+    ///     !>"~a", Deduced
+    ///     !>"e", Guessed; 
+    ///     !>"p", Deduced; 
+    ///     !>"d", Guessed
+    /// ]
+    /// </code>
+    /// Evaluates to <c>[(`p`, Deduced); (`d`, Guessed)]</c>.
+    /// </example>
     /// 
     /// <category index="8">DPLL with backjumping and learning</category>
     val backjump:

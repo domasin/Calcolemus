@@ -7,146 +7,146 @@ open Calcolemus.Lib.Search
 open Calcolemus.Propexamples
 open Calcolemus.Formulas
 open Calcolemus.Lib.Fpf
+open Calcolemus.Defcnf
 
 // fsi.AddPrinter sprint_prop_formula
 
-!>> [["p"];["p";"~q"]]
-|> hasUnitClause
+let ppToStr = List.map sprint_prop_formula
 
-!>> [["p";"q"]]
-|> hasUnitClause
+let cToStr = List.map ppToStr
 
-!>> [["p"];["s";"t"];["q"]] 
-|> one_literal_rule
+let fToStr f = 
+     graph f
+     |> List.map (fun (a,v) -> 
+          sprintf "%s |-> %A" (a |> sprint_prop_formula) v
+     )
 
-!>> [["p"];["s";"~p"];["~p";"t"]] 
-|> one_literal_rule
+let tToStr = 
+    List.map (fun (ff,flag:trailmix) -> 
+        (ff |> sprint_prop_formula,flag)
+    )
 
-!>> [["p"];["s";"p"];["q";"t"]] 
-|> one_literal_rule
+let rec unit_subpropagate (cls, fn, trail) =
+    // printfn "unit_subpropagate: %A %A %A" (cToStr cls) (fToStr fn) (tToStr trail)
+    // remove the contrary of deduced or guessed literals
+    let cls' = 
+        List.map (List.filter (not << defined fn << negate)) cls
+    // printfn "contrary of deduced or guessed removed: %A %A %A" (cToStr cls') (fToStr fn) (tToStr trail)
+    // find unit clauses
+    let uu = function
+        | [c] when not (defined fn c) -> [c]
+        | _ -> failwith ""
+    let newunits = unions (mapfilter uu cls')
+    // printfn "unit clauses: %A" (ppToStr newunits)
+    // if there aren't, we are finished
+    if newunits = [] then
+        // printfn "...finished unit_subpropagate." 
+        cls', fn, trail
+    // otherwise,
+    else
+        // update the trail with the new unit clauses
+        // (marking the literal as Deduced)
+        let trail' = 
+            trail
+            |> List.foldBack (fun p t -> (p, Deduced) :: t) newunits 
+        // and update the fpf with the new unit clauses
+        let fn' = 
+            fn
+            |> List.foldBack (fun u -> u |-> ()) newunits 
+        // printfn "fpf and trail updated" 
+        // reapply unit propagation on new clauses, fpf and trail
+        unit_subpropagate (cls', fn', trail')
 
-!>> [["s";"p"];["q";"t"]] 
-|> one_literal_rule
+let unit_propagate (cls, trail) = 
+     // printfn "unit_propagate: %A %A" (cToStr cls) (tToStr trail)
+     // put in the fpf all literals in trail both Deduced or Guessed
+     let fn = 
+          undefined
+          |> List.foldBack (fun (x, _) -> x |-> ()) trail 
+     // printfn "fpf generated" 
+     let cls', fn', trail' = unit_subpropagate (cls, fn, trail)
+     // printfn "...finished unit_propagate."
+     cls', trail'
 
-!>> [["p";"q"];["~p";"~q"]]
-|> hasPureLiteral
+let rec backtrack trail =
+     printfn "backtrack: %A" (tToStr trail)
+     match trail with
+     | (p, Deduced) :: tt ->
+          backtrack tt
+     | _ -> trail
 
-!>> [["p";"q"];["~p";"q"]]
-|> hasPureLiteral
+let rec dpli cls trail =
+     
+     printfn "dpli: %A %A" (cToStr cls) (tToStr trail)
+
+     // apply unit propagation
+     // printfn "unit propagation:" 
+     let cls', trail' = unit_propagate (cls, trail)
+     printfn "unit propagation result: %A %A" (cToStr cls') (tToStr trail')
+     // if there is a conflict:
+     if mem [] cls' then
+        printfn "conflict"
+        match backtrack trail with
+        // if we are in one half of a case split,
+        | (p, Guessed) :: tt ->
+            // test the other half with the decision literal negated;
+            printfn "conflict: try %s: " (Not p |> sprint_prop_formula)
+            dpli cls ((negate p, Deduced) :: tt)
+        // otherwise, we are finished: clauses are unsatisfiable;
+        | _ -> false
+     // if there is no conflict:
+     else
+          // printfn "no conflicts"
+          match unassigned cls trail' with
+          // if all literals have already been tested,
+          // we are finished: clauses are satisfiable;
+          | [] -> 
+               // printfn "no literal unassigned: dpli finished."
+               true
+          // otherwise, make a new case split.
+          | ps ->
+               let p = maximize (posneg_count cls') ps
+               printfn "case split on %s: " (p |> sprint_prop_formula)
+               dpli cls ((p, Guessed) :: trail')
+
+dpli !>>[["~p1"; "~p10"; "p11"]; ["~p1"; "~p10"; "~p11"]; ["p1"; "p10"];
+   ["p1"; "~p10"];["~p1"; "p10"]] []
+
+// let rec literals fm =
+//     match fm with
+//     | Atom a -> [fm]
+//     | Not p -> [fm]
+//     | And (p, q)
+//     | Or (p, q)
+//     | Imp (p, q)
+//     | Iff (p, q) ->
+//         (literals p)@(literals q)
+//     | Forall (x, p)
+//     | Exists (x, p) -> literals p
+
+// let rec toClauses = function
+//     | (And (f1,f2)) -> (literals f1)::(toClauses f2)
+//     | fm -> [literals fm]
+
+// !> @"(~p1 \/ ~p10 \/ p11) /\ (~p1 \/ ~p10 \/ ~p11) /\ (p1 \/ p10) /\ (p1 \/ ~p10) /\ (~p1 \/ p10)"
+// |> toClauses
+
+// !> @"(~p1 \/ ~p10 \/ p11) /\ (~p1 \/ ~p10 \/ ~p11) /\ (p1 \/ p10) /\ (p1 \/ ~p10) /\ (~p1 \/ p10)"
+// |> satisfiable
 
 
-// exists pure literal
 
-!>> [["p";"q";"~t"];["~p";"q"];["p";"t"]]
-|> pureLiterals
+// let dplisat fm = dpli (defcnfs fm) []
 
-!>> [["p";"q";"~t"];["~p";"q"];["p";"t"]]
-|> affirmative_negative_rule
+// !> @"(~p1 \/ ~p10 \/ p11) /\ (~p1 \/ ~p10 \/ ~p11) /\ (p1 \/ p10) /\ (p1 \/ ~p10) /\ (~p1 \/ p10)"
+// |> dplisat
 
-// not exists pure literal
-
-!>> [["p";"~q";"~t"];["~p";"q"];["p";"t"]]
-|> pureLiterals
-
-!>> [["p";"~q";"~t"];["~p";"q"];["p";"t"]]
-|> affirmative_negative_rule
-
-let cls = !>> [
-     ["p";"c"];["~p";"d"]
-     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
-]
-
-resolution_blowup cls !>"c" // evaluates to -1
-resolution_blowup cls !>"d" // evaluates to -1
-resolution_blowup cls !>"e" // evaluates to -1
-resolution_blowup cls !>"p" // evaluates to -1
-resolution_blowup cls !>"q" // evaluates to 1
-
-resolve_on !>"c" cls 
-// [[`p`; `q`]; [`q`; `~d`]; [`q`; `~e`]; [`~p`; `d`]; [`~q`; `e`]; [`~q`; `~d`]]
-
-resolve_on !>"d" cls 
-// [[`p`; `c`]; [`q`; `~c`]; [`q`; `~e`]; [`q`; `~p`]; [`~p`; `~q`]; [`~q`; `e`]]
-
-resolve_on !>"e" cls 
-// [[`p`; `c`]; [`q`; `~c`]; [`q`; `~d`]; [`~p`; `d`]; [`~q`; `~d`]]
-
-resolve_on !>"p" cls 
-// [`c`; `d`]; [`q`; `e`]; [`q`; `~c`]; [`q`; `~d`]; [`~q`; `e`]; [`~q`; `~d`]]
-
-resolve_on !>"q" cls 
-// [[`e`]; [`e`; `~c`]; [`e`; `~d`]; [`p`; `c`]; [`~c`; `~d`]; [`~d`]; [`~p`; `d`]]
-
-resolution_rule cls
-
-let pvs = List.filter positive (unions cls)
-let p = minimize (resolution_blowup cls) pvs
-resolve_on p cls
-
-!>> [
-     ["p";"c"];["~p";"d"]
-     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
-]
-|> resolution_rule
-
-tautology(prime 15)
-dptaut(prime 15)
-
-dp !>> [["p"]]
-
-dp !>> [["p"];["~p"]]
-
-dpsat !> "p"
-
-dpsat !> "p /\ ~p"
-
-posneg_count !>> [
-     ["p";"c"];["~p";"d"]
-     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
-] !>"q"
-
-dptaut(prime 13)
-dplltaut(prime 13)
-
-let trail = [!>"p", Guessed;!>"q", Deduced]
-
-unassigned !>> [
-     ["p";"c"];["~p";"d"]
-     ["q";"~c"];["q";"~d"];["q";"~e"];["~q";"~d"];["~q";"e"]
-] trail
-
-[]
-
-((!>> [["p"];["p";"q"]]), undefined,[])
-|> unit_subpropagate 
-|> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
-
-!>> [["p"];["p";"q"]]
-|> one_literal_rule
-
-((!>> [["p"];["~p";"q"]]), undefined,[])
-|> unit_subpropagate 
-|> fun (cls,fpf,trail) -> (cls,fpf |> graph,trail)
-
-((!>> [["p"];["p";"q"]]), [])
-|> unit_propagate 
-|> fun (cls,trail) -> (cls,trail)
-
-[
-     !>"c", Deduced; 
-     !>"b", Deduced; 
-     !>"a", Guessed
-
-     !>"e", Deduced; 
-     !>"d", Guessed
-]
-|> backtrack
-
-[
-     !>"c", Deduced; 
-     !>"b", Deduced; 
-     !>"e", Deduced; 
-]
-|> backtrack
-
-dpli !>> [["p"];["p";"q"]] []
+backjump !>>[["~p";"q"];["~q"]] !>"a"
+    [
+        !>"c", Deduced; 
+        !>"b", Deduced; 
+        !>"~a", Deduced
+        !>"e", Guessed; 
+        !>"p", Deduced; 
+        !>"d", Guessed
+    ]
