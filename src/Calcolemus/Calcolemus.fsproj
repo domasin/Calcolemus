@@ -22,8 +22,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath=""/>
-    <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="LICENSE.txt" Pack="true" PackagePath="" />
     <Compile Include="Function.fsi" />
     <Compile Include="Function.fs" />
     <Compile Include="List.fsi" />
@@ -63,7 +63,8 @@
     <Compile Include="stal.fs" />
     <Compile Include="bdd.fsi" />
     <Compile Include="bdd.fs" />
-    <Compile Include="fol.fs" />
+    <Compile Include="Fol.fsi" />
+    <Compile Include="Fol.fs" />
     <Compile Include="skolem.fs" />
     <Compile Include="Pelletier.fs" />
     <Compile Include="herbrand.fs" />
