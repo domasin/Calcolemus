@@ -150,3 +150,31 @@ backjump !>>[["~p";"q"];["~q"]] !>"a"
         !>"p", Deduced; 
         !>"d", Guessed
     ]
+
+dplb !>>[["~p";"q"];["~q"]] 
+    [!>"p", Deduced; !>"~q", Deduced]
+
+dplb !>>[["~p";"q"];["~q"]] []
+
+#time
+dplitaut(prime 101)
+#time
+// evaluates to Real: 00:02:14.842, CPU: 00:02:13.449, GC gen0: 1504, gen1: 26, gen2: 2
+
+#time
+dplbtaut(prime 101)
+// Real: 00:00:40.079, CPU: 00:00:39.350, GC gen0: 435, gen1: 5, gen2: 0
+#time
+
+open Calcolemus.Lib.Time
+
+time dplbtaut (prime 101)
+// Evaluates to:
+// CPU time (user): 36.981689
+// val it: bool = true
+
+time dplitaut (prime 101)
+// Evaluates to:
+// CPU time (user): 36.981689
+// val it: bool = true
+

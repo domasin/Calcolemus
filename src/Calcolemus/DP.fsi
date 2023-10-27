@@ -776,24 +776,25 @@ module DP =
     /// implementation.
     /// </summary>
     /// 
-    /// <param name="clauses">The input clauses.</param>
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="trail">The input trail of assigned literals.</param>
     /// 
     /// <returns>
-    /// true, if the input is satisfiable; otherwise, false.
+    /// true, if the input (based on trail) is satisfiable; otherwise, false.
     /// </returns>
     /// 
     /// <example id="dpli-1">
     /// <code lang="fsharp">
-    /// dpli !>> [["p"]] []
+    /// dpli !>>[["~p";"q"];["~q"]] [!>"p", Deduced; !>"~q", Deduced]
     /// </code>
-    /// Evaluates to <c>true</c>.
+    /// Evaluates to <c>false</c>.
     /// </example>
     /// 
     /// <example id="dpli-2">
     /// <code lang="fsharp">
-    /// dpli !>> [["p"];["~p"]] []
+    /// dpli !>>[["~p";"q"];["~q"]] []
     /// </code>
-    /// Evaluates to <c>false</c>.
+    /// Evaluates to <c>true</c>.
     /// </example>
     /// 
     /// <category index="7">DPLL iterative implementation</category>
@@ -894,8 +895,31 @@ module DP =
         (formula<'a> * trailmix) list when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>clauses</c> (propositional) satisfiability with the 
+    /// Davis-Putnam-Loveland-Logemann procedure with an iterative 
+    /// implementation and backjumping and learning optimizations.
     /// </summary>
+    /// 
+    /// <param name="cls">The input clauses.</param>
+    /// <param name="trail">The input trail of assigned literals.</param>
+    /// 
+    /// <returns>
+    /// true, if the input (based on trail) is satisfiable; otherwise, false.
+    /// </returns>
+    /// 
+    /// <example id="dplb-1">
+    /// <code lang="fsharp">
+    /// dplb !>>[["~p";"q"];["~q"]] [!>"p", Deduced; !>"~q", Deduced]
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="dplb-2">
+    /// <code lang="fsharp">
+    /// dplb !>>[["~p";"q"];["~q"]] []
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
     /// 
     /// <category index="8">DPLL with backjumping and learning</category>
     val dplb:
@@ -903,15 +927,74 @@ module DP =
         trail: (formula<'a> * trailmix) list -> bool when 'a: comparison
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) satisfiability with the 
+    /// Davis-Putnam-Loveland-Logemann procedure with the iterative 
+    /// implementation and backjumping and learning optimizations.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is satisfiable: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dplbsat-1">
+    /// <code lang="fsharp">
+    /// dplbsat !> "p"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dplbsat-2">
+    /// <code lang="fsharp">
+    /// dplbsat !> "p /\ ~p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
     /// 
     /// <category index="8">DPLL with backjumping and learning</category>
     val dplbsat: fm: formula<prop> -> bool
 
     /// <summary>
-    /// TBD.
+    /// Tests <c>fm</c> (propositional) validity with the 
+    /// Davis-Putnam-Loveland-Logemann procedure with iterative implementation 
+    /// and backjumping and learning optimizations.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is a tautology: otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="dplbtaut-1">
+    /// <code lang="fsharp">
+    /// dplbtaut !> "p"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="dplbtaut-2">
+    /// <code lang="fsharp">
+    /// dplbtaut (prime 11)
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="dplbtaut-3">
+    /// dplbtaut is 4X more faster than dplitaut:
+    /// <code lang="fsharp">
+    /// time dplbtaut (prime 101)
+    /// // Evaluates to:
+    /// // CPU time (user): 36.981689
+    /// // val it: bool = true
+    /// 
+    /// time dplitaut (prime 101)
+    /// // Evaluates to:
+    /// // CPU time (user): 130.045742
+    /// // val it: bool = true
+    /// </code>
+    /// </example>
     /// 
     /// <category index="8">DPLL with backjumping and learning</category>
     val dplbtaut: fm: formula<prop> -> bool

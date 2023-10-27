@@ -283,7 +283,7 @@ let ``dpli should return true if the input is satisfiable.``() =
     |> should equal true
 
 [<Fact>]
-let ``dpli should return false if the input is satisfiable.``() = 
+let ``dpli should return false if the input is unsatisfiable.``() = 
     dpli !>> [["p"];["~p"]] []
     |> should equal false
 
@@ -305,4 +305,53 @@ let ``dplitaut should return false if the input is not a tautology.``() =
 [<Fact>]
 let ``dplitaut should return true if the input is satisfiable.``() = 
     dplitaut (prime 11)
+    |> should equal true
+
+[<Fact>]
+let ``backjump Goes back through the trail as far as possible while literal still leads to a conflict.``() =
+    backjump !>>[["~p";"q"];["~q"]] !>"a"
+        [
+            !>"c", Deduced; 
+            !>"b", Deduced; 
+            !>"~a", Deduced
+            !>"e", Guessed; 
+            !>"p", Deduced; 
+            !>"d", Guessed
+        ]
+    |> List.map (fun (fm,tm) -> sprint_prop_formula fm, tm)
+    |> shouldEqual [("`p`", Deduced); ("`d`", Guessed)]
+
+[<Fact>]
+let ``dplb should return true if the input is satisfiable based on trail.``() = 
+    dplb !>>[["~p";"q"];["~q"]] []
+    |> should equal true
+
+[<Fact>]
+let ``dplb should return false if the input is unsatisfiable based on trail.``() = 
+    dplb !>>[["~p";"q"];["~q"]] [!>"p", Deduced; !>"~q", Deduced]
+    |> should equal false
+
+[<Fact>]
+let ``dplbsat should return true if the input is satisfiable.``() = 
+    dplbsat !> "p"
+    |> should equal true
+
+[<Fact>]
+let ``dplbsat should return false if the input is satisfiable.``() = 
+    dplbsat !> "p /\ ~p"
+    |> should equal false
+
+[<Fact>]
+let ``dplbtaut should return false if the input is not a tautology.``() = 
+    dplbtaut !> "p"
+    |> should equal false
+
+[<Fact>]
+let ``dplbtaut should return true if the input is satisfiable.``() = 
+    dplbtaut (prime 11)
+    |> should equal true
+
+// [<Fact>] // slow test
+let ``dplbtaut-3.``() = 
+    dplbtaut (prime 101)
     |> should equal true
