@@ -2620,7 +2620,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L166-166" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L182-182" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2727,6 +2727,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input clauses.
                     </span>
                     <br/>
                     <span>
@@ -2735,6 +2737,8 @@
                       </b>
                       :
                       <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
+                       - 
+                      The input trail of assigned literals.
                     </span>
                     <br/>
                   </ul>
@@ -2744,7 +2748,7 @@
                     <code>bool</code>
                   </span>
                   
- true, if the input is satisfiable; otherwise, false.
+ true, if the input (based on trail) is satisfiable; otherwise, false.
  
                   <br/>
                 </div>
@@ -2763,7 +2767,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L172-172" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L188-188" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2784,7 +2788,11 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input clauses.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     trail
@@ -2792,7 +2800,11 @@
                   :
                   <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input trail of assigned literals.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2804,7 +2816,7 @@
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- true, if the input is satisfiable; otherwise, false.
+ true, if the input (based on trail) is satisfiable; otherwise, false.
  
                   </p>
                 </dd>
@@ -2813,22 +2825,22 @@
                 Example
               </h5>
               <p class="fsdocs-example" id="dpli-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dpli</span> <span class="o">!&gt;&gt;</span> <span class="pn">[</span><span class="pn">[</span><span class="s">&quot;p&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dpli</span> <span class="o">!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;~p&quot;</span><span class="pn">;</span><span class="s">&quot;q&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~q&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!&gt;</span><span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">;</span> <span class="o">!&gt;</span><span class="s">&quot;~q&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">]</span>
 </code></pre>
 
 
- Evaluates to <code>true</code>.
+ Evaluates to <code>false</code>.
  
               </p>
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
               <p class="fsdocs-example" id="dpli-2">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dpli</span> <span class="o">!&gt;&gt;</span> <span class="pn">[</span><span class="pn">[</span><span class="s">&quot;p&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~p&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dpli</span> <span class="o">!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;~p&quot;</span><span class="pn">;</span><span class="s">&quot;q&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~q&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
 </code></pre>
 
 
- Evaluates to <code>false</code>.
+ Evaluates to <code>true</code>.
  
               </p>
             </details>
@@ -2890,7 +2902,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L186-186" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L212-212" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3013,7 +3025,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L188-188" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L214-214" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3285,7 +3297,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L161-161" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L174-174" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3616,6 +3628,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input clauses.
                     </span>
                     <br/>
                     <span>
@@ -3624,6 +3638,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The literal to check.
                     </span>
                     <br/>
                     <span>
@@ -3632,6 +3648,8 @@
                       </b>
                       :
                       <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
+                       - 
+                      The input trail of assigned literals.
                     </span>
                     <br/>
                   </ul>
@@ -3640,6 +3658,9 @@
                     Returns: 
                     <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
                   </span>
+                  
+ true, if the input formula is a tautology: otherwise false.
+ 
                   <br/>
                 </div>
               </div>
@@ -3657,13 +3678,14 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L194-194" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L220-220" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- TBD.
+ Goes back through the trail as far as possible while <code>p</code> still 
+ leads to a conflict.
  
                   </p>
                 </div>
@@ -3676,7 +3698,11 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input clauses.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     p
@@ -3684,7 +3710,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The literal to check.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     trail
@@ -3692,7 +3722,11 @@
                   :
                   <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input trail of assigned literals.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -3701,8 +3735,33 @@
                   </span>
                   <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is a tautology: otherwise false.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="backjump-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">backjump</span> <span class="o">!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;~p&quot;</span><span class="pn">;</span><span class="s">&quot;q&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~q&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="o">!&gt;</span><span class="s">&quot;a&quot;</span>
+ <span class="pn">[</span>
+     <span class="pn">!&gt;</span><span class="s">&quot;c&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">;</span> 
+     <span class="pn">!&gt;</span><span class="s">&quot;b&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">;</span> 
+     <span class="pn">!&gt;</span><span class="s">&quot;~a&quot;</span><span class="pn">,</span> <span class="id">Deduced</span>
+     <span class="pn">!&gt;</span><span class="s">&quot;e&quot;</span><span class="pn">,</span> <span class="id">Guessed</span><span class="pn">;</span> 
+     <span class="pn">!&gt;</span><span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">;</span> 
+     <span class="pn">!&gt;</span><span class="s">&quot;d&quot;</span><span class="pn">,</span> <span class="id">Guessed</span>
+ <span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[(`p`, Deduced); (`d`, Guessed)]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -3732,6 +3791,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input clauses.
                     </span>
                     <br/>
                     <span>
@@ -3740,6 +3801,8 @@
                       </b>
                       :
                       <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
+                       - 
+                      The input trail of assigned literals.
                     </span>
                     <br/>
                   </ul>
@@ -3748,6 +3811,9 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input (based on trail) is satisfiable; otherwise, false.
+ 
                   <br/>
                 </div>
               </div>
@@ -3765,13 +3831,15 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L236-236" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- TBD.
+ Tests <code>clauses</code> (propositional) satisfiability with the 
+ Davis-Putnam-Loveland-Logemann procedure with an iterative 
+ implementation and backjumping and learning optimizations.
  
                   </p>
                 </div>
@@ -3784,7 +3852,11 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input clauses.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     trail
@@ -3792,7 +3864,11 @@
                   :
                   <code><span><span>(<span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-dp-trailmix.html">trailmix</a></span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input trail of assigned literals.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -3801,8 +3877,36 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input (based on trail) is satisfiable; otherwise, false.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplb-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dplb</span> <span class="o">!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;~p&quot;</span><span class="pn">;</span><span class="s">&quot;q&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~q&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!&gt;</span><span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">;</span> <span class="o">!&gt;</span><span class="s">&quot;~q&quot;</span><span class="pn">,</span> <span class="id">Deduced</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplb-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dplb</span> <span class="o">!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;~p&quot;</span><span class="pn">;</span><span class="s">&quot;q&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~q&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -3832,6 +3936,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-prop-prop.html">prop</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -3840,6 +3946,9 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formula is satisfiable: otherwise false.
+ 
                   <br/>
                 </div>
               </div>
@@ -3857,13 +3966,15 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L218-218" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L253-253" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- TBD.
+ Tests <code>fm</code> (propositional) satisfiability with the 
+ Davis-Putnam-Loveland-Logemann procedure with the iterative 
+ implementation and backjumping and learning optimizations.
  
                   </p>
                 </div>
@@ -3876,7 +3987,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-prop-prop.html">prop</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -3885,8 +4000,36 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is satisfiable: otherwise false.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplbsat-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dplbsat</span> <span class="o">!&gt;</span> <span class="s">&quot;p&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplbsat-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dplbsat</span> <span class="o">!&gt;</span> <span class="s">&quot;p /\ ~p&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -3916,6 +4059,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-prop-prop.html">prop</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -3924,6 +4069,9 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formula is a tautology: otherwise false.
+ 
                   <br/>
                 </div>
               </div>
@@ -3941,13 +4089,15 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L220-220" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/DP.fs#L255-255" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- TBD.
+ Tests <code>fm</code> (propositional) validity with the 
+ Davis-Putnam-Loveland-Logemann procedure with iterative implementation 
+ and backjumping and learning optimizations.
  
                   </p>
                 </div>
@@ -3960,7 +4110,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-prop-prop.html">prop</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -3969,8 +4123,55 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is a tautology: otherwise false.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplbtaut-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dplbtaut</span> <span class="o">!&gt;</span> <span class="s">&quot;p&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplbtaut-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dplbtaut</span> <span class="pn">(</span><span class="id">prime</span> <span class="n">11</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dplbtaut-3">
+                
+ dplbtaut is 4X more faster than dplitaut:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">time</span> <span class="id">dplbtaut</span> <span class="pn">(</span><span class="id">prime</span> <span class="n">101</span><span class="pn">)</span>
+ <span class="c">// Evaluates to:</span>
+ <span class="c">// CPU time (user): 36.981689</span>
+ <span class="c">// val it: bool = true</span>
+ 
+ <span class="id">time</span> <span class="id">dplitaut</span> <span class="pn">(</span><span class="id">prime</span> <span class="n">101</span><span class="pn">)</span>
+ <span class="c">// Evaluates to:</span>
+ <span class="c">// CPU time (user): 130.045742</span>
+ <span class="c">// val it: bool = true</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>

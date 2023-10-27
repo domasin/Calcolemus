@@ -88,7 +88,7 @@
     </dt>
     <dt>
       Parent Module: 
-      <a href="/Calcolemus/reference/calcolemus-folmodule.html">
+      <a href="/Calcolemus/reference/calcolemus-fol.html">
         Fol
       </a>
     </dt>
@@ -98,11 +98,9 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="/Calcolemus/reference/calcolemus-folmodule-term.html">term</a>&gt;</span></code>
-      , 
       <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
       , 
-      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="/Calcolemus/reference/calcolemus-folmodule-term.html">term</a>&gt;</span></code>
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&gt;</span></code>
       , 
       <code><a href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
       , 
@@ -112,11 +110,22 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Type for first order terms.
-
+        Type of first order terms.
       </p>
     </div>
+    <h5 class="fsdocs-example-header">
+      Example
+    </h5>
+    <p class="fsdocs-example">
+      
+ A formalization of the expression \(\sqrt{1- cos^2(x+y)}\):
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;sqrt&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;-&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;1&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span><span class="pn">;</span>
+                    <span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;power&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;cos&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;+&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="id">Var</span> <span class="s">&quot;x&quot;</span><span class="pn">;</span> <span class="id">Var</span> <span class="s">&quot;y&quot;</span><span class="pn">]</span><span class="pn">)</span><span class="pn">;</span>
+                                         <span class="id">Fn</span><span class="pn">(</span><span class="s">&quot;2&quot;</span><span class="pn">,</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+
+
+    </p>
   </div>
   <div></div>
   <div></div>
@@ -144,7 +153,7 @@
                 <p>
                   <a id="Fn">
                     <a href="#Fn">
-                      <code><span>Fn(<span>string,&#32;<span><a href="/Calcolemus/reference/calcolemus-folmodule-term.html">term</a>&#32;list</span></span>)</span></code>
+                      <code><span>Fn(<span>string,&#32;<span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></span>)</span></code>
                     </a>
                   </a>
                 </p>
@@ -152,7 +161,7 @@
               <div class="fsdocs-tip" id="873">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Fn(<span>string,&#32;<span><a href="/Calcolemus/reference/calcolemus-folmodule-term.html">term</a>&#32;list</span></span>)</span></code>
+                  <code><span>Fn(<span>string,&#32;<span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></span>)</span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -163,6 +172,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      The function name.
                     </span>
                     <br/>
                     <span>
@@ -170,7 +181,9 @@
                         Item2
                       </b>
                       :
-                      <code><span><a href="/Calcolemus/reference/calcolemus-folmodule-term.html">term</a>&#32;list</span></code>
+                      <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                       - 
+                      The function arguments.
                     </span>
                     <br/>
                   </ul>
@@ -180,24 +193,45 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item1
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item2
-                </span>
-                :
-                <code><span><a href="/Calcolemus/reference/calcolemus-folmodule-term.html">term</a>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fsi#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Function.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item1
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function name.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item2
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function arguments.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -226,6 +260,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      The variable name.
                     </span>
                     <br/>
                   </ul>
@@ -235,16 +271,33 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  Item
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fsi#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Variable.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    Item
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The variable name.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
