@@ -142,9 +142,9 @@ module Fol =
             fprintf tw ")"
 
     let fprintert tw tm =
-        fprintf tw "<<|"
+        fprintf tw "``"
         fprint_term tw 0 tm
-        fprintf tw "|>>"
+        fprintf tw "``"
 
     let inline print_term t = fprintert stdout t
 

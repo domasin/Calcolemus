@@ -75,7 +75,7 @@ module Fol =
     /// Evaluates to <c>`P(x_1,f(z)) ==> Q(x_1)`</c>.
     /// </example>
     /// 
-    /// <category index="7">Syntax operations</category>
+    /// <category index="8">Syntax operations</category>
     val onformula:
       f: (term -> term) -> fm: formula<fol> -> formula<fol>
 
@@ -102,7 +102,7 @@ module Fol =
     /// </code>
     /// </example>
     /// 
-    /// <category index="7">Syntax operations</category>
+    /// <category index="8">Syntax operations</category>
     val is_const_name: s: string -> bool
 
     /// <summary>
@@ -311,15 +311,59 @@ module Fol =
     val fprintert: tw: System.IO.TextWriter -> tm: term -> unit
 
     /// <summary>
-    /// Term printer.
+    /// Prints to the <c>stdout</c> the concrete syntax representation of a 
+    /// term.
     /// </summary>
+    /// 
+    /// <param name="t">The input term.</param>
+    /// 
+    /// <example id="print_term-1">
+    /// <code lang="fsharp">
+    /// Fn("sqrt",[Fn("-",[Fn("1",[]);
+    ///                    Fn("power",[Fn("cos",[Fn("+",[Var "x"; Var "y"]);
+    ///                                         Fn("2",[])])])])])
+    /// |> print_term
+    /// </code>
+    /// After evaluation the text <c>``sqrt(1 - power(cos(x + y,2)))``</c> is 
+    /// printed to the <c>stdout</c>.
+    /// </example>
     /// 
     /// <category index="3">Printing terms</category>
     val inline print_term: t: term -> unit
 
     /// <summary>
-    /// Return the string of the concrete syntax representation of a term.
+    /// Returns the concrete syntax representation of a term.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Use the interactive option
+    /// <code lang="fsharp">
+    /// fsi.AddPrinter sprint_term
+    /// </code>
+    /// to automatically return the concrete syntax representation of terms 
+    /// when working in an F# interactive session.
+    /// </remarks>
+    /// 
+    /// <param name="t">The input term.</param>
+    /// <returns>
+    /// The terms's concrete syntax representation.
+    /// </returns>
+    /// 
+    /// <example id="sprint_term-1">
+    /// <code lang="fsharp">
+    /// Fn("sqrt",[Fn("-",[Fn("1",[]);
+    ///                    Fn("power",[Fn("cos",[Fn("+",[Var "x"; Var "y"]);
+    ///                                         Fn("2",[])])])])])
+    /// |> sprint_term
+    /// </code>
+    /// Evaluates to <c>"``sqrt(1 - power(cos(x + y,2)))``"</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// The opening and closing quotation symbols <c>&lt;&lt;||&gt;&gt;</c> 
+    /// used in the Handbook for terms have been here replaced with 
+    /// <c>````</c>.
+    /// </note>
     /// 
     /// <category index="3">Printing terms</category>
     val inline sprint_term: t: term -> string
@@ -354,24 +398,98 @@ module Fol =
       tw: System.IO.TextWriter -> (formula<fol> -> unit)
 
     /// <summary>
-    /// Printer of fol 
+    /// Prints to the <c>stdout</c> the concrete syntax representation of a 
+    /// fol formula.
     /// </summary>
+    /// 
+    /// <param name="f">The input formula.</param>
+    /// 
+    /// <example id="print_term-1">
+    /// <code lang="fsharp">
+    /// Forall
+    /// ("x",
+    ///  Forall
+    ///    ("y",
+    ///     Exists
+    ///       ("z",
+    ///        And
+    ///          (Atom (R ("&lt;", [Var "x"; Var "z"])),
+    ///           Atom (R ("&lt;", [Var "y"; Var "z"]))))))
+    /// </code>
+    /// After evaluation the text 
+    /// <c>`forall x y. exists z. x &lt; z /\ y &lt; z`</c> is 
+    /// printed to the <c>stdout</c>.
+    /// </example>
     /// 
     /// <category index="4">Printing formulas</category>
     val inline print_fol_formula: f: formula<fol> -> unit
 
     /// <summary>
-    /// Returns the string of the concrete syntax representation of fol.
+    /// Returns the concrete syntax representation of a fol formula.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Use the interactive option
+    /// <code lang="fsharp">
+    /// fsi.AddPrinter sprint_fol_formula
+    /// </code>
+    /// to automatically return the concrete syntax representation of fol 
+    /// formulas when working in an F# interactive session.
+    /// </remarks>
+    /// 
+    /// <param name="f">The input formula.</param>
+    /// <returns>
+    /// The formula's concrete syntax representation.
+    /// </returns>
+    /// 
+    /// <example id="sprint_fol_formula-1">
+    /// <code lang="fsharp">
+    /// Forall
+    /// ("x",
+    ///  Forall
+    ///    ("y",
+    ///     Exists
+    ///       ("z",
+    ///        And
+    ///          (Atom (R ("&lt;", [Var "x"; Var "z"])),
+    ///           Atom (R ("&lt;", [Var "y"; Var "z"]))))))
+    /// |> sprint_fol_formula
+    /// </code>
+    /// Evaluates to <c>"`forall x y. exists z. x &lt; z /\ y &lt; z`"</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// The opening and closing quotation symbols <c>&lt;&lt;||&gt;&gt;</c> 
+    /// used in the Handbook for terms have been here replaced with 
+    /// <c>``</c>.
+    /// </note>
     /// 
     /// <category index="4">Printing formulas</category>
     val inline sprint_fol_formula: f: formula<fol> -> string
 
     /// <summary>
-    /// Returns the value of a term <c>tm</c> in a particular 
-    /// interpretation M (<c>domain</c>, <c>func</c>, <c>pred</c>) and 
+    /// Returns the value of a term <c>tm</c> in the interpretation (say \(M\)) 
+    /// specified by the triplet <c>domain</c>, <c>func</c>, <c>pred</c> and 
     /// valuation <c>v</c>.
     /// </summary>
+    /// 
+    /// <param name="domain">The domain of the interpretation: the non-empty set \(D\) in which the value of each term lies.</param>
+    /// <param name="func">The mapping of each \(n\)-ary function symbol to a function \(f_M : D^n \rightarrow D\).</param>
+    /// <param name="pred">The mapping of each \(n\)-ary predicate symbol to a boolean function \(P_M  : D^n \rightarrow \{falso,vero\}\).</param>
+    /// <param name="v">The valuation of the variables: an fpf that maps each variable to an element of the domain.</param>
+    /// <param name="tm">The input term.</param>
+    /// 
+    /// <returns>
+    /// The element of the domain that corresponds to the term value in the 
+    /// given interpretation and valuation.
+    /// </returns>
+    /// 
+    /// <example id="termval-1">
+    /// <code lang="fsharp">
+    /// !!! "0" |> termval bool_interp undefined    // evaluates to false
+    /// !!! "0" |> termval (mod_interp 3) undefined // evaluates to 0
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Semantics</category>
     val termval:
@@ -379,10 +497,31 @@ module Fol =
         v: func<string,'b> -> tm: term -> 'b
 
     /// <summary>
-    /// Evaluates a fol formula <c>fm</c> in the interpretation specified
-    /// by the triplet <c>domain</c>, <c>func</c>, <c>pred</c> and the 
-    /// variables valuation <c>v</c>.
+    /// Evaluates a fol formula <c>fm</c> in the interpretation (say \(M\)) 
+    /// specified by the triplet <c>domain</c>, <c>func</c>, <c>pred</c> and 
+    /// the variables valuation <c>v</c>.
     /// </summary>
+    /// 
+    /// <param name="domain">The domain of the interpretation: the non-empty set \(D\) in which the value of each term lies.</param>
+    /// <param name="func">The mapping of each \(n\)-ary function symbol to a function \(f_M : D^n \rightarrow D\).</param>
+    /// <param name="pred">The mapping of each \(n\)-ary predicate symbol to a boolean function \(P_M  : D^n \rightarrow \{falso,vero\}\).</param>
+    /// <param name="v">The valuation of the variables: an fpf that maps each variable to an element of the domain.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The truth-value of the formula in the given interpretation and 
+    /// valuation.
+    /// </returns>
+    /// 
+    /// <example id="holds-1">
+    /// <code lang="fsharp">
+    /// let fm = !! @"forall x. (x = 0) \/ (x = 1)" 
+    ///   
+    /// holds bool_interp undefined fm    // evaluates to true
+    /// holds (mod_interp 2) undefined fm // evaluates to true
+    /// holds (mod_interp 3) undefined fm // evaluates to false
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Semantics</category>
     val holds:
@@ -394,7 +533,17 @@ module Fol =
     /// An interpretation a la Boole.
     /// </summary>
     /// 
-    /// <category index="4">Semantics</category>
+    /// <returns>
+    /// <ul>
+    /// <li>Domain \(\{true, false\}\)</li>
+    /// <li>Function symbols mapping: 
+    /// \(\text{0} \mapsto false, \text{1} \mapsto true, \text{+} \mapsto \lor, * \mapsto \land\)
+    /// </li>
+    /// <li>Predicate symbols mapping: \(\text{=} \mapsto =\)</li>
+    /// </ul>
+    /// </returns>
+    /// 
+    /// <category index="5">Sample interpretations</category>
     val bool_interp:
       bool list * (string -> bool list -> bool) * (string -> 'a list -> bool)
         when 'a: equality
@@ -403,7 +552,29 @@ module Fol =
     /// An arithmetic modulo <c>n</c> interpretation.
     /// </summary>
     /// 
-    /// <category index="4">Semantics</category>
+    /// <param name="n">The input modulo.</param>
+    /// 
+    /// <returns>
+    /// <ul>
+    /// <li>Domain \(\{0,\ldots, n-1\}\)</li>
+    /// <li>Function symbols mapping: \(\text{0} \mapsto 0, \text{1} \mapsto 1 \mod n, \text{+} \mapsto (x + y) \mod n, * \mapsto (x * y) \mod n\)
+    /// </li>
+    /// <li>Predicate symbols mapping: \(\text{=} \mapsto =\)</li>
+    /// </ul>
+    /// </returns>
+    /// 
+    /// <example id="mod_interp-1">
+    /// <code lang="fsharp">
+    /// !!! "0" |> termval (mod_interp 3) undefined                 // evaluates to 0
+    /// !!! "1" |> termval (mod_interp 3) undefined                 // evaluates to 1
+    /// !!! "1 + 1" |> termval (mod_interp 3) undefined             // evaluates to 2
+    /// !!! "1 + 1 + 1" |> termval (mod_interp 3) undefined         // evaluates to 0
+    /// !!! "1 + 1 + 1 + 1" |> termval (mod_interp 3) undefined     // evaluates to 1
+    /// !!! "1 + 1 + 1 + 1 + 1" |> termval (mod_interp 3) undefined // evaluates to 2
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="5">Sample interpretations</category>
     val mod_interp:
       n: int -> int list * (string -> int list -> int) * (string -> 'a list -> bool)
         when 'a: equality
@@ -412,35 +583,35 @@ module Fol =
     /// Returns the free variables in the term <c>tm</c>.
     /// </summary>
     /// 
-    /// <category index="5">Free variables</category>
+    /// <category index="6">Free variables</category>
     val fvt: tm: term -> string list
 
     /// <summary>
     /// Returns all the variables in the FOL formula <c>fm</c>.
     /// </summary>
     /// 
-    /// <category index="5">Free variables</category>
+    /// <category index="6">Free variables</category>
     val var: fm: formula<fol> -> string list
 
     /// <summary>
     /// Returns the free variables in the FOL formula <c>fm</c>.
     /// </summary>
     /// 
-    /// <category index="5">Free variables</category>
+    /// <category index="6">Free variables</category>
     val fv: fm: formula<fol> -> string list
 
     /// <summary>
     /// Universal closure of a formula.
     /// </summary>
     /// 
-    /// <category index="5">Free variables</category>
+    /// <category index="6">Free variables</category>
     val generalize: fm: formula<fol> -> formula<fol>
 
     /// <summary>
     /// Substitution within terms.
     /// </summary>
     /// 
-    /// <category index="7">Syntax operations</category>
+    /// <category index="8">Syntax operations</category>
     val tsubst: sfn: func<string,term> -> tm: term -> term
 
     /// <summary>
@@ -450,7 +621,7 @@ module Fol =
     /// <c>variant "x" ["x"; "y"]</c> returns <c>"x'"</c>.
     /// </summary>
     /// 
-    /// <category index="7">Syntax operations</category>
+    /// <category index="8">Syntax operations</category>
     val variant: x: string -> vars: string list -> string
 
     /// <summary>
@@ -462,7 +633,7 @@ module Fol =
     /// <c>`forall x'. x' = x`</c>.
     /// </summary>
     /// 
-    /// <category index="7">Syntax operations</category>
+    /// <category index="8">Syntax operations</category>
     val subst:
       subfn: func<string,term> ->
         fm: formula<fol> -> formula<fol>
@@ -472,7 +643,7 @@ module Fol =
     /// <c>x</c> is not renamed.
     /// </summary>
     /// 
-    /// <category index="7">Syntax operations</category>
+    /// <category index="8">Syntax operations</category>
     val substq:
       subfn: func<string,term> ->
         quant: (string -> formula<fol> -> formula<fol>) ->
