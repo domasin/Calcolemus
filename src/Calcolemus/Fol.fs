@@ -1,6 +1,7 @@
 // ========================================================================= //
 // Copyright (c) 2003-2007, John Harrison.                                   //
 // Copyright (c) 2012 Eric Taucher, Jack Pappas, Anh-Dung Phan               //
+// Copyright (c) 2023 Domenico Masini                                        //
 // (See "LICENSE.txt" for details.)                                          //
 // ========================================================================= //
 
@@ -15,7 +16,6 @@ open Calcolemus.Lib.Parser
 
 open Formulas
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Fol = 
 
     type term = 
@@ -25,9 +25,11 @@ module Fol =
     type fol = 
         R of string * term list
 
-    let onformula f =
-        onatoms <| fun (R (p, a)) ->
+    let onformula f fm =
+        fm
+        |> onatoms (fun (R (p, a)) ->
             Atom (R (p, List.map f a))
+        )
 
     // ---------------------------------------------------------------------- //
     // Parsing of terms.                                                      //
@@ -62,10 +64,10 @@ module Fol =
                             (parse_left_infix "^" (fun (e1,e2) -> Fn ("^",[e1;e2]))
                                 (parse_atomic_term vs)))))) inp
 
-    let parset = 
-        make_parser (parse_term [])
+    let parset s = 
+        make_parser (parse_term []) s
 
-    let (!!!) = parset
+    let (!!!) s = parset s
 
     // ---------------------------------------------------------------------- //
     // Parsing of fol formulas.                                               //
@@ -91,11 +93,11 @@ module Fol =
             Atom (R (p, [])), rest
         | _ -> failwith "parse_atom"
 
-    let parse =
-        parse_formula (parse_infix_atom, parse_atom) []
-        |> make_parser
+    let parse s =
+        s
+        |> make_parser (parse_formula (parse_infix_atom, parse_atom) [])
 
-    let (!!) = parse
+    let (!!) s = parse s
 
     // ---------------------------------------------------------------------- //
     // Printing of terms.                                                     //

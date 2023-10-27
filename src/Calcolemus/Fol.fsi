@@ -9,34 +9,100 @@ open Calcolemus.Formulas
 /// </summary>
 /// 
 /// <category index="4">First order logic</category>
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Fol = 
 
     /// <summary>Type of first order terms.</summary>
+    /// 
+    /// <example id="term-1">
+    /// A formalization of the expression \(\sqrt{1- cos^2(x+y)}\):
+    /// <code lang="fsharp">
+    /// Fn("sqrt",[Fn("-",[Fn("1",[]);
+    ///                    Fn("power",[Fn("cos",[Fn("+",[Var "x"; Var "y"]);
+    ///                                         Fn("2",[])])])])])
+    /// </code>
+    /// </example>
     type term =
-        /// <summary>Variable term.</summary>
-        | Var of string
-        /// <summary>Functional term.</summary>
-        | Fn of string * term list
+      /// <summary>Variable.</summary>
+      /// 
+      /// <param name="Item">The variable name.</param>
+      | Var of string
+      /// <summary>Function.</summary>
+      /// 
+      /// <param name="Item1">The function name.</param>
+      /// <param name="Item2">The function arguments.</param>
+      | Fn of string * term list
 
     /// <summary>Type of atomic first order formulas.</summary>
-    type fol = | R of string * term list
+    /// 
+    /// <example id="fol-1">
+    /// A formalization of the expression \(x + y &lt; z\):
+    /// <code lang="fsharp">
+    /// Atom(R("&lt;",[Fn("+",[Var "x"; Var "y"]); Var "z"]))
+    /// </code>
+    /// </example>
+    type fol = 
+      /// <summary>Predicate or relation.</summary>
+      /// 
+      /// <param name="Item1">The relation name.</param>
+      /// <param name="Item2">The relation arguments.</param>
+      | R of string * term list
 
     /// <summary>
-    /// Applies a subfunction <c>f</c> to the top <em>terms</em>.
+    /// Applies a function <c>f</c> to all the top <em>terms</em> in a 
+    /// fol formula <c>fm</c>, but otherwise leaves the structure unchanged.
     /// </summary>
     /// 
-    /// <category index="1">Parsing of terms</category>
+    /// <remarks>
+    /// It is similar to <see cref='M:Calcolemus.Formulas.onatoms``1'/> 
+    /// but specific for <see cref='T:Calcolemus.Fol.fol'/> formulas.
+    /// </remarks>
+    /// 
+    /// <param name="f">The function to apply.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The result of applying <c>f</c>.
+    /// </returns>
+    /// 
+    /// <example id="onformula-1">
+    /// <code lang="fsharp">
+    /// !! "P(x,f(z)) ==> Q(x)"
+    /// |> onformula (function 
+    ///     | Var x -> Var (x + "_1") 
+    ///     | tm -> tm
+    /// )
+    /// </code>
+    /// Evaluates to <c>`P(x_1,f(z)) ==> Q(x_1)`</c>.
+    /// </example>
+    /// 
+    /// <category index="7">Syntax operations</category>
     val onformula:
-      f: (term -> term) -> (formula<fol> -> formula<fol>)
+      f: (term -> term) -> fm: formula<fol> -> formula<fol>
 
     /// <summary>
     /// Checks if a string is a constant term. 
-    /// Only numerals and the empty list constant "nil" are considered as 
-    /// constants.
     /// </summary>
     /// 
-    /// <category index="1">Parsing of terms</category>
+    /// <remarks>
+    /// Only numerals and the empty list constant <c>nil</c> are considered as 
+    /// constants.
+    /// </remarks>
+    /// 
+    /// <param name="s">The input string.</param>
+    /// 
+    /// <returns>
+    /// true, if the input is a constant term, otherwise false.
+    /// </returns>
+    /// 
+    /// <example id="is_const_name-1">
+    /// <code lang="fsharp">
+    /// is_const_name "nil" // evaluates to true
+    /// is_const_name "123" // evaluates to true
+    /// is_const_name "x"   // evaluates to false
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="7">Syntax operations</category>
     val is_const_name: s: string -> bool
 
     /// <summary>
@@ -66,15 +132,73 @@ module Fol =
     /// Parses a string into a term.
     /// </summary>
     /// 
-    /// <category index="1">Parsing of terms</category>
-    val parset: (string -> term)
-
-    /// <summary>
-    /// A convenient operator to call <c>parset</c>.
-    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// 
+    /// <returns>
+    /// The term corresponding to the input, if this is valid.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when the input string is not a valid term.</exception>
+    /// 
+    /// <example id="parset-1">
+    /// <code lang="fsharp">
+    /// parset "sqrt(1 - power(cos(x + y,2)))"
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// Fn("sqrt",[Fn("-",[Fn("1",[]);
+    ///                    Fn("power",[Fn("cos",[Fn("+",[Var "x"; Var "y"]);
+    ///                                         Fn("2",[])])])])])
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="parset-2">
+    /// <code lang="fsharp">
+    /// parset "sqrt(1 - power(cos(x + y,2"
+    /// </code>
+    /// Throws <c>System.Exception: Closing bracket expected</c>.
+    /// </example>
     /// 
     /// <category index="1">Parsing of terms</category>
-    val (!!!) : (string -> term)
+    val parset: s: string -> term
+
+    /// <summary>
+    /// A convenient operator to make it easier to parse terms.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It is just a shortcut to call <see cref='P:Calcolemus.Fol.parset'/>.
+    /// </remarks>
+    /// 
+    /// <param name="s">The input string.</param>
+    /// 
+    /// <returns>
+    /// The term corresponding to the input, if this is valid.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when the input string is not a valid term.</exception>
+    /// 
+    /// <example id="exclamation-exclamation-exclamation-1">
+    /// <code lang="fsharp">
+    /// !!! "sqrt(1 - power(cos(x + y,2)))"
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// Fn("sqrt",[Fn("-",[Fn("1",[]);
+    ///                    Fn("power",[Fn("cos",[Fn("+",[Var "x"; Var "y"]);
+    ///                                         Fn("2",[])])])])])
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="exclamation-exclamation-exclamation-2">
+    /// <code lang="fsharp">
+    /// !!! "sqrt(1 - power(cos(x + y,2"
+    /// </code>
+    /// Throws <c>System.Exception: Closing bracket expected</c>.
+    /// </example>
+    /// 
+    /// <category index="1">Parsing of terms</category>
+    val (!!!) : s: string -> term
 
     /// <summary>
     /// A special recognizer for 'infix' atomic formulas like s &lt; t.
@@ -93,18 +217,66 @@ module Fol =
       vs: string list -> inp: string list -> formula<fol> * string list
 
     /// <summary>
-    /// Parses a fol formula
+    /// Parses string into a fol formula.
     /// </summary>
     /// 
+    /// <param name="s">The input string.</param>
+    /// 
+    /// <returns>
+    /// The fol formula corresponding to the input, if this is valid.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when the input string is not a syntactically valid fol formula.</exception>
+    /// 
+    /// <example id="parse-1">
+    /// <code lang="fsharp">
+    /// parse "x + y &lt; z"
+    /// </code>
+    /// Evaluates to <c>Atom (R ("&lt;", [Fn ("+", [Var "x"; Var "y"]); Var "z"]))</c>.
+    /// </example>
+    /// 
+    /// <example id="parse-2">
+    /// <code lang="fsharp">
+    /// parse "x + y"
+    /// </code>
+    /// Throws <c>System.Exception: Unparsed input: 2 tokens remaining in buffer.</c>
+    /// </example>
+    /// 
     /// <category index="2">Parsing of formulas</category>
-    val parse: (string -> formula<fol>)
+    val parse: s: string -> formula<fol>
 
     /// <summary>
-    /// A convenient operator to call parse.
+    /// A convenient operator to make it easier to parse terms.
     /// </summary>
     /// 
+    /// <remarks>
+    /// It is just a shortcut to call <see cref='P:Calcolemus.Fol.parse'/>. 
+    /// </remarks>
+    /// 
+    /// <param name="s">The input string.</param>
+    /// 
+    /// <returns>
+    /// The fol formula corresponding to the input, if this is valid.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when the input string is not a syntactically valid fol formula.</exception>
+    /// 
+    /// <example id="exclamation-exclamation-1">
+    /// <code lang="fsharp">
+    /// parse "x + y &lt; z"
+    /// </code>
+    /// Evaluates to <c>Atom (R ("&lt;", [Fn ("+", [Var "x"; Var "y"]); Var "z"]))</c>.
+    /// </example>
+    /// 
+    /// <example id="exclamation-exclamation-2">
+    /// <code lang="fsharp">
+    /// parse "x + y"
+    /// </code>
+    /// Throws <c>System.Exception: Unparsed input: 2 tokens remaining in buffer.</c>
+    /// </example>
+    /// 
     /// <category index="2">Parsing of formulas</category>
-    val (!!) : (string -> formula<fol>)
+    val (!!) : s: string -> formula<fol>
 
     /// <summary>
     /// Prints terms.
@@ -268,7 +440,7 @@ module Fol =
     /// Substitution within terms.
     /// </summary>
     /// 
-    /// <category index="6">Substitution in terms</category>
+    /// <category index="7">Syntax operations</category>
     val tsubst: sfn: func<string,term> -> tm: term -> term
 
     /// <summary>
@@ -278,7 +450,7 @@ module Fol =
     /// <c>variant "x" ["x"; "y"]</c> returns <c>"x'"</c>.
     /// </summary>
     /// 
-    /// <category index="7">Substitution in formulas</category>
+    /// <category index="7">Syntax operations</category>
     val variant: x: string -> vars: string list -> string
 
     /// <summary>
@@ -290,7 +462,7 @@ module Fol =
     /// <c>`forall x'. x' = x`</c>.
     /// </summary>
     /// 
-    /// <category index="7">Substitution in formulas</category>
+    /// <category index="7">Syntax operations</category>
     val subst:
       subfn: func<string,term> ->
         fm: formula<fol> -> formula<fol>
@@ -300,7 +472,7 @@ module Fol =
     /// <c>x</c> is not renamed.
     /// </summary>
     /// 
-    /// <category index="7">Substitution in formulas</category>
+    /// <category index="7">Syntax operations</category>
     val substq:
       subfn: func<string,term> ->
         quant: (string -> formula<fol> -> formula<fol>) ->

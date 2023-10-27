@@ -22,6 +22,7 @@
     <Compile Include="Defcnf.fs" />
     <Compile Include="DP.fs" />
     <Compile Include="Stal.fs" />
+    <Compile Include="Fol.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fs" />
