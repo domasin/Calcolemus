@@ -1,18 +1,34 @@
 #r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open Calcolemus.Lib.Function
-open Calcolemus.Lib.Set
-open Calcolemus.Lib.Fpf
+open Calcolemus
 
-open Calcolemus.Formulas
-open Calcolemus.Fol
-open Calcolemus.Skolem
-open Calcolemus.Herbrand
-open Calcolemus.Prop
-open Calcolemus.Pelletier
+open Lib.Function
+open Lib.Set
+open Lib.Fpf
+
+open Formulas
+open Fol
+open Skolem
+open Herbrand
+open Prop
+open Pelletier
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
+
+
+!!"P(x)"
+|> pholds (function 
+    x when x = !!"P(x)" -> true 
+    | _ -> false
+)
+
+groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 0
+groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 1
+groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 2
+
+groundtuples [!!!"0"] [("f",1)] 1 1 // evaluates to [[``f(0)``]]
+groundtuples [!!!"0"] [("f",1)] 1 2 // evaluates to [[``0``; ``f(0)``]; [``f(0)``; ``0``]]
 
 let fm = 
     !!"exists x. forall y. P(x) ==> P(y)"

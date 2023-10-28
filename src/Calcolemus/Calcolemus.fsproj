@@ -66,7 +66,8 @@
     <Compile Include="Skolem.fsi" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Pelletier.fs" />
-    <Compile Include="herbrand.fs" />
+    <Compile Include="Herbrand.fsi" />
+    <Compile Include="Herbrand.fs" />
     <Compile Include="unif.fsi" />
     <Compile Include="unif.fs" />
     <Compile Include="tableaux.fsi" />
