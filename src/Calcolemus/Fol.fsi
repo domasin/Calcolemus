@@ -75,7 +75,7 @@ module Fol =
     /// Evaluates to <c>`P(x_1,f(z)) ==> Q(x_1)`</c>.
     /// </example>
     /// 
-    /// <category index="8">Syntax operations</category>
+    /// <category index="8">Other syntax operations</category>
     val onformula:
       f: (term -> term) -> fm: formula<fol> -> formula<fol>
 
@@ -102,14 +102,14 @@ module Fol =
     /// </code>
     /// </example>
     /// 
-    /// <category index="8">Syntax operations</category>
+    /// <category index="8">Other syntax operations</category>
     val is_const_name: s: string -> bool
 
     /// <summary>
     /// Parses an atomic term.
     /// </summary>
     /// 
-    /// <category index="1">Parsing of terms</category>
+    /// <category index="1">Parsing terms</category>
     val parse_atomic_term: vs: string list -> inp: string list -> term * string list
 
     /// <summary>
@@ -125,7 +125,7 @@ module Fol =
     /// in the current scope.
     /// </summary>
     /// 
-    /// <category index="1">Parsing of terms</category>
+    /// <category index="1">Parsing terms</category>
     val parse_term: vs: string list -> inp: string list -> term * string list
 
     /// <summary>
@@ -159,7 +159,7 @@ module Fol =
     /// Throws <c>System.Exception: Closing bracket expected</c>.
     /// </example>
     /// 
-    /// <category index="1">Parsing of terms</category>
+    /// <category index="1">Parsing terms</category>
     val parset: s: string -> term
 
     /// <summary>
@@ -197,14 +197,14 @@ module Fol =
     /// Throws <c>System.Exception: Closing bracket expected</c>.
     /// </example>
     /// 
-    /// <category index="1">Parsing of terms</category>
+    /// <category index="1">Parsing terms</category>
     val (!!!) : s: string -> term
 
     /// <summary>
     /// A special recognizer for 'infix' atomic formulas like s &lt; t.
     /// </summary>
     /// 
-    /// <category index="2">Parsing of formulas</category>
+    /// <category index="2">Parsing formulas</category>
     val parse_infix_atom:
       vs: string list -> inp: string list -> formula<fol> * string list
 
@@ -212,7 +212,7 @@ module Fol =
     /// Parses atomic fol 
     /// </summary>
     /// 
-    /// <category index="2">Parsing of formulas</category>
+    /// <category index="2">Parsing formulas</category>
     val parse_atom:
       vs: string list -> inp: string list -> formula<fol> * string list
 
@@ -242,7 +242,7 @@ module Fol =
     /// Throws <c>System.Exception: Unparsed input: 2 tokens remaining in buffer.</c>
     /// </example>
     /// 
-    /// <category index="2">Parsing of formulas</category>
+    /// <category index="2">Parsing formulas</category>
     val parse: s: string -> formula<fol>
 
     /// <summary>
@@ -275,7 +275,7 @@ module Fol =
     /// Throws <c>System.Exception: Unparsed input: 2 tokens remaining in buffer.</c>
     /// </example>
     /// 
-    /// <category index="2">Parsing of formulas</category>
+    /// <category index="2">Parsing formulas</category>
     val (!!) : s: string -> formula<fol>
 
     /// <summary>
@@ -583,19 +583,58 @@ module Fol =
     /// Returns the free variables in the term <c>tm</c>.
     /// </summary>
     /// 
+    /// <param name="tm">The input term.</param>
+    /// 
+    /// <returns>
+    /// The list of free variables in the term <c>tm</c>
+    /// </returns>
+    /// 
+    /// <example id="fvt-1">
+    /// <code lang="fsharp">
+    /// fvt !!!"x + f(y,z)"
+    /// </code>
+    /// Evaluates to <c>["x"; "y"; "z"]</c>.
+    /// </example>
+    /// 
     /// <category index="6">Free variables</category>
     val fvt: tm: term -> string list
 
     /// <summary>
-    /// Returns all the variables in the FOL formula <c>fm</c>.
+    /// Returns all the variables in the fol formula <c>fm</c>.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of all the variables in the formula <c>fm</c>
+    /// </returns>
+    /// 
+    /// <example id="var-1">
+    /// <code lang="fsharp">
+    /// var !!"forall x. x + f(y,z) > w"
+    /// </code>
+    /// Evaluates to <c>["w"; "x"; "y"; "z"]</c>.
+    /// </example>
     /// 
     /// <category index="6">Free variables</category>
     val var: fm: formula<fol> -> string list
 
     /// <summary>
-    /// Returns the free variables in the FOL formula <c>fm</c>.
+    /// Returns the free variables in the fol formula <c>fm</c>.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of the free variables in the formula <c>fm</c>
+    /// </returns>
+    /// 
+    /// <example id="fv-1">
+    /// <code lang="fsharp">
+    /// fv !!"forall x. x + f(y,z) > w"
+    /// </code>
+    /// Evaluates to <c>["w"; "y"; "z"]</c>.
+    /// </example>
     /// 
     /// <category index="6">Free variables</category>
     val fv: fm: formula<fol> -> string list
@@ -604,46 +643,152 @@ module Fol =
     /// Universal closure of a formula.
     /// </summary>
     /// 
-    /// <category index="6">Free variables</category>
+    /// <remarks>
+    /// Binds every free variable in the formula with a universal 
+    /// quantifier.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The universal closure of <c>fm</c>.
+    /// </returns>
+    /// 
+    /// <example id="generalize-1">
+    /// <code lang="fsharp">
+    /// generalize !!"x + f(y,z) > w"
+    /// </code>
+    /// Evaluates to <c>`forall w x y z. x + f(y,z) > w`</c>.
+    /// </example>
+    /// 
+    /// <category index="8">Other syntax operations</category>
     val generalize: fm: formula<fol> -> formula<fol>
 
     /// <summary>
-    /// Substitution within terms.
+    /// Applies the substitution function <c>subfn</c> to <c>tm</c>.
     /// </summary>
     /// 
-    /// <category index="8">Syntax operations</category>
-    val tsubst: sfn: func<string,term> -> tm: term -> term
+    /// <remarks>
+    /// Replaces every variable in <c>tm</c> that matches an argument of 
+    /// <c>sfn</c> with its value.
+    /// </remarks>
+    /// 
+    /// <param name="subfn">The fpf that contains the mapping for the variables to replace.</param>
+    /// <param name="tm">The input term.</param>
+    /// 
+    /// <returns>
+    /// The term obtained from <c>tm</c> by replacing its variables with the 
+    /// given mappings.
+    /// </returns>
+    /// 
+    /// <example id="tsubst-1">
+    /// <code lang="fsharp">
+    /// !!!"x + f(y,z)" 
+    /// |> tsubst (fpf ["x";"z"] [!!!"1";!!!"2"])
+    /// </code>
+    /// Evaluates to <c>``1 + f(y,2)``</c>.
+    /// </example>
+    /// 
+    /// <category index="7">Substitution</category>
+    val tsubst: subfn: func<string,term> -> tm: term -> term
 
     /// <summary>
-    /// Creates a 'variant' of a variable name by adding prime characters to it 
-    /// until it is distinct from some given list of variables to avoid.
-    /// 
-    /// <c>variant "x" ["x"; "y"]</c> returns <c>"x'"</c>.
+    /// Creates a variant of the variable name <c>x</c> given a list of names 
+    /// (<c>vars</c>) to avoid.
     /// </summary>
     /// 
-    /// <category index="8">Syntax operations</category>
+    /// <remarks>
+    /// Creates a 'variant' of a variable name by adding prime characters to it 
+    /// until it is distinct from every element of <c>vars</c>.
+    /// </remarks>
+    /// 
+    /// <param name="x">The input variable name.</param>
+    /// <param name="vars">The list of names to avoid.</param>
+    /// 
+    /// <returns>
+    /// The <c>x</c> itself it if is not contained in <c>vars</c>; otherwise, 
+    /// the string obtained from <c>x</c> adding prime characters to it until 
+    /// it is distinct from every element of <c>vars</c>.
+    /// </returns>
+    /// 
+    /// <example id="variant-1">
+    /// <code lang="fsharp">
+    /// variant "x" ["y"; "z"]  // evaluates to "x"
+    /// variant "x" ["x"; "y"]  // evaluates to "x'"
+    /// variant "x" ["x"; "x'"] // evaluates to "x''"
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="7">Substitution</category>
     val variant: x: string -> vars: string list -> string
 
     /// <summary>
-    /// Given a substitution function <c>sbfn</c> applies it to the input 
-    /// formula <c>fm</c>. Bound variables will be renamed if necessary to 
-    /// avoid capture.
-    /// 
-    /// <c>subst ("y" |=> Var "x") ("forall x. x = y" |> parse)</c> returns 
-    /// <c>`forall x'. x' = x`</c>.
+    /// Applies the substitution function <c>subfn</c> to <c>fm</c>.
     /// </summary>
     /// 
-    /// <category index="8">Syntax operations</category>
+    /// <remarks>
+    /// Bound variables will be renamed if necessary to avoid capture.
+    /// </remarks>
+    /// 
+    /// <param name="subfn">The fpf that contains the mapping for the variables to replace.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The formula obtained from <c>fm</c> by replacing its variables with the 
+    /// given mappings.
+    /// </returns>
+    /// 
+    /// <example id="subst-1">
+    /// <code lang="fsharp">
+    /// subst ("y" |=> Var "x") !!"forall x. x = y"
+    /// </code>
+    /// Evaluates to <c>`forall x'. x' = x`</c>.
+    /// </example>
+    /// 
+    /// <example id="subst-2">
+    /// <code lang="fsharp">
+    /// !!"forall x x'. x = y ==> x = x'"
+    /// |> subst ("y" |=> Var "x")
+    /// </code>
+    /// Evaluates to <c>`forall x' x''. x' = x ==> x' = x''`</c>.
+    /// </example>
+    /// 
+    /// <category index="7">Substitution</category>
     val subst:
       subfn: func<string,term> ->
         fm: formula<fol> -> formula<fol>
 
     /// <summary>
-    /// Checks whether there would be variable capture if the bound variable 
-    /// <c>x</c> is not renamed.
+    /// Checks for variable captures in quantified formulas substitutions.
     /// </summary>
     /// 
-    /// <category index="8">Syntax operations</category>
+    /// <remarks>
+    /// Checks whether there would be variable capture if the bound variable 
+    /// <c>x</c> is not renamed and, if so, creates the appropriate 
+    /// variants.
+    /// <p></p>
+    /// It is use to define the <see cref='M:Calcolemus.Fol.subst'/> quantified 
+    /// formulas steps.
+    /// </remarks>
+    /// 
+    /// <param name="subfn">The fpf that contains the mapping for the variables to replace.</param>
+    /// <param name="quant">The quantification constructor to apply when reconstructing a quantified formula.</param>
+    /// <param name="x">The variable to check.</param>
+    /// <param name="p">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The reconstructed quantified formula with appropriate variables 
+    /// variants if needed.
+    /// </returns>
+    /// 
+    /// <example id="substq-1">
+    /// <code lang="fsharp">
+    /// substq ("y" |=> Var "x") mk_forall "x" !!"x = y"
+    /// </code>
+    /// Evaluates to <c>`forall x'. x' = x`</c>.
+    /// </example>
+    /// 
+    /// <category index="7">Substitution</category>
     val substq:
       subfn: func<string,term> ->
         quant: (string -> formula<fol> -> formula<fol>) ->

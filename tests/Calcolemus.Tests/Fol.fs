@@ -118,3 +118,64 @@ let ``holds should return the truth-value of the formula in the given interpreta
     Assert.Equal(true, holds bool_interp undefined fm)
     Assert.Equal(true, holds (mod_interp 2) undefined fm)
     Assert.Equal(false, holds (mod_interp 3) undefined fm)
+
+[<Fact>]
+let ``fvt should return the list of free variables in the input term.``() = 
+
+    fvt !!!"x + f(y,z)"
+    |> should equal ["x"; "y"; "z"]
+
+[<Fact>]
+let ``var should return the list of all the variables in the input formula.``() = 
+
+    var !!"forall x. x + f(y,z) > w"
+    |> should equal ["w"; "x"; "y"; "z"]
+
+[<Fact>]
+let ``fv should return the list of free variables in the input formula.``() = 
+
+    fv !!"forall x. x + f(y,z) > w"
+    |> should equal ["w"; "y"; "z"]
+
+[<Fact>]
+let ``generalize should return the universal closure of the formula.``() = 
+
+    generalize !!"x + f(y,z) > w"
+    |> sprint_fol_formula
+    |> should equal "`forall w x y z. x + f(y,z) > w`"
+
+[<Fact>]
+let ``tsubst should return the term obtained by replacing the variables with the given mappings.``() = 
+
+    !!!"x + f(y,z)" 
+    |> tsubst (fpf ["x";"z"] [!!!"1";!!!"2"])
+    |> sprint_term
+    |> should equal "``1 + f(y,2)``"
+
+[<Fact>]
+let ``variant should return a variant of x avoiding vars.``() = 
+    Assert.Equal("x", variant "x" ["y"; "z"])
+    Assert.Equal("x'", variant "x" ["x"; "y"])
+    Assert.Equal("x''", variant "x" ["x"; "x'"])
+
+[<Fact>]
+let ``subst should return the formula obtained by replacing the variables with the given mappings.``() = 
+
+    subst ("y" |=> Var "x") !!"forall x. x = y"
+    |> sprint_fol_formula
+    |> should equal "`forall x'. x' = x`"
+
+[<Fact>]
+let ``subst-2.``() = 
+
+    !!"forall x x'. x = y ==> x = x'"
+    |> subst ("y" |=> Var "x")
+    |> sprint_fol_formula
+    |> should equal "`forall x' x''. x' = x ==> x' = x''`"
+
+[<Fact>]
+let ``substq checks for variable captures in quantified formulas substitutions.``() = 
+
+    substq ("y" |=> Var "x") mk_forall "x" !!"x = y"
+    |> sprint_fol_formula
+    |> should equal "`forall x'. x' = x`"

@@ -52,3 +52,24 @@ let fm = !! @"forall x. (x = 0) \/ (x = 1)"
 holds bool_interp undefined fm    // evaluates to true
 holds (mod_interp 2) undefined fm // evaluates to true
 holds (mod_interp 3) undefined fm // evaluates to false
+
+var !!"forall x. x + f(y,z) > w"
+
+fv !!"forall x. x + f(y,z) > w"
+
+fvt !!!"1 + f(2,3)"
+
+generalize !!"x + f(y,z) > w"
+
+// replace every variable in tm that matches an argument of sfn with its value
+
+!!!"x + f(y,z)" |> tsubst (fpf ["x";"z"] [!!!"1";!!!"2"])
+
+variant "x" ["y"; "z"]  // evaluates to "x"
+variant "x" ["x"; "y"]  // evaluates to "x'"
+variant "x" ["x"; "x'"] // evaluates to "x''"
+
+subst ("y" |=> Var "x") !!"forall x. x = y"
+
+
+substq ("y" |=> Var "x") mk_forall "x" !!"x = y"

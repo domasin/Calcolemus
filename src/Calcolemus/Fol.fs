@@ -298,12 +298,12 @@ module Fol =
     (* Substitution in terms                                                  *)
     (* ---------------------------------------------------------------------- *)
 
-    let rec tsubst sfn tm =
+    let rec tsubst subfn tm =
         match tm with
         | Var x ->
-            tryapplyd sfn x tm
+            tryapplyd subfn x tm
         | Fn (f, args) ->
-            Fn (f, List.map (tsubst sfn) args)
+            Fn (f, List.map (tsubst subfn) args)
 
     (* ---------------------------------------------------------------------- *)
     (* Substitution in formulas                                               *)
@@ -336,7 +336,10 @@ module Fol =
             substq subfn mk_exists x p
     and substq subfn quant x p =
         let x' =
+            // if there is a mapping that would cause x to be free
             if List.exists (fun y -> mem x (fvt (tryapplyd subfn y (Var y))))   (subtract (fv p) [x]) then
+                // pick a variant
                 variant x (fv (subst (undefine x subfn) p)) 
+            // otherwise, keep x
             else x
         quant x' (subst ((x |-> Var x') subfn) p)
