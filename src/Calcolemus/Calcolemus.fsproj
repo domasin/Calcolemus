@@ -65,7 +65,8 @@
     <Compile Include="bdd.fs" />
     <Compile Include="Fol.fsi" />
     <Compile Include="Fol.fs" />
-    <Compile Include="skolem.fs" />
+    <Compile Include="Skolem.fsi" />
+    <Compile Include="Skolem.fs" />
     <Compile Include="Pelletier.fs" />
     <Compile Include="herbrand.fs" />
     <Compile Include="unif.fsi" />

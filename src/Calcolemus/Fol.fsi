@@ -1,7 +1,12 @@
+// ========================================================================= //
+// Copyright (c) 2023, Domenico Masini.                                      //
+// (See "LICENSE.txt" for details.)                                          //
+// ========================================================================= //
+
 namespace Calcolemus
 
-open Calcolemus.Lib.Fpf
-open Calcolemus.Formulas
+open Lib.Fpf
+open Formulas
 
 /// <summary>
 /// Basic stuff for first order logic: datatype, parsing and printing, 
