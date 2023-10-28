@@ -1,3 +1,8 @@
+// ========================================================================= //
+// Copyright (c) 2023, Domenico Masini.                                      //
+// (See "LICENSE.txt" for details.)                                          //
+// ========================================================================= //
+
 module Calcolemus.Tests.Herbrand
 
 open Xunit
