@@ -112,7 +112,7 @@ module Skolem =
         | Or (p, Exists (y, q)) ->
             pullq (false, true) fm mk_exists mk_or y y p q
         | _ -> fm
-    and pullq(l,r) fm quant op x y p q =
+    and pullq (l,r) fm quant op x y p q =
         let z = variant x (fv fm)
         let p' = if l then subst (x |=> Var z) p else p
         let q' = if r then subst (y |=> Var z) q else q
@@ -160,8 +160,8 @@ module Skolem =
         | Forall (x, p) -> 
             let p', fns' = skolem p fns 
             Forall (x, p'), fns'
-        | And (p, q) -> skolem2 (fun (p, q) -> And (p, q)) (p, q) fns
-        | Or (p, q) -> skolem2 (fun (p, q) -> Or (p, q)) (p, q) fns
+        | And (p, q) -> skolem2 And (p, q) fns
+        | Or (p, q) -> skolem2 Or (p, q) fns
         | _ -> fm, fns
     
     and skolem2 cons (p, q) fns =

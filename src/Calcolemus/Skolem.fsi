@@ -18,18 +18,12 @@ module Skolem =
     /// It performs a simplification routine but just at the first level of the 
     /// input formula <c>fm</c>. It eliminates the basic propositional 
     /// constants <c>False</c> and <c>True</c> and also the vacuous universal 
-    /// and existential quanti?ers (those applied to variables that does not 
+    /// and existential quantifiers (those applied to variables that does not 
     /// occur free in the body).
-    /// <p></p>
-    /// Whenever <c>False</c> and <c>True</c> occur in combination, there is 
-    /// always a a tautology justifying the equivalence with a simpler formula, 
-    /// e.g. <c>False /\ p &lt;=&gt; False</c>, <c>True \/ p &lt;=&gt; p</c>, 
-    /// <c>p ==> False &lt;=&gt; ~p</c>. At he same time, it also eliminates double 
-    /// negations <c>~~p</c>.
-    /// <p></p>
-    /// If <c>x</c> not in <c>fv p</c> then <c>forall x. p</c> and 
-    /// <c>exists x. p are</c> logically equivalent to <c>p</c>.
     /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>The simplified formula.</returns>
     /// 
     /// <example id="simplify1-1">
     /// <code lang="fsharp">
@@ -53,9 +47,17 @@ module Skolem =
     /// </summary>
     /// 
     /// <remarks>
-    /// While simplify1 performs the transformation just at the first level, 
-    /// simplify performs it at every levels in a recursive bottom-up sweep.
+    /// It performs a simplification eliminating the basic propositional 
+    /// constants <c>False</c> and <c>True</c> and also the <em>vacuous 
+    /// quantifiers</em> (those applied to variables that do not occur free 
+    /// in the body).
+    /// <p></p>
+    /// It applies <see cref='M:Calcolemus.Skolem.simplify1'/> repeatedly at 
+    /// every level of the formula in a recursive bottom-up sweep.
     /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>The simplified formula.</returns>
     /// 
     /// <example id="simplify-1">
     /// <code lang="fsharp">
@@ -81,8 +83,11 @@ module Skolem =
     /// 
     /// <remarks>
     /// It eliminates implication and equivalence, and pushes down negations 
-    /// through quanti?ers.
+    /// through quantifiers.
     /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>The formula in negation normal form.</returns>
     /// 
     /// <example id="nnf-1">
     /// <code lang="fsharp">
@@ -95,16 +100,52 @@ module Skolem =
     val nnf: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// It pulls out quantifiers.
+    /// It pulls out quantifiers of top level conjunctions or disjunctions.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>The formula with the quantifiers pulled out.</returns>
+    /// 
+    /// <example id="pullquants-1">
+    /// <code lang="fsharp">
+    /// !!"(forall x. P(x)) /\ (exists y. P(y))"
+    /// |> pullquants
+    /// </code>
+    /// Evaluates to <c>`forall x. exists y. P(x) /\ P(y)`</c>.
+    /// </example>
     /// 
     /// <category index="3">Prenex normal form</category>
     val pullquants: fm: formula<fol> -> formula<fol>
 
     /// <summary>
-    /// calls the main pullquants functions again on the body to pull up 
-    /// further quanti?ers
+    /// Auxiliary function to define 
+    /// <see cref='M:Calcolemus.Skolem.pullquants'/>.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// It deals with various similar subcases and calls the main 
+    /// <see cref='M:Calcolemus.Skolem.pullquants'/> 
+    /// function again on the body to pull up further quantifiers.
+    /// </remarks>
+    /// 
+    /// <param name="l">The flag to indicate if the left hand formula should be changed.</param>
+    /// <param name="r">The flag to indicate if the right hand formula should be changed.</param>
+    /// <param name="fm">The input formula.</param>
+    /// <param name="quant">The quantification constructor to apply.</param>
+    /// <param name="op">The binary connective constructor to apply.</param>
+    /// <param name="x">The  variable to check in the left hand formula to prevent it from being bound.</param>
+    /// <param name="y">The  variable to check in the right hand formula to prevent it from being bound.</param>
+    /// <param name="p">The left hand formula.</param>
+    /// <param name="q">The right hand formula.</param>
+    /// <returns>The formula with the quantifiers pulled out.</returns>
+    /// 
+    /// <example id="pullquants-1">
+    /// <code lang="fsharp">
+    /// let fm = !!"P(x) /\ exists y. Q(y)"
+    /// pullq (false, true) fm mk_exists mk_and "y" "y" !!"P(x)" !!"Q(y)"
+    /// </code>
+    /// Evaluates to <c>`forall x. exists y. P(x) /\ P(y)`</c>.
+    /// </example>
     /// 
     /// <category index="3">Prenex normal form</category>
     val pullq:
@@ -119,9 +160,26 @@ module Skolem =
         q: formula<fol> -> formula<fol>
 
     /// <summary>
-    /// leaves quanti?ed formulas alone, and for conjunctions and disjunctions 
-    /// recursively prenexes the immediate subformulas and then uses pullquants
+    /// It pulls out quantifiers of a formula supposed to be already simplified 
+    /// and in nnf.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// It deals with the subformulas of quantified formulas, and for the 
+    /// others (conjunctions and disjunctions) calls 
+    /// <see cref='M:Calcolemus.Skolem.pullquants'/>.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>The equivalent of the input (already simplified and in nnf) with quantifiers pulled out.</returns>
+    /// 
+    /// <example id="prenex-1">
+    /// <code lang="fsharp">
+    /// !!"forall x. P(X) /\ forall y. Q(x,y)"
+    /// |> prenex
+    /// </code>
+    /// Evaluates to <c>`forall x y. P(X) /\ Q(x,y)`</c>.
+    /// </example>
     /// 
     /// <category index="3">Prenex normal form</category>
     val prenex: fm: formula<fol> -> formula<fol>
@@ -133,11 +191,16 @@ module Skolem =
     /// 
     /// <remarks>
     /// <ul>
-    /// <li>simplifies away False, True, vacuous quanti?cation, etc.;</li>
-    /// <li>eliminates implication and equivalence, push down negations;</li>
-    /// <li>pulls out quanti?ers.</li>
+    /// <li>simplifies away False, True, vacuous quantification, etc.;</li>
+    /// <li>eliminates implication and equivalence, pushes down negations;</li>
+    /// <li>pulls out quantifiers.</li>
     /// </ul>
     /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// The prenex normal form equivalent of the input formula.
+    /// </returns>
     /// 
     /// <example id="pnf-1">
     /// <code lang="fsharp">
@@ -155,6 +218,11 @@ module Skolem =
     /// Returns the functions present in the input term <c>tm</c>.
     /// </summary>
     /// 
+    /// <param name="tm">The input term.</param>
+    /// <returns>
+    /// The list of name-arity pairs of the functions in the term.
+    /// </returns>
+    /// 
     /// <example id="funcs-1">
     /// <code lang="fsharp">
     /// funcs !!!"x + 1"
@@ -169,9 +237,14 @@ module Skolem =
     /// Returns the functions present in the input formula <c>fm</c>.
     /// </summary>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// The list of name-arity pairs of the functions in the formula.
+    /// </returns>
+    /// 
     /// <example id="functions-1">
     /// <code lang="fsharp">
-    /// functions !!!"x + 1 > 0 /\ f(z) > g(z,i)"
+    /// functions !!"x + 1 > 0 /\ f(z) > g(z,i)"
     /// </code>
     /// Evaluates to <c>[("+", 2); ("0", 0); ("1", 0); ("f", 1); ("g", 2)]</c>.
     /// </example>
@@ -180,7 +253,8 @@ module Skolem =
     val functions: fm: formula<fol> -> (string * int) list
 
     /// <summary>
-    /// Core Skolemization function specifically intended to be used on NNF.
+    /// Core Skolemization function specifically intended to be used on 
+    /// formulas already simplified and in nnf.
     /// </summary>
     /// 
     /// <remarks>
@@ -189,19 +263,54 @@ module Skolem =
     /// connectives.
     /// </remarks>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// <param name="fns">The list of strings to avoid as names of the Skolem 
+    /// functions.</param>
+    /// <returns>
+    /// The pair of the Skolemized formula together with the updated list of 
+    /// strings to avoid as names of the Skolem functions.
+    /// </returns>
+    /// 
+    /// <example id="skolem-1">
+    /// <code lang="fsharp">
+    /// skolem !!"forall x. exists y. P(x,y)" []
+    /// </code>
+    /// Evaluates to <c>(`forall x. P(x,f_y(x))`, ["f_y"])</c>.
+    /// </example>
+    /// 
     /// <category index="5">Core Skolemization</category>
     val skolem:
       fm: formula<fol> ->
         fns: string list -> formula<fol> * string list
 
     /// <summary>
-    /// Auxiliary to skolem when dealing with binary connectives. 
+    /// Auxiliary to <see cref='M:Calcolemus.Skolem.skolem'/> when dealing with 
+    /// binary connectives.
     /// </summary>
     /// 
     /// <remarks>
     /// It updates the set of functions to avoid with new Skolem functions 
     /// introduced into one formula before tackling the other.
     /// </remarks>
+    /// 
+    /// <param name="cons">The binary connective constructor to apply.</param>
+    /// <param name="p">The left hand formula.</param>
+    /// <param name="q">The right hand formula.</param>
+    /// <param name="fns">The list of strings to avoid as names of the Skolem 
+    /// functions.</param>
+    /// <returns>
+    /// The pair of the Skolemized and reconstructed binary formula together 
+    /// with the updated list of strings to avoid as names of the Skolem 
+    /// functions.
+    /// </returns>
+    /// 
+    /// <example id="skolem2-1">
+    /// <code lang="fsharp">
+    /// let p,q = !!"forall x. exists y. P(x,y)", !!"forall x. exists y. Q(x,y)"
+    /// skolem2 And (p,q) []
+    /// </code>
+    /// Evaluates to <c>(`(forall x. P(x,f_y(x))) /\ (forall x. Q(x,f_y'(x)))`, ["f_y'"; "f_y"])</c>.
+    /// </example>
     /// 
     /// <category index="5">Core Skolemization</category>
     val skolem2:
@@ -211,20 +320,37 @@ module Skolem =
           fns: string list -> formula<fol> * string list
 
     /// <summary>
-    /// Overall Skolemization function, intended to be used with any type of 
-    /// initial fol formula.
+    /// Skolemizes the input formula <c>fm</c>.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// The input formula with all existential quantifiers replaced by Skolem 
+    /// functions.
+    /// </returns>
+    /// 
+    /// <example id="askolemize-1">
+    /// <code lang="fsharp">
+    /// askolemize !!"forall x. exists y. R(x,y)"
+    /// </code>
+    /// Evaluates to <c>`forall x. R(x,f_y(x))`</c>.
+    /// </example>
     /// 
     /// <category index="5">Overall Skolemization</category>
     val askolemize: fm: formula<fol> -> formula<fol>
 
     /// <summary>
-    /// Removes all universale quantifiers from the input formula <c>fm</c>.
+    /// Removes all universal quantifiers from the input formula <c>fm</c>.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// The input formula with all universal quantifiers removed.
+    /// </returns>
     /// 
     /// <example id="specialize-1">
     /// <code lang="fsharp">
-    /// specialize !!!"forall x y. P(x) /\ P(y)"
+    /// specialize !!"forall x y. P(x) /\ P(y)"
     /// </code>
     /// Evaluates to <c>`P(x) /\ P(y)`</c>.
     /// </example>
@@ -233,19 +359,25 @@ module Skolem =
     val specialize: fm: formula<'a> -> formula<'a>
 
     /// <summary>
-    /// Puts the input formula <c>fm</c> into skolem normal form 
+    /// Puts the input formula <c>fm</c> into Skolem normal form 
     /// while also removing all universal quantifiers.
     /// </summary>
     /// 
     /// <remarks>
     /// It puts the formula in prenex normal form, substitutes existential 
-    /// quantifiers with skolem functions and also removes all universal 
+    /// quantifiers with Skolem functions and also removes all universal 
     /// quantifiers.
     /// </remarks>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// <returns>
+    /// An equisatisfiable Skolem normal form of the input with also the 
+    /// universal quantifiers removed.
+    /// </returns>
+    /// 
     /// <example id="skolemize-1">
     /// <code lang="fsharp">
-    /// skolemize !!!"forall x. exists y. R(x,y)"
+    /// skolemize !!"forall x. exists y. R(x,y)"
     /// </code>
     /// Evaluates to <c>`R(x,f_y(x))`</c>.
     /// </example>

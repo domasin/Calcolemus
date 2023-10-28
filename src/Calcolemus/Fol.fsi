@@ -125,9 +125,9 @@ module Fol =
     /// It takes a list of string tokens `inp` and returns a pair consisting of 
     /// the parsed term tree together with any unparsed input. 
     /// <p></p>
-    /// In order to check whether a name is within the scope of a quanti?er, it 
-    /// takes an additional argument `vs` which is the set of bound variables 
-    /// in the current scope.
+    /// In order to check whether a name is within the scope of a quantifier, 
+    /// it takes an additional argument `vs` which is the set of bound 
+    /// variables in the current scope.
     /// </summary>
     /// 
     /// <category index="1">Parsing terms</category>
