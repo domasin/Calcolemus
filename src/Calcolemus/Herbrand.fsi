@@ -16,8 +16,8 @@ open Fol
 module Herbrand = 
 
     /// <summary>
-    /// Evaluates the truth-value of a fol formula, in the sense of 
-    /// propositional logic, given a valuation of its atoms.
+    /// Evaluates the truth-value of a quantifier-free formula, in the 
+    /// sense of propositional logic, given a valuation of its atoms.
     /// </summary>
     /// 
     /// <remarks>
@@ -26,15 +26,51 @@ module Herbrand =
     /// valuation <c>d</c> maps atomic formulas themselves to truth values.
     /// </remarks>
     /// 
+    /// <param name="d">The propositional valuation that maps atomic formulas to truth values.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <return>
+    /// true, if the formula is quantifier-free and true in the given 
+    /// valuation; false if the formula is quantifier-free and true in the 
+    /// given valuation.
+    /// </return>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'Not part of propositional logic.' when the input formula contains quantifiers.</exception>
+    /// 
     /// <example id="pholds-1">
     /// <code lang="fsharp">
-    /// !!"P(x)"
+    /// !!"P(x) /\ Q(x)"
     /// |> pholds (function 
-    ///     x when x = !!"P(x)" -> true 
+    ///     | x when x = !!"P(x)" -> true 
+    ///     | x when x = !!"Q(x)" -> true 
     ///     | _ -> false
     /// )
     /// </code>
     /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="pholds-2">
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ Q(x)"
+    /// |> pholds (function 
+    ///     | x when x = !!"P(x)" -> true 
+    ///     | x when x = !!"Q(x)" -> false 
+    ///     | _ -> false
+    /// )
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="pholds-3">
+    /// <code lang="fsharp">
+    /// !!"forall x. P(x) /\ Q(x)"
+    /// |> pholds (function 
+    ///     | x when x = !!"P(x)" -> true
+    ///     | x when x = !!"Q(x)" -> true
+    ///     | _ -> false
+    /// )
+    /// </code>
+    /// Throws <c>System.Exception: Not part of propositional logic.</c>.
     /// </example>
     /// 
     /// <category index="1">Propositional valuation</category>
@@ -42,15 +78,33 @@ module Herbrand =
       d: (formula<'a> -> bool) -> fm: formula<'a> -> bool
 
     /// <summary>
-    /// Gets the constants for Herbrand base, adding nullary one if necessary. 
+    /// Returns the functions in the formula <c>fm</c> separated in nullary and 
+    /// non, and adding nullary one if necessary. 
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The pair of lists of functions in the formula separated in nullary and 
+    /// non.
+    /// </returns>
+    /// 
+    /// <example id="herbfuns-1">
+    /// <code lang="fsharp">
+    /// !!"forall x. P(x) /\ (Q(f(y)) ==> R(g(x,y),z))"
+    /// |> herbfuns
+    /// </code>
+    /// Evaluates to <c>([("c", 0)], [("f", 1); ("g", 2)])</c>.
+    /// </example>
     /// 
     /// <category index="2">Herbrand models</category>
     val herbfuns:
       fm: formula<fol> -> (string * int) list * (string * int) list
 
     /// <summary>
-    /// Enumerates all ground terms involving <c>n</c> functions.
+    /// Returns all ground terms that can be created from constant 
+    /// terms <c>cntms</c> and functions symbols <c>funcs</c> involving 
+    /// <c>n</c> function symbols.
     /// </summary>
     /// 
     /// <remarks>
@@ -58,9 +112,19 @@ module Herbrand =
     /// possible functions.
     /// </remarks>
     /// 
+    /// <param name="cntms">The input list of constant terms.</param>
+    /// <param name="funcs">The input list of function name-arity pairs.</param>
+    /// <param name="n">The number of function symbols the resulting ground terms will contain.</param>
+    /// 
+    /// <returns>
+    /// The input <c>cntms</c> itself, if <c>n</c> is <c>0</c>; otherwise, all 
+    /// the ground terms that can be created with the give <c>funcs</c> and 
+    /// that contain only <c>n</c> function symbols.
+    /// </returns>
+    /// 
     /// <example id="groundterms-1">
     /// <code lang="fsharp">
-    /// groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 0
+    /// groundterms !!!>["0";"1"] [("f",1);("g",2)] 0
     /// </code>
     /// Evaluates to 
     /// <code lang="fsharp">
@@ -70,27 +134,31 @@ module Herbrand =
     /// 
     /// <example id="groundterms-2">
     /// <code lang="fsharp">
-    /// groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 1
+    /// groundterms !!!>["0";"1"] [("f",1);("g",2)] 1
     /// </code>
     /// Evaluates to
     /// <code lang="fsharp">
-    /// [``f(0)``; ``f(1)``; ``g(0,0)``; ``g(0,1)``; ``g(1,0)``; ``g(1,1)``]
+    /// [``f(0)``; ``f(1)``; ``g(0,0)``; 
+    ///  ``g(0,1)``; ``g(1,0)``; ``g(1,1)``]
     /// </code>
     /// </example>
     /// 
     /// <example id="groundterms-3">
     /// <code lang="fsharp">
-    /// groundterms [!!!"0";!!!"1"] [("f",1);("g",2)]
+    /// groundterms !!!>["0";"1"] [("f",1);("g",2)] 2
     /// </code>
     /// Evaluates to 
     /// <code lang="fsharp">
-    /// [``f(f(0))``; ``f(f(1))``; ``f(g(0,0))``; ``f(g(0,1))``; ``f(g(1,0))``;
-    ///  ``f(g(1,1))``; ``g(0,f(0))``; ``g(0,f(1))``; ``g(0,g(0,0))``;
-    ///  ``g(0,g(0,1))``; ``g(0,g(1,0))``; ``g(0,g(1,1))``; ``g(1,f(0))``;
-    ///  ``g(1,f(1))``; ``g(1,g(0,0))``; ``g(1,g(0,1))``; ``g(1,g(1,0))``;
-    ///  ``g(1,g(1,1))``; ``g(f(0),0)``; ``g(f(0),1)``; ``g(f(1),0)``; ``g(f(1),1)``;
-    ///  ``g(g(0,0),0)``; ``g(g(0,0),1)``; ``g(g(0,1),0)``; ``g(g(0,1),1)``;
-    ///  ``g(g(1,0),0)``; ``g(g(1,0),1)``; ``g(g(1,1),0)``; ``g(g(1,1),1)``]
+    /// [``f(f(0))``; ``f(f(1))``; ``f(g(0,0))``; 
+    ///  ``f(g(0,1))``; ``f(g(1,0))``; ``f(g(1,1))``; 
+    ///  ``g(0,f(0))``; ``g(0,f(1))``; ``g(0,g(0,0))``;
+    ///  ``g(0,g(0,1))``; ``g(0,g(1,0))``; ``g(0,g(1,1))``; 
+    ///  ``g(1,f(0))``; ``g(1,f(1))``; ``g(1,g(0,0))``; 
+    ///  ``g(1,g(0,1))``; ``g(1,g(1,0))``;``g(1,g(1,1))``; 
+    ///  ``g(f(0),0)``; ``g(f(0),1)``; ``g(f(1),0)``; 
+    ///  ``g(f(1),1)``; ``g(g(0,0),0)``; ``g(g(0,0),1)``; 
+    ///  ``g(g(0,1),0)``; ``g(g(0,1),1)``;``g(g(1,0),0)``; 
+    ///  ``g(g(1,0),1)``; ``g(g(1,1),0)``; ``g(g(1,1),1)``]
     /// </code>
     /// </example>
     /// 
@@ -99,14 +167,48 @@ module Herbrand =
       cntms: term list -> funcs: (string * int) list -> n: int -> term list
 
     /// <summary>
-    /// generates all <c>m</c>-tuples of ground terms involving (in total) 
-    /// <c>n</c> functions.
+    /// Returns all the <c>m</c>-tuples of ground terms that can be created 
+    /// from constant terms <c>cntms</c> and functions symbols <c>funcs</c> 
+    /// involving <c>n</c> function symbols.
     /// </summary>
+    /// 
+    /// <param name="cntms">The input list of constant terms.</param>
+    /// <param name="funcs">The input list of function name-arity pairs.</param>
+    /// <param name="m">The number of element of the resulting ground terms tuples.</param>
+    /// <param name="n">The number of function symbols the resulting ground terms will contain.</param>
+    /// 
+    /// <returns>
+    /// All the <c>m</c>-tuples of ground terms that can be created from then 
+    /// input <c>cntms</c> and <c>funcs</c> where each ground term contain  
+    /// only <c>n</c> function symbols.
+    /// </returns>
     /// 
     /// <example id="groundtuples-1">
     /// <code lang="fsharp">
-    /// groundtuples [!!!"0"] [("f",1)] 1 1 // evaluates to [[``f(0)``]]
-    /// groundtuples [!!!"0"] [("f",1)] 1 2 // evaluates to [[``0``; ``f(0)``]; [``f(0)``; ``0``]]
+    /// groundtuples !!!>["0";"1"] [("f",1);("g",2)] 0 2
+    /// </code>
+    /// Evaluates to 
+    /// <code lang="fsharp">
+    /// [[``0``; ``0``]; [``0``; ``1``]; 
+    ///  [``1``; ``0``]; [``1``; ``1``]]
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="groundtuples-2">
+    /// <code lang="fsharp">
+    /// groundtuples !!!>["0";"1"] [("f",1);("g",2)] 2 3
+    /// </code>
+    /// Evaluates to 
+    /// <code lang="fsharp">
+    /// [[``0``; ``0``; ``f(f(0))``]; 
+    /// [``0``; ``0``; ``f(f(1))``];
+    /// [``0``; ``0``; ``f(g(0,0))``]; 
+    /// [``0``; ``0``; ``f(g(0,1))``];
+    /// [``0``; ``0``; ``f(g(1,0))``]; 
+    /// ...
+    /// [``1``; ``g(g(0,1),0)``; ``0``];
+    /// ...
+    /// [``g(g(1,1),1)``; ``1``; ``1``]]
     /// </code>
     /// </example>
     /// 
@@ -125,34 +227,128 @@ module Herbrand =
     /// till <c>tfn</c> fails. 
     /// </remarks>
     /// 
-    /// <param name="mfn">The modification function that augments the ground 
-    /// instances with a new instance.</param>
+    /// <param name="mfn">The modification function that augments the ground instances with a new instance.</param>
     /// <param name="tfn">The satisfiability test to be done.</param>
-    /// <param name="fl0">The initial formula in some transformed list 
-    /// representation.</param>
-    /// <param name="cntms">The constant terms of the formula.</param>
-    /// <param name="funcs">The functions (name, arity) of the formula.</param>
+    /// <param name="fl0">The initial formula in some transformed list representation.</param>
+    /// <param name="cntms">The constant terms to generate the ground terms generation.</param>
+    /// <param name="funcs">The function symbols (name, arity) to generate the ground terms generation.</param>
     /// <param name="fvs">The free variables of the formula.</param>
-    /// <param name="n">The next level of the enumeration to generate.</param>
+    /// <param name="n">The number of function symbols the new ground terms to be generated should contain.</param>
     /// <param name="fl">The set of ground instances so far.</param>
     /// <param name="tried">The instances tried.</param>
-    /// <param name="tuples">The remaining ground instances in the current level.
-    /// </param>
+    /// <param name="tuples">The remaining ground instances in the current level.</param>
     /// 
-    /// <category index="2">Herbrand models</category>
+    /// <returns>
+    /// The list of ground terms tried, if the procedure is successful; 
+    /// otherwise loops.
+    /// </returns>
+    /// 
+    /// <category index="2">Herbrand procedures</category>
     val herbloop:
       mfn: ('a ->
               (formula<fol> -> formula<fol>) ->
-              'b list -> 'b list) ->
-        tfn: ('b list -> bool) ->
+              list<list<formula<fol>>>-> list<list<formula<fol>>>) ->
+        tfn: (list<list<formula<fol>>> -> bool) ->
         fl0: 'a ->
         cntms: term list ->
         funcs: (string * int) list ->
         fvs: string list ->
         n: int ->
-        fl: 'b list ->
+        fl: list<list<formula<fol>>> ->
         tried: term list list ->
         tuples: term list list -> term list list
+
+    /// <summary>
+    /// Gilmore modification function.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Updates the ground instance <c>djs</c> of the initial formula in 
+    /// DNF 'clausal' form <c>djs0</c> with the new ground terms generated from 
+    /// the given instantiation <c>ifn</c>.
+    /// <p></p>
+    /// Since we are in a DNF context, a list of clauses here is an iterated 
+    /// disjunction of conjunctions and so each clause is a conjunction.
+    /// The ground instances generated for each of the conjunctions are added 
+    /// as new conjuncts to the corresponding conjunction, deleting those  
+    /// that become contradictory due to the presence of complementary 
+    /// literals.
+    /// </remarks>
+    /// 
+    /// <param name="djs0">The input formula in DNF 'clausal' form.</param>
+    /// <param name="ifn">The instantiation function.</param>
+    /// <param name="djs">The ground instance of the input formula so far.</param>
+    /// <returns>
+    /// The updated ground instance of the input formula.
+    /// </returns>
+    /// 
+    /// <example id="gilmore_mfn-1">
+    /// In this example each conjunct in the original formula 
+    /// <c>P(f(x)) \/ ~P(y)</c> is just a literal.
+    /// As new ground terms are generated, each conjunction becomes the 
+    /// conjunction of all ground instances generated so far for the 
+    /// corresponding original literal.
+    /// <code lang="fsharp">
+    /// gilmore_mfn !!>>[["P(f(x))"]; ["~P(y)"]] 
+    ///   (subst (fpf ["x"; "y"] !!!>["c";"f(c)"])) 
+    ///   !!>>[["P(f(c))"]; ["~P(c)"]] 
+    /// </code>
+    /// Evaluates to 
+    /// <code lang="fsharp">
+    /// [[`P(f(c))`]; [`P(f(c))`; `~P(c)`]; [`~P(c)`; `~P(f(c))`]]
+    /// </code>
+    /// Corresponding to the formula <c>`P(f(c)) \/ P(f(c)) /\ ~P(c)) \/ ~P(c) /\ ~P(f(c)`</c>.
+    /// <p></p>
+    /// Note that the input ground instance <c>[["P(f(c))"]; ["~P(c)"]]</c> 
+    /// must have been generated by an instantiation that mapped both <c>x</c> 
+    /// and <c>y</c> to <c>c</c> while the new given instantiation 
+    /// maps <c>y</c> to <c>f(c)</c>.
+    /// <p></p>
+    /// Note also that the conjunct <c>[`P(f(c))`; `~P(f(c))`]</c> has been 
+    /// removed from the output, since contradictory.
+    /// </example>
+    /// 
+    /// <category index="4">A gilmore-like procedure</category>
+    val gilmore_mfn:
+      djs0: list<list<'a>> ->
+      ifn : ('a -> formula<'b>) ->
+      djs : list<list<formula<'b>>>
+          -> list<list<formula<'b>>>
+          when 'a: comparison and 'b: comparison
+
+    /// <summary>
+    /// Gilmore test function.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// It simply tests that the set of DNF 'clauses' is not empty, because the 
+    /// contradiction checking is done by the modification function.
+    /// </remarks>
+    /// 
+    /// <param name="djs">The input formula (more precisely its ground instance so far) in a DNF 'clausal' form.</param>
+    /// 
+    /// <returns>
+    /// true, if the input is nonempty; otherwise, false
+    /// </returns>
+    /// 
+    /// <example id="gilmore_tfn-1">
+    /// <code lang="fsharp">
+    /// !!>>[["P(f(c))"]; ["P(f(c))"; "~P(c)"]; ["P(f(c))"; "~P(f(c))"];
+    ///    ["~P(c)"; "~P(f(c))"]]
+    /// |> gilmore_tfn
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="gilmore_tfn-2">
+    /// <code lang="fsharp">
+    /// !!>>[]
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    val gilmore_tfn:
+      djs: list<'a>
+        -> bool
 
     /// <summary>
     /// <see cref='M:Calcolemus.Herbrand.herbloop``2'/> specific for Gilmore 
@@ -163,24 +359,37 @@ module Herbrand =
     /// In the specific case of the gilmore procedure, the generic herbrand 
     /// loop <see cref='M:Calcolemus.Herbrand.herbloop``2'/> is called with the 
     /// initial formula <c>fl0</c> and the ground instances so far <c>fl</c> 
-    /// are maintained in a DNF list representation and the modification 
+    /// maintained in a DNF list representation and the modification 
     /// function applies the instantiation to the starting formula and combines 
     /// the DNFs by distribution.
     /// </remarks>
     /// 
-    /// <category index="3">A gilmore-like procedure</category>
+    /// <param name="fl0">The initial formula in DNF 'clausal' form.</param>
+    /// <param name="cntms">The constant terms to generate the ground terms.</param>
+    /// <param name="funcs">The function symbols (name, arity) to generate the ground terms generation.</param>
+    /// <param name="fvs">The free variables of the formula.</param>
+    /// <param name="n">The number of function symbols the new ground terms to be generated should contain.</param>
+    /// <param name="fl">The set of ground instances so far.</param>
+    /// <param name="tried">The instances tried.</param>
+    /// <param name="tuples">The remaining ground instances in the current level.</param>
+    /// 
+    /// <returns>
+    /// The list of ground terms tried.
+    /// </returns>
+    /// 
+    /// <category index="4">A gilmore-like procedure</category>
     val gilmore_loop:
-      (formula<fol> list list ->
-         term list ->
-         (string * int) list ->
-         string list ->
-         int ->
-         formula<fol> list list ->
-         term list list -> term list list -> term list list)
+      fl0: formula<fol> list list ->
+        cntms: term list ->
+        funcs: (string * int) list ->
+        fvs: string list ->
+        n: int ->
+        fl: formula<fol> list list ->
+        tried: term list list -> 
+        tuples: term list list -> term list list
 
     /// <summary>
-    /// Tests the input fol formula <c>fm</c> for validity based on a 
-    /// gilmore-like procedure.
+    /// Tests <c>fm</c> validity with a gilmore-like procedure.
     /// </summary>
     /// 
     /// <remarks>
@@ -192,7 +401,7 @@ module Herbrand =
     /// tried.
     /// </remarks>
     /// 
-    /// <category index="3">A gilmore-like procedure</category>
+    /// <category index="4">A gilmore-like procedure</category>
     val gilmore: fm: formula<fol> -> int
 
     /// <summary>
@@ -226,7 +435,7 @@ module Herbrand =
     /// The set of ground instances incremented.
     /// </returns>
     /// 
-    /// <category index="4">The Davis-Putnam procedure for first order logic</category>
+    /// <category index="5">The Davis-Putnam procedure for first order logic</category>
     val dp_mfn:
       cjs0: 'a list list -> ifn: ('a -> 'b) -> cjs: 'b list list -> 'b list list
         when 'b: comparison
@@ -245,7 +454,7 @@ module Herbrand =
     /// <c>dpll</c>.
     /// </remarks>
     /// 
-    /// <category index="4">The Davis-Putnam procedure for first order logic</category>
+    /// <category index="5">The Davis-Putnam procedure for first order logic</category>
     val dp_loop:
       (formula<fol> list list ->
          term list ->
@@ -269,7 +478,7 @@ module Herbrand =
     /// tried.
     /// </remarks>
     /// 
-    /// <category index="4">The Davis-Putnam procedure for first order logic</category>
+    /// <category index="5">The Davis-Putnam procedure for first order logic</category>
     val davisputnam: fm: formula<fol> -> int
 
     /// <summary>
@@ -279,7 +488,7 @@ module Herbrand =
     /// instances are satisfiable.
     /// </summary>
     /// 
-    /// <category index="5">The Davis-Putnam procedure refined</category>
+    /// <category index="6">The Davis-Putnam procedure refined</category>
     val dp_refine:
       cjs0: formula<fol> list list ->
         fvs: string list ->
@@ -290,7 +499,7 @@ module Herbrand =
     /// Davis-Putnam procedure refined.
     /// </summary>
     /// 
-    /// <category index="5">The Davis-Putnam procedure refined</category>
+    /// <category index="6">The Davis-Putnam procedure refined</category>
     val dp_refine_loop:
       cjs0: formula<fol> list list ->
         cntms: term list ->
@@ -312,5 +521,5 @@ module Herbrand =
     /// the other instances are satisfiable.
     /// </remarks>
     /// 
-    /// <category index="5">The Davis-Putnam procedure refined</category>
+    /// <category index="6">The Davis-Putnam procedure refined</category>
     val davisputnam002: fm: formula<fol> -> int

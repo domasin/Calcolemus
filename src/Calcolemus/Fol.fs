@@ -7,12 +7,13 @@
 
 namespace Calcolemus
 
-open Calcolemus.Lib
-open Calcolemus.Lib.Set
-open Calcolemus.Lib.String
-open Calcolemus.Lib.Fpf
-open Calcolemus.Lib.Lexer
-open Calcolemus.Lib.Parser
+open Calcolemus
+
+open Lib.Set
+open Lib.String
+open Lib.Fpf
+open Lib.Lexer
+open Lib.Parser
 
 open Formulas
 
@@ -69,6 +70,8 @@ module Fol =
 
     let (!!!) s = parset s
 
+    let (!!!>) tms = List.map (!!!) tms
+
     // ---------------------------------------------------------------------- //
     // Parsing of fol formulas.                                               //
     // ---------------------------------------------------------------------- //
@@ -98,6 +101,8 @@ module Fol =
         |> make_parser (parse_formula (parse_infix_atom, parse_atom) [])
 
     let (!!) s = parse s
+
+    let (!!>>) xs = xs |> List.map (List.map (!!))
 
     // ---------------------------------------------------------------------- //
     // Printing of terms.                                                     //

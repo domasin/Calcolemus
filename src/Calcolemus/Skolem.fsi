@@ -83,7 +83,8 @@ module Skolem =
     val simplify: fm: formula<fol> -> formula<fol>
 
     /// <summary>
-    /// Transforms the input formula <c>fm</c> in negation normal form.
+    /// Transforms the input formula <c>fm</c> in first order negation normal 
+    /// form.
     /// </summary>
     /// 
     /// <remarks>
@@ -100,6 +101,12 @@ module Skolem =
     /// </code>
     /// Evaluates to <c>`forall x. P(x) /\ ~Q(x) \/ ~P(x) /\ Q(x)`</c>.
     /// </example>
+    /// 
+    /// <note>
+    /// Pay attention that in <see cref='T:Calcolemus.Prop'/> there is a 
+    /// propositional version of <see cref='M:Calcolemus.Prop.nnf``1'/>. If all 
+    /// modules have been opened, qualify the exact version to be used.
+    /// </note>
     /// 
     /// <category index="2">Negation normal form</category>
     val nnf: fm: formula<'a> -> formula<'a>
@@ -269,8 +276,7 @@ module Skolem =
     /// </remarks>
     /// 
     /// <param name="fm">The input formula.</param>
-    /// <param name="fns">The list of strings to avoid as names of the Skolem 
-    /// functions.</param>
+    /// <param name="fns">The list of strings to avoid as names of the Skolem functions.</param>
     /// <returns>
     /// The pair of the Skolemized formula together with the updated list of 
     /// strings to avoid as names of the Skolem functions.

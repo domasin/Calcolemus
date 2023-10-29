@@ -8,26 +8,57 @@ module Calcolemus.Tests.Herbrand
 open Xunit
 open FsUnit.Xunit
 
-open Calcolemus.Lib.Fpf
+open Calcolemus
 
-open Calcolemus.Formulas
-open Calcolemus.Fol
-open Calcolemus.Herbrand
-open Calcolemus.Pelletier
+open Lib.Fpf
 
-[<Fact>]
-let ``pholds (function Atom (R ("P", [Var "x"])) -> true) (parse "P(x)") returns true.``() = 
-    pholds (function Atom (R ("P", [Var "x"])) -> true | _ -> false) (parse "P(x)")
-    |> should equal true
+open Formulas
+open Fol
+open Herbrand
+open Pelletier
 
 [<Fact>]
-let ``pholds (function Atom (R ("P", [Var "x"])) -> true | Atom (R ("Q", [Var "x"])) -> true) (parse "P(x) /\ Q(x)") returns true.``() = 
-    parse @"P(x) /\ Q(x)"
+let ``pholds should return true if the quantifier-free formula is true in the given valuations.``() = 
+    !!"P(x) /\ Q(x)"
     |> pholds (function 
-                Atom (R ("P", [Var "x"])) -> true 
-                | Atom (R ("Q", [Var "x"])) -> true 
-                | _ -> false)
+        | x when x = !!"P(x)" -> true 
+        | x when x = !!"Q(x)" -> true 
+        | _ -> false
+    )
     |> should equal true
+
+[<Fact>]
+let ``pholds should return false if the quantifier-free formula is true in the given valuations.``() = 
+    !!"P(x) /\ Q(x)"
+    |> pholds (function 
+        | x when x = !!"P(x)" -> true 
+        | x when x = !!"Q(x)" -> false 
+        | _ -> false
+    )
+    |> should equal false
+
+[<Fact>]
+let ``pholds should fail if applied to a formula that contains quantifiers.``() = 
+    (fun () -> 
+        !!"forall x. P(x) /\ Q(x)"
+        |> pholds (function 
+            | x when x = !!"P(x)" -> true 
+            | x when x = !!"Q(x)" -> false 
+            | _ -> false
+        )
+        |> ignore
+    )
+    |> should (throwWithMessage "Not part of propositional logic.") typeof<System.Exception>
+
+[<Fact>]
+let ``herbfuns should return the pair of the lists of functions in a formula separated in nullary and non.``() = 
+    !!"P(x) /\ Q(x)"
+    |> pholds (function 
+        | x when x = !!"P(x)" -> true 
+        | x when x = !!"Q(x)" -> false 
+        | _ -> false
+    )
+    |> should equal false
 
 [<Fact>]
 let ``groundterms [!!!"0";!!!"1"] ["f",1;"g",1] 0 returns [!!!"0";!!!"1"].``() = 

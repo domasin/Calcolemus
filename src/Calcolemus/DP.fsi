@@ -25,7 +25,7 @@ module DP =
     /// <param name="xs">The input list of string lists.</param>
     /// <returns>The list of clauses.</returns>
     /// 
-    /// <example id="exclamation-exclamation-greater-1">
+    /// <example id="exclamation-greater-greater-1">
     /// <code lang="fsharp">
     /// !>> [["p"];["p";"~q"]]
     /// </code>

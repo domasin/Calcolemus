@@ -60,16 +60,24 @@ module Herbrand =
     let rec herbloop mfn tfn fl0 cntms funcs fvs n fl tried tuples =
         printfn "%i ground instances tried; %i items in list."
             (List.length tried) (List.length fl) 
-            // (fl |> List.map (fun xs -> xs |> List.map sprint_fol_formula)) 
-            // de-comment to add log of fl list and add %A to printfn
+            
+        let clausesToString = List.map (List.map sprint_fol_formula)
+        let flStr = clausesToString fl
+
+        let termListListToString = List.map (List.map sprint_term)
+        let triedStr = termListListToString tried
+        let tuplesStr = termListListToString tuples
+        // printfn "herbloop %i %A %A %A" n flStr triedStr tuplesStr
+
         match tuples with
-        // when tuples is empty, we simply generate the next level 
+        // if tuples is empty, generate the next level 
         // and step n up to n + 1
         | [] ->
             let newtups = groundtuples cntms funcs n (List.length fvs)
             herbloop mfn tfn fl0 cntms funcs fvs (n + 1) fl tried newtups
+        // otherwise,
         | tup :: tups ->
-            // we use the modification function to update fl with another instance
+            // use the modification function to update fl with another instance
             let fl' = mfn fl0 (subst (fpf fvs tup)) fl
             // If this is unsatisfiable
             if not (tfn fl') then 
@@ -84,10 +92,15 @@ module Herbrand =
     // A gilmore-like procedure                                               //
     // ---------------------------------------------------------------------- //
 
-    let gilmore_loop =
-        let mfn djs0 ifn djs =
-            List.filter (non trivial) (distrib (image (image ifn) djs0) djs)
-        herbloop mfn (fun djs -> djs <> [])
+    let gilmore_mfn djs0 ifn djs =
+        (distrib (image (image ifn) djs0) djs)
+        |> List.filter (non trivial)
+
+    let gilmore_tfn djs =
+        djs |> List.length > 0
+
+    let gilmore_loop fl0 cntms funcs fvs n fl tried tuples =
+        herbloop gilmore_mfn gilmore_tfn fl0 cntms funcs fvs n fl tried tuples 
 
     let gilmore fm =
         let sfm = skolemize (Not (generalize fm))

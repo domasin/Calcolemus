@@ -161,8 +161,8 @@ module Skolem =
         | Forall (x, p) -> 
             let p', fns' = skolem p fns 
             Forall (x, p'), fns'
-        | And (p, q) -> skolem2 And (p, q) fns
-        | Or (p, q) -> skolem2 Or (p, q) fns
+        | And (p, q) -> skolem2 (fun (p, q) -> And (p, q)) (p, q) fns
+        | Or (p, q) -> skolem2 (fun (p, q) -> Or (p, q)) (p, q) fns
         | _ -> fm, fns
     
     and skolem2 cons (p, q) fns =

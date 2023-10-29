@@ -23,9 +23,32 @@ open Pelletier
     | _ -> false
 )
 
-groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 0
-groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 1
-groundterms [!!!"0";!!!"1"] [("f",1);("g",2)] 2
+!>"p"
+|> pholds (function 
+    x when x = !>"p" -> true 
+    | _ -> false
+)
+
+!!"forall x. P(x)"
+|> pholds (function 
+    x when x = !!"P(x)" -> true 
+    | _ -> false
+)
+
+!!"forall x. P(x) /\ (Q(f(y)) ==> R(g(x,y),z))"
+|> herbfuns
+
+!!"Q(f(y)) ==> R(0)"
+|> herbfuns
+
+groundterms !!!>["0";"1"] [("f",1);("g",2)] 0
+groundterms !!!>["0";"1"] [("f",1);("g",2)] 1
+groundterms !!!>["0";"1"] [("f",1);("g",2)] 2
+
+groundtuples !!!>["0";"1"] [("f",1);("g",2)] 0 2
+groundtuples !!!>["0";"1"] [("f",1);("g",2)] 2 3
+|> List.item 300
+
 
 groundtuples [!!!"0"] [("f",1)] 1 1 // evaluates to [[``f(0)``]]
 groundtuples [!!!"0"] [("f",1)] 1 2 // evaluates to [[``0``; ``f(0)``]; [``f(0)``; ``0``]]
@@ -44,6 +67,127 @@ fm = fm'
 !!"exists x. forall y. P(x) ==> P(y)"
 |> gilmore
 
+!! "~(P(x) /\ ~P(x))"
+|> simpdnf
+
+!! @"~(~P(f(x)) /\ P(y))"
+|> dnf
+
+let askolemize fm =
+    fst (skolem (nnf (simplify fm)) (List.map fst (functions fm)))
+
+!!"~(forall x y. ~(~P(f(x)) /\ P(y)))"
+|> askolemize
+
+!! @"~(~P(x) /\ P(x))"
+|> Skolem.nnf
+
+p19
+|> gilmore
+
+p19
+|> generalize
+|> Not
+|> skolemize
+|> simpdnf
+// [[`P(x)`; `Q(f_z(x))`; `~Q(x)`]; [`P(x)`; `~P(f_y(x))`; `~Q(x)`]]
+
+!! @"(~P(f(x)) /\ P(y))"
+|> gilmore
+|> skolemize
+|> fun x -> x.ToString()
+
+!! @"P(x) \/ ~P(x)"
+|> gilmore
+
+
+gilmore_mfn !!>>[["P(f(x))"]; ["~P(y)"]] 
+    (subst (fpf ["x"; "y"] !!!>["c";"f(c)"])) !!>>[[]] 
+
+let rec literals fm =
+    match fm with
+    | True -> [True]
+    | False -> [False]
+    | Atom a -> [fm]
+    | Not p -> [fm]
+    | And (p, q)
+    | Or (p, q)
+    | Imp (p, q)
+    | Iff (p, q) ->
+        (literals p)@(literals q)
+    | Forall (x, p)
+    | Exists (x, p) -> literals p
+
+let rec toClauses = function
+    | (Or (f1,f2)) -> (literals f1)::(toClauses f2)
+    | fm -> [literals fm]
+
+!! @"(P(f(x)) /\ Q(x)) \/ ~P(y)"
+|> toClauses
+|> List.fold (fun acc conjs -> 
+    let conj = conjs |> List.fold (fun acc l -> And (acc,l)) True
+    Or (acc, conj)
+) False
+|> simplify
+
+let clausesToDNF xs = 
+    xs 
+    |> List.fold (fun acc conjs -> 
+        let conj = conjs |> List.fold (fun acc l -> And (acc,l)) True
+        Or (acc, conj)
+    ) False
+    |> simplify
+
+gilmore_mfn !!>>[["P(f(x))"]; ["~P(y)"]] 
+    (subst (fpf ["x"; "y"] !!!>["c";"f(c)"])) 
+    !!>>[["P(f(c))"]; ["~P(c)"]] 
+|> clausesToDNF
+
+
+gilmore_mfn !!>>[["P(x)"]; ["~P(f(x))"]] 
+    (subst (fpf ["x"] [!!!"f(c)"])) [[]]
+
+// test function.
+// it simply tests that the set of clauses is not empty, because the contradiction checking is done by the modification function.
+let gilmore_tfn djs =
+    djs <> []
+
+!!>>[["P(f(c))"]; ["P(f(c))"; "~P(c)"]; ["P(f(c))"; "~P(f(c))"];
+   ["~P(c)"; "~P(f(c))"]]
+|> gilmore_tfn
+
+!!>>[]
+|> gilmore_tfn
+
+p19
+|> generalize
+|> Not
+|> skolemize
+
+gilmore p19
+
+
+
+let cls = !!>>[["P(x)"; "Q(f_z(x))"; "~Q(x)"]; ["P(x)"; "~P(f_y(x))"; "~Q(x)"]]
+let consts, funcs = herbfuns !! @"(~P(f_y(x)) \/ Q(f_z(x))) /\ P(x) /\ ~Q(x)"
+
+gilmore_mfn cls 
+    (subst (fpf ["x"] [!!!"f_z(c)"])) 
+[
+ ["`P(c)`"; "`P(f_y(c))`"; "`Q(f_z(c))`"; "`Q(f_z(f_y(c)))`"; "`~Q(c)`";"`~Q(f_y(c))`"];
+ ["`P(c)`"; "`P(f_y(c))`"; "`Q(f_z(c))`"; "`~P(f_y(f_y(c)))`"; "`~Q(c)`";"`~Q(f_y(c))`"]
+] 
+
+gilmore_loop cls !!!>["c"] [("f_z",1);("f_y",1)] ["x"] 0 [] [] []
+
+gilmore_loop !!>>[["P(x)"]; ["~P(x)"]] !!!>["c"] [] ["x"] 0 [] [] []
+
+gilmore_loop !!>>[["P(f(x))"]; ["~P(y)"]] !!!>["0";"1"] [("f",1)] ["x";"y"] 1 [] [] []
+
+!! "~(P(x) /\ ~P(x))"
+|> dnf
+
+
 let sfm = skolemize(Not !!"exists x. forall y. P(x) ==> P(y)")
 let fvs = fv sfm
 let consts, funcs = herbfuns sfm
@@ -53,7 +197,8 @@ let cntms = image (fun (c, _) -> Fn (c, [])) consts
 // List.length (gilmore_loop (simpdnf sfm) cntms funcs fvs 0 [[]] [] [])
 
 let mfn djs0 ifn djs =
-        List.filter (non trivial) (distrib (image (image ifn) djs0) djs)
+    (distrib (image (image ifn) djs0) djs)
+    |> List.filter (non trivial) 
 
 // let rec herbloop mfn tfn fl0 cntms funcs fvs n fl tried tuples =
 // herbloop mfn (fun djs -> djs <> []) (simpdnf sfm) cntms funcs fvs 0 [[]] [] []

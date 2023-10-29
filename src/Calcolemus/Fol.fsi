@@ -206,6 +206,28 @@ module Fol =
     val (!!!) : s: string -> term
 
     /// <summary>
+    /// Parses list of strings into list of terms
+    /// </summary>
+    /// 
+    /// <param name="tms">The input string.</param>
+    /// 
+    /// <returns>
+    /// The list of parsed terms.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when one of the input string is not a valid term.</exception>
+    /// 
+    /// <example id="exclamation-exclamation-exclamation-greater-1">
+    /// <code lang="fsharp">
+    /// !!!>["0","1"]
+    /// </code>
+    /// Evaluates to <c>[``0``,``1``]</c>.
+    /// </example>
+    /// 
+    /// <category index="1">Parsing terms</category>
+    val (!!!>) : tms: string list -> term list
+
+    /// <summary>
     /// A special recognizer for 'infix' atomic formulas like s &lt; t.
     /// </summary>
     /// 
@@ -282,6 +304,29 @@ module Fol =
     /// 
     /// <category index="2">Parsing formulas</category>
     val (!!) : s: string -> formula<fol>
+
+    /// <summary>
+    /// Parses a list of string lists into a list of formulas list.
+    /// Useful when dealing with clauses.
+    /// </summary>
+    /// 
+    /// <param name="xs">The input list of string lists.</param>
+    /// <returns>The list of clauses.</returns>
+    /// 
+    /// <example id="exclamation-exclamation-greater-greater-1">
+    /// <code lang="fsharp">
+    /// !!>> [["P(x)"];["P(x)";"~Q(x)"]]
+    /// </code>
+    /// Evaluates to <c>[[`P(x)`]; [`P(x)`; `~Q(x)`]]</c>.
+    /// </example>
+    /// 
+    /// <note>
+    /// This operator is not part of the original code and it was added here 
+    /// for convenience.
+    /// </note>
+    /// 
+    /// <category index="1">Parsing clauses</category>
+    val (!!>>): xs: string list list -> formula<fol> list list
 
     /// <summary>
     /// Prints terms.
