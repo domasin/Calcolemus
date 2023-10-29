@@ -103,46 +103,51 @@
   <ul>
     <li>
       <a href="#section0">
-        Parsing terms
+        Parsing clauses
       </a>
     </li>
     <li>
       <a href="#section1">
-        Parsing formulas
+        Parsing terms
       </a>
     </li>
     <li>
       <a href="#section2">
-        Printing terms
+        Parsing formulas
       </a>
     </li>
     <li>
       <a href="#section3">
-        Printing formulas
+        Printing terms
       </a>
     </li>
     <li>
       <a href="#section4">
-        Semantics
+        Printing formulas
       </a>
     </li>
     <li>
       <a href="#section5">
-        Sample interpretations
+        Semantics
       </a>
     </li>
     <li>
       <a href="#section6">
-        Free variables
+        Sample interpretations
       </a>
     </li>
     <li>
       <a href="#section7">
-        Substitution
+        Free variables
       </a>
     </li>
     <li>
       <a href="#section8">
+        Substitution
+      </a>
+    </li>
+    <li>
+      <a href="#section9">
         Other syntax operations
       </a>
     </li>
@@ -227,7 +232,7 @@
     </table>
   </div>
   <h2 id="section0">
-    Parsing terms
+    Parsing clauses
   </h2>
   <div>
     <h3>
@@ -250,6 +255,152 @@
             <div>
               <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
                 <p>
+                  <a id="(!!>>)">
+                    <a href="#(!!>>)">
+                      <code><span>!!&gt;&gt;xs</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="216">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>!!&gt;&gt;xs</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        xs
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input list of string lists.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                  </span>
+                  The list of clauses.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Fol.op_BangBangGreaterGreater`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Fol.op_BangBangGreaterGreater\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses a list of string lists into a list of formulas list.
+ Useful when dealing with clauses.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    xs
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of string lists.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The list of clauses.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ This operator is not part of the original code and it was added here 
+ for convenience.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="exclamation-exclamation-greater-greater-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span> <span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;~Q(x)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`P(x)`]; [`P(x)`; `~Q(x)`]]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Parsing terms
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
+                <p>
                   <a id="(!!!)">
                     <a href="#(!!!)">
                       <code><span>!!!s</span></code>
@@ -257,7 +408,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="216">
+              <div class="fsdocs-tip" id="217">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>!!!s</span></code>
@@ -301,7 +452,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L70-70" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L71-71" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -391,7 +542,129 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
+              <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+                <p>
+                  <a id="(!!!>)">
+                    <a href="#(!!!>)">
+                      <code><span>!!!&gt;tms</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="218">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>!!!&gt;tms</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        tms
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The input string.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                  </span>
+                  
+ The list of parsed terms.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Fol.op_BangBangBangGreater`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Fol.op_BangBangBangGreater\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L73-73" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses list of strings into list of terms
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tms
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input string.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of parsed terms.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown when one of the input string is not a valid term.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="exclamation-exclamation-exclamation-greater-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!!&gt;</span><span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">,</span><span class="s">&quot;1&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[``0``,``1``]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
                 <p>
                   <a id="parse_atomic_term">
                     <a href="#parse_atomic_term">
@@ -400,7 +673,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="217">
+              <div class="fsdocs-tip" id="219">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>parse_atomic_term&#32;<span>vs&#32;inp</span></span></code>
@@ -447,7 +720,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L43-43" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -491,7 +764,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+              <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
                 <p>
                   <a id="parse_term">
                     <a href="#parse_term">
@@ -500,7 +773,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="218">
+              <div class="fsdocs-tip" id="220">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>parse_term&#32;<span>vs&#32;inp</span></span></code>
@@ -547,7 +820,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -600,7 +873,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+              <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
                 <p>
                   <a id="parset">
                     <a href="#parset">
@@ -609,7 +882,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="219">
+              <div class="fsdocs-tip" id="221">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>parset&#32;<span>s</span></span></code>
@@ -653,7 +926,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -746,7 +1019,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section1">
+  <h2 id="section2">
     Parsing formulas
   </h2>
   <div>
@@ -768,7 +1041,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
+              <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
                 <p>
                   <a id="(!!)">
                     <a href="#(!!)">
@@ -777,7 +1050,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="220">
+              <div class="fsdocs-tip" id="222">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>!!s</span></code>
@@ -821,7 +1094,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L100-100" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -905,7 +1178,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+              <code onmouseout="hideTip(event, '223', 223)" onmouseover="showTip(event, '223', 223)">
                 <p>
                   <a id="parse">
                     <a href="#parse">
@@ -914,7 +1187,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="221">
+              <div class="fsdocs-tip" id="223">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>parse&#32;<span>s</span></span></code>
@@ -958,7 +1231,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L96-96" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L99-99" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1037,7 +1310,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+              <code onmouseout="hideTip(event, '224', 224)" onmouseover="showTip(event, '224', 224)">
                 <p>
                   <a id="parse_atom">
                     <a href="#parse_atom">
@@ -1046,7 +1319,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="222">
+              <div class="fsdocs-tip" id="224">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>parse_atom&#32;<span>vs&#32;inp</span></span></code>
@@ -1093,7 +1366,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L83-83" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L86-86" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1137,7 +1410,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '223', 223)" onmouseover="showTip(event, '223', 223)">
+              <code onmouseout="hideTip(event, '225', 225)" onmouseover="showTip(event, '225', 225)">
                 <p>
                   <a id="parse_infix_atom">
                     <a href="#parse_infix_atom">
@@ -1146,7 +1419,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="223">
+              <div class="fsdocs-tip" id="225">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>parse_infix_atom&#32;<span>vs&#32;inp</span></span></code>
@@ -1193,7 +1466,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L76-76" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L79-79" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1245,7 +1518,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section2">
+  <h2 id="section3">
     Printing terms
   </h2>
   <div>
@@ -1267,7 +1540,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '224', 224)" onmouseover="showTip(event, '224', 224)">
+              <code onmouseout="hideTip(event, '226', 226)" onmouseover="showTip(event, '226', 226)">
                 <p>
                   <a id="fprint_fargs">
                     <a href="#fprint_fargs">
@@ -1276,7 +1549,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="224">
+              <div class="fsdocs-tip" id="226">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fprint_fargs&#32;<span>tw&#32;f&#32;args</span></span></code>
@@ -1326,7 +1599,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L124-124" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L129-129" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1369,7 +1642,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '225', 225)" onmouseover="showTip(event, '225', 225)">
+              <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
                 <p>
                   <a id="fprint_infix_term">
                     <a href="#fprint_infix_term">
@@ -1378,7 +1651,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="225">
+              <div class="fsdocs-tip" id="227">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fprint_infix_term&#32;<span>tw&#32;isleft&#32;oldprec&#32;newprec&#32;sym&#32;p&#32;q</span></span></code>
@@ -1460,7 +1733,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L135-135" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L140-140" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1535,7 +1808,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '226', 226)" onmouseover="showTip(event, '226', 226)">
+              <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
                 <p>
                   <a id="fprint_term">
                     <a href="#fprint_term">
@@ -1544,7 +1817,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="226">
+              <div class="fsdocs-tip" id="228">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fprint_term&#32;<span>tw&#32;prec&#32;fm</span></span></code>
@@ -1594,7 +1867,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L106-106" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L111-111" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1637,7 +1910,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
+              <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
                 <p>
                   <a id="fprintert">
                     <a href="#fprintert">
@@ -1646,7 +1919,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="227">
+              <div class="fsdocs-tip" id="229">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fprintert&#32;<span>tw&#32;tm</span></span></code>
@@ -1688,7 +1961,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L144-144" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1723,7 +1996,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
+              <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
                 <p>
                   <a id="print_term">
                     <a href="#print_term">
@@ -1732,7 +2005,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="228">
+              <div class="fsdocs-tip" id="230">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>print_term&#32;<span>t</span></span></code>
@@ -1771,7 +2044,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L154-154" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1818,7 +2091,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
+              <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
                 <p>
                   <a id="sprint_term">
                     <a href="#sprint_term">
@@ -1827,7 +2100,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="229">
+              <div class="fsdocs-tip" id="231">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>sprint_term&#32;<span>t</span></span></code>
@@ -1874,7 +2147,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L151-151" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L156-156" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1963,7 +2236,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section3">
+  <h2 id="section4">
     Printing formulas
   </h2>
   <div>
@@ -1985,7 +2258,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
+              <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
                 <p>
                   <a id="fprint_atom">
                     <a href="#fprint_atom">
@@ -1994,7 +2267,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="230">
+              <div class="fsdocs-tip" id="232">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fprint_atom&#32;<span>tw&#32;prec&#32;arg3</span></span></code>
@@ -2044,7 +2317,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L157-157" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L162-162" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2087,7 +2360,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
+              <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
                 <p>
                   <a id="fprint_fol_formula">
                     <a href="#fprint_fol_formula">
@@ -2096,7 +2369,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="231">
+              <div class="fsdocs-tip" id="233">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fprint_fol_formula&#32;<span>tw</span></span></code>
@@ -2135,7 +2408,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L169-169" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L174-174" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2171,7 +2444,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
+              <code onmouseout="hideTip(event, '234', 234)" onmouseover="showTip(event, '234', 234)">
                 <p>
                   <a id="print_atom">
                     <a href="#print_atom">
@@ -2180,7 +2453,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="232">
+              <div class="fsdocs-tip" id="234">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>print_atom&#32;<span>prec&#32;arg</span></span></code>
@@ -2227,7 +2500,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L165-165" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L170-170" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2262,7 +2535,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
+              <code onmouseout="hideTip(event, '235', 235)" onmouseover="showTip(event, '235', 235)">
                 <p>
                   <a id="print_fol_formula">
                     <a href="#print_fol_formula">
@@ -2271,7 +2544,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="233">
+              <div class="fsdocs-tip" id="235">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>print_fol_formula&#32;<span>f</span></span></code>
@@ -2310,7 +2583,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L172-172" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L177-177" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2363,7 +2636,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '234', 234)" onmouseover="showTip(event, '234', 234)">
+              <code onmouseout="hideTip(event, '236', 236)" onmouseover="showTip(event, '236', 236)">
                 <p>
                   <a id="sprint_atom">
                     <a href="#sprint_atom">
@@ -2372,7 +2645,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="234">
+              <div class="fsdocs-tip" id="236">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>sprint_atom&#32;<span>prec&#32;arg</span></span></code>
@@ -2424,7 +2697,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L167-167" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L172-172" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2468,7 +2741,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '235', 235)" onmouseover="showTip(event, '235', 235)">
+              <code onmouseout="hideTip(event, '237', 237)" onmouseover="showTip(event, '237', 237)">
                 <p>
                   <a id="sprint_fol_formula">
                     <a href="#sprint_fol_formula">
@@ -2477,7 +2750,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="235">
+              <div class="fsdocs-tip" id="237">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>sprint_fol_formula&#32;<span>f</span></span></code>
@@ -2524,7 +2797,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L174-174" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L179-179" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2619,7 +2892,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section4">
+  <h2 id="section5">
     Semantics
   </h2>
   <div>
@@ -2641,7 +2914,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '236', 236)" onmouseover="showTip(event, '236', 236)">
+              <code onmouseout="hideTip(event, '238', 238)" onmouseover="showTip(event, '238', 238)">
                 <p>
                   <a id="holds">
                     <a href="#holds">
@@ -2650,7 +2923,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="236">
+              <div class="fsdocs-tip" id="238">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>holds&#32;<span><span>(<span>domain,&#32;func,&#32;pred</span>)</span>&#32;v&#32;fm</span></span></code>
@@ -2735,7 +3008,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L188-188" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L193-193" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2846,7 +3119,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '237', 237)" onmouseover="showTip(event, '237', 237)">
+              <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
                 <p>
                   <a id="termval">
                     <a href="#termval">
@@ -2855,7 +3128,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="237">
+              <div class="fsdocs-tip" id="239">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>termval&#32;<span><span>(<span>domain,&#32;func,&#32;pred</span>)</span>&#32;v&#32;tm</span></span></code>
@@ -2940,7 +3213,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L180-180" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L185-185" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3055,7 +3328,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section5">
+  <h2 id="section6">
     Sample interpretations
   </h2>
   <div>
@@ -3077,7 +3350,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '238', 238)" onmouseover="showTip(event, '238', 238)">
+              <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
                 <p>
                   <a id="bool_interp">
                     <a href="#bool_interp">
@@ -3086,7 +3359,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="238">
+              <div class="fsdocs-tip" id="240">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>bool_interp&#32;<span></span></span></code>
@@ -3120,7 +3393,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L214-214" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L219-219" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3156,7 +3429,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
+              <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
                 <p>
                   <a id="mod_interp">
                     <a href="#mod_interp">
@@ -3165,7 +3438,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="239">
+              <div class="fsdocs-tip" id="241">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>mod_interp&#32;<span>n</span></span></code>
@@ -3212,7 +3485,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L230-230" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L235-235" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3283,7 +3556,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section6">
+  <h2 id="section7">
     Free variables
   </h2>
   <div>
@@ -3305,7 +3578,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
+              <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
                 <p>
                   <a id="fv">
                     <a href="#fv">
@@ -3314,7 +3587,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="240">
+              <div class="fsdocs-tip" id="242">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fv&#32;<span>fm</span></span></code>
@@ -3357,7 +3630,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L273-273" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L278-278" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3413,7 +3686,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
+              <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
                 <p>
                   <a id="fvt">
                     <a href="#fvt">
@@ -3422,7 +3695,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="241">
+              <div class="fsdocs-tip" id="243">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fvt&#32;<span>tm</span></span></code>
@@ -3465,7 +3738,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L250-250" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L255-255" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3521,7 +3794,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+              <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
                 <p>
                   <a id="var">
                     <a href="#var">
@@ -3530,7 +3803,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="242">
+              <div class="fsdocs-tip" id="244">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>var&#32;<span>fm</span></span></code>
@@ -3573,7 +3846,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L256-256" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L261-261" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3637,7 +3910,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section7">
+  <h2 id="section8">
     Substitution
   </h2>
   <div>
@@ -3659,7 +3932,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+              <code onmouseout="hideTip(event, '245', 245)" onmouseover="showTip(event, '245', 245)">
                 <p>
                   <a id="subst">
                     <a href="#subst">
@@ -3668,7 +3941,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="243">
+              <div class="fsdocs-tip" id="245">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>subst&#32;<span>subfn&#32;fm</span></span></code>
@@ -3723,7 +3996,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L317-317" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L322-322" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3810,7 +4083,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
+              <code onmouseout="hideTip(event, '246', 246)" onmouseover="showTip(event, '246', 246)">
                 <p>
                   <a id="substq">
                     <a href="#substq">
@@ -3819,7 +4092,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="244">
+              <div class="fsdocs-tip" id="246">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>substq&#32;<span>subfn&#32;quant&#32;x&#32;p</span></span></code>
@@ -3894,7 +4167,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L337-337" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L342-342" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -3998,7 +4271,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '245', 245)" onmouseover="showTip(event, '245', 245)">
+              <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
                 <p>
                   <a id="tsubst">
                     <a href="#tsubst">
@@ -4007,7 +4280,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="245">
+              <div class="fsdocs-tip" id="247">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>tsubst&#32;<span>subfn&#32;tm</span></span></code>
@@ -4062,7 +4335,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L301-301" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L306-306" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -4139,7 +4412,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '246', 246)" onmouseover="showTip(event, '246', 246)">
+              <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
                 <p>
                   <a id="variant">
                     <a href="#variant">
@@ -4148,7 +4421,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="246">
+              <div class="fsdocs-tip" id="248">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>variant&#32;<span>x&#32;vars</span></span></code>
@@ -4204,7 +4477,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L312-312" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L317-317" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -4290,7 +4563,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section8">
+  <h2 id="section9">
     Other syntax operations
   </h2>
   <div>
@@ -4312,7 +4585,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
+              <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
                 <p>
                   <a id="generalize">
                     <a href="#generalize">
@@ -4321,7 +4594,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="247">
+              <div class="fsdocs-tip" id="249">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>generalize&#32;<span>fm</span></span></code>
@@ -4365,7 +4638,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L294-294" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L299-299" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -4428,7 +4701,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
+              <code onmouseout="hideTip(event, '250', 250)" onmouseover="showTip(event, '250', 250)">
                 <p>
                   <a id="is_const_name">
                     <a href="#is_const_name">
@@ -4437,7 +4710,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="248">
+              <div class="fsdocs-tip" id="250">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>is_const_name&#32;<span>s</span></span></code>
@@ -4481,7 +4754,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -4544,7 +4817,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
+              <code onmouseout="hideTip(event, '251', 251)" onmouseover="showTip(event, '251', 251)">
                 <p>
                   <a id="onformula">
                     <a href="#onformula">
@@ -4553,7 +4826,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="249">
+              <div class="fsdocs-tip" id="251">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>onformula&#32;<span>f&#32;fm</span></span></code>
@@ -4607,7 +4880,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Fol.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
