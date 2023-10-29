@@ -168,7 +168,7 @@ gilmore p19
 
 
 
-let cls = !!>>[["P(x)"; "Q(f_z(x))"; "~Q(x)"]; ["P(x)"; "~P(f_y(x))"; "~Q(x)"]]
+
 let consts, funcs = herbfuns !! @"(~P(f_y(x)) \/ Q(f_z(x))) /\ P(x) /\ ~Q(x)"
 
 gilmore_mfn cls 
@@ -178,7 +178,36 @@ gilmore_mfn cls
  ["`P(c)`"; "`P(f_y(c))`"; "`Q(f_z(c))`"; "`~P(f_y(f_y(c)))`"; "`~Q(c)`";"`~Q(f_y(c))`"]
 ] 
 
-gilmore_loop cls !!!>["c"] [("f_z",1);("f_y",1)] ["x"] 0 [] [] []
+[
+"P(c)"; 
+"P(f_y(c))"; 
+"P(f_z(c))"; 
+"Q(f_z(c))"; 
+"Q(f_z(f_y(c)))";
+"Q(f_z(f_z(c)))"; 
+"~Q(c)"; 
+"~Q(f_y(c))"; 
+"~Q(f_z(c))"]
+|> List.map (!!)
+// |> trivial
+|> List.partition positive
+|> fun (pos,neg) -> intersect pos (image negate neg)
+
+gilmore_mfn !!>>[["P(x)"; "Q(f_z(x))"; "~Q(x)"]; ["P(x)"; "~P(f_y(x))"; "~Q(x)"]] (subst (fpf ["x"] [!!!"f_z(c)"])) !!>>[["P(c)"; "P(f_y(c))"; "Q(f_z(c))"; "Q(f_z(f_y(c)))"; "~Q(c)";
+  "~Q(f_y(c))"];
+ ["P(c)"; "P(f_y(c))"; "Q(f_z(c))"; "~P(f_y(f_y(c)))"; "~Q(c)";
+  "~Q(f_y(c))"]]
+
+let cls = !!>>[["P(x)"; "Q(f_z(x))"; "~Q(x)"]; ["P(x)"; "~P(f_y(x))"; "~Q(x)"]]
+
+gilmore_loop cls !!!>["c"] [("f_z",1);("f_y",1)] ["x"] 1
+    !!>>[
+        ["P(c)"; "P(f_y(c))"; "Q(f_z(c))"; 
+        "Q(f_z(f_y(c)))"; "~Q(c)";"~Q(f_y(c))"];
+        ["P(c)"; "P(f_y(c))"; "Q(f_z(c))"; 
+        "~P(f_y(f_y(c)))"; "~Q(c)";"~Q(f_y(c))"]
+    ]
+    [[!!!"f_y(c)"]; [!!!"c"]] [[!!!"f_z(c)"]]
 
 gilmore_loop !!>>[["P(x)"]; ["~P(x)"]] !!!>["c"] [] ["x"] 0 [] [] []
 

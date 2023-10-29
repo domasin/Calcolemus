@@ -310,11 +310,10 @@ module Herbrand =
     /// 
     /// <category index="4">A gilmore-like procedure</category>
     val gilmore_mfn:
-      djs0: list<list<'a>> ->
-      ifn : ('a -> formula<'b>) ->
-      djs : list<list<formula<'b>>>
-          -> list<list<formula<'b>>>
-          when 'a: comparison and 'b: comparison
+      djs0: list<list<formula<fol>>> ->
+      ifn : (formula<fol> -> formula<fol>) ->
+      djs : list<list<formula<fol>>>
+          -> list<list<formula<fol>>>
 
     /// <summary>
     /// Gilmore test function.

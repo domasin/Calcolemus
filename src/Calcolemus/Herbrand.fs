@@ -57,14 +57,15 @@ module Herbrand =
                     (groundtuples cntms funcs (n - k) (m - 1)) @ l)
                     [0..n] []
 
+    let clausesToString = List.map (List.map sprint_fol_formula)
+
+    let termListListToString = List.map (List.map sprint_term)
+
     let rec herbloop mfn tfn fl0 cntms funcs fvs n fl tried tuples =
         printfn "%i ground instances tried; %i items in list."
             (List.length tried) (List.length fl) 
-            
-        let clausesToString = List.map (List.map sprint_fol_formula)
+        
         let flStr = clausesToString fl
-
-        let termListListToString = List.map (List.map sprint_term)
         let triedStr = termListListToString tried
         let tuplesStr = termListListToString tuples
         // printfn "herbloop %i %A %A %A" n flStr triedStr tuplesStr
@@ -78,6 +79,7 @@ module Herbrand =
         // otherwise,
         | tup :: tups ->
             // use the modification function to update fl with another instance
+            // printfn "instance: %A %A" fvs (List.map sprint_term tup)
             let fl' = mfn fl0 (subst (fpf fvs tup)) fl
             // If this is unsatisfiable
             if not (tfn fl') then 
@@ -93,7 +95,20 @@ module Herbrand =
     // ---------------------------------------------------------------------- //
 
     let gilmore_mfn djs0 ifn djs =
-        (distrib (image (image ifn) djs0) djs)
+
+        let djs0Str = clausesToString djs0
+        let djsStr = clausesToString djs
+        // printfn "gilmore_mfn %A ifn %A" djs0Str djsStr
+
+        let updatedDjs = (distrib (image (image ifn) djs0) djs)
+        let contradictions = 
+            updatedDjs 
+            |> List.filter trivial
+            |> clausesToString
+
+        // printfn "contradictions: %A" contradictions
+
+        updatedDjs
         |> List.filter (non trivial)
 
     let gilmore_tfn djs =
