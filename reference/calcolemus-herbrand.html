@@ -130,11 +130,6 @@
         The Davis-Putnam procedure refined
       </a>
     </li>
-    <li>
-      <a href="#section6">
-        Other module members
-      </a>
-    </li>
   </ul>
   <h2 id="section0">
     Propositional valuation
@@ -158,7 +153,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '335', 335)" onmouseover="showTip(event, '335', 335)">
+              <code onmouseout="hideTip(event, '341', 341)" onmouseover="showTip(event, '341', 341)">
                 <p>
                   <a id="pholds">
                     <a href="#pholds">
@@ -167,7 +162,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="335">
+              <div class="fsdocs-tip" id="341">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pholds&#32;<span>d&#32;fm</span></span></code>
@@ -368,7 +363,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '336', 336)" onmouseover="showTip(event, '336', 336)">
+              <code onmouseout="hideTip(event, '342', 342)" onmouseover="showTip(event, '342', 342)">
                 <p>
                   <a id="groundterms">
                     <a href="#groundterms">
@@ -377,7 +372,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="336">
+              <div class="fsdocs-tip" id="342">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>groundterms&#32;<span>cntms&#32;funcs&#32;n</span></span></code>
@@ -575,7 +570,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '337', 337)" onmouseover="showTip(event, '337', 337)">
+              <code onmouseout="hideTip(event, '343', 343)" onmouseover="showTip(event, '343', 343)">
                 <p>
                   <a id="groundtuples">
                     <a href="#groundtuples">
@@ -584,7 +579,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="337">
+              <div class="fsdocs-tip" id="343">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>groundtuples&#32;<span>cntms&#32;funcs&#32;n&#32;m</span></span></code>
@@ -783,7 +778,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '338', 338)" onmouseover="showTip(event, '338', 338)">
+              <code onmouseout="hideTip(event, '344', 344)" onmouseover="showTip(event, '344', 344)">
                 <p>
                   <a id="herbfuns">
                     <a href="#herbfuns">
@@ -792,7 +787,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="338">
+              <div class="fsdocs-tip" id="344">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>herbfuns&#32;<span>fm</span></span></code>
@@ -927,7 +922,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '339', 339)" onmouseover="showTip(event, '339', 339)">
+              <code onmouseout="hideTip(event, '345', 345)" onmouseover="showTip(event, '345', 345)">
                 <p>
                   <a id="herbloop">
                     <a href="#herbloop">
@@ -936,7 +931,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="339">
+              <div class="fsdocs-tip" id="345">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>herbloop&#32;<span>mfn&#32;tfn&#32;fl0&#32;cntms&#32;funcs&#32;fvs&#32;n&#32;fl&#32;tried&#32;tuples</span></span></code>
@@ -971,7 +966,7 @@
                       :
                       <code>'a</code>
                        - 
-                      The initial formula in some transformed list representation.
+                      The input set of clauses: i.e. a formula in some transformed list representation.
                     </span>
                     <br/>
                     <span>
@@ -981,7 +976,7 @@
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
                        - 
-                      The constant terms to generate the ground terms generation.
+                      The constant terms to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -991,7 +986,7 @@
                       :
                       <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
                        - 
-                      The function symbols (name, arity) to generate the ground terms generation.
+                      The function symbols (name, arity) to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -1001,7 +996,7 @@
                       :
                       <code><span>string&#32;list</span></code>
                        - 
-                      The free variables of the formula.
+                      The free variables to instantiate to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -1077,16 +1072,19 @@
                   </a>
                   <p class="fsdocs-summary">
                     
- A generic function to be used with different 'herbrand procedures'.
+ Tests the unsatisfiability of a set of clauses.
  
                   </p>
                 </div>
               </summary>
               <p class="fsdocs-remarks">
                 
+ This is a generic function to be used with different 'herbrand 
+ procedures'.
+ <p></p>
  It tests larger and larger conjunctions of ground instances for 
- unsatisfiability, iterating modifier <code>mfn</code> over ground terms 
- till <code>tfn</code> fails. 
+ unsatisfiability, iterating the given modifier function <code>mfn</code> over 
+ ground terms till the given test function <code>tfn</code> fails. 
  
               </p>
               <dl class="fsdocs-params">
@@ -1123,7 +1121,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The initial formula in some transformed list representation.
+                    The input set of clauses: i.e. a formula in some transformed list representation.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1135,7 +1133,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The constant terms to generate the ground terms generation.
+                    The constant terms to generate the ground terms.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1147,7 +1145,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The function symbols (name, arity) to generate the ground terms generation.
+                    The function symbols (name, arity) to generate the ground terms.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1159,7 +1157,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The free variables of the formula.
+                    The free variables to instantiate to generate the ground terms.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1263,7 +1261,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '340', 340)" onmouseover="showTip(event, '340', 340)">
+              <code onmouseout="hideTip(event, '346', 346)" onmouseover="showTip(event, '346', 346)">
                 <p>
                   <a id="gilmore">
                     <a href="#gilmore">
@@ -1272,7 +1270,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="340">
+              <div class="fsdocs-tip" id="346">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>gilmore&#32;<span>fm</span></span></code>
@@ -1286,6 +1284,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -1294,6 +1294,12 @@
                     Returns: 
                     <code>int</code>
                   </span>
+                  
+ The number of ground tuples generated and prints to the <code>stdout</code> 
+ how many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops indefinitely 
+ till the memory is full.
+ 
                   <br/>
                 </div>
               </div>
@@ -1311,27 +1317,17 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L124-124" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests <code>fm</code> validity with a gilmore-like procedure.
+ Tests the validity of a formula with a Gilmore-like procedure.
  
                   </p>
                 </div>
               </summary>
-              <p class="fsdocs-remarks">
-                
- The initial formula is generalized, negated and Skolemized, then the 
- specific herbrand loop for the gilmore procedure is called to test for 
- the unsatisfiability of the transformed formula.
- <p></p>
- If the test terminates, it reports how many ground instances where 
- tried.
- 
-              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -1340,7 +1336,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1349,15 +1349,51 @@
                   </span>
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The number of ground tuples generated and prints to the <code>stdout</code> 
+ how many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops indefinitely 
+ till the memory is full.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ The procedure loops infinitely if the initial formula is not valid and 
+ even if it is, it is not guaranteed to end.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="gilmore-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">gilmore</span> <span class="o">!!</span> <span class="s">&quot;exists x. forall y. P(x) ==&gt; P(y)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>2</code> and print to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">list</span><span class="pn">.</span>
+ <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">list</span><span class="pn">.</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;</div>
+
+
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '341', 341)" onmouseover="showTip(event, '341', 341)">
+              <code onmouseout="hideTip(event, '347', 347)" onmouseover="showTip(event, '347', 347)">
                 <p>
                   <a id="gilmore_loop">
                     <a href="#gilmore_loop">
@@ -1366,7 +1402,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="341">
+              <div class="fsdocs-tip" id="347">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>gilmore_loop&#32;<span>fl0&#32;cntms&#32;funcs&#32;fvs&#32;n&#32;fl&#32;tried&#32;tuples</span></span></code>
@@ -1381,7 +1417,7 @@
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                        - 
-                      The initial formula in DNF 'clausal' form.
+                      The input set of clauses.
                     </span>
                     <br/>
                     <span>
@@ -1401,7 +1437,7 @@
                       :
                       <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
                        - 
-                      The function symbols (name, arity) to generate the ground terms generation.
+                      The function symbols (name, arity) to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -1411,7 +1447,7 @@
                       :
                       <code><span>string&#32;list</span></code>
                        - 
-                      The free variables of the formula.
+                      The free variables to instantiate to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -1461,7 +1497,10 @@
                     <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                   </span>
                   
- The list of ground terms tried.
+ The list of ground tuples generated and prints to the <code>stdout</code> how 
+ many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops generating and 
+ testing larger and larger ground instances till the memory is full.
  
                   <br/>
                 </div>
@@ -1480,12 +1519,13 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L117-117" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L121-121" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> specific for Gilmore 
+                    
+ Tests the unsatisfiability of a set of clauses with a Gilmore-like 
  procedure.
  
                   </p>
@@ -1493,12 +1533,15 @@
               </summary>
               <p class="fsdocs-remarks">
                 
- In the specific case of the gilmore procedure, the generic herbrand 
- loop <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> is called with the 
- initial formula <code>fl0</code> and the ground instances so far <code>fl</code> 
- maintained in a DNF list representation and the modification 
- function applies the instantiation to the starting formula and combines 
- the DNFs by distribution.
+ The input set of clauses <code>fl0</code> is intended to represent a DNF 
+ formula and <code>cntms</code>, <code>funcs</code> and <code>fvs</code> are supposed to 
+ be the constant and function symbols and the free variables of the 
+ formula, respectively.
+ 
+ The function implements an 
+ <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> specific for the 
+ Gilmore procedure, calling it with the specific gilmore modification 
+ and test functions.
  
               </p>
               <dl class="fsdocs-params">
@@ -1511,7 +1554,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The initial formula in DNF 'clausal' form.
+                    The input set of clauses.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1535,7 +1578,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The function symbols (name, arity) to generate the ground terms generation.
+                    The function symbols (name, arity) to generate the ground terms.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1547,7 +1590,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The free variables of the formula.
+                    The free variables to instantiate to generate the ground terms.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1609,18 +1652,41 @@
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- The list of ground terms tried.
+ The list of ground tuples generated and prints to the <code>stdout</code> how 
+ many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops generating and 
+ testing larger and larger ground instances till the memory is full.
  
                   </p>
                 </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="gilmore_loop-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">gilmore_loop</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;Q(f_z(x))&quot;</span><span class="pn">;</span> <span class="s">&quot;~Q(y)&quot;</span><span class="pn">]</span><span class="pn">]</span> 
+   <span class="o">!!!&gt;</span><span class="pn">[</span><span class="s">&quot;c&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">(</span><span class="s">&quot;f_z&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span><span class="pn">;</span><span class="pn">(</span><span class="s">&quot;f_y&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span><span class="pn">]</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span><span class="s">&quot;y&quot;</span><span class="pn">]</span> <span class="n">0</span> <span class="pn">[</span><span class="pn">[</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[``c``; ``f_z(c)``]; [``c``; ``c``]]</code> and print to 
+ the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">list</span><span class="pn">.</span>
+ <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">1</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">list</span><span class="pn">.</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;</div>
+
+
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '342', 342)" onmouseover="showTip(event, '342', 342)">
+              <code onmouseout="hideTip(event, '348', 348)" onmouseover="showTip(event, '348', 348)">
                 <p>
                   <a id="gilmore_mfn">
                     <a href="#gilmore_mfn">
@@ -1629,7 +1695,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="342">
+              <div class="fsdocs-tip" id="348">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>gilmore_mfn&#32;<span>djs0&#32;ifn&#32;djs</span></span></code>
@@ -1699,7 +1765,7 @@
                   </a>
                   <p class="fsdocs-summary">
                     
- Gilmore modification function.
+ Generates the ground instances for the Gilmore procedure.
  
                   </p>
                 </div>
@@ -1792,7 +1858,7 @@
 </code></pre>
 
 
- Corresponding to the formula <code>`P(f(c)) \/ P(f(c)) /\ ~P(c)) \/ ~P(c) /\ ~P(f(c)`</code>.
+ Corresponding to the formula <code>`P(f(c)) \/ P(f(c)) /\ ~P(c) \/ ~P(c) /\ ~P(f(c))`</code>.
  <p></p>
  Note that the input ground instance <code>[[&quot;P(f(c))&quot;]; [&quot;~P(c)&quot;]]</code> 
  must have been generated by an instantiation that mapped both <code>x</code> 
@@ -1801,6 +1867,135 @@
  <p></p>
  Note also that the conjunct <code>[`P(f(c))`; `~P(f(c))`]</code> has been 
  removed from the output, since contradictory.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '349', 349)" onmouseover="showTip(event, '349', 349)">
+                <p>
+                  <a id="gilmore_tfn">
+                    <a href="#gilmore_tfn">
+                      <code><span>gilmore_tfn&#32;<span>djs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="349">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>gilmore_tfn&#32;<span>djs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        djs
+                      </b>
+                      :
+                      <code><span>'a&#32;list</span></code>
+                       - 
+                      The input formula (more precisely its ground instance so far) in a DNF 'clausal' form.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  
+ true, if the input is nonempty; otherwise, false
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calcolemus.Herbrand.gilmore_tfn``1```')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Herbrand.gilmore_tfn``1\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Gilmore test function: tests if the input set of clauses is nonempty.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It simply tests that the set of DNF 'clauses' is nonempty, because the 
+ contradiction checking is done by the modification function.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    djs
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula (more precisely its ground instance so far) in a DNF 'clausal' form.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input is nonempty; otherwise, false
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="gilmore_tfn-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(f(c))&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;P(f(c))&quot;</span><span class="pn">;</span> <span class="s">&quot;~P(c)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;P(f(c))&quot;</span><span class="pn">;</span> <span class="s">&quot;~P(f(c))&quot;</span><span class="pn">]</span><span class="pn">;</span>
+    <span class="pn">[</span><span class="s">&quot;~P(c)&quot;</span><span class="pn">;</span> <span class="s">&quot;~P(f(c))&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">gilmore_tfn</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="gilmore_tfn-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
  
               </p>
             </details>
@@ -1839,7 +2034,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '343', 343)" onmouseover="showTip(event, '343', 343)">
+              <code onmouseout="hideTip(event, '350', 350)" onmouseover="showTip(event, '350', 350)">
                 <p>
                   <a id="davisputnam">
                     <a href="#davisputnam">
@@ -1848,7 +2043,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="343">
+              <div class="fsdocs-tip" id="350">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>davisputnam&#32;<span>fm</span></span></code>
@@ -1862,6 +2057,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -1870,6 +2067,12 @@
                     Returns: 
                     <code>int</code>
                   </span>
+                  
+ The number of ground tuples generated and prints to the <code>stdout</code> 
+ how many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops indefinitely 
+ till the memory is full.
+ 
                   <br/>
                 </div>
               </div>
@@ -1887,28 +2090,17 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L135-135" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L141-141" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests an input fol formula <code>fm</code> for validity based on the 
- Davis-Putnam procedure.
+ Tests the validity of a formula with the Davis-Putnam procedure.
  
                   </p>
                 </div>
               </summary>
-              <p class="fsdocs-remarks">
-                
- The initial formula is generalized, negated and Skolemized, then the 
- specific herbrand loop for the davis-putnam procedure is called to test 
- for the unsatisfiability of the transformed formula.
- <p></p>
- If the test terminates, it reports how many ground instances where 
- tried.
- 
-              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -1917,7 +2109,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1926,33 +2122,159 @@
                   </span>
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The number of ground tuples generated and prints to the <code>stdout</code> 
+ how many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops indefinitely 
+ till the memory is full.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ The procedure loops infinitely if the initial formula is not valid and 
+ even if it is, it is not guaranteed to end.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="davisputnam-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">davisputnam</span> <span class="o">!!</span> <span class="s">&quot;exists x. forall y. P(x) ==&gt; P(y)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>2</code> and print to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">list</span><span class="pn">.</span>
+ <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">2</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">2</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">list</span><span class="pn">.</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;</div>
+
+
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '344', 344)" onmouseover="showTip(event, '344', 344)">
+              <code onmouseout="hideTip(event, '351', 351)" onmouseover="showTip(event, '351', 351)">
                 <p>
                   <a id="dp_loop">
                     <a href="#dp_loop">
-                      <code><span>dp_loop&#32;<span></span></span></code>
+                      <code><span>dp_loop&#32;<span>fl0&#32;cntms&#32;funcs&#32;fvs&#32;n&#32;fl&#32;tried&#32;tuples</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="344">
+              <div class="fsdocs-tip" id="351">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>dp_loop&#32;<span></span></span></code>
+                  <code><span>dp_loop&#32;<span>fl0&#32;cntms&#32;funcs&#32;fvs&#32;n&#32;fl&#32;tried&#32;tuples</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fl0
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input set of clauses.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cntms
+                      </b>
+                      :
+                      <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                       - 
+                      The constant terms to generate the ground terms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        funcs
+                      </b>
+                      :
+                      <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
+                       - 
+                      The function symbols (name, arity) to generate the ground terms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fvs
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The free variables to instantiate to generate the ground terms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The number of function symbols the new ground terms to be generated should contain.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fl
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The set of ground instances so far.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tried
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The instances tried.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tuples
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The remaining ground instances in the current level.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span>&#32;->&#32;<span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;->&#32;<span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;int&#32;->&#32;<span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span>&#32;->&#32;<span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span>&#32;->&#32;<span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span>&#32;->&#32;<span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></span></code>
+                    <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ The list of ground tuples generated and prints to the <code>stdout</code> how 
+ many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops generating and 
+ testing larger and larger ground instances till the memory is full.
+ 
                   <br/>
                 </div>
               </div>
@@ -1962,51 +2284,184 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calcolemus.Herbrand.dp_loop`')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Herbrand.dp_loop`')">
                     <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calcolemus.Herbrand.dp_loop\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Herbrand.dp_loop\'/>')">
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L133-133" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L138-138" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> specific for the 
- Davis-Putnam procedure.
+                    
+ Tests the unsatisfiability of a set of clauses with the Davis-Putnam 
+ procedure.
  
                   </p>
                 </div>
               </summary>
               <p class="fsdocs-remarks">
                 
- In the specific case of the davis-putnam procedure, the generic 
- herbrand loop <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> is called 
- with the initial formula <code>fl0</code> and the ground instances so far 
- <code>fl</code> are maintained in a CNF list representation and each time we 
- incorporate a new instance, we check for unsatisfiability using 
- <code>dpll</code>.
+ The input set of clauses <code>fl0</code> is intended to represent a CNF 
+ formula and <code>cntms</code>, <code>funcs</code> and <code>fvs</code> are supposed to 
+ be the constant and function symbols and the free variables of the 
+ formula, respectively.
+ 
+ The function implements an 
+ <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> specific for the 
+ Davis-Putnam procedure, calling it with the specific Davis-Putnam 
+ modification function <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.dp_mfn</a> and 
+ using <a href="/Calcolemus/reference/calcolemus-dp.html">DP.dpll</a> as test function.
  
               </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fl0
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input set of clauses.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cntms
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The constant terms to generate the ground terms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    funcs
+                  </span>
+                  :
+                  <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function symbols (name, arity) to generate the ground terms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fvs
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The free variables to instantiate to generate the ground terms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The number of function symbols the new ground terms to be generated should contain.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fl
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The set of ground instances so far.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tried
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The instances tried.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tuples
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The remaining ground instances in the current level.
+                  </p>
+                </dd>
+              </dl>
               <dl class="fsdocs-returns">
                 <dt>
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span>&#32;->&#32;<span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;->&#32;<span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;int&#32;->&#32;<span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span>&#32;->&#32;<span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span>&#32;->&#32;<span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span>&#32;->&#32;<span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></span></code>
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of ground tuples generated and prints to the <code>stdout</code> how 
+ many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops generating and 
+ testing larger and larger ground instances till the memory is full.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dp_loop-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_loop</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;~P(f_y(y))&quot;</span><span class="pn">]</span><span class="pn">]</span>
+     <span class="o">!!!&gt;</span><span class="pn">[</span><span class="s">&quot;c&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">(</span><span class="s">&quot;f_y&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span><span class="pn">;</span><span class="pn">]</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span><span class="s">&quot;y&quot;</span><span class="pn">]</span> <span class="n">0</span> <span class="pn">[</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[``f_y(c)``; ``c``]; [``c``; ``f_y(c)``]; [``c``; ``c``]]</code> and print to 
+ the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">list</span><span class="pn">.</span>
+ <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">2</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">2</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">list</span><span class="pn">.</span>
+ <span class="n">2</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">3</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="id">list</span><span class="pn">.</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;</div>
+
+
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '345', 345)" onmouseover="showTip(event, '345', 345)">
+              <code onmouseout="hideTip(event, '352', 352)" onmouseover="showTip(event, '352', 352)">
                 <p>
                   <a id="dp_mfn">
                     <a href="#dp_mfn">
@@ -2015,7 +2470,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="345">
+              <div class="fsdocs-tip" id="352">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>dp_mfn&#32;<span>cjs0&#32;ifn&#32;cjs</span></span></code>
@@ -2079,14 +2534,13 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L131-131" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L135-135" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- The modification function (specific to the Davis-Putnam procedure), 
- that augments the ground instances with a new one.
+ Generates the ground instances for the Davis-Putnam procedure.
  
                   </p>
                 </div>
@@ -2151,7 +2605,8 @@
                 
  This example shows the first generation of ground instance when the set 
  is initially empty.
- <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_mfn</span> <span class="pn">[</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;~P(f_y(x))&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">(</span><span class="id">subst</span> <span class="pn">(</span><span class="id">fpf</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!!</span><span class="s">&quot;c&quot;</span><span class="pn">]</span><span class="pn">)</span><span class="pn">)</span> <span class="pn">[</span><span class="pn">]</span>
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_mfn</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;~P(f_y(x))&quot;</span><span class="pn">]</span><span class="pn">]</span> 
+   <span class="pn">(</span><span class="id">subst</span> <span class="pn">(</span><span class="id">fpf</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!!</span><span class="s">&quot;c&quot;</span><span class="pn">]</span><span class="pn">)</span><span class="pn">)</span> <span class="pn">[</span><span class="pn">]</span>
 </code></pre>
 
 
@@ -2165,7 +2620,9 @@
                 
  This example shows the second generation of ground instance when the 
  nonempty set is augmented.
- <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_mfn</span> <span class="pn">[</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;~P(f_y(x))&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">(</span><span class="id">subst</span> <span class="pn">(</span><span class="id">fpf</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!!</span><span class="s">&quot;f_y(c)&quot;</span><span class="pn">]</span><span class="pn">)</span><span class="pn">)</span>     <span class="pn">[</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(c)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;~P(f_y(c))&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_mfn</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;~P(f_y(x))&quot;</span><span class="pn">]</span><span class="pn">]</span> 
+   <span class="pn">(</span><span class="id">subst</span> <span class="pn">(</span><span class="id">fpf</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!!</span><span class="s">&quot;f_y(c)&quot;</span><span class="pn">]</span><span class="pn">)</span><span class="pn">)</span> 
+   <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(c)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;~P(f_y(c))&quot;</span><span class="pn">]</span><span class="pn">]</span>
 </code></pre>
 
 
@@ -2208,7 +2665,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '346', 346)" onmouseover="showTip(event, '346', 346)">
+              <code onmouseout="hideTip(event, '353', 353)" onmouseover="showTip(event, '353', 353)">
                 <p>
                   <a id="davisputnam002">
                     <a href="#davisputnam002">
@@ -2217,7 +2674,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="346">
+              <div class="fsdocs-tip" id="353">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>davisputnam002&#32;<span>fm</span></span></code>
@@ -2231,6 +2688,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -2239,6 +2698,12 @@
                     Returns: 
                     <code>int</code>
                   </span>
+                  
+ The number of ground tuples needed to prove the validity and prints to 
+ the <code>stdout</code> how many ground instances were tried, if the 
+ procedure terminates (thus indicating that the formula is valid); 
+ otherwise, loops indefinitely till the memory is full.
+ 
                   <br/>
                 </div>
               </div>
@@ -2256,23 +2721,22 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L164-164" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L177-177" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests an input fol formula <code>fm</code> for validity based on the 
- Davis-Putnam procedure refined. 
+ Tests the validity of a formula with the Davis-Putnam procedure.
  
                   </p>
                 </div>
               </summary>
               <p class="fsdocs-remarks">
                 
- The refined procedure runs through the list of possibly-needed 
- instances, putting them onto the list of needed ones only if 
- the other instances are satisfiable.
+ The difference with <a href="/Calcolemus/reference/calcolemus-herbrand.html#davisputnam">Herbrand.davisputnam</a> is 
+ just that the number returned is not the number of ground instance 
+ generated but that of those that are really needed.
  
               </p>
               <dl class="fsdocs-params">
@@ -2283,7 +2747,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2292,15 +2760,54 @@
                   </span>
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The number of ground tuples needed to prove the validity and prints to 
+ the <code>stdout</code> how many ground instances were tried, if the 
+ procedure terminates (thus indicating that the formula is valid); 
+ otherwise, loops indefinitely till the memory is full.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ The procedure loops infinitely if the initial formula is not valid and 
+ even if it is, it is not guaranteed to end.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="davisputnam002-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">davisputnam002</span> <span class="id">p36</span>
+</code></pre>
+
+
+ Evaluates to <code>3</code> and print to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">list</span><span class="pn">.</span>
+ <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">6</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">list</span><span class="pn">.</span>
+ <span class="o">..</span><span class="pn">.</span>
+ <span class="n">37</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">168</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">list</span><span class="pn">.</span>
+ <span class="n">38</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">172</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="id">list</span><span class="pn">.</span>
+ <span class="n">39</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">176</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="id">list</span><span class="pn">.</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;</div>
+
+
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '347', 347)" onmouseover="showTip(event, '347', 347)">
+              <code onmouseout="hideTip(event, '354', 354)" onmouseover="showTip(event, '354', 354)">
                 <p>
                   <a id="dp_refine">
                     <a href="#dp_refine">
@@ -2309,7 +2816,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="347">
+              <div class="fsdocs-tip" id="354">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>dp_refine&#32;<span>cjs0&#32;fvs&#32;dunno&#32;need</span></span></code>
@@ -2323,6 +2830,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input set of clauses.
                     </span>
                     <br/>
                     <span>
@@ -2331,6 +2840,8 @@
                       </b>
                       :
                       <code><span>string&#32;list</span></code>
+                       - 
+                      The free variables to instantiate to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -2339,6 +2850,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The list of possibly-needed instances.
                     </span>
                     <br/>
                     <span>
@@ -2347,6 +2860,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The list of really needed instances.
                     </span>
                     <br/>
                   </ul>
@@ -2355,6 +2870,10 @@
                     Returns: 
                     <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ The list of really needed instances to refute te input set of clauses, 
+ if there is one; otherwise, the input itself in reverse order.
+ 
                   <br/>
                 </div>
               </div>
@@ -2372,16 +2891,14 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L152-152" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Auxiliary function to redefine the Davis-Putnam procedure to run 
- through the list of possibly-needed instances <code>dunno</code>, putting 
- them onto the list of needed ones <code>need</code> only if the other 
- instances are satisfiable.
+ Returns the list of ground instances that are really needed to refute 
+ <code>cjs0</code>.
  
                   </p>
                 </div>
@@ -2394,7 +2911,11 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input set of clauses.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     fvs
@@ -2402,7 +2923,11 @@
                   :
                   <code><span>string&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The free variables to instantiate to generate the ground terms.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     dunno
@@ -2410,7 +2935,11 @@
                   :
                   <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list of possibly-needed instances.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     need
@@ -2418,7 +2947,11 @@
                   :
                   <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list of really needed instances.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2427,15 +2960,34 @@
                   </span>
                   <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of really needed instances to refute te input set of clauses, 
+ if there is one; otherwise, the input itself in reverse order.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dp_refine-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_refine</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;~P(f_y(y))&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span><span class="s">&quot;y&quot;</span><span class="pn">]</span> 
+   <span class="o">!!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;f_y(c)&quot;</span><span class="pn">;</span> <span class="s">&quot;c&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;c&quot;</span><span class="pn">;</span><span class="s">&quot;c&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;d&quot;</span><span class="pn">;</span><span class="s">&quot;d&quot;</span><span class="pn">]</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[``f_y(c)``]; [``c``]]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '348', 348)" onmouseover="showTip(event, '348', 348)">
+              <code onmouseout="hideTip(event, '355', 355)" onmouseover="showTip(event, '355', 355)">
                 <p>
                   <a id="dp_refine_loop">
                     <a href="#dp_refine_loop">
@@ -2444,7 +2996,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="348">
+              <div class="fsdocs-tip" id="355">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>dp_refine_loop&#32;<span>cjs0&#32;cntms&#32;funcs&#32;fvs&#32;n&#32;cjs&#32;tried&#32;tuples</span></span></code>
@@ -2466,6 +3018,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
+                       - 
+                      The constant terms to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -2474,6 +3028,8 @@
                       </b>
                       :
                       <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
+                       - 
+                      The function symbols (name, arity) to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -2482,6 +3038,8 @@
                       </b>
                       :
                       <code><span>string&#32;list</span></code>
+                       - 
+                      The free variables to instantiate to generate the ground terms.
                     </span>
                     <br/>
                     <span>
@@ -2490,6 +3048,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The number of function symbols the new ground terms to be generated should contain.
                     </span>
                     <br/>
                     <span>
@@ -2506,6 +3066,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The instances tried.
                     </span>
                     <br/>
                     <span>
@@ -2514,6 +3076,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The remaining ground instances in the current level.
                     </span>
                     <br/>
                   </ul>
@@ -2522,6 +3086,13 @@
                     Returns: 
                     <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ The list of ground tuples needed to refute the input and prints to the 
+ <code>stdout</code> how many ground instances were tried, if the procedure 
+ terminates (thus indicating that the formula is valid); otherwise, 
+ loops generating and testing larger and larger ground instances till 
+ the memory is full.
+ 
                   <br/>
                 </div>
               </div>
@@ -2539,17 +3110,25 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L156-156" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L169-169" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    <a href="/Calcolemus/reference/calcolemus-herbrand.html">Herbrand.herbloop</a> specific for the 
- Davis-Putnam procedure refined.
+                    
+ Tests the unsatisfiability of a set of clauses with the Davis-Putnam 
+ procedure refined.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ The difference with <a href="/Calcolemus/reference/calcolemus-herbrand.html#dp_loop">Herbrand.dp_loop</a> is just 
+ that the number returned is not he number of ground tuples generated 
+ but the number of those that are really needed to refute the input.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -2566,7 +3145,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The constant terms to generate the ground terms.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     funcs
@@ -2574,7 +3157,11 @@
                   :
                   <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function symbols (name, arity) to generate the ground terms.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     fvs
@@ -2582,7 +3169,11 @@
                   :
                   <code><span>string&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The free variables to instantiate to generate the ground terms.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     n
@@ -2590,7 +3181,11 @@
                   :
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The number of function symbols the new ground terms to be generated should contain.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     cjs
@@ -2606,7 +3201,11 @@
                   :
                   <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The instances tried.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     tuples
@@ -2614,7 +3213,11 @@
                   :
                   <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The remaining ground instances in the current level.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2623,139 +3226,14 @@
                   </span>
                   <code><span><span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <h2 id="section6">
-    Other module members
-  </h2>
-  <div>
-    <h3>
-      Functions and values
-    </h3>
-    <table class="table outer-list fsdocs-member-list">
-      <thead>
-        <tr>
-          <td class="fsdocs-member-list-header">
-            Function or value
-          </td>
-          <td class="fsdocs-member-list-header">
-            Description
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '349', 349)" onmouseover="showTip(event, '349', 349)">
-                <p>
-                  <a id="gilmore_tfn">
-                    <a href="#gilmore_tfn">
-                      <code><span>gilmore_tfn&#32;<span>djs</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="349">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>gilmore_tfn&#32;<span>djs</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        djs
-                      </b>
-                      :
-                      <code><span>'a&#32;list</span></code>
-                       - 
-                      The input formula (more precisely its ground instance so far) in a DNF 'clausal' form.
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  
- true, if the input is nonempty; otherwise, false
- 
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calcolemus.Herbrand.gilmore_tfn``1```')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Herbrand.gilmore_tfn``1\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Herbrand.fs#L114-114" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Gilmore test function.
- 
-                  </p>
-                </div>
-              </summary>
-              <p class="fsdocs-remarks">
-                
- It simply tests that the set of DNF 'clauses' is not empty, because the 
- contradiction checking is done by the modification function.
- 
-              </p>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    djs
-                  </span>
-                  :
-                  <code><span>'a&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    The input formula (more precisely its ground instance so far) in a DNF 'clausal' form.
-                  </p>
-                </dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code>bool</code>
-                </dt>
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- true, if the input is nonempty; otherwise, false
+ The list of ground tuples needed to refute the input and prints to the 
+ <code>stdout</code> how many ground instances were tried, if the procedure 
+ terminates (thus indicating that the formula is valid); otherwise, 
+ loops generating and testing larger and larger ground instances till 
+ the memory is full.
  
                   </p>
                 </dd>
@@ -2763,26 +3241,23 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="gilmore_tfn-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(f(c))&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;P(f(c))&quot;</span><span class="pn">;</span> <span class="s">&quot;~P(c)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;P(f(c))&quot;</span><span class="pn">;</span> <span class="s">&quot;~P(f(c))&quot;</span><span class="pn">]</span><span class="pn">;</span>
-    <span class="pn">[</span><span class="s">&quot;~P(c)&quot;</span><span class="pn">;</span> <span class="s">&quot;~P(f(c))&quot;</span><span class="pn">]</span><span class="pn">]</span>
- <span class="o">|&gt;</span> <span class="id">gilmore_tfn</span>
+              <p class="fsdocs-example" id="dp_refine_loop-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dp_refine_loop</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span> <span class="pn">[</span><span class="s">&quot;~P(f_y(y))&quot;</span><span class="pn">]</span><span class="pn">]</span>
+     <span class="o">!!!&gt;</span><span class="pn">[</span><span class="s">&quot;c&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">(</span><span class="s">&quot;f_y&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span><span class="pn">;</span><span class="pn">]</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span><span class="s">&quot;y&quot;</span><span class="pn">]</span> <span class="n">0</span> <span class="pn">[</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
 </code></pre>
 
 
- Evaluates to <code>true</code>.
- 
-              </p>
-              <h5 class="fsdocs-example-header">
-                Example
-              </h5>
-              <p class="fsdocs-example" id="gilmore_tfn-2">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">]</span>
+ Evaluates to <code>[[``f_y(c)``; ``c``]]</code> and print to 
+ the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">list</span><span class="pn">.</span>
+ <span class="n">0</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">0</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">2</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">list</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">2</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">list</span><span class="pn">.</span>
+ <span class="n">2</span> <span class="id">ground</span> <span class="id">instances</span> <span class="id">tried</span><span class="pn">;</span> <span class="n">3</span> <span class="id">items</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="id">list</span><span class="pn">.</span>
 </code></pre>
+<div class="fsdocs-tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;</div>
 
 
- Evaluates to <code>false</code>.
- 
               </p>
             </details>
           </td>
