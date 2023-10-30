@@ -106,7 +106,11 @@ module Herbrand =
             |> List.filter trivial
             |> clausesToString
 
-        // printfn "contradictions: %A" contradictions
+        // printfn "ground instance: %A" 
+        //     (updatedDjs |> clausesToString)
+
+        // if contradictions |> List.length > 0 then
+        //     printfn "contradictions: %A" contradictions
 
         updatedDjs
         |> List.filter (non trivial)

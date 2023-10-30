@@ -24,6 +24,7 @@
     <Compile Include="Stal.fs" />
     <Compile Include="Fol.fs" />
     <Compile Include="Skolem.fs" />
+    <Compile Include="Clause.fs" />
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fs" />
     <Compile Include="Tableaux.fs" />

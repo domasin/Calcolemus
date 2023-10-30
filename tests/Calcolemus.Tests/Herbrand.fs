@@ -12,7 +12,6 @@ open Calcolemus
 
 open Lib.Fpf
 
-open Formulas
 open Fol
 open Herbrand
 open Pelletier

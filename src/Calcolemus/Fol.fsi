@@ -306,29 +306,6 @@ module Fol =
     val (!!) : s: string -> formula<fol>
 
     /// <summary>
-    /// Parses a list of string lists into a list of formulas list.
-    /// Useful when dealing with clauses.
-    /// </summary>
-    /// 
-    /// <param name="xs">The input list of string lists.</param>
-    /// <returns>The list of clauses.</returns>
-    /// 
-    /// <example id="exclamation-exclamation-greater-greater-1">
-    /// <code lang="fsharp">
-    /// !!>> [["P(x)"];["P(x)";"~Q(x)"]]
-    /// </code>
-    /// Evaluates to <c>[[`P(x)`]; [`P(x)`; `~Q(x)`]]</c>.
-    /// </example>
-    /// 
-    /// <note>
-    /// This operator is not part of the original code and it was added here 
-    /// for convenience.
-    /// </note>
-    /// 
-    /// <category index="1">Parsing clauses</category>
-    val (!!>>): xs: string list list -> formula<fol> list list
-
-    /// <summary>
     /// Prints terms.
     /// </summary>
     /// 

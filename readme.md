@@ -28,8 +28,6 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * Unit tests with XUnit, FSUnit, FSCheck (in progress).
 
-### Changes in source code not yet released
-
 * Quotations symbols `<<>>` replaced with `` since the latter cause less problems in writing documentation. 
 
 * Separation in .fs .fsi files for documentation: in progress.
