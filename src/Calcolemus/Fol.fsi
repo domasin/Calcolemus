@@ -206,10 +206,10 @@ module Fol =
     val (!!!) : s: string -> term
 
     /// <summary>
-    /// Parses list of strings into list of terms
+    /// Parses a list of strings into a list of terms.
     /// </summary>
     /// 
-    /// <param name="tms">The input string.</param>
+    /// <param name="tms">The input string list.</param>
     /// 
     /// <returns>
     /// The list of parsed terms.
@@ -219,13 +219,35 @@ module Fol =
     /// 
     /// <example id="exclamation-exclamation-exclamation-greater-1">
     /// <code lang="fsharp">
-    /// !!!>["0","1"]
+    /// !!!>["0";"1"]
     /// </code>
-    /// Evaluates to <c>[``0``,``1``]</c>.
+    /// Evaluates to <c>[``0``;``1``]</c>.
     /// </example>
     /// 
     /// <category index="1">Parsing terms</category>
     val (!!!>) : tms: string list -> term list
+
+    /// <summary>
+    /// Parses a list of string list into a list of term lists.
+    /// </summary>
+    /// 
+    /// <param name="tms">The input list of string list.</param>
+    /// 
+    /// <returns>
+    /// The list of parsed term lists.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when one of the input string is not a valid term.</exception>
+    /// 
+    /// <example id="exclamation-exclamation-exclamation-greater-greater-1">
+    /// <code lang="fsharp">
+    /// !!!>>[["0";"1"];["0"]]
+    /// </code>
+    /// Evaluates to <c>[[``0``;``1``];[``0``]]</c>.
+    /// </example>
+    /// 
+    /// <category index="1">Parsing terms</category>
+    val (!!!>>) : tms: string list list -> term list list
 
     /// <summary>
     /// A special recognizer for 'infix' atomic formulas like s &lt; t.

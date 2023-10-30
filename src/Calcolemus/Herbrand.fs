@@ -132,9 +132,11 @@ module Herbrand =
     // The Davis-Putnam procedure for first order logic.                      //
     // ---------------------------------------------------------------------- //
 
-    let dp_mfn cjs0 ifn cjs = union (image (image ifn) cjs0) cjs
+    let dp_mfn cjs0 ifn cjs = 
+        union (image (image ifn) cjs0) cjs
 
-    let dp_loop = herbloop dp_mfn dpll
+    let dp_loop fl0 cntms funcs fvs n fl tried tuples = 
+        herbloop dp_mfn dpll fl0 cntms funcs fvs n fl tried tuples
 
     let davisputnam fm =
         let sfm = skolemize (Not (generalize fm))
@@ -148,13 +150,20 @@ module Herbrand =
     // ---------------------------------------------------------------------- //
 
     let rec dp_refine cjs0 fvs dunno need =
+        // let cjs0Str = clausesToString cjs0
+        // let dunnoStr = termListListToString dunno
+        // let needStr = termListListToString need
+        // printfn "dp_refine %A %A %A %A" cjs0Str fvs dunnoStr needStr
+
         match dunno with
         | [] -> need
         | cl :: dknow ->
             let mfn = dp_mfn cjs0 << subst << fpf fvs
             let need' =
-                if dpll (List.foldBack mfn (need @ dknow) []) then cl :: need
-                else need
+                if dpll (List.foldBack mfn (need @ dknow) []) then 
+                    cl :: need
+                else 
+                    need
             dp_refine cjs0 fvs dknow need'
 
     let dp_refine_loop cjs0 cntms funcs fvs n cjs tried tuples =

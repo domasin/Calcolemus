@@ -448,15 +448,15 @@ module Herbrand =
     val gilmore: fm: formula<fol> -> int
 
     /// <summary>
-    /// The modification function (specific to the Davis-Putnam procedure), 
-    /// that augments the ground instances with a new one.
+    /// Generates the ground instances for the Davis-Putnam procedure.
     /// </summary>
     /// 
     /// <example id="dp_mfn-1">
     /// This example shows the first generation of ground instance when the set 
     /// is initially empty.
     /// <code lang="fsharp">
-    /// dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"c"])) []
+    /// dp_mfn !!>>[["P(x)"]; ["~P(f_y(x))"]] 
+    ///   (subst (fpf ["x"] [!!!"c"])) []
     /// </code>
     /// Evaluates to <c>[[`P(c)`]; [`~P(f_y(c))`]]</c>.
     /// </example>
@@ -465,7 +465,9 @@ module Herbrand =
     /// This example shows the second generation of ground instance when the 
     /// nonempty set is augmented.
     /// <code lang="fsharp">
-    /// dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"f_y(c)"]))     [[!!"P(c)"]; [!!"~P(f_y(c))"]]
+    /// dp_mfn !!>>[["P(x)"]; ["~P(f_y(x))"]] 
+    ///   (subst (fpf ["x"] [!!!"f_y(c)"])) 
+    ///   !!>>[["P(c)"]; ["~P(f_y(c))"]]
     /// </code>
     /// Evaluates to <c>[[`P(c)`]; [`P(f_y(c))`]; [`~P(f_y(c))`]; [`~P(f_y(f_y(c)))`]]</c>.
     /// </example>
@@ -484,52 +486,122 @@ module Herbrand =
         when 'b: comparison
 
     /// <summary>
-    /// <see cref='M:Calcolemus.Herbrand.herbloop``2'/> specific for the 
-    /// Davis-Putnam procedure.
+    /// Tests the unsatisfiability of a set of clauses with the Davis-Putnam 
+    /// procedure.
     /// </summary>
     /// 
     /// <remarks>
-    /// In the specific case of the davis-putnam procedure, the generic 
-    /// herbrand loop <see cref='M:Calcolemus.Herbrand.herbloop``2'/> is called 
-    /// with the initial formula <c>fl0</c> and the ground instances so far 
-    /// <c>fl</c> are maintained in a CNF list representation and each time we 
-    /// incorporate a new instance, we check for unsatisfiability using 
-    /// <c>dpll</c>.
+    /// The input set of clauses <c>fl0</c> is intended to represent a CNF 
+    /// formula and <c>cntms</c>, <c>funcs</c> and <c>fvs</c> are supposed to 
+    /// be the constant and function symbols and the free variables of the 
+    /// formula, respectively.
+    /// 
+    /// The function implements an 
+    /// <see cref='M:Calcolemus.Herbrand.herbloop``2'/> specific for the 
+    /// Davis-Putnam procedure, calling it with the specific Davis-Putnam 
+    /// modification function <see cref='M:Calcolemus.Herbrand.dp_mfn``2'/> and 
+    /// using <see cref='M:Calcolemus.DP.dpll``1'/> as test function.
     /// </remarks>
+    /// 
+    /// <param name="fl0">The input set of clauses.</param>
+    /// <param name="cntms">The constant terms to generate the ground terms.</param>
+    /// <param name="funcs">The function symbols (name, arity) to generate the ground terms.</param>
+    /// <param name="fvs">The free variables to instantiate to generate the ground terms.</param>
+    /// <param name="n">The number of function symbols the new ground terms to be generated should contain.</param>
+    /// <param name="fl">The set of ground instances so far.</param>
+    /// <param name="tried">The instances tried.</param>
+    /// <param name="tuples">The remaining ground instances in the current level.</param>
+    /// 
+    /// <returns>
+    /// The list of ground tuples generated and prints to the <c>stdout</c> how 
+    /// many ground instances were tried, if the procedure terminates (thus 
+    /// indicating that the formula is valid); otherwise, loops generating and 
+    /// testing larger and larger ground instances till the memory is full.
+    /// </returns>
+    /// 
+    /// <example id="dp_loop-2">
+    /// <code lang="fsharp">
+    /// dp_loop !!>>[["P(x)"]; ["~P(f_y(y))"]]
+    ///     !!!>["c"] [("f_y",1);] ["x";"y"] 0 [] [] []
+    /// </code>
+    /// Evaluates to <c>[[``f_y(c)``; ``c``]; [``c``; ``f_y(c)``]; [``c``; ``c``]]</c> and print to 
+    /// the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 ground instances tried; 0 items in list.
+    /// 0 ground instances tried; 0 items in list.
+    /// 1 ground instances tried; 2 items in list.
+    /// 1 ground instances tried; 2 items in list.
+    /// 2 ground instances tried; 3 items in list.
+    /// </code>
+    /// </example>
     /// 
     /// <category index="5">The Davis-Putnam procedure for first order logic</category>
     val dp_loop:
-      (formula<fol> list list ->
-         term list ->
-         (string * int) list ->
-         string list ->
-         int ->
-         formula<fol> list list ->
-         term list list -> term list list -> term list list)
+      fl0: formula<fol> list list ->
+         cntms: term list ->
+         funcs: (string * int) list ->
+         fvs: string list ->
+         n: int ->
+         fl: formula<fol> list list ->
+         tried: term list list -> 
+         tuples: term list list -> term list list
 
     /// <summary>
-    /// Tests an input fol formula <c>fm</c> for validity based on the 
-    /// Davis-Putnam procedure.
+    /// Tests the validity of a formula with the Davis-Putnam procedure.
     /// </summary>
     /// 
-    /// <remarks>
-    /// The initial formula is generalized, negated and Skolemized, then the 
-    /// specific herbrand loop for the davis-putnam procedure is called to test 
-    /// for the unsatisfiability of the transformed formula.
-    /// <p></p>
-    /// If the test terminates, it reports how many ground instances where 
-    /// tried.
-    /// </remarks>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The number of ground tuples generated and prints to the <c>stdout</c> 
+    /// how many ground instances were tried, if the procedure terminates (thus 
+    /// indicating that the formula is valid); otherwise, loops indefinitely 
+    /// till the memory is full.
+    /// </returns>
+    /// 
+    /// <example id="davisputnam-1">
+    /// <code lang="fsharp">
+    /// davisputnam !! "exists x. forall y. P(x) ==> P(y)"
+    /// </code>
+    /// Evaluates to <c>2</c> and print to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 ground instances tried; 0 items in list.
+    /// 0 ground instances tried; 0 items in list.
+    /// 1 ground instances tried; 2 items in list.
+    /// 1 ground instances tried; 2 items in list.
+    /// </code>
+    /// </example>
+    /// 
+    /// <note>
+    /// The procedure loops infinitely if the initial formula is not valid and 
+    /// even if it is, it is not guaranteed to end.
+    /// </note>
     /// 
     /// <category index="5">The Davis-Putnam procedure for first order logic</category>
     val davisputnam: fm: formula<fol> -> int
 
     /// <summary>
-    /// Auxiliary function to redefine the Davis-Putnam procedure to run 
-    /// through the list of possibly-needed instances <c>dunno</c>, putting 
-    /// them onto the list of needed ones <c>need</c> only if the other 
-    /// instances are satisfiable.
+    /// Returns the list of ground instances that are really needed to refute 
+    /// <c>cjs0</c>.
     /// </summary>
+    /// 
+    /// <param name="cjs0">The input set of clauses.</param>
+    /// <param name="fvs">The free variables to instantiate to generate the ground terms.</param>
+    /// <param name="dunno">The list of possibly-needed instances.</param>
+    /// <param name="need">The list of really needed instances.</param>
+    /// 
+    /// <returns>
+    /// The list of really needed instances to refute te input set of clauses, 
+    /// if there is one; otherwise, the input itself in reverse order.
+    /// </returns>
+    /// 
+    /// <example id="dp_refine-2">
+    /// <code lang="fsharp">
+    /// dp_refine !!>>[["P(x)"]; ["~P(f_y(y))"]] ["x";"y"] 
+    ///   !!!>>[["f_y(c)"; "c"]; ["c";"c"]; ["d";"d"]] []
+    /// </code>
+    /// Evaluates to <c>[[``f_y(c)``]; [``c``]]</c>.
+    /// </example>
     /// 
     /// <category index="6">The Davis-Putnam procedure refined</category>
     val dp_refine:
@@ -538,9 +610,48 @@ module Herbrand =
         dunno: term list list -> need: term list list -> term list list
 
     /// <summary>
-    /// <see cref='M:Calcolemus.Herbrand.herbloop``2'/> specific for the 
-    /// Davis-Putnam procedure refined.
+    /// Tests the unsatisfiability of a set of clauses with the Davis-Putnam 
+    /// procedure refined.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The difference with <see cref='M:Calcolemus.Herbrand.dp_loop'/> is just 
+    /// that the number returned is not he number of ground tuples generated 
+    /// but the number of those that are really needed to refute the input.
+    /// </remarks>
+    /// 
+    /// <param name="fl0">The input set of clauses.</param>
+    /// <param name="cntms">The constant terms to generate the ground terms.</param>
+    /// <param name="funcs">The function symbols (name, arity) to generate the ground terms.</param>
+    /// <param name="fvs">The free variables to instantiate to generate the ground terms.</param>
+    /// <param name="n">The number of function symbols the new ground terms to be generated should contain.</param>
+    /// <param name="fl">The set of ground instances so far.</param>
+    /// <param name="tried">The instances tried.</param>
+    /// <param name="tuples">The remaining ground instances in the current level.</param>
+    /// 
+    /// <returns>
+    /// The list of ground tuples needed to refute the input and prints to the 
+    /// <c>stdout</c> how many ground instances were tried, if the procedure 
+    /// terminates (thus indicating that the formula is valid); otherwise, 
+    /// loops generating and testing larger and larger ground instances till 
+    /// the memory is full.
+    /// </returns>
+    /// 
+    /// <example id="dp_refine_loop-2">
+    /// <code lang="fsharp">
+    /// dp_refine_loop !!>>[["P(x)"]; ["~P(f_y(y))"]]
+    ///     !!!>["c"] [("f_y",1);] ["x";"y"] 0 [] [] []
+    /// </code>
+    /// Evaluates to <c>[[``f_y(c)``; ``c``]]</c> and print to 
+    /// the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 ground instances tried; 0 items in list.
+    /// 0 ground instances tried; 0 items in list.
+    /// 1 ground instances tried; 2 items in list.
+    /// 1 ground instances tried; 2 items in list.
+    /// 2 ground instances tried; 3 items in list.
+    /// </code>
+    /// </example>
     /// 
     /// <category index="6">The Davis-Putnam procedure refined</category>
     val dp_refine_loop:
@@ -554,15 +665,44 @@ module Herbrand =
         tuples: term list list -> term list list
 
     /// <summary>
-    /// Tests an input fol formula <c>fm</c> for validity based on the 
-    /// Davis-Putnam procedure refined. 
+    /// Tests the validity of a formula with the Davis-Putnam procedure.
     /// </summary>
     /// 
     /// <remarks>
-    /// The refined procedure runs through the list of possibly-needed 
-    /// instances, putting them onto the list of needed ones only if 
-    /// the other instances are satisfiable.
+    /// The difference with <see cref='M:Calcolemus.Herbrand.davisputnam'/> is 
+    /// just that the number returned is not the number of ground instance 
+    /// generated but that of those that are really needed.
     /// </remarks>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The number of ground tuples needed to prove the validity and prints to 
+    /// the <c>stdout</c> how many ground instances were tried, if the 
+    /// procedure terminates (thus indicating that the formula is valid); 
+    /// otherwise, loops indefinitely till the memory is full.
+    /// </returns>
+    /// 
+    /// <example id="davisputnam002-1">
+    /// <code lang="fsharp">
+    /// davisputnam002 p36
+    /// </code>
+    /// Evaluates to <c>3</c> and print to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 ground instances tried; 0 items in list.
+    /// 0 ground instances tried; 0 items in list.
+    /// 1 ground instances tried; 6 items in list.
+    /// ...
+    /// 37 ground instances tried; 168 items in list.
+    /// 38 ground instances tried; 172 items in list.
+    /// 39 ground instances tried; 176 items in list.
+    /// </code>
+    /// </example>
+    /// 
+    /// <note>
+    /// The procedure loops infinitely if the initial formula is not valid and 
+    /// even if it is, it is not guaranteed to end.
+    /// </note>
     /// 
     /// <category index="6">The Davis-Putnam procedure refined</category>
     val davisputnam002: fm: formula<fol> -> int

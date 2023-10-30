@@ -17,6 +17,50 @@ open Clause
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
+dp_refine !!>>[["P(x)"]; ["~P(f_y(y))"]] ["x";"y"] 
+   !!!>>[["f_y(c)"; "c"]; ["c";"c"]; ["f_y(f_y(d))";"f_y(d)"]] []
+
+dp_refine !!>>[["P(x)"]; ["~P(f_y(y))"]] ["x";"y"] 
+   !!!>>[["c";"c"]; ["d";"d"]] []
+
+dp_refine_loop !!>>[["P(x)"]; ["~P(f_y(y))"]]
+   !!!>["c"] [("f_y",1);] ["x";"y"] 0 [] [] []
+
+dp_refine_loop !!>>[["~P(f_y(y))"]; ["P(x)"]; ["Q(z)"; "~Q(z)"]]
+   !!!>["c"] [("f_y",1);] ["x";"y";"z"] 0 [] [] []
+
+dp_refine !!>>[["P(x)"]; ["~P(f_x(x))"]] ["x"] 
+    !!!>>[["c"]; ["f_x(c)"]; ["f_x(f_x(f_x(c)))"]] []
+
+
+
+davisputnam p36
+davisputnam002 p36
+
+let fm = !! "exists x. forall y. P(x) ==> P(y)"
+
+gilmore !! "exists x. forall y. P(x) ==> P(y)"
+
+dp_loop !!>>[["P(x)"]; ["~P(f_y(y))"]]
+   !!!>["c"] [("f_y",1);] ["x";"y"] 0 [] [] []
+
+dp_mfn !!>>[["P(x)"]; ["~P(f_y(x))"]] 
+    (subst (fpf ["x"] [!!!"c"])) []
+
+dp_mfn !!>>[["P(x)"]; ["~P(f_y(x))"]] 
+    (subst (fpf ["x"] [!!!"f_y(c)"])) 
+    !!>>[["P(c)"]; ["~P(f_y(c))"]]
+
+fm
+|> generalize
+|> Not
+|> skolemize
+|> simpcnf
+
+// [[`P(x)`]; [`~P(f_y(x))`]]
+
+davisputnam fm
+
 gilmore p19
 
 gilmore !!"true"
