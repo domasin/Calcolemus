@@ -49,7 +49,7 @@ let ``unify should fail with 'cyclic' with a direct cycle.``() =
 [<Fact>]
 let ``unify should fail with 'cyclic' with a derived cycle.``() = 
     (fun () -> 
-        unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("f",[Var "y"])]
+        unify (("x" |-> (Var "y"))undefined) [Var "y", Fn("f",[Var "x"])]
         |> ignore
     )
     |> should (throwWithMessage "cyclic") typeof<System.Exception>

@@ -1,9 +1,9 @@
 #r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
 
-open Calcolemus.Lib.Fpf
-
-open Calcolemus.Fol
-open Calcolemus.Unif
+open Calcolemus
+open Lib.Fpf
+open Fol
+open Unif
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
@@ -14,14 +14,16 @@ istriv undefined "x" (Var "x")
 istriv undefined "x" (Var "y")
 // val it: bool = false
 
-istriv (("y" |-> (Var "x"))undefined) "x" (Fn("f",[Var "y"]))
+istriv (("y" |-> !!!"x")undefined) "x" !!!"f(y)"
 // System.Exception: cyclic
 
 unify undefined [Var "x", Fn("0",[])]
+|> graph
 // x |-> 0 (success with no previous assignment)
 
 // unify success
 unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("0",[])]
+|> graph
 // x |-> y; y |-> 0 (success with augmented assignment)
 
 unify undefined [Var "y", Fn("f",[Var "y"])]
@@ -34,14 +36,16 @@ unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("f",[Var "y"])]
 unify undefined [Fn ("0",[]), Fn("1",[])]
 // System.Exception: impossible unification
 
-solve (("x" |-> Fn("0",[]))(("x" |-> Var "y")undefined))
+solve (("x" |-> !!!"0")(("x" |-> !!!"y")undefined))
+|> graph
 // x |-> 0
 
-solve (("y" |-> Fn("0",[]))(("x" |-> Var "y")undefined))
-// input unchanged: x |-> y; y |-> 0
+solve (("y" |-> !!!"0")(("x" |-> !!!"1")undefined))
+|> graph
+// input unchanged: x |-> 1; y |-> 0
 
 // // StackOverFlow crash caused by cyclic mappings
-// solve (("y" |-> Fn("f",[Var "y"]))undefined)
+// solve (("y" |-> !!!"f(y)")undefined)
 
 unify undefined [Var "x1", Var "x1";Var "x2", Var "x2"]
 // Empty
@@ -58,20 +62,20 @@ unify undefined [
 ]
 // Empty
 
-fullunify [Var "x", Fn("0",[])]
+fullunify [(!!!"x", !!!"0"); (!!!"x", !!!"y")]
+|> graph
 // x |-> 0
 
-fullunify [Fn ("f",[Var "x"; Fn("g",[Var "y"])]), Fn ("f",[Var "y"; Var "x"])]
+fullunify [!!!"f(x,g(y))", !!!"f(y,x)"]
 // System.Exception: cyclic
 
-fullunify [Fn ("0",[]), Fn("1",[])]
+fullunify [!!!"0",!!!"1"]
 // System.Exception: impossible unification
 
-unify_and_apply [Var "x", Fn("0",[])]
+unify_and_apply [(!!!"x", !!!"0"); (!!!"x", !!!"y")]
 // [(Fn ("0", []), Fn ("0", []))]
-
-unify_and_apply [Var "x", Var "y"; Var "x", Fn("0",[])]
-// [(Fn ("0", []), Fn ("0", [])); (Fn ("0", []), Fn ("0", []))]
 
 // handbook example 1
 unify_and_apply [!!!"f(x,g(y))",!!!"f(f(z),w)"]
+
+unify_and_apply [!!!"f(x,g(y))", !!!"f(y,x)"]

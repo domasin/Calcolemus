@@ -70,8 +70,8 @@
     <Compile Include="Clause.fs" />
     <Compile Include="Herbrand.fsi" />
     <Compile Include="Herbrand.fs" />
-    <Compile Include="unif.fsi" />
-    <Compile Include="unif.fs" />
+    <Compile Include="Unif.fsi" />
+    <Compile Include="Unif.fs" />
     <Compile Include="tableaux.fsi" />
     <Compile Include="tableaux.fs" />
     <Compile Include="resolution.fs" />
