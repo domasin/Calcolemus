@@ -72,8 +72,8 @@
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fsi" />
     <Compile Include="Unif.fs" />
-    <Compile Include="tableaux.fsi" />
-    <Compile Include="tableaux.fs" />
+    <Compile Include="Tableaux.fsi" />
+    <Compile Include="Tableaux.fs" />
     <Compile Include="resolution.fs" />
     <Compile Include="prolog.fs" />
     <Compile Include="meson.fs" />

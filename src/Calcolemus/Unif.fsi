@@ -84,7 +84,7 @@ module Unif =
     /// <example id="unify-1">
     /// No previous assignments
     /// <code lang="fsharp">
-    /// unify undefined [Var "x", Fn("0",[])]
+    /// unify undefined [!!!"x", !!!"0"]
     /// |> graph
     /// </code>
     /// Evaluates to <c>[("x", ``0``)]</c>.
@@ -93,7 +93,7 @@ module Unif =
     /// <example id="unify-2">
     /// Augmented assignment
     /// <code lang="fsharp">
-    /// unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("0",[])]
+    /// unify (("x" |-> !!!"y")undefined) [!!!"x", !!!"0"]
     /// |> graph
     /// </code>
     /// Evaluates to <c>[("x", ``y``); ("y", ``0``)]</c>.
@@ -102,7 +102,7 @@ module Unif =
     /// <example id="unify-3">
     /// Direct cycle (\(y \mapsto f(y)\))
     /// <code lang="fsharp">
-    /// unify undefined [Var "y", Fn("f",[Var "y"])]
+    /// unify undefined [!!!"y", !!!"f(y)"]
     /// </code>
     /// Throws <c>System.Exception: cyclic</c>.
     /// </example>
@@ -110,7 +110,7 @@ module Unif =
     /// <example id="unify-4">
     /// Derived cycle (\(x \mapsto y, y \mapsto f(x)\))
     /// <code lang="fsharp">
-    /// unify (("x" |-> (Var "y"))undefined) [Var "y", Fn("f",[Var "x"])]
+    /// unify (("x" |-> !!!"y")undefined) [!!!"y", !!!"f(x)"]
     /// </code>
     /// Throws <c>System.Exception: cyclic</c>.
     /// </example>
@@ -118,7 +118,7 @@ module Unif =
     /// <example id="unify-5">
     /// Impossible unification
     /// <code lang="fsharp">
-    /// unify undefined [Fn ("0",[]), Fn("1",[])]
+    /// unify undefined [!!!"0", !!!"1"]
     /// </code>
     /// Throws <c>System.Exception: impossible unification</c>.
     /// </example>

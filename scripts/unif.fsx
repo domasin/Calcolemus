@@ -17,23 +17,23 @@ istriv undefined "x" (Var "y")
 istriv (("y" |-> !!!"x")undefined) "x" !!!"f(y)"
 // System.Exception: cyclic
 
-unify undefined [Var "x", Fn("0",[])]
+unify undefined [!!!"x", !!!"0"]
 |> graph
 // x |-> 0 (success with no previous assignment)
 
 // unify success
-unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("0",[])]
+unify (("x" |-> !!!"y")undefined) [!!!"x", !!!"0"]
 |> graph
 // x |-> y; y |-> 0 (success with augmented assignment)
 
-unify undefined [Var "y", Fn("f",[Var "y"])]
+unify undefined [!!!"y", !!!"f(y)"]
 // System.Exception: cyclic (failure with direct cycle)
 
-unify (("x" |-> (Var "y"))undefined) [Var "x", Fn("f",[Var "y"])]
+unify (("x" |-> !!!"y")undefined) [!!!"x", !!!"f(y)"]
 // System.Exception: cyclic: x |-> y; y |-> f(y); failure 
 // (failure with derived cycle)
 
-unify undefined [Fn ("0",[]), Fn("1",[])]
+unify undefined [!!!"0", !!!"1"]
 // System.Exception: impossible unification
 
 solve (("x" |-> !!!"0")(("x" |-> !!!"y")undefined))

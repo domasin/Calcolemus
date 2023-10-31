@@ -7,10 +7,10 @@
 
 namespace Calcolemus
 
-open Calcolemus.Lib.List
-open Calcolemus.Lib.Search
-open Calcolemus.Lib.Set
-open Calcolemus.Lib.Fpf
+open Lib.List
+open Lib.Search
+open Lib.Set
+open Lib.Fpf
 
 open Formulas
 open Prop
@@ -20,8 +20,8 @@ open Unif
 
 module Tableaux = 
 
-    let rec unify_literals env tmp =
-        match tmp with
+    let rec unify_literals env (p, q) =
+        match (p, q) with
         // To unify atomic formulas, predicates are treated 
         // as if they were functions.
         | Atom (R (p1, a1)), Atom (R (p2, a2)) ->
