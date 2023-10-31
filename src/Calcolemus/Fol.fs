@@ -155,6 +155,14 @@ module Fol =
 
     let inline sprint_term t = writeToString (fun sw -> fprintert sw t)
 
+    let sprint_termList tms = 
+        tms
+        |> List.map sprint_term
+
+    let sprint_termListList tms = 
+        tms
+        |> List.map sprint_termList
+
     // ---------------------------------------------------------------------- //
     // Printing of fol formulas.                                              //
     // ---------------------------------------------------------------------- //

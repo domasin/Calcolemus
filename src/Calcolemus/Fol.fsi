@@ -418,6 +418,34 @@ module Fol =
     val inline sprint_term: t: term -> string
 
     /// <summary>
+    /// Returns a list of terms with the concrete syntax representation of 
+    /// terms.
+    /// </summary>
+    /// 
+    /// <note>
+    /// This function is not part of che book code and is added here 
+    /// for convenience.
+    /// </note>
+    /// 
+    /// <category index="3">Printing terms</category>
+    val sprint_termList: 
+      tms: list<term> -> list<string>
+
+    /// <summary>
+    /// Returns a list of term lists with the concrete syntax representation of 
+    /// terms.
+    /// </summary>
+    /// 
+    /// <note>
+    /// This function is not part of che book code and is added here 
+    /// for convenience.
+    /// </note>
+    /// 
+    /// <category index="3">Printing terms</category>
+    val sprint_termListList: 
+      tms: list<list<term>> -> list<list<string>>
+
+    /// <summary>
     /// Printer of atomic fol formulas with TextWriter.
     /// </summary>
     /// 

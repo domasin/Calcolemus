@@ -17,6 +17,7 @@ open Prop
 open DP
 open Fol
 open Skolem
+open Clause
 
 module Herbrand = 
 
@@ -57,17 +58,13 @@ module Herbrand =
                     (groundtuples cntms funcs (n - k) (m - 1)) @ l)
                     [0..n] []
 
-    let clausesToString = List.map (List.map sprint_fol_formula)
-
-    let termListListToString = List.map (List.map sprint_term)
-
     let rec herbloop mfn tfn fl0 cntms funcs fvs n fl tried tuples =
         printfn "%i ground instances tried; %i items in list."
             (List.length tried) (List.length fl) 
         
-        let flStr = clausesToString fl
-        let triedStr = termListListToString tried
-        let tuplesStr = termListListToString tuples
+        let flStr = sprint_clauses fl
+        let triedStr = sprint_termListList tried
+        let tuplesStr = sprint_termListList tuples
         // printfn "herbloop %i %A %A %A" n flStr triedStr tuplesStr
 
         match tuples with
@@ -96,18 +93,18 @@ module Herbrand =
 
     let gilmore_mfn djs0 ifn djs =
 
-        let djs0Str = clausesToString djs0
-        let djsStr = clausesToString djs
+        let djs0Str = sprint_clauses djs0
+        let djsStr = sprint_clauses djs
         // printfn "gilmore_mfn %A ifn %A" djs0Str djsStr
 
         let updatedDjs = (distrib (image (image ifn) djs0) djs)
         let contradictions = 
             updatedDjs 
             |> List.filter trivial
-            |> clausesToString
+            |> sprint_clauses
 
         // printfn "ground instance: %A" 
-        //     (updatedDjs |> clausesToString)
+        //     (updatedDjs |> sprint_clauses)
 
         // if contradictions |> List.length > 0 then
         //     printfn "contradictions: %A" contradictions
@@ -150,9 +147,9 @@ module Herbrand =
     // ---------------------------------------------------------------------- //
 
     let rec dp_refine cjs0 fvs dunno need =
-        // let cjs0Str = clausesToString cjs0
-        // let dunnoStr = termListListToString dunno
-        // let needStr = termListListToString need
+        // let cjs0Str = sprint_clauses cjs0
+        // let dunnoStr = sprint_termListList dunno
+        // let needStr = sprint_termListList need
         // printfn "dp_refine %A %A %A %A" cjs0Str fvs dunnoStr needStr
 
         match dunno with

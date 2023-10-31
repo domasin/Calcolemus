@@ -101,8 +101,17 @@ module Clause =
     /// for convenience.
     /// </note>
     /// 
-    /// <category index="1">Parsing clauses</category>
+    /// <category index="2">Parsing clauses</category>
     val (!!>>): xs: string list list -> formula<fol> list list
+
+    /// <summary>
+    /// Prints the list of clauses rendering literals in the concrete string 
+    /// representation.
+    /// </summary>
+    /// 
+    /// <category index="3">Prettyprinting</category>
+    val sprint_clauses: 
+        clauses: list<list<formula<fol>>> -> list<list<string>>
 
     /// <summary>
     /// Converts a DNF formula into a list fo clauses.
@@ -119,7 +128,7 @@ module Clause =
     /// Evaluates to <c>[[`Q(x)`; `~R(x,y)`; `P(f(z))`]; [`~P(x)`; `Q(x)`]]</c>.
     /// </example>
     /// 
-    /// <category index="3">Formula to clauses</category>
+    /// <category index="5">Formula to clauses</category>
     val djsToClauses:
         fm: formula<'a>
             -> list<list<formula<'a>>>
@@ -139,7 +148,7 @@ module Clause =
     /// Evaluates to <c>[[`Q(x)`; `~R(x,y)`; `P(f(z))`]; [`~P(x)`; `Q(x)`]]</c>.
     /// </example>
     /// 
-    /// <category index="3">Formula to clauses</category>
+    /// <category index="5">Formula to clauses</category>
     val cjsToClauses:
         fm: formula<'a>
             -> list<list<formula<'a>>>
@@ -163,7 +172,7 @@ module Clause =
     /// Evaluates to <c>`Q(x) /\ ~R(x,y) /\ P(f(z)) \/ ~P(x) /\ Q(x)`</c>.
     /// </example>
     /// 
-    /// <category index="4">Clauses to formula</category>
+    /// <category index="6">Clauses to formula</category>
     val clausesToDnf:
         cls: list<list<formula<'a>>>
             -> formula<'a> when 'a : equality

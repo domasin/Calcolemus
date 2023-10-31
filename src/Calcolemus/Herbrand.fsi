@@ -242,9 +242,18 @@ module Herbrand =
     /// <param name="tuples">The remaining ground instances in the current level.</param>
     /// 
     /// <returns>
-    /// The list of ground terms tried, if the procedure is successful; 
-    /// otherwise loops.
+    /// The list of ground tuples generated and prints to the <c>stdout</c> how 
+    /// many ground instances were tried, if the procedure terminates (thus 
+    /// indicating that the formula is valid); otherwise, loops generating and 
+    /// testing larger and larger ground instances till the memory is full. 
     /// </returns>
+    /// 
+    /// <note>
+    /// See the specific implementations 
+    /// <see cref='M:Calcolemus.Herbrand.gilmore_loop'/>, 
+    /// <see cref='M:Calcolemus.Herbrand.dp_loop'/>, 
+    /// <see cref='M:Calcolemus.Herbrand.dp_refine_loop'/> for examples.
+    /// </note>
     /// 
     /// <category index="2">Herbrand procedures</category>
     val herbloop:
@@ -581,7 +590,7 @@ module Herbrand =
     val davisputnam: fm: formula<fol> -> int
 
     /// <summary>
-    /// Returns the list of ground instances that are really needed to refute 
+    /// Returns the list of ground tuples that are really needed to refute 
     /// <c>cjs0</c>.
     /// </summary>
     /// 
@@ -591,8 +600,9 @@ module Herbrand =
     /// <param name="need">The list of really needed instances.</param>
     /// 
     /// <returns>
-    /// The list of really needed instances to refute te input set of clauses, 
-    /// if there is one; otherwise, the input itself in reverse order.
+    /// The list of really needed instances to refute the input set of clauses, 
+    /// if there is one; otherwise, the input <c>dunno</c> itself in reverse 
+    /// order.
     /// </returns>
     /// 
     /// <example id="dp_refine-2">
@@ -616,8 +626,8 @@ module Herbrand =
     /// 
     /// <remarks>
     /// The difference with <see cref='M:Calcolemus.Herbrand.dp_loop'/> is just 
-    /// that the number returned is not he number of ground tuples generated 
-    /// but the number of those that are really needed to refute the input.
+    /// that the list returned is not the number of ground tuples generated 
+    /// but of those that are really needed to refute the input.
     /// </remarks>
     /// 
     /// <param name="fl0">The input set of clauses.</param>
@@ -665,7 +675,7 @@ module Herbrand =
         tuples: term list list -> term list list
 
     /// <summary>
-    /// Tests the validity of a formula with the Davis-Putnam procedure.
+    /// Tests the validity of a formula with the Davis-Putnam procedure refined.
     /// </summary>
     /// 
     /// <remarks>

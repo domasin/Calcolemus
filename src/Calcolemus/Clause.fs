@@ -5,16 +5,11 @@
 
 namespace Calcolemus
 
-open Calcolemus.Lib.Function
-open Calcolemus.Lib.List
 open Calcolemus.Lib.Set
-open Calcolemus.Lib.Fpf
 
 open Formulas
 open Prop
-open DP
 open Fol
-open Skolem
 
 module Clause = 
 
@@ -36,7 +31,12 @@ module Clause =
         let pos, neg = List.partition positive lits
         intersect pos (image negate neg)
 
-    let (!!>>) xs = xs |> List.map (List.map (!!))
+    let (!!>>) xs = 
+        xs |> List.map (List.map (!!))
+
+    let sprint_clauses clauses = 
+        clauses
+        |> List.map (List.map sprint_fol_formula)
 
     let rec djsToClauses fm = 
         match fm with
