@@ -54,7 +54,14 @@
                 <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus/blob/master/LICENSE.txt">License</a></li>
                 <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
                 <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus">Source Repository</a></li>
-                
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calcolemus/getting_started.html">
+    Getting started
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
@@ -357,7 +364,7 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="unify_literals-4">
+              <p class="fsdocs-example" id="unify_complements-4">
                 
  Invalid input
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">unify_literals</span> <span class="id">undefined</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;P(x) /\ Q(x)&quot;</span><span class="pn">,</span><span class="o">!!</span><span class="s">&quot;~P(f(y))&quot;</span><span class="pn">)</span>
@@ -604,7 +611,7 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="unify_literals-4">
+              <p class="fsdocs-example" id="unify_literals-5">
                 
  Invalid input
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">unify_literals</span> <span class="id">undefined</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">,</span><span class="o">!!</span><span class="s">&quot;~P(f(y))&quot;</span><span class="pn">)</span>
@@ -654,7 +661,7 @@
                 <p>
                   <a id="unify_refute">
                     <a href="#unify_refute">
-                      <code><span>unify_refute&#32;<span>djs&#32;acc</span></span></code>
+                      <code><span>unify_refute&#32;<span>djs&#32;env</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -662,7 +669,7 @@
               <div class="fsdocs-tip" id="735">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>unify_refute&#32;<span>djs&#32;acc</span></span></code>
+                  <code><span>unify_refute&#32;<span>djs&#32;env</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -673,14 +680,18 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input DNF list of clauses
                     </span>
                     <br/>
                     <span>
                       <b>
-                        acc
+                        env
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. 
                     </span>
                     <br/>
                   </ul>
@@ -689,6 +700,10 @@
                     Returns: 
                     <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                   </span>
+                  
+ The variable-term mappings that causes each clause to contain 
+ complementary literals, if this mapping exists.
+ 
                   <br/>
                 </div>
               </div>
@@ -712,8 +727,8 @@
                   </a>
                   <p class="fsdocs-summary">
                     
- Unifies and refutes a list of disjuncts <code>dsj</code>, each member of 
- which being a list of implicitly conjoined literals.
+ Returns a unifier that causes each clause in the input list to contain 
+ complementary literals.
  
                   </p>
                 </div>
@@ -726,15 +741,23 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input DNF list of clauses
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    acc
+                    env
                   </span>
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. 
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -743,8 +766,59 @@
                   </span>
                   <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The variable-term mappings that causes each clause to contain 
+ complementary literals, if this mapping exists.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message 'tryfind' when there isn't any such mapping.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="unify_refute-1">
+                
+ Successful refutation
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">undefined</span>
+ <span class="o">|&gt;</span> <span class="id">unify_refute</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span>
+         <span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;~P(f(y))&quot;</span><span class="pn">;</span><span class="s">&quot;R(x,y)&quot;</span><span class="pn">]</span><span class="pn">;</span>
+         <span class="pn">[</span><span class="s">&quot;Q(x)&quot;</span><span class="pn">;</span><span class="s">&quot;~Q(x)&quot;</span><span class="pn">]</span>
+ <span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[(&quot;x&quot;, ``f(y)``)]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="unify_refute-2">
+                
+ Failing refutation
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">undefined</span>
+ <span class="o">|&gt;</span> <span class="id">unify_refute</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(c)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;Q(c)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: tryfind</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -804,6 +878,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -812,6 +888,9 @@
                     Returns: 
                     <code>int</code>
                   </span>
+                  
+ The number of instance tried.
+ 
                   <br/>
                 </div>
               </div>
@@ -829,14 +908,13 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests an input fol formula <code>fm</code> for validity based on a 
- Prawitz-like procedure.
+ Tests the validity of a formula with a Prawitz-like procedure.
  
                   </p>
                 </div>
@@ -849,7 +927,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -858,8 +940,25 @@
                   </span>
                   <code>int</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The number of instance tried.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="prawitz_loop-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">prawitz</span> <span class="id">Pelletier</span><span class="pn">.</span><span class="id">p20</span>
+</code></pre>
+
+
+ Evaluates to <code>2</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -890,7 +989,7 @@
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                        - 
-                      The initial formula in DNF uninstantiated.
+                      The input set of clauses.
                     </span>
                     <br/>
                     <span>
@@ -900,7 +999,7 @@
                       :
                       <code><span>string&#32;list</span></code>
                        - 
-                      The set of free variables in the initial formula.
+                      The free variables to unify.
                     </span>
                     <br/>
                     <span>
@@ -910,7 +1009,7 @@
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                        - 
-                      Accumulator for the substitution instances.
+                      The accumulator for the substitution instances.
                     </span>
                     <br/>
                     <span>
@@ -954,10 +1053,20 @@
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
-                    Main loop for prawitz procedure.
+                    
+ Tests the unsatisfiability of a set of clauses with a Prawitz-like 
+ procedure.
+ 
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ The input set of clauses <code>djs0</code> is intended to represent a DNF 
+ formula and <code>fvs</code> are supposed to be the free variables of the 
+ formula.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -968,7 +1077,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The initial formula in DNF uninstantiated.
+                    The input set of clauses.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -980,7 +1089,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The set of free variables in the initial formula.
+                    The free variables to unify.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -992,7 +1101,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    Accumulator for the substitution instances.
+                    The accumulator for the substitution instances.
                   </p>
                 </dd>
                 <dt class="fsdocs-param">
@@ -1023,6 +1132,25 @@
                   </p>
                 </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="prawitz_loop-1">
+                
+ Successful refutation
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">prawitz_loop</span> <span class="o">!!&gt;&gt;</span><span class="pn">[</span>
+         <span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;~P(f(y))&quot;</span><span class="pn">;</span><span class="s">&quot;R(x,y)&quot;</span><span class="pn">]</span><span class="pn">;</span>
+         <span class="pn">[</span><span class="s">&quot;Q(x)&quot;</span><span class="pn">;</span><span class="s">&quot;~Q(x)&quot;</span><span class="pn">]</span>
+ <span class="pn">]</span> <span class="pn">[</span><span class="s">&quot;x&quot;</span><span class="pn">;</span><span class="s">&quot;y&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">[</span><span class="pn">]</span><span class="pn">]</span> <span class="n">0</span>
+ <span class="o">|&gt;</span> <span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">env</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">nr</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="fn">env</span> <span class="o">|&gt;</span> <span class="id">graph</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="fn">nr</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val env: obj</div>
+<div class="fsdocs-tip" id="fs2">val nr: obj</div>
+
+
+ Evaluates to <code>[(&quot;x&quot;, ``f(y)``)]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -1115,7 +1243,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L91-91" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L94-94" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1207,7 +1335,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L112-112" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1291,7 +1419,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L104-104" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1415,7 +1543,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L70-70" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L73-73" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1539,7 +1667,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Tableaux.fs#L101-101" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>

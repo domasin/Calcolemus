@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Getting started</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Domenico Masini">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Calcolemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calcolemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calcolemus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Calcolemus/"><img id="fsdocs-logo" src="/Calcolemus/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calcolemus">Source Repository</a></li>
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calcolemus/getting_started.html">
+    Getting started
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calcolemus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Calcolemus/">Calcolemus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            
+<h1><a name="Getting-started" class="anchor" href="#Getting-started">Getting started</a></h1>
+<h2><a name="Introduction" class="anchor" href="#Introduction">Introduction</a></h2>
+<p>Calcolemus contains functions to perform formal deductive inference in
+propositional or first order logic.</p>
+<p>This document demonstrates how to use this library.</p>
+<p>First, we reference and open Calcolemus</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Calcolemus, 1.0.5&quot;</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Calcolemus</span>
+</code></pre>
+<h2><a name="Custom-printers" class="anchor" href="#Custom-printers">Custom printers</a></h2>
+<p>Then, it is necessary to load the module for the type of logical objects we are going to work with</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="m">Fol</span>
+</code></pre>
+<p>and also convenient to setup the corresponding custom printers</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">fsi</span><span class="pn">.</span><span class="id">AddPrinter</span> <span class="id">sprint_fol_formula</span>
+</code></pre>
+<h2><a name="Entering-formulas" class="anchor" href="#Entering-formulas">Entering formulas</a></h2>
+<p>Now, to create a formula, let's say first order, it is necessary to apply the parser to the desired string expression.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="id">fm</span> <span class="o">=</span> <span class="o">!!</span><span class="s">&quot;exists x. forall y z. (P(y) ==&gt; Q(z)) ==&gt; P(x) ==&gt; Q(x)&quot;</span>
+</code></pre>
+<h2><a name="Automated-proving" class="anchor" href="#Automated-proving">Automated proving</a></h2>
+<p>The library contains various procedures to prove propositional tautologies or first order valid formulas. Note that, depending on the complexity of the formulas involved, these procedures may or may not be able to complete the task.</p>
+<p>To try an automatic proof, it is enough to load the module containing it and apply the function to the desired formula.</p>
+<h3><a name="Propositional-logic" class="anchor" href="#Propositional-logic">Propositional logic</a></h3>
+<p>The functions for tautology checking of propositional formulas return <code>true</code> or <code>false</code>, depending if the formula is a tautology or not:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="m">Prop</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="m">DP</span>
+
+<span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="fn">dplbtaut</span> <span class="o">!&gt;</span><span class="s">&quot;(p ==&gt; q) &lt;=&gt; (~q ==&gt; ~p)&quot;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>val it: bool = true</code></pre></td></tr></table>
+<h3><a name="First-order-logic" class="anchor" href="#First-order-logic">First order logic</a></h3>
+<p>Unlike propositional logic, for first order logic automated validity checking is only semidecidable. There are methods that, given a valid formula, can generate a sequence of inferences such that after a finite (but not definable in advance) number of steps prove the validity of the formula. However, if the formula is not valid, the same procedures will continue ad infinitum without returning any result. This is not simply a question of how well designed such procedures are but the best that can be hoped also from a theoretical point of view.</p>
+<p>Thus, the automated validity checking functions for first order logic, in general, don't return a simple <code>true</code> or <code>false</code> but rather the information that the procedure ended successfully or, in some cases, that it was interrupted and therefore did not produce any significant results.</p>
+<p>For example, <a href="/Calcolemus/reference/calcolemus-herbrand.html#davisputnam">Herbrand.davisputnam</a></p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="m">Herbrand</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="id">test</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="fn">davisputnam</span> <span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="id">fm</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0 ground instances tried; 0 items in list.
+0 ground instances tried; 0 items in list.
+1 ground instances tried; 3 items in list.
+1 ground instances tried; 3 items in list.
+2 ground instances tried; 6 items in list.
+val test: int = 3</code></pre></td></tr></table>
+<p>as the api reference reports, returns</p>
+<blockquote>
+<p>The number of ground tuples generated and prints to the <code>stdout</code> how many ground instances were tried, if the procedure terminates (thus indicating that the formula is valid); otherwise, loops indefinitely till the memory is full.</p>
+</blockquote>
+<h2><a name="Interactive-theorem-proving" class="anchor" href="#Interactive-theorem-proving">Interactive theorem proving</a></h2>
+<p>The library contains also various interactive theorem proving features in the LCF styles, both with simple forward rules (starting from axioms and deriving new theorems by applying inference rules); as with goal oriented proofs based on tactics.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="m">Lcf</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="m">Lcfprop</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs12', 14)" onmouseover="showTip(event, 'fs12', 14)" class="m">Folderived</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs13', 15)" onmouseover="showTip(event, 'fs13', 15)" class="m">Tactics</span>
+</code></pre>
+<p>Like before is convenient to install the custom printers:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">fsi</span><span class="pn">.</span><span class="id">AddPrinter</span> <span class="id">sprint_thm</span>
+<span class="id">fsi</span><span class="pn">.</span><span class="id">AddPrinter</span> <span class="id">sprint_goal</span>
+</code></pre>
+<h3><a name="Forward-rules" class="anchor" href="#Forward-rules">Forward rules</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 16)" onmouseover="showTip(event, 'fs14', 16)" class="fn">axiom_addimp</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span> <span class="o">!!</span><span class="s">&quot;Q(x)&quot;</span>  <span class="c">// |- P(x) ==&gt; Q(x) ==&gt; P(x)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 17)" onmouseover="showTip(event, 'fs15', 17)" class="fn">add_assum</span> <span class="o">!!</span><span class="s">&quot;R(x,y)&quot;</span>         <span class="c">// |- R(x,y) ==&gt; P(x) ==&gt; Q(x) ==&gt; P(x)</span>
+</code></pre>
+<h3><a name="Goals-proving" class="anchor" href="#Goals-proving">Goals proving</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 18)" onmouseover="showTip(event, 'fs16', 18)" class="id">g0</span> <span class="o">=</span> 
+    <span class="o">!!</span> <span class="s">@&quot;</span>
+<span class="s">        (forall x. x &lt;= x) /\</span>
+<span class="s">        (forall x y z. x &lt;= y /\ y &lt;= z ==&gt; x &lt;= z) /\</span>
+<span class="s">        (forall x y. f(x) &lt;= y &lt;=&gt; x &lt;= g(y))</span>
+<span class="s">        ==&gt; (forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y)) /\</span>
+<span class="s">            (forall x y. x &lt;= y ==&gt; g(x) &lt;= g(y))&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 19)" onmouseover="showTip(event, 'fs17', 19)" class="fn">set_goal</span>
+
+<span onmouseout="hideTip(event, 'fs16', 20)" onmouseover="showTip(event, 'fs16', 20)" class="id">g0</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 21)" onmouseover="showTip(event, 'fs18', 21)" class="fn">print_goal</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>1 subgoal:
+---&gt; (forall x. x &lt;= x) /\ (forall x y z. x &lt;= y /\ y &lt;= z ==&gt; x &lt;= z) /\ (forall x y. f(x) &lt;= y &lt;=&gt; x &lt;= g(y)) ==&gt; (forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y)) /\ (forall x y. x &lt;= y ==&gt; g(x) &lt;= g(y))</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs19', 22)" onmouseover="showTip(event, 'fs19', 22)" class="id">g1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs20', 23)" onmouseover="showTip(event, 'fs20', 23)" class="fn">imp_intro_tac</span> <span class="s">&quot;ant&quot;</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="id">g0</span>
+
+<span onmouseout="hideTip(event, 'fs19', 25)" onmouseover="showTip(event, 'fs19', 25)" class="id">g1</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="fn">print_goal</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>1 subgoal:
+ant: (forall x. x &lt;= x) /\ (forall x y z. x &lt;= y /\ y &lt;= z ==&gt; x &lt;= z) /\ (forall x y. f(x) &lt;= y &lt;=&gt; x &lt;= g(y))
+---&gt; (forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y)) /\ (forall x y. x &lt;= y ==&gt; g(x) &lt;= g(y))</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 27)" onmouseover="showTip(event, 'fs21', 27)" class="id">g2</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 28)" onmouseover="showTip(event, 'fs22', 28)" class="fn">conj_intro_tac</span> <span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="id">g1</span>
+
+<span onmouseout="hideTip(event, 'fs21', 30)" onmouseover="showTip(event, 'fs21', 30)" class="id">g2</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 31)" onmouseover="showTip(event, 'fs18', 31)" class="fn">print_goal</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>2 subgoals starting with
+ant: (forall x. x &lt;= x) /\ (forall x y z. x &lt;= y /\ y &lt;= z ==&gt; x &lt;= z) /\ (forall x y. f(x) &lt;= y &lt;=&gt; x &lt;= g(y))
+---&gt; forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y)</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 32)" onmouseover="showTip(event, 'fs23', 32)" class="id">g3</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs24', 33)" onmouseover="showTip(event, 'fs24', 33)" class="id">Lib</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 34)" onmouseover="showTip(event, 'fs25', 34)" class="m">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 35)" onmouseover="showTip(event, 'fs26', 35)" class="id">funpow</span> <span class="n">2</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 36)" onmouseover="showTip(event, 'fs27', 36)" class="fn">auto_tac</span> <span onmouseout="hideTip(event, 'fs28', 37)" onmouseover="showTip(event, 'fs28', 37)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;ant&quot;</span><span class="pn">]</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs21', 38)" onmouseover="showTip(event, 'fs21', 38)" class="id">g2</span>
+
+<span onmouseout="hideTip(event, 'fs23', 39)" onmouseover="showTip(event, 'fs23', 39)" class="id">g3</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 40)" onmouseover="showTip(event, 'fs18', 40)" class="fn">print_goal</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 3
+Searching with depth limit 4
+Searching with depth limit 5
+Searching with depth limit 6
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 3
+Searching with depth limit 4
+Searching with depth limit 5
+Searching with depth limit 6
+No subgoals</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs29', 41)" onmouseover="showTip(event, 'fs29', 41)" class="fn">extract_thm</span> <span onmouseout="hideTip(event, 'fs23', 42)" onmouseover="showTip(event, 'fs23', 42)" class="id">g3</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 43)" onmouseover="showTip(event, 'fs30', 43)" class="fn">print_thm</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>|- (forall x. x &lt;= x) /\ (forall x y z. x &lt;= y /\ y &lt;= z ==&gt; x &lt;= z) /\ (forall x y. f(x) &lt;= y &lt;=&gt; x &lt;= g(y)) ==&gt; (forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y)) /\ (forall x y. x &lt;= y ==&gt; g(x) &lt;= g(y))</code></pre></td></tr></table>
+<h3><a name="Declarative-proof" class="anchor" href="#Declarative-proof">Declarative proof</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span><span onmouseout="hideTip(event, 'fs31', 44)" onmouseover="showTip(event, 'fs31', 44)" class="fn">note</span><span class="pn">(</span><span class="s">&quot;eq_sym&quot;</span><span class="pn">,</span><span class="pn">(</span><span class="o">!!</span><span class="s">&quot;forall x y. x = y ==&gt; y = x&quot;</span><span class="pn">)</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs32', 45)" onmouseover="showTip(event, 'fs32', 45)" class="fn">using</span> <span class="pn">[</span><span onmouseout="hideTip(event, 'fs33', 46)" onmouseover="showTip(event, 'fs33', 46)" class="fn">eq_sym</span> <span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;x&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;y&quot;</span><span class="pn">)</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs31', 47)" onmouseover="showTip(event, 'fs31', 47)" class="fn">note</span><span class="pn">(</span><span class="s">&quot;eq_trans&quot;</span><span class="pn">,</span><span class="pn">(</span><span class="o">!!</span><span class="s">&quot;forall x y z. x = y /\ y = z ==&gt; x = z&quot;</span><span class="pn">)</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs32', 48)" onmouseover="showTip(event, 'fs32', 48)" class="fn">using</span> <span class="pn">[</span><span onmouseout="hideTip(event, 'fs34', 49)" onmouseover="showTip(event, 'fs34', 49)" class="fn">eq_trans</span> <span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;x&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;y&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;z&quot;</span><span class="pn">)</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs31', 50)" onmouseover="showTip(event, 'fs31', 50)" class="fn">note</span><span class="pn">(</span><span class="s">&quot;eq_cong&quot;</span><span class="pn">,</span><span class="pn">(</span><span class="o">!!</span><span class="s">&quot;forall x y. x = y ==&gt; f(x) = f(y)&quot;</span><span class="pn">)</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs32', 51)" onmouseover="showTip(event, 'fs32', 51)" class="fn">using</span> <span class="pn">[</span><span onmouseout="hideTip(event, 'fs35', 52)" onmouseover="showTip(event, 'fs35', 52)" class="fn">axiom_funcong</span> <span class="s">&quot;f&quot;</span> <span class="pn">[</span><span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;x&quot;</span><span class="pn">)</span><span class="pn">]</span> <span class="pn">[</span><span class="pn">(</span><span class="o">!!!</span><span class="s">&quot;y&quot;</span><span class="pn">)</span><span class="pn">]</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs36', 53)" onmouseover="showTip(event, 'fs36', 53)" class="fn">assume</span> <span class="pn">[</span><span class="s">&quot;le&quot;</span><span class="pn">,</span><span class="pn">(</span><span class="o">!!</span><span class="s">&quot;forall x y. x &lt;= y &lt;=&gt; x * y = x&quot;</span><span class="pn">)</span><span class="pn">;</span>
+        <span class="s">&quot;hom&quot;</span><span class="pn">,</span><span class="pn">(</span><span class="o">!!</span><span class="s">&quot;forall x y. f(x * y) = f(x) * f(y)&quot;</span><span class="pn">)</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs37', 54)" onmouseover="showTip(event, 'fs37', 54)" class="fn">fix</span> <span class="s">&quot;x&quot;</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs37', 55)" onmouseover="showTip(event, 'fs37', 55)" class="fn">fix</span> <span class="s">&quot;y&quot;</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs36', 56)" onmouseover="showTip(event, 'fs36', 56)" class="fn">assume</span> <span class="pn">[</span><span class="s">&quot;xy&quot;</span><span class="pn">,</span><span class="pn">(</span><span class="o">!!</span><span class="s">&quot;x &lt;= y&quot;</span><span class="pn">)</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs38', 57)" onmouseover="showTip(event, 'fs38', 57)" class="fn">so</span> <span onmouseout="hideTip(event, 'fs39', 58)" onmouseover="showTip(event, 'fs39', 58)" class="fn">have</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;x * y = x&quot;</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs28', 59)" onmouseover="showTip(event, 'fs28', 59)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;le&quot;</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs38', 60)" onmouseover="showTip(event, 'fs38', 60)" class="fn">so</span> <span onmouseout="hideTip(event, 'fs39', 61)" onmouseover="showTip(event, 'fs39', 61)" class="fn">have</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;f(x * y) = f(x)&quot;</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs28', 62)" onmouseover="showTip(event, 'fs28', 62)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;eq_cong&quot;</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs38', 63)" onmouseover="showTip(event, 'fs38', 63)" class="fn">so</span> <span onmouseout="hideTip(event, 'fs39', 64)" onmouseover="showTip(event, 'fs39', 64)" class="fn">have</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;f(x) = f(x * y)&quot;</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs28', 65)" onmouseover="showTip(event, 'fs28', 65)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;eq_sym&quot;</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs38', 66)" onmouseover="showTip(event, 'fs38', 66)" class="fn">so</span> <span onmouseout="hideTip(event, 'fs39', 67)" onmouseover="showTip(event, 'fs39', 67)" class="fn">have</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;f(x) = f(x) * f(y)&quot;</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs28', 68)" onmouseover="showTip(event, 'fs28', 68)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;eq_trans&quot;</span><span class="pn">;</span> <span class="s">&quot;hom&quot;</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs38', 69)" onmouseover="showTip(event, 'fs38', 69)" class="fn">so</span> <span onmouseout="hideTip(event, 'fs39', 70)" onmouseover="showTip(event, 'fs39', 70)" class="fn">have</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;f(x) * f(y) = f(x)&quot;</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs28', 71)" onmouseover="showTip(event, 'fs28', 71)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;eq_sym&quot;</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs38', 72)" onmouseover="showTip(event, 'fs38', 72)" class="fn">so</span> <span onmouseout="hideTip(event, 'fs40', 73)" onmouseover="showTip(event, 'fs40', 73)" class="fn">conclude</span> <span class="pn">(</span><span class="o">!!</span><span class="s">&quot;f(x) &lt;= f(y)&quot;</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs28', 74)" onmouseover="showTip(event, 'fs28', 74)" class="fn">by</span> <span class="pn">[</span><span class="s">&quot;le&quot;</span><span class="pn">]</span><span class="pn">;</span>
+<span onmouseout="hideTip(event, 'fs41', 75)" onmouseover="showTip(event, 'fs41', 75)" class="fn">qed</span><span class="pn">]</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs42', 76)" onmouseover="showTip(event, 'fs42', 76)" class="fn">prove</span> <span class="o">!!</span> <span class="s">@&quot;</span>
+<span class="s">        (forall x y. x &lt;= y &lt;=&gt; x * y = x) /\</span>
+<span class="s">        (forall x y. f(x * y) = f(x) * f(y))</span>
+<span class="s">        ==&gt; forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y)&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 77)" onmouseover="showTip(event, 'fs30', 77)" class="fn">print_thm</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 3
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 3
+Searching with depth limit 4
+Searching with depth limit 5
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+Searching with depth limit 0
+Searching with depth limit 1
+Searching with depth limit 2
+|- (forall x y. x &lt;= y &lt;=&gt; x * y = x) /\ (forall x y. f(x * y) = f(x) * f(y)) ==&gt; (forall x y. x &lt;= y ==&gt; f(x) &lt;= f(y))</code></pre></td></tr></table>
+
+            <div class="fsdocs-tip" id="fs1">namespace Calcolemus</div>
+<div class="fsdocs-tip" id="fs2">module Fol
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ Basic stuff for first order logic: datatype, parsing and printing, 
+ semantics, syntax operations and substitution.
+ &lt;/summary&gt;<br />&lt;category index=&quot;4&quot;&gt;First order logic&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs3">val fm: Formulas.formula&lt;fol&gt;</div>
+<div class="fsdocs-tip" id="fs4">module Prop
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ Basic stuff for propositional logic: datatype, parsing and prettyprinting, 
+ syntax and semantics, normal forms.
+ &lt;/summary&gt;<br />&lt;note&gt;
+ Although this module defines a specific type 
+ &lt;see cref=&quot;T:Calcolemus.Prop.prop&quot; /&gt; for primitive propositions, most of 
+ the functions defined here for propositional logic are applicable (and 
+ intended to be applied) in general to any kind of 
+ &lt;see cref=&quot;T:Calcolemus.Formulas.formula`1&quot; /&gt; and in particular 
+ to our specific type of first order logic formulas 
+ &lt;see cref=&quot;T:Calcolemus.FolModule.fol&quot; /&gt;. These functions handle symbolic 
+ computation at the propositional level for any kind of 
+ &lt;see cref=&quot;T:Calcolemus.Formulas.formula`1&quot; /&gt; unless the signature 
+ restricts them to the &lt;see cref=&quot;T:Calcolemus.Prop.prop&quot; /&gt; type.
+ &lt;p&gt;&lt;/p&gt;
+ As remarked in the handbook, the defined type 
+ &lt;see cref=&quot;T:Calcolemus.Prop.prop&quot; /&gt; for propositional variables is fixed 
+ here just to make experimentation with some of the operations easier.
+ &lt;/note&gt;<br />&lt;category index=&quot;3&quot;&gt;Propositional logic&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs5">module DP
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ The Davis-Putnam and the Davis-Putnam-Loveland-Logemann procedures.
+ &lt;/summary&gt;<br />&lt;category index=&quot;3&quot;&gt;Propositional logic&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs6">val dplbtaut: fm: Formulas.formula&lt;prop&gt; -&gt; bool<br /><em>&lt;summary&gt;
+ Tests &lt;c&gt;fm&lt;/c&gt; (propositional) validity with the 
+ Davis-Putnam-Loveland-Logemann procedure with iterative implementation 
+ and backjumping and learning optimizations.
+ &lt;/summary&gt;<br />&lt;param name=&quot;fm&quot;&gt;The input formula.&lt;/param&gt;<br />&lt;returns&gt;
+ true, if the input formula is a tautology: otherwise false.
+ &lt;/returns&gt;<br />&lt;example id=&quot;dplbtaut-1&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ dplbtaut !&amp;gt; &quot;p&quot;
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;false&lt;/c&gt;.
+ &lt;/example&gt;<br />&lt;example id=&quot;dplbtaut-2&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ dplbtaut (prime 11)
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;true&lt;/c&gt;.
+ &lt;/example&gt;<br />&lt;example id=&quot;dplbtaut-3&quot;&gt;
+ dplbtaut is 4X more faster than dplitaut:
+ &lt;code lang=&quot;fsharp&quot;&gt;
+ time dplbtaut (prime 101)
+ // Evaluates to:
+ // CPU time (user): 36.981689
+ // val it: bool = true
+ 
+ time dplitaut (prime 101)
+ // Evaluates to:
+ // CPU time (user): 130.045742
+ // val it: bool = true
+ &lt;/code&gt;&lt;/example&gt;<br />&lt;category index=&quot;8&quot;&gt;DPLL with backjumping and learning&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">module Herbrand
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ Relation between first order and propositional logic; Herbrand theorem.
+ &lt;/summary&gt;<br />&lt;category index=&quot;4&quot;&gt;First order logic&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val test: int</div>
+<div class="fsdocs-tip" id="fs9">val davisputnam: fm: Formulas.formula&lt;fol&gt; -&gt; int<br /><em>&lt;summary&gt;
+ Tests the validity of a formula with the Davis-Putnam procedure.
+ &lt;/summary&gt;<br />&lt;param name=&quot;fm&quot;&gt;The input formula.&lt;/param&gt;<br />&lt;returns&gt;
+ The number of ground tuples generated and prints to the &lt;c&gt;stdout&lt;/c&gt; 
+ how many ground instances were tried, if the procedure terminates (thus 
+ indicating that the formula is valid); otherwise, loops indefinitely 
+ till the memory is full.
+ &lt;/returns&gt;<br />&lt;example id=&quot;davisputnam-1&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ davisputnam !! &quot;exists x. forall y. P(x) ==&amp;gt; P(y)&quot;
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;2&lt;/c&gt; and print to the &lt;c&gt;stdout&lt;/c&gt;:
+ &lt;code lang=&quot;fsharp&quot;&gt;
+ 0 ground instances tried; 0 items in list.
+ 0 ground instances tried; 0 items in list.
+ 1 ground instances tried; 2 items in list.
+ 1 ground instances tried; 2 items in list.
+ &lt;/code&gt;&lt;/example&gt;<br />&lt;note&gt;
+ The procedure loops infinitely if the initial formula is not valid and 
+ even if it is, it is not guaranteed to end.
+ &lt;/note&gt;<br />&lt;category index=&quot;5&quot;&gt;The Davis-Putnam procedure for first order logic&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">module Lcf
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ LCF-style system for first order logic.
+ &lt;/summary&gt;<br />&lt;remarks&gt;
+ Basic first order deductive system.
+ &lt;p&gt;&lt;/p&gt;
+ This is based on Tarski&#39;s trick for avoiding use of a substitution  
+ primitive. It seems about the simplest possible system we could use.
+ &lt;/remarks&gt;<br />&lt;category index=&quot;7&quot;&gt;Interactive theorem proving&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">module Lcfprop
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ Propositional logic by inference.
+ &lt;/summary&gt;<br />&lt;category index=&quot;7&quot;&gt;Interactive theorem proving&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">module Folderived
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ First-order reasoning by inference.
+ &lt;/summary&gt;<br />&lt;category index=&quot;7&quot;&gt;Interactive theorem proving&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">module Tactics
+
+from Calcolemus<br /><em>&lt;summary&gt;
+ Tactics and Mizar-style proofs.
+ &lt;/summary&gt;<br />&lt;category index=&quot;7&quot;&gt;Interactive theorem proving&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">val axiom_addimp: p: Formulas.formula&lt;fol&gt; -&gt; q: Formulas.formula&lt;fol&gt; -&gt; thm<br /><em>&lt;summary&gt;
+ |- p -&amp;gt; (q -&amp;gt; p)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val add_assum: p: Formulas.formula&lt;fol&gt; -&gt; th: thm -&gt; thm</div>
+<div class="fsdocs-tip" id="fs16">val g0: goals</div>
+<div class="fsdocs-tip" id="fs17">val set_goal: p: Formulas.formula&lt;fol&gt; -&gt; goals</div>
+<div class="fsdocs-tip" id="fs18">val print_goal: g: goals -&gt; unit</div>
+<div class="fsdocs-tip" id="fs19">val g1: goals</div>
+<div class="fsdocs-tip" id="fs20">val imp_intro_tac: s: string -&gt; gls: goals -&gt; goals</div>
+<div class="fsdocs-tip" id="fs21">val g2: goals</div>
+<div class="fsdocs-tip" id="fs22">val conj_intro_tac: gls: goals -&gt; goals</div>
+<div class="fsdocs-tip" id="fs23">val g3: goals</div>
+<div class="fsdocs-tip" id="fs24">namespace Calcolemus.Lib</div>
+<div class="fsdocs-tip" id="fs25">module Function
+
+from Calcolemus.Lib<br /><em>&lt;namespacedoc&gt;&lt;summary&gt;
+ Basic library for the global implementation. 
+ &lt;/summary&gt;&lt;/namespacedoc&gt;<br />&lt;summary&gt;Functions over predicates and functions.&lt;/summary&gt;<br />&lt;category index=&quot;1&quot;&gt;Functions over predicates and functions&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">val funpow: n: int -&gt; f: (&#39;a -&gt; &#39;a) -&gt; x: &#39;a -&gt; &#39;a<br /><em>&lt;summary&gt;
+ Iterates the application of a function &lt;c&gt;f&lt;/c&gt; to an argument &lt;c&gt;x&lt;/c&gt; 
+ a fixed number &lt;c&gt;n&lt;/c&gt; of times.
+ &lt;/summary&gt;<br />&lt;remarks&gt;&lt;c&gt;funpow n f x&lt;/c&gt; applies &lt;c&gt;f&lt;/c&gt; to &lt;c&gt;x&lt;/c&gt; for &lt;c&gt;n&lt;/c&gt; times, 
+ giving the result &lt;c&gt;f (f ... (f x)...)&lt;/c&gt; where the number of 
+ &lt;c&gt;f&lt;/c&gt;&#39;s is &lt;c&gt;n&lt;/c&gt;. &lt;c&gt;funpow 0 f x&lt;/c&gt; returns &lt;c&gt;x&lt;/c&gt;. If 
+ &lt;c&gt;n&lt;/c&gt; is negative, it is treated as &lt;c&gt;0&lt;/c&gt;. It fails, if any of 
+ the &lt;c&gt;n&lt;/c&gt; applications of &lt;c&gt;f&lt;/c&gt; fail.
+ &lt;/remarks&gt;<br />&lt;param name=&quot;n&quot;&gt;The number of times to apply the function.&lt;/param&gt;<br />&lt;param name=&quot;f&quot;&gt;The function to apply.&lt;/param&gt;<br />&lt;param name=&quot;x&quot;&gt;The element to apply the function to.&lt;/param&gt;<br />&lt;returns&gt;
+ The result of applying &lt;c&gt;f&lt;/c&gt; to &lt;c&gt;x&lt;/c&gt; for &lt;c&gt;n&lt;/c&gt; times, if 
+ &lt;c&gt;n&lt;/c&gt; is &amp;gt;= 0. Otherwise, the input argument &lt;c&gt;x&lt;/c&gt; unchanged.
+ &lt;/returns&gt;<br />&lt;example id=&quot;funpow-1&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ 2. |&amp;gt; funpow 2 (fun x -&amp;gt; x ** 2.)
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;16.&lt;/c&gt;&lt;/example&gt;<br />&lt;example id=&quot;funpow-2&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ 2. |&amp;gt; funpow 0 (fun x -&amp;gt; x ** 2.)
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;2.&lt;/c&gt;&lt;/example&gt;<br />&lt;example id=&quot;funpow-3&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ 2. |&amp;gt; funpow -1 (fun x -&amp;gt; x ** 2.)
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;2.&lt;/c&gt;&lt;/example&gt;<br />&lt;example id=&quot;funpow-4&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ 2. |&amp;gt; funpow 2 ((/) 0)
+ &lt;/code&gt;
+ Throws &lt;c&gt;System.DivideByZeroException: 
+ Attempted to divide by zero.&lt;/c&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">val auto_tac: byfn: (&#39;a -&gt; Formulas.formula&lt;fol&gt; -&gt; goals -&gt; thm list) -&gt; hyps: &#39;a -&gt; g: goals -&gt; goals</div>
+<div class="fsdocs-tip" id="fs28">val by: hyps: string list -&gt; p: &#39;a -&gt; gls: goals -&gt; thm list</div>
+<div class="fsdocs-tip" id="fs29">val extract_thm: gls: goals -&gt; thm</div>
+<div class="fsdocs-tip" id="fs30">val print_thm: th: thm -&gt; unit<br /><em>&lt;summary&gt;
+ A printer for theorems
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val note: l: string * p: Formulas.formula&lt;fol&gt; -&gt; ((&#39;a -&gt; Formulas.formula&lt;fol&gt; -&gt; goals -&gt; thm list) -&gt; &#39;a -&gt; goals -&gt; goals)</div>
+<div class="fsdocs-tip" id="fs32">val using: ths: thm list -&gt; p: &#39;a -&gt; g: goals -&gt; thm list</div>
+<div class="fsdocs-tip" id="fs33">val eq_sym: s: term -&gt; t: term -&gt; thm</div>
+<div class="fsdocs-tip" id="fs34">val eq_trans: s: term -&gt; t: term -&gt; u: term -&gt; thm</div>
+<div class="fsdocs-tip" id="fs35">val axiom_funcong: f: string -&gt; lefts: term list -&gt; rights: term list -&gt; thm<br /><em>&lt;summary&gt;
+ |- s1 = t1 -&amp;gt; ... -&amp;gt; sn = tn -&amp;gt; f(s1, ..., sn) = f(t1, ..., tn)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">val assume: lps: (string * Formulas.formula&lt;fol&gt;) list -&gt; gls: goals -&gt; goals</div>
+<div class="fsdocs-tip" id="fs37">val fix: (string -&gt; goals -&gt; goals)</div>
+<div class="fsdocs-tip" id="fs38">val so: tac: (&#39;a -&gt; (&#39;b -&gt; &#39;c -&gt; goals -&gt; thm list) -&gt; &#39;d) -&gt; arg: &#39;a -&gt; byfn: (&#39;b -&gt; &#39;c -&gt; goals -&gt; thm list) -&gt; &#39;d</div>
+<div class="fsdocs-tip" id="fs39">val have: p: Formulas.formula&lt;fol&gt; -&gt; ((&#39;a -&gt; Formulas.formula&lt;fol&gt; -&gt; goals -&gt; thm list) -&gt; &#39;a -&gt; goals -&gt; goals)</div>
+<div class="fsdocs-tip" id="fs40">val conclude: p: Formulas.formula&lt;fol&gt; -&gt; byfn: (&#39;a -&gt; Formulas.formula&lt;fol&gt; -&gt; goals -&gt; thm list) -&gt; hyps: &#39;a -&gt; gl: goals -&gt; goals</div>
+<div class="fsdocs-tip" id="fs41">val qed: gl: goals -&gt; goals</div>
+<div class="fsdocs-tip" id="fs42">val prove: p: Formulas.formula&lt;fol&gt; -&gt; prf: (goals -&gt; goals) list -&gt; thm</div>
+
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calcolemus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Calcolemus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>
