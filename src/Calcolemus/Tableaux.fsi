@@ -71,7 +71,7 @@ module Tableaux =
     /// Throws <c>System.Exception: impossible unification</c>.
     /// </example>
     /// 
-    /// <example id="unify_literals-4">
+    /// <example id="unify_literals-5">
     /// Invalid input
     /// <code lang="fsharp">
     /// unify_literals undefined (!!"P(x)",!!"~P(f(y))")
@@ -129,7 +129,7 @@ module Tableaux =
     /// Throws <c>System.Exception: impossible unification</c>.
     /// </example>
     /// 
-    /// <example id="unify_literals-4">
+    /// <example id="unify_complements-4">
     /// Invalid input
     /// <code lang="fsharp">
     /// unify_literals undefined (!!"P(x) /\ Q(x)",!!"~P(f(y))")
@@ -144,24 +144,78 @@ module Tableaux =
           func<string,term>
 
     /// <summary>
-    /// Unifies and refutes a list of disjuncts <c>dsj</c>, each member of 
-    /// which being a list of implicitly conjoined literals.
+    /// Returns a unifier that causes each clause in the input list to contain 
+    /// complementary literals.
     /// </summary>
+    /// 
+    /// <param name="djs">The input DNF list of clauses</param>
+    /// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. </param>
+    /// 
+    /// <returns>
+    /// The variable-term mappings that causes each clause to contain 
+    /// complementary literals, if this mapping exists.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'tryfind' when there isn't any such mapping.</exception>
+    /// 
+    /// <example id="unify_refute-1">
+    /// Successful refutation
+    /// <code lang="fsharp">
+    /// undefined
+    /// |> unify_refute !!>>[
+    ///         ["P(x)";"~P(f(y))";"R(x,y)"];
+    ///         ["Q(x)";"~Q(x)"]
+    /// ]
+    /// |> graph
+    /// </code>
+    /// Evaluates to <c>[("x", ``f(y)``)]</c>.
+    /// </example>
+    /// 
+    /// <example id="unify_refute-2">
+    /// Failing refutation
+    /// <code lang="fsharp">
+    /// undefined
+    /// |> unify_refute !!>>[["P(c)"];["Q(c)"]]
+    /// </code>
+    /// Throws to <c>System.Exception: tryfind</c>.
+    /// </example>
     /// 
     /// <category index="2">Refutation via unification</category>
     val unify_refute:
       djs: formula<fol> list list ->
-        acc: func<string,term> -> func<string,term>
+        env: func<string,term> -> func<string,term>
 
-    /// <summary>Main loop for prawitz procedure.</summary>
+    /// <summary>
+    /// Tests the unsatisfiability of a set of clauses with a Prawitz-like 
+    /// procedure.
+    /// </summary>
     /// 
-    /// <param name="djs0">The initial formula in DNF uninstantiated.</param>
-    /// <param name="fvs">The set of free variables in the initial formula.</param>
-    /// <param name="djs">Accumulator for the substitution instances.</param>
+    /// <remarks>
+    /// The input set of clauses <c>djs0</c> is intended to represent a DNF 
+    /// formula and <c>fvs</c> are supposed to be the free variables of the 
+    /// formula.
+    /// </remarks>
+    /// 
+    /// <param name="djs0">The input set of clauses.</param>
+    /// <param name="fvs">The free variables to unify.</param>
+    /// <param name="djs">The accumulator for the substitution instances.</param>
     /// <param name="n">A counter to generate fresh variable names.</param>
+    /// 
     /// <returns>
     /// The final instantiation together with the number of instances tried.
     /// </returns>
+    /// 
+    /// <example id="prawitz_loop-1">
+    /// Successful refutation
+    /// <code lang="fsharp">
+    /// prawitz_loop !!>>[
+    ///         ["P(x)";"~P(f(y))";"R(x,y)"];
+    ///         ["Q(x)";"~Q(x)"]
+    /// ] ["x";"y"] [[]] 0
+    /// |> fun (env,nr) -> env |> graph, nr
+    /// </code>
+    /// Evaluates to <c>[("x", ``f(y)``)]</c>.
+    /// </example>
     /// 
     /// <category index="3">Prawitz procedure</category>
     val prawitz_loop:
@@ -171,9 +225,21 @@ module Tableaux =
         n: int -> func<string,term> * int
 
     /// <summary>
-    /// Tests an input fol formula <c>fm</c> for validity based on a 
-    /// Prawitz-like procedure.
+    /// Tests the validity of a formula with a Prawitz-like procedure.
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The number of instance tried.
+    /// </returns>
+    /// 
+    /// <example id="prawitz_loop-1">
+    /// <code lang="fsharp">
+    /// prawitz Pelletier.p20
+    /// </code>
+    /// Evaluates to <c>2</c>.
+    /// </example>
     /// 
     /// <category index="3">Prawitz procedure</category>
     val prawitz: fm: formula<fol> -> int

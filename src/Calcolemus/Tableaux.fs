@@ -34,16 +34,16 @@ module Tableaux =
     let unify_complements env (p, q) =
         unify_literals env (p, negate q)
 
-    let rec unify_refute djs (acc : func<string, term>) : func<string, term> =
+    let rec unify_refute djs (env : func<string, term>) : func<string, term> =
         match djs with
-        | [] -> acc
+        | [] -> env
         | d::odjs -> 
             // separate d into positive and negative literals.
             let pos, neg = List.partition positive d
             // try to unify them as complementary literals and solve 
             // the remaining problem with the resulting instantiation
             tryfind 
-                (unify_refute odjs << unify_complements acc) 
+                (unify_refute odjs << unify_complements env) 
                 (allpairs (fun p q -> (p, q)) pos neg)
 
     let rec prawitz_loop djs0 fvs djs n =
@@ -55,9 +55,12 @@ module Tableaux =
         // incorporate the new instantiation in the previous substitution instances.
         let djs1 = distrib (image (image (subst inst)) djs0) djs
         // try to refute the new DNF accumulated and return if succeeds.
-        try unify_refute djs1 undefined,(n + 1) with 
+        try 
+            unify_refute djs1 undefined,(n + 1)  
         // otherwise try with a larger conjunction.
-        | Failure _ -> prawitz_loop djs0 fvs djs1 (n + 1)
+        with 
+            | Failure _ ->
+                prawitz_loop djs0 fvs djs1 (n + 1)
 
     let prawitz fm =
         let fm0 = skolemize (Not (generalize fm))
