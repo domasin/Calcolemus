@@ -245,15 +245,89 @@ module Tableaux =
     val prawitz: fm: formula<fol> -> int
 
     /// <summary>
-    /// TODO
+    /// Tries to refute a set of DNF formulas (assumptions) against a list of 
+    /// (derived) literals given a limit of universal variables to be replaced.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The procedure applies recursively the following rules.
+    /// 
+    /// If the list is empty, fail: there are no refutations; otherwise 
+    /// consider the first formula.
+    /// <ul>
+    /// <li>
+    /// If it is a conjunction, replace it with the two separated 
+    /// assumptions of its conjuncts;
+    /// </li>
+    /// <li>
+    /// if it is a disjunction, try to refute the first disjunct and 
+    /// 'update' the continuation function to 'remember' to try 
+    /// refute the second disjunct in case of failure;
+    /// </li>
+    /// <li>
+    /// if it is a universal formula, (i) replace it with its body with the 
+    /// universal variable replaced by a new fresh variable, (ii) move the 
+    /// original assumption at the end of the assumptions list, (iii) reduce 
+    /// the limit of universal variable that can be replaced and (iv) increment 
+    /// by one the counter of universal variables replaced;
+    /// </li>
+    /// <li>
+    /// if it is a literal, try to find a unifiable complement of it in the 
+    /// list of literals using the continuation function to iterate 
+    /// over each of them. If one complementary literal is found, return with 
+    /// the successful instantiation together with the number of universal 
+    /// variables replaced; otherwise, add the current formula to the list of 
+    /// literals and move on the next formula.
+    /// </li>
+    /// </ul>
+    /// </remarks>
+    /// 
+    /// <param name="fms">The set of DNF formulas (assumptions) to be refuted.</param>
+    /// <param name="lits">The list of (derived) literals against which to refute the formulas.</param>
+    /// <param name="n">The limit of universal variables to be replaced.</param>
+    /// <param name="cont">The supporting continuation function.</param>
+    /// <param name="env">The given instantiation under which trying refuting.</param>
+    /// <param name="k">The counter of universal variables already replaced.</param>
+    /// 
+    /// <returns>
+    /// The pair of the successful instantiation together with the number of 
+    /// universal variables replaced, if the procedure succeeds.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'no proof at this level' when <c>n</c> &lt; 0.</exception>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message 'tableau: no proof' when the list of input formulas <c>fms</c> is empty.</exception>
+    /// 
+    /// <example id="tableau-1">
+    /// <code lang="fsharp">
+    /// tableau ([!!"P(x)"], [!!"~P(f(y))"], 0) id (undefined, 0)
+    /// |> fun (inst,nrInst) -> inst |> graph,nrInst
+    /// </code>
+    /// Evaluates to <c>([("x", ``f(y)``)], 0)</c>.
+    /// </example>
+    /// 
+    /// <example id="tableau-2">
+    /// <code lang="fsharp">
+    /// tableau ([!!"P(x)"], [!!"~P(f(y))"], -1) id (undefined, 0)
+    /// |> fun (inst,nrInst) -> inst |> graph,nrInst
+    /// </code>
+    /// Throws <c>System.Exception: no proof at this level</c>.
+    /// </example>
+    /// 
+    /// <example id="tableau-3">
+    /// <code lang="fsharp">
+    /// tableau ([], [!!"~P(f(x))"], 0) id (undefined, 0)
+    /// |> fun (inst,nrInst) -> inst |> graph,nrInst
+    /// </code>
+    /// Throws <c>System.Exception: no proof at this level</c>.
+    /// </example>
     /// 
     /// <category index="4">Tableaux procedure</category>
     val tableau:
       fms: formula<fol> list * lits: formula<fol> list *
       n: int ->
-        cont: (func<string,term> * int -> 'a) ->
-        env: func<string,term> * k: int -> 'a
+        cont: (func<string,term> * int -> func<string,term> * int ) ->
+        env: func<string,term> * k: int -> func<string,term> * int 
 
     /// <summary>
     /// TODO
@@ -280,5 +354,5 @@ module Tableaux =
     /// TODO
     /// </summary>
     /// 
-    /// <category index="4">Tableaux procedure</category>
+    /// <category index="5">Tableaux procedure optimized</category>
     val splittab: fm: formula<fol> -> int list

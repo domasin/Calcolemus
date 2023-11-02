@@ -70,7 +70,7 @@ module Tableaux =
     // More standard tableau procedure, effectively doing DNF incrementally.  //
     // -----------------------------------------------------------------------//
 
-    let rec tableau (fms, lits, n) cont (env, k) =
+    let rec tableau (fms, lits, n) cont (env, k) : func<string,term> * int =
         if n < 0 then failwith "no proof at this level" 
         else
             match fms with
@@ -78,11 +78,13 @@ module Tableaux =
             | And (p, q) :: unexp ->
                 tableau (p :: q :: unexp, lits, n) cont (env, k)
             | Or (p, q) :: unexp ->
-                tableau (p :: unexp, lits, n) (tableau (q :: unexp, lits, n) cont)  (env, k)
+                tableau (p :: unexp, lits, n) 
+                    (tableau (q :: unexp, lits, n) cont)  (env, k)
             | Forall (x, p) :: unexp ->
                 let y = Var ("_" + string k)
                 let p' = subst (x |=> y) p
-                tableau (p' :: unexp @ [Forall (x, p)], lits, n - 1) cont (env, k +     1)
+                tableau (p' :: unexp @ [Forall (x, p)], lits, n - 1) cont 
+                    (env, k + 1)
             | fm :: unexp ->
                 try
                     lits
@@ -108,9 +110,9 @@ module Tableaux =
         let sfm = askolemize (Not (generalize fm))
         if sfm = False then 0 else tabrefute [sfm]
 
-    // ------------------------------------------------------------------------- //
-    // Try to split up the initial formula first; often a big improvement.       //
-    // ------------------------------------------------------------------------- //
+    // ---------------------------------------------------------------------- //
+    // Try to split up the initial formula first; often a big improvement.    //
+    // ---------------------------------------------------------------------- //
 
     let splittab fm =
         generalize fm

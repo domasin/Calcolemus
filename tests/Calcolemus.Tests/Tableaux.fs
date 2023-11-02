@@ -8,11 +8,13 @@ module Calcolemus.Tests.Tableaux
 open Xunit
 open FsUnit.Xunit
 
-open Calcolemus.Lib.Fpf
+open Calcolemus
 
-open Calcolemus.Fol
-open Calcolemus.Tableaux
-open Calcolemus.Pelletier
+open Lib.Fpf
+
+open Fol
+open Tableaux
+open Pelletier
 
 [<Fact>]
 let ``unify_literals should return an augmented unification assignment on a unifiable pair not already unified.``() = 
