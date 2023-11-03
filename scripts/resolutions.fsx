@@ -64,5 +64,10 @@ basic_resloop ([],!!>>[["P(x)"]])
 !! @"P(x) \/ ~P(x)"
 |> basic_resolution
 
-!! @"P(x) /\ ~P(x)"
+!!"P(x) /\ ~P(x)"
+|> basic_resolution
+
+!! @"exists x. exists y. forall z.
+    (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
+    ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
 |> basic_resolution

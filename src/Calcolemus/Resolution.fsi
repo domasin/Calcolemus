@@ -305,6 +305,42 @@ module Resolution =
     /// testing them with a basic resolution procedure.
     /// </summary>
     /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of the results for each subproblems, if it can find a proof of 
+    /// the validity of the input formula, and prints diagnostic informations 
+    /// to the <c>stdout</c>.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no proof could be found.</exception>
+    /// 
+    /// <example id="basic_resolution-1">
+    /// <code lang="fsharp">
+    /// !! @"exists x. exists y. forall z.
+    ///     (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
+    ///     ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
+    /// |> basic_resolution
+    /// </code>
+    /// Evaluates to <c>[true]</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 3 unused.
+    /// 1 used; 2 unused.
+    /// ...
+    /// 82 used; 478 unused.
+    /// 83 used; 483 unused.
+    /// 84 used; 488 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="basic_resolution-2">
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> basic_resolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
     /// <category index="2">Basic resolution</category>
     val basic_resolution: fm: formula<fol> -> bool list
 
