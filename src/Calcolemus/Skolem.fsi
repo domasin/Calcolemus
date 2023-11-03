@@ -331,7 +331,7 @@ module Skolem =
           fns: string list -> formula<fol> * string list
 
     /// <summary>
-    /// Skolemizes the input formula <c>fm</c>.
+    /// Skolemizes, simplifies and puts in NNF the input formula <c>fm</c>.
     /// </summary>
     /// 
     /// <param name="fm">The input formula.</param>
@@ -346,6 +346,12 @@ module Skolem =
     /// </code>
     /// Evaluates to <c>`forall x. R(x,f_y(x))`</c>.
     /// </example>
+    /// 
+    /// <note>
+    /// See also: 
+    /// <seealso cref='M:Calcolemus.Skolem.nnf``1'/>, 
+    /// <seealso cref='M:Calcolemus.Skolem.simplify'/>
+    /// </note>
     /// 
     /// <category index="5">Overall Skolemization</category>
     val askolemize: fm: formula<fol> -> formula<fol>

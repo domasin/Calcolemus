@@ -27,6 +27,16 @@ let p24 =
     (forall x. Q(x) /\ R(x) ==> U(x))
     ==> (exists x. P(x) /\ R(x))"
 
+/// ((∃ x. ∀ y. P(x) ⟷ P(y)) ⟷
+///  ((∃ x. Q(x)) ⟷ (∀ y. Q(y)))) ⟷
+/// ((∃ x. ∀ y. Q(x) ⟷ Q(y)) ⟷
+///  ((∃ x. P(x)) ⟷ (∀ y. P(y))))
+let p34 = 
+    !!"((exists x. forall y. P(x) <=> P(y)) <=>
+    ((exists x. Q(x)) <=> (forall y. Q(y)))) <=>
+   ((exists x. forall y. Q(x) <=> Q(y)) <=>
+    ((exists x. P(x)) <=> (forall y. P(y))))"
+
 /// (∀x. ∃y. J(x,y)) ∧ (∀x. ∃y. G(x,y)) ∧ 
 /// (∀x y. J(x,y) ∨ G(x,y) ⟶ (∀z. J(y,z) ∨ G(y,z) ⟶ H(x,z))) ⟶ (∀x. ∃y. H(x,y))
 let p36 = 

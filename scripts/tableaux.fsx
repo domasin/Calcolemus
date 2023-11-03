@@ -13,6 +13,35 @@ open Lib.Search
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
+!! @"(forall x.
+        P(a) /\ (P(x) ==> (exists y. P(y) /\ R(x,y))) ==>
+        (exists z w. P(z) /\ R(x,w) /\ R(w,z))) <=>
+        (forall x.
+        (~P(a) \/ P(x) \/ (exists z w. P(z) /\ R(x,w) /\ R(w,z))) /\
+        (~P(a) \/ ~(exists y. P(y) /\ R(x,y)) \/
+        (exists z w. P(z) /\ R(x,w) /\ R(w,z))))"
+|> generalize
+|> Not
+|> askolemize
+|> Prop.simpdnf
+
+!!"((exists x. forall y. P(x) <=> P(y)) <=>
+    ((exists x. Q(x)) <=> (forall y. Q(y)))) <=>
+   ((exists x. forall y. Q(x) <=> Q(y)) <=>
+    ((exists x. P(x)) <=> (forall y. P(y))))"
+|> splittab
+
+
+[!! "forall x y. P(x) /\ ~P(f(y))"; 
+ !! "R(x,y) /\ ~R(x,y)"]
+|> tabrefute
+
+!!"(P(x) ==> q) <=> (~q ==> ~p)"
+|> generalize
+|> Not
+|> askolemize
+
+deepen id 1
 
 tableau ([!!"P(x)"], [!!"~P(f(y))"], 0) id (undefined, 0)
 |> fun (inst,nrInst) -> inst |> graph,nrInst

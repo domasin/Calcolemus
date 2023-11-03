@@ -94,7 +94,8 @@ module Tableaux =
                     tableau (unexp, fm :: lits, n) cont (env, k)
 
     let rec deepen f n =
-        try printf "Searching with depth limit "
+        try 
+            printf "Searching with depth limit "
             printfn "%d" n
             f n
         with _ ->

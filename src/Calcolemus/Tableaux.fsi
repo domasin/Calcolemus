@@ -94,8 +94,8 @@ module Tableaux =
     /// <param name="q">The second input literal.</param>
     /// 
     /// <returns>
-    /// A variable-term mappings that unify <c>p</c> and <c>q</c>, if the 
-    /// unification is possible and there are no cycles. 
+    /// The instantiation that makes the input literals become complementary, 
+    /// if such an instantiation exists.
     /// </returns>
     /// 
     /// <exception cref="T:System.Exception">Thrown with message 'cyclic' when there is a cyclic assignment.</exception>
@@ -245,8 +245,9 @@ module Tableaux =
     val prawitz: fm: formula<fol> -> int
 
     /// <summary>
-    /// Tries to refute a set of DNF formulas (assumptions) against a list of 
-    /// (derived) literals given a limit of universal variables to be replaced.
+    /// Tries to refute a set of <see cref='M:Calcolemus.Skolem.askolemize'/>d 
+    /// formulas (assumptions) against a list of (derived) literals given a 
+    /// limit of universal variables to be replaced.
     /// </summary>
     /// 
     /// <remarks>
@@ -319,7 +320,7 @@ module Tableaux =
     /// tableau ([], [!!"~P(f(x))"], 0) id (undefined, 0)
     /// |> fun (inst,nrInst) -> inst |> graph,nrInst
     /// </code>
-    /// Throws <c>System.Exception: no proof at this level</c>.
+    /// Throws <c>System.Exception: no proof</c>.
     /// </example>
     /// 
     /// <category index="4">Tableaux procedure</category>
@@ -330,29 +331,148 @@ module Tableaux =
         env: func<string,term> * k: int -> func<string,term> * int 
 
     /// <summary>
-    /// TODO
+    /// Iterative deepening.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// Calls iteratively a function that accepts an input integer incrementing 
+    /// the integer calling it again, if it fails, with the integer incremented.
+    /// </remarks>
+    /// 
+    /// <param name="f">The input function.</param>
+    /// <param name="n">The input integer.</param>
+    /// 
+    /// <returns>
+    /// The result of the input function call and prints to the <c>stdout</c>
+    /// information that the function has been call with the given integer.
+    /// </returns>
+    /// 
+    /// <example id="deepen-1">
+    /// <code lang="fsharp">
+    /// deepen id 1
+    /// </code>
+    /// Evaluates to <c>1</c> and prints <c>stdout</c>.
+    /// <code lang="fsharp">
+    /// Searching with depth limit 1
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Tableaux procedure</category>
     val deepen: f: (int -> 'a) -> n: int -> 'a
 
     /// <summary>
-    /// TODO
+    /// Tries to refute a set of <see cref='M:Calcolemus.Skolem.askolemize'/>d 
+    /// formulas using a <em>iterative deepening</em> of the 
+    /// <see cref='M:Calcolemus.Tableaux.tableau'/> procedure.
     /// </summary>
+    /// 
+    /// <param name="fms">The input list of formulas.</param>
+    /// 
+    /// <returns>
+    /// The number of universal variables replaced, if the procedure succeeds, 
+    /// and prints to the <c>stdout</c> the depth limits (max number of 
+    /// universal variables to replace) tried.
+    /// </returns>
+    /// 
+    /// <note>
+    /// Crashes if the list of formulas is satisfiable or the search too long.
+    /// </note>
+    /// 
+    /// <example id="tabrefute-1">
+    /// <code lang="fsharp">
+    /// [!! "forall x y. P(x) /\ ~P(f(y))"; 
+    /// !! "R(x,y) /\ ~R(x,y)"]
+    /// |> tabrefute
+    /// </code>
+    /// Evaluates to <c>2</c> and prints to the <c>stdout</c>
+    /// <code lang="fsharp">
+    /// Searching with depth limit 0
+    /// Searching with depth limit 1
+    /// Searching with depth limit 2
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Tableaux procedure</category>
     val tabrefute: fms: formula<fol> list -> int
 
     /// <summary>
-    /// TODO
+    /// Tests the validity of a formula with the tableau procedure. 
     /// </summary>
+    /// 
+    /// <param name="fm">The input formula</param>
+    /// 
+    /// <returns>
+    /// The number of universal variables replaced, if the procedure succeeds, 
+    /// and prints to the <c>stdout</c> the depth limits (max number of 
+    /// universal variables to replace) tried.
+    /// </returns>
+    /// 
+    /// <example id="tabrefute-1">
+    /// <code lang="fsharp">
+    /// !! @"(forall x.
+    ///         P(a) /\ (P(x) ==> (exists y. P(y) /\ R(x,y))) ==>
+    ///         (exists z w. P(z) /\ R(x,w) /\ R(w,z))) &lt;=&gt;
+    ///         (forall x.
+    ///         (~P(a) \/ P(x) \/ (exists z w. P(z) /\ R(x,w) /\ R(w,z))) /\
+    ///         (~P(a) \/ ~(exists y. P(y) /\ R(x,y)) \/
+    ///         (exists z w. P(z) /\ R(x,w) /\ R(w,z))))"
+    /// |> tab
+    /// </code>
+    /// Evaluates to <c>4</c> and prints to the <c>stdout</c>
+    /// <code lang="fsharp">
+    /// Searching with depth limit 0
+    /// Searching with depth limit 1
+    /// Searching with depth limit 2
+    /// Searching with depth limit 3
+    /// Searching with depth limit 4
+    /// </code>
+    /// </example>
     /// 
     /// <category index="4">Tableaux procedure</category>
     val tab: fm: formula<fol> -> int
 
     /// <summary>
-    /// TODO
+    /// Tests the validity of a formula splitting it in subproblems and testing 
+    /// each of them with the tableau procedure.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The formula is generalized, negated and askolemized. Then 
+    /// <see cref='M:Calcolemus.Prop.simpdnf``1'/> is applied and, thus, 
+    /// the formula transformed in a sort of a 'DNF set of clauses' with 
+    /// possibly some universal formulas in place of literals. Each of these 
+    /// 'clauses' is tested separately with 
+    /// <see cref='M:Calcolemus.Tableaux.tabrefute'/>.
+    /// </remarks>
+    /// 
+    /// <param name="fm">The input formula</param>
+    /// 
+    /// <returns>
+    /// The numbers of universal variables replaced for each of the 
+    /// independently tested subproblems, if the procedure succeeds, 
+    /// and prints to the <c>stdout</c> the depth limits (max number of 
+    /// universal variables to replace) tried.
+    /// </returns>
+    /// 
+    /// <example id="splittab-1">
+    /// <code lang="fsharp">
+    /// !!"((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt;
+    ///     ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt;
+    ///    ((exists x. forall y. Q(x) &lt;=&gt; Q(y)) &lt;=&gt;
+    ///     ((exists x. P(x)) &lt;=&gt; (forall y. P(y))))"
+    /// |> splittab
+    /// </code>
+    /// Evaluates to <c>[5; 4; 5; 3; 3; 3; 2; 4; 6; 2; 3; 3; 4; 3; 3; 3; 3; 2; 2; 3; 6; 3; 2; 4; 3; 3; 3; 3; 3; 4; 4; 4]</c> and prints to the <c>stdout</c>
+    /// <code lang="fsharp">
+    /// Searching with depth limit 0
+    /// Searching with depth limit 1
+    /// Searching with depth limit 2
+    /// ...
+    /// Searching with depth limit 0
+    /// Searching with depth limit 1
+    /// ...
+    /// </code>
+    /// </example>
     /// 
     /// <category index="5">Tableaux procedure optimized</category>
     val splittab: fm: formula<fol> -> int list
