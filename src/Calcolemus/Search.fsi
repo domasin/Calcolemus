@@ -34,7 +34,7 @@ module Search =
     /// list.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'tryfind' when the application of the function fails for all elements in the list.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>tryfind</c> when the application of the function fails for all elements in the list.</exception>
     /// 
     /// <example id="tryfind-1">
     /// <code lang="fsharp">

@@ -51,7 +51,7 @@ module Function =
     /// The input element <c>x</c> itself, if it satisfies <c>p</c>.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'check', when
+    /// <exception cref="T:System.Exception">Thrown with message <c>check</c>, when
     /// <c>x</c> does not satisfy <c>p</c>.</exception>
     /// 
     /// <example id="check-1">

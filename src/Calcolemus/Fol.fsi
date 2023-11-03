@@ -295,7 +295,7 @@ module Fol =
     val parse: s: string -> formula<fol>
 
     /// <summary>
-    /// A convenient operator to make it easier to parse terms.
+    /// A convenient operator to make it easier to parse formulas.
     /// </summary>
     /// 
     /// <remarks>
@@ -305,7 +305,8 @@ module Fol =
     /// <param name="s">The input string.</param>
     /// 
     /// <returns>
-    /// The fol formula corresponding to the input, if this is valid.
+    /// The fol formula corresponding to the input, if this is syntactically 
+    /// valid.
     /// </returns>
     /// 
     /// <exception cref="T:System.Exception">Thrown when the input string is not a syntactically valid fol formula.</exception>
@@ -326,6 +327,29 @@ module Fol =
     /// 
     /// <category index="2">Parsing formulas</category>
     val (!!) : s: string -> formula<fol>
+
+    /// <summary>
+    /// A convenient operator to make it easier to parse list of formulas.
+    /// </summary>
+    /// 
+    /// <param name="s">The input string.</param>
+    /// 
+    /// <returns>
+    /// The list of fol formulas corresponding to the input, if this is 
+    /// syntactically valid.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown when the input strings are not syntactically valid fol formulas.</exception>
+    /// 
+    /// <example id="exclamation-exclamation-greater-1">
+    /// <code lang="fsharp">
+    /// !!>["P(x)";"Q(x)"]
+    /// </code>
+    /// Evaluates to <c>[Atom (R ("P", Var "x"); Atom (R ("Q", Var "x")]))</c>.
+    /// </example>
+    /// 
+    /// <category index="2">Parsing formulas</category>
+    val (!!>) : xs: string list -> formula<fol> list
 
     /// <summary>
     /// Prints terms.

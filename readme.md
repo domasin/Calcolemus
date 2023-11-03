@@ -4,6 +4,9 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 ![nuget package workflow](https://github.com/domasin/Calcolemus/actions/workflows/publish.yml/badge.svg)
 
+![Nuget](https://img.shields.io/nuget/v/Calcolemus)
+
+
 ## Fork main purposes
 
 * to have a .Net Core version of the solution

@@ -25,7 +25,7 @@ module Unif =
     /// there are no cycle, false.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'cyclic', when the new assignment would generate a cycle.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>cyclic</c>, when the new assignment would generate a cycle.</exception>
     /// 
     /// <example id="istriv-1">
     /// Trivial assignment
@@ -77,9 +77,9 @@ module Unif =
     /// possible and there are no cycles.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'cyclic' when there is a cyclic assignment.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>cyclic</c> when there is a cyclic assignment.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'impossible unification' when the unification is not possible.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>impossible unification</c> when the unification is not possible.</exception>
     /// 
     /// <example id="unify-1">
     /// No previous assignments
@@ -187,7 +187,7 @@ module Unif =
     /// that is an MGU for <c>eqs</c>, if it is actually unifiable.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'cyclic' when there is a cyclic assignment</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>cyclic</c> when there is a cyclic assignment</exception>
     /// 
     /// <exception cref="T:System.Exception">Thrown with message 'impossible 
     /// unification' when the unification is not possible.</exception>
@@ -228,9 +228,9 @@ module Unif =
     /// 
     /// <returns>The unified result, if it exists.</returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'cyclic' when there is a cyclic assignment.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>cyclic</c> when there is a cyclic assignment.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'impossible unification' when the unification is not possible.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>impossible unification</c> when the unification is not possible.</exception>
     /// 
     /// <example id="unify_and_apply-1">
     /// <code lang="fsharp">

@@ -83,7 +83,7 @@ module Resolution =
     // Basic "Argonne" loop.                                                  //
     // ---------------------------------------------------------------------- //
     
-    let rec resloop_base (used,unused) =
+    let rec basic_resloop (used,unused) =
         match unused with
         | [] -> failwith "No proof found"
         | cl :: ros ->
@@ -91,14 +91,14 @@ module Resolution =
             let used' = insert cl used
             let news = List.foldBack (@) (mapfilter (resolve_clauses cl) used') []
             if mem [] news then true
-            else resloop_base (used', ros @ news)
+            else basic_resloop (used', ros @ news)
     
-    let pure_resolution_base fm =
-        resloop_base ([], simpcnf (specialize (pnf fm)))
+    let pure_basic_resolution fm =
+        basic_resloop ([], simpcnf (specialize (pnf fm)))
     
-    let resolution_base fm =
+    let basic_resolution fm =
         let fm1 = askolemize (Not (generalize fm))
-        List.map (pure_resolution_base << list_conj) (simpdnf fm1)
+        List.map (pure_basic_resolution << list_conj) (simpdnf fm1)
     
     // ---------------------------------------------------------------------- //
     // Matching of terms and literals.                                        //
@@ -168,7 +168,7 @@ module Resolution =
         then unused
         else replace cl unused
     
-    let rec resloop_subs (used,unused) =
+    let rec resloop_wsubs (used,unused) =
         match unused with
         | [] -> failwith "No proof found"
         | cl :: ros ->
@@ -176,14 +176,14 @@ module Resolution =
             let used' = insert cl used
             let news = List.foldBack (@) (mapfilter (resolve_clauses cl) used') []
             if mem [] news then true
-            else resloop_subs (used', List.foldBack (incorporate cl) news ros)
+            else resloop_wsubs (used', List.foldBack (incorporate cl) news ros)
     
-    let pure_resolution_subs fm =
-        resloop_subs ([], simpcnf (specialize (pnf fm)))
+    let pure_resolution_wsubs fm =
+        resloop_wsubs ([], simpcnf (specialize (pnf fm)))
     
-    let resolution_subs fm =
+    let resolution_wsubs fm =
         let fm1 = askolemize (Not (generalize fm))
-        List.map (pure_resolution_subs << list_conj) (simpdnf fm1)
+        List.map (pure_resolution_wsubs << list_conj) (simpdnf fm1)
     
     // ---------------------------------------------------------------------- //
     // Positive (P1) resolution.                                              //
@@ -215,14 +215,14 @@ module Resolution =
     // Introduce a set-of-support restriction.                                //
     // ---------------------------------------------------------------------- //
     
-    let pure_sosresolution fm =
+    let pure_resolution_wsos fm =
         fm
         |> pnf
         |> specialize
         |> simpcnf
         |> List.partition (List.exists positive)
-        |> resloop_subs
+        |> resloop_wsubs
     
-    let sosresolution fm =
+    let resolution_wsos fm =
         let fm1 = askolemize (Not (generalize fm))
-        List.map (pure_sosresolution << list_conj) (simpdnf fm1)
+        List.map (pure_resolution_wsos << list_conj) (simpdnf fm1)

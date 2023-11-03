@@ -31,11 +31,11 @@ module Tableaux =
     /// possible and there are no cycles. 
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'cyclic' when there is a cyclic assignment.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>cyclic</c> when there is a cyclic assignment.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'impossible unification' when the unification is not possible.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>impossible unification</c> when the unification is not possible.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Can't unify literals' when the input <c>eq</c> is neither a pair of literal or the degenerated case <c>False,False</c></exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Can't unify literals</c> when the input <c>eq</c> is neither a pair of literal or the degenerated case <c>False,False</c></exception>
     /// 
     /// <example id="unify_literals-1">
     /// Successful unification
@@ -52,7 +52,7 @@ module Tableaux =
     /// unify_literals undefined (!!"false",!!"false")
     /// |> graph
     /// </code>
-    /// Evaluates to <c>Empty</c>.
+    /// Evaluates to <c>[]</c>.
     /// </example>
     /// 
     /// <example id="unify_literals-3">
@@ -98,11 +98,11 @@ module Tableaux =
     /// if such an instantiation exists.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'cyclic' when there is a cyclic assignment.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>cyclic</c> when there is a cyclic assignment.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'impossible unification' when the unification is not possible.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>impossible unification</c> when the unification is not possible.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Can't unify literals' when the input <c>eq</c> is neither a pair of literal or the degenerated case <c>False,False</c></exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Can't unify literals</c> when the input <c>eq</c> is neither a pair of literal or the degenerated case <c>False,False</c></exception>
     /// 
     /// <example id="unify_complements-1">
     /// Successful unification
@@ -156,7 +156,7 @@ module Tableaux =
     /// complementary literals, if this mapping exists.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'tryfind' when there isn't any such mapping.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>tryfind</c> when there isn't any such mapping.</exception>
     /// 
     /// <example id="unify_refute-1">
     /// Successful refutation
@@ -295,9 +295,9 @@ module Tableaux =
     /// universal variables replaced, if the procedure succeeds.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'no proof at this level' when <c>n</c> &lt; 0.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>no proof at this level</c> when <c>n</c> &lt; 0.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'tableau: no proof' when the list of input formulas <c>fms</c> is empty.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>tableau: no proof</c> when the list of input formulas <c>fms</c> is empty.</exception>
     /// 
     /// <example id="tableau-1">
     /// <code lang="fsharp">

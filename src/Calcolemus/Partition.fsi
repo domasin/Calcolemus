@@ -130,7 +130,7 @@ module Partition =
     /// its size, if <c>a</c> is an element in the domain of the partition.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'apply', when
+    /// <exception cref="T:System.Exception">Thrown with message <c>apply</c>, when
     /// <c>a</c> is not an element in the domain of the partition.</exception>
     /// 
     /// <example id="terminus-1">

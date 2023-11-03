@@ -28,6 +28,7 @@
     <Compile Include="Herbrand.fs" />
     <Compile Include="Unif.fs" />
     <Compile Include="Tableaux.fs" />
+    <Compile Include="Resolution.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>

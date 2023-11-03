@@ -225,7 +225,7 @@ module DP =
     /// were present in the input.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'affirmative_negative_rule' when there aren't pure literals.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>affirmative_negative_rule</c> when there aren't pure literals.</exception>
     /// 
     /// <example id="affirmative_negative_rule-1">
     /// <code lang="fsharp">

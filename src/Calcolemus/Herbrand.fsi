@@ -35,7 +35,7 @@ module Herbrand =
     /// given valuation.
     /// </return>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Not part of propositional logic.' when the input formula contains quantifiers.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Not part of propositional logic.</c> when the input formula contains quantifiers.</exception>
     /// 
     /// <example id="pholds-1">
     /// <code lang="fsharp">

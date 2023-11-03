@@ -25,7 +25,7 @@ module List =
     /// 
     /// <returns>The last element of the list.</returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'last' when the input does not have any elements.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>last</c> when the input does not have any elements.</exception>
     /// 
     /// <example id="last-1">
     /// <code lang="fsharp">
@@ -50,7 +50,7 @@ module List =
     /// 
     /// <returns>All the elements of the input list but the last one.</returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'butlast' when the input does not have any elements.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>butlast</c> when the input does not have any elements.</exception>
     /// 
     /// <example id="butlast-1">
     /// <code lang="fsharp">
@@ -130,7 +130,7 @@ module List =
     /// The two chopped lists. 
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'chop_list' when chop index is negative or exceeds the number of elements in the list.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>chop_list</c> when chop index is negative or exceeds the number of elements in the list.</exception>
     /// 
     /// <example id="chop_list-1">
     /// <code lang="fsharp">
@@ -297,7 +297,7 @@ module List =
     /// found.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'find' when no matching is found.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>find</c> when no matching is found.</exception>
     /// 
     /// <example id="assoc-1">
     /// <code lang="fsharp">
@@ -339,7 +339,7 @@ module List =
     /// found.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'find' when no matching is found.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>find</c> when no matching is found.</exception>
     /// 
     /// <example id="rev_assoc-1">
     /// <code lang="fsharp">

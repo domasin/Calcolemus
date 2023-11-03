@@ -167,9 +167,9 @@ module Intro =
     /// unparsed input.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an empty list.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected an expression at end of input</c>, when applied to an empty list.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected closing bracket</c>, when applied to a list with an initial opening bracket but without a closing one.</exception>
     /// 
     /// <example id="parse_atom-1">
     /// Parsing of a variable:
@@ -238,9 +238,9 @@ module Intro =
     /// unparsed input.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an empty list.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected an expression at end of input</c>, when applied to an empty list.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected closing bracket</c>, when applied to a list with an initial opening bracket but without a closing one.</exception>
     /// 
     /// <example id="parse_product-1">
     /// It parses just the first atom if applied to an addition:
@@ -315,9 +315,9 @@ module Intro =
     /// unparsed input.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an incomplete expression.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected an expression at end of input</c>, when applied to an incomplete expression.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a list with an initial opening bracket but without a closing one.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected closing bracket</c>, when applied to a list with an initial opening bracket but without a closing one.</exception>
     /// 
     /// <example id="parse_expression-1">
     /// <code lang="fsharp">
@@ -365,9 +365,9 @@ module Intro =
     /// <see cref='M:Calcolemus.Intro.parse_expression'/>
     /// </remarks>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected an expression at end of input', when applied to an incomplete string expression.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected an expression at end of input</c>, when applied to an incomplete string expression.</exception>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'Expected closing bracket', when applied to a string with an initial opening bracket but without a closing one.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>Expected closing bracket</c>, when applied to a string with an initial opening bracket but without a closing one.</exception>
     /// 
     /// <example id="parse_exp-1">
     /// <code lang="fsharp">

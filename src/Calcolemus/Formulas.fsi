@@ -386,7 +386,7 @@ module Formulas =
     /// equivalence.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'dest_imp', when <c>fm</c> is not a logical equivalence.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>dest_imp</c>, when <c>fm</c> is not a logical equivalence.</exception>
     /// 
     /// <example id="dest_iff-1">
     /// <code lang="fsharp">
@@ -420,7 +420,7 @@ module Formulas =
     /// The pair of the conjuncts, if the input formula is a conjunction.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'dest_and', when <c>fm</c> is not a conjunction.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>dest_and</c>, when <c>fm</c> is not a conjunction.</exception>
     /// 
     /// <example id="dest_and-1">
     /// <code lang="fsharp">
@@ -490,7 +490,7 @@ module Formulas =
     /// The pair of the disjuncts, if the input formula is a disjunction.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'dest_or', when <c>fm</c> is not a disjunction.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>dest_or</c>, when <c>fm</c> is not a disjunction.</exception>
     /// 
     /// <example id="dest_or-1">
     /// <code lang="fsharp">
@@ -564,7 +564,7 @@ module Formulas =
     /// an implication.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'dest_imp', when <c>fm</c> is not an implication.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>dest_imp</c>, when <c>fm</c> is not an implication.</exception>
     /// 
     /// <example id="dest_imp-1">
     /// <code lang="fsharp">
@@ -598,7 +598,7 @@ module Formulas =
     /// The antecedent, if the input formula is an implication.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'dest_imp', when <c>fm</c> is not an implication.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>dest_imp</c>, when <c>fm</c> is not an implication.</exception>
     /// 
     /// <example id="antecedent-1">
     /// <code lang="fsharp">
@@ -632,7 +632,7 @@ module Formulas =
     /// The consequent, if the input formula is an implication.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message 'dest_imp', when <c>fm</c> is not an implication.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>dest_imp</c>, when <c>fm</c> is not an implication.</exception>
     /// 
     /// <example id="consequent-1">
     /// <code lang="fsharp">
