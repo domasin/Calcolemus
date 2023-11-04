@@ -432,7 +432,7 @@ module Tableaux =
     val tab: fm: formula<fol> -> int
 
     /// <summary>
-    /// Tests the validity of a formula splitting it in subproblems and testing 
+    /// Tests the validity of a formula splitting in subproblems and testing 
     /// each of them with the tableau procedure.
     /// </summary>
     /// 

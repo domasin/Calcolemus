@@ -30,7 +30,7 @@ module Resolution =
     /// </remarks>
     /// 
     /// <param name="l">The input list of literals.</param>
-    /// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. </param>
+    /// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.</param>
     /// 
     /// <returns>
     /// An MGU, if the unification is possible and there are no 
@@ -234,11 +234,14 @@ module Resolution =
     /// <param name="unused">The input list of clauses to be refuted.</param>
     /// 
     /// <returns>
-    /// true, if a refutation for <c>unused</c> is found, and prints diagnostic 
-    /// informations to the <c>stdout</c>.
+    /// true, if a refutation for <c>unused</c> is found.
     /// </returns>
     /// 
     /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found.</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>
+    /// </note>
     /// 
     /// <example id="basic_resloop-1">
     /// <code lang="fsharp">
@@ -271,13 +274,18 @@ module Resolution =
     /// <param name="fm">The input formula.</param>
     /// 
     /// <returns>
-    /// true, if it can find a refutation for the input formula, and prints 
-    /// diagnostic informations to the <c>stdout</c>.
+    /// true, if the input formula is unsatisfiable and a refutation could be 
+    /// found.
     /// </returns>
     /// 
-    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
     /// 
     /// <example id="pure_basic_resolution-1">
+    /// Unsatisfiable formula
     /// <code lang="fsharp">
     /// !!"P(x) /\ ~P(x)"
     /// |> pure_basic_resolution
@@ -290,32 +298,55 @@ module Resolution =
     /// </example>
     /// 
     /// <example id="pure_basic_resolution-2">
+    /// Satisfiable (not valid) formula
     /// <code lang="fsharp">
     /// !!"P(x)"
     /// |> pure_basic_resolution
     /// </code>
-    /// Throws <c>System.Exception: No proof found</c>.
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_basic_resolution-3">
+    /// Valid formula
+    /// <code lang="fsharp">
+    /// !!"""P(x) \/ ~P(x)"""
+    /// |> pure_basic_resolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
     /// </example>
     /// 
     /// <category index="2">Basic resolution</category>
     val pure_basic_resolution: fm: formula<fol> -> bool
 
     /// <summary>
-    /// Tests the validity of a formula splitting it in subproblems and then 
+    /// Tests the validity of a formula splitting in subproblems and then 
     /// testing them with a basic resolution procedure.
     /// </summary>
     /// 
     /// <param name="fm">The input formula.</param>
     /// 
     /// <returns>
-    /// The list of the results for each subproblems, if it can find a proof of 
-    /// the validity of the input formula, and prints diagnostic informations 
-    /// to the <c>stdout</c>.
+    /// The list of the results of 
+    /// <see cref='M:Calcolemus.Resolution.pure_basic_resolution'/> on each 
+    /// subproblems, if the formula is valid and a proof could be found.
     /// </returns>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
     /// 
     /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no proof could be found.</exception>
     /// 
     /// <example id="basic_resolution-1">
+    /// Valid formula (example from Davis and Putnam (1960))
     /// <code lang="fsharp">
     /// !! @"exists x. exists y. forall z.
     ///     (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
@@ -334,6 +365,16 @@ module Resolution =
     /// </example>
     /// 
     /// <example id="basic_resolution-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> basic_resolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <example id="basic_resolution-3">
+    /// Unsatisfiable formula
     /// <code lang="fsharp">
     /// !!"P(x) /\ ~P(x)"
     /// |> basic_resolution
@@ -345,8 +386,7 @@ module Resolution =
     val basic_resolution: fm: formula<fol> -> bool list
 
     /// <summary>
-    /// Matches the first element of each terms pair in a with the second 
-    /// element of the pair.
+    /// Returns the matchings of a list of term-term pairs.
     /// </summary>
     /// 
     /// <remarks>
@@ -354,26 +394,111 @@ module Resolution =
     /// instantiation of variables is allowed only in the first term.
     /// </remarks>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.</param>
+    /// <param name="eqs">The input list of term-term pairs to be matched.</param>
+    /// 
+    /// <returns>The resulting matchings, if there are.</returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>term_match</c> when there are no matchings.</exception>
+    /// 
+    /// <example id="term_match-1">
+    /// <code lang="fsharp">
+    /// [!!!"x",!!!"f(y)"]
+    /// |> term_match undefined
+    /// |> graph
+    /// </code>
+    /// Evaluates to <c>[("x", ``f(y)``)]</c>.
+    /// </example>
+    /// 
+    /// <example id="term_match-2">
+    /// <code lang="fsharp">
+    /// [!!!"f(y)",!!!"x"]
+    /// |> term_match undefined
+    /// </code>
+    /// Throws <c>System.Exception: term_match</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Matching</category>
     val term_match:
       env: func<string,term> ->
         eqs: (term * term) list -> func<string,term>
 
     /// <summary>
-    /// Tries to match a pair of literals.
+    /// Returns the matchings of a pair of literals.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <remarks>
+    /// Matching is a cut-down version of unification in which the 
+    /// instantiation of variables is allowed only in the first term.
+    /// </remarks>
+    /// 
+    /// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.</param>
+    /// <param name="p">The first input literal.</param>
+    /// <param name="q">The second input literal.</param>
+    /// 
+    /// <returns>The resulting matching, if there is.</returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>term_match</c> when there are no matchings.</exception>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>match_literals</c> when there input formulas are not literals.</exception>
+    /// 
+    /// <example id="match_literals-1">
+    /// <code lang="fsharp">
+    /// (!!"P(x)",!!"P(f(y))")
+    /// |> match_literals undefined
+    /// |> graph
+    /// </code>
+    /// Evaluates to <c>[("x", ``f(y)``)]</c>.
+    /// </example>
+    /// 
+    /// <example id="match_literals-2">
+    /// <code lang="fsharp">
+    /// (!!"P(f(y))",!!"P(x)")
+    /// |> match_literals undefined
+    /// </code>
+    /// Throws <c>System.Exception: term_match</c>.
+    /// </example>
+    /// 
+    /// <example id="match_literals-3">
+    /// <code lang="fsharp">
+    /// (!!"P(x) /\ Q(x)",!!"P(f(y)) /\ Q(f(y))")
+    /// |> match_literals undefined
+    /// </code>
+    /// Throws <c>System.Exception: match_literals</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Matching</category>
     val match_literals:
       env: func<string,term> ->
-        formula<fol> * formula<fol> ->
+        p: formula<fol> * q: formula<fol> ->
           func<string,term>
 
     /// <summary>
     /// Tests if the first clause subsumes the second.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="cls1">The first input clause.</param>
+    /// <param name="cls2">The second input clause.</param>
+    /// 
+    /// <returns>
+    /// true, if the first clause subsumes the second; otherwise, false.
+    /// </returns>
+    /// 
+    /// <example id="subsumes_clause-1">
+    /// <code lang="fsharp">
+    /// subsumes_clause !!>["P(x)"] !!>["Q(0)";"P(f(y))"]
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="subsumes_clause-2">
+    /// <code lang="fsharp">
+    /// subsumes_clause !!>["Q(0)";"P(f(y))"] !!>["P(x)"]
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <category index="4">Subsumption</category>
     val subsumes_clause:
       cls1: formula<fol> list ->
         cls2: formula<fol> list -> bool
@@ -383,7 +508,23 @@ module Resolution =
     /// subsumes the first.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="cl">The clause that could subsume.</param>
+    /// <param name="lis">The input list of clauses.</param>
+    /// 
+    /// <returns>
+    /// The list obtained by <c>lis</c> replacing with <c>cl</c> each of its 
+    /// element that are subsumed by it.
+    /// </returns>
+    /// 
+    /// <example id="replace-1">
+    /// <code lang="fsharp">
+    /// !!>>[["Q(0)";"P(f(y))"];["P(x)";"~P(x)"]]
+    /// |> replace !!>["P(x)"]
+    /// </code>
+    /// Evaluates to <c>[[`P(x)`]; [`P(x)`; `~P(x)`]]</c>.
+    /// </example>
+    /// 
+    /// <category index="4">Subsumption</category>
     val replace:
       cl: formula<fol> list ->
         lis: formula<fol> list list ->
@@ -394,7 +535,52 @@ module Resolution =
     /// tautological and replacing the subsumed ones.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="gcl">The given clause.</param>
+    /// <param name="cl">The clause to be inserted after checking.</param>
+    /// <param name="unused">The input list fo clauses.</param>
+    /// 
+    /// <returns>
+    /// The input list <c>unused</c> incremented by <c>cl</c>, if this latter 
+    /// passes the check; otherwise, the input list <c>unused</c> unchanged.
+    /// </returns>
+    /// 
+    /// <example id="incorporate-1">
+    /// Inserted since neither tautological nor subsumed
+    /// <code lang="fsharp">
+    /// !!>>[["P(x)"];["Q(y)"]]
+    /// |> incorporate [!!"R(0)"] [!!"R(f(z))"]
+    /// </code>
+    /// Evaluates to <c>[[`P(x)`]; [`Q(y)`]; [`R(f(z))`]]</c>.
+    /// </example>
+    /// 
+    /// <example id="incorporate-2">
+    /// Not inserted since subsumed by gcl
+    /// <code lang="fsharp">
+    /// !!>>[["P(x)"];["Q(y)"]]
+    /// |> incorporate [!!"R(w)"] [!!"R(f(z))"]
+    /// </code>
+    /// Evaluates to <c>[[`P(x)`]; [`Q(y)`]] </c>.
+    /// </example>
+    /// 
+    /// <example id="incorporate-3">
+    /// Not inserted since subsumed by another clause in the list
+    /// <code lang="fsharp">
+    /// !!>>[["P(x)"];["Q(y)"]]
+    /// |> incorporate [!!"R(0)"] [!!"P(f(z))"]
+    /// </code>
+    /// Evaluates to <c>[[`P(x)`]; [`Q(y)`]] </c>.
+    /// </example>
+    /// 
+    /// <example id="incorporate-4">
+    /// Not inserted since tautological
+    /// <code lang="fsharp">
+    /// !!>>[["P(x)"];["Q(y)"]]
+    /// |> incorporate [!!"R(0)"] !!>["R(f(z))";"~R(f(z))"]
+    /// </code>
+    /// Evaluates to <c>[[`P(x)`]; [`Q(y)`]] </c>.
+    /// </example>
+    /// 
+    /// <category index="4">Subsumption</category>
     val incorporate:
       gcl: formula<fol> list ->
         cl: formula<fol> list ->
@@ -405,7 +591,38 @@ module Resolution =
     /// Resolution loop with subsumption and replacement.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="used">The working list of clauses, initially empty.</param>
+    /// <param name="unused">The input list of clauses to be refuted.</param>
+    /// 
+    /// <returns>
+    /// true, if a refutation for <c>unused</c> is found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found.</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>
+    /// </note>
+    /// 
+    /// <example id="resloop_wsubs-1">
+    /// <code lang="fsharp">
+    /// resloop_wsubs ([],!!>>[["P(x)"];["~P(x)"]])
+    /// </code>
+    /// Evaluates to <c>true</c> and prints to the <c>stdout</c>
+    /// <code lang="fsharp">
+    /// 0 used; 2 unused.
+    /// 1 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="resloop_wsubs-2">
+    /// <code lang="fsharp">
+    /// resloop_wsubs ([],!!>>[["P(x)"]])
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <category index="5">Resolution with subsumption and replacement</category>
     val resloop_wsubs:
       used: formula<fol> list list *
       unused: formula<fol> list list -> bool
@@ -415,7 +632,59 @@ module Resolution =
     /// subsumption and replacement.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is unsatisfiable and a refutation could be 
+    /// found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <example id="pure_resolution_wsubs-1">
+    /// Unsatisfiable formula
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> pure_resolution_wsubs
+    /// </code>
+    /// Evaluates to <c>true</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 2 unused.
+    /// 1 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_resolution_wsubs-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> pure_resolution_wsubs
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_resolution_wsubs-3">
+    /// Valid formula
+    /// <code lang="fsharp">
+    /// !!"""P(x) \/ ~P(x)"""
+    /// |> pure_resolution_wsubs
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="5">Resolution with subsumption and replacement</category>
     val pure_resolution_wsubs: fm: formula<fol> -> bool
 
     /// <summary>
@@ -424,7 +693,57 @@ module Resolution =
     /// handles subsumption and replacement.
     /// </summary>
     /// 
-    /// <category index="3">Subsumption and replacement</category>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of the results of 
+    /// <see cref='M:Calcolemus.Resolution.pure_resolution_wsubs'/> on each 
+    /// subproblems, if the formula is valid and a proof could be found.
+    /// </returns>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no proof could be found.</exception>
+    /// 
+    /// <example id="resolution_wsubs-1">
+    /// Valid formula (example from Davis and Putnam (1960))
+    /// <code lang="fsharp">
+    /// !! @"exists x. exists y. forall z.
+    ///     (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
+    ///     ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
+    /// |> resolution_wsubs
+    /// </code>
+    /// Evaluates to <c>[true]</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// ...
+    /// 6 used; 3 unused.
+    /// 7 used; 2 unused.
+    /// </code>
+    /// Note how much the number of clauses generated has been reduced compared 
+    /// to <see cref='M:Calcolemus.Resolution.basic_resolution'/>.
+    /// </example>
+    /// 
+    /// <example id="resolution_wsubs-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> resolution_wsubs
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <example id="resolution_wsubs-3">
+    /// Unsatisfiable formula
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> resolution_wsubs
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <category index="5">Resolution with subsumption and replacement</category>
     val resolution_wsubs: fm: formula<fol> -> bool list
 
     /// <summary>
@@ -432,7 +751,42 @@ module Resolution =
     /// only positive literals.
     /// </summary>
     /// 
-    /// <category index="4">Positive resolution</category>
+    /// <param name="cl1">The first input clause.</param>
+    /// <param name="cl2">The second input clause.</param>
+    /// 
+    /// <returns>
+    /// All the resolvents of <c>cl1</c> and <c>cl2</c>, if at least one of 
+    /// them is completely positive; otherwise, an empty list.
+    /// </returns>
+    /// 
+    /// <example id="presolve_clauses-1">
+    /// <code lang="fsharp">
+    /// presolve_clauses 
+    ///   !!>["P(x)";"Q(x)";"P(0)"]
+    ///   !!>["~P(f(y))";"~P(z)";"~Q(z)"]
+    /// </code>
+    /// Evaluates to 
+    /// <code lang="fsharp">
+    /// [[`P(0)`; `Q(yz)`; `~P(f(yy))`; `~Q(yz)`];
+    ///  [`P(0)`; `Q(f(yy))`; `~P(yz)`; `~Q(yz)`];
+    ///  [`P(0)`; `Q(f(yy))`; `~Q(f(yy))`];
+    ///  [`Q(0)`; `~P(f(yy))`; `~Q(0)`];
+    ///  [`P(yz)`; `P(0)`; `~P(yz)`; `~P(f(yy))`];
+    ///  [`P(xx)`; `Q(xx)`; `~P(f(yy))`; `~Q(0)`];
+    ///  [`Q(0)`; `~P(f(yy))`; `~Q(0)`]]
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="presolve_clauses-2">
+    /// <code lang="fsharp">
+    /// presolve_clauses 
+    ///   !!>["P(x)";"Q(x)";"P(0)";"~A"]
+    ///   !!>["~P(f(y))";"~P(z)";"~Q(z)"]
+    /// </code>
+    /// Evaluates to <c>[]</c>.
+    /// </example>
+    /// 
+    /// <category index="6">Positive resolution</category>
     val presolve_clauses:
       cls1: formula<fol> list ->
         cls2: formula<fol> list -> formula<fol> list list
@@ -441,7 +795,38 @@ module Resolution =
     /// Positive resolution loop.
     /// </summary>
     /// 
-    /// <category index="4">Positive resolution</category>
+    /// <param name="used">The working list of clauses, initially empty.</param>
+    /// <param name="unused">The input list of clauses to be refuted.</param>
+    /// 
+    /// <returns>
+    /// true, if a refutation for <c>unused</c> is found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found.</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>
+    /// </note>
+    /// 
+    /// <example id="presloop-1">
+    /// <code lang="fsharp">
+    /// presloop ([],!!>>[["P(x)"];["~P(x)"]])
+    /// </code>
+    /// Evaluates to <c>true</c> and prints to the <c>stdout</c>
+    /// <code lang="fsharp">
+    /// 0 used; 2 unused.
+    /// 1 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="presloop-2">
+    /// <code lang="fsharp">
+    /// presloop ([],!!>>[["P(x)"]])
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <category index="6">Positive resolution</category>
     val presloop:
       used: formula<fol> list list *
       unused: formula<fol> list list -> bool
@@ -451,7 +836,59 @@ module Resolution =
     /// procedure.
     /// </summary>
     /// 
-    /// <category index="4">Positive resolution</category>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is unsatisfiable and a refutation could be 
+    /// found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <example id="pure_presolution-1">
+    /// Unsatisfiable formula
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> pure_presolution
+    /// </code>
+    /// Evaluates to <c>true</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 2 unused.
+    /// 1 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_presolution-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> pure_presolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_presolution-3">
+    /// Valid formula
+    /// <code lang="fsharp">
+    /// !!"""P(x) \/ ~P(x)"""
+    /// |> pure_presolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="6">Positive resolution</category>
     val pure_presolution: fm: formula<fol> -> bool
 
     /// <summary>
@@ -459,22 +896,176 @@ module Resolution =
     /// testing them with the positive resolution procedure.
     /// </summary>
     /// 
-    /// <category index="4">Positive resolution</category>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of the results of 
+    /// <see cref='M:Calcolemus.Resolution.pure_presolution'/> on each 
+    /// subproblems, if the formula is valid and a proof could be found.
+    /// </returns>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no proof could be found.</exception>
+    /// 
+    /// <example id="presolution-1">
+    /// Valid formula (&#321;o&#347; example)
+    /// <code lang="fsharp">
+    /// !! @"(forall x y z. P(x,y) /\ P(y,z) ==> P(x,z)) /\
+    ///      (forall x y z. Q(x,y) /\ Q(y,z) ==> Q(x,z)) /\
+    ///      (forall x y. Q(x,y) ==> Q(y,x)) /\
+    ///      (forall x y. P(x,y) \/ Q(x,y))
+    ///      ==> (forall x y. P(x,y)) \/ (forall x y. Q(x,y))"
+    /// |> presolution
+    /// </code>
+    /// Evaluates to <c>[true]</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 6 unused.
+    /// 1 used; 5 unused.
+    /// ...
+    /// 34 used; 42 unused.
+    /// 35 used; 41 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="presolution-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> presolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <example id="presolution-3">
+    /// Unsatisfiable formula
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> presolution
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <category index="6">Positive resolution</category>
     val presolution: fm: formula<fol> -> bool list
 
     /// <summary>
     /// Tests the unsatisfiability of a formula using a resolution procedure 
-    /// with set-of-support restriction.
+    /// with subsumption and replacement and the set-of-support restriction.
     /// </summary>
     /// 
-    /// <category index="5">Set-of-support restriction</category>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is unsatisfiable and a refutation could be 
+    /// found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <example id="pure_resolution_wsos-1">
+    /// Unsatisfiable formula
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> pure_resolution_wsos
+    /// </code>
+    /// Evaluates to <c>true</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 2 unused.
+    /// 1 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_resolution_wsos-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> pure_resolution_wsos
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="pure_resolution_wsos-3">
+    /// Valid formula
+    /// <code lang="fsharp">
+    /// !!"""P(x) \/ ~P(x)"""
+    /// |> pure_resolution_wsos
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c> and prints to the 
+    /// <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 1 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="7">Set-of-support restriction</category>
     val pure_resolution_wsos: fm: formula<fol> -> bool
 
     /// <summary>
     /// Tests the validity of a formula splitting it in subproblems and then 
-    /// testing them using a resolution procedure with set-of-support 
-    /// restriction.
+    /// testing them using a resolution procedure with subsumption and 
+    /// replacement and the set-of-support restriction.
     /// </summary>
     /// 
-    /// <category index="5">Set-of-support restriction</category>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of the results of 
+    /// <see cref='M:Calcolemus.Resolution.pure_resolution_wsos'/> on each 
+    /// subproblems, if the formula is valid and a proof could be found.
+    /// </returns>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no proof could be found.</exception>
+    /// 
+    /// <example id="resolution_wsos-1">
+    /// Valid formula (&#321;o&#347; example)
+    /// <code lang="fsharp">
+    /// !! @"exists x. exists y. forall z.
+    ///    (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
+    ///    ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
+    /// |> resolution_wsos
+    /// </code>
+    /// Evaluates to <c>[true]</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 6 unused.
+    /// 1 used; 5 unused.
+    /// ...
+    /// 34 used; 42 unused.
+    /// 35 used; 41 unused.
+    /// </code>
+    /// </example>
+    /// 
+    /// <example id="resolution_wsos-2">
+    /// Satisfiable (not valid) formula
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> resolution_wsos
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <example id="resolution_wsos-3">
+    /// Unsatisfiable formula
+    /// <code lang="fsharp">
+    /// !!"P(x) /\ ~P(x)"
+    /// |> resolution_wsos
+    /// </code>
+    /// Throws <c>System.Exception: No proof found</c>.
+    /// </example>
+    /// 
+    /// <category index="7">Set-of-support restriction</category>
     val resolution_wsos: fm: formula<fol> -> bool list

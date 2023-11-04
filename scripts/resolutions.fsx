@@ -10,6 +10,63 @@ open Resolution
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
+presolve_clauses 
+   !!>["P(x)";"Q(x)";"P(0)";]
+   !!>["~P(f(y))";"~P(z)";"~Q(z)"]
+
+presolve_clauses 
+   !!>["P(x)";"Q(x)";"P(0)";"~A"]
+   !!>["~P(f(y))";"~P(z)";"~Q(z)"]
+
+// inserted since neither tautological nor subsumed
+!!>>[["P(x)"];["Q(y)"]]
+|> incorporate [!!"R(0)"] [!!"R(f(z))"]
+|> List.map (List.map sprint_fol_formula)
+// [[`P(x)`]; [`Q(y)`]; [`R(f(z))`]] 
+
+// not inserted since subsumed by gcl
+!!>>[["P(x)"];["Q(y)"]]
+|> incorporate [!!"R(w)"] [!!"R(f(z))"]
+|> List.map (List.map sprint_fol_formula)
+// [[`P(x)`]; [`Q(y)`]] 
+
+// not inserted since subsumed by another clause in the list
+!!>>[["P(x)"];["Q(y)"]]
+|> incorporate [!!"R(0)"] [!!"P(f(z))"]
+// [[`Q(z)`]; [`P(y)`]] 
+
+// not inserted since tautological
+!!>>[["P(x)"];["Q(y)"]]
+|> incorporate [!!"R(0)"] !!>["R(f(z))";"~R(f(z))"]
+// [[`P(x)`]; [`Q(y)`]]
+
+!!>>[["Q(0)";"P(f(y))"];["P(x)";"~P(x)"]]
+|> replace !!>["P(x)"]
+
+subsumes_clause !!>["P(x)"] !!>["Q(0)";"P(f(y))"]
+
+subsumes_clause !!>["Q(0)";"P(f(y))"] !!>["P(x)"]
+
+(!!"P(x)",!!"P(f(y))")
+|> match_literals undefined
+|> graph
+// [("x", ``f(y)``)]
+
+(!!"P(f(y))",!!"P(x)")
+|> match_literals undefined
+// System.Exception: term_match
+
+(!!"P(x) /\ Q(x)",!!"P(f(y)) /\ Q(f(y))")
+|> match_literals undefined
+|> graph
+// System.Exception: match_literals
+
+[!!!"x",!!!"f(y)"]
+|> term_match undefined
+|> graph
+
+[!!!"f(y)",!!!"x"]
+|> term_match undefined
 
 mgu !!>["P(x)";"P(f(y))"] undefined
 |> graph
@@ -56,13 +113,19 @@ basic_resloop ([],!!>>[["P(x)"];["~P(x)"]])
 basic_resloop ([],!!>>[["P(x)"]])
 
 !!"P(x) /\ ~P(x)"
-|> pure_basic_resolution
+|> pure_resolution_wsubs
 
 !!"P(x)"
-|> pure_basic_resolution
+|> pure_resolution_wsubs
 
-!! @"P(x) \/ ~P(x)"
+!!"""P(x) \/ ~P(x)"""
+|> pure_resolution_wsubs
+
+!! @"P(x)"
 |> basic_resolution
+
+!! @"P(x)"
+|> pure_basic_resolution
 
 !!"P(x) /\ ~P(x)"
 |> basic_resolution

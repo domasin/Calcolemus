@@ -121,8 +121,8 @@ module Resolution =
         | _ ->
             failwith "term_match"
     
-    let rec match_literals env tmp =
-        match tmp with
+    let rec match_literals env (p,q) =
+        match (p,q) with
         | Atom (R (p, a1)), Atom (R (q, a2))
         | Not (Atom (R (p, a1))), Not (Atom (R (q, a2))) ->
             term_match env [Fn (p, a1), Fn (q, a2)]
@@ -133,12 +133,6 @@ module Resolution =
     // ---------------------------------------------------------------------- //
     
     let subsumes_clause cls1 cls2 =
-        let rec tryfind f l =
-            match l with
-            | [] -> failwith "tryfind"
-            | h :: t ->
-                try f h
-                with _ -> tryfind f t
     
         let rec subsume env cls =
             match cls with
