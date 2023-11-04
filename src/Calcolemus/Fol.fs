@@ -184,10 +184,21 @@ module Fol =
 
     let fprint_fol_formula tw =
         fprint_qformula tw (fprint_atom tw)
-    
-    let inline print_fol_formula f = fprint_fol_formula stdout f
 
-    let inline sprint_fol_formula f = writeToString (fun sw -> fprint_fol_formula   sw f)
+    let fprint_latex_fol_formula tw =
+        fprint_latex_qformula tw (fprint_atom tw)
+    
+    let inline print_fol_formula f = 
+        fprint_fol_formula stdout f
+
+    let inline print_latex_fol_formula f = 
+        fprint_latex_fol_formula stdout f
+
+    let inline sprint_fol_formula f = 
+        writeToString (fun sw -> fprint_fol_formula   sw f)
+
+    let inline sprint_latex_fol_formula f = 
+        writeToString (fun sw -> fprint_latex_fol_formula   sw f)
 
     // ---------------------------------------------------------------------- //
     // Semantics, implemented of course for finite domains only.              //

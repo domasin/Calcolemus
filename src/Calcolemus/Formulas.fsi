@@ -230,6 +230,15 @@ module Formulas =
         pfn: (int -> 'a -> unit) -> fm: formula<'a> -> unit
 
     /// <summary>
+    /// Main toplevel latex printer.
+    /// </summary>
+    /// 
+    /// <category index="3">Prettyprinting</category>
+    val fprint_latex_qformula:
+      tw: System.IO.TextWriter ->
+        pfn: (int -> 'a -> unit) -> fm: formula<'a> -> unit
+
+    /// <summary>
     /// Prints a formula <c>fm</c> using a function <c>pfn</c> to print atoms.
     /// </summary>
     /// 

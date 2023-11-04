@@ -125,18 +125,65 @@ module Formulas =
 
         print_formula 0
 
+    let fprint_latex_formula tw pfn =
+        let rec print_formula pr fm =
+            match fm with
+            | False ->
+                fprintf tw "\\bot"
+            | True ->
+                fprintf tw "\\top"
+            | Atom pargs ->
+                pfn pr pargs
+            | Not p ->
+                fbracket tw (pr > 10) 1 (print_prefix 10) "\\lnot " p
+            | And (p, q) ->
+                fbracket tw (pr > 8) 0 (print_infix 8 "\\land") p q
+            | Or (p, q) ->
+                fbracket tw (pr > 6) 0 (print_infix  6 "\\lor") p q
+            | Imp (p, q) ->
+                fbracket tw (pr > 4) 0 (print_infix 4 "\\Rightarrow") p q
+            | Iff (p, q) ->
+                fbracket tw (pr > 2) 0 (print_infix 2 "\\Leftrightarrow") p q
+            | Forall (x, p) ->
+                fbracket tw (pr > 0) 2 print_qnt "\\forall" (strip_quant fm)
+            | Exists (x, p) ->
+                fbracket tw (pr > 0) 2 print_qnt "\\exists" (strip_quant fm)
+        and print_qnt qname (bvs, bod) =
+            fprintf tw "%s" qname
+            List.iter (fprintf tw " %s") bvs
+            fprintf tw ". "
+            print_formula 0 bod
+        and print_prefix newpr sym p =
+            fprintf tw "%s" sym
+            print_formula (newpr + 1) p
+        and print_infix newpr sym p q =
+            print_formula (newpr + 1) p
+            fprintf tw " %s " sym
+            print_formula newpr q
+
+        print_formula 0
+
     let fprint_qformula tw pfn fm =
         fprintf tw "`"
         fprint_formula tw pfn fm
         fprintf tw "`"
 
+    let fprint_latex_qformula tw pfn fm =
+        fprintf tw "$"
+        fprint_latex_formula tw pfn fm
+        fprintf tw "$"
+
     let inline print_formula pfn fm = fprint_formula stdout pfn fm
 
     let inline sprint_formula pfn fm = writeToString (fun sw -> fprint_formula sw   pfn fm)
 
+    let inline sprint_latex_formula pfn fm = writeToString (fun sw -> fprint_latex_formula sw   pfn fm)
+
     let inline print_qformula pfn fm = fprint_qformula stdout pfn fm
 
     let inline sprint_qformula pfn fm = writeToString (fun sw -> fprint_qformula sw     pfn fm)
+
+    let inline sprint_latex_qformula pfn fm = writeToString (fun sw -> fprint_latex_qformula sw     pfn fm)
 
     // ---------------------------------------------------------------------- //
     // Formula Constructors.                                                  //

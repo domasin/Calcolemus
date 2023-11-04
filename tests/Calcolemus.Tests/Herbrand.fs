@@ -16,8 +16,6 @@ open Lib.Fpf
 open Fol
 open Clause
 open Herbrand
-open Pelletier
-
 
 [<Fact>]
 let ``pholds should return true if the quantifier-free formula is true in the given valuations.``() = 
@@ -125,12 +123,12 @@ let ``gilmore_loop should return the set of ground tuples that generate the unsa
 
 [<Fact>]
 let ``gilmore should succeed on p24 after trying 1 ground instance.``() = 
-    gilmore p24
+    gilmore Pelletier.p24
     |> should equal 1
 
 [<Fact>]
 let ``gilmore should succeed on p45 after trying 5 ground instances.``() = 
-    gilmore p45
+    gilmore Pelletier.p45
     |> should equal 5
 
 [<Fact>]
@@ -152,20 +150,20 @@ let ``dp_mfn [[!!"P(x)"]; [!!"~P(f_y(x))"]] (subst (fpf ["x"] [!!!"f_y(c)"])) [[
 
 [<Fact>]
 let ``davisputnam should succeed on p20 after trying 19 ground instances.``() = 
-    davisputnam p20
+    davisputnam Pelletier.p20
     |> should equal 19
 
 [<Fact>]
 let ``davisputnam002 should succeed on p20 after trying 2 ground instances.``() = 
-    davisputnam002 p20
+    davisputnam002 Pelletier.p20
     |> should equal 2
 
 [<Fact>]
 let ``davisputnam should succeed on p36 after trying 40 ground instances.``() = 
-    davisputnam p36
+    davisputnam Pelletier.p36
     |> should equal 40
 
 [<Fact>]
 let ``davisputnam002 should succeed on p36 after trying 3 ground instances.``() = 
-    davisputnam002 p36
+    davisputnam002 Pelletier.p36
     |> should equal 3

@@ -499,6 +499,14 @@ module Fol =
       tw: System.IO.TextWriter -> (formula<fol> -> unit)
 
     /// <summary>
+    /// Printer of fol formulas to latex with TextWriter.
+    /// </summary>
+    /// 
+    /// <category index="4">Printing formulas</category>
+    val fprint_latex_fol_formula:
+      tw: System.IO.TextWriter -> (formula<fol> -> unit)
+
+    /// <summary>
     /// Prints to the <c>stdout</c> the concrete syntax representation of a 
     /// fol formula.
     /// </summary>
@@ -524,6 +532,14 @@ module Fol =
     /// 
     /// <category index="4">Printing formulas</category>
     val inline print_fol_formula: f: formula<fol> -> unit
+
+
+    /// <summary>
+    /// Prints to the <c>stdout</c> the latex syntax of a fol formula.
+    /// </summary>
+    /// 
+    /// <category index="4">Printing formulas</category>
+    val inline print_latex_fol_formula: f: formula<fol> -> unit
 
     /// <summary>
     /// Returns the concrete syntax representation of a fol formula.
@@ -567,6 +583,13 @@ module Fol =
     /// 
     /// <category index="4">Printing formulas</category>
     val inline sprint_fol_formula: f: formula<fol> -> string
+
+    /// <summary>
+    /// Returns the latex syntax of a fol formula.
+    /// </summary>
+    /// 
+    /// <category index="4">Printing formulas</category>
+    val inline sprint_latex_fol_formula: f: formula<fol> -> string
 
     /// <summary>
     /// Returns the value of a term <c>tm</c> in the interpretation (say \(M\)) 

@@ -7,15 +7,12 @@ module Calcolemus.Tests.Tableaux
 
 open Xunit
 open FsUnit.Xunit
+open FsUnitTyped
 
 open Calcolemus
-
 open Lib.Fpf
-
 open Fol
 open Tableaux
-open Pelletier
-open FsUnitTyped
 
 [<Fact>]
 let ``unify_literals should return an augmented unification assignment on a unifiable pair not already unified.``() = 
@@ -72,7 +69,7 @@ let ``unify_complements should fail with cyclic if trying to unify complementary
 
 [<Fact>]
 let ``prawitz should succeed on p20 after trying 2 ground instance.``() = 
-    prawitz p20
+    prawitz Pelletier.p20
     |> shouldEqual 2
 
 [<Fact>]
@@ -95,10 +92,10 @@ let ``tabrefute should return the number of universal variables replaced if the 
 
 [<Fact>]
 let ``tab should succeed on p38 after trying 4 ground instance.``() = 
-    tab p38
+    tab Pelletier.p38
     |> shouldEqual 4
 
 [<Fact>]
 let ``splittab should succeed on p34.``() = 
-    splittab p34
+    splittab Pelletier.p34
     |> shouldEqual [5; 4; 5; 3; 3; 3; 2; 4; 6; 2; 3; 3; 4; 3; 3; 3; 3; 2; 2; 3; 6; 3; 2; 4; 3; 3; 3; 3; 3; 4; 4; 4]

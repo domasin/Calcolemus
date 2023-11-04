@@ -65,6 +65,7 @@
     <Compile Include="Fol.fs" />
     <Compile Include="Skolem.fsi" />
     <Compile Include="Skolem.fs" />
+    <Compile Include="Pelletier.fsi" />
     <Compile Include="Pelletier.fs" />
     <Compile Include="Clause.fsi" />
     <Compile Include="Clause.fs" />
