@@ -18,7 +18,6 @@ open Formulas
 open Prop
 open Fol
 open Skolem
-open Herbrand
 open Unif
 open Tableaux
 

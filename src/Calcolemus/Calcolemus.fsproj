@@ -77,7 +77,8 @@
     <Compile Include="Tableaux.fs" />
     <Compile Include="Resolution.fsi" />
     <Compile Include="Resolution.fs" />
-    <Compile Include="prolog.fs" />
+    <Compile Include="Prolog.fsi" />
+    <Compile Include="Prolog.fs" />
     <Compile Include="meson.fs" />
     <Compile Include="skolems.fs" />
     <Compile Include="equal.fs" />

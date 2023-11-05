@@ -21,7 +21,7 @@ module Pelletier =
     (* ---------------------------------------------------------------------- *)
 
     /// <summary>
-    /// \(p \Rightarrow q \Leftrightarrow \lnot q \Rightarrow ~p\)
+    /// <c>p ==> q &lt;=&gt; ~q ==> ~p</c>
     /// </summary>
     /// 
     /// <category index="1">Propositional Logic</category>
