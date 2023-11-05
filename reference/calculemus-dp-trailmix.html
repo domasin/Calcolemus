@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Calculemus Library Documentation
-</title>
+    <title>trailmix (Calculemus)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
 
@@ -80,17 +79,152 @@
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
-            <h1><a name="Calculemus-Library-Documentation" class="anchor" href="#Calculemus-Library-Documentation">Calculemus Library Documentation</a></h1>
-<p>This site contains the documentation for the Calculemus library.</p>
-<p>The library provides lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.</p>
-<p>It is a porting in F# of the code from John Harrison's book <a href="https://www.cl.cam.ac.uk/~jrh13/atp/index.html">Handbook of Practical Logic and Automated Reasoning</a> written in OCaml and it is based on a <a href="https://github.com/jack-pappas/fsharp-logic-examples">previous F# porting</a> by Jack Pappas, Eric Taucher, Anh-Dung Phan.</p>
-<p>This is not intended as a completely faithful porting. In fact, in some cases, changes or new functions are introduced with the main intention being to provide greater detail in certain aspects. However, the differences with the code described in the book are so minimal that the correspondence should always be clear.</p>
-<p>The following namespaces are available:</p>
-<ul>
-<li><p><a href="./reference/Calculemus.html">Calculemus</a> - The main namespace with the specific thematics.</p></li>
-<li><p><a href="./reference/Calculemus-lib.html">Calculemus.Lib</a> - The library with basic functions for general implementation.</p></li>
-</ul>
-
+            <div>
+  <h2>
+    trailmix Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/Calculemus/reference/calculemus.html">
+        Calculemus
+      </a>
+    </dt>
+    <dt>
+      Assembly: Calculemus.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="/Calculemus/reference/calculemus-dp.html">
+        DP
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+      , 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="/Calculemus/reference/calculemus-dp-trailmix.html">trailmix</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralcomparable">IStructuralComparable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Flags to mark literals in the case split <em>trail</em> used in the 
+ DPLL iterative implementation. 
+ 
+ <a href="/Calculemus/reference/calculemus-dp.html">DP.dpli</a>
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Union cases
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Union case
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '892', 892)" onmouseover="showTip(event, '892', 892)">
+                <p>
+                  <a id="Deduced">
+                    <a href="#Deduced">
+                      <code><span>Deduced</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="892">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Deduced</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/DP.fsi#L608-608" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/Calculemus/content/img/github.png" class="normal"/>
+                <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Literal deduced by unit propagation.
+ 
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '893', 893)" onmouseover="showTip(event, '893', 893)">
+                <p>
+                  <a id="Guessed">
+                    <a href="#Guessed">
+                      <code><span>Guessed</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="893">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Guessed</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/DP.fsi#L604-604" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/Calculemus/content/img/github.png" class="normal"/>
+                <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Literal just assumed as the fst half of a case-split.
+ 
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
             
         </div>
 

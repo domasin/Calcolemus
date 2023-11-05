@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Calculemus Library Documentation
-</title>
+    <title>tape (Calculemus)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Domenico Masini">
 
@@ -80,17 +79,141 @@
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
-            <h1><a name="Calculemus-Library-Documentation" class="anchor" href="#Calculemus-Library-Documentation">Calculemus Library Documentation</a></h1>
-<p>This site contains the documentation for the Calculemus library.</p>
-<p>The library provides lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.</p>
-<p>It is a porting in F# of the code from John Harrison's book <a href="https://www.cl.cam.ac.uk/~jrh13/atp/index.html">Handbook of Practical Logic and Automated Reasoning</a> written in OCaml and it is based on a <a href="https://github.com/jack-pappas/fsharp-logic-examples">previous F# porting</a> by Jack Pappas, Eric Taucher, Anh-Dung Phan.</p>
-<p>This is not intended as a completely faithful porting. In fact, in some cases, changes or new functions are introduced with the main intention being to provide greater detail in certain aspects. However, the differences with the code described in the book are so minimal that the correspondence should always be clear.</p>
-<p>The following namespaces are available:</p>
-<ul>
-<li><p><a href="./reference/Calculemus.html">Calculemus</a> - The main namespace with the specific thematics.</p></li>
-<li><p><a href="./reference/Calculemus-lib.html">Calculemus.Lib</a> - The library with basic functions for general implementation.</p></li>
-</ul>
-
+            <div>
+  <h2>
+    tape Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/Calculemus/reference/calculemus.html">
+        Calculemus
+      </a>
+    </dt>
+    <dt>
+      Assembly: Calculemus.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="/Calculemus/reference/calculemus-limitations.html">
+        Limitations
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="/Calculemus/reference/calculemus-limitations-tape.html">tape</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+      , 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="/Calculemus/reference/calculemus-limitations-tape.html">tape</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralcomparable">IStructuralComparable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Union cases
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Union case
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '920', 920)" onmouseover="showTip(event, '920', 920)">
+                <p>
+                  <a id="Tape">
+                    <a href="#Tape">
+                      <code><span>Tape(<span>int,&#32;<span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>int,&#32;<a href="/Calculemus/reference/calculemus-limitations-symbol.html">symbol</a></span>&gt;</span></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="920">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Tape(<span>int,&#32;<span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>int,&#32;<a href="/Calculemus/reference/calculemus-limitations-symbol.html">symbol</a></span>&gt;</span></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>int,&#32;<a href="/Calculemus/reference/calculemus-limitations-symbol.html">symbol</a></span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>int,&#32;<a href="/Calculemus/reference/calculemus-limitations-symbol.html">symbol</a></span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
             
         </div>
 

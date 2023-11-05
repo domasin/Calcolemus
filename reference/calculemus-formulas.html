@@ -1,0 +1,4276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulas (Calculemus)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Domenico Masini">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Calculemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calculemus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Calculemus/"><img id="fsdocs-logo" src="/Calculemus/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calculemus/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calculemus">Source Repository</a></li>
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/getting_started.html">
+    Getting started
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Calculemus/">Calculemus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    Formulas Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/Calculemus/reference/calculemus.html">
+        Calculemus
+      </a>
+    </dt>
+    <dt>
+      Assembly: Calculemus.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Polymorphic type of formulas with parser and printer. 
+ 
+      </p>
+    </div>
+  </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Parsing
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Prettyprinting
+      </a>
+    </li>
+    <li>
+      <a href="#section2">
+        Destructors
+      </a>
+    </li>
+    <li>
+      <a href="#section3">
+        Constructors
+      </a>
+    </li>
+    <li>
+      <a href="#section4">
+        Syntax operations
+      </a>
+    </li>
+  </ul>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="formula<'a>">
+                <a href="/Calculemus/reference/calculemus-formulas-formula-1.html">
+                  formula<'a>
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Calculemus.Formulas.formula`1``')">
+                <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Formulas.formula`1\'/>')">
+                <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fsi#L20-20" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/Calculemus/content/img/github.png" class="normal"/>
+                <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Abstract syntax tree of polymorphic type of formulas.
+ 
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2 id="section0">
+    Parsing
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '279', 279)" onmouseover="showTip(event, '279', 279)">
+                <p>
+                  <a id="parse_atomic_formula">
+                    <a href="#parse_atomic_formula">
+                      <code><span>parse_atomic_formula&#32;<span><span>(<span>ifn,&#32;afn</span>)</span>&#32;vs&#32;inp</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="279">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_atomic_formula&#32;<span><span>(<span>ifn,&#32;afn</span>)</span>&#32;vs&#32;inp</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ifn
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                       - 
+                      A restricted parser for infix atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        afn
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                       - 
+                      A general parser for arbitrary atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        vs
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The set of bound variables in the current scope.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        inp
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The list of string tokens
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></code>
+                  </span>
+                  
+ A pair consisting of the parsed formula tree together with 
+ any unparsed input. 
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.parse_atomic_formula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.parse_atomic_formula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Parses atomic formulas.
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It attempts to parse an atomic formula as a term followed by an infix 
+ predicate symbol and only if that fails proceed to considering other 
+ kinds of formulas.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ifn
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A restricted parser for infix atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    afn
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A general parser for arbitrary atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    vs
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The set of bound variables in the current scope.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    inp
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list of string tokens
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A pair consisting of the parsed formula tree together with 
+ any unparsed input. 
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
+                <p>
+                  <a id="parse_formula">
+                    <a href="#parse_formula">
+                      <code><span>parse_formula&#32;<span><span>(<span>ifn,&#32;afn</span>)</span>&#32;vs&#32;inp</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="280">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_formula&#32;<span><span>(<span>ifn,&#32;afn</span>)</span>&#32;vs&#32;inp</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ifn
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                       - 
+                      A restricted parser for infix atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        afn
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                       - 
+                      A general parser for arbitrary atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        vs
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The set of bound variables in the current scope.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        inp
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The list of string tokens
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></code>
+                  </span>
+                  
+ A pair consisting of the parsed formula tree together with 
+ any unparsed input. 
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.parse_formula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.parse_formula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Recursive descent parser of polymorphic formulas built up from an 
+ atomic formula parser by cascading instances of parse infix in order of 
+ precedence, following the conventions with <code>/\</code> coming highest and 
+ <code>&lt;=&gt;</code> lowest.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It takes a list of string tokens <code>inp</code> and in order to check 
+ whether a name is within the scope of a quantifier, it takes an 
+ additional argument <code>vs</code> which is the set of bound variables in 
+ the current scope.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ifn
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A restricted parser for infix atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    afn
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A general parser for arbitrary atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    vs
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The set of bound variables in the current scope.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    inp
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list of string tokens
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A pair consisting of the parsed formula tree together with 
+ any unparsed input. 
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
+                <p>
+                  <a id="parse_quant">
+                    <a href="#parse_quant">
+                      <code><span>parse_quant&#32;<span><span>(<span>ifn,&#32;afn</span>)</span>&#32;vs&#32;qcon&#32;x&#32;inp</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="281">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parse_quant&#32;<span><span>(<span>ifn,&#32;afn</span>)</span>&#32;vs&#32;qcon&#32;x&#32;inp</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ifn
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                       - 
+                      A restricted parser for infix atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        afn
+                      </b>
+                      :
+                      <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                       - 
+                      A general parser for arbitrary atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        vs
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The set of bound variables in the current scope.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        qcon
+                      </b>
+                      :
+                      <code><span><span>string&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span>&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        inp
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The list of string tokens
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></code>
+                  </span>
+                  
+ A pair consisting of the parsed formula tree together with 
+ any unparsed input. 
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.parse_quant``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.parse_quant``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses quantified formulas.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ifn
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A restricted parser for infix atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    afn
+                  </span>
+                  :
+                  <code><span><span>string&#32;list</span>&#32;->&#32;<span>string&#32;list</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A general parser for arbitrary atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    vs
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The set of bound variables in the current scope.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    qcon
+                  </span>
+                  :
+                  <code><span><span>string&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span>&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    inp
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list of string tokens
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span>string&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A pair consisting of the parsed formula tree together with 
+ any unparsed input. 
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Prettyprinting
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
+                <p>
+                  <a id="fbracket">
+                    <a href="#fbracket">
+                      <code><span>fbracket&#32;<span>tw&#32;p&#32;n&#32;f&#32;x&#32;y</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="282">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>fbracket&#32;<span>tw&#32;p&#32;n&#32;f&#32;x&#32;y</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        tw
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code><span>'b&#32;->&#32;'c&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        y
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.fbracket``3```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.fbracket``3\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L73-73" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Modifies a basic printer to have a kind of boxing 'wrapped' around it.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tw
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'b&#32;->&#32;'c&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    y
+                  </span>
+                  :
+                  <code>'c</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
+                <p>
+                  <a id="fprint_formula">
+                    <a href="#fprint_formula">
+                      <code><span>fprint_formula&#32;<span>tw&#32;pfn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="283">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>fprint_formula&#32;<span>tw&#32;pfn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        tw
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;->&#32;unit</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.fprint_formula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.fprint_formula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L90-90" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Printing parametrized by a function <code>pfn</code> to print atoms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tw
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
+                <p>
+                  <a id="fprint_latex_qformula">
+                    <a href="#fprint_latex_qformula">
+                      <code><span>fprint_latex_qformula&#32;<span>tw&#32;pfn&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="284">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>fprint_latex_qformula&#32;<span>tw&#32;pfn&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        tw
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.fprint_latex_qformula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.fprint_latex_qformula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L171-171" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Main toplevel latex printer.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tw
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '285', 285)" onmouseover="showTip(event, '285', 285)">
+                <p>
+                  <a id="fprint_qformula">
+                    <a href="#fprint_qformula">
+                      <code><span>fprint_qformula&#32;<span>tw&#32;pfn&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="285">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>fprint_qformula&#32;<span>tw&#32;pfn&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        tw
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.fprint_qformula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.fprint_qformula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L166-166" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Main toplevel printer. It just adds the guillemot-style quotations 
+ round the formula so that it looks like the quoted formulas we parse.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tw
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ The quotations symbols <code>&lt;&lt;&gt;&gt;</code> for formulas have been 
+ replaced with <code>``</code> that are more concise and cause less problems 
+ in writing documentation.
+ 
+ Even if in F# there isn't an equivalent of OCaml's quotations 
+ expansions, it is convenient to keep quotation symbols to delimit 
+ formulas and terms to make it easier identifying.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '286', 286)" onmouseover="showTip(event, '286', 286)">
+                <p>
+                  <a id="print_formula">
+                    <a href="#print_formula">
+                      <code><span>print_formula&#32;<span>pfn&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="286">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>print_formula&#32;<span>pfn&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.print_formula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.print_formula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L176-176" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Prints a formula <code>fm</code> using a function <code>pfn</code> to print atoms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '287', 287)" onmouseover="showTip(event, '287', 287)">
+                <p>
+                  <a id="print_qformula">
+                    <a href="#print_qformula">
+                      <code><span>print_qformula&#32;<span>pfn&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="287">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>print_qformula&#32;<span>pfn&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.print_qformula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.print_qformula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L182-182" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Prints a formula <code>fm</code> using a function <code>pfn</code> to print atoms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '288', 288)" onmouseover="showTip(event, '288', 288)">
+                <p>
+                  <a id="sprint_formula">
+                    <a href="#sprint_formula">
+                      <code><span>sprint_formula&#32;<span>pfn&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="288">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>sprint_formula&#32;<span>pfn&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.sprint_formula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.sprint_formula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L178-178" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns a string representation of a formula <code>fm</code> using a function 
+ <code>pfn</code> to print atoms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '289', 289)" onmouseover="showTip(event, '289', 289)">
+                <p>
+                  <a id="sprint_qformula">
+                    <a href="#sprint_qformula">
+                      <code><span>sprint_qformula&#32;<span>pfn&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="289">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>sprint_qformula&#32;<span>pfn&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        pfn
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.sprint_qformula``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.sprint_qformula``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L184-184" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns a string representation of a formula <code>fm</code> using a function 
+ <code>pfn</code> to print atoms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pfn
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;'a&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section2">
+    Destructors
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '290', 290)" onmouseover="showTip(event, '290', 290)">
+                <p>
+                  <a id="antecedent">
+                    <a href="#antecedent">
+                      <code><span>antecedent&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="290">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>antecedent&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  
+ The antecedent, if the input formula is an implication.
+ 
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.antecedent``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.antecedent``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L255-255" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the antecedent of an implication.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ See also: <a href="/Calculemus/reference/calculemus-formulas.html">Formulas.dest_imp</a>, 
+ <a href="/Calculemus/reference/calculemus-formulas.html">Formulas.consequent</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The antecedent, if the input formula is an implication.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_imp</code>, when <code>fm</code> is not an implication.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="antecedent-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">antecedent</span>
+</code></pre>
+
+
+ Evaluates to <code>Atom &quot;p&quot;</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="antecedent-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">antecedent</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: dest_imp</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '291', 291)" onmouseover="showTip(event, '291', 291)">
+                <p>
+                  <a id="conjuncts">
+                    <a href="#conjuncts">
+                      <code><span>conjuncts&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="291">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>conjuncts&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed conjunction.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                  </span>
+                  
+ The list of the conjuncts, if the input formula is a conjunction; 
+ otherwise a list containing the input formula unchanged.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.conjuncts``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.conjuncts``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L225-225" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for repeated conjunctions.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ Recursively breaks apart repeated conjunctions 
+ \(p \land q \land r \cdots \) into the list of all the conjuncts 
+ \([p, q, r, \ldots]\).
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed conjunction.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the conjuncts, if the input formula is a conjunction; 
+ otherwise a list containing the input formula unchanged.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="conjuncts-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;r&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">conjuncts</span>
+</code></pre>
+
+
+ Evaluates to <code>[Atom &quot;p&quot;; Atom &quot;q&quot;; Atom &quot;r&quot;]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="conjuncts-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;b&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">conjuncts</span>
+</code></pre>
+
+
+ Evaluates to <code>[Imp (Atom &quot;a&quot;, Atom &quot;b&quot;)]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '292', 292)" onmouseover="showTip(event, '292', 292)">
+                <p>
+                  <a id="consequent">
+                    <a href="#consequent">
+                      <code><span>consequent&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="292">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>consequent&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  
+ The consequent, if the input formula is an implication.
+ 
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.consequent``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.consequent``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L258-258" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the consequent of an implication.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ See also: <a href="/Calculemus/reference/calculemus-formulas.html">Formulas.dest_imp</a>, 
+ <a href="/Calculemus/reference/calculemus-formulas.html">Formulas.antecedent</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The consequent, if the input formula is an implication.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_imp</code>, when <code>fm</code> is not an implication.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="consequent-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">consequent</span>
+</code></pre>
+
+
+ Evaluates to <code>Atom &quot;q&quot;</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="consequent-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">consequent</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: dest_imp</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '293', 293)" onmouseover="showTip(event, '293', 293)">
+                <p>
+                  <a id="dest_and">
+                    <a href="#dest_and">
+                      <code><span>dest_and&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="293">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>dest_and&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed conjunction.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  
+ The pair of the conjuncts, if the input formula is a conjunction.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.dest_and``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.dest_and``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L217-217" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for conjunctions.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It breaks apart a conjunction \(p \land q\) into 
+ the pair of its conjuncts \((p, q)\).
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed conjunction.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair of the conjuncts, if the input formula is a conjunction.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_and</code>, when <code>fm</code> is not a conjunction.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_and-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_and</span>
+</code></pre>
+
+
+ Evaluates to <code>(Atom &quot;p&quot;, Atom &quot;q&quot;)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_and-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_and</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: dest_and</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '294', 294)" onmouseover="showTip(event, '294', 294)">
+                <p>
+                  <a id="dest_iff">
+                    <a href="#dest_iff">
+                      <code><span>dest_iff&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="294">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>dest_iff&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed logical equivalence.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  
+ The pair of the equivalence members, if the input formula is a logical 
+ equivalence.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.dest_iff``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.dest_iff``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L209-209" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for logical equivalences.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It breaks apart a logical equivalence \(p \Leftrightarrow q\) into 
+ the pair of its members \((p, q)\).
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed logical equivalence.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair of the equivalence members, if the input formula is a logical 
+ equivalence.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_imp</code>, when <code>fm</code> is not a logical equivalence.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_iff-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Iff</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_iff</span>
+</code></pre>
+
+
+ Evaluates to <code>(Atom &quot;p&quot;, Atom &quot;q&quot;)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_iff-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_iff</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: dest_iff</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '295', 295)" onmouseover="showTip(event, '295', 295)">
+                <p>
+                  <a id="dest_imp">
+                    <a href="#dest_imp">
+                      <code><span>dest_imp&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="295">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>dest_imp&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed implication.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  
+ The pair of the antecedent and consequent, if the input formula is 
+ an implication.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.dest_imp``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.dest_imp``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L247-247" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for implications.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It breaks apart an implications \(p \Rightarrow q\) into 
+ the pair of its antecedent and consequent \((p, q)\). 
+ 
+ See also: <a href="/Calculemus/reference/calculemus-formulas.html">Formulas.antecedent</a>, 
+ <a href="/Calculemus/reference/calculemus-formulas.html">Formulas.consequent</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed implication.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair of the antecedent and consequent, if the input formula is 
+ an implication.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_imp</code>, when <code>fm</code> is not an implication.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_imp-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_imp</span>
+</code></pre>
+
+
+ Evaluates to <code>(Atom &quot;p&quot;, Atom &quot;q&quot;)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_imp-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_imp</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: dest_imp</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '296', 296)" onmouseover="showTip(event, '296', 296)">
+                <p>
+                  <a id="dest_or">
+                    <a href="#dest_or">
+                      <code><span>dest_or&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="296">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>dest_or&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed disjunction.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  
+ The pair of the disjuncts, if the input formula is a disjunction.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.dest_or``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.dest_or``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L232-232" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for disjunctions.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It breaks apart a disjunction \(p \lor q\) into 
+ the pair of its conjuncts \((p, q)\).
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed disjunction.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair of the disjuncts, if the input formula is a disjunction.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_or</code>, when <code>fm</code> is not a disjunction.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_or-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Or</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_or</span>
+</code></pre>
+
+
+ Evaluates to <code>(Atom &quot;p&quot;, Atom &quot;q&quot;)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_or-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">dest_or</span>
+</code></pre>
+
+
+ Throws to <code>System.Exception: dest_or</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '297', 297)" onmouseover="showTip(event, '297', 297)">
+                <p>
+                  <a id="disjuncts">
+                    <a href="#disjuncts">
+                      <code><span>disjuncts&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="297">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>disjuncts&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed disjunction.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                  </span>
+                  
+ The list of the disjuncts, if the input formula is a disjunction; 
+ otherwise a list containing the input formula unchanged.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.disjuncts``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.disjuncts``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L240-240" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for repeated disjunctions.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ Recursively breaks apart repeated disjunctions 
+ \(p \lor q \lor r \cdots \) into the list of all the disjuncts 
+ \([p, q, r, \ldots]\).
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed disjunction.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the disjuncts, if the input formula is a disjunction; 
+ otherwise a list containing the input formula unchanged.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="disjuncts-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Or</span> <span class="pn">(</span><span class="id">Or</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;q&quot;</span><span class="pn">)</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;r&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">disjuncts</span>
+</code></pre>
+
+
+ Evaluates to <code>[Atom &quot;p&quot;; Atom &quot;q&quot;; Atom &quot;r&quot;]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="disjuncts-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;b&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">disjuncts</span>
+</code></pre>
+
+
+ Evaluates to <code>[Imp (Atom &quot;a&quot;, Atom &quot;b&quot;)]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '298', 298)" onmouseover="showTip(event, '298', 298)">
+                <p>
+                  <a id="strip_quant">
+                    <a href="#strip_quant">
+                      <code><span>strip_quant&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="298">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>strip_quant&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The supposed quantified formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>string&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  
+ The pair of the list of its quantified variables and body, if the input 
+ formula is a universally quantified formula. If the formula is not a 
+ universally quantified one, the list of variables is empty.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.strip_quant``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.strip_quant``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for quantified formulas.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It breaks apart a quantified formula \(\forall xy\ldots z.\ p\) into 
+ a pair of the list of its quantified variables and body 
+ \(([x,y,\ldots,z], p)\).
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supposed quantified formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>string&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair of the list of its quantified variables and body, if the input 
+ formula is a universally quantified formula. If the formula is not a 
+ universally quantified one, the list of variables is empty.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="strip_quant-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Forall</span> <span class="pn">(</span><span class="s">&quot;y&quot;</span><span class="pn">,</span> <span class="id">Forall</span> <span class="pn">(</span><span class="s">&quot;x&quot;</span><span class="pn">,</span> <span class="id">Atom</span> <span class="s">&quot;p&quot;</span><span class="pn">)</span><span class="pn">)</span> <span class="o">|&gt;</span> <span class="id">strip_quant</span>
+</code></pre>
+
+
+ Evaluates to <code>([&quot;y&quot;; &quot;x&quot;], Atom &quot;p&quot;)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="strip_quant-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Atom</span> <span class="s">&quot;p&quot;</span> <span class="o">|&gt;</span> <span class="id">strip_quant</span>
+</code></pre>
+
+
+ Evaluates to <code>([], Atom &quot;p&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section3">
+    Constructors
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '299', 299)" onmouseover="showTip(event, '299', 299)">
+                <p>
+                  <a id="mk_and">
+                    <a href="#mk_and">
+                      <code><span>mk_and&#32;<span>p&#32;q</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="299">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mk_and&#32;<span>p&#32;q</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first formula to conjunct.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        q
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second formula to conjunct.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The conjunction of the input formulas.
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.mk_and``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.mk_and``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L192-192" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Constructs a conjunction.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first formula to conjunct.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    q
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second formula to conjunct.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The conjunction of the input formulas.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_and-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_and</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;b&quot;</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>And (Atom &quot;a&quot;, Atom &quot;b&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '300', 300)" onmouseover="showTip(event, '300', 300)">
+                <p>
+                  <a id="mk_exists">
+                    <a href="#mk_exists">
+                      <code><span>mk_exists&#32;<span>x&#32;p</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="300">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mk_exists&#32;<span>x&#32;p</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The variable to bind.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The formula to bind.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The <code>p</code> formula existentially quantified on <code>x</code>.
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.mk_exists``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.mk_exists``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L203-203" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Constructs an existential quantification.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The variable to bind.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The formula to bind.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The <code>p</code> formula existentially quantified on <code>x</code>.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_exists-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_exists</span> <span class="s">&quot;x&quot;</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>Exists (&quot;x&quot;, Atom &quot;a&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '301', 301)" onmouseover="showTip(event, '301', 301)">
+                <p>
+                  <a id="mk_forall">
+                    <a href="#mk_forall">
+                      <code><span>mk_forall&#32;<span>x&#32;p</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="301">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mk_forall&#32;<span>x&#32;p</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The variable to bind.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The formula to bind.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The <code>p</code> formula universally quantified on <code>x</code>.
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.mk_forall``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.mk_forall``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Constructs a universal quantification.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The variable to bind.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The formula to bind.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The <code>p</code> formula universally quantified on <code>x</code>.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_forall-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_forall</span> <span class="s">&quot;x&quot;</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>Forall (&quot;x&quot;, Atom &quot;a&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '302', 302)" onmouseover="showTip(event, '302', 302)">
+                <p>
+                  <a id="mk_iff">
+                    <a href="#mk_iff">
+                      <code><span>mk_iff&#32;<span>p&#32;q</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="302">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mk_iff&#32;<span>p&#32;q</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first member of the equivalence to construct.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        q
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second member of the equivalence to construct.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The equivalence of <code>p</code> with <code>q</code>.
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.mk_iff``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.mk_iff``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L198-198" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Constructs a logical equivalence.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first member of the equivalence to construct.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    q
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second member of the equivalence to construct.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The equivalence of <code>p</code> with <code>q</code>.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_iff-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_iff</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;b&quot;</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>Iff (Atom &quot;a&quot;, Atom &quot;b&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '303', 303)" onmouseover="showTip(event, '303', 303)">
+                <p>
+                  <a id="mk_imp">
+                    <a href="#mk_imp">
+                      <code><span>mk_imp&#32;<span>p&#32;q</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="303">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mk_imp&#32;<span>p&#32;q</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The antecedent of the implication to construct.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        q
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The consequent of the implication to construct.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The implication with <code>p</code> as antecedent and <code>q</code> as consequent.
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.mk_imp``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.mk_imp``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L196-196" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Constructs an implication.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The antecedent of the implication to construct.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    q
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The consequent of the implication to construct.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The implication with <code>p</code> as antecedent and <code>q</code> as consequent.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_imp-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_imp</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;b&quot;</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>Imp (Atom &quot;a&quot;, Atom &quot;b&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '304', 304)" onmouseover="showTip(event, '304', 304)">
+                <p>
+                  <a id="mk_or">
+                    <a href="#mk_or">
+                      <code><span>mk_or&#32;<span>p&#32;q</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="304">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mk_or&#32;<span>p&#32;q</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The first formula to disjunct.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        q
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The second formula to disjunct.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The disjunction of the input formulas.
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                  Type parameters: 
+                  &#39;a
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.mk_or``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.mk_or``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L194-194" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Constructs a disjunction.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first formula to disjunct.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    q
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second formula to disjunct.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The disjunction of the input formulas.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_or-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_or</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;a&quot;</span><span class="pn">)</span> <span class="pn">(</span><span class="id">Atom</span> <span class="s">&quot;b&quot;</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>Or (Atom &quot;a&quot;, Atom &quot;b&quot;)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section4">
+    Syntax operations
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '305', 305)" onmouseover="showTip(event, '305', 305)">
+                <p>
+                  <a id="atom_union">
+                    <a href="#atom_union">
+                      <code><span>atom_union&#32;<span>mapping&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="305">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>atom_union&#32;<span>mapping&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mapping
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;<span>'U&#32;list</span></span></code>
+                       - 
+                      The function to transform each attributes of the input formula's atoms into a sublist to be concatenated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'T&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'U&#32;list</span></code>
+                  </span>
+                  The concatenation without duplicates of the transformed sublists.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.atom_union``2```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.atom_union``2\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L297-297" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ For each attributes of the formula's atoms, applies the given function. 
+ Concatenates all the results and converts them to a set to remove 
+ duplicates.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ Except for the final removing of duplicates, it is for 
+ <a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a> what 
+ <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#collect">ListModule.collect</a> is 
+ for <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-list-1">list</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    mapping
+                  </span>
+                  :
+                  <code><span>'T&#32;->&#32;<span>'U&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to transform each attributes of the input formula's atoms into a sublist to be concatenated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'T&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'U&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The concatenation without duplicates of the transformed sublists.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="atom_union-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">1</span><span class="pn">,</span> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">2</span><span class="pn">,</span> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">3</span><span class="pn">,</span> <span class="id">Atom</span> <span class="n">4</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">atom_union</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="pn">[</span><span class="id">x</span><span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>[1; 2; 3; 4]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="atom_union-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">1</span><span class="pn">,</span> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">2</span><span class="pn">,</span> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">3</span><span class="pn">,</span> <span class="id">Atom</span> <span class="n">4</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">atom_union</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="pn">[</span><span class="n">1..</span><span class="id">x</span><span class="pn">]</span>
+</code></pre>
+
+
+ The sample evaluates to <code>[1; 2; 3; 4]</code> and not to <code>[1;   1; 2;   1; 2; 3;   1; 2; 3; 4]</code> since duplicates are removed;
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '306', 306)" onmouseover="showTip(event, '306', 306)">
+                <p>
+                  <a id="onatoms">
+                    <a href="#onatoms">
+                      <code><span>onatoms&#32;<span>f&#32;fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="306">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>onatoms&#32;<span>f&#32;fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                       - 
+                      The function to apply to the attributes of the formula's atoms.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                  </span>
+                  The formula with the atoms remapped by the function.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.onatoms``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.onatoms``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L261-261" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Applies a function <code>f</code> to all the attributes of the atoms in a 
+ formula <code>fm</code>, but otherwise leaves the structure unchanged. It can 
+ be used, for example, to perform systematic replacement of one 
+ particular atomic proposition by another formula.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It is for <a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a> what 
+ <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#map">ListModule.map</a> is 
+ for <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-list-1">list</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to apply to the attributes of the formula's atoms.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The formula with the atoms remapped by the function.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="onatoms-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">1</span><span class="pn">,</span> <span class="id">Atom</span> <span class="n">2</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">onatoms</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="id">Atom</span> <span class="pn">(</span><span class="id">x</span> <span class="pn">*</span> <span class="n">5</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>And (Atom 5, Atom 10)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '307', 307)" onmouseover="showTip(event, '307', 307)">
+                <p>
+                  <a id="overatoms">
+                    <a href="#overatoms">
+                      <code><span>overatoms&#32;<span>folder&#32;fm&#32;state</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="307">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>overatoms&#32;<span>folder&#32;fm&#32;state</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        folder
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;'State&#32;->&#32;'State</span></code>
+                       - 
+                      The function to update the state given the input elements.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'T&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        state
+                      </b>
+                      :
+                      <code>'State</code>
+                       - 
+                      The initial state.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  The final state value.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Formulas.overatoms``2```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Formulas.overatoms``2\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Formulas.fs#L281-281" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Applies a function to each attributes of formula's atoms, 
+ threading an accumulator argument through the computation. Take the 
+ third argument, and apply the function to it and the attribute of the 
+ first atom of the formula. Then feed this result into the function 
+ along with the second atom and so on. Return the final result. If the 
+ input function is <code>f</code> and the atoms are <code>Atom i0...Atom iN</code> 
+ then computes <code>f (... (f s i0) i1 ...) iN</code>.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It is for <a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a> what 
+ <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#fold">ListModule.fold</a> is 
+ for <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-list-1">list</a>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    folder
+                  </span>
+                  :
+                  <code><span>'T&#32;->&#32;'State&#32;->&#32;'State</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to update the state given the input elements.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'T&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    state
+                  </span>
+                  :
+                  <code>'State</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The initial state.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>'State</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The final state value.
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Although the inversion between the second and third arguments would 
+ seem to make this function similar to 
+ <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#foldBack">ListModule.foldBack</a>, 
+ it actually corresponds to 
+ <a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule#fold">ListModule.fold</a> 
+ because the folder function takes the accumulator as the first argument 
+ and the atom's argument as the second.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="overatoms-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">And</span> <span class="pn">(</span><span class="id">Atom</span> <span class="n">1</span><span class="pn">,</span> <span class="id">Atom</span> <span class="n">2</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="k">fun</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">fm</span> <span class="k">-&gt;</span> <span class="id">overatoms</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">acc</span> <span class="id">x</span> <span class="k">-&gt;</span> <span class="id">acc</span> <span class="o">+</span> <span class="id">x</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">fm</span> <span class="n">0</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val fm: obj</div>
+
+
+ Evaluates to <code>3</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calculemus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Calculemus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

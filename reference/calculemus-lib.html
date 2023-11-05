@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculemus.Lib</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Domenico Masini">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Calculemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calculemus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Calculemus/"><img id="fsdocs-logo" src="/Calculemus/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calculemus/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calculemus">Source Repository</a></li>
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/getting_started.html">
+    Getting started
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Calculemus/">Calculemus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2 id="calculemus-lib">
+    Calculemus.Lib Namespace
+  </h2>
+  <div class="fsdocs-xmldoc">
+    <p>
+      
+ Basic library for the global implementation. 
+ 
+    </p>
+  </div>
+  <h3>
+    Contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#category-1_0">
+        Functions over predicates and functions
+      </a>
+    </li>
+    <li>
+      <a href="#category-1_1">
+        Collections (lists and sets)
+      </a>
+    </li>
+    <li>
+      <a href="#category-1_2">
+        Sort and search algorithms
+      </a>
+    </li>
+    <li>
+      <a href="#category-1_3">
+        Strings
+      </a>
+    </li>
+    <li>
+      <a href="#category-1_4">
+        Finite partial functions and equivalence classes
+      </a>
+    </li>
+    <li>
+      <a href="#category-1_5">
+        Lexer, parser and prettyprinter
+      </a>
+    </li>
+    <li>
+      <a href="#category-1_6">
+        Diagnostics
+      </a>
+    </li>
+  </ul>
+  <h3>
+    <a class="anchor" name="category-1_0" href="#category-1_0">
+      Functions over predicates and functions
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Function">
+              <a href="/Calculemus/reference/calculemus-lib-function.html">
+                Function
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Function`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Function\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Function.fsi#L15-15" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Functions over predicates and functions.
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-1_1" href="#category-1_1">
+      Collections (lists and sets)
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="List">
+              <a href="/Calculemus/reference/calculemus-lib-list.html">
+                List
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.List`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.List\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/List.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Handy functions for list manipulation.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Set">
+              <a href="/Calculemus/reference/calculemus-lib-set.html">
+                Set
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Set`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Set\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Set.fsi#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Set represented as ordered lists and related operations.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-1_2" href="#category-1_2">
+      Sort and search algorithms
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Search">
+              <a href="/Calculemus/reference/calculemus-lib-search.html">
+                Search
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Search`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Search\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Search.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Searching functions.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Sort">
+              <a href="/Calculemus/reference/calculemus-lib-sort.html">
+                Sort
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Sort`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Sort\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Sort.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Sorting functions.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-1_3" href="#category-1_3">
+      Strings
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="String">
+              <a href="/Calculemus/reference/calculemus-lib-string.html">
+                String
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.String`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.String\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/String.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Explosion and implosion of strings.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-1_4" href="#category-1_4">
+      Finite partial functions and equivalence classes
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Fpf">
+              <a href="/Calculemus/reference/calculemus-lib-fpf.html">
+                Fpf
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Fpf`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Fpf\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Fpf.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Polymorphic Finite Partial functions via Patricia Trees.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Partition">
+              <a href="/Calculemus/reference/calculemus-lib-partition.html">
+                Partition
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Partition`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Partition\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Partition.fsi#L20-20" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Equivalence relations (or partitions, equivalence classes) on finite sets.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-1_5" href="#category-1_5">
+      Lexer, parser and prettyprinter
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Lexer">
+              <a href="/Calculemus/reference/calculemus-lib-lexer.html">
+                Lexer
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Lexer`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Lexer\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Lexer.fsi#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Lexical analysis.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Parser">
+              <a href="/Calculemus/reference/calculemus-lib-parser.html">
+                Parser
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Parser`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Parser\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Parser.fsi#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Generic functions for parsing.
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-1_6" href="#category-1_6">
+      Diagnostics
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Time">
+              <a href="/Calculemus/reference/calculemus-lib-time.html">
+                Time
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Calculemus.Lib.Time`')">
+              <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Calculemus.Lib.Time\'/>')">
+              <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+              <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Time.fsi#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/Calculemus/content/img/github.png" class="normal"/>
+              <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Timing: useful for documentation but not logically necessary.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calculemus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Calculemus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

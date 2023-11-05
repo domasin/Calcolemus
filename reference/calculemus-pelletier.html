@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pelletier (Calculemus)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Domenico Masini">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Calculemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calculemus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Calculemus/"><img id="fsdocs-logo" src="/Calculemus/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calculemus/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calculemus">Source Repository</a></li>
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/getting_started.html">
+    Getting started
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Calculemus/">Calculemus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    Pelletier Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/Calculemus/reference/calculemus.html">
+        Calculemus
+      </a>
+    </dt>
+    <dt>
+      Assembly: Calculemus.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Some Pelletier problems to compare proof procedures.
+ 
+      </p>
+    </div>
+  </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Propositional Logic
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Monadic Predicate Logic
+      </a>
+    </li>
+    <li>
+      <a href="#section2">
+        Full predicate logic (without Identity and Functions)
+      </a>
+    </li>
+    <li>
+      <a href="#section3">
+        info hol
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Propositional Logic
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '560', 560)" onmouseover="showTip(event, '560', 560)">
+                <p>
+                  <a id="p1">
+                    <a href="#p1">
+                      <code><span>Pelletier.p1&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="560">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p1&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p1`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>p ==&gt; q &lt;=&gt; ~q ==&gt; ~p</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '561', 561)" onmouseover="showTip(event, '561', 561)">
+                <p>
+                  <a id="p2">
+                    <a href="#p2">
+                      <code><span>Pelletier.p2&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="561">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p2&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p2`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p2\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>~ ~p &lt;=&gt; p</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '562', 562)" onmouseover="showTip(event, '562', 562)">
+                <p>
+                  <a id="p3">
+                    <a href="#p3">
+                      <code><span>Pelletier.p3&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="562">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p3&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p3`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p3\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>~(p ==&gt; q) ==&gt; q ==&gt; p</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '563', 563)" onmouseover="showTip(event, '563', 563)">
+                <p>
+                  <a id="p4">
+                    <a href="#p4">
+                      <code><span>Pelletier.p4&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="563">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p4&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p4`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p4\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>~p ==&gt; q &lt;=&gt; ~q ==&gt; p</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '564', 564)" onmouseover="showTip(event, '564', 564)">
+                <p>
+                  <a id="p5">
+                    <a href="#p5">
+                      <code><span>Pelletier.p5&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="564">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p5&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p5`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p5\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>(p \/ q ==&gt; p \/ r) ==&gt; p \/ (q ==&gt; r)</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '565', 565)" onmouseover="showTip(event, '565', 565)">
+                <p>
+                  <a id="p6">
+                    <a href="#p6">
+                      <code><span>Pelletier.p6&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="565">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p6&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p6`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p6\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>p \/ ~p</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Monadic Predicate Logic
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '566', 566)" onmouseover="showTip(event, '566', 566)">
+                <p>
+                  <a id="p18">
+                    <a href="#p18">
+                      <code><span>Pelletier.p18&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="566">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p18&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p18`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p18\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>exists y. forall x. P(y) ==&gt; P(x)</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '567', 567)" onmouseover="showTip(event, '567', 567)">
+                <p>
+                  <a id="p19">
+                    <a href="#p19">
+                      <code><span>Pelletier.p19&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="567">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p19&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p19`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p19\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>exists x. forall y z. (P(y) ==&gt; Q(z)) ==&gt; P(x) ==&gt; Q(x)</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '568', 568)" onmouseover="showTip(event, '568', 568)">
+                <p>
+                  <a id="p20">
+                    <a href="#p20">
+                      <code><span>Pelletier.p20&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="568">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p20&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p20`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p20\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L44-44" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>(forall x y. exists z. forall w. P(x) /\ Q(y) ==&gt; R(z) /\ U(w)) ==&gt; (exists x y. P(x) /\ Q(y)) ==&gt; (exists z. R(z))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '569', 569)" onmouseover="showTip(event, '569', 569)">
+                <p>
+                  <a id="p24">
+                    <a href="#p24">
+                      <code><span>Pelletier.p24&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="569">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p24&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p24`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p24\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L48-48" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>~(exists x. U(x) /\ Q(x)) /\ (forall x. P(x) ==&gt; Q(x) \/ R(x)) /\ ~(exists x. P(x) ==&gt; (exists x. Q(x))) /\ (forall x. Q(x) /\ R(x) ==&gt; U(x)) ==&gt; (exists x. P(x) /\ R(x))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '570', 570)" onmouseover="showTip(event, '570', 570)">
+                <p>
+                  <a id="p32">
+                    <a href="#p32">
+                      <code><span>Pelletier.p32&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="570">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p32&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p32`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p32\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>(forall x. P(x) /\ (G(x) \/ H(x)) ==&gt; Q(x)) /\ (forall x. Q(x) /\ H(x) ==&gt; J(x)) /\ (forall x. R(x) ==&gt; H(x)) ==&gt; (forall x. P(x) /\ R(x) ==&gt; J(x))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '571', 571)" onmouseover="showTip(event, '571', 571)">
+                <p>
+                  <a id="p34">
+                    <a href="#p34">
+                      <code><span>Pelletier.p34&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="571">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p34&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p34`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p34\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt; ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt; ((exists x. forall y. Q(x) &lt;=&gt; Q(y)) &lt;=&gt; ((exists x. P(x)) &lt;=&gt; (forall y. P(y))))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section2">
+    Full predicate logic (without Identity and Functions)
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '572', 572)" onmouseover="showTip(event, '572', 572)">
+                <p>
+                  <a id="p36">
+                    <a href="#p36">
+                      <code><span>Pelletier.p36&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="572">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p36&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p36`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p36\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L71-71" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>
+ (forall x. exists y. J(x,y)) /\
+  (forall x. exists y. G(x,y)) /\
+  (forall x y. J(x,y) \/ G(x,y) 
+  ==&gt; (forall z. J(y,z) \/ G(y,z) ==&gt; H(x, z)))
+      ==&gt; (forall x. exists y. H(x,y))`</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '573', 573)" onmouseover="showTip(event, '573', 573)">
+                <p>
+                  <a id="p38">
+                    <a href="#p38">
+                      <code><span>Pelletier.p38&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="573">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p38&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p38`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p38\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>
+ (forall x.
+   P(a) /\ (P(x) ==&gt; (exists y. P(y) /\ R(x,y))) ==&gt;
+   (exists z w. P(z) /\ R(x,w) /\ R(w,z))) &lt;=&gt;
+ (forall x.
+   (~P(a) \/ P(x) \/ (exists z w. P(z) /\ R(x,w) /\ R(w,z))) /\
+   (~P(a) \/ ~(exists y. P(y) /\ R(x,y)) \/
+   (exists z w. P(z) /\ R(x,w) /\ R(w,z))))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '574', 574)" onmouseover="showTip(event, '574', 574)">
+                <p>
+                  <a id="p45">
+                    <a href="#p45">
+                      <code><span>Pelletier.p45&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="574">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p45&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p45`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p45\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L110-110" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>
+ (forall x.
+   P(x) /\ (forall y. G(y) /\ H(x,y) ==&gt; J(x,y)) ==&gt;
+     (forall y. G(y) /\ H(x,y) ==&gt; R(y))) /\
+ ~(exists y. L(y) /\ R(y)) /\
+ (exists x. P(x) /\ (forall y. H(x,y) ==&gt;
+   L(y)) /\ (forall y. G(y) /\ H(x,y) ==&gt; J(x,y))) ==&gt;
+ (exists x. P(x) /\ ~(exists y. G(y) /\ H(x,y)))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section3">
+    info hol
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '575', 575)" onmouseover="showTip(event, '575', 575)">
+                <p>
+                  <a id="p59">
+                    <a href="#p59">
+                      <code><span>Pelletier.p59&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="575">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Pelletier.p59&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Pelletier.p59`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Pelletier.p59\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Pelletier.fs#L119-119" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    <code>
+ (forall x. P(x) &lt;=&gt; ~P(f(x))) ==&gt; (exists x. P(x) /\ ~P(f(x)))</code>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calculemus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Calculemus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Prolog (Calculemus)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Domenico Masini">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Calculemus/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Calculemus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Calculemus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Calculemus/"><img id="fsdocs-logo" src="/Calculemus/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/domasin/Calculemus/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/domasin/Calculemus">Source Repository</a></li>
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/getting_started.html">
+    Getting started
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Calculemus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Calculemus/">Calculemus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    Prolog Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/Calculemus/reference/calculemus.html">
+        Calculemus
+      </a>
+    </dt>
+    <dt>
+      Assembly: Calculemus.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Backchaining procedure for Horn clauses, and toy Prolog implementation.
+ 
+      </p>
+    </div>
+  </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Automated prover for Horn clauses
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Prolog
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Automated prover for Horn clauses
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '576', 576)" onmouseover="showTip(event, '576', 576)">
+                <p>
+                  <a id="backchain">
+                    <a href="#backchain">
+                      <code><span>backchain&#32;<span>rules&#32;n&#32;k&#32;env&#32;goals</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="576">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>backchain&#32;<span>rules&#32;n&#32;k&#32;env&#32;goals</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rules
+                      </b>
+                      :
+                      <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                       - 
+                      The list of input rules.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The limit on the maximum number of rule applications.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        k
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The counter for variables renaming.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        env
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. .
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        goals
+                      </b>
+                      :
+                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The input goals.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                  </span>
+                  
+ The current instantiation <code>env</code>, if the list of <code>goals</code> is 
+ empty; otherwise, recursively searches through the <code>rules</code> one 
+ whose consequent can be unified with the current goal and such that the 
+ new subgoals together with the original ones can be solved under that 
+ instantiation.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Prolog.backchain`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.backchain\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Basic prover for Horn clauses.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list of input rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The limit on the maximum number of rule applications.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The counter for variables renaming.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. .
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    goals
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input goals.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The current instantiation <code>env</code>, if the list of <code>goals</code> is 
+ empty; otherwise, recursively searches through the <code>rules</code> one 
+ whose consequent can be unified with the current goal and such that the 
+ new subgoals together with the original ones can be solved under that 
+ instantiation.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>Too deep</code> when <code>n = 0</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>tryfind</code> when the goals are not solvable, at least at the current limit.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="backchain-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;</span><span class="pn">[</span><span class="s">&quot;S(x) &lt;= S(S(x))&quot;</span><span class="pn">]</span> 
+ <span class="o">|&gt;</span> <span class="id">backchain</span> 
+     <span class="pn">[</span>
+         <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;0 &lt;= x&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+         <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;x &lt;= y&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;S(x) &lt;= S(y)&quot;</span><span class="pn">)</span>
+     <span class="pn">]</span> <span class="n">2</span> <span class="n">0</span> <span class="id">undefined</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[(&quot;_0&quot;, ``x``); (&quot;_1&quot;, ``S(x)``); (&quot;_2&quot;, ``_1``); (&quot;x&quot;, ``0``)]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '577', 577)" onmouseover="showTip(event, '577', 577)">
+                <p>
+                  <a id="hornify">
+                    <a href="#hornify">
+                      <code><span>hornify&#32;<span>cls</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="577">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>hornify&#32;<span>cls</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cls
+                      </b>
+                      :
+                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                       - 
+                      The input Horn clause.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  
+ The equivalent in rule format, if it exists.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Prolog.hornify``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.hornify``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Converts a raw Horn clause into a rule.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input Horn clause.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The equivalent in rule format, if it exists.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>non-Horn clause</code> when <code>cls</code> is not an Horn clause.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="hornify-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;</span><span class="pn">[</span><span class="s">&quot;~P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">;</span><span class="s">&quot;~T(x)&quot;</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">hornify</span>
+</code></pre>
+
+
+ Evaluates to <code>([`P(x)`; `T(x)`], `Q(y)`)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="hornify-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">;</span><span class="s">&quot;~T(x)&quot;</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">hornify</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: non-Horn clause</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '578', 578)" onmouseover="showTip(event, '578', 578)">
+                <p>
+                  <a id="hornprove">
+                    <a href="#hornprove">
+                      <code><span>hornprove&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="578">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>hornprove&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int</span></code>
+                  </span>
+                  
+ The instantiation resulting from the backchain procedure and the level 
+ at which it succeeds, if the formula is valid and Horn clause 
+ convertible.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Prolog.hornprove`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.hornprove\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the validity of a formula convertible in Horn clauses.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The instantiation resulting from the backchain procedure and the level 
+ at which it succeeds, if the formula is valid and Horn clause 
+ convertible.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>non-Horn clause</code> when <code>fm</code> is not convertible into a set of Horn clauses.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints to the <code>stdout</code> the depth limits at which the search was 
+ carried out.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="hornprove-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Pelletier</span><span class="pn">.</span><span class="id">p32</span>
+ <span class="o">|&gt;</span> <span class="id">hornprove</span>
+ <span class="o">|&gt;</span> <span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="fn">inst</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">level</span><span class="pn">)</span> <span class="k">-&gt;</span> 
+     <span class="id">graph</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">inst</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="fn">level</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val inst: obj</div>
+<div class="fsdocs-tip" id="fs2">val level: obj</div>
+
+
+ Evaluates to <code>([(&quot;_0&quot;, ``c_x``); (&quot;_1&quot;, ``_0``); (&quot;_2&quot;, ``_0``); (&quot;_3&quot;, ``_2``)], 8)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="hornprove-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;(p \/ q) /\ (~p \/ q) /\ (p \/ ~q) </span>
+<span class="s">         ==&gt; ~(~q \/ ~q)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">hornprove</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: non-Horn clause</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '579', 579)" onmouseover="showTip(event, '579', 579)">
+                <p>
+                  <a id="renamerule">
+                    <a href="#renamerule">
+                      <code><span>renamerule&#32;<span>k&#32;<span>(<span>asm,&#32;c</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="579">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>renamerule&#32;<span>k&#32;<span>(<span>asm,&#32;c</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        k
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The counter for variables renaming.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        asm
+                      </b>
+                      :
+                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The assumptions of the input rule.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        c
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The conclusion of the input rule.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                  </span>
+                  
+ The input rule with the variables renamed schematically starting with 
+ <code>_k</code>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Prolog.renamerule`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.renamerule\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Renames the variables in a rule schematically starting with <code>_k</code>.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The counter for variables renaming.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    asm
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The assumptions of the input rule.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The conclusion of the input rule.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The input rule with the variables renamed schematically starting with 
+ <code>_k</code>
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="renamerule-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">renamerule</span> <span class="n">0</span> <span class="pn">(</span><span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">]</span><span class="pn">,</span><span class="o">!!</span><span class="s">&quot;P(f(x))&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>(([`P(_0)`; `Q(_1)`], `P(f(_0))`), 2)</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Prolog
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '580', 580)" onmouseover="showTip(event, '580', 580)">
+                <p>
+                  <a id="parserule">
+                    <a href="#parserule">
+                      <code><span>parserule&#32;<span>s</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="580">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parserule&#32;<span>s</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        s
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The input string to be parsed.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span></code>
+                  </span>
+                  
+ The rule corresponding to the input string, if this is syntactically 
+ valid.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Prolog.parserule`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.parserule\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L77-77" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses rules in a Prolog-like syntax.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input string to be parsed.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The rule corresponding to the input string, if this is syntactically 
+ valid.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>Extra material after rule</code> when the input string isn't syntactically valid.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parserule-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="s">&quot;S(X) &lt;= S(Y) :- X &lt;= Y&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">parserule</span>
+</code></pre>
+
+
+ Evaluates to <code>([`X &lt;= Y`], `S(X) &lt;= S(Y)`)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="parserule-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="s">&quot;S(X) &gt;&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">parserule</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: Extra material after rule</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '581', 581)" onmouseover="showTip(event, '581', 581)">
+                <p>
+                  <a id="prolog">
+                    <a href="#prolog">
+                      <code><span>prolog&#32;<span>rules&#32;gl</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="581">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prolog&#32;<span>rules&#32;gl</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rules
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The input rules.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        gl
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The input goal.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                  </span>
+                  
+ A successful goal's variables instantiation, if the goal is solvable 
+ from the rules.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Prolog.prolog`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.prolog\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L100-100" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Prolog interpreter.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    gl
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input goal.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ A successful goal's variables instantiation, if the goal is solvable 
+ from the rules.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>tryfind</code> when the goal is not solvable from the rules.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="prolog-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">lerules</span> <span class="o">=</span> <span class="pn">[</span><span class="s">&quot;0 &lt;= X&quot;</span><span class="pn">;</span> <span class="s">&quot;S(X) &lt;= S(Y) :- X &lt;= Y&quot;</span><span class="pn">]</span>
+ 
+ <span class="id">prolog</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">lerules</span> <span class="s">&quot;S(S(x)) &lt;= S(S(S(0)))&quot;</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val lerules: string list</div>
+
+
+ Evaluates to <code>[`x = 0`]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="prolog-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">prolog</span> <span class="id">lerules</span> <span class="s">&quot;S(0) &lt;= 0&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: tryfind</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '582', 582)" onmouseover="showTip(event, '582', 582)">
+                <p>
+                  <a id="simpleprolog">
+                    <a href="#simpleprolog">
+                      <code><span>simpleprolog&#32;<span>rules&#32;gl</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="582">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>simpleprolog&#32;<span>rules&#32;gl</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rules
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                       - 
+                      The input rules.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        gl
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The input goal.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                  </span>
+                  
+ The instantiation resulting from backchaining, if the goal is solvable 
+ from the rules.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Prolog.simpleprolog`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Prolog.simpleprolog\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Prolog.fs#L93-93" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Prolog interpreter without clear variable binding output.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    gl
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input goal.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The instantiation resulting from backchaining, if the goal is solvable 
+ from the rules.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>tryfind</code> when the goal is not solvable from the rules.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simpleprolog-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">lerules</span> <span class="o">=</span> <span class="pn">[</span><span class="s">&quot;0 &lt;= X&quot;</span><span class="pn">;</span> <span class="s">&quot;S(X) &lt;= S(Y) :- X &lt;= Y&quot;</span><span class="pn">]</span>
+ 
+ <span class="id">simpleprolog</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">lerules</span> <span class="s">&quot;S(S(0)) &lt;= S(S(S(0)))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val lerules: string list</div>
+
+
+ Evaluates to <code>[(&quot;_0&quot;, ``S(0)``); (&quot;_1&quot;, ``S(S(0))``); (&quot;_2&quot;, ``0``); (&quot;_3&quot;, ``S(0)``); (&quot;_4&quot;, ``_3``)]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="simpleprolog-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">simpleprolog</span> <span class="id">lerules</span> <span class="s">&quot;S(0) &lt;= 0&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: tryfind</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Calculemus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Calculemus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>
