@@ -1,1 +1,1 @@
-fsdocs watch --eval --clean --sourcerepo https://github.com/domasin/Calcolemus/tree/master --parameters fsdocs-repository-link https://github.com/domasin/Calcolemus fsdocs-license-link https://github.com/domasin/Calcolemus/blob/master/LICENSE.txt
+fsdocs watch --eval --clean --sourcerepo https://github.com/domasin/Calculemus/tree/master --parameters fsdocs-repository-link https://github.com/domasin/Calculemus fsdocs-license-link https://github.com/domasin/Calculemus/blob/master/LICENSE.txt

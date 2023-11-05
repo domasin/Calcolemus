@@ -1,6 +1,6 @@
-#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
+#r "../src/Calculemus/bin/Debug/net7.0/Calculemus.dll"
 
-open Calcolemus
+open Calculemus
 open Lib.Fpf
 open Fol
 open Unif

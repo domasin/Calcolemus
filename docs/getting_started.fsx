@@ -10,20 +10,20 @@ index: 1
 
 ## Introduction
 
-Calcolemus contains functions to perform formal deductive inference in 
+Calculemus contains functions to perform formal deductive inference in 
 propositional or first order logic.
 
 This document demonstrates how to use this library.
 
-First, we reference and open Calcolemus
+First, we reference and open Calculemus
 
-    #r "nuget: Calcolemus, 1.0.5"
-    open Calcolemus
+    #r "nuget: Calculemus, 1.0.5"
+    open Calculemus
 *)
 
 (*** hide ***)
-#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
-open Calcolemus
+#r "../src/Calculemus/bin/Debug/net7.0/Calculemus.dll"
+open Calculemus
 
 (** 
 ## Custom printers
@@ -73,7 +73,7 @@ Unlike propositional logic, for first order logic automated validity checking is
 
 Thus, the automated validity checking functions for first order logic, in general, don't return a simple `true` or `false` but rather the information that the procedure ended successfully or, in some cases, that it was interrupted and therefore did not produce any significant results.
 
-For example, `cref:M:Calcolemus.Herbrand.davisputnam`
+For example, `cref:M:Calculemus.Herbrand.davisputnam`
 *)
 
 open Herbrand

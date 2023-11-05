@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A9C7985A-34C3-4296-A252-A98057D6FEEE}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Calculemus", "src\Calculemus\Calculemus.fsproj", "{6500AD22-543F-43BB-AC95-A8E566FB4F4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{617F6AE2-9B36-4D16-9CB2-232477961422}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Calculemus.Tests", "tests\Calculemus.Tests\Calculemus.Tests.fsproj", "{7FA41A1C-605D-4484-A1F5-7719E499C836}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6500AD22-543F-43BB-AC95-A8E566FB4F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6500AD22-543F-43BB-AC95-A8E566FB4F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6500AD22-543F-43BB-AC95-A8E566FB4F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6500AD22-543F-43BB-AC95-A8E566FB4F4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA41A1C-605D-4484-A1F5-7719E499C836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA41A1C-605D-4484-A1F5-7719E499C836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA41A1C-605D-4484-A1F5-7719E499C836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA41A1C-605D-4484-A1F5-7719E499C836}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6500AD22-543F-43BB-AC95-A8E566FB4F4F} = {A9C7985A-34C3-4296-A252-A98057D6FEEE}
+		{7FA41A1C-605D-4484-A1F5-7719E499C836} = {617F6AE2-9B36-4D16-9CB2-232477961422}
+	EndGlobalSection
+EndGlobal

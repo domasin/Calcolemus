@@ -1,6 +1,6 @@
-# Calcolemus Library Documentation
+# Calculemus Library Documentation
 
-This site contains the documentation for the Calcolemus library.
+This site contains the documentation for the Calculemus library.
 
 The library provides lexer, parsing and printing for propositional and first order logic together with a wide range of theorem proving techniques both automated and with interaction human-machine.
 
@@ -10,8 +10,8 @@ This is not intended as a completely faithful porting. In fact, in some cases, c
 
 The following namespaces are available:
 
-* [Calcolemus](./reference/calcolemus.html) - The main namespace with the specific thematics.
+* [Calculemus](./reference/Calculemus.html) - The main namespace with the specific thematics.
 
-* [Calcolemus.Lib](./reference/calcolemus-lib.html) - The library with basic functions for general implementation.
+* [Calculemus.Lib](./reference/Calculemus-lib.html) - The library with basic functions for general implementation.
 
 

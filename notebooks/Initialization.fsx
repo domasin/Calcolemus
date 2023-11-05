@@ -1,15 +1,15 @@
-// #r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
-#r "nuget: Calcolemus, 1.0.3"
+// #r "../src/Calculemus/bin/Debug/net7.0/Calculemus.dll"
+#r "nuget: Calculemus, 1.0.3"
 #r "nuget: MathNet.Numerics.FSharp"
 
 open MathNet.Numerics
 
-open Calcolemus
-open Calcolemus.Lib
-open Calcolemus.Intro
-open Calcolemus.Formulas
-open Calcolemus.Prop
-open Calcolemus.Fol
+open Calculemus
+open Calculemus.Lib
+open Calculemus.Intro
+open Calculemus.Formulas
+open Calculemus.Prop
+open Calculemus.Fol
 
 // let v1 = function 
 //     | 0 -> true

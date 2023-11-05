@@ -1,6 +1,6 @@
-#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
+#r "../src/Calculemus/bin/Debug/net7.0/Calculemus.dll"
 
-open Calcolemus
+open Calculemus
 open Lib.Fpf
 open Formulas
 open Prop
@@ -8,7 +8,7 @@ open Fol
 open Clause
 open Skolem
 open Prolog
-open Calcolemus.Unif
+open Calculemus.Unif
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term

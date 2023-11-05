@@ -1,6 +1,6 @@
-#r "../src/Calcolemus/bin/Debug/net7.0/Calcolemus.dll"
+#r "../src/Calculemus/bin/Debug/net7.0/Calculemus.dll"
 
-open Calcolemus.Intro
+open Calculemus.Intro
 
 Add(Const 0, Const 1) |> simplify1
 

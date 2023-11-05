@@ -2,16 +2,16 @@
 
 This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-examples, which in turn is the porting in F# of the code from **John Harrison's "[Handbook of Practical Logic and Automated Reasoning](https://www.cl.cam.ac.uk/~jrh13/atp/index.html)"**.
 
-![nuget package workflow](https://github.com/domasin/Calcolemus/actions/workflows/publish.yml/badge.svg)
+![nuget package workflow](https://github.com/domasin/Calculemus/actions/workflows/publish.yml/badge.svg)
 
-![Nuget](https://img.shields.io/nuget/v/Calcolemus)
+![Nuget](https://img.shields.io/nuget/v/Calculemus)
 
 
 ## Fork main purposes
 
 * to have a .Net Core version of the solution
-* to have a [nuget package](https://www.nuget.org/packages/Calcolemus)
-* to have an [api documentation](https://domasin.github.io/Calcolemus/reference/index.html) (in progress)
+* to have a [nuget package](https://www.nuget.org/packages/Calculemus)
+* to have an [api documentation](https://domasin.github.io/Calculemus/reference/index.html) (in progress)
 
 ## Fork main changes
 
@@ -25,7 +25,7 @@ This is a fork of the repository https://github.com/jack-pappas/fsharp-logic-exa
 
 * For better understanding of the source code and more modular documentation, the lib file has been split into a series of modules organized together in the `FOL.lib`  (to maintain the reference to the original file) namespace.
 
-* The name of the root namespace has been changed to Calcolemus (Automated Reasoning in First Order Logic).
+* The name of the root namespace has been changed to Calculemus (Automated Reasoning in First Order Logic).
 
 * Use of exception removed in `dp` and `dpll`, both for performance and because `Failure _`, in any case, should be replaced with `_` to work (since built-in functions, like `List.head`, are used instead of those redefined with custom exceptions, like `hd`).
 
