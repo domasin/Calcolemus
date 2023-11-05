@@ -10,8 +10,8 @@ This is not intended as a completely faithful porting. In fact, in some cases, c
 
 The following namespaces are available:
 
-* [Calculemus](./reference/Calculemus.html) - The main namespace with the specific thematics.
+* [Calculemus](./reference/calculemus.html) - The main namespace with the specific thematics.
 
-* [Calculemus.Lib](./reference/Calculemus-lib.html) - The library with basic functions for general implementation.
+* [Calculemus.Lib](./reference/calculemus-lib.html) - The library with basic functions for general implementation.
 
 
