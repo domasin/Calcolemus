@@ -119,16 +119,26 @@
     </li>
     <li>
       <a href="#section2">
-        Subsumption and replacement
+        Matching
       </a>
     </li>
     <li>
       <a href="#section3">
-        Positive resolution
+        Subsumption
       </a>
     </li>
     <li>
       <a href="#section4">
+        Resolution with subsumption and replacement
+      </a>
+    </li>
+    <li>
+      <a href="#section5">
+        Positive resolution
+      </a>
+    </li>
+    <li>
+      <a href="#section6">
         Set-of-support restriction
       </a>
     </li>
@@ -155,7 +165,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '671', 671)" onmouseover="showTip(event, '671', 671)">
+              <code onmouseout="hideTip(event, '677', 677)" onmouseover="showTip(event, '677', 677)">
                 <p>
                   <a id="mgu">
                     <a href="#mgu">
@@ -164,7 +174,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="671">
+              <div class="fsdocs-tip" id="677">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>mgu&#32;<span>l&#32;env</span></span></code>
@@ -189,7 +199,7 @@
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                        - 
-                      An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. 
+                      An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.
                     </span>
                     <br/>
                   </ul>
@@ -219,7 +229,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -260,7 +270,7 @@
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. 
+                    An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.
                   </p>
                 </dd>
               </dl>
@@ -394,7 +404,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '672', 672)" onmouseover="showTip(event, '672', 672)">
+              <code onmouseout="hideTip(event, '678', 678)" onmouseover="showTip(event, '678', 678)">
                 <p>
                   <a id="unifiable">
                     <a href="#unifiable">
@@ -403,7 +413,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="672">
+              <div class="fsdocs-tip" id="678">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>unifiable&#32;<span>p&#32;q</span></span></code>
@@ -457,7 +467,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -567,7 +577,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '673', 673)" onmouseover="showTip(event, '673', 673)">
+              <code onmouseout="hideTip(event, '679', 679)" onmouseover="showTip(event, '679', 679)">
                 <p>
                   <a id="basic_resloop">
                     <a href="#basic_resloop">
@@ -576,7 +586,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="673">
+              <div class="fsdocs-tip" id="679">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>basic_resloop&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
@@ -611,8 +621,7 @@
                     <code>bool</code>
                   </span>
                   
- true, if a refutation for <code>unused</code> is found, and prints diagnostic 
- informations to the <code>stdout</code>.
+ true, if a refutation for <code>unused</code> is found.
  
                   <br/>
                 </div>
@@ -631,7 +640,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L86-86" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -683,8 +692,7 @@
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- true, if a refutation for <code>unused</code> is found, and prints diagnostic 
- informations to the <code>stdout</code>.
+ true, if a refutation for <code>unused</code> is found.
  
                   </p>
                 </dd>
@@ -701,6 +709,13 @@
                   </td>
                 </tr>
               </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>
+              </p>
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
@@ -732,7 +747,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '674', 674)" onmouseover="showTip(event, '674', 674)">
+              <code onmouseout="hideTip(event, '680', 680)" onmouseover="showTip(event, '680', 680)">
                 <p>
                   <a id="basic_resolution">
                     <a href="#basic_resolution">
@@ -741,7 +756,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="674">
+              <div class="fsdocs-tip" id="680">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>basic_resolution&#32;<span>fm</span></span></code>
@@ -755,6 +770,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -763,6 +780,11 @@
                     Returns: 
                     <code><span>bool&#32;list</span></code>
                   </span>
+                  
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_basic_resolution">Resolution.pure_basic_resolution</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
                   <br/>
                 </div>
               </div>
@@ -780,13 +802,13 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L99-99" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests the validity of a formula splitting it in subproblems and then 
+ Tests the validity of a formula splitting in subproblems and then 
  testing them with a basic resolution procedure.
  
                   </p>
@@ -800,7 +822,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -809,15 +835,95 @@
                   </span>
                   <code><span>bool&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_basic_resolution">Resolution.pure_basic_resolution</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no proof could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="basic_resolution-1">
+                
+ Valid formula (example from Davis and Putnam (1960))
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;exists x. exists y. forall z.</span>
+<span class="s">     (F(x,y) ==&gt; (F(y,z) /\ F(z,z))) /\</span>
+<span class="s">     ((F(x,y) /\ G(x,y)) ==&gt; (G(x,z) /\ G(z,z)))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">basic_resolution</span>
+</code></pre>
+
+
+ Evaluates to <code>[true]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">3</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="o">..</span><span class="pn">.</span>
+ <span class="n">82</span> <span class="id">used</span><span class="pn">;</span> <span class="n">478</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">83</span> <span class="id">used</span><span class="pn">;</span> <span class="n">483</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">84</span> <span class="id">used</span><span class="pn">;</span> <span class="n">488</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="basic_resolution-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">basic_resolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="basic_resolution-3">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">basic_resolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '675', 675)" onmouseover="showTip(event, '675', 675)">
+              <code onmouseout="hideTip(event, '681', 681)" onmouseover="showTip(event, '681', 681)">
                 <p>
                   <a id="pure_basic_resolution">
                     <a href="#pure_basic_resolution">
@@ -826,7 +932,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="675">
+              <div class="fsdocs-tip" id="681">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pure_basic_resolution&#32;<span>fm</span></span></code>
@@ -851,8 +957,8 @@
                     <code>bool</code>
                   </span>
                   
- true, if it can find a refutation for the input formula, and prints 
- diagnostic informations to the <code>stdout</code>.
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
  
                   <br/>
                 </div>
@@ -871,7 +977,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L96-96" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L95-95" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -907,8 +1013,8 @@
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- true, if it can find a refutation for the input formula, and prints 
- diagnostic informations to the <code>stdout</code>.
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
  
                   </p>
                 </dd>
@@ -921,15 +1027,25 @@
                     </a>
                   </td>
                   <td>
-                    Thrown with message <code>No proof found</code> when no refutation could be found.
+                    Thrown with message <code>No proof found</code> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).
                   </td>
                 </tr>
               </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
               <p class="fsdocs-example" id="pure_basic_resolution-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
  <span class="o">|&gt;</span> <span class="id">pure_basic_resolution</span>
 </code></pre>
 
@@ -945,13 +1061,37 @@
                 Example
               </h5>
               <p class="fsdocs-example" id="pure_basic_resolution-2">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
  <span class="o">|&gt;</span> <span class="id">pure_basic_resolution</span>
 </code></pre>
 
 
- Throws <code>System.Exception: No proof found</code>.
- 
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_basic_resolution-3">
+                
+ Valid formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;&quot;&quot;P(x) \/ ~P(x)&quot;&quot;&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_basic_resolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
               </p>
             </details>
           </td>
@@ -959,7 +1099,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '676', 676)" onmouseover="showTip(event, '676', 676)">
+              <code onmouseout="hideTip(event, '682', 682)" onmouseover="showTip(event, '682', 682)">
                 <p>
                   <a id="rename">
                     <a href="#rename">
@@ -968,7 +1108,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="676">
+              <div class="fsdocs-tip" id="682">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>rename&#32;<span>pfx&#32;cls</span></span></code>
@@ -1022,7 +1162,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1092,7 +1232,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '677', 677)" onmouseover="showTip(event, '677', 677)">
+              <code onmouseout="hideTip(event, '683', 683)" onmouseover="showTip(event, '683', 683)">
                 <p>
                   <a id="resolve_clauses">
                     <a href="#resolve_clauses">
@@ -1101,7 +1241,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="677">
+              <div class="fsdocs-tip" id="683">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>resolve_clauses&#32;<span>cls1&#32;cls2</span></span></code>
@@ -1151,7 +1291,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L77-77" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L76-76" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1223,7 +1363,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '678', 678)" onmouseover="showTip(event, '678', 678)">
+              <code onmouseout="hideTip(event, '684', 684)" onmouseover="showTip(event, '684', 684)">
                 <p>
                   <a id="resolvents">
                     <a href="#resolvents">
@@ -1232,7 +1372,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="678">
+              <div class="fsdocs-tip" id="684">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>resolvents&#32;<span>cl1&#32;cl2&#32;p&#32;acc</span></span></code>
@@ -1307,7 +1447,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -1420,7 +1560,7 @@
   <div></div>
   <div></div>
   <h2 id="section2">
-    Subsumption and replacement
+    Matching
   </h2>
   <div>
     <h3>
@@ -1441,136 +1581,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '679', 679)" onmouseover="showTip(event, '679', 679)">
-                <p>
-                  <a id="incorporate">
-                    <a href="#incorporate">
-                      <code><span>incorporate&#32;<span>gcl&#32;cl&#32;unused</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="679">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>incorporate&#32;<span>gcl&#32;cl&#32;unused</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        gcl
-                      </b>
-                      :
-                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        cl
-                      </b>
-                      :
-                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        unused
-                      </b>
-                      :
-                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.incorporate`')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.incorporate\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L165-165" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Inserts a newly generated clause <code>cl</code> by first removing the 
- tautological and replacing the subsumed ones.
- 
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    gcl
-                  </span>
-                  :
-                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    cl
-                  </span>
-                  :
-                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    unused
-                  </span>
-                  :
-                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '680', 680)" onmouseover="showTip(event, '680', 680)">
+              <code onmouseout="hideTip(event, '685', 685)" onmouseover="showTip(event, '685', 685)">
                 <p>
                   <a id="match_literals">
                     <a href="#match_literals">
-                      <code><span>match_literals&#32;<span>env&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                      <code><span>match_literals&#32;<span>env&#32;<span>(<span>p,&#32;q</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="680">
+              <div class="fsdocs-tip" id="685">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>match_literals&#32;<span>env&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <code><span>match_literals&#32;<span>env&#32;<span>(<span>p,&#32;q</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -1581,22 +1604,28 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        arg1
+                        p
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The first input literal.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        arg2
+                        q
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The second input literal.
                     </span>
                     <br/>
                   </ul>
@@ -1605,6 +1634,7 @@
                     Returns: 
                     <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                   </span>
+                  The resulting matching, if there is.
                   <br/>
                 </div>
               </div>
@@ -1622,17 +1652,23 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L124-124" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L123-123" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Tries to match a pair of literals.
+ Returns the matchings of a pair of literals.
  
                   </p>
                 </div>
               </summary>
+              <p class="fsdocs-remarks">
+                
+ Matching is a cut-down version of unification in which the 
+ instantiation of variables is allowed only in the first term.
+ 
+              </p>
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
@@ -1641,23 +1677,35 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    arg1
+                    p
                   </span>
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input literal.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    arg2
+                    q
                   </span>
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input literal.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -1666,480 +1714,71 @@
                   </span>
                   <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '681', 681)" onmouseover="showTip(event, '681', 681)">
-                <p>
-                  <a id="pure_resolution_wsubs">
-                    <a href="#pure_resolution_wsubs">
-                      <code><span>pure_resolution_wsubs&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="681">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>pure_resolution_wsubs&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.pure_resolution_wsubs`')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.pure_resolution_wsubs\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L181-181" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Tests the unsatisfiability of a formula using a resolution with 
- subsumption and replacement.
- 
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The resulting matching, if there is.
                   </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    fm
-                  </span>
-                  :
-                  <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                </dd>
               </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '682', 682)" onmouseover="showTip(event, '682', 682)">
-                <p>
-                  <a id="replace">
-                    <a href="#replace">
-                      <code><span>replace&#32;<span>cl&#32;lis</span></span></code>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
                     </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="682">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>replace&#32;<span>cl&#32;lis</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        cl
-                      </b>
-                      :
-                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        lis
-                      </b>
-                      :
-                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.replace`')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.replace\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L157-157" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Replaces each clause in a list with the given one, if the latter 
- subsumes the first.
- 
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    cl
-                  </span>
-                  :
-                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    lis
-                  </span>
-                  :
-                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '683', 683)" onmouseover="showTip(event, '683', 683)">
-                <p>
-                  <a id="resloop_wsubs">
-                    <a href="#resloop_wsubs">
-                      <code><span>resloop_wsubs&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
+                  </td>
+                  <td>
+                    Thrown with message <code>term_match</code> when there are no matchings.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
                     </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="683">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>resloop_wsubs&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        used
-                      </b>
-                      :
-                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        unused
-                      </b>
-                      :
-                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.resloop_wsubs`')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.resloop_wsubs\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L171-171" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Resolution loop with subsumption and replacement.
+                  </td>
+                  <td>
+                    Thrown with message <code>match_literals</code> when there input formulas are not literals.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="match_literals-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">,</span><span class="pn">!!</span><span class="s">&quot;P(f(y))&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">match_literals</span> <span class="id">undefined</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[(&quot;x&quot;, ``f(y)``)]</code>.
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    used
-                  </span>
-                  :
-                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    unused
-                  </span>
-                  :
-                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '684', 684)" onmouseover="showTip(event, '684', 684)">
-                <p>
-                  <a id="resolution_wsubs">
-                    <a href="#resolution_wsubs">
-                      <code><span>resolution_wsubs&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="684">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>resolution_wsubs&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>bool&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.resolution_wsubs`')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.resolution_wsubs\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L184-184" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Tests the validity of a formula splitting it in subproblems and then 
- testing them with a resolution procedure that 
- handles subsumption and replacement.
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="match_literals-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="pn">!!</span><span class="s">&quot;P(f(y))&quot;</span><span class="pn">,</span><span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">match_literals</span> <span class="id">undefined</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: term_match</code>.
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    fm
-                  </span>
-                  :
-                  <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span>bool&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '685', 685)" onmouseover="showTip(event, '685', 685)">
-                <p>
-                  <a id="subsumes_clause">
-                    <a href="#subsumes_clause">
-                      <code><span>subsumes_clause&#32;<span>cls1&#32;cls2</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="685">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>subsumes_clause&#32;<span>cls1&#32;cls2</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        cls1
-                      </b>
-                      :
-                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        cls2
-                      </b>
-                      :
-                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.subsumes_clause`')">
-                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.subsumes_clause\'/>')">
-                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L135-135" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
-                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
- Tests if the first clause subsumes the second.
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="match_literals-3">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">(</span><span class="pn">!!</span><span class="s">&quot;P(x) /\ Q(x)&quot;</span><span class="pn">,</span><span class="pn">!!</span><span class="s">&quot;P(f(y)) /\ Q(f(y))&quot;</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="id">match_literals</span> <span class="id">undefined</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: match_literals</code>.
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    cls1
-                  </span>
-                  :
-                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    cls2
-                  </span>
-                  :
-                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs"></dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
+              </p>
             </details>
           </td>
         </tr>
@@ -2169,6 +1808,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.
                     </span>
                     <br/>
                     <span>
@@ -2177,6 +1818,8 @@
                       </b>
                       :
                       <code><span><span>(<span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>)</span>&#32;list</span></code>
+                       - 
+                      The input list of term-term pairs to be matched.
                     </span>
                     <br/>
                   </ul>
@@ -2185,6 +1828,7 @@
                     Returns: 
                     <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                   </span>
+                  The resulting matchings, if there are.
                   <br/>
                 </div>
               </div>
@@ -2202,14 +1846,13 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L106-106" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
- Matches the first element of each terms pair in a with the second 
- element of the pair.
+ Returns the matchings of a list of term-term pairs.
  
                   </p>
                 </div>
@@ -2228,7 +1871,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     eqs
@@ -2236,7 +1883,11 @@
                   :
                   <code><span><span>(<span><a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a>&#32;*&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>)</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of term-term pairs to be matched.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2245,8 +1896,49 @@
                   </span>
                   <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The resulting matchings, if there are.
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>term_match</code> when there are no matchings.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="term_match-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">[</span><span class="pn">!!!</span><span class="s">&quot;x&quot;</span><span class="pn">,</span><span class="pn">!!!</span><span class="s">&quot;f(y)&quot;</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">term_match</span> <span class="id">undefined</span>
+ <span class="o">|&gt;</span> <span class="id">graph</span>
+</code></pre>
+
+
+ Evaluates to <code>[(&quot;x&quot;, ``f(y)``)]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="term_match-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">[</span><span class="pn">!!!</span><span class="s">&quot;f(y)&quot;</span><span class="pn">,</span><span class="pn">!!!</span><span class="s">&quot;x&quot;</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">term_match</span> <span class="id">undefined</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: term_match</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
@@ -2262,7 +1954,7 @@
   <div></div>
   <div></div>
   <h2 id="section3">
-    Positive resolution
+    Subsumption
   </h2>
   <div>
     <h3>
@@ -2285,6 +1977,1065 @@
             <div>
               <code onmouseout="hideTip(event, '687', 687)" onmouseover="showTip(event, '687', 687)">
                 <p>
+                  <a id="incorporate">
+                    <a href="#incorporate">
+                      <code><span>incorporate&#32;<span>gcl&#32;cl&#32;unused</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="687">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>incorporate&#32;<span>gcl&#32;cl&#32;unused</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        gcl
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The given clause.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cl
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The clause to be inserted after checking.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        unused
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input list fo clauses.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                  </span>
+                  
+ The input list <code>unused</code> incremented by <code>cl</code>, if this latter 
+ passes the check; otherwise, the input list <code>unused</code> unchanged.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.incorporate`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.incorporate\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L158-158" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Inserts a newly generated clause <code>cl</code> by first removing the 
+ tautological and replacing the subsumed ones.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    gcl
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The given clause.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cl
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The clause to be inserted after checking.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    unused
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list fo clauses.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The input list <code>unused</code> incremented by <code>cl</code>, if this latter 
+ passes the check; otherwise, the input list <code>unused</code> unchanged.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="incorporate-1">
+                
+ Inserted since neither tautological nor subsumed
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">incorporate</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;R(0)&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;R(f(z))&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`P(x)`]; [`Q(y)`]; [`R(f(z))`]]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="incorporate-2">
+                
+ Not inserted since subsumed by gcl
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">incorporate</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;R(w)&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;R(f(z))&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`P(x)`]; [`Q(y)`]]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="incorporate-3">
+                
+ Not inserted since subsumed by another clause in the list
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">incorporate</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;R(0)&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(f(z))&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`P(x)`]; [`Q(y)`]]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="incorporate-4">
+                
+ Not inserted since tautological
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;Q(y)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">incorporate</span> <span class="pn">[</span><span class="o">!!</span><span class="s">&quot;R(0)&quot;</span><span class="pn">]</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;R(f(z))&quot;</span><span class="pn">;</span><span class="s">&quot;~R(f(z))&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`P(x)`]; [`Q(y)`]]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '688', 688)" onmouseover="showTip(event, '688', 688)">
+                <p>
+                  <a id="replace">
+                    <a href="#replace">
+                      <code><span>replace&#32;<span>cl&#32;lis</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="688">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>replace&#32;<span>cl&#32;lis</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cl
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The clause that could subsume.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lis
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input list of clauses.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                  </span>
+                  
+ The list obtained by <code>lis</code> replacing with <code>cl</code> each of its 
+ element that are subsumed by it.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.replace`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.replace\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L150-150" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Replaces each clause in a list with the given one, if the latter 
+ subsumes the first.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cl
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The clause that could subsume.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    lis
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of clauses.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list obtained by <code>lis</code> replacing with <code>cl</code> each of its 
+ element that are subsumed by it.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="replace-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;Q(0)&quot;</span><span class="pn">;</span><span class="s">&quot;P(f(y))&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;~P(x)&quot;</span><span class="pn">]</span><span class="pn">]</span>
+ <span class="o">|&gt;</span> <span class="id">replace</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`P(x)`]; [`P(x)`; `~P(x)`]]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '689', 689)" onmouseover="showTip(event, '689', 689)">
+                <p>
+                  <a id="subsumes_clause">
+                    <a href="#subsumes_clause">
+                      <code><span>subsumes_clause&#32;<span>cls1&#32;cls2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="689">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>subsumes_clause&#32;<span>cls1&#32;cls2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cls1
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The first input clause.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cls2
+                      </b>
+                      :
+                      <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The second input clause.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  
+ true, if the first clause subsumes the second; otherwise, false.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.subsumes_clause`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.subsumes_clause\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L134-134" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests if the first clause subsumes the second.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls1
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input clause.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls2
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input clause.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the first clause subsumes the second; otherwise, false.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="subsumes_clause-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">subsumes_clause</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;Q(0)&quot;</span><span class="pn">;</span><span class="s">&quot;P(f(y))&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="subsumes_clause-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">subsumes_clause</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;Q(0)&quot;</span><span class="pn">;</span><span class="s">&quot;P(f(y))&quot;</span><span class="pn">]</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section4">
+    Resolution with subsumption and replacement
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '690', 690)" onmouseover="showTip(event, '690', 690)">
+                <p>
+                  <a id="pure_resolution_wsubs">
+                    <a href="#pure_resolution_wsubs">
+                      <code><span>pure_resolution_wsubs&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="690">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>pure_resolution_wsubs&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.pure_resolution_wsubs`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.pure_resolution_wsubs\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L174-174" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the unsatisfiability of a formula using a resolution with 
+ subsumption and replacement.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_resolution_wsubs-1">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_resolution_wsubs</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_resolution_wsubs-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_resolution_wsubs</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_resolution_wsubs-3">
+                
+ Valid formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;&quot;&quot;P(x) \/ ~P(x)&quot;&quot;&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_resolution_wsubs</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '691', 691)" onmouseover="showTip(event, '691', 691)">
+                <p>
+                  <a id="resloop_wsubs">
+                    <a href="#resloop_wsubs">
+                      <code><span>resloop_wsubs&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="691">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>resloop_wsubs&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        used
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The working list of clauses, initially empty.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        unused
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input list of clauses to be refuted.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  
+ true, if a refutation for <code>unused</code> is found.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.resloop_wsubs`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.resloop_wsubs\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L164-164" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Resolution loop with subsumption and replacement.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    used
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The working list of clauses, initially empty.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    unused
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of clauses to be refuted.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if a refutation for <code>unused</code> is found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resloop_wsubs-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">resloop_wsubs</span> <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~P(x)&quot;</span><span class="pn">]</span><span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code> and prints to the <code>stdout</code><pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resloop_wsubs-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">resloop_wsubs</span> <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '692', 692)" onmouseover="showTip(event, '692', 692)">
+                <p>
+                  <a id="resolution_wsubs">
+                    <a href="#resolution_wsubs">
+                      <code><span>resolution_wsubs&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="692">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>resolution_wsubs&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>bool&#32;list</span></code>
+                  </span>
+                  
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_resolution_wsubs">Resolution.pure_resolution_wsubs</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Resolution.resolution_wsubs`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Resolution.resolution_wsubs\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L177-177" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the validity of a formula splitting it in subproblems and then 
+ testing them with a resolution procedure that 
+ handles subsumption and replacement.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>bool&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_resolution_wsubs">Resolution.pure_resolution_wsubs</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no proof could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resolution_wsubs-1">
+                
+ Valid formula (example from Davis and Putnam (1960))
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;exists x. exists y. forall z.</span>
+<span class="s">     (F(x,y) ==&gt; (F(y,z) /\ F(z,z))) /\</span>
+<span class="s">     ((F(x,y) /\ G(x,y)) ==&gt; (G(x,z) /\ G(z,z)))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">resolution_wsubs</span>
+</code></pre>
+
+
+ Evaluates to <code>[true]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="o">..</span><span class="pn">.</span>
+ <span class="n">6</span> <span class="id">used</span><span class="pn">;</span> <span class="n">3</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">7</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+ Note how much the number of clauses generated has been reduced compared 
+ to <a href="/Calcolemus/reference/calcolemus-resolution.html#basic_resolution">Resolution.basic_resolution</a>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resolution_wsubs-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">resolution_wsubs</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resolution_wsubs-3">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">resolution_wsubs</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section5">
+    Positive resolution
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '693', 693)" onmouseover="showTip(event, '693', 693)">
+                <p>
                   <a id="presloop">
                     <a href="#presloop">
                       <code><span>presloop&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
@@ -2292,7 +3043,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="687">
+              <div class="fsdocs-tip" id="693">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>presloop&#32;<span><span>(<span>used,&#32;unused</span>)</span></span></span></code>
@@ -2306,6 +3057,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The working list of clauses, initially empty.
                     </span>
                     <br/>
                     <span>
@@ -2314,6 +3067,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input list of clauses to be refuted.
                     </span>
                     <br/>
                   </ul>
@@ -2322,6 +3077,9 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if a refutation for <code>unused</code> is found.
+ 
                   <br/>
                 </div>
               </div>
@@ -2339,7 +3097,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L197-197" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L190-190" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2358,7 +3116,11 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The working list of clauses, initially empty.
+                  </p>
+                </dd>
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
                     unused
@@ -2366,7 +3128,11 @@
                   :
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of clauses to be refuted.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2375,15 +3141,65 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if a refutation for <code>unused</code> is found.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presloop-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">presloop</span> <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="s">&quot;~P(x)&quot;</span><span class="pn">]</span><span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code> and prints to the <code>stdout</code><pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presloop-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">presloop</span> <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="o">!!&gt;&gt;</span><span class="pn">[</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '688', 688)" onmouseover="showTip(event, '688', 688)">
+              <code onmouseout="hideTip(event, '694', 694)" onmouseover="showTip(event, '694', 694)">
                 <p>
                   <a id="presolution">
                     <a href="#presolution">
@@ -2392,7 +3208,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="688">
+              <div class="fsdocs-tip" id="694">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>presolution&#32;<span>fm</span></span></code>
@@ -2406,6 +3222,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -2414,6 +3232,11 @@
                     Returns: 
                     <code><span>bool&#32;list</span></code>
                   </span>
+                  
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_presolution">Resolution.pure_presolution</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
                   <br/>
                 </div>
               </div>
@@ -2431,7 +3254,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L210-210" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L203-203" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2451,7 +3274,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2460,15 +3287,96 @@
                   </span>
                   <code><span>bool&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_presolution">Resolution.pure_presolution</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no proof could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presolution-1">
+                
+ Valid formula (Łoś example)
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;(forall x y z. P(x,y) /\ P(y,z) ==&gt; P(x,z)) /\</span>
+<span class="s">      (forall x y z. Q(x,y) /\ Q(y,z) ==&gt; Q(x,z)) /\</span>
+<span class="s">      (forall x y. Q(x,y) ==&gt; Q(y,x)) /\</span>
+<span class="s">      (forall x y. P(x,y) \/ Q(x,y))</span>
+<span class="s">      ==&gt; (forall x y. P(x,y)) \/ (forall x y. Q(x,y))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">presolution</span>
+</code></pre>
+
+
+ Evaluates to <code>[true]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">6</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">5</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="o">..</span><span class="pn">.</span>
+ <span class="n">34</span> <span class="id">used</span><span class="pn">;</span> <span class="n">42</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">35</span> <span class="id">used</span><span class="pn">;</span> <span class="n">41</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presolution-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">presolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presolution-3">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">presolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '689', 689)" onmouseover="showTip(event, '689', 689)">
+              <code onmouseout="hideTip(event, '695', 695)" onmouseover="showTip(event, '695', 695)">
                 <p>
                   <a id="presolve_clauses">
                     <a href="#presolve_clauses">
@@ -2477,7 +3385,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="689">
+              <div class="fsdocs-tip" id="695">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>presolve_clauses&#32;<span>cls1&#32;cls2</span></span></code>
@@ -2507,6 +3415,10 @@
                     Returns: 
                     <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ All the resolvents of <code>cl1</code> and <code>cl2</code>, if at least one of 
+ them is completely positive; otherwise, an empty list.
+ 
                   <br/>
                 </div>
               </div>
@@ -2524,7 +3436,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L192-192" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L185-185" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2561,15 +3473,57 @@
                   </span>
                   <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ All the resolvents of <code>cl1</code> and <code>cl2</code>, if at least one of 
+ them is completely positive; otherwise, an empty list.
+ 
+                  </p>
+                </dd>
               </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presolve_clauses-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">presolve_clauses</span> 
+   <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;Q(x)&quot;</span><span class="pn">;</span><span class="s">&quot;P(0)&quot;</span><span class="pn">]</span>
+   <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;~P(f(y))&quot;</span><span class="pn">;</span><span class="s">&quot;~P(z)&quot;</span><span class="pn">;</span><span class="s">&quot;~Q(z)&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to 
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">[</span><span class="pn">[</span><span class="k">`</span><span class="id">P</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="id">Q</span><span class="pn">(</span><span class="id">yz</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">Q</span><span class="pn">(</span><span class="id">yz</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">;</span>
+  <span class="pn">[</span><span class="k">`</span><span class="id">P</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="id">Q</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">yz</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">Q</span><span class="pn">(</span><span class="id">yz</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">;</span>
+  <span class="pn">[</span><span class="k">`</span><span class="id">P</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="id">Q</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">Q</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">;</span>
+  <span class="pn">[</span><span class="k">`</span><span class="id">Q</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">Q</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">;</span>
+  <span class="pn">[</span><span class="k">`</span><span class="id">P</span><span class="pn">(</span><span class="id">yz</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="id">P</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">yz</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">;</span>
+  <span class="pn">[</span><span class="k">`</span><span class="id">P</span><span class="pn">(</span><span class="id">xx</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="id">Q</span><span class="pn">(</span><span class="id">xx</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">Q</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">;</span>
+  <span class="pn">[</span><span class="k">`</span><span class="id">Q</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">P</span><span class="pn">(</span><span class="id">f</span><span class="pn">(</span><span class="id">yy</span><span class="pn">)</span><span class="pn">)</span><span class="k">`</span><span class="pn">;</span> <span class="k">`</span><span class="k">~</span><span class="id">Q</span><span class="pn">(</span><span class="n">0</span><span class="pn">)</span><span class="k">`</span><span class="pn">]</span><span class="pn">]</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="presolve_clauses-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">presolve_clauses</span> 
+   <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(x)&quot;</span><span class="pn">;</span><span class="s">&quot;Q(x)&quot;</span><span class="pn">;</span><span class="s">&quot;P(0)&quot;</span><span class="pn">;</span><span class="s">&quot;~A&quot;</span><span class="pn">]</span>
+   <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;~P(f(y))&quot;</span><span class="pn">;</span><span class="s">&quot;~P(z)&quot;</span><span class="pn">;</span><span class="s">&quot;~Q(z)&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[]</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '690', 690)" onmouseover="showTip(event, '690', 690)">
+              <code onmouseout="hideTip(event, '696', 696)" onmouseover="showTip(event, '696', 696)">
                 <p>
                   <a id="pure_presolution">
                     <a href="#pure_presolution">
@@ -2578,7 +3532,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="690">
+              <div class="fsdocs-tip" id="696">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pure_presolution&#32;<span>fm</span></span></code>
@@ -2592,6 +3546,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -2600,6 +3556,10 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
                   <br/>
                 </div>
               </div>
@@ -2617,7 +3577,7 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L207-207" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L200-200" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
@@ -2637,7 +3597,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2646,8 +3610,89 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_presolution-1">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_presolution</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_presolution-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_presolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_presolution-3">
+                
+ Valid formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;&quot;&quot;P(x) \/ ~P(x)&quot;&quot;&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_presolution</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>
@@ -2662,7 +3707,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <h2 id="section4">
+  <h2 id="section6">
     Set-of-support restriction
   </h2>
   <div>
@@ -2684,7 +3729,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '691', 691)" onmouseover="showTip(event, '691', 691)">
+              <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
                 <p>
                   <a id="pure_resolution_wsos">
                     <a href="#pure_resolution_wsos">
@@ -2693,7 +3738,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="691">
+              <div class="fsdocs-tip" id="697">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pure_resolution_wsos&#32;<span>fm</span></span></code>
@@ -2707,6 +3752,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -2715,6 +3762,10 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
                   <br/>
                 </div>
               </div>
@@ -2732,14 +3783,14 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L218-218" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L211-211" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
  Tests the unsatisfiability of a formula using a resolution procedure 
- with set-of-support restriction.
+ with subsumption and replacement and the set-of-support restriction.
  
                   </p>
                 </div>
@@ -2752,7 +3803,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2761,15 +3816,96 @@
                   </span>
                   <code>bool</code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_resolution_wsos-1">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_resolution_wsos</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">2</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_resolution_wsos-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_resolution_wsos</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="pure_resolution_wsos-3">
+                
+ Valid formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;&quot;&quot;P(x) \/ ~P(x)&quot;&quot;&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">pure_resolution_wsos</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code> and prints to the 
+ <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">1</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
             </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '692', 692)" onmouseover="showTip(event, '692', 692)">
+              <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
                 <p>
                   <a id="resolution_wsos">
                     <a href="#resolution_wsos">
@@ -2778,7 +3914,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="692">
+              <div class="fsdocs-tip" id="698">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>resolution_wsos&#32;<span>fm</span></span></code>
@@ -2792,6 +3928,8 @@
                       </b>
                       :
                       <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -2800,6 +3938,11 @@
                     Returns: 
                     <code><span>bool&#32;list</span></code>
                   </span>
+                  
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_resolution_wsos">Resolution.pure_resolution_wsos</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
                   <br/>
                 </div>
               </div>
@@ -2817,15 +3960,15 @@
                     <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
                     <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
                   </div>
-                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L226-226" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Resolution.fs#L219-219" class="fsdocs-source-link" title="Source on GitHub">
                     <img src="/Calcolemus/content/img/github.png" class="normal"/>
                     <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
                   <p class="fsdocs-summary">
                     
  Tests the validity of a formula splitting it in subproblems and then 
- testing them using a resolution procedure with set-of-support 
- restriction.
+ testing them using a resolution procedure with subsumption and 
+ replacement and the set-of-support restriction.
  
                   </p>
                 </div>
@@ -2838,7 +3981,11 @@
                   :
                   <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
                 </dt>
-                <dd class="fsdocs-param-docs"></dd>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
               </dl>
               <dl class="fsdocs-returns">
                 <dt>
@@ -2847,8 +3994,87 @@
                   </span>
                   <code><span>bool&#32;list</span></code>
                 </dt>
-                <dd class="fsdocs-return-docs"></dd>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the results of 
+ <a href="/Calcolemus/reference/calcolemus-resolution.html#pure_resolution_wsos">Resolution.pure_resolution_wsos</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
+                  </p>
+                </dd>
               </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no proof could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resolution_wsos-1">
+                
+ Valid formula (Łoś example)
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;exists x. exists y. forall z.</span>
+<span class="s">    (F(x,y) ==&gt; (F(y,z) /\ F(z,z))) /\</span>
+<span class="s">    ((F(x,y) /\ G(x,y)) ==&gt; (G(x,z) /\ G(z,z)))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">resolution_wsos</span>
+</code></pre>
+
+
+ Evaluates to <code>[true]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">6</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">5</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="o">..</span><span class="pn">.</span>
+ <span class="n">34</span> <span class="id">used</span><span class="pn">;</span> <span class="n">42</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">35</span> <span class="id">used</span><span class="pn">;</span> <span class="n">41</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resolution_wsos-2">
+                
+ Satisfiable (not valid) formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">resolution_wsos</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="resolution_wsos-3">
+                
+ Unsatisfiable formula
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">resolution_wsos</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: No proof found</code>.
+ 
+              </p>
             </details>
           </td>
         </tr>

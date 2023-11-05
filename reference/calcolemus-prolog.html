@@ -98,11 +98,29 @@
     <div>
       <p class="fsdocs-summary">
         
- Prolog.
+ Backchaining procedure for Horn clauses, and toy Prolog implementation.
  
       </p>
     </div>
   </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Automated prover for Horn clauses
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Prolog
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Automated prover for Horn clauses
+  </h2>
   <div>
     <h3>
       Functions and values
@@ -122,7 +140,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '569', 569)" onmouseover="showTip(event, '569', 569)">
+              <code onmouseout="hideTip(event, '575', 575)" onmouseover="showTip(event, '575', 575)">
                 <p>
                   <a id="backchain">
                     <a href="#backchain">
@@ -131,7 +149,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="569">
+              <div class="fsdocs-tip" id="575">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>backchain&#32;<span>rules&#32;n&#32;k&#32;env&#32;goals</span></span></code>
@@ -191,63 +209,86 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rules
-                </span>
-                :
-                <code><span><span>(<span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  k
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  goals
-                </span>
-                :
-                <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Prolog.backchain`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.backchain\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Basic prover for Horn clauses.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span><span>(<span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    goals
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '570', 570)" onmouseover="showTip(event, '570', 570)">
+              <code onmouseout="hideTip(event, '576', 576)" onmouseover="showTip(event, '576', 576)">
                 <p>
                   <a id="hornify">
                     <a href="#hornify">
@@ -256,7 +297,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="570">
+              <div class="fsdocs-tip" id="576">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>hornify&#32;<span>cls</span></span></code>
@@ -284,31 +325,54 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cls
-                </span>
-                :
-                <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calcolemus.Prolog.hornify``1```')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.hornify``1\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Converts a raw Horn clause into a rule.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '571', 571)" onmouseover="showTip(event, '571', 571)">
+              <code onmouseout="hideTip(event, '577', 577)" onmouseover="showTip(event, '577', 577)">
                 <p>
                   <a id="hornprove">
                     <a href="#hornprove">
@@ -317,7 +381,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="571">
+              <div class="fsdocs-tip" id="577">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>hornprove&#32;<span>fm</span></span></code>
@@ -345,169 +409,54 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '572', 572)" onmouseover="showTip(event, '572', 572)">
-                <p>
-                  <a id="parserule">
-                    <a href="#parserule">
-                      <code><span>parserule&#32;<span>s</span></span></code>
-                    </a>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Prolog.hornprove`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.hornprove\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
                   </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="572">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>parserule&#32;<span>s</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        s
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span></code>
-                  </span>
-                  <br/>
+                  <p class="fsdocs-summary">
+                    
+ Automated prover for formulas convertible into Horn clauses.
+ 
+                  </p>
                 </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '573', 573)" onmouseover="showTip(event, '573', 573)">
-                <p>
-                  <a id="prolog">
-                    <a href="#prolog">
-                      <code><span>prolog&#32;<span>rules&#32;gl</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="573">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>prolog&#32;<span>rules&#32;gl</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rules
-                      </b>
-                      :
-                      <code><span>string&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        gl
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rules
-                </span>
-                :
-                <code><span>string&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  gl
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '574', 574)" onmouseover="showTip(event, '574', 574)">
+              <code onmouseout="hideTip(event, '578', 578)" onmouseover="showTip(event, '578', 578)">
                 <p>
                   <a id="renamerule">
                     <a href="#renamerule">
@@ -516,7 +465,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="574">
+              <div class="fsdocs-tip" id="578">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>renamerule&#32;<span>k&#32;<span>(<span>asm,&#32;c</span>)</span></span></span></code>
@@ -560,47 +509,284 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  k
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  asm
-                </span>
-                :
-                <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  c
-                </span>
-                :
-                <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Prolog.renamerule`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.renamerule\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Renames a rule.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    asm
+                  </span>
+                  :
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    c
+                  </span>
+                  :
+                  <code><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Prolog
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '579', 579)" onmouseover="showTip(event, '579', 579)">
+                <p>
+                  <a id="parserule">
+                    <a href="#parserule">
+                      <code><span>parserule&#32;<span>s</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="579">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>parserule&#32;<span>s</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        s
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Prolog.parserule`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.parserule\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L80-80" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Parses rules in a Prolog-like syntax.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '575', 575)" onmouseover="showTip(event, '575', 575)">
+              <code onmouseout="hideTip(event, '580', 580)" onmouseover="showTip(event, '580', 580)">
+                <p>
+                  <a id="prolog">
+                    <a href="#prolog">
+                      <code><span>prolog&#32;<span>rules&#32;gl</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="580">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prolog&#32;<span>rules&#32;gl</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rules
+                      </b>
+                      :
+                      <code><span>string&#32;list</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        gl
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Prolog.prolog`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.prolog\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Prolog interpreter.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    gl
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calcolemus/reference/calcolemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calcolemus/reference/calcolemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '581', 581)" onmouseover="showTip(event, '581', 581)">
                 <p>
                   <a id="simpleprolog">
                     <a href="#simpleprolog">
@@ -609,7 +795,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="575">
+              <div class="fsdocs-tip" id="581">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>simpleprolog&#32;<span>rules&#32;gl</span></span></code>
@@ -645,33 +831,56 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rules
-                </span>
-                :
-                <code><span>string&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  gl
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calcolemus.Prolog.simpleprolog`')">
+                    <img src="/Calcolemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calcolemus.Prolog.simpleprolog\'/>')">
+                    <img src="/Calcolemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calcolemus/tree/master/src/Calcolemus/Prolog.fs#L96-96" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calcolemus/content/img/github.png" class="normal"/>
+                    <img src="/Calcolemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Prolog interpreter without clear variable binding output.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span>string&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    gl
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calcolemus/reference/calcolemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calcolemus/reference/calcolemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
