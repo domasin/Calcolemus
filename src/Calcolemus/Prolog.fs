@@ -47,20 +47,17 @@ module Prolog =
         match goals with
         | [] -> env
         | g :: gs ->
-            if n = 0 then failwith "Too deep" 
+            if n = 0 then 
+                failwith "Too deep" 
             else
-                let rec tryfind f l =
-                    match l with
-                    | [] -> failwith "tryfind"
-                    | h :: t ->
-                        try f h
-                        with _ -> tryfind f t
-                tryfind (
-                    fun rule ->
-                        let (a, c), k' =
-                            renamerule k rule
-                        backchain rules (n - 1) k' (unify_literals env (c, g)) (a @     gs))
-                        rules
+                rules
+                |> tryfind (fun rule ->
+                    let (a, c), k' = renamerule k rule
+                    backchain rules (n - 1) k' 
+                        (unify_literals env (c, g)) 
+                        (a@gs)
+                )
+                        
 
     let hornify cls =
         let pos, neg = List.partition positive cls

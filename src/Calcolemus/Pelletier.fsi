@@ -76,6 +76,11 @@ module Pelletier =
     /// <category index="2">Monadic Predicate Logic</category>
     val p24: formula<fol>
 
+    /// <c>(forall x. P(x) /\ (G(x) \/ H(x)) ==> Q(x)) /\ (forall x. Q(x) /\ H(x) ==> J(x)) /\ (forall x. R(x) ==> H(x)) ==> (forall x. P(x) /\ R(x) ==> J(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p32: formula<fol>
+
     /// <c>((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt; ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt; ((exists x. forall y. Q(x) &lt;=&gt; Q(y)) &lt;=&gt; ((exists x. P(x)) &lt;=&gt; (forall y. P(y))))</c>
     /// 
     /// <category index="2">Monadic Predicate Logic</category>

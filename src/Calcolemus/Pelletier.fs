@@ -52,6 +52,12 @@ module Pelletier =
              (forall x. Q(x) /\ R(x) ==> U(x))
                  ==> (exists x. P(x) /\ R(x))"
 
+    let p32 = 
+        !! @"(forall x. P(x) /\ (G(x) \/ H(x)) ==> Q(x)) /\
+             (forall x. Q(x) /\ H(x) ==> J(x)) /\
+             (forall x. R(x) ==> H(x))
+             ==> (forall x. P(x) /\ R(x) ==> J(x))"
+
     let p34 = 
         !!"((exists x. forall y. P(x) <=> P(y)) <=>
             ((exists x. Q(x)) <=> (forall y. Q(y)))) <=>
