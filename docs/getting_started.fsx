@@ -17,7 +17,7 @@ This document demonstrates how to use this library.
 
 First, we reference and open Calculemus
 
-    #r "nuget: Calculemus, 1.0.5"
+    #r "nuget: Calculemus, 1.0.6"
     open Calculemus
 *)
 
