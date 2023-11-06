@@ -98,11 +98,29 @@
     <div>
       <p class="fsdocs-summary">
         
- Model Elimination.
+ Model elimination procedure (MESON version, based on Stickel's PTTP).
  
       </p>
     </div>
   </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Basic MESON procedure
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        MESON procedure optimized
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Basic MESON procedure
+  </h2>
   <div>
     <h3>
       Functions and values
@@ -145,6 +163,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                       - 
+                      The input clause.
                     </span>
                     <br/>
                   </ul>
@@ -153,37 +173,737 @@
                     Returns: 
                     <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span>)</span>&#32;list</span></code>
                   </span>
+                  
+ The set of contrapositives of the input clause.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cls
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span>)</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Meson.contrapositives``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.contrapositives``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Converts a clause into the set of all its contrapositives.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ If the clause is completely negative, is also added the rule with 
+ <code>false</code> as conclusion.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input clause.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;'a&gt;</span></span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The set of contrapositives of the input clause.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="contrapositives-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">contrapositives</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P&quot;</span><span class="pn">;</span><span class="s">&quot;Q&quot;</span><span class="pn">;</span><span class="s">&quot;~R&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[([`~Q`; `R`], `P`); ([`~P`; `R`], `Q`); ([`~P`; `~Q`], `~R`)]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="contrapositives-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">contrapositives</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;~P&quot;</span><span class="pn">;</span><span class="s">&quot;~Q&quot;</span><span class="pn">;</span><span class="s">&quot;~R&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[([`P`; `Q`; `R`], `false`); ([`Q`; `R`], `~P`); ([`P`; `R`], `~Q`); ([`P`; `Q`], `~R`)]</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
               <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
+                <p>
+                  <a id="meson_basic">
+                    <a href="#meson_basic">
+                      <code><span>meson_basic&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="540">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>meson_basic&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int&#32;list</span></code>
+                  </span>
+                  
+ the list of depth limits reached trying to refute the subproblems, if 
+ the formula is valid.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.meson_basic`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.meson_basic\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L77-77" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the validity of a formula by negating it and splitting in 
+ subproblems to be refuted with the core MESON procedure. 
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ the list of depth limits reached trying to refute the subproblems, if 
+ the formula is valid.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints the depth limits tried to the <code>stdout</code>.
+ Crashes if the input formula is not unsatisfiable.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="meson_basic-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;exists x. exists y. forall z.</span>
+<span class="s">     (F(x,y) ==&gt; (F(y,z) /\ F(z,z))) /\</span>
+<span class="s">     ((F(x,y) /\ G(x,y)) ==&gt; (G(x,z) /\ G(z,z)))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">meson_basic</span>
+</code></pre>
+
+
+ Evaluates to <code>[8]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">1</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">2</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">3</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">4</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">5</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">6</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">7</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">8</span>
+</code></pre>
+
+
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+                <p>
+                  <a id="mexpand_basic">
+                    <a href="#mexpand_basic">
+                      <code><span>mexpand_basic&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="541">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mexpand_basic&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rules
+                      </b>
+                      :
+                      <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                       - 
+                      The input list of rules.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ancestors
+                      </b>
+                      :
+                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The accumulator for the ancestors.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        g
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The goal to be solved from the rules.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cont
+                      </b>
+                      :
+                      <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                       - 
+                      The continuation function to solve the subgoals.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        env
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      The given instantiation under which trying solving.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The maximum number of rule applications permitted.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        k
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The counter for variable renaming.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></code>
+                  </span>
+                  
+ The triple with the current instantiation, the depth reached and the 
+ number of variables renamed.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.mexpand_basic`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.mexpand_basic\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L44-44" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Core MESON engine.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ It tries to solve the input goal <code>g</code> according to the <code>rules</code> 
+ with the following steps:
+ <ul>
+  <li>
+ If the current size bound has been exceeded, fail;
+ </li>
+  <li>
+ otherwise, try to unify the current goal with the negation of one of 
+ its ancestors (not renaming variables) and call <c>cont</c> to do the 
+ same for the remaining goals under the new instantiation;
+ </li>
+  <li>
+ if this fails, try a normal Prolog-style extension with one of the 
+ rules, first unifying with a renamed rule and then iterating recursive 
+ calls over the list of subgoals, with the environment modified 
+ according to the results of unification, the permissible number of new 
+ nodes decreased by the number of new subgoals created, 
+ and the variable renaming counter increased.
+ </li>
+</ul>
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ancestors
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The accumulator for the ancestors.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    g
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The goal to be solved from the rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cont
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The continuation function to solve the subgoals.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The given instantiation under which trying solving.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The maximum number of rule applications permitted.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The counter for variable renaming.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The triple with the current instantiation, the depth reached and the 
+ number of variables renamed.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>Too deep</code> when <code>n &lt; 0</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>tryfind</code> when the goals are not solvable, at least at the current limit.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ See also 
+ <a href="/Calculemus/reference/calculemus-prolog.html#backchain">Prolog.backchain</a>,
+ <a href="/Calculemus/reference/calculemus-tableaux.html#tableau">Tableaux.tableau</a>
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mexpand_basic-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mexpand_basic</span> 
+   <span class="pn">[</span>
+       <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+       <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="id">False</span><span class="pn">)</span><span class="pn">;</span>
+   <span class="pn">]</span>
+   <span class="pn">[</span><span class="pn">]</span> <span class="id">False</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">id</span> <span class="pn">(</span><span class="id">undefined</span><span class="pn">,</span><span class="n">1</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">env</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="fn">n</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="fn">k</span><span class="pn">)</span> <span class="k">-&gt;</span> <span class="pn">(</span><span class="id">graph</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="id">env</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">n</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">k</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val id: x: &#39;T -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs2">val env: obj</div>
+<div class="fsdocs-tip" id="fs3">val n: obj</div>
+<div class="fsdocs-tip" id="fs4">val k: obj</div>
+
+
+ Evaluates to <code>([(&quot;_0&quot;, ``_1``)], 0, 2)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mexpand_basic-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mexpand_basic</span> 
+   <span class="pn">[</span>
+       <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+       <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="id">False</span><span class="pn">)</span><span class="pn">;</span>
+   <span class="pn">]</span>
+   <span class="pn">[</span><span class="pn">]</span> <span class="id">False</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">id</span> <span class="pn">(</span><span class="id">undefined</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val id: x: &#39;T -&gt; &#39;T</div>
+
+
+ Throws <code>System.Exception: tryfind</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mexpand_basic-3">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mexpand_basic</span> 
+   <span class="pn">[</span>
+       <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+       <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="id">False</span><span class="pn">)</span><span class="pn">;</span>
+   <span class="pn">]</span>
+   <span class="pn">[</span><span class="pn">]</span> <span class="id">False</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">id</span> <span class="pn">(</span><span class="id">undefined</span><span class="pn">,</span><span class="o">-</span><span class="n">1</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val id: x: &#39;T -&gt; &#39;T</div>
+
+
+ Throws <code>System.Exception: Too deep</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
+                <p>
+                  <a id="puremeson_basic">
+                    <a href="#puremeson_basic">
+                      <code><span>puremeson_basic&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="542">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>puremeson_basic&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  
+ the number of depth limit reached trying refuting the formula with 
+ MESON, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.puremeson_basic`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.puremeson_basic\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the unsatisfiability of a formula using the core MESON 
+ procedure.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ the number of depth limit reached trying refuting the formula with 
+ MESON, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints the depth limits tried to the <code>stdout</code>.
+ Crashes if the input formula is not unsatisfiable.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="puremeson_basic-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">puremeson_basic</span>
+</code></pre>
+
+
+ Evaluates to <code>1</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">0</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">1</span>
+</code></pre>
+
+
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    MESON procedure optimized
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
                 <p>
                   <a id="equal">
                     <a href="#equal">
@@ -192,7 +912,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="540">
+              <div class="fsdocs-tip" id="543">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>equal&#32;<span>env&#32;fm1&#32;fm2</span></span></code>
@@ -206,6 +926,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      The given instantiation.
                     </span>
                     <br/>
                     <span>
@@ -214,6 +936,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The first input literal.
                     </span>
                     <br/>
                     <span>
@@ -222,6 +946,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The second input literal.
                     </span>
                     <br/>
                   </ul>
@@ -230,53 +956,146 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formulas are literals and identical under the give 
+ instantiation; otherwise, false (this is the case also if the input 
+ formulas are identical but not literals).
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm1
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm2
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.equal`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.equal\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests if two literals are identical under the given instantiation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The given instantiation.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm1
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input literal.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm2
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input literal.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formulas are literals and identical under the give 
+ instantiation; otherwise, false (this is the case also if the input 
+ formulas are identical but not literals).
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="equal-1">
+                
+ Identical literals
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">equal</span> 
+   <span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="o">|-&gt;</span> <span class="o">!!!</span><span class="s">&quot;f(y)&quot;</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+   <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span> <span class="o">!!</span><span class="s">&quot;P(f(y))&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="equal-2">
+                
+ Different literals
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">equal</span> 
+   <span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="o">|-&gt;</span> <span class="o">!!!</span><span class="s">&quot;f(z)&quot;</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+   <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span> <span class="o">!!</span><span class="s">&quot;P(f(y))&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="equal-3">
+                
+ Identical formulas that are not literals
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">equal</span> 
+   <span class="pn">(</span><span class="pn">(</span><span class="s">&quot;x&quot;</span> <span class="o">|-&gt;</span> <span class="o">!!!</span><span class="s">&quot;f(y)&quot;</span><span class="pn">)</span><span class="id">undefined</span><span class="pn">)</span> 
+   <span class="o">!!</span><span class="s">&quot;P(x) /\ P(x)&quot;</span> <span class="o">!!</span><span class="s">&quot;P(f(y)) /\ P(f(y))&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
                 <p>
                   <a id="expand2">
                     <a href="#expand2">
@@ -285,7 +1104,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="541">
+              <div class="fsdocs-tip" id="544">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>expand2&#32;<span>expfn&#32;goals1&#32;n1&#32;goals2&#32;n2&#32;n3&#32;cont&#32;env&#32;k</span></span></code>
@@ -298,7 +1117,9 @@
                         expfn
                       </b>
                       :
-                      <code><span>'a&#32;->&#32;<span>(<span><span>'b&#32;*&#32;int&#32;*&#32;'c</span>&#32;->&#32;'d</span>)</span>&#32;->&#32;<span>'b&#32;*&#32;int&#32;*&#32;'c</span>&#32;->&#32;'d</span></code>
+                      <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;->&#32;<span>(<span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span>)</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                       - 
+                      The input basic expansion.
                     </span>
                     <br/>
                     <span>
@@ -306,7 +1127,9 @@
                         goals1
                       </b>
                       :
-                      <code>'a</code>
+                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The first list of subgoals.
                     </span>
                     <br/>
                     <span>
@@ -315,6 +1138,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The depth limit for <code>goals1</code>.
                     </span>
                     <br/>
                     <span>
@@ -322,7 +1147,9 @@
                         goals2
                       </b>
                       :
-                      <code>'a</code>
+                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The second list of subgoals.
                     </span>
                     <br/>
                     <span>
@@ -331,6 +1158,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The depth limit for <code>goals2</code> that will be added to what is left from <code>goals1</code>.
                     </span>
                     <br/>
                     <span>
@@ -339,6 +1168,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The minimum depth limit allowed for <code>goals2</code>.
                     </span>
                     <br/>
                     <span>
@@ -346,294 +1177,9 @@
                         cont
                       </b>
                       :
-                      <code><span><span>'b&#32;*&#32;int&#32;*&#32;'c</span>&#32;->&#32;'d</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        env
-                      </b>
-                      :
-                      <code>'b</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        k
-                      </b>
-                      :
-                      <code>'c</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>'d</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  expfn
-                </span>
-                :
-                <code><span>'a&#32;->&#32;<span>(<span><span>'b&#32;*&#32;int&#32;*&#32;'c</span>&#32;->&#32;'d</span>)</span>&#32;->&#32;<span>'b&#32;*&#32;int&#32;*&#32;'c</span>&#32;->&#32;'d</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  goals1
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n1
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  goals2
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n2
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n3
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cont
-                </span>
-                :
-                <code><span><span>'b&#32;*&#32;int&#32;*&#32;'c</span>&#32;->&#32;'d</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  k
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>'d</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
-                <p>
-                  <a id="meson001">
-                    <a href="#meson001">
-                      <code><span>meson001&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="542">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>meson001&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>int&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>int&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
-                <p>
-                  <a id="meson002">
-                    <a href="#meson002">
-                      <code><span>meson002&#32;<span>fm</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="543">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>meson002&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>int&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>int&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
-                <p>
-                  <a id="mexpand001">
-                    <a href="#mexpand001">
-                      <code><span>mexpand001&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="544">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>mexpand001&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rules
-                      </b>
-                      :
-                      <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ancestors
-                      </b>
-                      :
-                      <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        g
-                      </b>
-                      :
-                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        cont
-                      </b>
-                      :
-                      <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;'a</span></code>
+                      <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                       - 
+                      The supporting continuation function.
                     </span>
                     <br/>
                     <span>
@@ -642,14 +1188,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        n
-                      </b>
-                      :
-                      <code>int</code>
+                       - 
+                      The given instantiation under which trying solving.
                     </span>
                     <br/>
                     <span>
@@ -658,87 +1198,195 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The counter for variable renaming.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code>'a</code>
+                    <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></code>
                   </span>
+                  
+ The triple with the current instantiation, the depth reached and the 
+ number of variables renamed. 
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rules
-                </span>
-                :
-                <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ancestors
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  g
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cont
-                </span>
-                :
-                <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;'a</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  k
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.expand2`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.expand2\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Optimizes the depth limit used by a basic expansion.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ Applies <code>expfn</code> to <code>goals1</code> with size limit <code>n1</code>, 
+ then attempts <code>goals2</code> with whatever is left over from 
+ <code>goals1</code> plus an additional <code>n2</code>, yet forces the 
+ continuation to fail unless the second takes more than <code>n3</code>.
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    expfn
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;->&#32;<span>(<span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span>)</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input basic expansion.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    goals1
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first list of subgoals.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The depth limit for <code>goals1</code>.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    goals2
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second list of subgoals.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The depth limit for <code>goals2</code> that will be added to what is left from <code>goals1</code>.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n3
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The minimum depth limit allowed for <code>goals2</code>.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cont
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The supporting continuation function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The given instantiation under which trying solving.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The counter for variable renaming.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The triple with the current instantiation, the depth reached and the 
+ number of variables renamed. 
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>pair</code> when... TODO
+                  </td>
+                </tr>
+              </table>
+            </details>
           </td>
         </tr>
         <tr>
@@ -746,9 +1394,9 @@
             <div>
               <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
                 <p>
-                  <a id="mexpand002">
-                    <a href="#mexpand002">
-                      <code><span>mexpand002&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
+                  <a id="meson">
+                    <a href="#meson">
+                      <code><span>meson&#32;<span>fm</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -756,7 +1404,156 @@
               <div class="fsdocs-tip" id="545">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>mexpand002&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
+                  <code><span>meson&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int&#32;list</span></code>
+                  </span>
+                  
+ the list of depth limits reached trying to refute the subproblems, if 
+ the formula is valid.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.meson`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.meson\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the validity of a formula by negating it and splitting in 
+ subproblems to be refuted with the core MESON procedure optimized. 
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ the list of depth limits reached trying to refute the subproblems, if 
+ the formula is valid.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints the depth limits tried to the <code>stdout</code>.
+ Crashes if the input formula is not unsatisfiable.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="meson_basic-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;((forall x. P1(x) ==&gt; P0(x)) /\ (exists x. P1(x))) /\</span>
+<span class="s">     ((forall x. P2(x) ==&gt; P0(x)) /\ (exists x. P2(x))) /\</span>
+<span class="s">     ((forall x. P3(x) ==&gt; P0(x)) /\ (exists x. P3(x))) /\</span>
+<span class="s">     ((forall x. P4(x) ==&gt; P0(x)) /\ (exists x. P4(x))) /\</span>
+<span class="s">     ((forall x. P5(x) ==&gt; P0(x)) /\ (exists x. P5(x))) /\</span>
+<span class="s">     ((exists x. Q1(x)) /\ (forall x. Q1(x) ==&gt; Q0(x))) /\</span>
+<span class="s">     (forall x. P0(x)</span>
+<span class="s">                ==&gt; (forall y. Q0(y) ==&gt; R(x,y)) \/</span>
+<span class="s">                ((forall y. P0(y) /\ S0(y,x) /\</span>
+<span class="s">                    (exists z. Q0(z) /\ R(y,z))</span>
+<span class="s">                    ==&gt; R(x,y)))) /\</span>
+<span class="s">     (forall x y. P3(y) /\ (P5(x) \/ P4(x)) ==&gt; S0(x,y)) /\</span>
+<span class="s">     (forall x y. P3(x) /\ P2(y) ==&gt; S0(x,y)) /\</span>
+<span class="s">     (forall x y. P2(x) /\ P1(y) ==&gt; S0(x,y)) /\</span>
+<span class="s">     (forall x y. P1(x) /\ (P2(y) \/ Q1(y)) ==&gt; ~(R(x,y))) /\</span>
+<span class="s">     (forall x y. P3(x) /\ P4(y) ==&gt; R(x,y)) /\</span>
+<span class="s">     (forall x y. P3(x) /\ P5(y) ==&gt; ~(R(x,y))) /\</span>
+<span class="s">     (forall x. (P4(x) \/ P5(x)) ==&gt; exists y. Q0(y) /\ R(x,y))</span>
+<span class="s">     ==&gt; exists x y. P0(x) /\ P0(y) /\</span>
+<span class="s">     exists z. Q1(z) /\ R(y,z) /\ R(x,y)&quot;</span>
+<span class="o">|&gt;</span> <span class="id">meson</span>
+</code></pre>
+
+
+ Evaluates to <code>[53]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">1</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">2</span>
+ <span class="o">..</span><span class="pn">.</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">52</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">53</span>
+</code></pre>
+
+
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
+                <p>
+                  <a id="mexpand">
+                    <a href="#mexpand">
+                      <code><span>mexpand&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="546">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mexpand&#32;<span>rules&#32;ancestors&#32;g&#32;cont&#32;<span>(<span>env,&#32;n,&#32;k</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -767,6 +1564,8 @@
                       </b>
                       :
                       <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                       - 
+                      The input list of rules.
                     </span>
                     <br/>
                     <span>
@@ -775,6 +1574,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The accumulator for the ancestors.
                     </span>
                     <br/>
                     <span>
@@ -783,6 +1584,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The goal to be solved from the rules.
                     </span>
                     <br/>
                     <span>
@@ -790,7 +1593,9 @@
                         cont
                       </b>
                       :
-                      <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;'a</span></code>
+                      <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                       - 
+                      The continuation function to solve the subgoals.
                     </span>
                     <br/>
                     <span>
@@ -799,6 +1604,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                       - 
+                      The given instantiation under which trying solving.
                     </span>
                     <br/>
                     <span>
@@ -807,6 +1614,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The maximum number of rule applications permitted.
                     </span>
                     <br/>
                     <span>
@@ -815,148 +1624,244 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      The counter for variable renaming.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code>'a</code>
+                    <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></code>
                   </span>
+                  
+ The triple with the current instantiation, the depth reached and the 
+ number of variables renamed.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rules
-                </span>
-                :
-                <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ancestors
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  g
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cont
-                </span>
-                :
-                <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;'a</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  k
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
-                <p>
-                  <a id="puremeson001">
-                    <a href="#puremeson001">
-                      <code><span>puremeson001&#32;<span>fm</span></span></code>
-                    </a>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.mexpand`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.mexpand\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
                   </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="546">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>puremeson001&#32;<span>fm</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fm
-                      </b>
-                      :
-                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>int</code>
-                  </span>
-                  <br/>
+                  <p class="fsdocs-summary">
+                    
+ Core MESON engine optimized with 
+ <a href="/Calculemus/reference/calculemus-meson.html#expand2">Meson.expand2</a>.
+ 
+                  </p>
                 </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ ... TODO
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rules
+                  </span>
+                  :
+                  <code><span><span>(<span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;*&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ancestors
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The accumulator for the ancestors.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    g
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The goal to be solved from the rules.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cont
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The continuation function to solve the subgoals.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The given instantiation under which trying solving.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The maximum number of rule applications permitted.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    k
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The counter for variable renaming.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The triple with the current instantiation, the depth reached and the 
+ number of variables renamed.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>Too deep</code> when <code>n &lt; 0</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>tryfind</code> when the goals are not solvable, at least at the current limit.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>repetition</code> when... TODO
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mexpand-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mexpand</span> 
+   <span class="pn">[</span>
+       <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+       <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="id">False</span><span class="pn">)</span><span class="pn">;</span>
+   <span class="pn">]</span>
+   <span class="pn">[</span><span class="pn">]</span> <span class="id">False</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">id</span> <span class="pn">(</span><span class="id">undefined</span><span class="pn">,</span><span class="n">1</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+ <span class="o">|&gt;</span> <span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="fn">env</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="fn">n</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="fn">k</span><span class="pn">)</span> <span class="k">-&gt;</span> <span class="pn">(</span><span class="id">graph</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="id">env</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="fn">n</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">k</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val id: x: &#39;T -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs2">val env: obj</div>
+<div class="fsdocs-tip" id="fs3">val n: obj</div>
+<div class="fsdocs-tip" id="fs4">val k: obj</div>
+
+
+ Evaluates to <code>([(&quot;_0&quot;, ``_1``)], 0, 2)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mexpand-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mexpand</span> 
+   <span class="pn">[</span>
+       <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+       <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="id">False</span><span class="pn">)</span><span class="pn">;</span>
+   <span class="pn">]</span>
+   <span class="pn">[</span><span class="pn">]</span> <span class="id">False</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">id</span> <span class="pn">(</span><span class="id">undefined</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val id: x: &#39;T -&gt; &#39;T</div>
+
+
+ Throws <code>System.Exception: tryfind</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mexpand-3">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mexpand</span> 
+   <span class="pn">[</span>
+       <span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span> <span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">)</span><span class="pn">;</span> 
+       <span class="pn">(</span><span class="pn">[</span><span class="o">!!</span><span class="s">&quot;P(x)&quot;</span><span class="pn">]</span><span class="pn">,</span> <span class="id">False</span><span class="pn">)</span><span class="pn">;</span>
+   <span class="pn">]</span>
+   <span class="pn">[</span><span class="pn">]</span> <span class="id">False</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">id</span> <span class="pn">(</span><span class="id">undefined</span><span class="pn">,</span><span class="o">-</span><span class="n">1</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div class="fsdocs-tip" id="fs1">val id: x: &#39;T -&gt; &#39;T</div>
+
+
+ Throws <code>System.Exception: Too deep</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -964,9 +1869,9 @@
             <div>
               <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
                 <p>
-                  <a id="puremeson002">
-                    <a href="#puremeson002">
-                      <code><span>puremeson002&#32;<span>fm</span></span></code>
+                  <a id="puremeson">
+                    <a href="#puremeson">
+                      <code><span>puremeson&#32;<span>fm</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -974,7 +1879,7 @@
               <div class="fsdocs-tip" id="547">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>puremeson002&#32;<span>fm</span></span></code>
+                  <code><span>puremeson&#32;<span>fm</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -985,6 +1890,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -993,31 +1900,97 @@
                     Returns: 
                     <code>int</code>
                   </span>
+                  
+ the number of depth limit reached trying refuting the formula with 
+ MESON, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Meson.puremeson`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Meson.puremeson\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Meson.fs#L138-138" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the unsatisfiability of a formula using the core MESON 
+ procedure optimized.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ the number of depth limit reached trying refuting the formula with 
+ MESON, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints the depth limits tried to the <code>stdout</code>.
+ Crashes if the input formula is not unsatisfiable.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="puremeson-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) /\ ~P(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">puremeson</span>
+</code></pre>
+
+
+ Evaluates to <code>1</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">0</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">1</span>
+</code></pre>
+
+
+              </p>
+            </details>
           </td>
         </tr>
       </tbody>
