@@ -41,7 +41,7 @@ module Meson =
     // The core of MESON: ancestor unification or Prolog-style extension.     //
     // ---------------------------------------------------------------------- //
 
-    let rec mexpand001 rules ancestors g cont (env, n, k) =
+    let rec mexpand_basic rules ancestors g cont (env, n, k) =
         if n < 0 then failwith "Too deep"
         else
             try 
@@ -49,7 +49,7 @@ module Meson =
             with _ ->
                 tryfind (fun rule ->
                     let (asm, c) ,k' = renamerule k rule
-                    List.foldBack (mexpand001 rules (g :: ancestors)) asm cont
+                    List.foldBack (mexpand_basic rules (g :: ancestors)) asm cont
                         (unify_literals env (g, c), n - List.length asm, k'))
                     rules
 
@@ -57,17 +57,17 @@ module Meson =
     // Full MESON procedure.                                                  //
     // ---------------------------------------------------------------------- //
 
-    let puremeson001 fm =
+    let puremeson_basic fm =
         let cls = simpcnf (specialize (pnf fm))
         let rules = List.foldBack ((@) << contrapositives) cls []
         deepen (fun n ->
-            mexpand001 rules [] False id (undefined, n, 0)
+            mexpand_basic rules [] False id (undefined, n, 0)
             |> ignore
             n) 0
 
-    let meson001 fm =
+    let meson_basic fm =
         let fm1 = askolemize (Not (generalize fm))
-        List.map (puremeson001 << list_conj) (simpdnf fm1)
+        List.map (puremeson_basic << list_conj) (simpdnf fm1)
 
     // ---------------------------------------------------------------------- //
     // With repetition checking and divide-and-conquer search.                //
@@ -87,7 +87,7 @@ module Meson =
 
     let rec mexpand rules ancestors g cont (env, n, k) =
 
-        let rec mexpands002 rules ancestors gs cont (env, n, k) =
+        let rec mexpands rules ancestors gs cont (env, n, k) =
             if n < 0 then failwith "Too deep" 
             else
                 let m = List.length gs
@@ -96,7 +96,7 @@ module Meson =
                     let n1 = n / 2
                     let n2 = n - n1
                     let goals1,goals2 = chop_list (m / 2) gs
-                    let expfn = expand (mexpands002 rules ancestors)
+                    let expfn = expand (mexpands rules ancestors)
                     try expfn goals1 n1 goals2 n2 -1 cont env k
                     with _ -> expfn goals2 n1 goals1 n2 n1 cont env k
 
@@ -109,7 +109,7 @@ module Meson =
             | Failure _ ->
                 tryfind (fun r ->
                     let (asm, c), k' = renamerule k r
-                    mexpands002 rules (g :: ancestors) asm cont (unify_literals env     (g, c), n - List.length asm, k'))
+                    mexpands rules (g :: ancestors) asm cont (unify_literals env     (g, c), n - List.length asm, k'))
                     rules
 
     let puremeson fm =   

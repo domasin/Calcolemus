@@ -14,8 +14,6 @@ open Calculemus
 open Lib.Fpf
 
 open Fol
-open Clause
-open Resolution
 open Prolog
 
 
