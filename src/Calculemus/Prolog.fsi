@@ -50,7 +50,7 @@ module Prolog =
     /// </summary>
     /// 
     /// <param name="rules">The list of input rules.</param>
-    /// <param name="n">The limit on the maximum number of rule applications.</param>
+    /// <param name="n">The maximum number of rule applications permitted.</param>
     /// <param name="k">The counter for variables renaming.</param>
     /// <param name="env">An environment of mappings (represented as a finite partial function) from variables to terms, used as an accumulator for the final result of the unification procedure. .</param>
     /// <param name="goals">The input goals.</param>

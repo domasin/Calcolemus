@@ -41,17 +41,26 @@ module Meson =
     // The core of MESON: ancestor unification or Prolog-style extension.     //
     // ---------------------------------------------------------------------- //
 
-    let rec mexpand_basic rules ancestors g cont (env, n, k) =
+    let rec mexpand_basic rules ancestors g cont (env, n, k) 
+        : func<string,term> * int * int =
         if n < 0 then failwith "Too deep"
         else
             try 
-                tryfind (fun a -> cont (unify_literals env (g, negate a), n, k))    ancestors
+                // ancestor unification
+                ancestors
+                |> tryfind (fun a -> 
+                    cont (unify_literals env (g, negate a), n, k)
+                )    
             with _ ->
-                tryfind (fun rule ->
+                // Prolog-style extension
+                rules
+                |> tryfind (fun rule ->
                     let (asm, c) ,k' = renamerule k rule
-                    List.foldBack (mexpand_basic rules (g :: ancestors)) asm cont
-                        (unify_literals env (g, c), n - List.length asm, k'))
-                    rules
+
+                    (unify_literals env (g, c), n - List.length asm, k')
+                    |> List.foldBack 
+                        (mexpand_basic rules (g :: ancestors)) asm cont
+                )
 
     // ---------------------------------------------------------------------- //
     // Full MESON procedure.                                                  //
@@ -77,15 +86,22 @@ module Meson =
         try unify_literals env (fm1, fm2) = env
         with _ -> false
 
-    let expand expfn goals1 n1 goals2 n2 n3 cont env k =
-        expfn goals1 (fun (e1, r1, k1) ->
-            expfn goals2 (fun (e2, r2, k2) ->
-                            if n2 + r1 <= n3 + r2 then failwith "pair"
-                            else cont(e2, r2, k2))
-                    (e1, n2 + r1, k1))
-            (env, n1, k)
+    let expand2 expfn (goals1:formula<fol> list) n1 goals2 n2 n3 cont env k 
+        : func<string,term> * int * int =
 
-    let rec mexpand rules ancestors g cont (env, n, k) =
+        (env, n1, k)
+        |> expfn goals1 (fun ((e1:func<string,term>), r1, (k1:int)) ->
+            (e1, n2 + r1, k1)
+            |> expfn goals2 (fun (e2, r2, k2) ->
+                if n2 + r1 <= n3 + r2 then 
+                    failwith "pair"
+                else 
+                    cont(e2, r2, k2)
+            )
+        )
+
+    let rec mexpand rules ancestors g cont (env, n, k) 
+        : func<string,term> * int * int =
 
         let rec mexpands rules ancestors gs cont (env, n, k) =
             if n < 0 then failwith "Too deep" 
@@ -96,7 +112,7 @@ module Meson =
                     let n1 = n / 2
                     let n2 = n - n1
                     let goals1,goals2 = chop_list (m / 2) gs
-                    let expfn = expand (mexpands rules ancestors)
+                    let expfn = expand2 (mexpands rules ancestors)
                     try expfn goals1 n1 goals2 n2 -1 cont env k
                     with _ -> expfn goals2 n1 goals1 n2 n1 cont env k
 
@@ -105,12 +121,19 @@ module Meson =
         elif List.exists (equal env g) ancestors then
             failwith "repetition"
         else
-            try tryfind (fun a -> cont (unify_literals env (g, negate a), n, k))    ancestors with
-            | Failure _ ->
-                tryfind (fun r ->
+            try 
+                ancestors
+                |> tryfind (fun a -> 
+                    cont (unify_literals env (g, negate a), n, k)
+                )     
+            with Failure _ ->
+                rules
+                |> tryfind (fun r ->
                     let (asm, c), k' = renamerule k r
-                    mexpands rules (g :: ancestors) asm cont (unify_literals env     (g, c), n - List.length asm, k'))
-                    rules
+                    
+                    (unify_literals env (g, c), n - List.length asm, k')
+                    |> mexpands rules (g :: ancestors) asm cont 
+                )
 
     let puremeson fm =   
         let cls = simpcnf (specialize (pnf fm))

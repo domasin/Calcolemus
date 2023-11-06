@@ -335,8 +335,8 @@ module Tableaux =
     /// </summary>
     /// 
     /// <remarks>
-    /// Calls iteratively a function that accepts an input integer incrementing 
-    /// the integer calling it again, if it fails, with the integer incremented.
+    /// Calls a function that accepts an input integer; and then calls it again 
+    /// with the integer incremented, if the previous call has failed.
     /// </remarks>
     /// 
     /// <param name="f">The input function.</param>
