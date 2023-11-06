@@ -181,7 +181,7 @@ let decide_finite n fm =
 let limmeson n fm =
     let cls = simpcnf (specialize (pnf fm))
     let rules = List.foldBack ((@) << contrapositives) cls []
-    mexpand002 rules [] False id (undefined, n, 0)
+    mexpand rules [] False id (undefined, n, 0)
 
 let limited_meson n fm =
     let fm1 = askolemize (Not (generalize fm))

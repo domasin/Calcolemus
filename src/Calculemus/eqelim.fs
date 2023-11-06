@@ -131,7 +131,7 @@ let bpuremeson fm =
     let cls = brand (simpcnf (specialize (pnf fm)))
     let rules = List.foldBack ((@) << contrapositives) cls []
     deepen (fun n ->
-        mexpand002 rules [] False id (undefined, n, 0)
+        mexpand rules [] False id (undefined, n, 0)
         |> ignore
         n) 0
 
@@ -141,7 +141,7 @@ let bmeson fm =
 
 // Moved from section - Older stuff not now in the text
 // to here because it is still in the text.  EGT
-let emeson fm = meson002 (equalitize fm)
+let emeson fm = meson (equalitize fm)
 
 
 

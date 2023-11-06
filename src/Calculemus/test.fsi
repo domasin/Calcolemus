@@ -192,39 +192,6 @@ val p59: Formulas.formula<Fol.fol>
 /// ∀x. P(x,f(x)) ⟷ (∃y. (∀z. P(z,y) ⟶ P (z,f(x))) ∧ P(x,y))
 val p60: Formulas.formula<Fol.fol>
 
-
-
-
-module Calculemus.Prolog
-
-val renamerule:
-  k: int ->
-    asm: Formulas.formula<Fol.fol> list * c: Formulas.formula<Fol.fol> ->
-      (Formulas.formula<Fol.fol> list * Formulas.formula<Fol.fol>) * int
-
-val backchain:
-  rules: (Formulas.formula<Fol.fol> list * Formulas.formula<Fol.fol>) list ->
-    n: int ->
-    k: int ->
-    env: Lib.FPF.func<string,Fol.term> ->
-    goals: Formulas.formula<Fol.fol> list -> Lib.FPF.func<string,Fol.term>
-
-val hornify:
-  cls: Formulas.formula<'a> list ->
-    Formulas.formula<'a> list * Formulas.formula<'a> when 'a: equality
-
-val hornprove:
-  fm: Formulas.formula<Fol.fol> -> Lib.FPF.func<string,Fol.term> * int
-
-val parserule:
-  s: string -> Formulas.formula<Fol.fol> list * Formulas.formula<Fol.fol>
-
-val simpleprolog:
-  rules: string list -> gl: string -> Lib.FPF.func<string,Fol.term>
-
-val prolog: rules: string list -> gl: string -> Formulas.formula<Fol.fol> list
-
-
 module Calculemus.Meson
 
 val contrapositives:
