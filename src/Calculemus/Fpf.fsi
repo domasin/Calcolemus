@@ -232,8 +232,7 @@ module Fpf =
     /// actually defined for it.
     /// </returns>
     ///
-    /// <exception cref="T:System.Exception">Thrown with message <c>apply</c>, when
-    /// <c>fpf</c> is not defined for <c>a</c>.</exception>
+    /// <exception cref="T:System.Exception">Thrown with message <c>apply</c>, when <c>fpf</c> is not defined for <c>a</c>.</exception>
     ///
     /// <example id="apply-1">
     /// <code lang="fsharp">

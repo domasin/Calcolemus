@@ -32,7 +32,7 @@ let rec istriv2 env x t =
     | Var y -> 
         Ok (y = x
             || defined env y
-            && istriv env x (apply env y)
+            && istriv2 env x (apply env y)
         )
     | Fn(f,args) ->
         match args |> List.exists (fun a -> 
