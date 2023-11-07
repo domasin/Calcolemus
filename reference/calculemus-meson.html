@@ -1500,37 +1500,23 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="meson_basic-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;((forall x. P1(x) ==&gt; P0(x)) /\ (exists x. P1(x))) /\</span>
-<span class="s">     ((forall x. P2(x) ==&gt; P0(x)) /\ (exists x. P2(x))) /\</span>
-<span class="s">     ((forall x. P3(x) ==&gt; P0(x)) /\ (exists x. P3(x))) /\</span>
-<span class="s">     ((forall x. P4(x) ==&gt; P0(x)) /\ (exists x. P4(x))) /\</span>
-<span class="s">     ((forall x. P5(x) ==&gt; P0(x)) /\ (exists x. P5(x))) /\</span>
-<span class="s">     ((exists x. Q1(x)) /\ (forall x. Q1(x) ==&gt; Q0(x))) /\</span>
-<span class="s">     (forall x. P0(x)</span>
-<span class="s">                ==&gt; (forall y. Q0(y) ==&gt; R(x,y)) \/</span>
-<span class="s">                ((forall y. P0(y) /\ S0(y,x) /\</span>
-<span class="s">                    (exists z. Q0(z) /\ R(y,z))</span>
-<span class="s">                    ==&gt; R(x,y)))) /\</span>
-<span class="s">     (forall x y. P3(y) /\ (P5(x) \/ P4(x)) ==&gt; S0(x,y)) /\</span>
-<span class="s">     (forall x y. P3(x) /\ P2(y) ==&gt; S0(x,y)) /\</span>
-<span class="s">     (forall x y. P2(x) /\ P1(y) ==&gt; S0(x,y)) /\</span>
-<span class="s">     (forall x y. P1(x) /\ (P2(y) \/ Q1(y)) ==&gt; ~(R(x,y))) /\</span>
-<span class="s">     (forall x y. P3(x) /\ P4(y) ==&gt; R(x,y)) /\</span>
-<span class="s">     (forall x y. P3(x) /\ P5(y) ==&gt; ~(R(x,y))) /\</span>
-<span class="s">     (forall x. (P4(x) \/ P5(x)) ==&gt; exists y. Q0(y) /\ R(x,y))</span>
-<span class="s">     ==&gt; exists x y. P0(x) /\ P0(y) /\</span>
-<span class="s">     exists z. Q1(z) /\ R(y,z) /\ R(x,y)&quot;</span>
-<span class="o">|&gt;</span> <span class="id">meson</span>
+              <p class="fsdocs-example" id="meson-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;exists x. exists y. forall z.</span>
+<span class="s">     (F(x,y) ==&gt; (F(y,z) /\ F(z,z))) /\</span>
+<span class="s">     ((F(x,y) /\ G(x,y)) ==&gt; (G(x,z) /\ G(z,z)))&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">meson</span>
 </code></pre>
 
 
- Evaluates to <code>[53]</code> and prints to the <code>stdout</code>:
+ Evaluates to <code>[8]</code> and prints to the <code>stdout</code>:
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">1</span>
  <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">2</span>
- <span class="o">..</span><span class="pn">.</span>
- <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">52</span>
- <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">53</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">3</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">4</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">5</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">6</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">7</span>
+ <span class="id">Searching</span> <span class="k">with</span> <span class="id">depth</span> <span class="id">limit</span> <span class="n">8</span>
 </code></pre>
 
 
