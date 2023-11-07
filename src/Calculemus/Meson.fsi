@@ -435,37 +435,23 @@ module Meson =
     /// Crashes if the input formula is not unsatisfiable.
     /// </note>
     /// 
-    /// <example id="meson_basic-1">
+    /// <example id="meson-1">
     /// <code lang="fsharp">
-    /// !! @"((forall x. P1(x) ==> P0(x)) /\ (exists x. P1(x))) /\
-    ///     ((forall x. P2(x) ==> P0(x)) /\ (exists x. P2(x))) /\
-    ///     ((forall x. P3(x) ==> P0(x)) /\ (exists x. P3(x))) /\
-    ///     ((forall x. P4(x) ==> P0(x)) /\ (exists x. P4(x))) /\
-    ///     ((forall x. P5(x) ==> P0(x)) /\ (exists x. P5(x))) /\
-    ///     ((exists x. Q1(x)) /\ (forall x. Q1(x) ==> Q0(x))) /\
-    ///     (forall x. P0(x)
-    ///                ==> (forall y. Q0(y) ==> R(x,y)) \/
-    ///                ((forall y. P0(y) /\ S0(y,x) /\
-    ///                    (exists z. Q0(z) /\ R(y,z))
-    ///                    ==> R(x,y)))) /\
-    ///     (forall x y. P3(y) /\ (P5(x) \/ P4(x)) ==> S0(x,y)) /\
-    ///     (forall x y. P3(x) /\ P2(y) ==> S0(x,y)) /\
-    ///     (forall x y. P2(x) /\ P1(y) ==> S0(x,y)) /\
-    ///     (forall x y. P1(x) /\ (P2(y) \/ Q1(y)) ==> ~(R(x,y))) /\
-    ///     (forall x y. P3(x) /\ P4(y) ==> R(x,y)) /\
-    ///     (forall x y. P3(x) /\ P5(y) ==> ~(R(x,y))) /\
-    ///     (forall x. (P4(x) \/ P5(x)) ==> exists y. Q0(y) /\ R(x,y))
-    ///     ==> exists x y. P0(x) /\ P0(y) /\
-    ///     exists z. Q1(z) /\ R(y,z) /\ R(x,y)"
-    ///|> meson
+    /// !! @"exists x. exists y. forall z.
+    ///     (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
+    ///     ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
+    /// |> meson
     /// </code>
-    /// Evaluates to <c>[53]</c> and prints to the <c>stdout</c>:
+    /// Evaluates to <c>[8]</c> and prints to the <c>stdout</c>:
     /// <code lang="fsharp">
     /// Searching with depth limit 1
     /// Searching with depth limit 2
-    /// ...
-    /// Searching with depth limit 52
-    /// Searching with depth limit 53
+    /// Searching with depth limit 3
+    /// Searching with depth limit 4
+    /// Searching with depth limit 5
+    /// Searching with depth limit 6
+    /// Searching with depth limit 7
+    /// Searching with depth limit 8
     /// </code>
     /// </example>
     /// 

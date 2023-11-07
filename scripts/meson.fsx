@@ -12,6 +12,11 @@ open Clause
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
+!! @"exists x. exists y. forall z.
+        (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
+        ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
+|> meson
+
 !! @"((forall x. P1(x) ==> P0(x)) /\ (exists x. P1(x))) /\
      ((forall x. P2(x) ==> P0(x)) /\ (exists x. P2(x))) /\
      ((forall x. P3(x) ==> P0(x)) /\ (exists x. P3(x))) /\
@@ -32,7 +37,7 @@ open Clause
      (forall x. (P4(x) \/ P5(x)) ==> exists y. Q0(y) /\ R(x,y))
      ==> exists x y. P0(x) /\ P0(y) /\
      exists z. Q1(z) /\ R(y,z) /\ R(x,y)"
-|> meson
+|> meson_basic
 
 
 contrapositives !!>["P";"Q";"~R"]
@@ -59,15 +64,6 @@ Pelletier.p18
 // in CNF
 let cls = !!>>[["P(y)"]; ["~P(f_x(y))"]]
 let rules = List.foldBack ((@) << contrapositives) cls []
-
-mexpand_basic 
-    [
-        ([], !!"P(y)"); 
-        ([!!"P(f_x(y))"], False); 
-        ([], !!"~P(f_x(y))")
-    ]
-    [] False id (undefined,1,0)
-|> fun (env,n,k) -> (graph env,n,k)
 
 mexpand_basic
     [
