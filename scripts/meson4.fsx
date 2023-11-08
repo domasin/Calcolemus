@@ -86,22 +86,42 @@ let rec mexpand_basic rules ancestors g
             // ancestor unification
             | Some env -> cont (env, n, k)
             | None -> 
+                // // Prolog-style extension
+                // rules
+                // |> tryfind (fun rule ->
+                //     let (asm, c) ,k' = renamerule k rule
+                    
+                //     let env = unify_literals env (g, c)
+                    
+                //     // update teh instantiation so that it solves all assumptions
+                //     let cont = 
+                //         (asm, cont) 
+                //         ||> List.foldBack (fun subgoal cont -> 
+                //             mexpand_basic rules (g::ancestors) subgoal cont
+                //         ) 
+                    
+                //     cont (env, n - List.length asm, k')
+                // )
                 // Prolog-style extension
                 rules
-                |> tryfind (fun rule ->
+                |> tryfind(fun rule ->
                     let (asm, c) ,k' = renamerule k rule
-                    
-                    let env = unify_literals env (g, c)
-                    
-                    // update teh instantiation so that it solves all assumptions
+
+                    // on found check also the subgoals
                     let cont = 
                         (asm, cont) 
                         ||> List.foldBack (fun subgoal cont -> 
                             mexpand_basic rules (g::ancestors) subgoal cont
                         ) 
+
+                    let success env = 
+                        cont (env, n - List.length asm, k')
                     
-                    cont (env, n - List.length asm, k')
+                    let failure env = failwith ""
+                    
+                    unify_literals_sf success failure env (g, c)
                 )
+
 
 let puremeson_basic fm =
     let cls = simpcnf (specialize (pnf fm))
@@ -121,6 +141,10 @@ let davis_putnam_example =
     ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
 
 // meson_basic davis_putnam_example
+// Calculemus.Meson.meson_basic davis_putnam_example
+
+// meson_basic Calculemus.Pelletier.p32
+// Calculemus.Meson.meson_basic Calculemus.Pelletier.p32
 
 let steamroller = 
     !! @"((forall x. P1(x) ==> P0(x)) /\ (exists x. P1(x))) /\
