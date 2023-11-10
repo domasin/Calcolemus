@@ -52,6 +52,61 @@ module Pelletier =
     /// <category index="1">Propositional Logic</category>
     val p6: formula<fol>
 
+    /// <c>p \/ ~ ~ ~p</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p7: formula<fol>
+
+    /// <c>((p ==> q) ==> p) ==> p</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p8: formula<fol>
+
+    /// <c>(p \/ q) /\ (~p \/ q) /\ (p \/ ~q) ==> ~(~q \/ ~q)</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p9: formula<fol>
+
+    /// <c>(q ==> r) /\ (r ==> p /\ q) /\ (p ==> q /\ r) ==> (p <=> q)</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p10: formula<fol>
+
+    /// <c>p <=> p</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p11: formula<fol>
+
+    /// <c>((p <=> q) <=> r) <=> (p <=> (q <=> r))</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p12: formula<fol>
+
+    /// <c>p \/ q /\ r <=> (p \/ q) /\ (p \/ r)</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p13: formula<fol>
+
+    /// <c>(p <=> q) <=> (q \/ ~p) /\ (~q \/ p)</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p14: formula<fol>
+
+    /// <c>p ==> q <=> ~p \/ q</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p15: formula<fol>
+
+    /// <c>(p ==> q) \/ (q ==> p)</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p16: formula<fol>
+
+    /// <c>p /\ (q ==> r) ==> s <=> (~p \/ q \/ s) /\ (~p \/ ~r \/ s)</c>
+    /// 
+    /// <category index="1">Propositional Logic</category>
+    val p17: formula<fol>
+
     (* ---------------------------------------------------------------------- *)
     (* Monadic Predicate Logic.                                               *)
     (* ---------------------------------------------------------------------- *)
@@ -71,20 +126,80 @@ module Pelletier =
     /// <category index="2">Monadic Predicate Logic</category>
     val p20: formula<fol>
 
+    /// <c>(exists x. P ==> Q(x)) /\ (exists x. Q(x) ==> P) ==> (exists x. P <=> Q(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p21: formula<fol>
+
+    /// <c>(forall x. P <=> Q(x)) ==> (P <=> (forall x. Q(x)))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p22: formula<fol>
+
+    /// <c>(forall x. P \/ Q(x)) <=> P \/ (forall x. Q(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p23: formula<fol>
+
     /// <c>~(exists x. U(x) /\ Q(x)) /\ (forall x. P(x) ==> Q(x) \/ R(x)) /\ ~(exists x. P(x) ==> (exists x. Q(x))) /\ (forall x. Q(x) /\ R(x) ==> U(x)) ==> (exists x. P(x) /\ R(x))</c>
     /// 
     /// <category index="2">Monadic Predicate Logic</category>
     val p24: formula<fol>
+
+    /// <c>(exists x. P(x)) /\ (forall x. U(x) ==> ~G(x) /\ R(x)) /\ (forall x. P(x) ==> G(x) /\ U(x)) /\ ((forall x. P(x) ==> Q(x)) \/ (exists x. Q(x) /\ P(x))) ==> (exists x. Q(x) /\ P(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p25: formula<fol>
+
+    /// <c>((exists x. P(x)) <=> (exists x. Q(x))) /\ (forall x y. P(x) /\ Q(y) ==> (R(x) <=> U(y))) ==> ((forall x. P(x) ==> R(x)) <=> (forall x. Q(x) ==> U(x)))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p26: formula<fol>
+
+    /// <c>(exists x. P(x) /\ ~Q(x)) /\ (forall x. P(x) ==> R(x)) /\ (forall x. U(x) /\ V(x) ==> P(x)) /\ (exists x. R(x) /\ ~Q(x)) ==> (forall x. U(x) ==> ~R(x)) ==> (forall x. U(x) ==> ~V(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p27: formula<fol>
+
+    /// <c>(forall x. P(x) ==> (forall x. Q(x))) /\ ((forall x. Q(x) \/ R(x)) ==> (exists x. Q(x) /\ R(x))) /\ ((exists x. R(x)) ==> (forall x. L(x) ==> M(x))) ==> (forall x. P(x) /\ L(x) ==> M(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p28: formula<fol>
+
+    /// <c>(exists x. P(x)) /\ (exists x. G(x)) ==> ((forall x. P(x) ==> H(x)) /\ (forall x. G(x) ==> J(x)) <=> (forall x y. P(x) /\ G(y) ==> H(x) /\ J(y)))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p29: formula<fol>
+
+    /// <c>(forall x. P(x) \/ G(x) ==> ~H(x)) /\ (forall x. (G(x) ==> ~U(x)) ==> P(x) /\ H(x)) ==> (forall x. U(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p30: formula<fol>
+
+    /// <c>~(exists x. P(x) /\ (G(x) \/ H(x))) /\ (exists x. Q(x) /\ P(x)) /\ (forall x. ~H(x) ==> J(x)) ==> (exists x. Q(x) /\ J(x))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p31: formula<fol>
 
     /// <c>(forall x. P(x) /\ (G(x) \/ H(x)) ==> Q(x)) /\ (forall x. Q(x) /\ H(x) ==> J(x)) /\ (forall x. R(x) ==> H(x)) ==> (forall x. P(x) /\ R(x) ==> J(x))</c>
     /// 
     /// <category index="2">Monadic Predicate Logic</category>
     val p32: formula<fol>
 
+    /// <c>(forall x. P(a) /\ (P(x) ==> P(b)) ==> P(c)) <=> (forall x. P(a) ==> P(x) \/ P(c)) /\ (P(a) ==> P(b) ==> P(c))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p33: formula<fol>
+
     /// <c>((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt; ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt; ((exists x. forall y. Q(x) &lt;=&gt; Q(y)) &lt;=&gt; ((exists x. P(x)) &lt;=&gt; (forall y. P(y))))</c>
     /// 
     /// <category index="2">Monadic Predicate Logic</category>
     val p34: formula<fol>
+
+    /// <c>exists x y. P(x,y) ==> (forall x y. P(x,y))</c>
+    /// 
+    /// <category index="2">Monadic Predicate Logic</category>
+    val p35: formula<fol>
 
     (* ---------------------------------------------------------------------- *)
     (*  Full predicate logic (without Identity and Functions)                 *)

@@ -219,7 +219,7 @@ let davis_putnam_example =
 // [1;2;3] |> List.pick (fun n -> if n % 2 = 0 then Some (string n) else None)
 // [1;2;3] |> tryfind (fun n -> if n % 2 = 0 then string n else invalidOp "")
 
-let steamroller = 
+let streamroller = 
     !! @"((forall x. P1(x) ==> P0(x)) /\ (exists x. P1(x))) /\
         ((forall x. P2(x) ==> P0(x)) /\ (exists x. P2(x))) /\
         ((forall x. P3(x) ==> P0(x)) /\ (exists x. P3(x))) /\
@@ -241,10 +241,14 @@ let steamroller =
         ==> exists x y. P0(x) /\ P0(y) /\
         exists z. Q1(z) /\ R(y,z) /\ R(x,y)"
 
-// meson_basic_n steamroller
+// meson_basic_n streamroller
 
 let rec equal env fm1 fm2 =
     unify_literals_sf (fun x -> x = env) (fun _ -> false) env (fm1, fm2)
+
+// let rec equal env fm1 fm2 =
+//     try unify_literals env (fm1, fm2) = env
+//     with _ -> false
 
 let expand2 expfn goals1 n1 goals2 n2 n3 cont env k =
     (env, n1, k)
@@ -264,18 +268,23 @@ let rec mexpand rules ancestors g cont (env, n, k) =
     elif List.exists (equal env g) ancestors then
         failwith "repetition"
     else
-        try 
+        match 
             ancestors
-            |> tryfind (fun a -> 
-                cont (unify_literals env (g, negate a), n, k)
+            |> List.tryPick (fun a -> 
+                unify_literals_sf Some (fun _ -> None) env (g, negate a)
             )     
-        with Failure _ ->
+        with 
+        | Some env -> cont (env, n, k)
+        | None ->
             rules
             |> tryfind (fun r ->
                 let (asm, c), k' = renamerule k r
+
+                // on found check also the subgoals
+                let cont = 
+                    mexpands rules (g :: ancestors) asm cont 
                 
-                (unify_literals env (g, c), n - List.length asm, k')
-                |> mexpands rules (g :: ancestors) asm cont 
+                cont (unify_literals env (g, c), n - List.length asm, k')
             )
 and mexpands rules ancestors gs cont (env, n, k) =
     if n < 0 then 
@@ -283,11 +292,31 @@ and mexpands rules ancestors gs cont (env, n, k) =
     else
         let m = List.length gs
         if m <= 1 then 
-            List.foldBack (mexpand rules ancestors) gs cont (env, n, k) 
+            let cont = 
+                (gs,cont)
+                ||> List.foldBack (mexpand rules ancestors)
+                
+            cont (env, n, k) 
         else
             let n1 = n / 2
             let n2 = n - n1
             let goals1,goals2 = Lib.List.chop_list (m / 2) gs
             let expfn = expand2 (mexpands rules ancestors)
-            try expfn goals1 n1 goals2 n2 -1 cont env k
-            with _ -> expfn goals2 n1 goals1 n2 n1 cont env k
+            try 
+                expfn goals1 n1 goals2 n2 -1 cont env k
+            with _ -> 
+                expfn goals2 n1 goals1 n2 n1 cont env k
+
+let puremeson fm =   
+        let cls = simpcnf (specialize (pnf fm))
+        let rules = List.foldBack ((@) << contrapositives) cls []
+        deepen (fun n ->
+            mexpand rules [] False id (undefined, n, 0)
+            |> ignore
+            n) 0
+
+let meson fm =
+    let fm1 = askolemize (Not (generalize fm))
+    List.map (puremeson << list_conj) (simpdnf fm1)
+
+// meson streamroller
