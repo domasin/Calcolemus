@@ -168,20 +168,20 @@ module Pelletier =
     
     let p37 = 
         !! @"(forall z.
-            exists w. forall x. exists y. (P(x,z) ==> P(y,w)) /\ P(y,z) /\
-            (P(y,w) ==> (exists u. Q(u,w)))) /\
-        (forall x z. ~P(x,z) ==> (exists y. Q(y,z))) /\
-        ((exists x y. Q(x,y)) ==> (forall x. R(x,x))) ==>
-        (forall x. exists y. R(x,y))"
+                 exists w. forall x. exists y. (P(x,z) ==> P(y,w)) /\ P(y,z) /\
+                 (P(y,w) ==> (exists u. Q(u,w)))) /\
+             (forall x z. ~P(x,z) ==> (exists y. Q(y,z))) /\
+             ((exists x y. Q(x,y)) ==> (forall x. R(x,x))) ==>
+             (forall x. exists y. R(x,y))"
     
     let p38 = 
         !! @"(forall x.
-            P(a) /\ (P(x) ==> (exists y. P(y) /\ R(x,y))) ==>
-            (exists z w. P(z) /\ R(x,w) /\ R(w,z))) <=>
-        (forall x.
-            (~P(a) \/ P(x) \/ (exists z w. P(z) /\ R(x,w) /\ R(w,z))) /\
-            (~P(a) \/ ~(exists y. P(y) /\ R(x,y)) \/
-            (exists z w. P(z) /\ R(x,w) /\ R(w,z))))"
+                 P(a) /\ (P(x) ==> (exists y. P(y) /\ R(x,y))) ==>
+                 (exists z w. P(z) /\ R(x,w) /\ R(w,z))) <=>
+             (forall x.
+                 (~P(a) \/ P(x) \/ (exists z w. P(z) /\ R(x,w) /\ R(w,z))) /\
+                 (~P(a) \/ ~(exists y. P(y) /\ R(x,y)) \/
+                 (exists z w. P(z) /\ R(x,w) /\ R(w,z))))"
     
     let p39 = 
         !! @"~(exists x. forall y. P(y,x) <=> ~P(y,y))"
@@ -224,9 +224,9 @@ module Pelletier =
         (forall x y. P(x) /\ P(y) /\ H(x,y) ==> ~J(y,x)) ==>
         (forall x. P(x) ==> G(x))"
     
-    (* ------------------------------------------------------------------------- *)
-    (* Example from Manthey and Bry, CADE-9.                                     *)
-    (* ------------------------------------------------------------------------- *)
+    (* ---------------------------------------------------------------------- *)
+    (* Example from Manthey and Bry, CADE-9.                                  *)
+    (* ---------------------------------------------------------------------- *)
     
     let p55 = 
         !! @"lives(agatha) /\ lives(butler) /\ lives(charles) /\
@@ -248,9 +248,9 @@ module Pelletier =
         (forall (x) y z. P(x,y) /\ P(y,z) ==> P(x,z))
         ==> P(f(a,b),f(a,c))"
     
-    (* ------------------------------------------------------------------------- *)
-    (* See info-hol, circa 1500.                                                 *)
-    (* ------------------------------------------------------------------------- *)
+    (* ---------------------------------------------------------------------- *)
+    (* See info-hol, circa 1500.                                              *)
+    (* ---------------------------------------------------------------------- *)
     
     let p58 = 
         !! @"forall P Q R. forall x. exists v. exists w. forall y. forall z.
