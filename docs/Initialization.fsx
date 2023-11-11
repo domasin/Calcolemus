@@ -30,6 +30,12 @@ open Calculemus.Fol
 
 module FormulasAndTermsFormatter =
 
+    Formatter.SetPreferredMimeTypesFor(typeof<bool list> ,"text/plain")
+    Formatter.Register<bool list>((fun xs -> 
+                                    xs
+                                    |> Seq.map (fun x -> sprintf "%A" x)
+                                    |> fun x -> sprintf "[%s]" (x |> String.concat "; ")),"text/plain")
+
     // expression
     Formatter.SetPreferredMimeTypesFor(typeof<expression> ,"text/plain")
     Formatter.Register<expression>((fun expr -> expr |> sprint_exp), "text/plain")
