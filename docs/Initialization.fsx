@@ -36,6 +36,12 @@ module FormulasAndTermsFormatter =
                                     |> Seq.map (fun x -> sprintf "%A" x)
                                     |> fun x -> sprintf "[%s]" (x |> String.concat "; ")),"text/plain")
 
+    Formatter.SetPreferredMimeTypesFor(typeof<int list> ,"text/plain")
+    Formatter.Register<int list>((fun xs -> 
+                                    xs
+                                    |> Seq.map (fun x -> sprintf "%A" x)
+                                    |> fun x -> sprintf "[%s]" (x |> String.concat "; ")),"text/plain")
+
     // expression
     Formatter.SetPreferredMimeTypesFor(typeof<expression> ,"text/plain")
     Formatter.Register<expression>((fun expr -> expr |> sprint_exp), "text/plain")
