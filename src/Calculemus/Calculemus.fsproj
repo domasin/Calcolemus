@@ -81,7 +81,8 @@
     <Compile Include="Prolog.fs" />
     <Compile Include="Meson.fsi" />
     <Compile Include="Meson.fs" />
-    <Compile Include="skolems.fs" />
+    <Compile Include="Skolems.fsi" />
+    <Compile Include="Skolems.fs" />
     <Compile Include="equal.fs" />
     <Compile Include="cong.fs" />
     <Compile Include="rewrite.fs" />

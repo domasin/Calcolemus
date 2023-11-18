@@ -31,6 +31,7 @@
     <Compile Include="Resolution.fs" />
     <Compile Include="Prolog.fs" />
     <Compile Include="Meson.fs" />
+    <Compile Include="Skolems.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>
