@@ -103,6 +103,24 @@
       </p>
     </div>
   </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Syntax operation
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Equality axioms
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Syntax operation
+  </h2>
   <div>
     <h3>
       Functions and values
@@ -145,6 +163,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -153,31 +173,101 @@
                     Returns: 
                     <code><span><a href="/Calculemus/reference/calculemus-fol-term.html">term</a>&#32;*&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span></code>
                   </span>
+                  
+ The pair of the LHS and RHS terms of the equation.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/Calculemus/reference/calculemus-fol-term.html">term</a>&#32;*&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.dest_eq`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.dest_eq\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Formula destructor for equations.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-fol-term.html">term</a>&#32;*&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The pair of the LHS and RHS terms of the equation.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_eq: not an equation</code> when the input formula is not an equation.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_eq-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dest_eq</span> <span class="o">!!</span><span class="s">&quot;f(x) = y&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>(``f(x)``,``y``)</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="dest_eq-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">dest_eq</span> <span class="o">!!</span><span class="s">&quot;P(x) &lt;=&gt; Q(y)&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: dest_eq: not an equation</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -185,9 +275,9 @@
             <div>
               <code onmouseout="hideTip(event, '214', 214)" onmouseover="showTip(event, '214', 214)">
                 <p>
-                  <a id="equalitize">
-                    <a href="#equalitize">
-                      <code><span>equalitize&#32;<span>fm</span></span></code>
+                  <a id="is_eq">
+                    <a href="#is_eq">
+                      <code><span>is_eq&#32;<span>fm</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -195,7 +285,7 @@
               <div class="fsdocs-tip" id="214">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>equalitize&#32;<span>fm</span></span></code>
+                  <code><span>is_eq&#32;<span>fm</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -206,183 +296,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
-                <p>
-                  <a id="equivalence_axioms">
-                    <a href="#equivalence_axioms">
-                      <code><span>equivalence_axioms&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="215">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>equivalence_axioms&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
-                <p>
-                  <a id="function_congruence">
-                    <a href="#function_congruence">
-                      <code><span>function_congruence&#32;<span><span>(<span>f,&#32;n</span>)</span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="216">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>function_congruence&#32;<span><span>(<span>f,&#32;n</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        f
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        n
-                      </b>
-                      :
-                      <code>int</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
-                <p>
-                  <a id="is_eq">
-                    <a href="#is_eq">
-                      <code><span>is_eq&#32;<span>_arg1</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="217">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>is_eq&#32;<span>_arg1</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        _arg1
-                      </b>
-                      :
-                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -391,37 +306,99 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formula is an equation; otherwise, false.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  _arg1
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.is_eq`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.is_eq\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests if a formula is an equation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is an equation; otherwise, false.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="is_eq-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;x = y&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">is_eq</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="is_eq-2">
+                
+ Logical equations are not equations.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span><span class="s">&quot;P(x) &lt;=&gt; Q(x)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">is_eq</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+              <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
                 <p>
                   <a id="lhs">
                     <a href="#lhs">
@@ -430,7 +407,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="218">
+              <div class="fsdocs-tip" id="215">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>lhs&#32;<span>eq</span></span></code>
@@ -444,6 +421,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input equation.
                     </span>
                     <br/>
                   </ul>
@@ -452,37 +431,107 @@
                     Returns: 
                     <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
                   </span>
+                  
+ The LHS term of the equation.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  eq
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.lhs`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.lhs\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the LHS term of an equation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    eq
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input equation.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The LHS term of the equation.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_eq: not an equation</code> when the input formula is not an equation.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lhs-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lhs</span> <span class="o">!!</span><span class="s">&quot;f(x) = y&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>``f(x)``</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lhs-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lhs</span> <span class="o">!!</span><span class="s">&quot;P(x) &lt;=&gt; Q(y)&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: dest_eq: not an equation</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+              <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
                 <p>
                   <a id="mk_eq">
                     <a href="#mk_eq">
@@ -491,7 +540,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="219">
+              <div class="fsdocs-tip" id="216">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>mk_eq&#32;<span>s&#32;t</span></span></code>
@@ -505,6 +554,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The first input term.
                     </span>
                     <br/>
                     <span>
@@ -513,6 +564,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The second input term.
                     </span>
                     <br/>
                   </ul>
@@ -521,122 +574,96 @@
                     Returns: 
                     <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
                   </span>
+                  
+ The equation of the input terms.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  t
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
-                <p>
-                  <a id="predicate_congruence">
-                    <a href="#predicate_congruence">
-                      <code><span>predicate_congruence&#32;<span><span>(<span>p,&#32;n</span>)</span></span></span></code>
-                    </a>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.mk_eq`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.mk_eq\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
                   </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="220">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>predicate_congruence&#32;<span><span>(<span>p,&#32;n</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        p
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        n
-                      </b>
-                      :
-                      <code>int</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-                  </span>
-                  <br/>
+                  <p class="fsdocs-summary">
+                    
+ Constructs an equation.
+ 
+                  </p>
                 </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  p
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input term.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    t
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input term.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The equation of the input terms.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="mk_eq-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">mk_eq</span> <span class="o">!!!</span><span class="s">&quot;f(x)&quot;</span> <span class="o">!!!</span><span class="s">&quot;y&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>`f(x) = y`</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+              <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
                 <p>
                   <a id="predicates">
                     <a href="#predicates">
@@ -645,7 +672,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="221">
+              <div class="fsdocs-tip" id="217">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>predicates&#32;<span>fm</span></span></code>
@@ -659,6 +686,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -667,37 +696,84 @@
                     Returns: 
                     <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
                   </span>
+                  
+ The list of name-arity pairs of the predicates in the formula.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.predicates`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.predicates\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L45-45" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the predicates present in the input formula <code>fm</code>.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span>string&#32;*&#32;int</span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of name-arity pairs of the predicates in the formula.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="predicates-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">predicates</span> <span class="o">!!</span><span class="s">&quot;x + 1 &gt; 0 /\ f(z) &gt; g(z,i)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>[(&quot;&gt;&quot;, 2)]</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+              <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
                 <p>
                   <a id="rhs">
                     <a href="#rhs">
@@ -706,7 +782,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="222">
+              <div class="fsdocs-tip" id="218">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>rhs&#32;<span>eq</span></span></code>
@@ -720,6 +796,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input equation.
                     </span>
                     <br/>
                   </ul>
@@ -728,31 +806,621 @@
                     Returns: 
                     <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
                   </span>
+                  
+ The RHS term of the equation.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  eq
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.rhs`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.rhs\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the RHS term of an equation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    eq
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input equation.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The RHS term of the equation.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>dest_eq: not an equation</code> when the input formula is not an equation.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="rhs-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">rhs</span> <span class="o">!!</span><span class="s">&quot;f(x) = y&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>``y``</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="rhs-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">rhs</span> <span class="o">!!</span><span class="s">&quot;P(x) &lt;=&gt; Q(y)&quot;</span>
+</code></pre>
+
+
+ Throws <code>System.Exception: dest_eq: not an equation</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Equality axioms
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+                <p>
+                  <a id="equalitize">
+                    <a href="#equalitize">
+                      <code><span>equalitize&#32;<span>fm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="219">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>equalitize&#32;<span>fm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fm
+                      </b>
+                      :
+                      <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                  </span>
+                  
+ The input formula itself if it doesn't involve equality at all; 
+ otherwise, the implication of the input formula from its equality 
+ axioms.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.equalitize`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.equalitize\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L88-88" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the implication of the input formula from its equality axioms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The input formula itself if it doesn't involve equality at all; 
+ otherwise, the implication of the input formula from its equality 
+ axioms.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="equalitize-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;(forall x. f(x) ==&gt; g(x)) /\</span>
+<span class="s">      (exists x. f(x)) /\</span>
+<span class="s">      (forall x y. g(x) /\ g(y) ==&gt; x = y)</span>
+<span class="s">      ==&gt; forall y. g(y) ==&gt; f(y)&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">equalitize</span>
+ <span class="o">|&gt;</span> <span class="id">sprint_fol_formula</span>
+</code></pre>
+
+
+ Evaluates to 
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="s">&quot;(forall x. x = x) /\ </span>
+<span class="s">  (forall x y z. x = y /\ x = z ==&gt; y = z) /\ </span>
+<span class="s">  (forall x1 y1. x1 = y1 ==&gt; f(x1) ==&gt; f(y1)) /\ </span>
+<span class="s">  (forall x1 y1. x1 = y1 ==&gt; g(x1) ==&gt; g(y1)) ==&gt; </span>
+<span class="s">  (forall x. f(x) ==&gt; g(x)) /\ </span>
+<span class="s">  (exists x. f(x)) /\ </span>
+<span class="s">  (forall x y. g(x) /\ g(y) ==&gt; x = y) </span>
+<span class="s">  ==&gt; (forall y. g(y) ==&gt; f(y))&quot;</span>
+</code></pre>
+
+
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="equalitize-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">equalitize</span> <span class="o">!!</span><span class="s">&quot;P(x) &lt;=&gt; Q(y)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>`P(x) &lt;=&gt; Q(y)`</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
+                <p>
+                  <a id="equivalence_axioms">
+                    <a href="#equivalence_axioms">
+                      <code><span>equivalence_axioms&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="220">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>equivalence_axioms&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                  </span>
+                  
+ The list of the equivalence axioms.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Calculemus.Equal.equivalence_axioms`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Calculemus.Equal.equivalence_axioms\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L82-82" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the list of equivalence axioms.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ Reflexivity and a variation of transitivity:
+ \begin{align*}
+ &\forall x.\ x = x \\
+ &\forall x\ y\ z.\ x = y \land x = z \Rightarrow y = z
+ \end{align*}
+ Symmetry follows by instantiating that axiom so that \(x\) and \(z\) 
+ are the same, then using reflexivity.
+ 
+              </p>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the equivalence axioms.
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+                <p>
+                  <a id="function_congruence">
+                    <a href="#function_congruence">
+                      <code><span>function_congruence&#32;<span><span>(<span>f,&#32;n</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="221">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>function_congruence&#32;<span><span>(<span>f,&#32;n</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The function symbol name.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The function arity.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                  </span>
+                  
+ The list with the congruence axiom for the given function as the only 
+ element.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.function_congruence`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.function_congruence\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the congruence axiom for the given function.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function symbol name.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function arity.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list with the congruence axiom for the given function as the only 
+ element.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="function_congruence-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">function_congruence</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>[`forall x1 x2 y1 y2. x1 = y1 /\ x2 = y2 ==&gt; f(x1,x2) = f(y1,y2)`]</code>.
+ 
+              </p>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+                <p>
+                  <a id="predicate_congruence">
+                    <a href="#predicate_congruence">
+                      <code><span>predicate_congruence&#32;<span><span>(<span>p,&#32;n</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="222">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>predicate_congruence&#32;<span><span>(<span>p,&#32;n</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        p
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The predicate symbol name.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The predicate arity.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                  </span>
+                  
+ The list with the congruence axiom for the given predicate as the only 
+ element.
+ 
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Equal.predicate_congruence`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Equal.predicate_congruence\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Equal.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the congruence axiom for the given predicate.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    p
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The predicate symbol name.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The predicate arity.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list with the congruence axiom for the given predicate as the only 
+ element.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="predicate_congruence-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">predicate_congruence</span> <span class="pn">(</span><span class="s">&quot;P&quot;</span><span class="pn">,</span><span class="n">3</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>[`forall x1 x2 x3 y1 y2 y3. x1 = y1 /\ x2 = y2 /\ x3 = y3 ==&gt; P(x1,x2,x3) ==&gt; P(y1,y2,y3)`]</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
       </tbody>
