@@ -242,22 +242,22 @@ module Pelletier =
     val p38: formula<fol>
 
     /// <c>
-    /// ~(exists x. forall y. P(y,x) <=> ~P(y,y))
+    /// ~(exists x. forall y. P(y,x) &lt;=&gt; ~P(y,y))
     /// </c>
     /// 
     /// <category index="3">Full predicate logic (without Identity and Functions)</category>
     val p39: formula<fol>
 
     /// <c>
-    /// (exists y. forall x. P(x,y) <=> P(x,x))
-    ///    ==> ~(forall x. exists y. forall z. P(z,y) <=> ~P(z,x))
+    /// (exists y. forall x. P(x,y) &lt;=&gt; P(x,x))
+    ///    ==> ~(forall x. exists y. forall z. P(z,y) &lt;=&gt; ~P(z,x))
     /// </c>
     /// 
     /// <category index="3">Full predicate logic (without Identity and Functions)</category>
     val p40: formula<fol>
 
     /// <c>
-    /// (forall z. exists y. forall x. P(x,y) <=> P(x,z) /\ ~P(x,x))
+    /// (forall z. exists y. forall x. P(x,y) &lt;=&gt; P(x,z) /\ ~P(x,x))
     ///    ==> ~(exists z. forall x. P(x,z))
     /// </c>
     /// 
@@ -265,15 +265,15 @@ module Pelletier =
     val p41: formula<fol>
 
     /// <c>
-    /// ~(exists y. forall x. P(x,y) <=> ~(exists z. P(x,z) /\ P(z,x)))
+    /// ~(exists y. forall x. P(x,y) &lt;=&gt; ~(exists z. P(x,z) /\ P(z,x)))
     /// </c>
     /// 
     /// <category index="3">Full predicate logic (without Identity and Functions)</category>
     val p42: formula<fol>
 
     /// <c>
-    /// (forall x y. Q(x,y) <=> forall z. P(z,x) <=> P(z,y))
-    ///    ==> forall x y. Q(x,y) <=> Q(y,x)
+    /// (forall x y. Q(x,y) &lt;=&gt; forall z. P(z,x) &lt;=&gt; P(z,y))
+    ///    ==> forall x y. Q(x,y) &lt;=&gt; Q(y,x)
     /// </c>
     /// 
     /// <category index="3">Full predicate logic (without Identity and Functions)</category>
@@ -366,7 +366,7 @@ module Pelletier =
     val p59: formula<fol>
 
     /// <c>
-    /// forall x. P(x,f(x)) <=>
+    /// forall x. P(x,f(x)) &lt;=&gt;
     ///            exists y. (forall z. P(z,y) ==> P(z,f(x))) /\ P(x,y)
     /// </c>
     /// 

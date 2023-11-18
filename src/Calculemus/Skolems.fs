@@ -22,7 +22,8 @@ module Skolems =
             Fn ("old_" + f, List.map rename_term args)
         | _ -> tm
 
-    let rename_form = onformula rename_term
+    let rename_form fm = 
+        onformula rename_term fm
 
     let rec skolems fms corr =
         match fms with
