@@ -83,7 +83,8 @@
     <Compile Include="Meson.fs" />
     <Compile Include="Skolems.fsi" />
     <Compile Include="Skolems.fs" />
-    <Compile Include="equal.fs" />
+    <Compile Include="Equal.fsi" />
+    <Compile Include="Equal.fs" />
     <Compile Include="cong.fs" />
     <Compile Include="rewrite.fs" />
     <Compile Include="order.fs" />

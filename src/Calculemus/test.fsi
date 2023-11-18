@@ -147,23 +147,6 @@ val saturate_upto:
 
 val stalmarck: fm: Formulas.formula<Prop.prop> -> bool
 
-
-
-
-module Calculemus.Skolems
-
-val rename_term: tm: Fol.term -> Fol.term
-
-val rename_form: (Formulas.formula<Fol.fol> -> Formulas.formula<Fol.fol>)
-
-val skolems:
-  fms: Formulas.formula<Fol.fol> list ->
-    corr: string list -> Formulas.formula<Fol.fol> list * string list
-
-val skolemizes:
-  fms: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list
-
-
 module Calculemus.Equal
 
 val is_eq: _arg1: Formulas.formula<Fol.fol> -> bool
