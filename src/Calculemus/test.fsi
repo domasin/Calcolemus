@@ -147,53 +147,6 @@ val saturate_upto:
 
 val stalmarck: fm: Formulas.formula<Prop.prop> -> bool
 
-module Calculemus.Equal
-
-val is_eq: _arg1: Formulas.formula<Fol.fol> -> bool
-
-val mk_eq: s: Fol.term -> t: Fol.term -> Formulas.formula<Fol.fol>
-
-val dest_eq: fm: Formulas.formula<Fol.fol> -> Fol.term * Fol.term
-
-val lhs: eq: Formulas.formula<Fol.fol> -> Fol.term
-
-val rhs: eq: Formulas.formula<Fol.fol> -> Fol.term
-
-val predicates: fm: Formulas.formula<Fol.fol> -> (string * int) list
-
-val function_congruence: f: string * n: int -> Formulas.formula<Fol.fol> list
-
-val predicate_congruence: p: string * n: int -> Formulas.formula<Fol.fol> list
-
-val equivalence_axioms: Formulas.formula<Fol.fol> list
-
-val equalitize: fm: Formulas.formula<Fol.fol> -> Formulas.formula<Fol.fol>
-
-
-module Calculemus.Cong
-
-val subterms: tm: Fol.term -> Fol.term list
-
-val congruent:
-  eqv: Lib.UnionFindAlgorithm.partition<Fol.term> ->
-    s: Fol.term * t: Fol.term -> bool
-
-val emerge:
-  s: Fol.term * t: Fol.term ->
-    eqv: Lib.UnionFindAlgorithm.partition<Fol.term> *
-    pfn: Lib.FPF.func<Fol.term,Fol.term list> ->
-      Lib.UnionFindAlgorithm.partition<Fol.term> *
-      Lib.FPF.func<Fol.term,Fol.term list>
-
-val predecessors:
-  t: Fol.term ->
-    pfn: Lib.FPF.func<Fol.term,Fol.term list> ->
-    Lib.FPF.func<Fol.term,Fol.term list>
-
-val ccsatisfiable: fms: Formulas.formula<Fol.fol> list -> bool
-
-val ccvalid: fm: Formulas.formula<Fol.fol> -> bool
-
 
 module Calculemus.Rewrite
 
