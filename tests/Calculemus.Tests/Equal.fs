@@ -80,16 +80,26 @@ let ``predicates should return the list of pairs name, arity of the predicates i
     |> shouldEqual [(">", 2)]
 
 [<Fact>]
-let ``function_congruence should return the list with the congruence axiom for the given function as the only element.``() = 
+let ``function_congruence should return the list with the congruence axiom for the given function as the only element, if n > 0.``() = 
     function_congruence ("f",2)
     |> List.map sprint_fol_formula
     |> shouldEqual ["`forall x1 x2 y1 y2. x1 = y1 /\ x2 = y2 ==> f(x1,x2) = f(y1,y2)`"]
+
+[<Fact>]
+let ``function_congruence should return the empty list if n > 0.``() = 
+    function_congruence ("f",0)
+    |> shouldEqual []
 
 [<Fact>]
 let ``predicate_congruence should return the list with the congruence axiom for the given predicate as the only element.``() = 
     predicate_congruence ("P",3)
     |> List.map sprint_fol_formula
     |> shouldEqual ["`forall x1 x2 x3 y1 y2 y3. x1 = y1 /\ x2 = y2 /\ x3 = y3 ==> P(x1,x2,x3) ==> P(y1,y2,y3)`"]
+
+[<Fact>]
+let ``predicate_congruence should return the empty list if n > 0.``() = 
+    predicate_congruence ("P",0)
+    |> shouldEqual []
 
 [<Fact>]
 let ``equalitize should return the implication of the input formula from its equality axioms, if the input formula involves the equality symbol.``() = 

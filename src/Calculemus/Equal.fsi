@@ -181,7 +181,7 @@ module Equal =
     /// <param name="n">The function arity.</param>
     /// <returns>
     /// The list with the congruence axiom for the given function as the only 
-    /// element.
+    /// element, if <c>n > 0</c>; otherwise, the empty list.
     /// </returns>
     /// 
     /// <example id="function_congruence-1">
@@ -189,6 +189,13 @@ module Equal =
     /// function_congruence ("f",2)
     /// </code>
     /// Evaluates to <c>[`forall x1 x2 y1 y2. x1 = y1 /\ x2 = y2 ==> f(x1,x2) = f(y1,y2)`]</c>.
+    /// </example>
+    /// 
+    /// <example id="function_congruence-1">
+    /// <code lang="fsharp">
+    /// function_congruence ("f",0)
+    /// </code>
+    /// Evaluates to <c>[]</c>.
     /// </example>
     /// 
     /// <category index="2">Equality axioms</category>
@@ -202,7 +209,7 @@ module Equal =
     /// <param name="n">The predicate arity.</param>
     /// <returns>
     /// The list with the congruence axiom for the given predicate as the only 
-    /// element.
+    /// element, if <c>n > 0</c>; otherwise, the empty list.
     /// </returns>
     /// 
     /// <example id="predicate_congruence-1">
@@ -210,6 +217,13 @@ module Equal =
     /// predicate_congruence ("P",3)
     /// </code>
     /// Evaluates to <c>[`forall x1 x2 x3 y1 y2 y3. x1 = y1 /\ x2 = y2 /\ x3 = y3 ==> P(x1,x2,x3) ==> P(y1,y2,y3)`]</c>.
+    /// </example>
+    /// 
+    /// <example id="predicate_congruence-2">
+    /// <code lang="fsharp">
+    /// predicate_congruence ("P",0)
+    /// </code>
+    /// Evaluates to <c>[]</c>.
     /// </example>
     /// 
     /// <category index="2">Equality axioms</category>
