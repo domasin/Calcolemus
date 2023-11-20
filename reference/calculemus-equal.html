@@ -1203,7 +1203,7 @@
                   </span>
                   
  The list with the congruence axiom for the given function as the only 
- element.
+ element, if <code>n &gt; 0</code>; otherwise, the empty list.
  
                   <br/>
                 </div>
@@ -1270,7 +1270,7 @@
                   <p>
                     
  The list with the congruence axiom for the given function as the only 
- element.
+ element, if <code>n &gt; 0</code>; otherwise, the empty list.
  
                   </p>
                 </dd>
@@ -1284,6 +1284,17 @@
 
 
  Evaluates to <code>[`forall x1 x2 y1 y2. x1 = y1 /\ x2 = y2 ==&gt; f(x1,x2) = f(y1,y2)`]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="function_congruence-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">function_congruence</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>[]</code>.
  
               </p>
             </details>
@@ -1337,7 +1348,7 @@
                   </span>
                   
  The list with the congruence axiom for the given predicate as the only 
- element.
+ element, if <code>n &gt; 0</code>; otherwise, the empty list.
  
                   <br/>
                 </div>
@@ -1404,7 +1415,7 @@
                   <p>
                     
  The list with the congruence axiom for the given predicate as the only 
- element.
+ element, if <code>n &gt; 0</code>; otherwise, the empty list.
  
                   </p>
                 </dd>
@@ -1418,6 +1429,17 @@
 
 
  Evaluates to <code>[`forall x1 x2 x3 y1 y2 y3. x1 = y1 /\ x2 = y2 /\ x3 = y3 ==&gt; P(x1,x2,x3) ==&gt; P(y1,y2,y3)`]</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="predicate_congruence-2">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">predicate_congruence</span> <span class="pn">(</span><span class="s">&quot;P&quot;</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+
+
+ Evaluates to <code>[]</code>.
  
               </p>
             </details>
