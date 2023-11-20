@@ -191,7 +191,7 @@ module Equal =
     /// Evaluates to <c>[`forall x1 x2 y1 y2. x1 = y1 /\ x2 = y2 ==> f(x1,x2) = f(y1,y2)`]</c>.
     /// </example>
     /// 
-    /// <example id="function_congruence-1">
+    /// <example id="function_congruence-2">
     /// <code lang="fsharp">
     /// function_congruence ("f",0)
     /// </code>

@@ -20,3 +20,26 @@ congruent
 (unequal,undefined)
 |> emerge (!!!"0",!!!"1") 
 |> fun (Partition f,pfn) -> graph f, graph pfn
+
+predecessors !!!"f(0,g(1,0))" undefined
+|> graph
+
+!!>["m(0,1)=1";"~(m(0,1)=0)"]
+|> ccsatisfiable
+
+!!>["P(0)"]
+|> ccsatisfiable
+
+!! @"f(f(f(f(f(c))))) = c /\ f(f(f(c))) = c
+==> f(c) = c \/ f(g(c)) = g(f(c))"
+|> ccvalid
+
+!! @"f(f(f(f(f(c))))) = c /\ f(f(f(c))) = c
+==> f(c) = c"
+|> ccvalid
+
+!! @"f(f(f(f(c)))) = c /\ f(f(c)) = c ==> f(c) = c"
+|> ccvalid
+
+!!"P(0)"
+|> ccvalid
