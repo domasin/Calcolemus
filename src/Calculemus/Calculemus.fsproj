@@ -87,7 +87,8 @@
     <Compile Include="Equal.fs" />
     <Compile Include="Cong.fsi" />
     <Compile Include="Cong.fs" />
-    <Compile Include="rewrite.fs" />
+    <Compile Include="Rewrite.fsi" />
+    <Compile Include="Rewrite.fs" />
     <Compile Include="order.fs" />
     <Compile Include="completion.fs" />
     <Compile Include="eqelim.fs" />
