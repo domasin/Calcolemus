@@ -34,6 +34,7 @@
     <Compile Include="Skolems.fs" />
     <Compile Include="Equal.fs" />
     <Compile Include="Cong.fs" />
+    <Compile Include="Rewrite.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>

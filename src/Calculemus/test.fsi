@@ -147,14 +147,6 @@ val saturate_upto:
 
 val stalmarck: fm: Formulas.formula<Prop.prop> -> bool
 
-
-module Calculemus.Rewrite
-
-val rewrite1: eqs: Formulas.formula<Fol.fol> list -> t: Fol.term -> Fol.term
-
-val rewrite: eqs: Formulas.formula<Fol.fol> list -> tm: Fol.term -> Fol.term
-
-
 module Calculemus.Order
 
 val termsize: tm: Fol.term -> int

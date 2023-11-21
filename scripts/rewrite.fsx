@@ -5,9 +5,21 @@ open Lib.Fpf
 open Lib.Partition
 open Fol
 open Cong
+open Rewrite
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
+
+rewrite1 !!>["g(c) = 0"; "f(f(x)) = x"] !!!"f(f(f(x)))"
+
+!!!"S(S(S(0))) * S(S(0)) + S(S(S(S(0))))"
+|> rewrite !!>[
+    "0 + x = x"; 
+    "S(x) + y = S(x + y)";
+    "0 * x = 0"; 
+    "S(x) * y = y + x * y"
+]
+
 
 congruent 
     (equate (!!!"2",!!!"4")unequal) 
