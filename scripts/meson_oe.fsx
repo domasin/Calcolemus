@@ -10,9 +10,13 @@ open Fol
 open Skolem
 open Prolog
 open Meson
+open Printf
+open System.IO
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
+
+let file = File.CreateText("./compare/los_oe.txt")
 
 type transformation = 
     | Trivial
@@ -83,6 +87,7 @@ let rec tryfind_oe f l =
 
 let rec mexpand_basic_oe rules ancestors g cont (env, n, k) =
     // : Result<func<string,term> * int * int, string> =
+    fprintf file "%s\n" (g |> sprint_fol_formula)
     if n < 0 then Error "Too deep"
     else
         match 
@@ -135,15 +140,15 @@ let rec deepen_oe f n =
     | Ok x -> x
     | Error _ -> deepen_oe f (n + 1)
 
-[
-    ([!!"A"],!!"B");
-    ([!!"C"],!!"B");
-    ([],!!"D");
-    ([!!"D"],!!"P(0)")] 
-|> fun rules -> 
-    deepen_oe (fun n -> 
-        mexpand_basic_oe rules [] (!!"P(x)") (fun x -> Ok x) (undefined, n, 0)
-    ) 0
+// [
+//     ([!!"A"],!!"B");
+//     ([!!"C"],!!"B");
+//     ([],!!"D");
+//     ([!!"D"],!!"P(0)")] 
+// |> fun rules -> 
+//     deepen_oe (fun n -> 
+//         mexpand_basic_oe rules [] (!!"P(x)") (fun x -> Ok x) (undefined, n, 0)
+//     ) 0
     
 
 let puremeson_basic_oe fm =
@@ -168,21 +173,21 @@ let davis_putnam_example =
     (F(x,y) ==> (F(y,z) /\ F(z,z))) /\
     ((F(x,y) /\ G(x,y)) ==> (G(x,z) /\ G(z,z)))"
 
-davis_putnam_example
-|> generalize
-|> Not
-|> askolemize
-|> simpdnf
-|> List.head 
-|> list_conj
-|> pnf
-|> specialize
-|> simpcnf
-|> fun cls -> List.foldBack ((@) << contrapositives) cls []
-|> fun rules -> 
-    deepen_oe (fun n -> 
-        mexpand_basic_oe rules [] (!!"false") (fun x -> Ok x) (undefined, n, 0)
-    ) 0
+// davis_putnam_example
+// |> generalize
+// |> Not
+// |> askolemize
+// |> simpdnf
+// |> List.head 
+// |> list_conj
+// |> pnf
+// |> specialize
+// |> simpcnf
+// |> fun cls -> List.foldBack ((@) << contrapositives) cls []
+// |> fun rules -> 
+//     deepen_oe (fun n -> 
+//         mexpand_basic_oe rules [] (!!"false") (fun x -> Ok x) (undefined, n, 0)
+//     ) 0
 
 // time meson_basic_oe davis_putnam_example // CPU time (user): 0.008062
 // time meson_basic davis_putnam_example // CPU time (user): 0.021944
@@ -211,22 +216,7 @@ let expand2_oe expfn (goals1:formula<fol> list) n1 goals2 n2 n3 cont env k =
         )
 
 let rec mexpand_oe rules ancestors g cont (env, n, k) =
-
-    // let rec mexpands rules ancestors gs cont (env, n, k) =
-    //     if n < 0 then 
-    //         Error "Too deep" 
-    //     else
-    //         let m = List.length gs
-    //         if m <= 1 then 
-    //             List.foldBack (mexpand_oe rules ancestors) gs cont (env, n, k) 
-    //         else
-    //             let n1 = n / 2
-    //             let n2 = n - n1
-    //             let goals1,goals2 = chop_list (m / 2) gs
-    //             let expfn = expand2_oe (mexpands rules ancestors)
-    //             match expfn goals1 n1 goals2 n2 -1 cont env k with
-    //             | Ok x -> Ok x
-    //             | Error _ -> expfn goals2 n1 goals1 n2 n1 cont env k
+    fprintf file "%s\n" (g |> sprint_fol_formula)
 
     if n < 0 then
         Error "Too deep"
@@ -236,10 +226,17 @@ let rec mexpand_oe rules ancestors g cont (env, n, k) =
         match 
             ancestors
             |> tryfind_oe (fun a -> 
-                unify_literals_oe env (g, negate a)
+                let af = unify_literals_oe env (g, negate a)
+                match af with
+                | Ok _ -> 
+                    fprintf file "ancestorFound: %s\n" (a |> sprint_fol_formula)
+                    af
+                | _ -> 
+                    af
             )     
         with 
-        | Ok env -> cont (env, n, k)
+        | Ok env -> 
+            cont (env, n, k)
         | _ -> 
             rules
             |> tryfind_oe (fun r ->
@@ -252,16 +249,20 @@ let rec mexpand_oe rules ancestors g cont (env, n, k) =
                 | Error err -> Error err
             )
 and mexpands rules ancestors gs cont (env,n,k) =
-  if n < 0 then Error "Too deep" else
-  let m = List.length gs in
-  if m <= 1 then List.foldBack (mexpand_oe rules ancestors) gs cont (env,n,k) else
-  let n1 = n / 2 in
-  let n2 = n - n1 in
-  let goals1,goals2 = chop_list (m / 2) gs in
-  let expfn = expand2_oe (mexpands rules ancestors) in
-  match expfn goals1 n1 goals2 n2 (-1) cont env k with
-  | Error _ -> expfn goals2 n1 goals1 n2 n1 cont env k
-  | result ->  result
+    if n < 0 then 
+        Error "Too deep" 
+    else
+        let m = List.length gs
+        if m <= 1 then 
+            List.foldBack (mexpand_oe rules ancestors) gs cont (env,n,k) 
+        else
+            let n1 = n / 2
+            let n2 = n - n1
+            let goals1,goals2 = chop_list (m / 2) gs
+            let expfn = expand2_oe (mexpands rules ancestors)
+            match expfn goals1 n1 goals2 n2 (-1) cont env k with
+            | Error _ -> expfn goals2 n1 goals1 n2 n1 cont env k
+            | result ->  result
 
 let puremeson_oe fm =
     let cls = simpcnf (specialize (pnf fm))
@@ -281,3 +282,61 @@ let meson_oe fm =
 // time meson_oe davis_putnam_example // CPU time (user): 0.005575
 // time meson_oe Pelletier.p32 // CPU time (user): 0.004691
 // meson_oe streamroller
+
+let los = 
+ !! @"(forall x y z. P(x,y) ==> P(y,z) ==> P(x,z)) /\
+   (forall x y z. Q(x,y) ==> Q(y,z) ==> Q(x,z)) /\
+   (forall x y. Q(x,y) ==> Q(y,x)) /\
+   (forall x y. P(x,y) \/ Q(x,y))
+   ==> (forall x y. P(x,y)) \/ (forall x y. Q(x,y))";;
+
+// streamroller
+// davis_putnam_example
+// Pelletier.p32
+los
+|> generalize
+|> Not
+|> askolemize
+|> simpdnf
+|> List.head 
+|> list_conj
+|> pnf
+|> specialize
+|> simpcnf
+|> fun cls -> List.foldBack ((@) << contrapositives) cls []
+|> fun rules -> 
+    mexpand_oe rules [] (!!"false") (fun x -> Ok x) (undefined, 9, 0)
+
+file.Close();;
+
+// streamroller
+// |> generalize
+// |> Not
+// |> askolemize
+// |> simpdnf
+// |> List.head 
+// |> list_conj
+// |> pnf
+// |> specialize
+// |> simpcnf
+// |> fun cls -> List.foldBack ((@) << contrapositives) cls []
+// |> fun rules -> 
+//     mexpand rules [] (!!"false") id (undefined, 53, 0)
+
+// #time
+// streamroller
+// |> generalize
+// |> Not
+// |> askolemize
+// |> simpdnf
+// |> List.head 
+// |> list_conj
+// |> pnf
+// |> specialize
+// |> simpcnf
+// |> fun cls -> List.foldBack ((@) << contrapositives) cls []
+// |> fun rules -> 
+//     mexpand_basic_oe rules [] (!!"false") (fun x -> Ok x) (undefined, 53, 0)
+// #time
+
+// file.Close();;
