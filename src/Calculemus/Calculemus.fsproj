@@ -92,7 +92,8 @@
     <Compile Include="Rewrite.fs" />
     <Compile Include="Order.fsi" />
     <Compile Include="Order.fs" />
-    <Compile Include="completion.fs" />
+    <Compile Include="Completion.fsi" />
+    <Compile Include="Completion.fs" />
     <Compile Include="eqelim.fs" />
     <Compile Include="paramodulation.fs" />
     <Compile Include="decidable.fs" />

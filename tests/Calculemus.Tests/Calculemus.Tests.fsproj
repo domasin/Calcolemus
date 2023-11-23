@@ -37,6 +37,7 @@
     <Compile Include="Cong.fs" />
     <Compile Include="Rewrite.fs" />
     <Compile Include="Order.fs" />
+    <Compile Include="Completion.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>
