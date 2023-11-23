@@ -58,9 +58,10 @@
     <Compile Include="Defcnf.fs" />
     <Compile Include="DP.fsi" />
     <Compile Include="DP.fs" />
-    <Compile Include="stal.fs" />
-    <Compile Include="bdd.fsi" />
-    <Compile Include="bdd.fs" />
+    <Compile Include="Stal.fsi" />
+    <Compile Include="Stal.fs" />
+    <Compile Include="Bdd.fsi" />
+    <Compile Include="Bdd.fs" />
     <Compile Include="Fol.fsi" />
     <Compile Include="Fol.fs" />
     <Compile Include="Skolem.fsi" />
@@ -89,7 +90,8 @@
     <Compile Include="Cong.fs" />
     <Compile Include="Rewrite.fsi" />
     <Compile Include="Rewrite.fs" />
-    <Compile Include="order.fs" />
+    <Compile Include="Order.fsi" />
+    <Compile Include="Order.fs" />
     <Compile Include="completion.fs" />
     <Compile Include="eqelim.fs" />
     <Compile Include="paramodulation.fs" />

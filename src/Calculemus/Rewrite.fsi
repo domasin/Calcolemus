@@ -4,10 +4,6 @@
 // ========================================================================= //
 namespace Calculemus
 
-open Calculemus
-
-open Lib.Fpf
-open Lib.Partition
 open Formulas
 open Fol
 

@@ -22,6 +22,7 @@
     <Compile Include="Defcnf.fs" />
     <Compile Include="DP.fs" />
     <Compile Include="Stal.fs" />
+    <Compile Include="Bdd.fs" />
     <Compile Include="Fol.fs" />
     <Compile Include="Skolem.fs" />
     <Compile Include="Clause.fs" />
@@ -35,6 +36,7 @@
     <Compile Include="Equal.fs" />
     <Compile Include="Cong.fs" />
     <Compile Include="Rewrite.fs" />
+    <Compile Include="Order.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>
