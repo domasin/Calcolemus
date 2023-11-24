@@ -145,6 +145,8 @@
                       </b>
                       :
                       <code><span>'a&#32;->&#32;'a&#32;->&#32;bool</span></code>
+                       - 
+                      The input relation.
                     </span>
                     <br/>
                     <span>
@@ -153,6 +155,8 @@
                       </b>
                       :
                       <code><span>'a&#32;list</span></code>
+                       - 
+                      The first input items to be compared.
                     </span>
                     <br/>
                     <span>
@@ -161,6 +165,8 @@
                       </b>
                       :
                       <code><span>'a&#32;list</span></code>
+                       - 
+                      The second input items to be compared.
                     </span>
                     <br/>
                   </ul>
@@ -169,47 +175,109 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input list are equally long and reading from 
+ left to right the items in the first list are not less then the 
+ second's and there is at least one greater;otherwise false.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ord
-                </span>
-                :
-                <code><span>'a&#32;->&#32;'a&#32;->&#32;bool</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  l1
-                </span>
-                :
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  l2
-                </span>
-                :
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Order.lexord``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Order.lexord``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Order.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the general lexicographic extension of an arbitrary relation 
+ <code>ord</code>.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ord
+                  </span>
+                  :
+                  <code><span>'a&#32;->&#32;'a&#32;->&#32;bool</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input relation.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    l1
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input items to be compared.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    l2
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input items to be compared.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input list are equally long and reading from 
+ left to right the items in the first list are not less then the 
+ second's and there is at least one greater;otherwise false.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lexord-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lexord</span> <span class="pn">(</span><span class="pn">&gt;</span><span class="pn">)</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">2</span><span class="pn">]</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span>  <span class="c">// true</span>
+ <span class="id">lexord</span> <span class="pn">(</span><span class="pn">&gt;</span><span class="pn">)</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span>  <span class="c">// true</span>
+ <span class="id">lexord</span> <span class="pn">(</span><span class="pn">&gt;</span><span class="pn">)</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">0</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span>  <span class="c">// false</span>
+ <span class="id">lexord</span> <span class="pn">(</span><span class="pn">&gt;</span><span class="pn">)</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span>  <span class="c">// false</span>
+ <span class="id">lexord</span> <span class="pn">(</span><span class="pn">&gt;</span><span class="pn">)</span> <span class="pn">[</span><span class="n">2</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">2</span><span class="pn">]</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">;</span><span class="n">1</span><span class="pn">]</span>    <span class="c">// false</span>
+</code></pre>
+
+
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -238,6 +306,8 @@
                       </b>
                       :
                       <code><span><span>string&#32;*&#32;int</span>&#32;->&#32;<span>string&#32;*&#32;int</span>&#32;->&#32;bool</span></code>
+                       - 
+                      The function that `weights' the function symbols.
                     </span>
                     <br/>
                     <span>
@@ -246,6 +316,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The first input term supposed greater than the second.
                     </span>
                     <br/>
                     <span>
@@ -254,6 +326,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The second input term to be compared.
                     </span>
                     <br/>
                   </ul>
@@ -262,47 +336,168 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the first input term is greater than the second based on the 
+ reflexive lexicographic path order parametrized by <code>w</code>.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  w
-                </span>
-                :
-                <code><span><span>string&#32;*&#32;int</span>&#32;->&#32;<span>string&#32;*&#32;int</span>&#32;->&#32;bool</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  t
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Order.lpo_ge`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Order.lpo_ge\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Order.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests if a term is greater than an other based on a reflexive 
+ lexicographic path order.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                <ul>
+  <li>
+ \(f(s_1,\ldots,s_m) &gt; f(t_1,\ldots,t_m)\) if the sequence 
+ \(s_1,\ldots,s_n\) is lexicographically greater than 
+ \(t_1,\ldots,t_n\), i.e if \(s_i = t_i\) for all 
+ \(i &lt; k \leq m\) and \(s_k &gt; t_k\) under the same ordering;
+ </li>
+  <li>
+ \(f(s_1,\ldots,s_n) &gt; t\) whenever \(s_i \geq t\);
+ </li>
+  <li>
+ \(f(s_1,\ldots,s_m) &gt; g(t_1,\ldots,t_n)\) according to the 
+ specified precedence ordering of the function symbols, without further 
+ analysis of the \(s_i\) and \(t_i\);
+ </li>
+</ul>
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    w
+                  </span>
+                  :
+                  <code><span><span>string&#32;*&#32;int</span>&#32;->&#32;<span>string&#32;*&#32;int</span>&#32;->&#32;bool</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function that `weights' the function symbols.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input term supposed greater than the second.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    t
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input term to be compared.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the first input term is greater than the second based on the 
+ reflexive lexicographic path order parametrized by <code>w</code>.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-1">
+                
+ The inputs are function terms with the same function symbol but the 
+ arguments sequence of the first is greater than that of the second:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(0,0)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-2">
+                
+ The first term is a function term and its arguments are all greater or 
+ equal than the second term
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;h(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;0&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-3">
+                
+ The inputs are function terms and the function symbol of the first is 
+ greater than the second based on the precedence defined by the 
+ weighting function
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;g&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;g(1)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-4">
+                
+ The input terms are the same
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -331,6 +526,8 @@
                       </b>
                       :
                       <code><span><span>string&#32;*&#32;int</span>&#32;->&#32;<span>string&#32;*&#32;int</span>&#32;->&#32;bool</span></code>
+                       - 
+                      The function that `weights' the function symbols.
                     </span>
                     <br/>
                     <span>
@@ -339,6 +536,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The first input term supposed greater than the second.
                     </span>
                     <br/>
                     <span>
@@ -347,6 +546,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The second input term to be compared.
                     </span>
                     <br/>
                   </ul>
@@ -355,47 +556,168 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the first input term is greater than the second based on the 
+ irreflexive lexicographic path order parametrized by <code>w</code>.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  w
-                </span>
-                :
-                <code><span><span>string&#32;*&#32;int</span>&#32;->&#32;<span>string&#32;*&#32;int</span>&#32;->&#32;bool</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  s
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  t
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Order.lpo_gt`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Order.lpo_gt\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Order.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests if a term is greater than an other based on a irreflexive 
+ lexicographic path order.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                <ul>
+  <li>
+ \(f(s_1,\ldots,s_m) &gt; f(t_1,\ldots,t_m)\) if the sequence 
+ \(s_1,\ldots,s_n\) is lexicographically greater than 
+ \(t_1,\ldots,t_n\), i.e if \(s_i = t_i\) for all 
+ \(i &lt; k \leq m\) and \(s_k &gt; t_k\) under the same ordering;
+ </li>
+  <li>
+ \(f(s_1,\ldots,s_n) &gt; t\) whenever \(s_i \geq t\);
+ </li>
+  <li>
+ \(f(s_1,\ldots,s_m) &gt; g(t_1,\ldots,t_n)\) according to the 
+ specified precedence ordering of the function symbols, without further 
+ analysis of the \(s_i\) and \(t_i\);
+ </li>
+</ul>
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    w
+                  </span>
+                  :
+                  <code><span><span>string&#32;*&#32;int</span>&#32;->&#32;<span>string&#32;*&#32;int</span>&#32;->&#32;bool</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function that `weights' the function symbols.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    s
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input term supposed greater than the second.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    t
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input term to be compared.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the first input term is greater than the second based on the 
+ irreflexive lexicographic path order parametrized by <code>w</code>.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-1">
+                
+ The inputs are function terms with the same function symbol but the 
+ arguments sequence of the first is greater than that of the second:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(0,0)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-2">
+                
+ The first term is a function term and its arguments are all greater or 
+ equal than the second term
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;h(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;0&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-3">
+                
+ The inputs are function terms and the function symbol of the first is 
+ greater than the second based on the precedence defined by the 
+ weighting function
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;g&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;g(1)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-4">
+                
+ The input terms are the same
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -424,6 +746,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The input term.
                     </span>
                     <br/>
                   </ul>
@@ -432,31 +756,79 @@
                     Returns: 
                     <code>int</code>
                   </span>
+                  
+ The sum of the number of variables and function symbols in the term.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  tm
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Order.termsize`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Order.termsize\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Order.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Calculates the size of a term as the sum of the number of its variables 
+ and function symbols.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tm
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input term.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The sum of the number of variables and function symbols in the term.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="termsize-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">termsize</span> <span class="o">!!!</span><span class="s">&quot;f(f(f(x)))&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>4</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -485,6 +857,8 @@
                       </b>
                       :
                       <code><span>'a&#32;list</span></code>
+                       - 
+                      The list that defines the precedence of function symbols.
                     </span>
                     <br/>
                     <span>
@@ -493,6 +867,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The first input function symbol, supposed bigger than the second.
                     </span>
                     <br/>
                     <span>
@@ -501,6 +877,8 @@
                       </b>
                       :
                       <code>'b</code>
+                       - 
+                      The arity of the first function symbol.
                     </span>
                     <br/>
                     <span>
@@ -509,6 +887,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      The second input function symbol to be compared.
                     </span>
                     <br/>
                     <span>
@@ -517,6 +897,8 @@
                       </b>
                       :
                       <code>'b</code>
+                       - 
+                      The arity of the second function symbol.
                     </span>
                     <br/>
                   </ul>
@@ -525,63 +907,131 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if <code>f</code> comes after <code>g</code> in <code>lis</code>, or <code>f</code> and 
+ <code>g</code> are the same symbol but <code>n &gt; m</code>; otherwise, false.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  lis
-                </span>
-                :
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  n
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  g
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  m
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Order.weight``2```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Order.weight``2\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Order.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests if the function symbol <code>f,n</code> is `bigger' than <code>g,n</code> 
+ based on a precedence defined in the <code>lis</code> argument or on their 
+ arities if they are the same symbol.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    lis
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The list that defines the precedence of function symbols.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input function symbol, supposed bigger than the second.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    n
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The arity of the first function symbol.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    g
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input function symbol to be compared.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    m
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The arity of the second function symbol.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if <code>f</code> comes after <code>g</code> in <code>lis</code>, or <code>f</code> and 
+ <code>g</code> are the same symbol but <code>n &gt; m</code>; otherwise, false.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="weight-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;g&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;g&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span> <span class="c">// true</span>
+ <span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;f&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span> <span class="c">// true</span>
+ <span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;f&quot;</span><span class="pn">;</span><span class="s">&quot;g&quot;</span><span class="pn">]</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;g&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span> <span class="c">// false</span>
+ <span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;f&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;f&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span> <span class="c">// false</span>
+</code></pre>
+
+
+              </p>
+            </details>
           </td>
         </tr>
       </tbody>
