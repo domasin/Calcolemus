@@ -36,13 +36,23 @@ let ``weight should return true, if f comes after g in lis, or if f and g are th
     Assert.Equal(false, weight ["f";"f"] ("f",1) ("f",2))
 
 [<Fact>]
+let ``lpo_gt should return true if the second term is a variable contained in the first term.``() = 
+    lpo_gt (weight []) !!!"f(x)" !!!"x"
+    |> shouldEqual true
+
+[<Fact>]
+let ``lpo_gt should return false if the second term is a variable not contained in the first term.``() = 
+    lpo_gt (weight []) !!!"f(y)" !!!"x"
+    |> shouldEqual false
+
+[<Fact>]
 let ``lpo_gt should return true if the inputs are function terms with the same function symbol but the arguments sequence of the first is greater than that of the second.``() = 
     lpo_gt (weight ["0"; "1"]) !!!"f(0,1)" !!!"f(0,0)"
     |> shouldEqual true
 
 [<Fact>]
-let ``lpo_gt should return true if the first term is a function term and its arguments are all greater or equal than the second term.``() = 
-    lpo_gt (weight ["0"; "1"]) !!!"h(0,1)" !!!"0"
+let ``lpo_gt should return true if the first term is a function term and at least one of its arguments is greater or equal than the second term.``() = 
+    lpo_gt (weight ["0"; "1"]) !!!"h(0,1)" !!!"1"
     |> shouldEqual true
 
 [<Fact>]
@@ -56,13 +66,24 @@ let ``lpo_gt should return false if the term are equal.``() =
     |> shouldEqual false
 
 [<Fact>]
+let ``lpo_ge should return true if the second term is a variable contained in the first term.``() = 
+    lpo_ge (weight []) !!!"f(x)" !!!"x"
+    |> shouldEqual true
+
+[<Fact>]
+let ``lpo_ge should return false if the second term is a variable not contained in the first term.``() = 
+    lpo_ge (weight []) !!!"f(y)" !!!"x"
+    |> shouldEqual false
+
+
+[<Fact>]
 let ``lpo_ge should return true if the inputs are function terms with the same function symbol but the arguments sequence of the first is greater than that of the second.``() = 
     lpo_ge (weight ["0"; "1"]) !!!"f(0,1)" !!!"f(0,0)"
     |> shouldEqual true
 
 [<Fact>]
-let ``lpo_ge should return true if the first term is a function term and its arguments are all greater or equal than the second term.``() = 
-    lpo_ge (weight ["0"; "1"]) !!!"h(0,1)" !!!"0"
+let ``lpo_ge should return true if the first term is a function term and at least one of its arguments is greater or equal than the second term.``() = 
+    lpo_ge (weight ["0"; "1"]) !!!"h(0,1)" !!!"1"
     |> shouldEqual true
 
 [<Fact>]

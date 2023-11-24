@@ -69,18 +69,27 @@ module Order =
     /// <remarks>
     /// <ul>
     /// <li>
+    /// If \(t\) is a variable \(t\), \(s > t\) if \(s \neq t\) and 
+    /// \(x \in \text{FVT}(s)\).
+    /// </li>
+    /// <li>
     /// \(f(s_1,\ldots,s_m) > f(t_1,\ldots,t_m)\) if the sequence 
     /// \(s_1,\ldots,s_n\) is lexicographically greater than 
     /// \(t_1,\ldots,t_n\), i.e if \(s_i = t_i\) for all 
     /// \(i &lt; k \leq m\) and \(s_k > t_k\) under the same ordering;
     /// </li>
     /// <li>
-    /// \(f(s_1,\ldots,s_n) > t\) whenever \(s_i \geq t\);
+    /// \(f(s_1,\ldots,s_n) > t\) when some \(s_i \geq t\);
     /// </li>
     /// <li>
     /// \(f(s_1,\ldots,s_m) > g(t_1,\ldots,t_n)\) according to the 
     /// specified precedence ordering of the function symbols, without further 
     /// analysis of the \(s_i\) and \(t_i\);
+    /// </li>
+    /// <li>
+    /// \(f(s_1,\ldots,s_m) > g(t_1,\ldots,t_n)\) (whether or not \(f = g\)) 
+    /// only if in addition \(f(s_1,\ldots,s_m) > t_i\) for each \(1 \leq i 
+    /// \leq n\).
     /// </li>
     /// </ul>
     /// </remarks>
@@ -95,6 +104,24 @@ module Order =
     /// </returns>
     /// 
     /// <example id="lpo_gt-1">
+    /// The second term is a variable contained in the free variables of the 
+    /// first.
+    /// <code lang="fsharp">
+    /// lpo_gt (weight []) !!!"f(x)" !!!"x"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="lpo_gt-2">
+    /// The second term is a variable not contained in the free variables of 
+    /// the first.
+    /// <code lang="fsharp">
+    /// lpo_gt (weight []) !!!"f(y)" !!!"x"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="lpo_gt-3">
     /// The inputs are function terms with the same function symbol but the 
     /// arguments sequence of the first is greater than that of the second:
     /// <code lang="fsharp">
@@ -103,16 +130,16 @@ module Order =
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <example id="lpo_gt-2">
-    /// The first term is a function term and its arguments are all greater or 
-    /// equal than the second term
+    /// <example id="lpo_gt-4">
+    /// The first term is a function term and at least one of its arguments is 
+    /// greater or equal than the second term
     /// <code lang="fsharp">
-    /// lpo_gt (weight ["0"; "1"]) !!!"h(0,1)" !!!"0"
+    /// lpo_gt (weight ["0"; "1"]) !!!"h(0,1)" !!!"1"
     /// </code>
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <example id="lpo_gt-3">
+    /// <example id="lpo_gt-5">
     /// The inputs are function terms and the function symbol of the first is 
     /// greater than the second based on the precedence defined by the 
     /// weighting function
@@ -122,7 +149,16 @@ module Order =
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <example id="lpo_gt-4">
+    /// <example id="lpo_gt-6">
+    /// The input terms are function terms and all arguments of the first are 
+    /// greater than the whole second term.
+    /// <code lang="fsharp">
+    /// lpo_gt (weight ["0";"1";"g";"f"]) !!!"g(f(1))" !!!"f(0)"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="lpo_gt-7">
     /// The input terms are the same
     /// <code lang="fsharp">
     /// lpo_gt (weight []) !!!"f(1)" !!!"f(1)"
@@ -141,18 +177,27 @@ module Order =
     /// <remarks>
     /// <ul>
     /// <li>
+    /// If \(t\) is a variable \(t\), \(s > t\) if \(s \neq t\) and 
+    /// \(x \in \text{FVT}(s)\).
+    /// </li>
+    /// <li>
     /// \(f(s_1,\ldots,s_m) > f(t_1,\ldots,t_m)\) if the sequence 
     /// \(s_1,\ldots,s_n\) is lexicographically greater than 
     /// \(t_1,\ldots,t_n\), i.e if \(s_i = t_i\) for all 
     /// \(i &lt; k \leq m\) and \(s_k > t_k\) under the same ordering;
     /// </li>
     /// <li>
-    /// \(f(s_1,\ldots,s_n) > t\) whenever \(s_i \geq t\);
+    /// \(f(s_1,\ldots,s_n) > t\) when some \(s_i \geq t\);
     /// </li>
     /// <li>
     /// \(f(s_1,\ldots,s_m) > g(t_1,\ldots,t_n)\) according to the 
     /// specified precedence ordering of the function symbols, without further 
     /// analysis of the \(s_i\) and \(t_i\);
+    /// </li>
+    /// <li>
+    /// \(f(s_1,\ldots,s_m) > g(t_1,\ldots,t_n)\) (whether or not \(f = g\)) 
+    /// only if in addition \(f(s_1,\ldots,s_m) > t_i\) for each \(1 \leq i 
+    /// \leq n\).
     /// </li>
     /// </ul>
     /// </remarks>
@@ -167,6 +212,24 @@ module Order =
     /// </returns>
     /// 
     /// <example id="lpo_ge-1">
+    /// The second term is a variable contained in the free variables of the 
+    /// first.
+    /// <code lang="fsharp">
+    /// lpo_ge (weight []) !!!"f(x)" !!!"x"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="lpo_ge-2">
+    /// The second term is a variable not contained in the free variables of 
+    /// the first.
+    /// <code lang="fsharp">
+    /// lpo_ge (weight []) !!!"f(y)" !!!"x"
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="lpo_ge-3">
     /// The inputs are function terms with the same function symbol but the 
     /// arguments sequence of the first is greater than that of the second:
     /// <code lang="fsharp">
@@ -175,16 +238,16 @@ module Order =
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <example id="lpo_ge-2">
-    /// The first term is a function term and its arguments are all greater or 
-    /// equal than the second term
+    /// <example id="lpo_ge-4">
+    /// The first term is a function term and at least one of its arguments is 
+    /// greater or equal than the second term
     /// <code lang="fsharp">
-    /// lpo_ge (weight ["0"; "1"]) !!!"h(0,1)" !!!"0"
+    /// lpo_ge (weight ["0"; "1"]) !!!"h(0,1)" !!!"1"
     /// </code>
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <example id="lpo_ge-3">
+    /// <example id="lpo_ge-5">
     /// The inputs are function terms and the function symbol of the first is 
     /// greater than the second based on the precedence defined by the 
     /// weighting function
@@ -194,7 +257,16 @@ module Order =
     /// Evaluates to <c>true</c>.
     /// </example>
     /// 
-    /// <example id="lpo_ge-4">
+    /// <example id="lpo_ge-6">
+    /// The input terms are function terms and all arguments of the first are 
+    /// greater than the whole second term.
+    /// <code lang="fsharp">
+    /// lpo_ge (weight ["0";"1";"g";"f"]) !!!"g(f(1))" !!!"f(0)"
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="lpo_ge-7">
     /// The input terms are the same
     /// <code lang="fsharp">
     /// lpo_ge (weight []) !!!"f(1)" !!!"f(1)"

@@ -22,12 +22,22 @@ w ("f",1) ("1",0)
 
 lpo_gt (weight ["0"; "1"]) !!!"f(0,1)" !!!"f(0,0)"
 
+lpo_gt (weight []) !!!"f(x)" !!!"x"
+lpo_gt (weight []) !!!"f(y)" !!!"x"
+
+lpo_ge (weight []) !!!"x" !!!"x"
+
 lpo_gt (weight ["0"; "1"]) !!!"h(0,1)" !!!"0"
 
 lpo_gt (weight ["g";"f"]) !!!"f(1)" !!!"g(1)"
 
 lpo_gt (weight []) !!!"f(1,1)" !!!"f(1)" // true
 lpo_gt (weight []) !!!"f(1)" !!!"f(1,1)" // false
+
+lpo_gt (weight ["0";"1";"g";"f"]) !!!"f(1)" !!!"f(0)"
+
+lpo_gt (weight ["0";"1";"g";"f"]) !!!"g(f(1))" !!!"f(0)"
+lpo_gt (weight ["0";"1";"g";"f"]) !!!"g(f(0))" !!!"f(1)"
 
 lpo_gt (weight ["0";"1";"f"]) !!!"f(1)" !!!"f(f(0))"
 
