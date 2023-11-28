@@ -49,10 +49,16 @@ module Completion =
                 rfn i (h :: t'))
                 t acc
 
+    let traceOverlaps l r f args tm = 
+        printfn 
+            """listcases (overlaps ("%s", "%s")) (fun i a -> rfn i (Fn ("%s",a))) %A
+                    (try [rfn (fullunify ["%s", ">%s"]) "%s"] with Failure _ -> [])""" 
+            (sprint_term l) (sprint_term r) f (args |> List.map sprint_term) (sprint_term l) (sprint_term tm) (sprint_term r)
     let rec overlaps (l, r) tm rfn =
         match tm with
         | Var x -> []
         | Fn (f, args) ->
+            // traceOverlaps l r f args tm
             listcases (overlaps (l, r)) (fun i a -> rfn i (Fn (f, a))) args
                 (try [rfn (fullunify [l, tm]) r] with Failure _ -> [])
     
@@ -60,23 +66,27 @@ module Completion =
     // Generate all critical pairs between two equations.                     //
     // ---------------------------------------------------------------------- //
 
-    // dom modified to remove warning
-    let crit1 a1 a2 =
-        match a1, a2 with
-        | (Atom (R ("=", [l1;r1]))), (Atom (R ("=", [l2;r2]))) -> 
-            overlaps (l1,r1) l2 (fun i t -> subst i (mk_eq t r2))
-        | _ -> failwith "crit1: incomplete pattern matching" 
+    let traceCrit1 l1 r1 l2 r2 = 
+        printfn 
+            """overlaps ("%s","%s") "%s" (fun i t -> subst i (mk_eq t "%s"))""" 
+            (l1 |> sprint_term) (r1 |> sprint_term) (l2 |> sprint_term) (r2 |> sprint_term)
 
-    let critical_pairs fma fmb =
-        let fm1, fm2 = renamepair (fma, fmb)
-        if fma = fmb then crit1 fm1 fm2
+    let crit1 eq1 eq2 =
+        match eq1, eq2 with
+        | (Atom (R ("=", [l1;r1]))), (Atom (R ("=", [l2;r2]))) -> 
+            // traceCrit1 l1 r1 l2 r2
+            overlaps (l1,r1) l2 (fun i t -> subst i (mk_eq t r2))
+        | _ -> failwith "crit1: incomplete pattern matching"  
+
+    let critical_pairs eq1 eq2 =
+        let fm1, fm2 = renamepair (eq1, eq2)
+        if eq1 = eq2 then crit1 fm1 fm2
         else union (crit1 fm1 fm2) (crit1 fm2 fm1)
 
     // ---------------------------------------------------------------------- //
     // Orienting an equation.                                                 //
     // ---------------------------------------------------------------------- //
 
-    // dom modified to remove warning
     let normalize_and_orient ord eqs atm =
         match atm with
         | (Atom (R ("=", [s;t])))  -> 
