@@ -136,7 +136,6 @@ module Completion =
     // Inter-reduction.                                                       //
     // ---------------------------------------------------------------------- //
 
-    // dom modified to remove warning
     let rec interreduce dun eqs =
         match eqs with
         | [] -> List.rev dun

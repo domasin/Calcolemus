@@ -10,6 +10,8 @@ open FsUnit.Xunit
 open FsUnitTyped
 
 open Calculemus
+open Lib.Set
+open Lib.List
 open Fol
 open Equal
 open Order
@@ -57,3 +59,82 @@ let ``normalize_and_orient should return the pair of LHS and RHS of the normaliz
     |> fun (x, y) -> (sprint_term x, sprint_term y)
     |> shouldEqual 
         ("``i(x * y)``", "``i(y) * i(x)``")
+
+[<Fact>]
+let ``complete should return the completed set of equations that defines a confluent term rewriting system, if the procedure has success.``() = 
+    let eqs = !!>[
+            "1 * x = x"; 
+            "i(x) * x = 1"; 
+            "(x * y) * z = x * y * z"
+    ]
+
+    let ord = lpo_ge (weight ["1"; "*"; "i"])
+
+    (eqs,[],unions(allpairs critical_pairs eqs eqs))
+    |> complete ord
+    |> List.map sprint_fol_formula
+    |> shouldEqual
+        ["`i(x4 * x5) = i(x5) * i(x4)`"; "`x1 * i(x5 * x1) = i(x5)`";
+   "`i(x4) * x1 * i(x3 * x1) = i(x4) * i(x3)`";
+   "`x1 * i(i(x4) * i(x3) * x1) = x3 * x4`";
+   "`i(x3 * x5) * x0 = i(x5) * i(x3) * x0`";
+   "`i(x4 * x5 * x6 * x3) * x0 = i(x3) * i(x4 * x5 * x6) * x0`";
+   "`i(x0 * i(x1)) = x1 * i(x0)`"; "`i(i(x2 * x1) * x2) = x1`";
+   "`i(i(x4) * x2) * x0 = i(x2) * x4 * x0`"; "`x1 * i(x2 * x1) * x2 = 1`";
+   "`x1 * i(i(x4 * x5) * x1) * x3 = x4 * x5 * x3`";
+   "`i(x3 * i(x1 * x2)) = x1 * x2 * i(x3)`";
+   "`i(i(x3 * i(x1 * x2)) * i(x5 * x6)) * x1 * x2 * x0 = x5 * x6 * x3 * x0`";
+   "`x1 * x2 * i(x1 * x2) = 1`"; "`x2 * x3 * i(x2 * x3) * x1 = x1`";
+   "`i(x3 * x4) * x3 * x1 = i(x4) * x1`";
+   "`i(x1 * x3 * x4) * x1 * x3 * x4 * x0 = x0`";
+   "`i(x1 * i(x3)) * x1 * x4 = x3 * x4`";
+   "`i(i(x5 * x2) * x5) * x0 = x2 * x0`";
+   "`i(x4 * i(x1 * x2)) * x4 * x0 = x1 * x2 * x0`"; "`i(i(x1)) = x1`";
+   "`i(1) = 1`"; "`x0 * i(x0) = 1`"; "`x0 * i(x0) * x3 = x3`";
+   "`i(x2 * x3) * x2 * x3 * x1 = x1`"; "`x1 * 1 = x1`"; "`i(1) * x1 = x1`";
+   "`i(i(x0)) * x1 = x0 * x1`"; "`i(x1) * x1 * x2 = x2`"; "`1 * x = x`";
+   "`i(x) * x = 1`"; "`(x * y) * z = x * y * z`"]
+
+[<Fact>]
+let ``interreduce should return the set of equations interreduced.``() = 
+    !!>[
+        "i(x4 * x5) = i(x5) * i(x4)"; "x1 * i(x5 * x1) = i(x5)";
+        "i(x4) * x1 * i(x3 * x1) = i(x4) * i(x3)";
+        "x1 * i(i(x4) * i(x3) * x1) = x3 * x4";
+        "i(x3 * x5) * x0 = i(x5) * i(x3) * x0";
+        "i(x4 * x5 * x6 * x3) * x0 = i(x3) * i(x4 * x5 * x6) * x0";
+        "i(x0 * i(x1)) = x1 * i(x0)"; "i(i(x2 * x1) * x2) = x1";
+        "i(i(x4) * x2) * x0 = i(x2) * x4 * x0"; "x1 * i(x2 * x1) * x2 = 1";
+        "x1 * i(i(x4 * x5) * x1) * x3 = x4 * x5 * x3";
+        "i(x3 * i(x1 * x2)) = x1 * x2 * i(x3)";
+        "i(i(x3 * i(x1 * x2)) * i(x5 * x6)) * x1 * x2 * x0 = x5 * x6 * x3 * x0";
+        "x1 * x2 * i(x1 * x2) = 1"; "x2 * x3 * i(x2 * x3) * x1 = x1";
+        "i(x3 * x4) * x3 * x1 = i(x4) * x1";
+        "i(x1 * x3 * x4) * x1 * x3 * x4 * x0 = x0";
+        "i(x1 * i(x3)) * x1 * x4 = x3 * x4";
+        "i(i(x5 * x2) * x5) * x0 = x2 * x0";
+        "i(x4 * i(x1 * x2)) * x4 * x0 = x1 * x2 * x0"; "i(i(x1)) = x1";
+        "i(1) = 1"; "x0 * i(x0) = 1"; "x0 * i(x0) * x3 = x3";
+        "i(x2 * x3) * x2 * x3 * x1 = x1"; "x1 * 1 = x1"; "i(1) * x1 = x1";
+        "i(i(x0)) * x1 = x0 * x1"; "i(x1) * x1 * x2 = x2"; "1 * x = x";
+        "i(x) * x = 1"; "(x * y) * z = x * y * z"
+    ]
+    |> interreduce []
+    |> List.map sprint_fol_formula
+    |> shouldEqual 
+        ["`i(x4 * x5) = i(x5) * i(x4)`"; "`i(i(x1)) = x1`"; "`i(1) = 1`";
+   "`x0 * i(x0) = 1`"; "`x0 * i(x0) * x3 = x3`"; "`x1 * 1 = x1`";
+   "`i(x1) * x1 * x2 = x2`"; "`1 * x = x`"; "`i(x) * x = 1`";
+   "`(x * y) * z = x * y * z`"]
+
+[<Fact>]
+let ``complete_and_simplify should return the completed and interreduced set of equations, if the procedure has success.``() = 
+    [!!"i(a) * (a * b) = b"]
+    |> complete_and_simplify ["1"; "*"; "i"]
+    |> List.map sprint_fol_formula
+    |> shouldEqual 
+        [
+            "`x0 * i(x0) * x3 = x3`"; 
+            "`i(i(x0)) * x1 = x0 * x1`"; 
+            "`i(a) * a * b = b`"
+        ]

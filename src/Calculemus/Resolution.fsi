@@ -240,7 +240,7 @@ module Resolution =
     /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found.</exception>
     /// 
     /// <note>
-    /// Prints diagnostic informations to the <c>stdout</c>
+    /// Prints diagnostic informations to the <c>stdout</c>.
     /// </note>
     /// 
     /// <example id="basic_resloop-1">
