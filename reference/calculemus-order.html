@@ -122,7 +122,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
+              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
                 <p>
                   <a id="lexord">
                     <a href="#lexord">
@@ -131,7 +131,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="548">
+              <div class="fsdocs-tip" id="542">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>lexord&#32;<span>ord&#32;l1&#32;l2</span></span></code>
@@ -283,7 +283,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
+              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
                 <p>
                   <a id="lpo_ge">
                     <a href="#lpo_ge">
@@ -292,7 +292,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="549">
+              <div class="fsdocs-tip" id="543">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>lpo_ge&#32;<span>w&#32;s&#32;t</span></span></code>
@@ -372,18 +372,27 @@
               <p class="fsdocs-remarks">
                 <ul>
   <li>
+ If \(t\) is a variable \(t\), \(s &gt; t\) if \(s \neq t\) and 
+ \(x \in \text{FVT}(s)\).
+ </li>
+  <li>
  \(f(s_1,\ldots,s_m) &gt; f(t_1,\ldots,t_m)\) if the sequence 
  \(s_1,\ldots,s_n\) is lexicographically greater than 
  \(t_1,\ldots,t_n\), i.e if \(s_i = t_i\) for all 
  \(i &lt; k \leq m\) and \(s_k &gt; t_k\) under the same ordering;
  </li>
   <li>
- \(f(s_1,\ldots,s_n) &gt; t\) whenever \(s_i \geq t\);
+ \(f(s_1,\ldots,s_n) &gt; t\) when some \(s_i \geq t\);
  </li>
   <li>
  \(f(s_1,\ldots,s_m) &gt; g(t_1,\ldots,t_n)\) according to the 
  specified precedence ordering of the function symbols, without further 
  analysis of the \(s_i\) and \(t_i\);
+ </li>
+  <li>
+ \(f(s_1,\ldots,s_m) &gt; g(t_1,\ldots,t_n)\) (whether or not \(f = g\)) 
+ only if in addition \(f(s_1,\ldots,s_m) &gt; t_i\) for each \(1 \leq i 
+ \leq n\).
  </li>
 </ul>
               </p>
@@ -446,6 +455,34 @@
               </h5>
               <p class="fsdocs-example" id="lpo_ge-1">
                 
+ The second term is a variable contained in the free variables of the 
+ first.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(x)&quot;</span> <span class="o">!!!</span><span class="s">&quot;x&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-2">
+                
+ The second term is a variable not contained in the free variables of 
+ the first.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(y)&quot;</span> <span class="o">!!!</span><span class="s">&quot;x&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-3">
+                
  The inputs are function terms with the same function symbol but the 
  arguments sequence of the first is greater than that of the second:
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(0,0)&quot;</span>
@@ -458,11 +495,11 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="lpo_ge-2">
+              <p class="fsdocs-example" id="lpo_ge-4">
                 
- The first term is a function term and its arguments are all greater or 
- equal than the second term
- <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;h(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;0&quot;</span>
+ The first term is a function term and at least one of its arguments is 
+ greater or equal than the second term
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;h(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;1&quot;</span>
 </code></pre>
 
 
@@ -472,7 +509,7 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="lpo_ge-3">
+              <p class="fsdocs-example" id="lpo_ge-5">
                 
  The inputs are function terms and the function symbol of the first is 
  greater than the second based on the precedence defined by the 
@@ -487,7 +524,21 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="lpo_ge-4">
+              <p class="fsdocs-example" id="lpo_ge-6">
+                
+ The input terms are function terms and all arguments of the first are 
+ greater than the whole second term.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span><span class="s">&quot;1&quot;</span><span class="pn">;</span><span class="s">&quot;g&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;g(f(1))&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(0)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_ge-7">
                 
  The input terms are the same
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_ge</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span>
@@ -503,7 +554,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
+              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
                 <p>
                   <a id="lpo_gt">
                     <a href="#lpo_gt">
@@ -512,7 +563,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="550">
+              <div class="fsdocs-tip" id="544">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>lpo_gt&#32;<span>w&#32;s&#32;t</span></span></code>
@@ -592,18 +643,27 @@
               <p class="fsdocs-remarks">
                 <ul>
   <li>
+ If \(t\) is a variable \(t\), \(s &gt; t\) if \(s \neq t\) and 
+ \(x \in \text{FVT}(s)\).
+ </li>
+  <li>
  \(f(s_1,\ldots,s_m) &gt; f(t_1,\ldots,t_m)\) if the sequence 
  \(s_1,\ldots,s_n\) is lexicographically greater than 
  \(t_1,\ldots,t_n\), i.e if \(s_i = t_i\) for all 
  \(i &lt; k \leq m\) and \(s_k &gt; t_k\) under the same ordering;
  </li>
   <li>
- \(f(s_1,\ldots,s_n) &gt; t\) whenever \(s_i \geq t\);
+ \(f(s_1,\ldots,s_n) &gt; t\) when some \(s_i \geq t\);
  </li>
   <li>
  \(f(s_1,\ldots,s_m) &gt; g(t_1,\ldots,t_n)\) according to the 
  specified precedence ordering of the function symbols, without further 
  analysis of the \(s_i\) and \(t_i\);
+ </li>
+  <li>
+ \(f(s_1,\ldots,s_m) &gt; g(t_1,\ldots,t_n)\) (whether or not \(f = g\)) 
+ only if in addition \(f(s_1,\ldots,s_m) &gt; t_i\) for each \(1 \leq i 
+ \leq n\).
  </li>
 </ul>
               </p>
@@ -666,6 +726,34 @@
               </h5>
               <p class="fsdocs-example" id="lpo_gt-1">
                 
+ The second term is a variable contained in the free variables of the 
+ first.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(x)&quot;</span> <span class="o">!!!</span><span class="s">&quot;x&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-2">
+                
+ The second term is a variable not contained in the free variables of 
+ the first.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(y)&quot;</span> <span class="o">!!!</span><span class="s">&quot;x&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>false</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-3">
+                
  The inputs are function terms with the same function symbol but the 
  arguments sequence of the first is greater than that of the second:
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(0,0)&quot;</span>
@@ -678,11 +766,11 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="lpo_gt-2">
+              <p class="fsdocs-example" id="lpo_gt-4">
                 
- The first term is a function term and its arguments are all greater or 
- equal than the second term
- <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;h(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;0&quot;</span>
+ The first term is a function term and at least one of its arguments is 
+ greater or equal than the second term
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span> <span class="s">&quot;1&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;h(0,1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;1&quot;</span>
 </code></pre>
 
 
@@ -692,7 +780,7 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="lpo_gt-3">
+              <p class="fsdocs-example" id="lpo_gt-5">
                 
  The inputs are function terms and the function symbol of the first is 
  greater than the second based on the precedence defined by the 
@@ -707,7 +795,21 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="lpo_gt-4">
+              <p class="fsdocs-example" id="lpo_gt-6">
+                
+ The input terms are function terms and all arguments of the first are 
+ greater than the whole second term.
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="s">&quot;0&quot;</span><span class="pn">;</span><span class="s">&quot;1&quot;</span><span class="pn">;</span><span class="s">&quot;g&quot;</span><span class="pn">;</span><span class="s">&quot;f&quot;</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;g(f(1))&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(0)&quot;</span>
+</code></pre>
+
+
+ Evaluates to <code>true</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="lpo_gt-7">
                 
  The input terms are the same
  <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">lpo_gt</span> <span class="pn">(</span><span class="id">weight</span> <span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span> <span class="o">!!!</span><span class="s">&quot;f(1)&quot;</span>
@@ -723,7 +825,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
+              <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
                 <p>
                   <a id="termsize">
                     <a href="#termsize">
@@ -732,7 +834,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="551">
+              <div class="fsdocs-tip" id="545">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>termsize&#32;<span>tm</span></span></code>
@@ -834,7 +936,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '552', 552)" onmouseover="showTip(event, '552', 552)">
+              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
                 <p>
                   <a id="weight">
                     <a href="#weight">
@@ -843,7 +945,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="552">
+              <div class="fsdocs-tip" id="546">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>weight&#32;<span>lis&#32;<span>(<span>f,&#32;n</span>)</span>&#32;<span>(<span>g,&#32;m</span>)</span></span></span></code>
