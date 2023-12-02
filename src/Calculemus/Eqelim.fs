@@ -54,10 +54,10 @@ module Eqelim =
     // Finding nested non-variable sub-terms.                                 //
     // ---------------------------------------------------------------------- //
 
-    let is_nonvar = 
-        function
-            | Var x -> false
-            | _ -> true
+    let is_nonvar tm = 
+        match tm with
+        | Var x -> false
+        | _ -> true
 
     let find_nestnonvar tm =
         match tm with
@@ -65,7 +65,6 @@ module Eqelim =
         | Fn (f, args) ->
             List.find is_nonvar args
 
-    // dom modified to remove warning
     let rec find_nvsubterm fm =
         match fm with
         | Atom (R ("=", [s; t])) ->
@@ -74,7 +73,7 @@ module Eqelim =
             List.find is_nonvar args
         | Not p ->
             find_nvsubterm p
-        | _ -> failwith "find_nvsubterm: incomplete pattern matching"
+        | _ -> invalidArg "fm" "find_nvsubterm: not a literal"
 
     // ---------------------------------------------------------------------- //
     // Replacement (substitution for non-variable) in term and literal.       //
@@ -88,8 +87,8 @@ module Eqelim =
                 Fn (f, List.map (replacet rfn) args)
             | _ -> tm
 
-    let replace rfn =
-        onformula (replacet rfn)
+    let replace rfn fm =
+        fm |> onformula (replacet rfn)
 
     // ---------------------------------------------------------------------- //
     // E-modification of a clause.                                            //
@@ -131,8 +130,6 @@ module Eqelim =
         let fm1 = askolemize (Not (generalize fm))
         List.map (bpuremeson << list_conj) (simpdnf fm1)
 
-    // Moved from section - Older stuff not now in the text
-    // to here because it is still in the text.  EGT
     let emeson fm = meson (equalitize fm)
 
 
