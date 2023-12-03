@@ -1,44 +1,5 @@
 namespace FSharp
 
-
-module Calculemus.Eqelim
-
-val modify_S:
-  cl: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list list
-
-val modify_T:
-  cl: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list
-
-val is_nonvar: _arg1: Fol.term -> bool
-
-val find_nestnonvar: tm: Fol.term -> Fol.term
-
-val find_nvsubterm: fm: Formulas.formula<Fol.fol> -> Fol.term
-
-val replacet: rfn: Lib.FPF.func<Fol.term,Fol.term> -> tm: Fol.term -> Fol.term
-
-val replace:
-  rfn: Lib.FPF.func<Fol.term,Fol.term> ->
-    (Formulas.formula<Fol.fol> -> Formulas.formula<Fol.fol>)
-
-val emodify:
-  fvs: string list ->
-    cls: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list
-
-val modify_E:
-  cls: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list
-
-val brand:
-  cls: Formulas.formula<Fol.fol> list list ->
-    Formulas.formula<Fol.fol> list list
-
-val bpuremeson: fm: Formulas.formula<Fol.fol> -> int
-
-val bmeson: fm: Formulas.formula<Fol.fol> -> int list
-
-val emeson: fm: Formulas.formula<Fol.fol> -> int list
-
-
 module Calculemus.Paramodulation
 
 val overlapl:

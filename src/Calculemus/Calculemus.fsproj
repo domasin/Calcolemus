@@ -96,7 +96,8 @@
     <Compile Include="Completion.fs" />
     <Compile Include="Eqelim.fsi" />
     <Compile Include="Eqelim.fs" />
-    <Compile Include="paramodulation.fs" />
+    <Compile Include="Paramodulation.fsi" />
+    <Compile Include="Paramodulation.fs" />
     <Compile Include="decidable.fs" />
     <Compile Include="qelim.fs" />
     <Compile Include="cooper.fs" />
