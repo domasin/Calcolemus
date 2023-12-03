@@ -39,6 +39,7 @@
     <Compile Include="Order.fs" />
     <Compile Include="Completion.fs" />
     <Compile Include="Eqelim.fs" />
+    <Compile Include="Paramodulation.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>

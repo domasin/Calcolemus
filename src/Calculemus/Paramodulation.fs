@@ -18,11 +18,6 @@ open Resolution
 open Equal
 open Completion
 
-/// <summary>
-/// Paramodulation.
-/// </summary>
-/// 
-/// <category index="5">Equality</category>
 module Paramodulation = 
 
     // ====================================================================== //
