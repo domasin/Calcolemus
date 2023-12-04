@@ -119,6 +119,64 @@ module Paramodulation =
       used: formula<fol> list list *
       unused: formula<fol> list list -> bool
 
+    /// <summary>
+    /// Tests the unsatisfiability of a formula using a resolution with 
+    /// paramodulation.
+    /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is unsatisfiable and a refutation could be 
+    /// found.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).</exception>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
     val pure_paramodulation: fm: formula<fol> -> bool
 
+    /// <summary>
+    /// Tests the validity of a formula splitting it in subproblems and then 
+    /// testing them with a resolution procedure with paramodulation.
+    /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of the results of 
+    /// <see cref='M:Calculemus.Paramodulation.pure_paramodulation'/> on each 
+    /// subproblems, if the formula is valid and a proof could be found.
+    /// </returns>
+    /// 
+    /// <note>
+    /// Prints diagnostic informations to the <c>stdout</c>.
+    /// </note>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>No proof found</c> when no proof could be found.</exception>
+    /// 
+    /// <example id="paramodulation-1">
+    /// <code lang="fsharp">
+    /// !! @"(forall x. f(f(x)) = f(x)) /\ (forall x. exists y. f(y) = x)
+    ///     ==> forall x. f(x) = x"
+    /// |> paramodulation
+    /// </code>
+    /// Evaluates to <c>[true]</c> and prints to the <c>stdout</c>:
+    /// <code lang="fsharp">
+    /// 0 used; 4 unused.
+    /// 1 used; 3 unused.
+    /// 2 used; 4 unused.
+    /// 3 used; 8 unused.
+    /// 4 used; 11 unused.
+    /// 5 used; 13 unused.
+    /// 6 used; 21 unused.
+    /// 7 used; 40 unused.
+    /// 8 used; 64 unused.
+    /// 9 used; 83 unused.
+    /// 10 used; 108 unused.
+    /// 11 used; 125 unused.
+    /// </code>
+    /// </example>
     val paramodulation: fm: formula<fol> -> bool list

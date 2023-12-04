@@ -1,36 +1,5 @@
 namespace FSharp
 
-module Calculemus.Paramodulation
-
-val overlapl:
-  l: Fol.term * r: Fol.term ->
-    fm: Formulas.formula<Fol.fol> ->
-    rfn: (Lib.FPF.func<string,Fol.term> -> Formulas.formula<Fol.fol> -> 'a) ->
-    'a list
-
-val overlapc:
-  l: Fol.term * r: Fol.term ->
-    cl: Formulas.formula<Fol.fol> list ->
-    rfn: (Lib.FPF.func<string,Fol.term> -> Formulas.formula<Fol.fol> list -> 'a) ->
-    acc: 'a list -> 'a list
-
-val paramodulate:
-  pcl: Formulas.formula<Fol.fol> list ->
-    ocl: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list list
-
-val para_clauses:
-  cls1: Formulas.formula<Fol.fol> list ->
-    cls2: Formulas.formula<Fol.fol> list -> Formulas.formula<Fol.fol> list list
-
-val paraloop:
-  used: Formulas.formula<Fol.fol> list list *
-  unused: Formulas.formula<Fol.fol> list list -> bool
-
-val pure_paramodulation: fm: Formulas.formula<Fol.fol> -> bool
-
-val paramodulation: fm: Formulas.formula<Fol.fol> -> bool list
-
-
 module Calculemus.Decidable
 
 val aedecide: fm: Formulas.formula<Fol.fol> -> bool
