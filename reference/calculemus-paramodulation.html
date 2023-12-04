@@ -145,6 +145,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The LHS of the input equation.
                     </span>
                     <br/>
                     <span>
@@ -153,6 +155,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The RHS of the input equation.
                     </span>
                     <br/>
                     <span>
@@ -161,6 +165,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The input literal.
                     </span>
                     <br/>
                     <span>
@@ -169,6 +175,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;->&#32;'a</span></code>
+                       - 
+                      The function that applied to the resulting instantiation gives the critical pair arising from that overlap.
                     </span>
                     <br/>
                     <span>
@@ -185,63 +193,111 @@
                     Returns: 
                     <code><span>'a&#32;list</span></code>
                   </span>
+                  
+ All possibile overlaps of the equation <code>l = r</code> with <code>fm</code>.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  l
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  r
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cl
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rfn
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;->&#32;'a</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  acc
-                </span>
-                :
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Paramodulation.overlapc``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.overlapc``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L43-43" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Finds all possibile 'overlaps' of an equation with a clause.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    l
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The LHS of the input equation.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    r
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The RHS of the input equation.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cl
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input literal.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rfn
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;->&#32;<span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function that applied to the resulting instantiation gives the critical pair arising from that overlap.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    acc
+                  </span>
+                  :
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ All possibile overlaps of the equation <code>l = r</code> with <code>fm</code>.
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -270,6 +326,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The LHS of the input equation.
                     </span>
                     <br/>
                     <span>
@@ -278,6 +336,8 @@
                       </b>
                       :
                       <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                       - 
+                      The RHS of the input equation.
                     </span>
                     <br/>
                     <span>
@@ -286,6 +346,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input literal.
                     </span>
                     <br/>
                     <span>
@@ -294,6 +356,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;->&#32;'a</span></code>
+                       - 
+                      The function that applied to the resulting instantiation gives the critical pair arising from that overlap.
                     </span>
                     <br/>
                   </ul>
@@ -302,55 +366,103 @@
                     Returns: 
                     <code><span>'a&#32;list</span></code>
                   </span>
+                  
+ All possibile overlaps of the equation <code>l = r</code> with <code>fm</code>.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  l
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  r
-                </span>
-                :
-                <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rfn
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;->&#32;'a</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Calculemus.Paramodulation.overlapl``1```')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.overlapl``1\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Finds all possibile 'overlaps' of an equation with a literal.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    l
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The LHS of the input equation.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    r
+                  </span>
+                  :
+                  <code><a href="/Calculemus/reference/calculemus-fol-term.html">term</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The RHS of the input equation.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input literal.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    rfn
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;->&#32;<span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function that applied to the resulting instantiation gives the critical pair arising from that overlap.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ All possibile overlaps of the equation <code>l = r</code> with <code>fm</code>.
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -379,6 +491,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The first input clause.
                     </span>
                     <br/>
                     <span>
@@ -387,6 +501,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The second input clause.
                     </span>
                     <br/>
                   </ul>
@@ -395,39 +511,79 @@
                     Returns: 
                     <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ All the paramodulants between the two clauses.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cls1
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cls2
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Paramodulation.para_clauses`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.para_clauses\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Performs paramodulation of each clause within the other.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls1
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The first input clause.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cls2
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The second input clause.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ All the paramodulants between the two clauses.
+ 
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -456,6 +612,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The working list of clauses, initially empty.
                     </span>
                     <br/>
                     <span>
@@ -464,6 +622,8 @@
                       </b>
                       :
                       <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                       - 
+                      The input list of clauses to be refuted.
                     </span>
                     <br/>
                   </ul>
@@ -472,39 +632,98 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if a refutation with paramodulation for <code>unused</code> is found.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  used
-                </span>
-                :
-                <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  unused
-                </span>
-                :
-                <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Paramodulation.paraloop`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.paraloop\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Resolution loop with paramodulation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    used
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The working list of clauses, initially empty.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    unused
+                  </span>
+                  :
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input list of clauses to be refuted.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if a refutation with paramodulation for <code>unused</code> is found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -533,6 +752,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The paramodulating clause.
                     </span>
                     <br/>
                     <span>
@@ -541,6 +762,8 @@
                       </b>
                       :
                       <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                       - 
+                      The clause to which paramodulation is applied.
                     </span>
                     <br/>
                   </ul>
@@ -549,39 +772,102 @@
                     Returns: 
                     <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
                   </span>
+                  
+ The list of clauses resulting from the paramodulation.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pcl
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ocl
-                </span>
-                :
-                <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Paramodulation.paramodulate`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.paramodulate\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Applies paramodulation to a clause <code>ocl</code> using all the positive 
+ equations in a paramodulating clause <code>pcl</code>.
+ 
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
+ Paramodulation is the following inference rule, where \(s = t\) may
+ be either \(s = t\) or \(t = s\):
+ \[
+     \dfrac
+     {C \lor s = t \quad D \lor P[s']}
+     {\text{subst}\ \sigma\ (C \lor D \lor P[t])}
+ \]
+ 
+              </p>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pcl
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The paramodulating clause.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ocl
+                  </span>
+                  :
+                  <code><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The clause to which paramodulation is applied.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span>&#32;list</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of clauses resulting from the paramodulation.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="paramodulate-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">paramodulate</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;C&quot;</span><span class="pn">;</span><span class="s">&quot;S(0) = 1&quot;</span><span class="pn">]</span> <span class="o">!!&gt;</span><span class="pn">[</span><span class="s">&quot;P(S(x))&quot;</span><span class="pn">;</span><span class="s">&quot;D&quot;</span><span class="pn">]</span>
+</code></pre>
+
+
+ Evaluates to <code>[[`C`; `D`; `P(1)`]]</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -610,6 +896,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -618,31 +906,119 @@
                     Returns: 
                     <code><span>bool&#32;list</span></code>
                   </span>
+                  
+ The list of the results of 
+ <a href="/Calculemus/reference/calculemus-paramodulation.html#pure_paramodulation">Paramodulation.pure_paramodulation</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>bool&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Paramodulation.paramodulation`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.paramodulation\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L84-84" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the validity of a formula splitting it in subproblems and then 
+ testing them with a resolution procedure with paramodulation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>bool&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ The list of the results of 
+ <a href="/Calculemus/reference/calculemus-paramodulation.html#pure_paramodulation">Paramodulation.pure_paramodulation</a> on each 
+ subproblems, if the formula is valid and a proof could be found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no proof could be found.
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="paramodulation-1">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;(forall x. f(f(x)) = f(x)) /\ (forall x. exists y. f(y) = x)</span>
+<span class="s">     ==&gt; forall x. f(x) = x&quot;</span>
+ <span class="o">|&gt;</span> <span class="id">paramodulation</span>
+</code></pre>
+
+
+ Evaluates to <code>[true]</code> and prints to the <code>stdout</code>:
+ <pre class="fssnip highlighted"><code lang="fsharp"> <span class="n">0</span> <span class="id">used</span><span class="pn">;</span> <span class="n">4</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">1</span> <span class="id">used</span><span class="pn">;</span> <span class="n">3</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">2</span> <span class="id">used</span><span class="pn">;</span> <span class="n">4</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">3</span> <span class="id">used</span><span class="pn">;</span> <span class="n">8</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">4</span> <span class="id">used</span><span class="pn">;</span> <span class="n">11</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">5</span> <span class="id">used</span><span class="pn">;</span> <span class="n">13</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">6</span> <span class="id">used</span><span class="pn">;</span> <span class="n">21</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">7</span> <span class="id">used</span><span class="pn">;</span> <span class="n">40</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">8</span> <span class="id">used</span><span class="pn">;</span> <span class="n">64</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">9</span> <span class="id">used</span><span class="pn">;</span> <span class="n">83</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">10</span> <span class="id">used</span><span class="pn">;</span> <span class="n">108</span> <span class="id">unused</span><span class="pn">.</span>
+ <span class="n">11</span> <span class="id">used</span><span class="pn">;</span> <span class="n">125</span> <span class="id">unused</span><span class="pn">.</span>
+</code></pre>
+
+
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
@@ -671,6 +1047,8 @@
                       </b>
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                       - 
+                      The input formula.
                     </span>
                     <br/>
                   </ul>
@@ -679,31 +1057,90 @@
                     Returns: 
                     <code>bool</code>
                   </span>
+                  
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
                   <br/>
                 </div>
               </div>
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fm
-                </span>
-                :
-                <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Calculemus.Paramodulation.pure_paramodulation`')">
+                    <img src="/Calculemus/content/img/copy-md.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Calculemus.Paramodulation.pure_paramodulation\'/>')">
+                    <img src="/Calculemus/content/img/copy-xml.png" class="normal"/>
+                    <img src="/Calculemus/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/domasin/Calculemus/tree/master/src/Calculemus/Paramodulation.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="/Calculemus/content/img/github.png" class="normal"/>
+                    <img src="/Calculemus/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Tests the unsatisfiability of a formula using a resolution with 
+ paramodulation.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    fm
+                  </span>
+                  :
+                  <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The input formula.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    
+ true, if the input formula is unsatisfiable and a refutation could be 
+ found.
+ 
+                  </p>
+                </dd>
+              </dl>
+              <table class="fsdocs-exception-list">
+                <tr>
+                  <td>
+                    <a href="https://learn.microsoft.com/dotnet/api/system.exception">
+                      Exception
+                    </a>
+                  </td>
+                  <td>
+                    Thrown with message <code>No proof found</code> when no refutation could be found (and this is always the case if the formula is either valid or satisfiable).
+                  </td>
+                </tr>
+              </table>
+              <h5 class="fsdocs-note-header">
+                Note
+              </h5>
+              <p class="fsdocs-note">
+                
+ Prints diagnostic informations to the <code>stdout</code>.
+ 
+              </p>
+            </details>
           </td>
         </tr>
       </tbody>
