@@ -163,22 +163,184 @@ module Decidable =
     /// <category index="2">Miniscoping and the monadic fragment</category>
     val wang: fm: formula<fol> -> bool
 
+    /// <summary>
+    /// Constructs an atom of the form <c>p(x)</c>.
+    /// </summary>
+    /// 
+    /// <param name="p">The input monadic predicate.</param>
+    /// <param name="x">The input variable.</param>
+    /// 
+    /// <returns>
+    /// The atom <c>p(x)</c>.
+    /// </returns>
+    /// 
+    /// <example id="atom-1">
+    /// <code lang="fsharp">
+    /// atom "P" "x"
+    /// </code>
+    /// Evaluates to <c>`P(x)`</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val atom: p: string -> x: string -> formula<fol>
 
+    /// <summary>
+    /// Constructs an A premiss (universal affirmative) 'all S are P' 
+    /// \(\forall x.\ S(x) \Rightarrow P(x)\).
+    /// </summary>
+    /// 
+    /// <param name="p">The first input monadic predicate.</param>
+    /// <param name="q">The second input monadic predicate.</param>
+    /// 
+    /// <returns>
+    /// The formula <c>forall x. p(x) ==> q(x)</c>.
+    /// </returns>
+    /// 
+    /// <example id="premiss_A-1">
+    /// <code lang="fsharp">
+    /// premiss_A ("P", "S")
+    /// </code>
+    /// Evaluates to <c>`forall x. P(x) ==> S(x)`</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val premiss_A: p: string * q: string -> formula<fol>
 
+    /// <summary>
+    /// Constructs an E premiss (universal negative) 'no S are P' 
+    /// \(\forall x.\ S(x) \Rightarrow \lnot P(x)\).
+    /// </summary>
+    /// 
+    /// <param name="p">The first input monadic predicate.</param>
+    /// <param name="q">The second input monadic predicate.</param>
+    /// 
+    /// <returns>
+    /// The formula <c>forall x. p(x) ==> ~q(x)</c>.
+    /// </returns>
+    /// 
+    /// <example id="premiss_E-1">
+    /// <code lang="fsharp">
+    /// premiss_E ("P", "S")
+    /// </code>
+    /// Evaluates to <c>`forall x. P(x) ==> ~S(x)`</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val premiss_E: p: string * q: string -> formula<fol>
 
+    /// <summary>
+    /// Constructs an I premiss (particular affirmative) 'some S are P' 
+    /// \(\exists x.\ S(x) \land P(x)\).
+    /// </summary>
+    /// 
+    /// <param name="p">The first input monadic predicate.</param>
+    /// <param name="q">The second input monadic predicate.</param>
+    /// 
+    /// <returns>
+    /// The formula <c>exists x. p(x) /\ q(x)</c>.
+    /// </returns>
+    /// 
+    /// <example id="premiss_I-1">
+    /// <code lang="fsharp">
+    /// premiss_I ("P", "S")
+    /// </code>
+    /// Evaluates to <c>`exists x. P(x) /\ S(x)`</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val premiss_I: p: string * q: string -> formula<fol>
 
+    /// <summary>
+    /// Constructs an O premiss (particular negative) 'some S are not P' 
+    /// \(\exists x.\ S(x) \land \lnot P(x)\).
+    /// </summary>
+    /// 
+    /// <param name="p">The first input monadic predicate.</param>
+    /// <param name="q">The second input monadic predicate.</param>
+    /// 
+    /// <returns>
+    /// The formula <c>exists x. p(x) /\ ~q(x)</c>.
+    /// </returns>
+    /// 
+    /// <example id="premiss_O-1">
+    /// <code lang="fsharp">
+    /// premiss_O ("P", "S")
+    /// </code>
+    /// Evaluates to <c>`exists x. P(x) /\ ~S(x)`</c>.
+    /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val premiss_O: p: string * q: string -> formula<fol>
 
+    /// <summary>
+    /// Returns an English reading of a premiss.
+    /// </summary>
+    /// 
+    /// <param name="fm">The input syllogism premiss.</param>
+    /// 
+    /// <returns>
+    /// An English reading of the input syllogism premiss.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.ArgumentException">Thrown with message <c>anglicize_premiss: not a syllogism premiss (Parameter 'fm')</c> when the input formula is not a syllogism premiss.</exception>
+    /// 
+    /// <example id="anglicize_premiss-1">
+    /// <code lang="fsharp">
+    /// premiss_A ("P", "S")
+    /// |> anglicize_premiss 
+    /// </code>
+    /// Evaluates to <c>"all P are S"</c>.
+    /// </example>
+    /// 
+    /// <example id="anglicize_premiss-2">
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> anglicize_premiss 
+    /// </code>
+    /// Throws <c>System.ArgumentException: anglicize_premiss: not a syllogism premiss (Parameter 'fm')</c>.
+    /// </example>
     val anglicize_premiss: fm: formula<fol> -> string
 
+    /// <summary>
+    /// Returns an English reading of a syllogism.
+    /// </summary>
+    /// 
+    /// <param name="fm">The input syllogism.</param>
+    /// 
+    /// <returns>
+    /// An English reading of the input syllogism.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.ArgumentException">Thrown with message <c>anglicize_syllogism: not a syllogism (Parameter 'fm')</c> when the input formula is not a syllogism premiss.</exception>
+    /// 
+    /// <example id="anglicize_syllogism-1">
+    /// <code lang="fsharp">
+    /// premiss_A ("M", "P")
+    /// |> fun x -> mk_and x (premiss_A ("S", "M"))
+    /// |> fun x -> mk_imp x (premiss_A ("S", "P"))
+    /// |> anglicize_syllogism 
+    /// </code>
+    /// Evaluates to <c>"If all M are P and all S are M, then all S are P"</c>.
+    /// </example>
+    /// 
+    /// <example id="anglicize_syllogism-2">
+    /// <code lang="fsharp">
+    /// !!"P(x)"
+    /// |> anglicize_syllogism 
+    /// </code>
+    /// Throws <c>System.ArgumentException: anglicize_syllogism: not a syllogism (Parameter 'fm')</c>.
+    /// </example>
     val anglicize_syllogism: formula<fol> -> string
 
+    /// <summary>
+    /// Returns all 256 possible syllogisms.
+    /// </summary>
     val all_possible_syllogisms: formula<fol> list
 
+    /// <summary>
+    /// Returns all 256 possible syllogisms together with the assumptions that 
+    /// the terms are not empty.
+    /// </summary>
     val all_possible_syllogisms': formula<fol> list
 
     val alltuples: n: int -> l: 'a list -> 'a list list

@@ -10,6 +10,7 @@ open FsUnit.Xunit
 open FsUnitTyped
 
 open Calculemus
+open Formulas
 open Fol
 open Skolem
 open Decidable
@@ -65,3 +66,65 @@ let ``wang should fail with 'Not decidable' if the input even after applying min
         |> ignore
     )
     |> should (throwWithMessage "Not decidable") typeof<System.Exception>
+
+[<Fact>]
+let ``atom should return the atom p(x).``() = 
+    atom "P" "x"
+    |> sprint_fol_formula
+    |> shouldEqual "`P(x)`"
+
+[<Fact>]
+let ``premiss_A should return an A premiss.``() = 
+    premiss_A ("P", "S")
+    |> sprint_fol_formula
+    |> shouldEqual "`forall x. P(x) ==> S(x)`"
+
+[<Fact>]
+let ``premiss_E should return an E premiss.``() = 
+    premiss_E ("P", "S")
+    |> sprint_fol_formula
+    |> shouldEqual "`forall x. P(x) ==> ~S(x)`"
+
+[<Fact>]
+let ``premiss_I should return an I premiss.``() = 
+    premiss_I ("P", "S")
+    |> sprint_fol_formula
+    |> shouldEqual "`exists x. P(x) /\ S(x)`"
+
+[<Fact>]
+let ``premiss_O should return an O premiss.``() = 
+    premiss_O ("P", "S")
+    |> sprint_fol_formula
+    |> shouldEqual "`exists x. P(x) /\ ~S(x)`"
+
+[<Fact>]
+let ``anglicize_premiss should return an English reading of the input syllogism premiss.``() = 
+    premiss_A ("P", "S")
+    |> anglicize_premiss 
+    |> shouldEqual "all P are S"
+
+[<Fact>]
+let ``anglicize_premiss should fail if applied to a formula that is not a syllogism premiss.``() = 
+    (fun () -> 
+        !!"P(x)"
+        |> anglicize_premiss 
+        |> ignore
+    )
+    |> should (throwWithMessage "anglicize_premiss: not a syllogism premiss (Parameter 'fm')") typeof<System.ArgumentException>
+
+[<Fact>]
+let ``anglicize_syllogism should return an English reading of the input syllogism.``() = 
+    premiss_A ("M", "P")
+    |> fun x -> mk_and x (premiss_A ("S", "M"))
+    |> fun x -> mk_imp x (premiss_A ("S", "P"))
+    |> anglicize_syllogism
+    |> shouldEqual "If all M are P and all S are M, then all S are P"
+
+[<Fact>]
+let ``anglicize_syllogism should fail if applied to a formula that is not a syllogism.``() = 
+    (fun () -> 
+        !!"P(x)"
+        |> anglicize_syllogism 
+        |> ignore
+    )
+    |> should (throwWithMessage "anglicize_syllogism: not a syllogism (Parameter 'fm')") typeof<System.ArgumentException>

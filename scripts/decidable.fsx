@@ -1,12 +1,51 @@
 #r "../src/Calculemus/bin/Debug/net7.0/Calculemus.dll"
 
 open Calculemus
+open Formulas
 open Fol
 open Skolem
 open Decidable
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
+
+atom "P" "x"
+
+premiss_A ("P", "S")
+premiss_E ("P", "S")
+premiss_I ("P", "S")
+premiss_O ("P", "S")
+
+premiss_A ("P", "S")
+|> anglicize_premiss 
+
+!!"P(x)"
+|> anglicize_premiss 
+
+premiss_A ("M", "P")
+|> fun x -> mk_and x (premiss_A ("S", "M"))
+|> fun x -> mk_imp x (premiss_A ("S", "P"))
+|> anglicize_syllogism
+
+let all_valid_syllogisms = 
+    List.filter aedecide all_possible_syllogisms;;
+
+List.length all_valid_syllogisms;;
+
+List.map anglicize_syllogism all_valid_syllogisms;;
+
+// Darapti
+
+premiss_A ("M", "P")
+|> fun x -> mk_and x (premiss_A ("M", "S"))
+|> fun x -> mk_imp x (premiss_I ("S", "P"))
+|> anglicize_syllogism
+
+!!"P(x)"
+|> anglicize_syllogism 
+
+(premiss_A ("M", "P"), premiss_A ("S", "M"))
+|> And
 
 pnf(nnf(miniscope(nnf
 !! @"((exists x. forall y. P(x) <=> P(y)) <=>

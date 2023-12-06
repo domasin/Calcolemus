@@ -96,7 +96,6 @@ module Decidable =
     let premiss_I (p, q) = Exists ("x", And (atom p "x", atom q "x"))
     let premiss_O (p, q) = Exists ("x", And (atom p "x", Not (atom q "x")))
 
-    // dom modified to remove warning
     let anglicize_premiss fm =
         match fm with
         | Forall (_, Imp (Atom (R (p, _)), Atom (R (q, _)))) ->
@@ -107,17 +106,15 @@ module Decidable =
             sprintf "some %s are %s" p q
         | Exists (_, And (Atom (R (p, _)), Not (Atom (R (q, _))))) ->
             sprintf "some %s are not %s" p q
-        | _ -> failwith "anglicize_premiss: incomplete pattern matching"
+        | _ -> invalidArg "fm" "anglicize_premiss: not a syllogism premiss"
 
-    // dom modified to remove warning
     let anglicize_syllogism fm =
         match fm with 
         | (Imp (And (t1, t2), t3)) -> 
             sprintf "If %s and %s, then %s"
                 (anglicize_premiss t1) (anglicize_premiss t2) (anglicize_premiss t3)
-        | _ -> failwith "anglicize_syllogism: incomplete pattern matching"
+        | _ -> invalidArg "fm" "anglicize_syllogism: not a syllogism"
 
-    // Phan: should this be moved to fsx?
     let all_possible_syllogisms =
         let sylltypes = [premiss_A; premiss_E; premiss_I; premiss_O]
         let prems1 = allpairs id sylltypes ["M","P"; "P","M"]
