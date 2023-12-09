@@ -299,6 +299,8 @@ module Decidable =
     /// </code>
     /// Throws <c>System.ArgumentException: anglicize_premiss: not a syllogism premiss (Parameter 'fm')</c>.
     /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val anglicize_premiss: fm: formula<fol> -> string
 
     /// <summary>
@@ -330,34 +332,241 @@ module Decidable =
     /// </code>
     /// Throws <c>System.ArgumentException: anglicize_syllogism: not a syllogism (Parameter 'fm')</c>.
     /// </example>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val anglicize_syllogism: formula<fol> -> string
 
     /// <summary>
     /// Returns all 256 possible syllogisms.
     /// </summary>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val all_possible_syllogisms: formula<fol> list
 
     /// <summary>
     /// Returns all 256 possible syllogisms together with the assumptions that 
     /// the terms are not empty.
     /// </summary>
+    /// 
+    /// <category index="3">Syllogisms</category>
     val all_possible_syllogisms': formula<fol> list
 
+    /// <summary>
+    /// Generates all tuples of a given size with members chosen from a given list.
+    /// </summary>
+    /// 
+    /// <param name="n">The size of the resulting tuples.</param>
+    /// <param name="l">The input list.</param>
+    /// 
+    /// <returns>
+    /// All tuples of size <c>n</c> with members chosen from the list <c>l</c>.
+    /// </returns>
+    /// 
+    /// <example id="alltuples-1">
+    /// <code lang="fsharp">
+    /// [1;2;3;4;5;6;7]
+    /// |> alltuples 3
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// [[1; 1; 1]; [1; 1; 2]; [1; 1; 3]; [1; 1; 4]; [1; 1; 5]; [1; 1; 6]; [1; 1; 7];
+    ///  [1; 2; 1]; [1; 2; 2]; [1; 2; 3]; [1; 2; 4]; [1; 2; 5]; [1; 2; 6]; [1; 2; 7];
+    ///  [1; 3; 1]; [1; 3; 2]; [1; 3; 3]; [1; 3; 4]; [1; 3; 5]; [1; 3; 6]; [1; 3; 7];
+    ///  [1; 4; 1]; [1; 4; 2]; [1; 4; 3]; [1; 4; 4]; [1; 4; 5]; [1; 4; 6]; [1; 4; 7];
+    ///  [1; 5; 1]; [1; 5; 2]; [1; 5; 3]; [1; 5; 4]; [1; 5; 5]; [1; 5; 6]; [1; 5; 7];
+    ///  [1; 6; 1]; [1; 6; 2]; [1; 6; 3]; [1; 6; 4]; [1; 6; 5]; [1; 6; 6]; [1; 6; 7];
+    ///  [1; 7; 1]; [1; 7; 2]; [1; 7; 3]; [1; 7; 4]; [1; 7; 5]; [1; 7; 6]; [1; 7; 7];
+    ///  [2; 1; 1]; [2; 1; 2]; [2; 1; 3]; [2; 1; 4]; [2; 1; 5]; [2; 1; 6]; [2; 1; 7];
+    ///  [2; 2; 1]; [2; 2; 2]; [2; 2; 3]; [2; 2; 4]; [2; 2; 5]; [2; 2; 6]; [2; 2; 7];
+    ///  [2; 3; 1]; [2; 3; 2]; [2; 3; 3]; [2; 3; 4]; [2; 3; 5]; [2; 3; 6]; [2; 3; 7];
+    ///  [2; 4; 1]; [2; 4; 2]; [2; 4; 3]; [2; 4; 4]; [2; 4; 5]; [2; 4; 6]; [2; 4; 7];
+    ///  [2; 5; 1]; [2; 5; 2]; [2; 5; 3]; [2; 5; 4]; [2; 5; 5]; [2; 5; 6]; [2; 5; 7];
+    ///  [2; 6; 1]; [2; 6; 2]; [2; 6; 3]; [2; 6; 4]; [2; 6; 5]; [2; 6; 6]; [2; 6; 7];
+    ///  [2; 7; 1]; [2; 7; 2]; [2; 7; 3]; [2; 7; 4]; [2; 7; 5]; [2; 7; 6]; [2; 7; 7];
+    ///  [3; 1; 1]; [3; 1; 2]; ...]
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val alltuples: n: int -> l: 'a list -> 'a list list
 
+    /// <summary>
+    /// Generates all possible functions out of a finite domain into a finite range.
+    /// </summary>
+    /// 
+    /// <param name="dom">The input domain.</param>
+    /// <param name="ran">The input range.</param>
+    /// 
+    /// <returns>
+    /// All possible functions out of the domain <c>dom</c> into range <c>ran</c>, and undefined 
+    /// outside <c>dom</c>.
+    /// </returns>
+    /// 
+    /// <example id="allmappings-1">
+    /// <code lang="fsharp">
+    /// let dom,ran = [1..3],[1..3]
+    /// 
+    /// allmappings dom ran
+    /// |> List.mapi (fun i f -> i, dom |> List.map f)
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// [(0, [1; 1; 1]); (1, [1; 1; 2]); (2, [1; 1; 3]); (3, [1; 2; 1]);
+    ///  (4, [1; 2; 2]); (5, [1; 2; 3]); (6, [1; 3; 1]); (7, [1; 3; 2]);
+    ///  (8, [1; 3; 3]); (9, [2; 1; 1]); (10, [2; 1; 2]); (11, [2; 1; 3]);
+    ///  (12, [2; 2; 1]); (13, [2; 2; 2]); (14, [2; 2; 3]); (15, [2; 3; 1]);
+    ///  (16, [2; 3; 2]); (17, [2; 3; 3]); (18, [3; 1; 1]); (19, [3; 1; 2]);
+    ///  (20, [3; 1; 3]); (21, [3; 2; 1]); (22, [3; 2; 2]); (23, [3; 2; 3]);
+    ///  (24, [3; 3; 1]); (25, [3; 3; 2]); (26, [3; 3; 3])]
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val allmappings:
       dom: 'a list -> ran: 'b list -> ('a -> 'b) list when 'a: equality
 
+    /// <summary>
+    /// Enumerates all ways to interpreting function symbols.
+    /// </summary>
+    /// 
+    /// <param name="dom">The input list of function name-arity pairs.</param>
+    /// <param name="ran">The list of all possible functions in the domain.</param>
+    /// 
+    /// <returns>
+    /// All interpretations of the input function symbols, i.e. all mappings from the function 
+    /// symbols in <c>dom</c> to the domain functions in <c>ran</c>.
+    /// </returns>
+    /// 
+    /// <example id="allmappings-1">
+    /// <code lang="fsharp">
+    /// let dom = [1..3]
+    /// 
+    /// let functionSymbols = [("g",2)]
+    /// let functions = allfunctions [1..3]
+    /// 
+    /// alldepmappings functionSymbols functions
+    /// |> List.mapi (fun i f -> 
+    ///     i, 
+    ///     dom 
+    ///     |> alltuples 2
+    ///     |> List.map (fun args -> args,f "g" args))
+    /// |> List.take 3
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// val it: (int * (int list * int) list) list =
+    ///   [(0,
+    ///     [([1; 1], 1); ([1; 2], 1); ([1; 3], 1); ([2; 1], 1); ([2; 2], 1);
+    ///      ([2; 3], 1); ([3; 1], 1); ([3; 2], 1); ([3; 3], 1)]);
+    ///    (1,
+    ///     [([1; 1], 1); ([1; 2], 1); ([1; 3], 1); ([2; 1], 1); ([2; 2], 1);
+    ///      ([2; 3], 1); ([3; 1], 1); ([3; 2], 1); ([3; 3], 2)]);
+    ///    (2,
+    ///     [([1; 1], 1); ([1; 2], 1); ([1; 3], 1); ([2; 1], 1); ([2; 2], 1);
+    ///      ([2; 3], 1); ([3; 1], 1); ([3; 2], 1); ([3; 3], 3)])]
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val alldepmappings:
       dom: ('a * 'b) list -> ran: ('b -> 'c list) -> ('a -> 'c) list
         when 'a: equality
 
+    /// <summary>
+    /// Generates of the functions of a given finite domain with a given arity.
+    /// </summary>
+    /// 
+    /// <param name="dom">The input domain.</param>
+    /// <param name="n">The input arity.</param>
+    /// 
+    /// <returns>
+    /// All the functions from <c>dom</c> to <c>dom</c> with arity <c>n</c>.
+    /// </returns>
+    /// 
+    /// <example id="allfunctions-1">
+    /// <code lang="fsharp">
+    /// allfunctions [1..3] 2
+    /// |> List.mapi (fun i f -> 
+    ///     i, 
+    ///     dom 
+    ///     |> alltuples 2
+    ///     |> List.map (fun args -> args, f args)
+    /// )
+    /// |> List.take 3
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// val it: (int * (int list * int) list) list =
+    ///   [(0,
+    ///     [([1; 1], 1); ([1; 2], 1); ([1; 3], 1); ([2; 1], 1); ([2; 2], 1);
+    ///      ([2; 3], 1); ([3; 1], 1); ([3; 2], 1); ([3; 3], 1)]);
+    ///    (1,
+    ///     [([1; 1], 1); ([1; 2], 1); ([1; 3], 1); ([2; 1], 1); ([2; 2], 1);
+    ///      ([2; 3], 1); ([3; 1], 1); ([3; 2], 1); ([3; 3], 2)]);
+    ///    (2,
+    ///     [([1; 1], 1); ([1; 2], 1); ([1; 3], 1); ([2; 1], 1); ([2; 2], 1);
+    ///      ([2; 3], 1); ([3; 1], 1); ([3; 2], 1); ([3; 3], 3)])]
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val allfunctions:
       dom: 'a list -> n: int -> ('a list -> 'a) list when 'a: equality
 
+    /// <summary>
+    /// Generates of the predicates of a given finite domain with a given arity.
+    /// </summary>
+    /// 
+    /// <param name="dom">The input domain.</param>
+    /// <param name="n">The input arity.</param>
+    /// 
+    /// <returns>
+    /// All the possibile predicates in <c>dom</c> with arity <c>n</c>.
+    /// </returns>
+    /// 
+    /// <example id="allpredicates-1">
+    /// <code lang="fsharp">
+    /// allpredicates [1..3] 2
+    /// |> List.mapi (fun i f -> 
+    ///     i, 
+    ///     dom 
+    ///     |> alltuples 2
+    ///     |> List.map (fun args -> args, f args)
+    /// )
+    /// |> List.take 3
+    /// </code>
+    /// Evaluates to
+    /// <code lang="fsharp">
+    /// val it: (int * (int list * bool) list) list =
+    ///   [(0,
+    ///     [([1; 1], false); ([1; 2], false); ([1; 3], false); ([2; 1], false);
+    ///      ([2; 2], false); ([2; 3], false); ([3; 1], false); ([3; 2], false);
+    ///      ([3; 3], false)]);
+    ///    (1,
+    ///     [([1; 1], false); ([1; 2], false); ([1; 3], false); ([2; 1], false);
+    ///      ([2; 2], false); ([2; 3], false); ([3; 1], false); ([3; 2], false);
+    ///      ([3; 3], true)]);
+    ///    (2,
+    ///     [([1; 1], false); ([1; 2], false); ([1; 3], false); ([2; 1], false);
+    ///      ([2; 2], false); ([2; 3], false); ([3; 1], false); ([3; 2], true);
+    ///      ([3; 3], false)])]
+    /// </code>
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val allpredicates:
       dom: 'a list -> n: int -> ('a list -> bool) list when 'a: equality
 
+    /// <summary>
+    /// Tests if a formula holds in all interpretations of size <c>n</c>.
+    /// </summary>
+    /// 
+    /// <param name="n">The input size of the interpretation.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if <c>fm</c> holds in all interpretations of size <c>n</c>.
+    /// </returns>
     val decide_finite: n: int -> fm: formula<fol> -> bool
 
     val limmeson:

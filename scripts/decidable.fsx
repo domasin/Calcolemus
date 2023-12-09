@@ -9,6 +9,43 @@ open Decidable
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
 
+[1;2;3;4;5;6;7]
+|> alltuples 3
+
+let dom,ran = [1..3],[1..3]
+
+allmappings dom ran
+|> List.mapi (fun i f -> i, dom |> List.map f)
+
+allfunctions [1..3] 2
+|> List.mapi (fun i f -> 
+    i, 
+    dom 
+    |> alltuples 2
+    |> List.map (fun args -> args, f args)
+)
+|> List.take 3
+
+allpredicates [1..3] 2
+|> List.mapi (fun i f -> 
+    i, 
+    dom 
+    |> alltuples 2
+    |> List.map (fun args -> args, f args)
+)
+|> List.take 3
+
+let functionSymbols = [("g",2)]
+let functions = allfunctions [1..3]
+
+alldepmappings functionSymbols functions
+|> List.mapi (fun i f -> 
+    i, 
+    dom 
+    |> alltuples 2
+    |> List.map (fun args -> args,f "g" args))
+|> List.take 3
+
 atom "P" "x"
 
 premiss_A ("P", "S")
