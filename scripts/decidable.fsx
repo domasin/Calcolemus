@@ -5,9 +5,39 @@ open Formulas
 open Fol
 open Skolem
 open Decidable
+open Lib.Fpf
 
 // fsi.AddPrinter sprint_fol_formula
 // fsi.AddPrinter sprint_term
+
+!! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
+|> decide_finite 2 
+
+!! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
+|> decide_fmp
+
+!! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
+|> limited_meson 2
+|> List.map (fun (inst, n, k) -> (inst |> graph, n, k))
+
+!! @"~R(c_x,c_x) /\ (forall x y z. (~R(x,y) \/ ~R(y,z)) \/ R(x,z))"
+|> limmeson 1
+
+!! @"~R(x,x) /\ (forall x y. R(x,y) \/ R(y,x))"
+|> limmeson 2
+|> fun (inst, n, k) -> (inst |> graph, n, k)
+
+!! @"R(x,x) /\ (forall x y. R(x,y) \/ R(y,x))"
+|> limmeson 2
+
+!! @"R(x) ==> (forall x. R(x))"
+|> limmeson 2
+
+!! @"~R(x,x) /\ (forall x y. R(x,y) \/ R(y,x))"
+|> decide_fmp
+
+!! @"(forall x y z. R(x,y) /\ R(y,z) ==> R(x,z)) ==> forall x. R(x,x)"
+|> decide_fmp
 
 [1;2;3;4;5;6;7]
 |> alltuples 3

@@ -567,12 +567,71 @@ module Decidable =
     /// <returns>
     /// true, if <c>fm</c> holds in all interpretations of size <c>n</c>.
     /// </returns>
+    /// 
+    /// <example id="decide_finite-1">
+    /// <code lang="fsharp">
+    /// !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
+    /// |> decide_finite 2 
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val decide_finite: n: int -> fm: formula<fol> -> bool
 
+    /// <summary>
+    /// Tests the unsatisfiability of a formula using the core MESON procedure optimized with a 
+    /// fixed limit of rules application.
+    /// </summary>
+    /// 
+    /// <param name="n">The limit of rules application.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The triple with the current instantiation, the depth reached and the 
+    /// number of variables renamed.
+    /// </returns>
+    /// 
+    /// <exception cref="T:System.Exception">Thrown with message <c>tryfind</c> when the goals are not solvable, at least at the current limit.</exception>
+    /// 
+    /// <example id="limmeson-1">
+    /// <code lang="fsharp">
+    /// !! @"~R(x,x) /\ (forall x y. R(x,y) \/ R(y,x))"
+    /// |> limmeson 2
+    /// |> fun (inst, n, k) -> (inst |> graph, n, k)
+    /// </code>
+    /// Evaluates to <c>([("_0", ``_1``); ("_1", ``_2``)], 0, 3)</c>.
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val limmeson:
       n: int ->
         fm: formula<fol> -> func<string,term> * int * int
 
+    /// <summary>
+    /// Tests the validity of a formula by negating it and splitting in 
+    /// subproblems to be refuted with the core MESON procedure with a fixed limit of rules 
+    /// application. 
+    /// </summary>
+    /// 
+    /// <param name="n">The limit of rules application.</param>
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// The list of triples with current instantiation, depth reached and number of variables renamed 
+    /// returned on the subproblems.
+    /// </returns>
+    /// 
+    /// <example id="meson_basic-1">
+    /// <code lang="fsharp">
+    /// !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
+    /// |> limited_meson 2
+    /// |> List.map (fun (inst, n, k) -> (inst |> graph, n, k))
+    /// </code>
+    /// Evaluates to <c>[([("_0", ``c_x``); ("_1", ``c_x``)], 0, 2)]</c>.
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val limited_meson:
       n: int ->
         fm: formula<fol> ->
