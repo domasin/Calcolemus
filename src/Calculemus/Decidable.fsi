@@ -622,7 +622,7 @@ module Decidable =
     /// returned on the subproblems.
     /// </returns>
     /// 
-    /// <example id="meson_basic-1">
+    /// <example id="limited_meson-1">
     /// <code lang="fsharp">
     /// !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
     /// |> limited_meson 2
@@ -637,6 +637,72 @@ module Decidable =
         fm: formula<fol> ->
         (func<string,term> * int * int) list
 
+    /// <summary>
+    /// Tests if a formula (with the finite model property) is valid or invalid.
+    /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is valid; otherwise, false.
+    /// </returns>
+    /// 
+    /// <note>
+    /// Termination is guaranteed only for formulas with the finite model 
+    /// property.
+    /// </note>
+    /// 
+    /// <example id="decide_fmp-1">
+    /// <code lang="fsharp">
+    /// !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
+    /// |> decide_fmp
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <example id="decide_fmp-2">
+    /// <code lang="fsharp">
+    /// !! @"(forall x y z. R(x,y) /\ R(y,z) ==> R(x,z)) ==> forall x. R(x,x)"
+    /// |> decide_fmp
+    /// </code>
+    /// Evaluates to <c>false</c>.
+    /// </example>
+    /// 
+    /// <example id="decide_fmp-3">
+    /// <code lang="fsharp">
+    /// !! @"~((forall x. ~R(x,x)) /\
+    ///        (forall x. exists z. R(x,z)) /\
+    ///        (forall x y z. R(x,y) /\ R(y,z) ==> R(x,z)))"
+    /// |> decide_fmp
+    /// </code>
+    /// Crashes.
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val decide_fmp: fm: formula<fol> -> bool
 
+    /// <summary>
+    /// Tests if a monadic formula without function symbols is valid or invalid 
+    /// testing only interpretations of size \(2^k\) where \(k\) is the number 
+    /// of monadic predicates in the formula.
+    /// </summary>
+    /// 
+    /// <param name="fm">The input formula.</param>
+    /// 
+    /// <returns>
+    /// true, if the input formula is valid; otherwise, false.
+    /// </returns>
+    /// 
+    /// <example id="decide_fmp-1">
+    /// <code lang="fsharp">
+    /// !! @"((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt;
+    ///       ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt;
+    ///      ((exists x. forall y. Q(x) &lt;=&gt; Q(y)) &lt;=&gt;
+    ///       ((exists x. P(x)) &lt;=&gt; (forall y. P(y))))"
+    /// |> decide_monadic
+    /// </code>
+    /// Evaluates to <c>true</c>.
+    /// </example>
+    /// 
+    /// <category index="4">The finite model property</category>
     val decide_monadic: fm: formula<fol> -> bool

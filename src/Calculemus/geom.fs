@@ -80,7 +80,8 @@ let invariant (x', y') (s : string, z) =
         (x |-> tsubst i x') ((y |-> tsubst i y') f)
     Iff (z,subst (List.foldBack m [1..5] undefined) z)
 
-let invariant_under_translation = invariant ((parset "x + X"),(parset "y + Y"))
+let invariant_under_translation = 
+    invariant ((parset "x + X"),(parset "y + Y"))
 
 let invariant_under_rotation fm =
     Imp((parse "s^2 + c^2 = 1"),

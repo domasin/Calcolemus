@@ -11,10 +11,26 @@ open Lib.Fpf
 // fsi.AddPrinter sprint_term
 
 !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
-|> decide_finite 2 
+|> decide_fmp
+
+!! @"(forall x y z. R(x,y) /\ R(y,z) ==> R(x,z)) ==> forall x. R(x,x)"
+|> decide_fmp
+
+!! @"~((forall x. ~R(x,x)) /\
+       (forall x. exists z. R(x,z)) /\
+       (forall x y z. R(x,y) /\ R(y,z) ==> R(x,z)))"
+|> decide_fmp
+
+!! @"((exists x. forall y. P(x) <=> P(y)) <=>
+      ((exists x. Q(x)) <=> (forall y. Q(y)))) <=>
+     ((exists x. forall y. Q(x) <=> Q(y)) <=>
+      ((exists x. P(x)) <=> (forall y. P(y))))"
+|> decide_monadic
 
 !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
-|> decide_fmp
+|> decide_finite 2 
+
+
 
 !! @"(forall x y. R(x,y) \/ R(y,x)) ==> forall x. R(x,x)"
 |> limited_meson 2
