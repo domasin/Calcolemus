@@ -352,7 +352,8 @@ module Decidable =
     val all_possible_syllogisms': formula<fol> list
 
     /// <summary>
-    /// Generates all tuples of a given size with members chosen from a given list.
+    /// Generates all tuples of a given size with members chosen from a given 
+    /// list.
     /// </summary>
     /// 
     /// <param name="n">The size of the resulting tuples.</param>
@@ -398,8 +399,8 @@ module Decidable =
     /// <param name="ran">The input range.</param>
     /// 
     /// <returns>
-    /// All possible functions out of the domain <c>dom</c> into range <c>ran</c>, and undefined 
-    /// outside <c>dom</c>.
+    /// All possible functions out of the domain <c>dom</c> into range 
+    /// <c>ran</c>, and undefined outside <c>dom</c>.
     /// </returns>
     /// 
     /// <example id="allmappings-1">
@@ -433,11 +434,12 @@ module Decidable =
     /// <param name="ran">The list of all possible functions in the domain.</param>
     /// 
     /// <returns>
-    /// All interpretations of the input function symbols, i.e. all mappings from the function 
-    /// symbols in <c>dom</c> to the domain functions in <c>ran</c>.
+    /// All interpretations of the input function symbols, i.e. all mappings 
+    /// from the function symbols in <c>dom</c> to the domain functions in 
+    /// <c>ran</c>.
     /// </returns>
     /// 
-    /// <example id="allmappings-1">
+    /// <example id="alldepmappings-1">
     /// <code lang="fsharp">
     /// let dom = [1..3]
     /// 
@@ -485,7 +487,9 @@ module Decidable =
     /// 
     /// <example id="allfunctions-1">
     /// <code lang="fsharp">
-    /// allfunctions [1..3] 2
+    /// let dom = [1..3]
+    /// 
+    /// allfunctions dom 2
     /// |> List.mapi (fun i f -> 
     ///     i, 
     ///     dom 
@@ -526,7 +530,9 @@ module Decidable =
     /// 
     /// <example id="allpredicates-1">
     /// <code lang="fsharp">
-    /// allpredicates [1..3] 2
+    /// let dom = [1..3]
+    /// 
+    /// allpredicates dom 2
     /// |> List.mapi (fun i f -> 
     ///     i, 
     ///     dom 
@@ -580,8 +586,8 @@ module Decidable =
     val decide_finite: n: int -> fm: formula<fol> -> bool
 
     /// <summary>
-    /// Tests the unsatisfiability of a formula using the core MESON procedure optimized with a 
-    /// fixed limit of rules application.
+    /// Tests the unsatisfiability of a formula using the core MESON procedure 
+    /// optimized with a fixed limit of rules application.
     /// </summary>
     /// 
     /// <param name="n">The limit of rules application.</param>
@@ -610,16 +616,16 @@ module Decidable =
 
     /// <summary>
     /// Tests the validity of a formula by negating it and splitting in 
-    /// subproblems to be refuted with the core MESON procedure with a fixed limit of rules 
-    /// application. 
+    /// subproblems to be refuted with the core MESON procedure with a fixed 
+    /// limit of rules application. 
     /// </summary>
     /// 
     /// <param name="n">The limit of rules application.</param>
     /// <param name="fm">The input formula.</param>
     /// 
     /// <returns>
-    /// The list of triples with current instantiation, depth reached and number of variables renamed 
-    /// returned on the subproblems.
+    /// The list of triples with current instantiation, depth reached and 
+    /// number of variables renamed returned on the subproblems.
     /// </returns>
     /// 
     /// <example id="limited_meson-1">
@@ -687,13 +693,13 @@ module Decidable =
     /// of monadic predicates in the formula.
     /// </summary>
     /// 
-    /// <param name="fm">The input formula.</param>
+    /// <param name="fm">The input monadic formula.</param>
     /// 
     /// <returns>
-    /// true, if the input formula is valid; otherwise, false.
+    /// true, if the input monadic formula is valid; otherwise, false.
     /// </returns>
     /// 
-    /// <example id="decide_fmp-1">
+    /// <example id="decide_monadic-1">
     /// <code lang="fsharp">
     /// !! @"((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt;
     ///       ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt;
