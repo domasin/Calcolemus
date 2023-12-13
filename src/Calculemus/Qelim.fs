@@ -68,7 +68,7 @@ module Qelim =
     // modification.                                                         // 
     // --------------------------------------------------------------------- // 
     
-    let cnnf lfn =
+    let cnnf lfn fm =
         let rec cnnf fm =
             match fm with
             | And (p, q) ->
@@ -92,7 +92,7 @@ module Qelim =
             | Not (Iff (p, q)) ->
                 Or (And (cnnf p, cnnf (Not q)), And (cnnf (Not p), cnnf q))
             | _ -> lfn fm
-        simplify << cnnf << simplify
+        (simplify << cnnf << simplify) fm
     
     // --------------------------------------------------------------------- // 
     // Initial literal simplifier and intermediate literal modifier.         // 
