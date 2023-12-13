@@ -41,6 +41,7 @@
     <Compile Include="Eqelim.fs" />
     <Compile Include="Paramodulation.fs" />
     <Compile Include="Decidable.fs" />
+    <Compile Include="Qelim.fs" />
     <Compile Include="ToDebug.fs" />
   </ItemGroup>
   <ItemGroup>
