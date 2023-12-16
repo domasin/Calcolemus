@@ -2012,8 +2012,9 @@
                     <code><span><span>(<span>'a&#32;->&#32;'c</span>)</span>&#32;list</span></code>
                   </span>
                   
- All interpretations of the input function symbols, i.e. all mappings from the function 
- symbols in <code>dom</code> to the domain functions in <code>ran</code>.
+ All interpretations of the input function symbols, i.e. all mappings 
+ from the function symbols in <code>dom</code> to the domain functions in 
+ <code>ran</code>.
  
                   <br/>
                 </div>
@@ -2079,8 +2080,9 @@
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- All interpretations of the input function symbols, i.e. all mappings from the function 
- symbols in <code>dom</code> to the domain functions in <code>ran</code>.
+ All interpretations of the input function symbols, i.e. all mappings 
+ from the function symbols in <code>dom</code> to the domain functions in 
+ <code>ran</code>.
  
                   </p>
                 </dd>
@@ -2088,7 +2090,7 @@
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="allmappings-1">
+              <p class="fsdocs-example" id="alldepmappings-1">
                 <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">dom</span> <span class="o">=</span> <span class="pn">[</span><span class="n">1..</span><span class="n">3</span><span class="pn">]</span>
  
  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">functionSymbols</span> <span class="o">=</span> <span class="pn">[</span><span class="pn">(</span><span class="s">&quot;g&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span><span class="pn">]</span>
@@ -2272,16 +2274,19 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 Example
               </h5>
               <p class="fsdocs-example" id="allfunctions-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">allfunctions</span> <span class="pn">[</span><span class="n">1..</span><span class="n">3</span><span class="pn">]</span> <span class="n">2</span>
- <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">mapi</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="fn">i</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="fn">f</span> <span class="k">-&gt;</span> 
-     <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">i</span><span class="pn">,</span> 
-     <span class="id">dom</span> 
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">dom</span> <span class="o">=</span> <span class="pn">[</span><span class="n">1..</span><span class="n">3</span><span class="pn">]</span>
+ 
+ <span class="id">allfunctions</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">dom</span> <span class="n">2</span>
+ <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="id">mapi</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="fn">i</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="fn">f</span> <span class="k">-&gt;</span> 
+     <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">i</span><span class="pn">,</span> 
+     <span onmouseout="hideTip(event, 'fs1', 8)" onmouseover="showTip(event, 'fs1', 8)" class="id">dom</span> 
      <span class="o">|&gt;</span> <span class="id">alltuples</span> <span class="n">2</span>
-     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="fn">args</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="fn">args</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="fn">f</span> <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="fn">args</span><span class="pn">)</span>
+     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs2', 9)" onmouseover="showTip(event, 'fs2', 9)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 10)" onmouseover="showTip(event, 'fs6', 10)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="fn">args</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">args</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="fn">f</span> <span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="fn">args</span><span class="pn">)</span>
  <span class="pn">)</span>
- <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 12)" onmouseover="showTip(event, 'fs1', 12)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 13)" onmouseover="showTip(event, 'fs7', 13)" class="id">take</span> <span class="n">3</span>
+ <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="id">take</span> <span class="n">3</span>
 </code></pre>
-<div class="fsdocs-tip" id="fs1">Multiple items<br />module List
+<div class="fsdocs-tip" id="fs1">val dom: int list</div>
+<div class="fsdocs-tip" id="fs2">Multiple items<br />module List
 
 from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
   | op_Nil
@@ -2297,12 +2302,12 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
   member IsEmpty: bool
   member Item: index: int -&gt; &#39;T with get
   ...</div>
-<div class="fsdocs-tip" id="fs2">val mapi: mapping: (int -&gt; &#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
-<div class="fsdocs-tip" id="fs3">val i: int</div>
-<div class="fsdocs-tip" id="fs4">val f: (obj -&gt; obj)</div>
-<div class="fsdocs-tip" id="fs5">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
-<div class="fsdocs-tip" id="fs6">val args: obj</div>
-<div class="fsdocs-tip" id="fs7">val take: count: int -&gt; list: &#39;T list -&gt; &#39;T list</div>
+<div class="fsdocs-tip" id="fs3">val mapi: mapping: (int -&gt; &#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
+<div class="fsdocs-tip" id="fs4">val i: int</div>
+<div class="fsdocs-tip" id="fs5">val f: (obj -&gt; obj)</div>
+<div class="fsdocs-tip" id="fs6">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
+<div class="fsdocs-tip" id="fs7">val args: obj</div>
+<div class="fsdocs-tip" id="fs8">val take: count: int -&gt; list: &#39;T list -&gt; &#39;T list</div>
 
 
  Evaluates to
@@ -2373,8 +2378,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     <code><span><span>(<span>'a&#32;->&#32;'b</span>)</span>&#32;list</span></code>
                   </span>
                   
- All possible functions out of the domain <code>dom</code> into range <code>ran</code>, and undefined 
- outside <code>dom</code>.
+ All possible functions out of the domain <code>dom</code> into range 
+ <code>ran</code>, and undefined outside <code>dom</code>.
  
                   <br/>
                 </div>
@@ -2440,8 +2445,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- All possible functions out of the domain <code>dom</code> into range <code>ran</code>, and undefined 
- outside <code>dom</code>.
+ All possible functions out of the domain <code>dom</code> into range 
+ <code>ran</code>, and undefined outside <code>dom</code>.
  
                   </p>
                 </dd>
@@ -2616,16 +2621,19 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 Example
               </h5>
               <p class="fsdocs-example" id="allpredicates-1">
-                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">allpredicates</span> <span class="pn">[</span><span class="n">1..</span><span class="n">3</span><span class="pn">]</span> <span class="n">2</span>
- <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">mapi</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="fn">i</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="fn">f</span> <span class="k">-&gt;</span> 
-     <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="fn">i</span><span class="pn">,</span> 
-     <span class="id">dom</span> 
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">dom</span> <span class="o">=</span> <span class="pn">[</span><span class="n">1..</span><span class="n">3</span><span class="pn">]</span>
+ 
+ <span class="id">allpredicates</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">dom</span> <span class="n">2</span>
+ <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="id">mapi</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="fn">i</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="fn">f</span> <span class="k">-&gt;</span> 
+     <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="fn">i</span><span class="pn">,</span> 
+     <span onmouseout="hideTip(event, 'fs1', 8)" onmouseover="showTip(event, 'fs1', 8)" class="id">dom</span> 
      <span class="o">|&gt;</span> <span class="id">alltuples</span> <span class="n">2</span>
-     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="fn">args</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="fn">args</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="fn">f</span> <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="fn">args</span><span class="pn">)</span>
+     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs2', 9)" onmouseover="showTip(event, 'fs2', 9)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 10)" onmouseover="showTip(event, 'fs6', 10)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="fn">args</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">args</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="fn">f</span> <span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="fn">args</span><span class="pn">)</span>
  <span class="pn">)</span>
- <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs1', 12)" onmouseover="showTip(event, 'fs1', 12)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 13)" onmouseover="showTip(event, 'fs7', 13)" class="id">take</span> <span class="n">3</span>
+ <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="id">take</span> <span class="n">3</span>
 </code></pre>
-<div class="fsdocs-tip" id="fs1">Multiple items<br />module List
+<div class="fsdocs-tip" id="fs1">val dom: int list</div>
+<div class="fsdocs-tip" id="fs2">Multiple items<br />module List
 
 from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
   | op_Nil
@@ -2641,12 +2649,12 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
   member IsEmpty: bool
   member Item: index: int -&gt; &#39;T with get
   ...</div>
-<div class="fsdocs-tip" id="fs2">val mapi: mapping: (int -&gt; &#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
-<div class="fsdocs-tip" id="fs3">val i: int</div>
-<div class="fsdocs-tip" id="fs4">val f: (obj -&gt; obj)</div>
-<div class="fsdocs-tip" id="fs5">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
-<div class="fsdocs-tip" id="fs6">val args: obj</div>
-<div class="fsdocs-tip" id="fs7">val take: count: int -&gt; list: &#39;T list -&gt; &#39;T list</div>
+<div class="fsdocs-tip" id="fs3">val mapi: mapping: (int -&gt; &#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
+<div class="fsdocs-tip" id="fs4">val i: int</div>
+<div class="fsdocs-tip" id="fs5">val f: (obj -&gt; obj)</div>
+<div class="fsdocs-tip" id="fs6">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
+<div class="fsdocs-tip" id="fs7">val args: obj</div>
+<div class="fsdocs-tip" id="fs8">val take: count: int -&gt; list: &#39;T list -&gt; &#39;T list</div>
 
 
  Evaluates to
@@ -2746,7 +2754,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </a>
                   <p class="fsdocs-summary">
                     
- Generates all tuples of a given size with members chosen from a given list.
+ Generates all tuples of a given size with members chosen from a given 
+ list.
  
                   </p>
                 </div>
@@ -3130,7 +3139,7 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                       :
                       <code><span><a href="/Calculemus/reference/calculemus-formulas-formula-1.html">formula</a>&lt;<a href="/Calculemus/reference/calculemus-fol-fol.html">fol</a>&gt;</span></code>
                        - 
-                      The input formula.
+                      The input monadic formula.
                     </span>
                     <br/>
                   </ul>
@@ -3140,7 +3149,7 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     <code>bool</code>
                   </span>
                   
- true, if the input formula is valid; otherwise, false.
+ true, if the input monadic formula is valid; otherwise, false.
  
                   <br/>
                 </div>
@@ -3182,7 +3191,7 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 </dt>
                 <dd class="fsdocs-param-docs">
                   <p>
-                    The input formula.
+                    The input monadic formula.
                   </p>
                 </dd>
               </dl>
@@ -3196,7 +3205,7 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- true, if the input formula is valid; otherwise, false.
+ true, if the input monadic formula is valid; otherwise, false.
  
                   </p>
                 </dd>
@@ -3204,7 +3213,7 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
               <h5 class="fsdocs-example-header">
                 Example
               </h5>
-              <p class="fsdocs-example" id="decide_fmp-1">
+              <p class="fsdocs-example" id="decide_monadic-1">
                 <pre class="fssnip highlighted"><code lang="fsharp"> <span class="pn">!!</span> <span class="s">@&quot;((exists x. forall y. P(x) &lt;=&gt; P(y)) &lt;=&gt;</span>
 <span class="s">       ((exists x. Q(x)) &lt;=&gt; (forall y. Q(y)))) &lt;=&gt;</span>
 <span class="s">      ((exists x. forall y. Q(x) &lt;=&gt; Q(y)) &lt;=&gt;</span>
@@ -3266,8 +3275,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                     <code><span><span>(<span><span><a href="/Calculemus/reference/calculemus-lib-fpf-func-2.html">func</a>&lt;<span>string,&#32;<a href="/Calculemus/reference/calculemus-fol-term.html">term</a></span>&gt;</span>&#32;*&#32;int&#32;*&#32;int</span>)</span>&#32;list</span></code>
                   </span>
                   
- The list of triples with current instantiation, depth reached and number of variables renamed 
- returned on the subproblems.
+ The list of triples with current instantiation, depth reached and 
+ number of variables renamed returned on the subproblems.
  
                   <br/>
                 </div>
@@ -3293,8 +3302,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   <p class="fsdocs-summary">
                     
  Tests the validity of a formula by negating it and splitting in 
- subproblems to be refuted with the core MESON procedure with a fixed limit of rules 
- application. 
+ subproblems to be refuted with the core MESON procedure with a fixed 
+ limit of rules application. 
  
                   </p>
                 </div>
@@ -3335,8 +3344,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                 <dd class="fsdocs-return-docs">
                   <p>
                     
- The list of triples with current instantiation, depth reached and number of variables renamed 
- returned on the subproblems.
+ The list of triples with current instantiation, depth reached and 
+ number of variables renamed returned on the subproblems.
  
                   </p>
                 </dd>
@@ -3450,8 +3459,8 @@ from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List
                   </a>
                   <p class="fsdocs-summary">
                     
- Tests the unsatisfiability of a formula using the core MESON procedure optimized with a 
- fixed limit of rules application.
+ Tests the unsatisfiability of a formula using the core MESON procedure 
+ optimized with a fixed limit of rules application.
  
                   </p>
                 </div>
