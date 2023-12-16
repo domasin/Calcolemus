@@ -38,7 +38,7 @@ module Qelim =
             let q = bfn (Exists (x, list_conj ycjs))
             List.foldBack mk_and ncjs q
     
-    let lift_qelim afn nfn qfn =
+    let lift_qelim afn nfn qfn fm =
         let rec qelift vars fm =
             match fm with
             | Atom (R (_,_)) ->
@@ -60,8 +60,7 @@ module Qelim =
                     list_disj (List.map (qelim (qfn vars) x) djs)
             | _ -> fm
     
-        fun fm ->
-            simplify (qelift (fv fm) (miniscope fm))
+        simplify (qelift (fv fm) (miniscope fm))
     
     // --------------------------------------------------------------------- // 
     // Cleverer (propositional) NNF with conditional and literal             //
@@ -110,9 +109,6 @@ module Qelim =
     // Simple example of dense linear orderings; this is the base  function. //
     // --------------------------------------------------------------------- // 
     
-    // Note: List.find throws exception it does not return failure
-    //       so "try with failure" will not work with List.find
-    // dom modified to remove warning
     let dlobasic fm =
         match fm with
         | Exists (x, p) ->
@@ -123,8 +119,7 @@ module Qelim =
                 let y = if s = Var x then t else s
                 list_conj (List.map (subst (x |=> y)) (subtract cjs [eqn]))
             with 
-            | Failure _ ->
-            //| :? System.Collections.Generic.KeyNotFoundException -> // List.find  is modified to return failure again
+            | _ ->
                 if mem (Atom (R ("<", [Var x; Var x]))) cjs then False
                 else
                     let lefts, rights = 
@@ -133,21 +128,24 @@ module Qelim =
                             match fm with 
                             | Atom (R ("<", [s; t])) -> 
                                 t = Var x
-                            | _ -> failwith "dlobasic: incomplete pattern matching"
+                            | _ -> 
+                                failwith "dlobasic: incomplete pattern matching"
                         ) 
                     let ls = 
                         lefts
                         |> List.map (fun fm -> 
                             match fm with 
                             | (Atom (R ("<", [l;_]))) -> l
-                            | _ -> failwith "dlobasic: incomplete pattern matching"
+                            | _ -> 
+                                failwith "dlobasic: incomplete pattern matching"
                         ) 
                     let rs = 
                         rights
                         |> List.map (fun fm -> 
                             match fm with 
                             | (Atom (R ("<", [_;r]))) -> r
-                            | _ -> failwith "dlobasic: incomplete pattern matching"
+                            | _ -> 
+                                failwith "dlobasic: incomplete pattern matching"
                         ) 
                     list_conj (allpairs (fun l r -> Atom (R ("<", [l; r]))) ls rs)
         | _ -> failwith "dlobasic"
@@ -166,5 +164,5 @@ module Qelim =
             Atom (R ("<", [t; s]))
         | _ -> fm
     
-    let quelim_dlo =
-        lift_qelim afn_dlo (dnf << cnnf lfn_dlo) (fun v -> dlobasic)
+    let quelim_dlo fm =
+        fm |> lift_qelim afn_dlo (dnf << cnnf lfn_dlo) (fun v -> dlobasic)
